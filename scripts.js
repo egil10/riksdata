@@ -118,9 +118,17 @@ async function initializeCharts() {
         // Load CPI data
         await loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'CPI');
         
-        // For demonstration, we'll use the same CPI data for unemployment
-        // In a real implementation, you'd use a different SSB endpoint
-        await loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'Unemployment Rate');
+        // Load Unemployment data
+        await loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Unemployment Rate');
+        
+        // Load House Price Index
+        await loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index');
+        
+        // Load Producer Price Index
+        await loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index');
+        
+        // Load Wage Index
+        await loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index');
         
     } catch (error) {
         console.error('Error initializing charts:', error);

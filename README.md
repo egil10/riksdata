@@ -24,7 +24,10 @@ The charts include background shading for the following Norwegian government per
 
 Currently includes:
 - **Consumer Price Index (CPI)**: Dataset 1086 from SSB
-- **Unemployment Rate**: Dataset 1086 from SSB (placeholder)
+- **Unemployment Rate**: Dataset 1054 from SSB (Labour Force Survey)
+- **House Price Index**: Dataset 1060 from SSB (Quarterly data)
+- **Producer Price Index**: Dataset 26426 from SSB (Oil, gas, manufacturing, mining, electricity)
+- **Wage Index**: Dataset 1124 from SSB (Average monthly earnings by industry)
 
 ## Quick Start
 

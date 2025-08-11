@@ -138,6 +138,9 @@ async function initializeCharts() {
         // Load Wage Index
         await loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index');
         
+        // Load Oil Fund data
+        await loadOilFundData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value');
+        
     } catch (error) {
         console.error('Error initializing charts:', error);
         showError('Failed to load chart data. Please try again later.');
@@ -348,6 +351,74 @@ function showError(message, canvas = null) {
         errorDiv.className = 'error';
         errorDiv.textContent = message;
         document.querySelector('main').prepend(errorDiv);
+    }
+}
+
+// Load and render oil fund data
+async function loadOilFundData(canvasId, dataUrl, chartTitle) {
+    try {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`Canvas with id '${canvasId}' not found`);
+            return;
+        }
+
+        // Show loading state
+        showLoading(canvas);
+
+        // Fetch data from local JSON file
+        const response = await fetch(dataUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        // Parse oil fund data
+        const parsedData = parseOilFundData(data);
+        
+        // Filter data from 2000 onwards
+        const filteredData = parsedData.filter(item => {
+            const year = new Date(item.date).getFullYear();
+            return year >= 2000;
+        });
+
+        if (filteredData.length === 0) {
+            throw new Error('No data available for the specified period');
+        }
+
+        // Render the chart
+        renderChart(canvas, filteredData, chartTitle);
+
+    } catch (error) {
+        console.error(`Error loading data for ${canvasId}:`, error);
+        showError(`Failed to load ${chartTitle} data. Please try again later.`, canvas);
+    }
+}
+
+// Parse oil fund JSON data into usable format
+function parseOilFundData(oilFundData) {
+    try {
+        const dataPoints = [];
+        
+        oilFundData.data.forEach(item => {
+            // Create date for January 1st of each year
+            const date = new Date(item.year, 0, 1);
+            
+            dataPoints.push({
+                date: date,
+                value: item.total // Use total value in billions NOK
+            });
+        });
+
+        // Sort by date
+        dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        return dataPoints;
+
+    } catch (error) {
+        console.error('Error parsing oil fund data:', error);
+        throw new Error('Invalid oil fund data format');
     }
 }
 

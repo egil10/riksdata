@@ -190,10 +190,7 @@ function toggleTheme() {
     // Update theme toggle icon
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        const icon = themeToggle.querySelector('i');
-        if (icon) {
-            icon.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
-        }
+        themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
     }
 }
 
@@ -301,6 +298,32 @@ function hideSkeletonLoading() {
     });
 }
 
+// Aggregate data by month for bar charts
+function aggregateDataByMonth(data) {
+    const monthlyData = {};
+    
+    data.forEach(item => {
+        const date = new Date(item.date);
+        const monthKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
+        
+        if (!monthlyData[monthKey]) {
+            monthlyData[monthKey] = {
+                sum: 0,
+                count: 0,
+                date: new Date(date.getFullYear(), date.getMonth(), 1)
+            };
+        }
+        
+        monthlyData[monthKey].sum += item.value;
+        monthlyData[monthKey].count += 1;
+    });
+    
+    return Object.values(monthlyData).map(item => ({
+        date: item.date,
+        value: item.sum / item.count // Average for the month
+    })).sort((a, b) => new Date(a.date) - new Date(b.date));
+}
+
 // Load and render chart data
 async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
     try {
@@ -331,8 +354,11 @@ async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
             throw new Error('No data available for the specified period');
         }
 
+        // Aggregate by month for bar charts
+        const finalData = chartType === 'bar' ? aggregateDataByMonth(filteredData) : filteredData;
+
         // Render the chart
-        renderChart(canvas, filteredData, chartTitle, chartType);
+        renderChart(canvas, finalData, chartTitle, chartType);
 
     } catch (error) {
         console.error(`Error loading data for ${canvasId}:`, error);
@@ -492,7 +518,17 @@ function createPoliticalDatasets(data, title, chartType = 'line') {
         label: title,
         data: data.map(item => item.value),
         borderColor: '#1a1a1a',
-        backgroundColor: chartType === 'bar' ? 'rgba(26, 26, 26, 0.1)' : 'rgba(26, 26, 26, 0.05)',
+        backgroundColor: chartType === 'bar' ? data.map(item => {
+            const itemDate = new Date(item.date);
+            for (const period of POLITICAL_PERIODS) {
+                const startDate = new Date(period.start);
+                const endDate = new Date(period.end);
+                if (itemDate >= startDate && itemDate <= endDate) {
+                    return period.color;
+                }
+            }
+            return '#1a1a1a';
+        }) : 'rgba(26, 26, 26, 0.05)',
         borderWidth: chartType === 'bar' ? 0 : 1.2,
         fill: chartType === 'bar' ? true : false,
         tension: 0.2,

@@ -35,25 +35,24 @@ Currently includes:
    ```
 
 2. **Open the site**:
-   - Navigate to the `site/` folder
    - Open `index.html` in your web browser
-   - Or serve it locally: `python -m http.server 8000` then visit `http://localhost:8000/site/`
+   - Or serve it locally: `python -m http.server 8000` then visit `http://localhost:8000/`
 
 3. **Deploy to GitHub Pages**:
    - Push to the `main` branch
    - Go to Settings > Pages
    - Set Source to "Deploy from a branch"
-   - Select "main" branch and "/site" folder
+   - Select "main" branch and "/(root)" folder
    - Your site will be available at `https://yourusername.github.io/riksdata/`
 
 ## Project Structure
 
 ```
 riksdata/
-├── site/
-│   ├── index.html          # Main HTML page
-│   ├── style.css           # Responsive CSS styles
-│   └── scripts.js          # JavaScript with SSB API integration
+├── index.html              # Main HTML page
+├── style.css               # Responsive CSS styles
+├── scripts.js              # JavaScript with SSB API integration
+├── test-api.html           # API test page
 └── README.md               # This file
 ```
 

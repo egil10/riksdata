@@ -318,10 +318,46 @@ function aggregateDataByMonth(data) {
         monthlyData[monthKey].count += 1;
     });
     
-    return Object.values(monthlyData).map(item => ({
+    // Convert to array and sort by date
+    const result = Object.values(monthlyData).map(item => ({
         date: item.date,
         value: item.sum / item.count // Average for the month
     })).sort((a, b) => new Date(a.date) - new Date(b.date));
+    
+    // For quarterly data (like GDP Growth), we might want to keep quarterly structure
+    // Check if we have quarterly data by looking at the original data frequency
+    const originalDates = data.map(item => new Date(item.date));
+    const isQuarterly = originalDates.some(date => 
+        date.getMonth() % 3 === 0 && date.getDate() === 1
+    );
+    
+    if (isQuarterly) {
+        // For quarterly data, return quarterly averages instead of monthly
+        const quarterlyData = {};
+        data.forEach(item => {
+            const date = new Date(item.date);
+            const quarter = Math.floor(date.getMonth() / 3) + 1;
+            const quarterKey = `${date.getFullYear()}-Q${quarter}`;
+            
+            if (!quarterlyData[quarterKey]) {
+                quarterlyData[quarterKey] = {
+                    sum: 0,
+                    count: 0,
+                    date: new Date(date.getFullYear(), (quarter - 1) * 3, 1)
+                };
+            }
+            
+            quarterlyData[quarterKey].sum += item.value;
+            quarterlyData[quarterKey].count += 1;
+        });
+        
+        return Object.values(quarterlyData).map(item => ({
+            date: item.date,
+            value: item.sum / item.count
+        })).sort((a, b) => new Date(a.date) - new Date(b.date));
+    }
+    
+    return result;
 }
 
 // Load and render chart data

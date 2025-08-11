@@ -177,21 +177,20 @@ function parseSSBData(ssbData) {
         const dimension = dataset.dimension;
         const value = dataset.value;
 
-        // Find time dimension
-        const timeDimension = dimension.find(d => d.id === 'Tid');
+        // Find time dimension - it's an object, not an array
+        const timeDimension = dimension.Tid;
         if (!timeDimension) {
             throw new Error('Time dimension not found in SSB data');
         }
 
-        // Get time labels
+        // Get time labels and indices
         const timeLabels = timeDimension.category.label;
         const timeIndex = timeDimension.category.index;
 
         // Parse data points
         const dataPoints = [];
         
-        // SSB data is typically structured with time as the first dimension
-        // We need to iterate through the time periods
+        // Iterate through the time periods
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
@@ -201,9 +200,8 @@ function parseSSBData(ssbData) {
             
             if (date) {
                 // Get the value for this time period
-                // In SSB data, values are typically indexed by dimension combinations
-                const valueKey = timeIndexValue.toString();
-                const dataValue = value[valueKey];
+                // In SSB data, values are indexed by the time index
+                const dataValue = value[timeIndexValue];
                 
                 if (dataValue !== undefined && dataValue !== null) {
                     dataPoints.push({

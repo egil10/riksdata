@@ -40,17 +40,22 @@
                 if (data.dataset && data.dataset.dimension) {
                     resultsDiv.innerHTML += '<div class="test-result success">✅ Data structure looks correct</div>';
                     
-                    // Check for time dimension
-                    const timeDimension = data.dataset.dimension.find(d => d.id === 'Tid');
-                    if (timeDimension) {
-                        resultsDiv.innerHTML += '<div class="test-result success">✅ Time dimension found</div>';
-                        
-                        const timeLabels = timeDimension.category.label;
-                        const sampleTimes = Object.values(timeLabels).slice(0, 5);
-                        resultsDiv.innerHTML += '<div class="test-result">📅 Sample time periods: ' + sampleTimes.join(', ') + '</div>';
-                    } else {
-                        resultsDiv.innerHTML += '<div class="test-result error">❌ Time dimension not found</div>';
-                    }
+                                    // Check for time dimension
+                const timeDimension = data.dataset.dimension.Tid;
+                if (timeDimension) {
+                    resultsDiv.innerHTML += '<div class="test-result success">✅ Time dimension found</div>';
+                    
+                    const timeLabels = timeDimension.category.label;
+                    const sampleTimes = Object.values(timeLabels).slice(0, 5);
+                    resultsDiv.innerHTML += '<div class="test-result">📅 Sample time periods: ' + sampleTimes.join(', ') + '</div>';
+                    
+                    // Test data parsing
+                    const values = data.dataset.value;
+                    const sampleValues = Object.values(values).slice(0, 5);
+                    resultsDiv.innerHTML += '<div class="test-result">📊 Sample values: ' + sampleValues.join(', ') + '</div>';
+                } else {
+                    resultsDiv.innerHTML += '<div class="test-result error">❌ Time dimension not found</div>';
+                }
                 } else {
                     resultsDiv.innerHTML += '<div class="test-result error">❌ Unexpected data structure</div>';
                 }

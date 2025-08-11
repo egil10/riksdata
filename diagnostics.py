@@ -17,7 +17,9 @@ APIS = {
     "House Prices": "https://data.ssb.no/api/v0/dataset/1060.json?lang=en",
     "Producer Prices": "https://data.ssb.no/api/v0/dataset/26426.json?lang=en",
     "Wages": "https://data.ssb.no/api/v0/dataset/1124.json?lang=en",
-    "Exchange Rates": "https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no"
+    "Exchange Rates": "https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no",
+    "Interest Rate": "https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no",
+    "Government Debt": "https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01"
 }
 
 def print_header(title: str):
@@ -178,6 +180,71 @@ def parse_exchange_rate_data(data: Dict) -> List[Dict]:
     except Exception as e:
         raise ValueError(f"Exchange rate parsing error: {str(e)}")
 
+def parse_interest_rate_data(data: Dict) -> List[Dict]:
+    """Parse Norges Bank interest rate data"""
+    try:
+        series = data['data']['dataSets'][0]['series']
+        data_points = []
+        
+        # Parse Key Policy Rate (series 0:0:0:0)
+        interest_series = series.get('0:0:0:0')
+        if interest_series and 'observations' in interest_series:
+            for key, observation in interest_series['observations'].items():
+                value = observation[0]
+                # Approximate date from index (starting from 2000-01)
+                month = 1 + int(key)
+                year = 2000 + (month - 1) // 12
+                month = ((month - 1) % 12) + 1
+                date = datetime(year, month, 1)
+                data_points.append({
+                    'date': date,
+                    'value': float(value),
+                    'type': 'Key Policy Rate'
+                })
+        
+        data_points.sort(key=lambda x: x['date'])
+        return data_points
+        
+    except Exception as e:
+        raise ValueError(f"Interest rate parsing error: {str(e)}")
+
+def parse_government_debt_data(data: Dict) -> List[Dict]:
+    """Parse Norges Bank government debt data"""
+    try:
+        series = data['data']['dataSets'][0]['series']
+        data_points = []
+        
+        # Find the series with the most observations (likely the main government debt series)
+        best_series = None
+        max_observations = 0
+        
+        for series_key, series_data in series.items():
+            if 'observations' in series_data:
+                observation_count = len(series_data['observations'])
+                if observation_count > max_observations:
+                    max_observations = observation_count
+                    best_series = series_key
+        
+        if best_series and 'observations' in series[best_series]:
+            for key, observation in series[best_series]['observations'].items():
+                value = observation[0]
+                # Approximate date from index (starting from 2000-01)
+                month = 1 + int(key)
+                year = 2000 + (month - 1) // 12
+                month = ((month - 1) % 12) + 1
+                date = datetime(year, month, 1)
+                data_points.append({
+                    'date': date,
+                    'value': float(value),
+                    'type': 'Government Debt % GDP'
+                })
+        
+        data_points.sort(key=lambda x: x['date'])
+        return data_points
+        
+    except Exception as e:
+        raise ValueError(f"Government debt parsing error: {str(e)}")
+
 def analyze_data_quality(data_points: List[Dict], name: str) -> Dict[str, Any]:
     """Analyze data quality and detect issues"""
     if not data_points:
@@ -285,6 +352,10 @@ def main():
         try:
             if name == "Exchange Rates":
                 data_points = parse_exchange_rate_data(result['data'])
+            elif name == "Interest Rate":
+                data_points = parse_interest_rate_data(result['data'])
+            elif name == "Government Debt":
+                data_points = parse_government_debt_data(result['data'])
             else:
                 data_points = parse_ssb_data(result['data'])
             

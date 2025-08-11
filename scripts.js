@@ -145,6 +145,12 @@ async function initializeCharts() {
         // Load Exchange Rate data
         await loadExchangeRateData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK');
         
+        // Load Interest Rate data
+        await loadInterestRateData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate');
+        
+        // Load Government Debt data
+        await loadGovernmentDebtData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt');
+        
     } catch (error) {
         console.error('Error initializing charts:', error);
         showError('Failed to load chart data. Please try again later.');
@@ -495,6 +501,78 @@ async function loadExchangeRateData(canvasId, apiUrl, chartTitle) {
     }
 }
 
+// Load and render interest rate data
+async function loadInterestRateData(canvasId, apiUrl, chartTitle) {
+    try {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`Canvas with id '${canvasId}' not found`);
+            return;
+        }
+
+        showLoading(canvas);
+
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const parsedData = parseInterestRateData(data);
+        
+        const filteredData = parsedData.filter(item => {
+            const year = new Date(item.date).getFullYear();
+            return year >= 2000;
+        });
+
+        if (filteredData.length === 0) {
+            throw new Error('No data available for the specified period');
+        }
+
+        renderChart(canvas, filteredData, chartTitle);
+
+    } catch (error) {
+        console.error(`Error loading data for ${canvasId}:`, error);
+        showError(`Failed to load ${chartTitle} data. Please try again later.`, canvas);
+    }
+}
+
+// Load and render government debt data
+async function loadGovernmentDebtData(canvasId, apiUrl, chartTitle) {
+    try {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`Canvas with id '${canvasId}' not found`);
+            return;
+        }
+
+        showLoading(canvas);
+
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const parsedData = parseGovernmentDebtData(data);
+        
+        const filteredData = parsedData.filter(item => {
+            const year = new Date(item.date).getFullYear();
+            return year >= 2000;
+        });
+
+        if (filteredData.length === 0) {
+            throw new Error('No data available for the specified period');
+        }
+
+        renderChart(canvas, filteredData, chartTitle);
+
+    } catch (error) {
+        console.error(`Error loading data for ${canvasId}:`, error);
+        showError(`Failed to load ${chartTitle} data. Please try again later.`, canvas);
+    }
+}
+
 // Parse Norges Bank exchange rate data
 function parseExchangeRateData(data) {
     try {
@@ -524,6 +602,84 @@ function parseExchangeRateData(data) {
     } catch (error) {
         console.error('Error parsing exchange rate data:', error);
         throw new Error('Invalid exchange rate data format');
+    }
+}
+
+// Parse Norges Bank interest rate data
+function parseInterestRateData(data) {
+    try {
+        const dataPoints = [];
+        const series = data.data.dataSets[0].series;
+        
+        // Parse Key Policy Rate (series 0:0:0:0)
+        if (series['0:0:0:0'] && series['0:0:0:0'].observations) {
+            Object.keys(series['0:0:0:0'].observations).forEach(key => {
+                const value = series['0:0:0:0'].observations[key][0];
+                // Calculate proper date from index (starting from 2000-01)
+                const monthOffset = parseInt(key);
+                const month = 1 + monthOffset;
+                const year = 2000 + Math.floor((month - 1) / 12);
+                const actualMonth = ((month - 1) % 12) + 1;
+                const date = new Date(year, actualMonth - 1, 1);
+                dataPoints.push({
+                    date: date,
+                    value: parseFloat(value)
+                });
+            });
+        }
+
+        dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return dataPoints;
+
+    } catch (error) {
+        console.error('Error parsing interest rate data:', error);
+        throw new Error('Invalid interest rate data format');
+    }
+}
+
+// Parse Norges Bank government debt data
+function parseGovernmentDebtData(data) {
+    try {
+        const dataPoints = [];
+        const series = data.data.dataSets[0].series;
+        
+        // Find the series with the most observations (likely the main government debt series)
+        let bestSeries = null;
+        let maxObservations = 0;
+        
+        Object.keys(series).forEach(seriesKey => {
+            const seriesData = series[seriesKey];
+            if (seriesData.observations) {
+                const observationCount = Object.keys(seriesData.observations).length;
+                if (observationCount > maxObservations) {
+                    maxObservations = observationCount;
+                    bestSeries = seriesKey;
+                }
+            }
+        });
+        
+        if (bestSeries && series[bestSeries].observations) {
+            Object.keys(series[bestSeries].observations).forEach(key => {
+                const value = series[bestSeries].observations[key][0];
+                // Calculate proper date from index (starting from 2000-01)
+                const monthOffset = parseInt(key);
+                const month = 1 + monthOffset;
+                const year = 2000 + Math.floor((month - 1) / 12);
+                const actualMonth = ((month - 1) % 12) + 1;
+                const date = new Date(year, actualMonth - 1, 1);
+                dataPoints.push({
+                    date: date,
+                    value: parseFloat(value)
+                });
+            });
+        }
+
+        dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return dataPoints;
+
+    } catch (error) {
+        console.error('Error parsing government debt data:', error);
+        throw new Error('Invalid government debt data format');
     }
 }
 

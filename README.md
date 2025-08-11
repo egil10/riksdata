@@ -4,10 +4,11 @@ A static GitHub Pages website displaying Norwegian economic indicators with poli
 
 ## Features
 
-- **Interactive Charts**: Line charts with zoom, hover tooltips, and responsive design
-- **Political Party Shading**: Background colors showing different ruling party periods since 2000
-- **Real-time Data**: Fetches data directly from SSB PXWeb JSON APIs
-- **Responsive Design**: Works on desktop, tablet, and mobile devices
+- **9 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates, Interest Rates, Government Debt
+- **Political Period Coloring**: Chart lines colored by ruling party periods since 2000
+- **Ultra-Compact Design**: Space-efficient layout optimized for multiple charts
+- **Real-time Data**: Fetches data from SSB and Norges Bank APIs
+- **Responsive Design**: Works on desktop, tablet, and mobile
 - **Static Hosting**: Ready for GitHub Pages deployment
 
 ## Political Periods (Post-2000)
@@ -22,12 +23,20 @@ The charts include background shading for the following Norwegian government per
 
 ## Data Sources
 
-Currently includes:
+### SSB (Statistics Norway)
 - **Consumer Price Index (CPI)**: Dataset 1086 from SSB
 - **Unemployment Rate**: Dataset 1054 from SSB (Labour Force Survey)
 - **House Price Index**: Dataset 1060 from SSB (Quarterly data)
 - **Producer Price Index**: Dataset 26426 from SSB (Oil, gas, manufacturing, mining, electricity)
 - **Wage Index**: Dataset 1124 from SSB (Average monthly earnings by industry)
+
+### Norges Bank
+- **Exchange Rates**: USD/NOK exchange rate from Norges Bank API
+- **Interest Rates**: Key Policy Rate from Norges Bank API
+- **Government Debt**: Government debt as % of GDP from Norges Bank API
+
+### Local Data
+- **Oil Fund**: Government Pension Fund Global value (annual data)
 
 ## Quick Start
 

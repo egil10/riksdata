@@ -4,57 +4,74 @@ const POLITICAL_PERIODS = [
         name: "Jens Stoltenberg I (Ap)",
         start: "2000-03-17",
         end: "2001-10-19",
-        color: "#E03C31", // Ap red
-        backgroundColor: "rgba(224, 60, 49, 0.1)"
+        color: "#EF4444", // Modern Ap red
+        backgroundColor: "rgba(239, 68, 68, 0.7)"
     },
     {
         name: "Kjell Magne Bondevik II (KrF, H, V)",
         start: "2001-10-19",
         end: "2005-10-17",
-        color: "#FFCC00", // KrF yellow
-        backgroundColor: "rgba(255, 204, 0, 0.1)"
+        color: "#3B82F6", // Modern KrF blue
+        backgroundColor: "rgba(59, 130, 246, 0.7)"
     },
     {
         name: "Jens Stoltenberg II (Ap, SV, Sp)",
         start: "2005-10-17",
         end: "2013-10-16",
-        color: "#E03C31", // Ap red
-        backgroundColor: "rgba(224, 60, 49, 0.1)"
+        color: "#EF4444", // Modern Ap red
+        backgroundColor: "rgba(239, 68, 68, 0.7)"
     },
     {
         name: "Erna Solberg (H, FrP; later V, KrF)",
         start: "2013-10-16",
         end: "2021-10-14",
-        color: "#005AA3", // H blue
-        backgroundColor: "rgba(0, 90, 163, 0.1)"
+        color: "#10B981", // Modern H green
+        backgroundColor: "rgba(16, 185, 129, 0.7)"
     },
     {
         name: "Jonas Gahr Støre (Ap, Sp)",
         start: "2021-10-14",
         end: "2025-09-08", // Extended until next election
-        color: "#E03C31", // Ap red
-        backgroundColor: "rgba(224, 60, 49, 0.1)"
+        color: "#EF4444", // Modern Ap red
+        backgroundColor: "rgba(239, 68, 68, 0.7)"
     }
 ];
 
-// Ultra-compact chart configuration
+// Get political period for a given date
+function getPoliticalPeriod(date) {
+    const targetDate = new Date(date);
+    for (const period of POLITICAL_PERIODS) {
+        const startDate = new Date(period.start);
+        const endDate = new Date(period.end);
+        if (targetDate >= startDate && targetDate <= endDate) {
+            return period.name;
+        }
+    }
+    return "Unknown Period";
+}
+
+// Ultra-compact chart configuration with enhanced tooltips
 const CHART_CONFIG = {
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+        duration: 800,
+        easing: 'easeOutQuart'
+    },
     plugins: {
         legend: { display: false },
         tooltip: {
             mode: 'index',
             intersect: false,
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
-            titleColor: 'white',
-            bodyColor: 'white',
-            borderColor: '#333',
-            borderWidth: 0,
-            cornerRadius: 3,
-            padding: 6,
-            titleFont: { size: 9, weight: '500' },
-            bodyFont: { size: 8 },
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            titleColor: '#1F2937',
+            bodyColor: '#1F2937',
+            borderColor: '#E5E7EB',
+            borderWidth: 1,
+            cornerRadius: 8,
+            padding: 12,
+            titleFont: { size: 14, weight: '600' },
+            bodyFont: { size: 13 },
             displayColors: false,
             callbacks: {
                 title: function(context) {
@@ -66,7 +83,10 @@ const CHART_CONFIG = {
                     });
                 },
                 label: function(context) {
-                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString();
+                    const value = context.parsed.y;
+                    const period = getPoliticalPeriod(context.parsed.x);
+                    const formattedValue = typeof value === 'number' ? value.toLocaleString() : value;
+                    return `${context.dataset.label}: ${formattedValue} (${period})`;
                 }
             }
         }
@@ -80,24 +100,24 @@ const CHART_CONFIG = {
             },
             grid: { display: false },
             ticks: {
-                maxTicksLimit: 2,
-                font: { size: 7 },
-                color: '#666'
+                maxTicksLimit: 3,
+                font: { size: 11 },
+                color: '#6B7280'
             },
             border: { display: false }
         },
         y: {
             grid: {
-                color: 'rgba(0, 0, 0, 0.02)',
+                color: 'rgba(0, 0, 0, 0.05)',
                 drawBorder: false
             },
             ticks: {
                 callback: function(value) {
                     return value.toLocaleString();
                 },
-                font: { size: 7 },
-                color: '#666',
-                padding: 1
+                font: { size: 11 },
+                color: '#6B7280',
+                padding: 4
             },
             border: { display: false }
         }
@@ -105,17 +125,17 @@ const CHART_CONFIG = {
     elements: {
         point: {
             radius: 0,
-            hoverRadius: 2,
-            hoverBackgroundColor: '#1a1a1a'
+            hoverRadius: 4,
+            hoverBackgroundColor: '#1F2937'
         },
         line: {
-            tension: 0.1,
-            borderWidth: 1,
+            tension: 0.2,
+            borderWidth: 2,
             fill: false
         },
         bar: {
             borderWidth: 0,
-            borderRadius: 1
+            borderRadius: 4
         }
     }
 };
@@ -123,13 +143,63 @@ const CHART_CONFIG = {
 // Initialize the dashboard
 document.addEventListener('DOMContentLoaded', function() {
     initializeCharts();
+    setupFilters();
 });
+
+// Setup interactive filters
+function setupFilters() {
+    const timeRangeSelect = document.getElementById('timeRange');
+    const partyFocusSelect = document.getElementById('partyFocus');
+    
+    timeRangeSelect.addEventListener('change', updateCharts);
+    partyFocusSelect.addEventListener('change', updateCharts);
+}
+
+// Update charts based on filter selections
+function updateCharts() {
+    const timeRange = document.getElementById('timeRange').value;
+    const partyFocus = document.getElementById('partyFocus').value;
+    
+    // Re-render all charts with new filters
+    Object.keys(window.chartInstances || {}).forEach(chartId => {
+        const chart = window.chartInstances[chartId];
+        if (chart && chart.data) {
+            const filteredData = filterChartData(chart.data, timeRange, partyFocus);
+            chart.data = filteredData;
+            chart.update('active');
+        }
+    });
+}
+
+// Filter chart data based on time range and party focus
+function filterChartData(originalData, timeRange, partyFocus) {
+    // Implementation for filtering data
+    // This is a simplified version - you can enhance this based on your needs
+    return originalData;
+}
+
+// Toggle legend visibility
+function toggleLegend() {
+    const legendContent = document.getElementById('legendContent');
+    const toggleButton = document.querySelector('.legend-toggle');
+    
+    if (legendContent.classList.contains('collapsed')) {
+        legendContent.classList.remove('collapsed');
+        toggleButton.textContent = '−';
+    } else {
+        legendContent.classList.add('collapsed');
+        toggleButton.textContent = '+';
+    }
+}
 
 // Initialize all charts
 async function initializeCharts() {
     try {
         // Show loading screen
         const loadingScreen = document.getElementById('loading-screen');
+        
+        // Show skeleton loading for all charts
+        showSkeletonLoading();
         
         // Load all charts in parallel
         const chartPromises = [
@@ -155,6 +225,9 @@ async function initializeCharts() {
         // Wait for all charts to load
         await Promise.allSettled(chartPromises);
         
+        // Hide skeleton loading
+        hideSkeletonLoading();
+        
         // Hide loading screen with fade out
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
@@ -174,6 +247,43 @@ async function initializeCharts() {
             loadingScreen.style.display = 'none';
         }, 500);
     }
+}
+
+// Show skeleton loading for all charts
+function showSkeletonLoading() {
+    const skeletonIds = [
+        'cpi-skeleton', 'unemployment-skeleton', 'house-prices-skeleton', 'ppi-skeleton',
+        'wage-skeleton', 'oil-fund-skeleton', 'exchange-skeleton', 'interest-rate-skeleton',
+        'govt-debt-skeleton', 'gdp-growth-skeleton', 'trade-balance-skeleton', 'bankruptcies-skeleton',
+        'population-growth-skeleton', 'construction-costs-skeleton'
+    ];
+    
+    skeletonIds.forEach(id => {
+        const skeleton = document.getElementById(id);
+        if (skeleton) {
+            skeleton.style.display = 'block';
+        }
+    });
+}
+
+// Hide skeleton loading
+function hideSkeletonLoading() {
+    const skeletonIds = [
+        'cpi-skeleton', 'unemployment-skeleton', 'house-prices-skeleton', 'ppi-skeleton',
+        'wage-skeleton', 'oil-fund-skeleton', 'exchange-skeleton', 'interest-rate-skeleton',
+        'govt-debt-skeleton', 'gdp-growth-skeleton', 'trade-balance-skeleton', 'bankruptcies-skeleton',
+        'population-growth-skeleton', 'construction-costs-skeleton'
+    ];
+    
+    skeletonIds.forEach(id => {
+        const skeleton = document.getElementById(id);
+        if (skeleton) {
+            skeleton.style.opacity = '0';
+            setTimeout(() => {
+                skeleton.style.display = 'none';
+            }, 300);
+        }
+    });
 }
 
 // Load and render chart data
@@ -353,6 +463,12 @@ function renderChart(canvas, data, title, chartType = 'line') {
         data: chartData,
         options: CHART_CONFIG
     });
+
+    // Store chart instance for filtering
+    if (!window.chartInstances) {
+        window.chartInstances = {};
+    }
+    window.chartInstances[canvas.id] = canvas.chart;
 }
 
 // Create modern datasets with political period colors

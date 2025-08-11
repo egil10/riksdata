@@ -1,18 +1,19 @@
 # Riksklokken
 
-A static GitHub Pages website displaying Norwegian economic indicators with political party period shading. The dashboard fetches data from Statistics Norway (SSB) APIs and visualizes it using Chart.js with background shading for different ruling party periods.
+A modern, interactive dashboard displaying Norwegian economic indicators with political party period shading. Built with cutting-edge web technologies and inspired by industry standards like Tableau and Google Data Studio.
 
 ## Features
 
 - **14 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates, Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs
-- **Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with interactive legend
-- **Ultra-Compact Design**: Space-efficient rectangular layout optimized for multiple charts without scrolling
-- **Modern Loading Screen**: Elegant loading experience with Norwegian political colors
-- **Mixed Chart Types**: Line charts for trends, bar charts for discrete data
-- **Minimalistic Tooltips**: Clean, modern tooltips with proper date formatting
-- **Source Attribution**: Direct links to data sources for each chart
+- **Interactive Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with collapsible legend
+- **Modern Design System**: Inter font, CSS variables, and neumorphic design patterns
+- **Enhanced Tooltips**: Rich formatting with political period context and proper date formatting
+- **Interactive Filters**: Time range and party focus controls for dynamic data exploration
+- **Skeleton Loading**: Modern loading states with smooth animations
+- **Responsive Grid Layout**: 3-column desktop grid that adapts to mobile
+- **Mixed Chart Types**: Optimized line and bar charts for better data storytelling
 - **Real-time Data**: Fetches data from SSB and Norges Bank APIs
-- **Responsive Design**: Works on desktop, tablet, and mobile
+- **Accessibility**: WCAG AA compliant color scheme and typography
 - **Static Hosting**: Ready for GitHub Pages deployment
 
 ## Political Periods (Post-2000)
@@ -24,6 +25,25 @@ The charts include background shading for the following Norwegian government per
 - **Jens Stoltenberg II (Ap, SV, Sp)**: October 17, 2005 - October 16, 2013
 - **Erna Solberg (H, FrP; later V, KrF)**: October 16, 2013 - October 14, 2021
 - **Jonas Gahr Støre (Ap, Sp)**: October 14, 2021 - September 8, 2025 (Next Election)
+
+## Modern Design Features
+
+### Typography & Layout
+- **Inter Font**: Modern sans-serif typography for optimal readability
+- **CSS Variables**: Consistent color scheme and spacing system
+- **Responsive Grid**: 3-column desktop layout with mobile-first approach
+- **Rem Units**: Scalable typography and spacing
+
+### Interactive Elements
+- **Enhanced Tooltips**: Rich formatting with political context
+- **Collapsible Legend**: Space-efficient political period legend
+- **Filter Controls**: Time range and party focus selectors
+- **Smooth Animations**: Chart transitions and hover effects
+
+### Loading Experience
+- **Skeleton Loading**: Modern loading states for better perceived performance
+- **Progressive Loading**: Charts load in parallel with smooth transitions
+- **Error Handling**: Graceful fallbacks for failed data requests
 
 ## Data Sources
 
@@ -70,9 +90,9 @@ The charts include background shading for the following Norwegian government per
 
 ```
 riksdata/
-├── index.html              # Main HTML page with 14 charts
-├── style.css               # Modern responsive CSS styles
-├── scripts.js              # JavaScript with SSB API integration
+├── index.html              # Main HTML page with modern structure
+├── style.css               # Modern CSS with Inter font and variables
+├── scripts.js              # Enhanced JavaScript with interactive features
 ├── data/                   # Local data files
 │   ├── oil-fund.json       # Oil fund data
 │   └── exchange-rates.json # Exchange rate data
@@ -92,6 +112,7 @@ To add a new economic indicator:
            <span class="chart-subtitle">Description</span>
        </div>
        <div class="chart-container">
+           <div class="skeleton-chart" id="new-chart-skeleton"></div>
            <canvas id="new-chart"></canvas>
            <a href="https://data.ssb.no/api/v0/dataset/XXXX.json?lang=en" target="_blank" class="source-link">SSB XXXX</a>
        </div>
@@ -109,76 +130,43 @@ To add a new economic indicator:
    - Search for your dataset
    - Use the dataset ID in the API URL
 
-## Chart Types
+## Chart Types & Optimization
 
-The dashboard supports different chart types based on data characteristics:
+The dashboard uses optimized chart types for better data storytelling:
 
-- **Line Charts**: Used for continuous time series data (CPI, Unemployment, etc.)
-- **Bar Charts**: Used for discrete data points (GDP Growth, Trade Balance, Bankruptcies)
+- **Line Charts**: Continuous time series data (CPI, Unemployment, Exchange Rate)
+- **Bar Charts**: Discrete data points (GDP Growth, Trade Balance, Bankruptcies)
+- **Enhanced Tooltips**: Political period context and rich formatting
+- **Smooth Animations**: Chart transitions with easing functions
 
-## Design Features
+## Interactive Features
 
-### Political Legend
-- Fixed position legend showing political party colors
-- Responsive design that moves to top on mobile
-- Clean, minimalistic styling
+### Filter Controls
+- **Time Range**: All Data, Last 5 Years, Post-2010, Current Period
+- **Party Focus**: All Parties, Arbeiderpartiet (Ap), Kristelig Folkeparti (KrF), Høyre (H)
 
-### Tooltips
-- Minimalistic black and white design
-- Proper date formatting (no time, just date)
-- Compact information display
-- No color indicators for cleaner look
+### Legend System
+- **Collapsible Legend**: Space-efficient political period display
+- **Color Coding**: Modern, accessible color palette
+- **Interactive Toggle**: Expand/collapse functionality
 
-### Source Links
-- Small, unobtrusive links in bottom-right of each chart
-- Direct links to data sources
-- Hover effects for better UX
+## Design System
 
-### Loading Screen
-- Norwegian political colors (red, blue, yellow)
-- Minimalistic spinner and typography
-- Smooth fade transitions
+### Color Palette
+- **Primary Colors**: Modern red (#EF4444), blue (#3B82F6), green (#10B981)
+- **Neutral Colors**: Gray scale with proper contrast ratios
+- **Background**: Light neutral (#F9FAFB) for optimal readability
 
-## SSB API Format
+### Typography
+- **Font Family**: Inter, system-ui, sans-serif
+- **Base Size**: 16px for optimal readability
+- **Weights**: 300-700 for proper hierarchy
+- **Line Height**: 1.5 for comfortable reading
 
-The dashboard expects SSB data in PXWeb JSON format. The parsing function handles:
-- Monthly data (format: "2023M01")
-- Yearly data (format: "2023")
-- Time dimension with ID "Tid"
-- Value arrays indexed by time periods
-
-## Customization
-
-### Political Party Colors
-
-Edit the `POLITICAL_PERIODS` array in `scripts.js`:
-```javascript
-const POLITICAL_PERIODS = [
-    {
-        name: "Party Name",
-        start: "YYYY-MM-DD",
-        end: "YYYY-MM-DD",
-        color: "rgba(R, G, B, 0.1)",      # Background color
-        backgroundColor: "rgba(R, G, B, 0.1)" # Border color
-    }
-];
-```
-
-### Chart Styling
-
-Modify the `CHART_CONFIG` object in `scripts.js` to customize:
-- Chart colors and styling
-- Tooltip appearance
-- Axis formatting
-- Responsive behavior
-
-### CSS Customization
-
-Edit `style.css` to change:
-- Color scheme
-- Layout and spacing
-- Typography
-- Mobile responsiveness
+### Spacing & Layout
+- **Grid System**: CSS Grid with responsive breakpoints
+- **Spacing Scale**: Rem-based system for consistency
+- **Card Design**: Neumorphic shadows and subtle borders
 
 ## Browser Compatibility
 
@@ -189,8 +177,9 @@ Edit `style.css` to change:
 
 ## Dependencies
 
-- **Chart.js**: Chart rendering library
+- **Chart.js**: Chart rendering library with enhanced configurations
 - **chartjs-adapter-date-fns**: Date handling for Chart.js
+- **Inter Font**: Modern typography from Google Fonts
 
 All dependencies are loaded from CDN for simplicity.
 

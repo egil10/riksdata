@@ -24,20 +24,47 @@
         </div>
     </header>
 
+    <!-- Filter Bar -->
+    <div class="filter-bar">
+        <div class="filter-group">
+            <label for="timeRange">Time Range:</label>
+            <select id="timeRange">
+                <option value="all">All Data</option>
+                <option value="5years">Last 5 Years</option>
+                <option value="post2010">Post-2010</option>
+                <option value="current">Current Period</option>
+            </select>
+        </div>
+        <div class="filter-group">
+            <label for="partyFocus">Party Focus:</label>
+            <select id="partyFocus">
+                <option value="all">All Parties</option>
+                <option value="ap">Arbeiderpartiet (Ap)</option>
+                <option value="krf">Kristelig Folkeparti (KrF)</option>
+                <option value="h">Høyre (H)</option>
+            </select>
+        </div>
+    </div>
+
     <!-- Political Legend -->
     <div class="political-legend">
-        <div class="legend-title">Political Periods</div>
-        <div class="legend-item">
-            <div class="legend-color" style="background-color: #E03C31;"></div>
-            <div class="legend-text">Arbeiderpartiet (Ap)</div>
+        <div class="legend-title">
+            Political Periods
+            <button class="legend-toggle" onclick="toggleLegend()">−</button>
         </div>
-        <div class="legend-item">
-            <div class="legend-color" style="background-color: #FFCC00;"></div>
-            <div class="legend-text">Kristelig Folkeparti (KrF)</div>
-        </div>
-        <div class="legend-item">
-            <div class="legend-color" style="background-color: #005AA3;"></div>
-            <div class="legend-text">Høyre (H)</div>
+        <div class="legend-content" id="legendContent">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--ap-red);"></div>
+                <div class="legend-text">Arbeiderpartiet (Ap)</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--krf-blue);"></div>
+                <div class="legend-text">Kristelig Folkeparti (KrF)</div>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: var(--h-green);"></div>
+                <div class="legend-text">Høyre (H)</div>
+            </div>
         </div>
     </div>
 
@@ -49,6 +76,7 @@
                     <span class="chart-subtitle">Consumer Price Index</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="cpi-skeleton"></div>
                     <canvas id="cpi-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/1086.json?lang=en" target="_blank" class="source-link">SSB 1086</a>
                 </div>
@@ -60,6 +88,7 @@
                     <span class="chart-subtitle">Rate %</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="unemployment-skeleton"></div>
                     <canvas id="unemployment-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/1054.json?lang=en" target="_blank" class="source-link">SSB 1054</a>
                 </div>
@@ -71,6 +100,7 @@
                     <span class="chart-subtitle">Index</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="house-prices-skeleton"></div>
                     <canvas id="house-prices-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/1060.json?lang=en" target="_blank" class="source-link">SSB 1060</a>
                 </div>
@@ -82,6 +112,7 @@
                     <span class="chart-subtitle">Index</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="ppi-skeleton"></div>
                     <canvas id="ppi-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/26426.json?lang=en" target="_blank" class="source-link">SSB 26426</a>
                 </div>
@@ -93,6 +124,7 @@
                     <span class="chart-subtitle">Index</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="wage-skeleton"></div>
                     <canvas id="wage-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/1124.json?lang=en" target="_blank" class="source-link">SSB 1124</a>
                 </div>
@@ -104,6 +136,7 @@
                     <span class="chart-subtitle">Billion NOK</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="oil-fund-skeleton"></div>
                     <canvas id="oil-fund-chart"></canvas>
                     <a href="data/oil-fund.json" target="_blank" class="source-link">Local Data</a>
                 </div>
@@ -115,6 +148,7 @@
                     <span class="chart-subtitle">USD/NOK</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="exchange-skeleton"></div>
                     <canvas id="exchange-chart"></canvas>
                     <a href="https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
                 </div>
@@ -126,6 +160,7 @@
                     <span class="chart-subtitle">Key Policy Rate</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="interest-rate-skeleton"></div>
                     <canvas id="interest-rate-chart"></canvas>
                     <a href="https://data.norges-bank.no/api/data/IR/M.KPRA.." target="_blank" class="source-link">Norges Bank</a>
                 </div>
@@ -137,6 +172,7 @@
                     <span class="chart-subtitle">% of GDP</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="govt-debt-skeleton"></div>
                     <canvas id="govt-debt-chart"></canvas>
                     <a href="https://data.norges-bank.no/api/data/GOVT_KEYFIGURES" target="_blank" class="source-link">Norges Bank</a>
                 </div>
@@ -149,6 +185,7 @@
                     <span class="chart-subtitle">Quarterly %</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="gdp-growth-skeleton"></div>
                     <canvas id="gdp-growth-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/59012.json?lang=en" target="_blank" class="source-link">SSB 59012</a>
                 </div>
@@ -160,6 +197,7 @@
                     <span class="chart-subtitle">Billion NOK</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="trade-balance-skeleton"></div>
                     <canvas id="trade-balance-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/58962.json?lang=en" target="_blank" class="source-link">SSB 58962</a>
                 </div>
@@ -171,6 +209,7 @@
                     <span class="chart-subtitle">Monthly Count</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="bankruptcies-skeleton"></div>
                     <canvas id="bankruptcies-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/95265.json?lang=en" target="_blank" class="source-link">SSB 95265</a>
                 </div>
@@ -182,6 +221,7 @@
                     <span class="chart-subtitle">Annual %</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="population-growth-skeleton"></div>
                     <canvas id="population-growth-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/49626.json?lang=en" target="_blank" class="source-link">SSB 49626</a>
                 </div>
@@ -193,6 +233,7 @@
                     <span class="chart-subtitle">Index</span>
                 </div>
                 <div class="chart-container">
+                    <div class="skeleton-chart" id="construction-costs-skeleton"></div>
                     <canvas id="construction-costs-chart"></canvas>
                     <a href="https://data.ssb.no/api/v0/dataset/26944.json?lang=en" target="_blank" class="source-link">SSB 26944</a>
                 </div>

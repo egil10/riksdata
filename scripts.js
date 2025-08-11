@@ -1,39 +1,39 @@
-// Political party periods for background shading (post-2000)
+// Political party periods for chart coloring (post-2000)
 const POLITICAL_PERIODS = [
     {
         name: "Jens Stoltenberg I (Ap)",
         start: "2000-03-17",
         end: "2001-10-19",
-        color: "rgba(224, 60, 49, 0.1)", // Ap red
-        borderColor: "rgba(224, 60, 49, 0.3)"
+        color: "#E03C31", // Ap red
+        backgroundColor: "rgba(224, 60, 49, 0.1)"
     },
     {
         name: "Kjell Magne Bondevik II (KrF, H, V)",
         start: "2001-10-19",
         end: "2005-10-17",
-        color: "rgba(255, 204, 0, 0.1)", // KrF yellow
-        borderColor: "rgba(255, 204, 0, 0.3)"
+        color: "#FFCC00", // KrF yellow
+        backgroundColor: "rgba(255, 204, 0, 0.1)"
     },
     {
         name: "Jens Stoltenberg II (Ap, SV, Sp)",
         start: "2005-10-17",
         end: "2013-10-16",
-        color: "rgba(224, 60, 49, 0.1)", // Ap red
-        borderColor: "rgba(224, 60, 49, 0.3)"
+        color: "#E03C31", // Ap red
+        backgroundColor: "rgba(224, 60, 49, 0.1)"
     },
     {
         name: "Erna Solberg (H, FrP; later V, KrF)",
         start: "2013-10-16",
         end: "2021-10-14",
-        color: "rgba(0, 90, 163, 0.1)", // H blue
-        borderColor: "rgba(0, 90, 163, 0.3)"
+        color: "#005AA3", // H blue
+        backgroundColor: "rgba(0, 90, 163, 0.1)"
     },
     {
         name: "Jonas Gahr Støre (Ap, Sp)",
         start: "2021-10-14",
         end: "2025-01-04",
-        color: "rgba(224, 60, 49, 0.1)", // Ap red
-        borderColor: "rgba(224, 60, 49, 0.3)"
+        color: "#E03C31", // Ap red
+        backgroundColor: "rgba(224, 60, 49, 0.1)"
     }
 ];
 
@@ -48,11 +48,12 @@ const CHART_CONFIG = {
         tooltip: {
             mode: 'index',
             intersect: false,
-            backgroundColor: 'rgba(0, 0, 0, 0.8)',
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
             titleColor: 'white',
             bodyColor: 'white',
-            borderColor: '#667eea',
-            borderWidth: 1
+            borderColor: '#333',
+            borderWidth: 1,
+            cornerRadius: 4
         }
     },
     scales: {
@@ -68,27 +69,34 @@ const CHART_CONFIG = {
                 display: false
             },
             ticks: {
-                maxTicksLimit: 12
+                maxTicksLimit: 8,
+                font: {
+                    size: 10
+                }
             }
         },
         y: {
             grid: {
-                color: 'rgba(0, 0, 0, 0.1)'
+                color: 'rgba(0, 0, 0, 0.05)'
             },
             ticks: {
                 callback: function(value) {
                     return value.toLocaleString();
+                },
+                font: {
+                    size: 10
                 }
             }
         }
     },
     elements: {
         point: {
-            radius: 3,
-            hoverRadius: 6
+            radius: 2,
+            hoverRadius: 4
         },
         line: {
-            tension: 0.1
+            tension: 0.1,
+            borderWidth: 2
         }
     }
 };
@@ -254,79 +262,62 @@ function parseTimeLabel(timeLabel) {
     }
 }
 
-// Render Chart.js chart with political party shading
+// Render Chart.js chart with political party colored lines
 function renderChart(canvas, data, title) {
     // Clear any existing chart
     if (canvas.chart) {
         canvas.chart.destroy();
     }
 
+    // Create datasets for each political period
+    const datasets = createPoliticalDatasets(data, title);
+
     // Prepare data for Chart.js
     const chartData = {
         labels: data.map(item => item.date),
-        datasets: [{
-            label: title,
-            data: data.map(item => item.value),
-            borderColor: '#667eea',
-            backgroundColor: 'rgba(102, 126, 234, 0.1)',
-            borderWidth: 2,
-            fill: false,
-            tension: 0.1
-        }]
-    };
-
-    // Create political period annotations for background shading
-    const annotations = createPoliticalAnnotations(data);
-
-    // Merge chart config with annotations
-    const config = {
-        ...CHART_CONFIG,
-        plugins: {
-            ...CHART_CONFIG.plugins,
-            annotation: {
-                annotations: annotations
-            }
-        }
+        datasets: datasets
     };
 
     // Create the chart
     canvas.chart = new Chart(canvas, {
         type: 'line',
         data: chartData,
-        options: config
+        options: CHART_CONFIG
     });
 }
 
-// Create political period annotations for background shading
-function createPoliticalAnnotations(data) {
-    const annotations = [];
-    
-    POLITICAL_PERIODS.forEach(period => {
-        const startDate = new Date(period.start);
-        const endDate = new Date(period.end);
-        
-        // Check if this period overlaps with our data
-        const dataStart = new Date(data[0].date);
-        const dataEnd = new Date(data[data.length - 1].date);
-        
-        if (endDate >= dataStart && startDate <= dataEnd) {
-            annotations.push({
-                type: 'box',
-                xMin: Math.max(startDate, dataStart),
-                xMax: Math.min(endDate, dataEnd),
-                backgroundColor: period.color,
-                borderColor: period.borderColor,
-                borderWidth: 1,
-                label: {
-                    content: period.name,
-                    position: 'start',
-                    display: false
+// Create a single dataset with political period colors
+function createPoliticalDatasets(data, title) {
+    // Create a single dataset with segmented colors
+    const dataset = {
+        label: title,
+        data: data.map(item => item.value),
+        borderColor: '#333', // Default color
+        backgroundColor: 'rgba(51, 51, 51, 0.1)',
+        borderWidth: 2,
+        fill: false,
+        tension: 0.1,
+        segment: {
+            borderColor: ctx => {
+                const dataIndex = ctx.p1DataIndex;
+                const itemDate = new Date(data[dataIndex].date);
+                
+                // Find which political period this date belongs to
+                for (const period of POLITICAL_PERIODS) {
+                    const startDate = new Date(period.start);
+                    const endDate = new Date(period.end);
+                    
+                    if (itemDate >= startDate && itemDate <= endDate) {
+                        return period.color;
+                    }
                 }
-            });
+                
+                return '#333'; // Default color for dates outside political periods
+            }
         }
-    });
+    };
     
-    return annotations;
+    return [dataset];
 }
 
 // Show loading state

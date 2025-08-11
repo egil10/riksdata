@@ -7,92 +7,90 @@
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
 </head>
 <body>
     <header>
-        <h1>Norway Macro Dashboard</h1>
-        <p id="last-updated">Last updated: <span id="update-time"></span></p>
+        <div class="header-content">
+            <h1>Norway Macro</h1>
+            <div class="header-meta">
+                <span id="update-time"></span>
+                <a href="diagnostics.html" class="diagnostics-link">🔍</a>
+            </div>
+        </div>
     </header>
 
     <main>
-        <section class="chart-container">
-            <h2>Consumer Price Index (CPI)</h2>
-            <p class="chart-info">Monthly CPI data from Statistics Norway</p>
-            <div class="chart-wrapper">
-                <canvas id="cpi-chart"></canvas>
+        <div class="chart-grid">
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>CPI</h3>
+                    <span class="chart-subtitle">Consumer Price Index</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="cpi-chart"></canvas>
+                </div>
             </div>
-            <p class="source-link">
-                <a href="https://data.ssb.no/api/v0/dataset/1086.json?lang=en" target="_blank">
-                    Source: SSB Dataset 1086
-                </a>
-            </p>
-        </section>
 
-        <section class="chart-container">
-            <h2>Unemployment Rate</h2>
-            <p class="chart-info">Monthly unemployment rate data from Statistics Norway</p>
-            <div class="chart-wrapper">
-                <canvas id="unemployment-chart"></canvas>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Unemployment</h3>
+                    <span class="chart-subtitle">Rate %</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="unemployment-chart"></canvas>
+                </div>
             </div>
-            <p class="source-link">
-                <a href="https://data.ssb.no/api/v0/dataset/1054.json?lang=en" target="_blank">
-                    Source: SSB Dataset 1054
-                </a>
-            </p>
-        </section>
 
-        <section class="chart-container">
-            <h2>House Price Index</h2>
-            <p class="chart-info">Quarterly house price index by type of building and region</p>
-            <div class="chart-wrapper">
-                <canvas id="house-prices-chart"></canvas>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>House Prices</h3>
+                    <span class="chart-subtitle">Index</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="house-prices-chart"></canvas>
+                </div>
             </div>
-            <p class="source-link">
-                <a href="https://data.ssb.no/api/v0/dataset/1060.json?lang=en" target="_blank">
-                    Source: SSB Dataset 1060
-                </a>
-            </p>
-        </section>
 
-        <section class="chart-container">
-            <h2>Producer Price Index</h2>
-            <p class="chart-info">Monthly producer price index for oil, gas, manufacturing, mining and electricity</p>
-            <div class="chart-wrapper">
-                <canvas id="ppi-chart"></canvas>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Producer Prices</h3>
+                    <span class="chart-subtitle">Index</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="ppi-chart"></canvas>
+                </div>
             </div>
-            <p class="source-link">
-                <a href="https://data.ssb.no/api/v0/dataset/26426.json?lang=en" target="_blank">
-                    Source: SSB Dataset 26426
-                </a>
-            </p>
-        </section>
 
-        <section class="chart-container">
-            <h2>Wage Index</h2>
-            <p class="chart-info">Quarterly wage index, average monthly earnings by industry</p>
-            <div class="chart-wrapper">
-                <canvas id="wage-chart"></canvas>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Wages</h3>
+                    <span class="chart-subtitle">Index</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="wage-chart"></canvas>
+                </div>
             </div>
-            <p class="source-link">
-                <a href="https://data.ssb.no/api/v0/dataset/1124.json?lang=en" target="_blank">
-                    Source: SSB Dataset 1124
-                </a>
-            </p>
-        </section>
 
-        <section class="chart-container">
-            <h2>Oil Fund Value</h2>
-            <p class="chart-info">Government Pension Fund Global total value in billions NOK</p>
-            <div class="chart-wrapper">
-                <canvas id="oil-fund-chart"></canvas>
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Oil Fund</h3>
+                    <span class="chart-subtitle">Billion NOK</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="oil-fund-chart"></canvas>
+                </div>
             </div>
-            <p class="source-link">
-                <a href="data/oil-fund.json" target="_blank">
-                    Source: Norges Bank Data
-                </a>
-            </p>
-        </section>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Exchange Rate</h3>
+                    <span class="chart-subtitle">USD/NOK</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="exchange-chart"></canvas>
+                </div>
+            </div>
+        </div>
     </main>
 
     <script src="scripts.js"></script>

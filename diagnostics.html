@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Diagnostics</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; max-width: 1200px; margin: 0 auto; padding: 2rem; background: #f8f9fa; }
+        .header { background: white; padding: 2rem; border-radius: 12px; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .test-section { background: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .test-title { font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem; color: #2c3e50; }
+        .status { padding: 0.5rem 1rem; border-radius: 6px; font-weight: 500; margin-bottom: 1rem; }
+        .status.success { background: #d4edda; color: #155724; }
+        .status.error { background: #f8d7da; color: #721c24; }
+        .status.loading { background: #fff3cd; color: #856404; }
+        .data-preview { background: #f8f9fa; padding: 1rem; border-radius: 6px; font-family: monospace; font-size: 0.9rem; max-height: 200px; overflow-y: auto; }
+        .run-tests { background: #007bff; color: white; border: none; padding: 1rem 2rem; border-radius: 8px; font-size: 1rem; cursor: pointer; margin-bottom: 2rem; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🔍 API Diagnostics</h1>
+        <p>Testing all data sources for the Norway Macro Dashboard</p>
+        <button class="run-tests" onclick="runAllTests()">Run All Tests</button>
+    </div>
+    <div id="test-results"></div>
+    <script>
+        const APIs = [
+            { name: "CPI", url: "https://data.ssb.no/api/v0/dataset/1086.json?lang=en", type: "SSB" },
+            { name: "Unemployment", url: "https://data.ssb.no/api/v0/dataset/1054.json?lang=en", type: "SSB" },
+            { name: "House Prices", url: "https://data.ssb.no/api/v0/dataset/1060.json?lang=en", type: "SSB" },
+            { name: "PPI", url: "https://data.ssb.no/api/v0/dataset/26426.json?lang=en", type: "SSB" },
+            { name: "Wages", url: "https://data.ssb.no/api/v0/dataset/1124.json?lang=en", type: "SSB" },
+            { name: "Exchange Rates", url: "https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no", type: "NorgesBank" }
+        ];
+
+        async function runAllTests() {
+            const resultsDiv = document.getElementById('test-results');
+            resultsDiv.innerHTML = '';
+
+            for (const api of APIs) {
+                await testAPI(api);
+            }
+        }
+
+        async function testAPI(api) {
+            const testDiv = document.createElement('div');
+            testDiv.className = 'test-section';
+            testDiv.innerHTML = `<div class="test-title">${api.name}</div><div class="status loading">Testing...</div><div class="data-preview">Loading...</div>`;
+            document.getElementById('test-results').appendChild(testDiv);
+
+            try {
+                const response = await fetch(api.url);
+                const statusDiv = testDiv.querySelector('.status');
+                const dataDiv = testDiv.querySelector('.data-preview');
+
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+                const data = await response.json();
+                let parsedData = null;
+                let parseError = null;
+
+                try {
+                    if (api.type === 'SSB') {
+                        parsedData = parseSSBData(data);
+                    } else if (api.type === 'NorgesBank') {
+                        parsedData = parseNorgesBankData(data);
+                    }
+                } catch (error) {
+                    parseError = error.message;
+                }
+
+                if (parseError) {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = `❌ Parse Error: ${parseError}`;
+                } else if (parsedData && parsedData.length > 0) {
+                    statusDiv.className = 'status success';
+                    statusDiv.textContent = `✅ Success: ${parsedData.length} data points`;
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.textContent = '❌ No data points found';
+                }
+
+                dataDiv.textContent = JSON.stringify({ dataPoints: parsedData ? parsedData.length : 0, sample: parsedData ? parsedData.slice(0, 2) : null }, null, 2);
+
+            } catch (error) {
+                const statusDiv = testDiv.querySelector('.status');
+                const dataDiv = testDiv.querySelector('.data-preview');
+                statusDiv.className = 'status error';
+                statusDiv.textContent = `❌ Error: ${error.message}`;
+                dataDiv.textContent = `Failed to fetch: ${error.message}`;
+            }
+        }
+
+        function parseSSBData(ssbData) {
+            const dataset = ssbData.dataset;
+            const dimension = dataset.dimension;
+            const value = dataset.value;
+            const timeDimension = dimension.Tid;
+            const timeLabels = timeDimension.category.label;
+            const timeIndex = timeDimension.category.index;
+            const dataPoints = [];
+            
+            Object.keys(timeLabels).forEach(timeKey => {
+                const timeLabel = timeLabels[timeKey];
+                const timeIndexValue = timeIndex[timeKey];
+                const date = parseTimeLabel(timeLabel);
+                if (date) {
+                    const dataValue = value[timeIndexValue];
+                    if (dataValue !== undefined && dataValue !== null) {
+                        dataPoints.push({ date: date, value: parseFloat(dataValue) });
+                    }
+                }
+            });
+            return dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        }
+
+        function parseNorgesBankData(data) {
+            const dataPoints = [];
+            const series = data.data.dataSets[0].series;
+            
+            if (series['0:0:0:0'] && series['0:0:0:0'].observations) {
+                Object.keys(series['0:0:0:0'].observations).forEach(key => {
+                    const value = series['0:0:0:0'].observations[key][0];
+                    dataPoints.push({ date: new Date(2015, 8 + parseInt(key), 1), value: parseFloat(value) });
+                });
+            }
+            return dataPoints;
+        }
+
+        function parseTimeLabel(timeLabel) {
+            if (timeLabel.includes('M')) {
+                const [year, month] = timeLabel.split('M');
+                return new Date(parseInt(year), parseInt(month) - 1, 1);
+            }
+            if (/^\d{4}$/.test(timeLabel)) {
+                return new Date(parseInt(timeLabel), 0, 1);
+            }
+            return new Date(timeLabel);
+        }
+
+        window.addEventListener('load', runAllTests);
+    </script>
+</body>
+</html>

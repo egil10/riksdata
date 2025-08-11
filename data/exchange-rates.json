@@ -1,0 +1,7 @@
+{
+  "title": "Norwegian Exchange Rates",
+  "description": "Monthly USD and EUR exchange rates against NOK",
+  "source": "Norges Bank",
+  "api_url": "https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no",
+  "data": []
+}

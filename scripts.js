@@ -37,23 +37,24 @@ const POLITICAL_PERIODS = [
     }
 ];
 
-// Chart configuration and styling
+// Modern chart configuration
 const CHART_CONFIG = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-        legend: {
-            display: false
-        },
+        legend: { display: false },
         tooltip: {
             mode: 'index',
             intersect: false,
-            backgroundColor: 'rgba(0, 0, 0, 0.9)',
+            backgroundColor: 'rgba(0, 0, 0, 0.95)',
             titleColor: 'white',
             bodyColor: 'white',
             borderColor: '#333',
             borderWidth: 1,
-            cornerRadius: 4
+            cornerRadius: 8,
+            padding: 12,
+            titleFont: { size: 13, weight: '600' },
+            bodyFont: { size: 12 }
         }
     },
     scales: {
@@ -61,42 +62,42 @@ const CHART_CONFIG = {
             type: 'time',
             time: {
                 unit: 'month',
-                displayFormats: {
-                    month: 'MMM yyyy'
-                }
+                displayFormats: { month: 'MMM yyyy' }
             },
-            grid: {
-                display: false
-            },
+            grid: { display: false },
             ticks: {
-                maxTicksLimit: 8,
-                font: {
-                    size: 10
-                }
-            }
+                maxTicksLimit: 6,
+                font: { size: 11 },
+                color: '#666'
+            },
+            border: { display: false }
         },
         y: {
             grid: {
-                color: 'rgba(0, 0, 0, 0.05)'
+                color: 'rgba(0, 0, 0, 0.04)',
+                drawBorder: false
             },
             ticks: {
                 callback: function(value) {
                     return value.toLocaleString();
                 },
-                font: {
-                    size: 10
-                }
-            }
+                font: { size: 11 },
+                color: '#666',
+                padding: 8
+            },
+            border: { display: false }
         }
     },
     elements: {
         point: {
-            radius: 2,
-            hoverRadius: 4
+            radius: 0,
+            hoverRadius: 4,
+            hoverBackgroundColor: '#1a1a1a'
         },
         line: {
-            tension: 0.1,
-            borderWidth: 2
+            tension: 0.2,
+            borderWidth: 2,
+            fill: false
         }
     }
 };
@@ -140,6 +141,9 @@ async function initializeCharts() {
         
         // Load Oil Fund data
         await loadOilFundData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value');
+        
+        // Load Exchange Rate data
+        await loadExchangeRateData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK');
         
     } catch (error) {
         console.error('Error initializing charts:', error);
@@ -289,23 +293,21 @@ function renderChart(canvas, data, title) {
     });
 }
 
-// Create a single dataset with political period colors
+// Create modern datasets with political period colors
 function createPoliticalDatasets(data, title) {
-    // Create a single dataset with segmented colors
     const dataset = {
         label: title,
         data: data.map(item => item.value),
-        borderColor: '#333', // Default color
-        backgroundColor: 'rgba(51, 51, 51, 0.1)',
+        borderColor: '#1a1a1a',
+        backgroundColor: 'rgba(26, 26, 26, 0.05)',
         borderWidth: 2,
         fill: false,
-        tension: 0.1,
+        tension: 0.2,
         segment: {
             borderColor: ctx => {
                 const dataIndex = ctx.p1DataIndex;
                 const itemDate = new Date(data[dataIndex].date);
                 
-                // Find which political period this date belongs to
                 for (const period of POLITICAL_PERIODS) {
                     const startDate = new Date(period.start);
                     const endDate = new Date(period.end);
@@ -315,7 +317,7 @@ function createPoliticalDatasets(data, title) {
                     }
                 }
                 
-                return '#333'; // Default color for dates outside political periods
+                return '#1a1a1a';
             }
         }
     };
@@ -419,6 +421,70 @@ function parseOilFundData(oilFundData) {
     } catch (error) {
         console.error('Error parsing oil fund data:', error);
         throw new Error('Invalid oil fund data format');
+    }
+}
+
+// Load and render exchange rate data
+async function loadExchangeRateData(canvasId, apiUrl, chartTitle) {
+    try {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.error(`Canvas with id '${canvasId}' not found`);
+            return;
+        }
+
+        showLoading(canvas);
+
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const parsedData = parseExchangeRateData(data);
+        
+        const filteredData = parsedData.filter(item => {
+            const year = new Date(item.date).getFullYear();
+            return year >= 2000;
+        });
+
+        if (filteredData.length === 0) {
+            throw new Error('No data available for the specified period');
+        }
+
+        renderChart(canvas, filteredData, chartTitle);
+
+    } catch (error) {
+        console.error(`Error loading data for ${canvasId}:`, error);
+        showError(`Failed to load ${chartTitle} data. Please try again later.`, canvas);
+    }
+}
+
+// Parse Norges Bank exchange rate data
+function parseExchangeRateData(data) {
+    try {
+        const dataPoints = [];
+        const series = data.data.dataSets[0].series;
+        
+        // Parse USD/NOK (series 0:0:0:0)
+        if (series['0:0:0:0'] && series['0:0:0:0'].observations) {
+            Object.keys(series['0:0:0:0'].observations).forEach(key => {
+                const value = series['0:0:0:0'].observations[key][0];
+                // Approximate date from index (starting from 2015-09)
+                const date = new Date(2015, 8 + parseInt(key), 1);
+                dataPoints.push({
+                    date: date,
+                    value: parseFloat(value)
+                });
+            });
+        }
+
+        dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return dataPoints;
+
+    } catch (error) {
+        console.error('Error parsing exchange rate data:', error);
+        throw new Error('Invalid exchange rate data format');
     }
 }
 

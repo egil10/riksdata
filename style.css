@@ -173,7 +173,7 @@ header h1:hover {
 
 /* Main Grid */
 main {
-    height: calc(100vh - 60px - 120px);
+    height: calc(100vh - 60px - 140px);
     padding: 1rem;
     overflow-y: auto;
     scroll-behavior: smooth;
@@ -219,10 +219,39 @@ main {
     }
 }
 
+/* Source Links */
+.source-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 0.75rem;
+    color: var(--text-color);
+    text-decoration: none;
+    background: rgba(255,255,255,0.9);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    opacity: 0.6;
+    font-weight: 500;
+    z-index: 10;
+}
+
+.dark-mode .source-link {
+    background: rgba(55, 65, 81, 0.9);
+    color: var(--text-color);
+}
+
+.source-link:hover {
+    opacity: 1;
+    background: var(--card-bg);
+    box-shadow: var(--shadow-light);
+}
+
 .chart-header {
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border-color);
+    position: relative;
 }
 
 .chart-header h3 {
@@ -246,44 +275,18 @@ main {
     min-height: 150px;
 }
 
-/* Source Links */
-.source-link {
-    display: inline-block;
-    font-size: 0.75rem;
-    color: var(--text-color);
-    text-decoration: none;
-    background: rgba(255,255,255,0.9);
-    padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    opacity: 0.6;
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.dark-mode .source-link {
-    background: rgba(55, 65, 81, 0.9);
-    color: var(--text-color);
-}
-
-.source-link:hover {
-    opacity: 1;
-    background: var(--card-bg);
-    box-shadow: var(--shadow-light);
-}
-
 /* Footer */
 footer {
     background: var(--card-bg);
     border-top: 1px solid var(--border-color);
     padding: 1.5rem;
-    height: 120px;
+    height: 140px;
     box-shadow: var(--shadow-light);
 }
 
 .footer-content {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     height: 100%;
     max-width: 1200px;
@@ -333,7 +336,7 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 .social-links {
@@ -404,7 +407,7 @@ footer {
     
     main {
         padding: 0.75rem;
-        height: calc(100vh - 50px - 160px);
+        height: calc(100vh - 50px - 180px);
     }
     
     .chart-grid {
@@ -431,7 +434,7 @@ footer {
     
     footer {
         padding: 1rem;
-        height: 160px;
+        height: 180px;
     }
     
     .footer-content {

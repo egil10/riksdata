@@ -1,6 +1,13 @@
 // Political party periods for chart coloring (post-2000) with correct Norwegian colors
 const POLITICAL_PERIODS = [
     {
+        name: "Kjell Magne Bondevik I (KrF, Sp, V)",
+        start: "1997-10-17",
+        end: "2000-03-17",
+        color: "#FDED34", // Kristelig Folkeparti yellow
+        backgroundColor: "rgba(253, 237, 52, 0.7)"
+    },
+    {
         name: "Jens Stoltenberg I (Ap)",
         start: "2000-03-17",
         end: "2001-10-19",
@@ -44,10 +51,10 @@ function getPoliticalPeriod(date) {
         const startDate = new Date(period.start);
         const endDate = new Date(period.end);
         if (targetDate >= startDate && targetDate <= endDate) {
-            return period.name;
+            return period;
         }
     }
-    return "Unknown Period";
+    return null;
 }
 
 // Ultra-compact chart configuration with enhanced tooltips
@@ -89,7 +96,33 @@ const CHART_CONFIG = {
                     const value = context.parsed.y;
                     const period = getPoliticalPeriod(context.parsed.x);
                     const formattedValue = typeof value === 'number' ? value.toLocaleString() : value;
-                    return `${context.dataset.label}: ${formattedValue} (${period})`;
+                    
+                    if (period) {
+                        const partyColors = {
+                            'Ap': '#E11926',
+                            'KrF': '#FDED34', 
+                            'H': '#87add7',
+                            'V': '#006666',
+                            'Sp': '#00843D',
+                            'SV': '#B5317C',
+                            'FrP': '#004F80',
+                            'MDG': '#6A9325'
+                        };
+                        
+                        // Extract party abbreviations from period name
+                        const partyMatch = period.name.match(/\((.*?)\)/);
+                        if (partyMatch) {
+                            const parties = partyMatch[1].split(', ');
+                            const partyDisplay = parties.map(party => {
+                                const color = partyColors[party] || '#000000';
+                                return `<span style="color: ${color}; font-weight: bold;">${party}</span>`;
+                            }).join(', ');
+                            
+                            return `${context.dataset.label}: ${formattedValue} (${partyDisplay})`;
+                        }
+                    }
+                    
+                    return `${context.dataset.label}: ${formattedValue}`;
                 }
             }
         }
@@ -166,22 +199,6 @@ function setupThemeToggle() {
     }
 }
 
-// Toggle language
-function toggleLanguage() {
-    const body = document.body;
-    const isEnglish = body.classList.contains('lang-en');
-    
-    if (isEnglish) {
-        body.classList.remove('lang-en');
-        body.classList.add('lang-no');
-        updateLanguageText('no');
-    } else {
-        body.classList.remove('lang-no');
-        body.classList.add('lang-en');
-        updateLanguageText('en');
-    }
-}
-
 // Toggle theme
 function toggleTheme() {
     const body = document.body;
@@ -199,6 +216,22 @@ function updateLanguageText(lang) {
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
         langToggle.textContent = lang === 'no' ? 'EN' : 'NO';
+    }
+}
+
+// Toggle language
+function toggleLanguage() {
+    const body = document.body;
+    const isEnglish = body.classList.contains('lang-en');
+    
+    if (isEnglish) {
+        body.classList.remove('lang-en');
+        body.classList.add('lang-no');
+        updateLanguageText('no');
+    } else {
+        body.classList.remove('lang-no');
+        body.classList.add('lang-en');
+        updateLanguageText('en');
     }
 }
 

@@ -1,73 +1,51 @@
 #!/usr/bin/env python3
 """
-Debug SSB data structure
+Debug SSB data structure - Focus on cycling issues
 """
 
 import requests
 import json
 
-def debug_ssb_structure(api_name, url):
-    print(f"\n{api_name} Data Structure Analysis")
+def debug_cycling_issue(api_name, url):
+    print(f"\n{api_name} - Cycling Analysis")
     print("=" * 50)
     
     response = requests.get(url)
     data = response.json()
     
-    # Print top-level structure
-    print("Top-level keys:", list(data.keys()))
+    dataset = data['dataset']
+    dimension = dataset['dimension']
+    value = dataset['value']
     
-    if 'dataset' in data:
-        dataset = data['dataset']
-        print("\nDataset keys:", list(dataset.keys()))
-        
-        if 'dimension' in dataset:
-            dimension = dataset['dimension']
-            print("\nDimension keys:", list(dimension.keys()))
-            
-            # Check if Tid exists
-            if 'Tid' in dimension:
-                tid = dimension['Tid']
-                print("\nTid keys:", list(tid.keys()))
-                
-                if 'category' in tid:
-                    category = tid['category']
-                    print("\nCategory keys:", list(category.keys()))
-                    
-                    if 'label' in category:
-                        labels = category['label']
-                        print(f"\nFirst 5 time labels:")
-                        for i, (key, value) in enumerate(list(labels.items())[:5]):
-                            print(f"  {key}: {value}")
-                    
-                    if 'index' in category:
-                        indices = category['index']
-                        print(f"\nFirst 5 time indices:")
-                        for i, (key, value) in enumerate(list(indices.items())[:5]):
-                            print(f"  {key}: {value}")
-            else:
-                print("\n❌ No 'Tid' dimension found!")
-                print("Available dimensions:", list(dimension.keys()))
-        
-        if 'value' in dataset:
-            value = dataset['value']
-            print(f"\nValue type: {type(value)}")
-            if isinstance(value, dict):
-                print(f"Value keys (first 10): {list(value.keys())[:10]}")
-                print(f"First 5 values:")
-                for i, (key, val) in enumerate(list(value.items())[:5]):
-                    print(f"  {key}: {val}")
-            elif isinstance(value, list):
-                print(f"Value list length: {len(value)}")
-                print(f"First 5 values: {value[:5]}")
+    # Check all dimensions to understand the data structure
+    print("Available dimensions:", list(dimension.keys()))
+    
+    # Look for content codes or other dimensions that might explain cycling
+    for dim_name, dim_data in dimension.items():
+        if dim_name != 'Tid':  # Skip time dimension
+            print(f"\n{dim_name} dimension:")
+            if 'category' in dim_data and 'label' in dim_data['category']:
+                labels = dim_data['category']['label']
+                print(f"  Labels: {list(labels.values())[:10]}")  # Show first 10 labels
+    
+    # Check if there are multiple series causing cycling
+    print(f"\nValue array length: {len(value)}")
+    print(f"First 20 values: {value[:20]}")
+    
+    # Check for patterns in the data
+    unique_values = set(value[:100])  # Check first 100 values
+    print(f"Unique values in first 100: {len(unique_values)}")
+    print(f"Sample unique values: {sorted(list(unique_values))[:10]}")
 
 def main():
     apis = {
-        "House Prices": "https://data.ssb.no/api/v0/dataset/1060.json?lang=en",
-        "Wages": "https://data.ssb.no/api/v0/dataset/1124.json?lang=en"
+        "CPI": "https://data.ssb.no/api/v0/dataset/1086.json?lang=en",
+        "Unemployment": "https://data.ssb.no/api/v0/dataset/1054.json?lang=en",
+        "Producer Prices": "https://data.ssb.no/api/v0/dataset/26426.json?lang=en"
     }
     
     for name, url in apis.items():
-        debug_ssb_structure(name, url)
+        debug_cycling_issue(name, url)
 
 if __name__ == "__main__":
     main()

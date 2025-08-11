@@ -74,6 +74,28 @@ def parse_ssb_data(data: Dict) -> List[Dict]:
         time_labels = time_dimension['category']['label']
         time_index = time_dimension['category']['index']
         
+        # Find the main data series
+        target_series_index = 0
+        num_series = 1
+        
+        if 'ContentsCode' in dimension:
+            content_labels = dimension['ContentsCode']['category']['label']
+            content_indices = dimension['ContentsCode']['category']['index']
+            
+            # Find the right content code
+            for key, label in content_labels.items():
+                if any(keyword in label for keyword in [
+                    'Consumer Price Index (2015=100)',
+                    'Unemployment rate (LFS)',
+                    'Producer Price Index',
+                    'House Price Index',
+                    'Wage Index'
+                ]):
+                    target_series_index = content_indices[key]
+                    break
+            
+            num_series = len(content_indices)
+        
         data_points = []
         
         for time_key, time_label in time_labels.items():
@@ -84,9 +106,11 @@ def parse_ssb_data(data: Dict) -> List[Dict]:
             if not date:
                 continue
                 
-            # Get value from list using the time index
-            if time_index_value < len(value):
-                data_value = value[time_index_value]
+            # Calculate correct index: [series1_time1, series2_time1, ..., series1_time2, ...]
+            value_index = time_index_value * num_series + target_series_index
+            
+            if value_index < len(value):
+                data_value = value[value_index]
                 if data_value is not None and data_value != 0:  # Skip null/zero values
                     data_points.append({
                         'date': date,

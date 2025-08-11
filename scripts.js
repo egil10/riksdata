@@ -37,7 +37,7 @@ const POLITICAL_PERIODS = [
     }
 ];
 
-// Modern chart configuration
+// Ultra-compact chart configuration
 const CHART_CONFIG = {
     responsive: true,
     maintainAspectRatio: false,
@@ -51,10 +51,10 @@ const CHART_CONFIG = {
             bodyColor: 'white',
             borderColor: '#333',
             borderWidth: 1,
-            cornerRadius: 8,
-            padding: 12,
-            titleFont: { size: 13, weight: '600' },
-            bodyFont: { size: 12 }
+            cornerRadius: 4,
+            padding: 8,
+            titleFont: { size: 11, weight: '600' },
+            bodyFont: { size: 10 }
         }
     },
     scales: {
@@ -62,28 +62,28 @@ const CHART_CONFIG = {
             type: 'time',
             time: {
                 unit: 'month',
-                displayFormats: { month: 'MMM yyyy' }
+                displayFormats: { month: 'MMM yy' }
             },
             grid: { display: false },
             ticks: {
-                maxTicksLimit: 6,
-                font: { size: 11 },
+                maxTicksLimit: 4,
+                font: { size: 9 },
                 color: '#666'
             },
             border: { display: false }
         },
         y: {
             grid: {
-                color: 'rgba(0, 0, 0, 0.04)',
+                color: 'rgba(0, 0, 0, 0.03)',
                 drawBorder: false
             },
             ticks: {
                 callback: function(value) {
                     return value.toLocaleString();
                 },
-                font: { size: 11 },
+                font: { size: 9 },
                 color: '#666',
-                padding: 8
+                padding: 4
             },
             border: { display: false }
         }
@@ -91,12 +91,12 @@ const CHART_CONFIG = {
     elements: {
         point: {
             radius: 0,
-            hoverRadius: 4,
+            hoverRadius: 3,
             hoverBackgroundColor: '#1a1a1a'
         },
         line: {
-            tension: 0.2,
-            borderWidth: 2,
+            tension: 0.1,
+            borderWidth: 1.5,
             fill: false
         }
     }
@@ -210,6 +210,28 @@ function parseSSBData(ssbData) {
         const timeLabels = timeDimension.category.label;
         const timeIndex = timeDimension.category.index;
 
+        // Find the main data series
+        let targetSeriesIndex = 0;
+        let numSeries = 1;
+        
+        if (dimension.ContentsCode) {
+            const contentLabels = dimension.ContentsCode.category.label;
+            const contentIndices = dimension.ContentsCode.category.index;
+            
+            // Find the right content code based on the data type
+            for (const [key, label] of Object.entries(contentLabels)) {
+                if (label.includes('Consumer Price Index (2015=100)') || 
+                    label.includes('Unemployment rate (LFS)') ||
+                    label.includes('Producer Price Index') ||
+                    label.includes('House Price Index') ||
+                    label.includes('Wage Index')) {
+                    targetSeriesIndex = contentIndices[key];
+                    break;
+                }
+            }
+            numSeries = Object.keys(contentIndices).length;
+        }
+
         // Parse data points
         const dataPoints = [];
         
@@ -222,9 +244,12 @@ function parseSSBData(ssbData) {
             const date = parseTimeLabel(timeLabel);
             
             if (date) {
-                // Get the value from the list using the time index
-                if (timeIndexValue < value.length) {
-                    const dataValue = value[timeIndexValue];
+                // Calculate the correct index in the value array
+                // The array is organized by: [series1_time1, series2_time1, series3_time1, series1_time2, series2_time2, ...]
+                const valueIndex = timeIndexValue * numSeries + targetSeriesIndex;
+                
+                if (valueIndex < value.length) {
+                    const dataValue = value[valueIndex];
                     
                     // Skip null, undefined, or zero values
                     if (dataValue !== undefined && dataValue !== null && dataValue !== 0) {

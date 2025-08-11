@@ -1,39 +1,39 @@
-// Political party periods for chart coloring (post-2000)
+// Political party periods for chart coloring (post-2000) with correct Norwegian colors
 const POLITICAL_PERIODS = [
     {
         name: "Jens Stoltenberg I (Ap)",
         start: "2000-03-17",
         end: "2001-10-19",
-        color: "#EF4444", // Modern Ap red
-        backgroundColor: "rgba(239, 68, 68, 0.7)"
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
     },
     {
         name: "Kjell Magne Bondevik II (KrF, H, V)",
         start: "2001-10-19",
         end: "2005-10-17",
-        color: "#3B82F6", // Modern KrF blue
-        backgroundColor: "rgba(59, 130, 246, 0.7)"
+        color: "#FDED34", // Kristelig Folkeparti yellow
+        backgroundColor: "rgba(253, 237, 52, 0.7)"
     },
     {
         name: "Jens Stoltenberg II (Ap, SV, Sp)",
         start: "2005-10-17",
         end: "2013-10-16",
-        color: "#EF4444", // Modern Ap red
-        backgroundColor: "rgba(239, 68, 68, 0.7)"
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
     },
     {
         name: "Erna Solberg (H, FrP; later V, KrF)",
         start: "2013-10-16",
         end: "2021-10-14",
-        color: "#10B981", // Modern H green
-        backgroundColor: "rgba(16, 185, 129, 0.7)"
+        color: "#87add7", // Høyre light blue
+        backgroundColor: "rgba(135, 173, 215, 0.7)"
     },
     {
         name: "Jonas Gahr Støre (Ap, Sp)",
         start: "2021-10-14",
         end: "2025-09-08", // Extended until next election
-        color: "#EF4444", // Modern Ap red
-        backgroundColor: "rgba(239, 68, 68, 0.7)"
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
     }
 ];
 
@@ -75,7 +75,10 @@ const CHART_CONFIG = {
             displayColors: false,
             callbacks: {
                 title: function(context) {
-                    const date = new Date(context[0].label);
+                    const date = new Date(context[0].parsed.x);
+                    if (isNaN(date.getTime())) {
+                        return 'Invalid Date';
+                    }
                     return date.toLocaleDateString('en-US', { 
                         year: 'numeric', 
                         month: 'short',
@@ -143,39 +146,63 @@ const CHART_CONFIG = {
 // Initialize the dashboard
 document.addEventListener('DOMContentLoaded', function() {
     initializeCharts();
-    setupFilters();
+    setupLanguageToggle();
+    setupThemeToggle();
 });
 
-// Setup interactive filters
-function setupFilters() {
-    const timeRangeSelect = document.getElementById('timeRange');
-    const partyFocusSelect = document.getElementById('partyFocus');
-    
-    timeRangeSelect.addEventListener('change', updateCharts);
-    partyFocusSelect.addEventListener('change', updateCharts);
+// Setup language toggle
+function setupLanguageToggle() {
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+    }
 }
 
-// Update charts based on filter selections
-function updateCharts() {
-    const timeRange = document.getElementById('timeRange').value;
-    const partyFocus = document.getElementById('partyFocus').value;
+// Setup theme toggle
+function setupThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+}
+
+// Toggle language
+function toggleLanguage() {
+    const body = document.body;
+    const isEnglish = body.classList.contains('lang-en');
     
-    // Re-render all charts with new filters
-    Object.keys(window.chartInstances || {}).forEach(chartId => {
-        const chart = window.chartInstances[chartId];
-        if (chart && chart.data) {
-            const filteredData = filterChartData(chart.data, timeRange, partyFocus);
-            chart.data = filteredData;
-            chart.update('active');
+    if (isEnglish) {
+        body.classList.remove('lang-en');
+        body.classList.add('lang-no');
+        updateLanguageText('no');
+    } else {
+        body.classList.remove('lang-no');
+        body.classList.add('lang-en');
+        updateLanguageText('en');
+    }
+}
+
+// Toggle theme
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle('dark-mode');
+    
+    // Update theme toggle icon
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        const icon = themeToggle.querySelector('i');
+        if (icon) {
+            icon.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
         }
-    });
+    }
 }
 
-// Filter chart data based on time range and party focus
-function filterChartData(originalData, timeRange, partyFocus) {
-    // Implementation for filtering data
-    // This is a simplified version - you can enhance this based on your needs
-    return originalData;
+// Update language text
+function updateLanguageText(lang) {
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.textContent = lang === 'no' ? 'EN' : 'NO';
+    }
 }
 
 // Toggle legend visibility
@@ -204,22 +231,22 @@ async function initializeCharts() {
         // Load all charts in parallel
         const chartPromises = [
             // Original charts
-            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'CPI'),
-            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Unemployment Rate'),
-            loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index'),
-            loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index'),
-            loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
+            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086', 'CPI'),
+            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054', 'Unemployment Rate'),
+            loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060', 'House Price Index'),
+            loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426', 'Producer Price Index'),
+            loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124', 'Wage Index'),
             loadOilFundData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value'),
             loadExchangeRateData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
             loadInterestRateData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
             loadGovernmentDebtData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
             
             // New charts
-            loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
-            loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
-            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'bar'),
-            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
-            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs')
+            loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012', 'GDP Growth', 'bar'),
+            loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962', 'Trade Balance', 'bar'),
+            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265', 'Bankruptcies', 'bar'),
+            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626', 'Population Growth'),
+            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944', 'Construction Costs')
         ];
         
         // Wait for all charts to load

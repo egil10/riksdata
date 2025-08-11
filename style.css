@@ -256,6 +256,7 @@ main {
     gap: 1.5rem;
     max-width: 1400px;
     margin: 0 auto;
+    padding-bottom: 2rem;
 }
 
 /* Chart Cards */
@@ -387,7 +388,9 @@ footer {
 }
 
 .social-icon {
-    font-size: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    flex-shrink: 0;
 }
 
 .social-text {

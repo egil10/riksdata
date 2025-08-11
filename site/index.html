@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norway Macro Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation"></script>
+</head>
+<body>
+    <header>
+        <h1>Norway Macro Dashboard</h1>
+        <p id="last-updated">Last updated: <span id="update-time"></span></p>
+    </header>
+
+    <main>
+        <section class="chart-container">
+            <h2>Consumer Price Index (CPI)</h2>
+            <p class="chart-info">Monthly CPI data from Statistics Norway</p>
+            <div class="chart-wrapper">
+                <canvas id="cpi-chart"></canvas>
+            </div>
+            <p class="source-link">
+                <a href="https://data.ssb.no/api/v0/dataset/1086.json?lang=en" target="_blank">
+                    Source: SSB Dataset 1086
+                </a>
+            </p>
+        </section>
+
+        <section class="chart-container">
+            <h2>Unemployment Rate</h2>
+            <p class="chart-info">Monthly unemployment rate data from Statistics Norway</p>
+            <div class="chart-wrapper">
+                <canvas id="unemployment-chart"></canvas>
+            </div>
+            <p class="source-link">
+                <a href="https://data.ssb.no/api/v0/dataset/1086.json?lang=en" target="_blank">
+                    Source: SSB Dataset 1086
+                </a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data from <a href="https://www.ssb.no/" target="_blank">Statistics Norway (SSB)</a></p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

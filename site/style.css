@@ -1,0 +1,175 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+/* Header styles */
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem 1rem;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+#last-updated {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Main content */
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+/* Chart container styles */
+.chart-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.chart-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.chart-container h2 {
+    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.chart-info {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.chart-wrapper {
+    position: relative;
+    height: 400px;
+    margin: 1rem 0;
+}
+
+/* Source link styles */
+.source-link {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+.source-link a {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid #667eea;
+    border-radius: 20px;
+    transition: all 0.2s ease;
+}
+
+.source-link a:hover {
+    background-color: #667eea;
+    color: white;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    background-color: #2c3e50;
+    color: white;
+    margin-top: 3rem;
+}
+
+footer a {
+    color: #667eea;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    main {
+        padding: 1rem;
+    }
+    
+    .chart-container {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .chart-container h2 {
+        font-size: 1.5rem;
+    }
+    
+    .chart-wrapper {
+        height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 1.5rem 1rem;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .chart-container {
+        padding: 1rem;
+    }
+    
+    .chart-wrapper {
+        height: 250px;
+    }
+}
+
+/* Loading state */
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Error state */
+.error {
+    background-color: #fee;
+    color: #c33;
+    padding: 1rem;
+    border-radius: 8px;
+    border-left: 4px solid #c33;
+    margin: 1rem 0;
+}

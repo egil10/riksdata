@@ -198,9 +198,9 @@ function parseSSBData(ssbData) {
     try {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
-        const value = dataset.value;
+        const value = dataset.value; // This is a list, not an object
 
-        // Find time dimension - it's an object, not an array
+        // Find time dimension
         const timeDimension = dimension.Tid;
         if (!timeDimension) {
             throw new Error('Time dimension not found in SSB data');
@@ -222,15 +222,17 @@ function parseSSBData(ssbData) {
             const date = parseTimeLabel(timeLabel);
             
             if (date) {
-                // Get the value for this time period
-                // In SSB data, values are indexed by the time index
-                const dataValue = value[timeIndexValue];
-                
-                if (dataValue !== undefined && dataValue !== null) {
-                    dataPoints.push({
-                        date: date,
-                        value: parseFloat(dataValue)
-                    });
+                // Get the value from the list using the time index
+                if (timeIndexValue < value.length) {
+                    const dataValue = value[timeIndexValue];
+                    
+                    // Skip null, undefined, or zero values
+                    if (dataValue !== undefined && dataValue !== null && dataValue !== 0) {
+                        dataPoints.push({
+                            date: date,
+                            value: parseFloat(dataValue)
+                        });
+                    }
                 }
             }
         });
@@ -253,6 +255,14 @@ function parseTimeLabel(timeLabel) {
         if (timeLabel.includes('M')) {
             const [year, month] = timeLabel.split('M');
             return new Date(parseInt(year), parseInt(month) - 1, 1);
+        }
+        
+        // Handle quarterly format: "2023K1", "2023K2", etc.
+        if (timeLabel.includes('K')) {
+            const [year, quarter] = timeLabel.split('K');
+            const quarterNum = parseInt(quarter);
+            const month = (quarterNum - 1) * 3; // K1=Jan, K2=Apr, K3=Jul, K4=Oct
+            return new Date(parseInt(year), month, 1);
         }
         
         // Handle yearly format: "2023"
@@ -470,8 +480,12 @@ function parseExchangeRateData(data) {
         if (series['0:0:0:0'] && series['0:0:0:0'].observations) {
             Object.keys(series['0:0:0:0'].observations).forEach(key => {
                 const value = series['0:0:0:0'].observations[key][0];
-                // Approximate date from index (starting from 2015-09)
-                const date = new Date(2015, 8 + parseInt(key), 1);
+                // Calculate proper date from index (starting from 2015-09)
+                const monthOffset = parseInt(key);
+                const month = 9 + monthOffset;
+                const year = 2015 + Math.floor((month - 1) / 12);
+                const actualMonth = ((month - 1) % 12) + 1;
+                const date = new Date(year, actualMonth - 1, 1);
                 dataPoints.push({
                     date: date,
                     value: parseFloat(value)

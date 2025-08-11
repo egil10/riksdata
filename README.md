@@ -1,14 +1,16 @@
-# Norway Macro Dashboard
+# Riksklokken
 
 A static GitHub Pages website displaying Norwegian economic indicators with political party period shading. The dashboard fetches data from Statistics Norway (SSB) APIs and visualizes it using Chart.js with background shading for different ruling party periods.
 
 ## Features
 
 - **14 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates, Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs
-- **Political Period Coloring**: Chart lines colored by ruling party periods since 2000
-- **Ultra-Compact Design**: Space-efficient layout optimized for multiple charts with reduced heights
-- **Modern Loading Screen**: Elegant loading experience with spinner and fade transitions
+- **Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with interactive legend
+- **Ultra-Compact Design**: Space-efficient rectangular layout optimized for multiple charts without scrolling
+- **Modern Loading Screen**: Elegant loading experience with Norwegian political colors
 - **Mixed Chart Types**: Line charts for trends, bar charts for discrete data
+- **Minimalistic Tooltips**: Clean, modern tooltips with proper date formatting
+- **Source Attribution**: Direct links to data sources for each chart
 - **Real-time Data**: Fetches data from SSB and Norges Bank APIs
 - **Responsive Design**: Works on desktop, tablet, and mobile
 - **Static Hosting**: Ready for GitHub Pages deployment
@@ -49,7 +51,7 @@ The charts include background shading for the following Norwegian government per
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/riksdata.git
+   git clone https://github.com/egil10/riksdata.git
    cd riksdata
    ```
 
@@ -62,7 +64,7 @@ The charts include background shading for the following Norwegian government per
    - Go to Settings > Pages
    - Set Source to "Deploy from a branch"
    - Select "main" branch and "/(root)" folder
-   - Your site will be available at `https://yourusername.github.io/riksdata/`
+   - Your site will be available at `https://egil10.github.io/riksdata/`
 
 ## Project Structure
 
@@ -91,6 +93,7 @@ To add a new economic indicator:
        </div>
        <div class="chart-container">
            <canvas id="new-chart"></canvas>
+           <a href="https://data.ssb.no/api/v0/dataset/XXXX.json?lang=en" target="_blank" class="source-link">SSB XXXX</a>
        </div>
    </div>
    ```
@@ -112,6 +115,29 @@ The dashboard supports different chart types based on data characteristics:
 
 - **Line Charts**: Used for continuous time series data (CPI, Unemployment, etc.)
 - **Bar Charts**: Used for discrete data points (GDP Growth, Trade Balance, Bankruptcies)
+
+## Design Features
+
+### Political Legend
+- Fixed position legend showing political party colors
+- Responsive design that moves to top on mobile
+- Clean, minimalistic styling
+
+### Tooltips
+- Minimalistic black and white design
+- Proper date formatting (no time, just date)
+- Compact information display
+- No color indicators for cleaner look
+
+### Source Links
+- Small, unobtrusive links in bottom-right of each chart
+- Direct links to data sources
+- Hover effects for better UX
+
+### Loading Screen
+- Norwegian political colors (red, blue, yellow)
+- Minimalistic spinner and typography
+- Smooth fade transitions
 
 ## SSB API Format
 

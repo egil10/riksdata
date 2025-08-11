@@ -46,15 +46,29 @@ const CHART_CONFIG = {
         tooltip: {
             mode: 'index',
             intersect: false,
-            backgroundColor: 'rgba(0, 0, 0, 0.95)',
+            backgroundColor: 'rgba(0, 0, 0, 0.9)',
             titleColor: 'white',
             bodyColor: 'white',
             borderColor: '#333',
-            borderWidth: 1,
-            cornerRadius: 4,
+            borderWidth: 0,
+            cornerRadius: 3,
             padding: 6,
-            titleFont: { size: 10, weight: '600' },
-            bodyFont: { size: 9 }
+            titleFont: { size: 9, weight: '500' },
+            bodyFont: { size: 8 },
+            displayColors: false,
+            callbacks: {
+                title: function(context) {
+                    const date = new Date(context[0].label);
+                    return date.toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'short',
+                        day: 'numeric'
+                    });
+                },
+                label: function(context) {
+                    return context.dataset.label + ': ' + context.parsed.y.toLocaleString();
+                }
+            }
         }
     },
     scales: {
@@ -66,8 +80,8 @@ const CHART_CONFIG = {
             },
             grid: { display: false },
             ticks: {
-                maxTicksLimit: 3,
-                font: { size: 8 },
+                maxTicksLimit: 2,
+                font: { size: 7 },
                 color: '#666'
             },
             border: { display: false }
@@ -81,9 +95,9 @@ const CHART_CONFIG = {
                 callback: function(value) {
                     return value.toLocaleString();
                 },
-                font: { size: 8 },
+                font: { size: 7 },
                 color: '#666',
-                padding: 2
+                padding: 1
             },
             border: { display: false }
         }
@@ -96,34 +110,20 @@ const CHART_CONFIG = {
         },
         line: {
             tension: 0.1,
-            borderWidth: 1.2,
+            borderWidth: 1,
             fill: false
         },
         bar: {
             borderWidth: 0,
-            borderRadius: 2
+            borderRadius: 1
         }
     }
 };
 
 // Initialize the dashboard
 document.addEventListener('DOMContentLoaded', function() {
-    updateLastUpdated();
     initializeCharts();
 });
-
-// Update the last updated timestamp
-function updateLastUpdated() {
-    const now = new Date();
-    const timeString = now.toLocaleString('en-US', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    });
-    document.getElementById('update-time').textContent = timeString;
-}
 
 // Initialize all charts
 async function initializeCharts() {

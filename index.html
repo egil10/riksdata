@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Norway Macro Dashboard</title>
+    <title>Riksklokken</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
@@ -13,20 +13,33 @@
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-            <h2>Loading Norway Macro Dashboard</h2>
+            <h2>Loading Riksklokken</h2>
             <p>Fetching latest economic data...</p>
         </div>
     </div>
 
     <header>
         <div class="header-content">
-            <h1>Norway Macro</h1>
-            <div class="header-meta">
-                <span id="update-time"></span>
-                <a href="diagnostics.html" class="diagnostics-link">🔍</a>
-            </div>
+            <h1 onclick="window.location.reload()">Riksklokken</h1>
         </div>
     </header>
+
+    <!-- Political Legend -->
+    <div class="political-legend">
+        <div class="legend-title">Political Periods</div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #E03C31;"></div>
+            <div class="legend-text">Arbeiderpartiet (Ap)</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #FFCC00;"></div>
+            <div class="legend-text">Kristelig Folkeparti (KrF)</div>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background-color: #005AA3;"></div>
+            <div class="legend-text">Høyre (H)</div>
+        </div>
+    </div>
 
     <main>
         <div class="chart-grid">
@@ -37,6 +50,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="cpi-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/1086.json?lang=en" target="_blank" class="source-link">SSB 1086</a>
                 </div>
             </div>
 
@@ -47,6 +61,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="unemployment-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/1054.json?lang=en" target="_blank" class="source-link">SSB 1054</a>
                 </div>
             </div>
 
@@ -57,6 +72,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="house-prices-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/1060.json?lang=en" target="_blank" class="source-link">SSB 1060</a>
                 </div>
             </div>
 
@@ -67,6 +83,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="ppi-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/26426.json?lang=en" target="_blank" class="source-link">SSB 26426</a>
                 </div>
             </div>
 
@@ -77,6 +94,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="wage-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/1124.json?lang=en" target="_blank" class="source-link">SSB 1124</a>
                 </div>
             </div>
 
@@ -87,6 +105,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="oil-fund-chart"></canvas>
+                    <a href="data/oil-fund.json" target="_blank" class="source-link">Local Data</a>
                 </div>
             </div>
 
@@ -97,6 +116,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="exchange-chart"></canvas>
+                    <a href="https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
                 </div>
             </div>
 
@@ -107,6 +127,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="interest-rate-chart"></canvas>
+                    <a href="https://data.norges-bank.no/api/data/IR/M.KPRA.." target="_blank" class="source-link">Norges Bank</a>
                 </div>
             </div>
 
@@ -117,6 +138,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="govt-debt-chart"></canvas>
+                    <a href="https://data.norges-bank.no/api/data/GOVT_KEYFIGURES" target="_blank" class="source-link">Norges Bank</a>
                 </div>
             </div>
 
@@ -128,6 +150,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="gdp-growth-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/59012.json?lang=en" target="_blank" class="source-link">SSB 59012</a>
                 </div>
             </div>
 
@@ -138,6 +161,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="trade-balance-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/58962.json?lang=en" target="_blank" class="source-link">SSB 58962</a>
                 </div>
             </div>
 
@@ -148,6 +172,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="bankruptcies-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/95265.json?lang=en" target="_blank" class="source-link">SSB 95265</a>
                 </div>
             </div>
 
@@ -158,6 +183,7 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="population-growth-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/49626.json?lang=en" target="_blank" class="source-link">SSB 49626</a>
                 </div>
             </div>
 
@@ -168,10 +194,23 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="construction-costs-chart"></canvas>
+                    <a href="https://data.ssb.no/api/v0/dataset/26944.json?lang=en" target="_blank" class="source-link">SSB 26944</a>
                 </div>
             </div>
         </div>
     </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="https://github.com/egil10/riksdata" target="_blank">GitHub</a>
+        </div>
+        <div class="social-links">
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">X</a>
+            <a href="#" target="_blank">TikTok</a>
+            <a href="#" target="_blank">YouTube</a>
+        </div>
+    </footer>
 
     <script src="scripts.js"></script>
 </body>

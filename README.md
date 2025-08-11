@@ -17,7 +17,7 @@ A static GitHub Pages website displaying Norwegian economic indicators with poli
 
 ## Political Periods (Post-2000)
 
-The charts include background shading for the following Norwegian government periods:
+The charts include background shading for the following Norwegian government periods as such:
 
 - **Jens Stoltenberg I (Ap)**: March 17, 2000 - October 19, 2001
 - **Kjell Magne Bondevik II (KrF, H, V)**: October 19, 2001 - October 17, 2005

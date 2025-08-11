@@ -31,7 +31,7 @@ const POLITICAL_PERIODS = [
     {
         name: "Jonas Gahr Støre (Ap, Sp)",
         start: "2021-10-14",
-        end: "2025-01-04",
+        end: "2025-09-08", // Extended until next election
         color: "#E03C31", // Ap red
         backgroundColor: "rgba(224, 60, 49, 0.1)"
     }
@@ -52,9 +52,9 @@ const CHART_CONFIG = {
             borderColor: '#333',
             borderWidth: 1,
             cornerRadius: 4,
-            padding: 8,
-            titleFont: { size: 11, weight: '600' },
-            bodyFont: { size: 10 }
+            padding: 6,
+            titleFont: { size: 10, weight: '600' },
+            bodyFont: { size: 9 }
         }
     },
     scales: {
@@ -66,24 +66,24 @@ const CHART_CONFIG = {
             },
             grid: { display: false },
             ticks: {
-                maxTicksLimit: 4,
-                font: { size: 9 },
+                maxTicksLimit: 3,
+                font: { size: 8 },
                 color: '#666'
             },
             border: { display: false }
         },
         y: {
             grid: {
-                color: 'rgba(0, 0, 0, 0.03)',
+                color: 'rgba(0, 0, 0, 0.02)',
                 drawBorder: false
             },
             ticks: {
                 callback: function(value) {
                     return value.toLocaleString();
                 },
-                font: { size: 9 },
+                font: { size: 8 },
                 color: '#666',
-                padding: 4
+                padding: 2
             },
             border: { display: false }
         }
@@ -91,13 +91,17 @@ const CHART_CONFIG = {
     elements: {
         point: {
             radius: 0,
-            hoverRadius: 3,
+            hoverRadius: 2,
             hoverBackgroundColor: '#1a1a1a'
         },
         line: {
             tension: 0.1,
-            borderWidth: 1.5,
+            borderWidth: 1.2,
             fill: false
+        },
+        bar: {
+            borderWidth: 0,
+            borderRadius: 2
         }
     }
 };
@@ -124,50 +128,62 @@ function updateLastUpdated() {
 // Initialize all charts
 async function initializeCharts() {
     try {
-        // Load CPI data
-        await loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'CPI');
+        // Show loading screen
+        const loadingScreen = document.getElementById('loading-screen');
         
-        // Load Unemployment data
-        await loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Unemployment Rate');
+        // Load all charts in parallel
+        const chartPromises = [
+            // Original charts
+            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'CPI'),
+            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Unemployment Rate'),
+            loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index'),
+            loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index'),
+            loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
+            loadOilFundData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value'),
+            loadExchangeRateData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
+            loadInterestRateData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
+            loadGovernmentDebtData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
+            
+            // New charts
+            loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
+            loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
+            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'bar'),
+            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
+            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs')
+        ];
         
-        // Load House Price Index
-        await loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index');
+        // Wait for all charts to load
+        await Promise.allSettled(chartPromises);
         
-        // Load Producer Price Index
-        await loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index');
-        
-        // Load Wage Index
-        await loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index');
-        
-        // Load Oil Fund data
-        await loadOilFundData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value');
-        
-        // Load Exchange Rate data
-        await loadExchangeRateData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK');
-        
-        // Load Interest Rate data
-        await loadInterestRateData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate');
-        
-        // Load Government Debt data
-        await loadGovernmentDebtData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt');
+        // Hide loading screen with fade out
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 500);
         
     } catch (error) {
         console.error('Error initializing charts:', error);
         showError('Failed to load chart data. Please try again later.');
+        
+        // Hide loading screen even if there's an error
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.classList.add('hidden');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
     }
 }
 
 // Load and render chart data
-async function loadChartData(canvasId, apiUrl, chartTitle) {
+async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
     try {
         const canvas = document.getElementById(canvasId);
         if (!canvas) {
             console.error(`Canvas with id '${canvasId}' not found`);
             return;
         }
-
-        // Show loading state
-        showLoading(canvas);
 
         // Fetch data from SSB API
         const response = await fetch(apiUrl);
@@ -178,7 +194,7 @@ async function loadChartData(canvasId, apiUrl, chartTitle) {
         const data = await response.json();
         
         // Parse SSB PXWeb JSON format
-        const parsedData = parseSSBData(data);
+        const parsedData = parseSSBData(data, chartTitle);
         
         // Filter data from 2000 onwards
         const filteredData = parsedData.filter(item => {
@@ -191,7 +207,7 @@ async function loadChartData(canvasId, apiUrl, chartTitle) {
         }
 
         // Render the chart
-        renderChart(canvas, filteredData, chartTitle);
+        renderChart(canvas, filteredData, chartTitle, chartType);
 
     } catch (error) {
         console.error(`Error loading data for ${canvasId}:`, error);
@@ -200,7 +216,7 @@ async function loadChartData(canvasId, apiUrl, chartTitle) {
 }
 
 // Parse SSB PXWeb JSON format into usable data
-function parseSSBData(ssbData) {
+function parseSSBData(ssbData, chartTitle) {
     try {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
@@ -230,7 +246,12 @@ function parseSSBData(ssbData) {
                     label.includes('Unemployment rate (LFS)') ||
                     label.includes('Producer Price Index') ||
                     label.includes('House Price Index') ||
-                    label.includes('Wage Index')) {
+                    label.includes('Wage Index') ||
+                    label.includes('GDP') ||
+                    label.includes('Trade balance') ||
+                    label.includes('Bankruptcies') ||
+                    label.includes('Population') ||
+                    label.includes('Construction cost')) {
                     targetSeriesIndex = contentIndices[key];
                     break;
                 }
@@ -311,14 +332,14 @@ function parseTimeLabel(timeLabel) {
 }
 
 // Render Chart.js chart with political party colored lines
-function renderChart(canvas, data, title) {
+function renderChart(canvas, data, title, chartType = 'line') {
     // Clear any existing chart
     if (canvas.chart) {
         canvas.chart.destroy();
     }
 
     // Create datasets for each political period
-    const datasets = createPoliticalDatasets(data, title);
+    const datasets = createPoliticalDatasets(data, title, chartType);
 
     // Prepare data for Chart.js
     const chartData = {
@@ -328,23 +349,23 @@ function renderChart(canvas, data, title) {
 
     // Create the chart
     canvas.chart = new Chart(canvas, {
-        type: 'line',
+        type: chartType,
         data: chartData,
         options: CHART_CONFIG
     });
 }
 
 // Create modern datasets with political period colors
-function createPoliticalDatasets(data, title) {
+function createPoliticalDatasets(data, title, chartType = 'line') {
     const dataset = {
         label: title,
         data: data.map(item => item.value),
         borderColor: '#1a1a1a',
-        backgroundColor: 'rgba(26, 26, 26, 0.05)',
-        borderWidth: 2,
-        fill: false,
+        backgroundColor: chartType === 'bar' ? 'rgba(26, 26, 26, 0.1)' : 'rgba(26, 26, 26, 0.05)',
+        borderWidth: chartType === 'bar' ? 0 : 1.2,
+        fill: chartType === 'bar' ? true : false,
         tension: 0.2,
-        segment: {
+        segment: chartType === 'line' ? {
             borderColor: ctx => {
                 const dataIndex = ctx.p1DataIndex;
                 const itemDate = new Date(data[dataIndex].date);
@@ -360,21 +381,10 @@ function createPoliticalDatasets(data, title) {
                 
                 return '#1a1a1a';
             }
-        }
+        } : undefined
     };
     
     return [dataset];
-}
-
-// Show loading state
-function showLoading(canvas) {
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    ctx.fillStyle = '#666';
-    ctx.font = '16px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText('Loading data...', canvas.width / 2, canvas.height / 2);
 }
 
 // Show error state
@@ -384,10 +394,10 @@ function showError(message, canvas = null) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         
         ctx.fillStyle = '#c33';
-        ctx.font = '14px Arial';
+        ctx.font = '12px Arial';
         ctx.textAlign = 'center';
-        ctx.fillText('Error loading data', canvas.width / 2, canvas.height / 2 - 10);
-        ctx.fillText(message, canvas.width / 2, canvas.height / 2 + 10);
+        ctx.fillText('Error loading data', canvas.width / 2, canvas.height / 2 - 8);
+        ctx.fillText(message, canvas.width / 2, canvas.height / 2 + 8);
     } else {
         // Show global error
         const errorDiv = document.createElement('div');
@@ -406,8 +416,7 @@ async function loadOilFundData(canvasId, dataUrl, chartTitle) {
             return;
         }
 
-        // Show loading state
-        showLoading(canvas);
+
 
         // Fetch data from local JSON file
         const response = await fetch(dataUrl);
@@ -474,8 +483,6 @@ async function loadExchangeRateData(canvasId, apiUrl, chartTitle) {
             return;
         }
 
-        showLoading(canvas);
-
         const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -510,8 +517,6 @@ async function loadInterestRateData(canvasId, apiUrl, chartTitle) {
             return;
         }
 
-        showLoading(canvas);
-
         const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -545,8 +550,6 @@ async function loadGovernmentDebtData(canvasId, apiUrl, chartTitle) {
             console.error(`Canvas with id '${canvasId}' not found`);
             return;
         }
-
-        showLoading(canvas);
 
         const response = await fetch(apiUrl);
         if (!response.ok) {

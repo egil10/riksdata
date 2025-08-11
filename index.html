@@ -9,6 +9,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="loading-screen">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h2>Loading Norway Macro Dashboard</h2>
+            <p>Fetching latest economic data...</p>
+        </div>
+    </div>
+
     <header>
         <div class="header-content">
             <h1>Norway Macro</h1>
@@ -108,6 +117,57 @@
                 </div>
                 <div class="chart-container">
                     <canvas id="govt-debt-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- New Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>GDP Growth</h3>
+                    <span class="chart-subtitle">Quarterly %</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="gdp-growth-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Trade Balance</h3>
+                    <span class="chart-subtitle">Billion NOK</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="trade-balance-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Bankruptcies</h3>
+                    <span class="chart-subtitle">Monthly Count</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="bankruptcies-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Population Growth</h3>
+                    <span class="chart-subtitle">Annual %</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="population-growth-chart"></canvas>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Construction Costs</h3>
+                    <span class="chart-subtitle">Index</span>
+                </div>
+                <div class="chart-container">
+                    <canvas id="construction-costs-chart"></canvas>
                 </div>
             </div>
         </div>

@@ -4,9 +4,11 @@ A static GitHub Pages website displaying Norwegian economic indicators with poli
 
 ## Features
 
-- **9 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates, Interest Rates, Government Debt
+- **14 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates, Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs
 - **Political Period Coloring**: Chart lines colored by ruling party periods since 2000
-- **Ultra-Compact Design**: Space-efficient layout optimized for multiple charts
+- **Ultra-Compact Design**: Space-efficient layout optimized for multiple charts with reduced heights
+- **Modern Loading Screen**: Elegant loading experience with spinner and fade transitions
+- **Mixed Chart Types**: Line charts for trends, bar charts for discrete data
 - **Real-time Data**: Fetches data from SSB and Norges Bank APIs
 - **Responsive Design**: Works on desktop, tablet, and mobile
 - **Static Hosting**: Ready for GitHub Pages deployment
@@ -19,7 +21,7 @@ The charts include background shading for the following Norwegian government per
 - **Kjell Magne Bondevik II (KrF, H, V)**: October 19, 2001 - October 17, 2005
 - **Jens Stoltenberg II (Ap, SV, Sp)**: October 17, 2005 - October 16, 2013
 - **Erna Solberg (H, FrP; later V, KrF)**: October 16, 2013 - October 14, 2021
-- **Jonas Gahr Støre (Ap, Sp)**: October 14, 2021 - January 4, 2025
+- **Jonas Gahr Støre (Ap, Sp)**: October 14, 2021 - September 8, 2025 (Next Election)
 
 ## Data Sources
 
@@ -29,6 +31,11 @@ The charts include background shading for the following Norwegian government per
 - **House Price Index**: Dataset 1060 from SSB (Quarterly data)
 - **Producer Price Index**: Dataset 26426 from SSB (Oil, gas, manufacturing, mining, electricity)
 - **Wage Index**: Dataset 1124 from SSB (Average monthly earnings by industry)
+- **GDP Growth**: Dataset 59012 from SSB (National accounts)
+- **Trade Balance**: Dataset 58962 from SSB (External trade)
+- **Bankruptcies**: Dataset 95265 from SSB (Monthly bankruptcies)
+- **Population Growth**: Dataset 49626 from SSB (Population changes)
+- **Construction Costs**: Dataset 26944 from SSB (Construction cost index)
 
 ### Norges Bank
 - **Exchange Rates**: USD/NOK exchange rate from Norges Bank API
@@ -61,9 +68,12 @@ The charts include background shading for the following Norwegian government per
 
 ```
 riksdata/
-├── index.html              # Main HTML page
-├── style.css               # Responsive CSS styles
+├── index.html              # Main HTML page with 14 charts
+├── style.css               # Modern responsive CSS styles
 ├── scripts.js              # JavaScript with SSB API integration
+├── data/                   # Local data files
+│   ├── oil-fund.json       # Oil fund data
+│   └── exchange-rates.json # Exchange rate data
 ├── test-api.html           # API test page
 └── README.md               # This file
 ```
@@ -74,30 +84,34 @@ To add a new economic indicator:
 
 1. **Add a new chart section** in `index.html`:
    ```html
-   <section class="chart-container">
-       <h2>Your New Dataset</h2>
-       <p class="chart-info">Description of the data</p>
-       <div class="chart-wrapper">
+   <div class="chart-card">
+       <div class="chart-header">
+           <h3>Your New Dataset</h3>
+           <span class="chart-subtitle">Description</span>
+       </div>
+       <div class="chart-container">
            <canvas id="new-chart"></canvas>
        </div>
-       <p class="source-link">
-           <a href="https://data.ssb.no/api/v0/dataset/XXXX.json?lang=en" target="_blank">
-               Source: SSB Dataset XXXX
-           </a>
-       </p>
-   </section>
+   </div>
    ```
 
 2. **Add the chart initialization** in `scripts.js`:
    ```javascript
    // In the initializeCharts() function:
-   await loadChartData('new-chart', 'https://data.ssb.no/api/v0/dataset/XXXX.json?lang=en', 'Your Dataset Name');
+   loadChartData('new-chart', 'https://data.ssb.no/api/v0/dataset/XXXX.json?lang=en', 'Your Dataset Name', 'line');
    ```
 
 3. **Find the correct SSB dataset ID**:
    - Visit [SSB PXWeb](https://www.ssb.no/en/statbank)
    - Search for your dataset
    - Use the dataset ID in the API URL
+
+## Chart Types
+
+The dashboard supports different chart types based on data characteristics:
+
+- **Line Charts**: Used for continuous time series data (CPI, Unemployment, etc.)
+- **Bar Charts**: Used for discrete data points (GDP Growth, Trade Balance, Bankruptcies)
 
 ## SSB API Format
 
@@ -118,8 +132,8 @@ const POLITICAL_PERIODS = [
         name: "Party Name",
         start: "YYYY-MM-DD",
         end: "YYYY-MM-DD",
-        color: "rgba(R, G, B, 0.1)",      // Background color
-        borderColor: "rgba(R, G, B, 0.3)" // Border color
+        color: "rgba(R, G, B, 0.1)",      # Background color
+        backgroundColor: "rgba(R, G, B, 0.1)" # Border color
     }
 ];
 ```
@@ -151,7 +165,6 @@ Edit `style.css` to change:
 
 - **Chart.js**: Chart rendering library
 - **chartjs-adapter-date-fns**: Date handling for Chart.js
-- **chartjs-plugin-annotation**: Background shading plugin
 
 All dependencies are loaded from CDN for simplicity.
 

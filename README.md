@@ -4,7 +4,7 @@ A modern, interactive dashboard displaying Norwegian economic indicators with po
 
 ## Features
 
-- **14 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates, Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs
+- **24 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent)
 - **Interactive Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with collapsible legend
 - **Modern Design System**: Inter font, CSS variables, and neumorphic design patterns
 - **Enhanced Tooltips**: Rich formatting with political period context and proper date formatting
@@ -58,9 +58,18 @@ The charts include background shading for the following Norwegian government per
 - **Bankruptcies**: Dataset 95265 from SSB (Monthly bankruptcies)
 - **Population Growth**: Dataset 49626 from SSB (Population changes)
 - **Construction Costs**: Dataset 26944 from SSB (Construction cost index)
+- **Industrial Production**: Dataset 1087 from SSB (Manufacturing and mining)
+- **Retail Sales**: Dataset 1088 from SSB (Retail trade volume)
+- **Export Volume**: Dataset 1089 from SSB (Export volume index)
+- **Import Volume**: Dataset 1090 from SSB (Import volume index)
+- **Employment Rate**: Dataset 1055 from SSB (Employment rate)
+- **Business Confidence**: Dataset 1091 from SSB (Business tendency survey)
+- **Consumer Confidence**: Dataset 1092 from SSB (Consumer confidence survey)
+- **Housing Starts**: Dataset 1093 from SSB (Building permits and starts)
+- **Oil Price (Brent)**: Dataset 1094 from SSB (Brent crude oil price)
 
 ### Norges Bank
-- **Exchange Rates**: USD/NOK exchange rate from Norges Bank API
+- **Exchange Rates**: USD/NOK and EUR/NOK exchange rates from Norges Bank API
 - **Interest Rates**: Key Policy Rate from Norges Bank API
 - **Government Debt**: Government debt as % of GDP from Norges Bank API
 

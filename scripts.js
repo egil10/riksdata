@@ -280,7 +280,19 @@ async function initializeCharts() {
             loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
             loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'bar'),
             loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
-            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs')
+            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs'),
+            
+            // Additional charts
+            loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/1087.json?lang=en', 'Industrial Production'),
+            loadChartData('retail-sales-chart', 'https://data.ssb.no/api/v0/dataset/1088.json?lang=en', 'Retail Sales'),
+            loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/1089.json?lang=en', 'Export Volume'),
+            loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'Import Volume'),
+            loadExchangeRateData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
+            loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1055.json?lang=en', 'Employment Rate'),
+            loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/1091.json?lang=en', 'Business Confidence'),
+            loadChartData('consumer-confidence-chart', 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', 'Consumer Confidence'),
+            loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/1093.json?lang=en', 'Housing Starts', 'bar'),
+            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en', 'Oil Price (Brent)')
         ];
         
         // Wait for all charts to load
@@ -320,7 +332,10 @@ function showSkeletonLoading() {
         'cpi-skeleton', 'unemployment-skeleton', 'house-prices-skeleton', 'ppi-skeleton',
         'wage-skeleton', 'oil-fund-skeleton', 'exchange-skeleton', 'interest-rate-skeleton',
         'govt-debt-skeleton', 'gdp-growth-skeleton', 'trade-balance-skeleton', 'bankruptcies-skeleton',
-        'population-growth-skeleton', 'construction-costs-skeleton'
+        'population-growth-skeleton', 'construction-costs-skeleton',
+        'industrial-production-skeleton', 'retail-sales-skeleton', 'export-volume-skeleton', 'import-volume-skeleton',
+        'eur-exchange-skeleton', 'employment-rate-skeleton', 'business-confidence-skeleton', 'consumer-confidence-skeleton',
+        'housing-starts-skeleton', 'oil-price-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -337,7 +352,10 @@ function hideSkeletonLoading() {
         'cpi-skeleton', 'unemployment-skeleton', 'house-prices-skeleton', 'ppi-skeleton',
         'wage-skeleton', 'oil-fund-skeleton', 'exchange-skeleton', 'interest-rate-skeleton',
         'govt-debt-skeleton', 'gdp-growth-skeleton', 'trade-balance-skeleton', 'bankruptcies-skeleton',
-        'population-growth-skeleton', 'construction-costs-skeleton'
+        'population-growth-skeleton', 'construction-costs-skeleton',
+        'industrial-production-skeleton', 'retail-sales-skeleton', 'export-volume-skeleton', 'import-volume-skeleton',
+        'eur-exchange-skeleton', 'employment-rate-skeleton', 'business-confidence-skeleton', 'consumer-confidence-skeleton',
+        'housing-starts-skeleton', 'oil-price-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -1009,6 +1027,15 @@ async function runDiagnostics() {
         { name: 'Bankruptcies', url: 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en' },
         { name: 'Population Growth', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en' },
         { name: 'Construction Costs', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en' },
+        { name: 'Industrial Production', url: 'https://data.ssb.no/api/v0/dataset/1087.json?lang=en' },
+        { name: 'Retail Sales', url: 'https://data.ssb.no/api/v0/dataset/1088.json?lang=en' },
+        { name: 'Export Volume', url: 'https://data.ssb.no/api/v0/dataset/1089.json?lang=en' },
+        { name: 'Import Volume', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en' },
+        { name: 'Employment Rate', url: 'https://data.ssb.no/api/v0/dataset/1055.json?lang=en' },
+        { name: 'Business Confidence', url: 'https://data.ssb.no/api/v0/dataset/1091.json?lang=en' },
+        { name: 'Consumer Confidence', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en' },
+        { name: 'Housing Starts', url: 'https://data.ssb.no/api/v0/dataset/1093.json?lang=en' },
+        { name: 'Oil Price', url: 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en' },
         { name: 'Exchange Rate', url: 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no' },
         { name: 'Interest Rate', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no' },
         { name: 'Government Debt', url: 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01' }

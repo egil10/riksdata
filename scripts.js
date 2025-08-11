@@ -57,22 +57,16 @@ function getPoliticalPeriod(date) {
     return null;
 }
 
-// Ultra-compact chart configuration with enhanced tooltips
+// Chart configuration with compressed x-axis format
 const CHART_CONFIG = {
     responsive: true,
     maintainAspectRatio: false,
-    animation: {
-        duration: 800,
-        easing: 'easeOutQuart'
-    },
-    interaction: {
-        mode: 'index',
-        intersect: false,
-    },
     plugins: {
-        legend: { display: false },
         tooltip: {
             enabled: false // Disable default tooltips
+        },
+        legend: {
+            display: false
         }
     },
     scales: {
@@ -80,52 +74,61 @@ const CHART_CONFIG = {
             type: 'time',
             time: {
                 unit: 'month',
-                displayFormats: { month: 'MMM yy' }
+                displayFormats: {
+                    year: 'yyyy',
+                    month: 'MMM yyyy'
+                }
             },
-            grid: { display: false },
             ticks: {
-                maxTicksLimit: 3,
-                font: { size: 11 },
-                color: '#6B7280'
+                maxTicksLimit: 8,
+                callback: function(value, index, values) {
+                    const date = new Date(value);
+                    const year = date.getFullYear();
+                    const month = date.getMonth();
+                    
+                    // Show full year for first tick of each year
+                    if (month === 0) {
+                        return year.toString();
+                    } else {
+                        // Show compressed format for other months
+                        return "'" + year.toString().slice(-2);
+                    }
+                }
             },
-            border: { display: false }
+            grid: {
+                display: false
+            }
         },
         y: {
+            beginAtZero: false,
             grid: {
-                color: 'rgba(0, 0, 0, 0.05)',
-                drawBorder: false
+                color: 'rgba(0, 0, 0, 0.1)'
             },
             ticks: {
-                callback: function(value) {
-                    return value.toLocaleString();
-                },
-                font: { size: 11 },
-                color: '#6B7280',
-                padding: 4
-            },
-            border: { display: false }
+                maxTicksLimit: 5
+            }
         }
     },
     elements: {
         point: {
             radius: 0,
-            hoverRadius: 6,
+            hoverRadius: 4,
             hoverBackgroundColor: function(context) {
                 const period = getPoliticalPeriod(context.parsed.x);
-                return period ? period.color : '#1F2937';
-            },
-            hoverBorderColor: '#FFFFFF',
-            hoverBorderWidth: 2
+                return period ? period.color : '#666';
+            }
         },
         line: {
-            tension: 0.2,
-            borderWidth: 2,
-            fill: false
-        },
-        bar: {
-            borderWidth: 0,
-            borderRadius: 4
+            borderWidth: 2
         }
+    },
+    animation: {
+        duration: 1000,
+        easing: 'easeOutQuart'
+    },
+    interaction: {
+        intersect: false,
+        mode: 'index'
     }
 };
 
@@ -265,8 +268,8 @@ async function initializeCharts() {
         // Load all charts in parallel
         const chartPromises = [
             // Original charts
-            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'CPI'),
-            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Unemployment Rate'),
+            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'Consumer Price Index'),
+            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1052.json?lang=en', 'Unemployment Rate'),
             loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index'),
             loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index'),
             loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
@@ -275,24 +278,35 @@ async function initializeCharts() {
             loadInterestRateData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
             loadGovernmentDebtData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
             
-            // New charts
+            // Bar charts
             loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
             loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
             loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'bar'),
             loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
             loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs'),
             
-            // Additional charts
-            loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/1087.json?lang=en', 'Industrial Production'),
-            loadChartData('retail-sales-chart', 'https://data.ssb.no/api/v0/dataset/1088.json?lang=en', 'Retail Sales'),
-            loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/1089.json?lang=en', 'Export Volume'),
-            loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'Import Volume'),
+            // Fixed charts (replacing failing ones)
+            loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', 'Industrial Production'),
+            loadChartData('retail-sales-chart', 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', 'Retail Sales'),
+            loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
+            loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Import Volume'),
             loadExchangeRateData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
-            loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1055.json?lang=en', 'Employment Rate'),
-            loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/1091.json?lang=en', 'Business Confidence'),
-            loadChartData('consumer-confidence-chart', 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', 'Consumer Confidence'),
-            loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/1093.json?lang=en', 'Housing Starts', 'bar'),
-            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en', 'Oil Price (Brent)')
+            loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
+            loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Confidence'),
+            loadChartData('consumer-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Consumer Confidence'),
+            loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en', 'Housing Starts', 'bar'),
+            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Oil Price (Brent)'),
+            
+            // 9 Additional charts
+            loadChartData('monetary-aggregates-chart', 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', 'Monetary Aggregates'),
+            loadChartData('job-vacancies-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies', 'bar'),
+            loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
+            loadChartData('producer-prices-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Prices'),
+            loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', 'Construction Production'),
+            loadChartData('credit-indicator-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator'),
+            loadChartData('energy-consumption-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Consumption'),
+            loadChartData('government-revenue-chart', 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', 'Government Revenue'),
+            loadChartData('international-accounts-chart', 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', 'International Accounts')
         ];
         
         // Wait for all charts to load
@@ -335,7 +349,10 @@ function showSkeletonLoading() {
         'population-growth-skeleton', 'construction-costs-skeleton',
         'industrial-production-skeleton', 'retail-sales-skeleton', 'export-volume-skeleton', 'import-volume-skeleton',
         'eur-exchange-skeleton', 'employment-rate-skeleton', 'business-confidence-skeleton', 'consumer-confidence-skeleton',
-        'housing-starts-skeleton', 'oil-price-skeleton'
+        'housing-starts-skeleton', 'oil-price-skeleton',
+        'monetary-aggregates-skeleton', 'job-vacancies-skeleton', 'household-consumption-skeleton', 'producer-prices-skeleton',
+        'construction-production-skeleton', 'credit-indicator-skeleton', 'energy-consumption-skeleton', 'government-revenue-skeleton',
+        'international-accounts-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -355,7 +372,10 @@ function hideSkeletonLoading() {
         'population-growth-skeleton', 'construction-costs-skeleton',
         'industrial-production-skeleton', 'retail-sales-skeleton', 'export-volume-skeleton', 'import-volume-skeleton',
         'eur-exchange-skeleton', 'employment-rate-skeleton', 'business-confidence-skeleton', 'consumer-confidence-skeleton',
-        'housing-starts-skeleton', 'oil-price-skeleton'
+        'housing-starts-skeleton', 'oil-price-skeleton',
+        'monetary-aggregates-skeleton', 'job-vacancies-skeleton', 'household-consumption-skeleton', 'producer-prices-skeleton',
+        'construction-production-skeleton', 'credit-indicator-skeleton', 'energy-consumption-skeleton', 'government-revenue-skeleton',
+        'international-accounts-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -1027,15 +1047,24 @@ async function runDiagnostics() {
         { name: 'Bankruptcies', url: 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en' },
         { name: 'Population Growth', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en' },
         { name: 'Construction Costs', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en' },
-        { name: 'Industrial Production', url: 'https://data.ssb.no/api/v0/dataset/1087.json?lang=en' },
-        { name: 'Retail Sales', url: 'https://data.ssb.no/api/v0/dataset/1088.json?lang=en' },
-        { name: 'Export Volume', url: 'https://data.ssb.no/api/v0/dataset/1089.json?lang=en' },
-        { name: 'Import Volume', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en' },
-        { name: 'Employment Rate', url: 'https://data.ssb.no/api/v0/dataset/1055.json?lang=en' },
-        { name: 'Business Confidence', url: 'https://data.ssb.no/api/v0/dataset/1091.json?lang=en' },
-        { name: 'Consumer Confidence', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en' },
-        { name: 'Housing Starts', url: 'https://data.ssb.no/api/v0/dataset/1093.json?lang=en' },
-        { name: 'Oil Price', url: 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en' },
+        { name: 'Industrial Production', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en' },
+        { name: 'Retail Sales', url: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en' },
+        { name: 'Export Volume', url: 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en' },
+        { name: 'Import Volume', url: 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en' },
+        { name: 'Employment Rate', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en' },
+        { name: 'Business Confidence', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en' },
+        { name: 'Consumer Confidence', url: 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en' },
+        { name: 'Housing Starts', url: 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en' },
+        { name: 'Oil Price', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en' },
+        { name: 'Monetary Aggregates', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en' },
+        { name: 'Job Vacancies', url: 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en' },
+        { name: 'Household Consumption', url: 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en' },
+        { name: 'Producer Prices', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en' },
+        { name: 'Construction Production', url: 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en' },
+        { name: 'Credit Indicator', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en' },
+        { name: 'Energy Consumption', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en' },
+        { name: 'Government Revenue', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en' },
+        { name: 'International Accounts', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en' },
         { name: 'Exchange Rate', url: 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no' },
         { name: 'Interest Rate', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no' },
         { name: 'Government Debt', url: 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01' }

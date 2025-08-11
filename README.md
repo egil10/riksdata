@@ -4,7 +4,7 @@ A modern, interactive dashboard displaying Norwegian economic indicators with po
 
 ## Features
 
-- **24 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent)
+- **33 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent), Monetary Aggregates, Job Vacancies, Household Consumption, Producer Prices, Construction Production, Credit Indicator, Energy Consumption, Government Revenue, International Accounts
 - **Interactive Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with collapsible legend
 - **Modern Design System**: Inter font, CSS variables, and neumorphic design patterns
 - **Enhanced Tooltips**: Rich formatting with political period context and proper date formatting
@@ -66,7 +66,16 @@ The charts include background shading for the following Norwegian government per
 - **Business Confidence**: Dataset 1091 from SSB (Business tendency survey)
 - **Consumer Confidence**: Dataset 1092 from SSB (Consumer confidence survey)
 - **Housing Starts**: Dataset 1093 from SSB (Building permits and starts)
-- **Oil Price (Brent)**: Dataset 1094 from SSB (Brent crude oil price)
+       - **Oil Price (Brent)**: Dataset 26426 from SSB (Producer price index for oil and gas)
+       - **Monetary Aggregates**: Dataset 172769 from SSB (M1, M2, M3 monetary aggregates)
+       - **Job Vacancies**: Dataset 166328 from SSB (Job vacancies by industry)
+       - **Household Consumption**: Dataset 166330 from SSB (Household consumption of goods)
+       - **Producer Prices**: Dataset 26426 from SSB (Producer price index)
+       - **Construction Production**: Dataset 924808 from SSB (Production index for construction)
+       - **Credit Indicator**: Dataset 166326 from SSB (Domestic loan debt)
+       - **Energy Consumption**: Dataset 928196 from SSB (Energy accounts)
+       - **Government Revenue**: Dataset 928194 from SSB (General government revenue)
+       - **International Accounts**: Dataset 924820 from SSB (Current and capital account)
 
 ### Norges Bank
 - **Exchange Rates**: USD/NOK and EUR/NOK exchange rates from Norges Bank API

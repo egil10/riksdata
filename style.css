@@ -525,30 +525,43 @@ footer {
         flex-direction: column;
         gap: 1.5rem;
         align-items: center;
+        text-align: center;
     }
     
     .party-colors {
         gap: 0.75rem;
         justify-content: center;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+    
+    .party-color-item {
+        font-size: 0.75rem;
+        min-width: auto;
     }
     
     .footer-right {
         align-items: center;
         gap: 1rem;
+        width: 100%;
     }
     
     .social-links {
         gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
     }
     
     .social-link {
         padding: 0.25rem;
         font-size: 0.75rem;
+        min-width: auto;
     }
     
     .footer-text {
         text-align: center;
         font-size: 0.7rem;
+        width: 100%;
     }
 }
 

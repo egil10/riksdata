@@ -205,19 +205,7 @@ function updateLanguageText(lang) {
     }
 }
 
-// Toggle legend visibility
-function toggleLegend() {
-    const legendContent = document.getElementById('legendContent');
-    const toggleButton = document.querySelector('.legend-toggle');
-    
-    if (legendContent.classList.contains('collapsed')) {
-        legendContent.classList.remove('collapsed');
-        toggleButton.textContent = '−';
-    } else {
-        legendContent.classList.add('collapsed');
-        toggleButton.textContent = '+';
-    }
-}
+
 
 // Initialize all charts
 async function initializeCharts() {
@@ -231,22 +219,22 @@ async function initializeCharts() {
         // Load all charts in parallel
         const chartPromises = [
             // Original charts
-            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086', 'CPI'),
-            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054', 'Unemployment Rate'),
-            loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060', 'House Price Index'),
-            loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426', 'Producer Price Index'),
-            loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124', 'Wage Index'),
+            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'CPI'),
+            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Unemployment Rate'),
+            loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index'),
+            loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index'),
+            loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
             loadOilFundData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value'),
             loadExchangeRateData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
             loadInterestRateData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
             loadGovernmentDebtData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
             
             // New charts
-            loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012', 'GDP Growth', 'bar'),
-            loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962', 'Trade Balance', 'bar'),
-            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265', 'Bankruptcies', 'bar'),
-            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626', 'Population Growth'),
-            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944', 'Construction Costs')
+            loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
+            loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
+            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'bar'),
+            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
+            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs')
         ];
         
         // Wait for all charts to load

@@ -72,63 +72,7 @@ const CHART_CONFIG = {
     plugins: {
         legend: { display: false },
         tooltip: {
-            mode: 'index',
-            intersect: false,
-            backgroundColor: 'rgba(255, 255, 255, 0.95)',
-            titleColor: '#1F2937',
-            bodyColor: '#1F2937',
-            borderColor: '#E5E7EB',
-            borderWidth: 1,
-            cornerRadius: 8,
-            padding: 12,
-            titleFont: { size: 14, weight: '600' },
-            bodyFont: { size: 13 },
-            displayColors: false,
-            callbacks: {
-                title: function(context) {
-                    const date = new Date(context[0].parsed.x);
-                    if (isNaN(date.getTime())) {
-                        return 'Invalid Date';
-                    }
-                    return date.toLocaleDateString('en-US', { 
-                        year: 'numeric', 
-                        month: 'short',
-                        day: 'numeric'
-                    });
-                },
-                label: function(context) {
-                    const value = context.parsed.y;
-                    const period = getPoliticalPeriod(context.parsed.x);
-                    const formattedValue = typeof value === 'number' ? value.toLocaleString() : value;
-                    
-                    if (period) {
-                        const partyColors = {
-                            'Ap': '#E11926',
-                            'KrF': '#FDED34', 
-                            'H': '#87add7',
-                            'V': '#006666',
-                            'Sp': '#00843D',
-                            'SV': '#B5317C',
-                            'FrP': '#004F80',
-                            'MDG': '#6A9325'
-                        };
-                        
-                        // Extract party abbreviations from period name
-                        const partyMatch = period.name.match(/\((.*?)\)/);
-                        if (partyMatch) {
-                            const parties = partyMatch[1].split(', ');
-                            const partyDisplay = parties.map(party => {
-                                const color = partyColors[party] || '#000000';
-                                return `<span style="color: ${color}; font-weight: bold;">${party}</span>`;
-                            }).join(', ');
-                            
-                            return `${context.dataset.label}: ${formattedValue} (${partyDisplay})`;
-                        }
-                    }
-                    
-                    return `${context.dataset.label}: ${formattedValue}`;
-                }
-            }
+            enabled: false // Disable default tooltips
         }
     },
     scales: {
@@ -184,6 +128,60 @@ const CHART_CONFIG = {
         }
     }
 };
+
+// Function to create static tooltip content
+function createStaticTooltipContent(context) {
+    const value = context.parsed.y;
+    const period = getPoliticalPeriod(context.parsed.x);
+    const formattedValue = typeof value === 'number' ? value.toLocaleString() : value;
+    
+    let tooltipContent = `${context.dataset.label}: ${formattedValue}`;
+    
+    if (period) {
+        const partyColors = {
+            'Ap': '#E11926',
+            'KrF': '#FDED34', 
+            'H': '#87add7',
+            'V': '#006666',
+            'Sp': '#00843D',
+            'SV': '#B5317C',
+            'FrP': '#004F80',
+            'MDG': '#6A9325'
+        };
+        
+        // Extract party abbreviations from period name
+        const partyMatch = period.name.match(/\((.*?)\)/);
+        if (partyMatch) {
+            const parties = partyMatch[1].split(', ');
+            const partyDisplay = parties.map(party => {
+                const color = partyColors[party] || '#000000';
+                return `<span style="color: ${color}; font-weight: bold;">${party}</span>`;
+            }).join(', ');
+            
+            tooltipContent += ` (${partyDisplay})`;
+        }
+    }
+    
+    return tooltipContent;
+}
+
+// Function to update static tooltip
+function updateStaticTooltip(chart, tooltipId, context) {
+    const tooltipElement = document.getElementById(tooltipId);
+    if (tooltipElement && context) {
+        const content = createStaticTooltipContent(context);
+        tooltipElement.innerHTML = content;
+        tooltipElement.classList.add('visible');
+    }
+}
+
+// Function to hide static tooltip
+function hideStaticTooltip(tooltipId) {
+    const tooltipElement = document.getElementById(tooltipId);
+    if (tooltipElement) {
+        tooltipElement.classList.remove('visible');
+    }
+}
 
 // Initialize the dashboard
 document.addEventListener('DOMContentLoaded', function() {
@@ -294,6 +292,8 @@ async function initializeCharts() {
         // Hide loading screen with fade out
         setTimeout(() => {
             loadingScreen.classList.add('hidden');
+            // Enable scrolling after loading screen is hidden
+            document.body.classList.add('loaded');
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
             }, 500);
@@ -306,6 +306,8 @@ async function initializeCharts() {
         // Hide loading screen even if there's an error
         const loadingScreen = document.getElementById('loading-screen');
         loadingScreen.classList.add('hidden');
+        // Enable scrolling even if there's an error
+        document.body.classList.add('loaded');
         setTimeout(() => {
             loadingScreen.style.display = 'none';
         }, 500);
@@ -597,6 +599,46 @@ function renderChart(canvas, data, title, chartType = 'line') {
         window.chartInstances = {};
     }
     window.chartInstances[canvas.id] = canvas.chart;
+
+    // Add static tooltip functionality
+    const tooltipId = canvas.id.replace('-chart', '-tooltip');
+    const tooltipElement = document.getElementById(tooltipId);
+    
+    if (tooltipElement) {
+        // Add mouse move event listener to canvas
+        canvas.addEventListener('mousemove', function(event) {
+            const rect = canvas.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            
+            const elements = canvas.chart.getElementsAtEventForMode(
+                { x: x, y: y },
+                'index',
+                { intersect: false }
+            );
+            
+            if (elements.length > 0) {
+                const element = elements[0];
+                const context = {
+                    parsed: {
+                        x: canvas.chart.data.labels[element.index],
+                        y: canvas.chart.data.datasets[element.datasetIndex].data[element.index]
+                    },
+                    dataset: {
+                        label: canvas.chart.data.datasets[element.datasetIndex].label
+                    }
+                };
+                updateStaticTooltip(canvas.chart, tooltipId, context);
+            } else {
+                hideStaticTooltip(tooltipId);
+            }
+        });
+        
+        // Hide tooltip when mouse leaves canvas
+        canvas.addEventListener('mouseleave', function() {
+            hideStaticTooltip(tooltipId);
+        });
+    }
 }
 
 // Create modern datasets with political period colors

@@ -32,11 +32,53 @@ body {
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background: var(--bg-color);
     color: var(--text-color);
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
     font-size: 16px;
     line-height: 1.5;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.loaded {
+    overflow-y: auto;
+}
+
+/* Modern Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #9CA3AF;
+}
+
+.dark-mode ::-webkit-scrollbar-track {
+    background: var(--bg-color);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+}
+
+.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: #6B7280;
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) var(--bg-color);
 }
 
 /* Theme Toggle Icon */
@@ -184,9 +226,9 @@ header h1:hover {
 
 /* Main Grid */
 main {
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
     padding: 1rem;
-    padding-bottom: 160px; /* Extra padding for fixed footer */
+    padding-bottom: 2rem;
     overflow-y: auto;
     scroll-behavior: smooth;
 }
@@ -287,6 +329,33 @@ main {
     min-height: 150px;
 }
 
+/* Static Tooltip Area */
+.static-tooltip {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 0.5rem;
+    font-size: 0.75rem;
+    color: var(--text-color);
+    max-width: 200px;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+}
+
+.dark-mode .static-tooltip {
+    background: rgba(17, 17, 17, 0.95);
+    border-color: var(--border-color);
+}
+
+.static-tooltip.visible {
+    opacity: 1;
+}
+
 /* Footer */
 footer {
     background: var(--card-bg);
@@ -294,11 +363,7 @@ footer {
     padding: 1.5rem;
     height: 140px;
     box-shadow: var(--shadow-light);
-    position: fixed;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    z-index: 90;
 }
 
 .footer-content {
@@ -424,14 +489,14 @@ footer {
     
     main {
         padding: 0.75rem;
-        padding-bottom: 200px; /* Extra padding for mobile fixed footer */
-        height: calc(100vh - 50px);
+        padding-bottom: 2rem;
+        min-height: calc(100vh - 50px);
     }
     
     .chart-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
-        padding-bottom: 3rem; /* Extra padding for mobile */
+        padding-bottom: 2rem;
     }
     
     .chart-card {

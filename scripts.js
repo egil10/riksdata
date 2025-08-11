@@ -65,6 +65,10 @@ const CHART_CONFIG = {
         duration: 800,
         easing: 'easeOutQuart'
     },
+    interaction: {
+        mode: 'index',
+        intersect: false,
+    },
     plugins: {
         legend: { display: false },
         tooltip: {
@@ -161,8 +165,13 @@ const CHART_CONFIG = {
     elements: {
         point: {
             radius: 0,
-            hoverRadius: 4,
-            hoverBackgroundColor: '#1F2937'
+            hoverRadius: 6,
+            hoverBackgroundColor: function(context) {
+                const period = getPoliticalPeriod(context.parsed.x);
+                return period ? period.color : '#1F2937';
+            },
+            hoverBorderColor: '#FFFFFF',
+            hoverBorderWidth: 2
         },
         line: {
             tension: 0.2,
@@ -207,7 +216,16 @@ function toggleTheme() {
     // Update theme toggle icon
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
-        themeToggle.textContent = body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        const themeIcon = themeToggle.querySelector('.theme-icon');
+        if (themeIcon) {
+            if (body.classList.contains('dark-mode')) {
+                // Show sun icon for dark mode
+                themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
+            } else {
+                // Show moon icon for light mode
+                themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
+            }
+        }
     }
 }
 
@@ -933,3 +951,101 @@ window.NorwayDashboard = {
     POLITICAL_PERIODS,
     parseSSBData
 };
+
+// Diagnostic script for Riksklokken data sources
+async function runDiagnostics() {
+    console.log('🔍 Starting Riksklokken Diagnostics...\n');
+
+    const dataSources = [
+        { name: 'CPI', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en' },
+        { name: 'Unemployment', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en' },
+        { name: 'House Prices', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en' },
+        { name: 'Producer Price Index', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en' },
+        { name: 'Wage Index', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en' },
+        { name: 'GDP Growth', url: 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en' },
+        { name: 'Trade Balance', url: 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en' },
+        { name: 'Bankruptcies', url: 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en' },
+        { name: 'Population Growth', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en' },
+        { name: 'Construction Costs', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en' },
+        { name: 'Exchange Rate', url: 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no' },
+        { name: 'Interest Rate', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no' },
+        { name: 'Government Debt', url: 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01' }
+    ];
+
+    let passedTests = 0;
+    let totalTests = dataSources.length;
+
+    for (const source of dataSources) {
+        try {
+            console.log(`Testing ${source.name}...`);
+            const response = await fetch(source.url);
+            
+            if (!response.ok) {
+                console.log(`❌ ${source.name}: HTTP ${response.status} - ${response.statusText}`);
+                continue;
+            }
+
+            const data = await response.json();
+            
+            if (data && (data.dataset || data.data)) {
+                console.log(`✅ ${source.name}: Data structure valid`);
+                passedTests++;
+            } else {
+                console.log(`❌ ${source.name}: Invalid data structure`);
+            }
+        } catch (error) {
+            console.log(`❌ ${source.name}: ${error.message}`);
+        }
+    }
+
+    // Test Oil Fund local data
+    try {
+        console.log('Testing Oil Fund local data...');
+        const response = await fetch('data/oil-fund.json');
+        if (response.ok) {
+            const data = await response.json();
+            if (data && Array.isArray(data)) {
+                console.log('✅ Oil Fund: Local data valid');
+                passedTests++;
+            } else {
+                console.log('❌ Oil Fund: Invalid local data structure');
+            }
+        } else {
+            console.log('❌ Oil Fund: Local file not found');
+        }
+    } catch (error) {
+        console.log(`❌ Oil Fund: ${error.message}`);
+    }
+    totalTests++;
+
+    // Summary
+    console.log(`\n📊 Test Results: ${passedTests}/${totalTests} data sources working`);
+    console.log(`Success Rate: ${((passedTests / totalTests) * 100).toFixed(1)}%`);
+
+    // Test political periods
+    console.log('\n🏛️ Testing Political Periods...');
+    const testDates = [
+        new Date('2000-01-01'),
+        new Date('2005-10-17'),
+        new Date('2013-10-16'),
+        new Date('2021-10-14'),
+        new Date('2025-01-01')
+    ];
+
+    testDates.forEach(date => {
+        const period = getPoliticalPeriod(date);
+        if (period) {
+            console.log(`✅ ${date.toISOString().split('T')[0]}: ${period.name}`);
+        } else {
+            console.log(`❌ ${date.toISOString().split('T')[0]}: No period found`);
+        }
+    });
+
+    console.log(`\n🔍 Diagnostics complete!`);
+}
+
+// Run diagnostics when script is loaded
+if (typeof window !== 'undefined') {
+    window.runDiagnostics = runDiagnostics;
+    console.log('🔍 Diagnostics script loaded. Run runDiagnostics() to test all data sources.');
+}

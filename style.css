@@ -39,6 +39,17 @@ body {
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Theme Toggle Icon */
+.theme-icon {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.dark-mode .theme-icon {
+    transform: rotate(180deg);
+}
+
 /* Loading Screen */
 .loading-screen {
     position: fixed;
@@ -173,8 +184,9 @@ header h1:hover {
 
 /* Main Grid */
 main {
-    height: calc(100vh - 60px - 140px);
+    height: calc(100vh - 60px);
     padding: 1rem;
+    padding-bottom: 160px; /* Extra padding for fixed footer */
     overflow-y: auto;
     scroll-behavior: smooth;
 }
@@ -282,6 +294,11 @@ footer {
     padding: 1.5rem;
     height: 140px;
     box-shadow: var(--shadow-light);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 90;
 }
 
 .footer-content {
@@ -407,12 +424,14 @@ footer {
     
     main {
         padding: 0.75rem;
-        height: calc(100vh - 50px - 180px);
+        padding-bottom: 200px; /* Extra padding for mobile fixed footer */
+        height: calc(100vh - 50px);
     }
     
     .chart-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
+        padding-bottom: 3rem; /* Extra padding for mobile */
     }
     
     .chart-card {

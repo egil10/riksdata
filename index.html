@@ -23,7 +23,11 @@
             <h1 onclick="window.location.reload()">Riksklokken</h1>
             <div class="header-controls">
                 <button id="langToggle" class="control-btn">NO</button>
-                <button id="themeToggle" class="control-btn">🌙</button>
+                <button id="themeToggle" class="control-btn">
+                    <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
+                    </svg>
+                </button>
             </div>
         </div>
     </header>
@@ -278,6 +282,5 @@
     </footer>
 
     <script src="scripts.js"></script>
-    <script src="diagnostics.js"></script>
 </body>
 </html>

@@ -1457,7 +1457,7 @@ function initializeFilterToggle() {
 // Sort toggle functionality
 function initializeSortToggle() {
     const sortToggle = document.getElementById('sortToggle');
-    let isAscending = true;
+    let isAscending = true; // Start with A-Z sorting
     
     if (sortToggle) {
         sortToggle.addEventListener('click', function() {
@@ -1478,10 +1478,10 @@ function initializeSortToggle() {
                 chartGrid.appendChild(card);
             });
             
-            // Toggle sort direction and update button text
-            isAscending = !isAscending;
-            sortToggle.textContent = isAscending ? 'A-Z' : 'Z-A';
+            // Update button text to show CURRENT state, then toggle
+            sortToggle.textContent = isAscending ? 'Z-A' : 'A-Z';
             sortToggle.classList.toggle('active');
+            isAscending = !isAscending;
         });
     }
 }

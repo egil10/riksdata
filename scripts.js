@@ -306,7 +306,24 @@ async function initializeCharts() {
             loadChartData('credit-indicator-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator'),
             loadChartData('energy-consumption-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Consumption'),
             loadChartData('government-revenue-chart', 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', 'Government Revenue'),
-            loadChartData('international-accounts-chart', 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', 'International Accounts')
+            loadChartData('international-accounts-chart', 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', 'International Accounts'),
+            
+            // 15 Additional charts
+            loadChartData('labour-cost-index-chart', 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', 'Labour Cost Index'),
+            loadChartData('rd-expenditure-chart', 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', 'R&D Expenditure'),
+            loadChartData('salmon-export-chart', 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', 'Salmon Export Value'),
+            loadChartData('oil-gas-investment-chart', 'https://data.ssb.no/api/v0/dataset/166334.json?lang=en', 'Oil & Gas Investment'),
+            loadChartData('immigration-rate-chart', 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', 'Immigration Rate'),
+            loadChartData('household-income-chart', 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en', 'Household Income'),
+            loadChartData('life-expectancy-chart', 'https://data.ssb.no/api/v0/dataset/102811.json?lang=en', 'Life Expectancy'),
+            loadChartData('crime-rate-chart', 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en', 'Crime Rate'),
+            loadChartData('education-level-chart', 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', 'Education Level'),
+            loadChartData('holiday-property-sales-chart', 'https://data.ssb.no/api/v0/dataset/65962.json?lang=en', 'Holiday Property Sales'),
+            loadChartData('greenhouse-gas-chart', 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', 'Greenhouse Gas Emissions'),
+            loadChartData('economic-forecasts-chart', 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', 'Economic Forecasts'),
+            loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en', 'New Dwellings Price'),
+            loadChartData('lifestyle-habits-chart', 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en', 'Lifestyle Habits'),
+            loadChartData('long-term-illness-chart', 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', 'Long-term Illness')
         ];
         
         // Wait for all charts to load
@@ -352,7 +369,11 @@ function showSkeletonLoading() {
         'housing-starts-skeleton', 'oil-price-skeleton',
         'monetary-aggregates-skeleton', 'job-vacancies-skeleton', 'household-consumption-skeleton', 'producer-prices-skeleton',
         'construction-production-skeleton', 'credit-indicator-skeleton', 'energy-consumption-skeleton', 'government-revenue-skeleton',
-        'international-accounts-skeleton'
+        'international-accounts-skeleton',
+        'labour-cost-index-skeleton', 'rd-expenditure-skeleton', 'salmon-export-skeleton', 'oil-gas-investment-skeleton',
+        'immigration-rate-skeleton', 'household-income-skeleton', 'life-expectancy-skeleton', 'crime-rate-skeleton',
+        'education-level-skeleton', 'holiday-property-sales-skeleton', 'greenhouse-gas-skeleton', 'economic-forecasts-skeleton',
+        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -375,7 +396,11 @@ function hideSkeletonLoading() {
         'housing-starts-skeleton', 'oil-price-skeleton',
         'monetary-aggregates-skeleton', 'job-vacancies-skeleton', 'household-consumption-skeleton', 'producer-prices-skeleton',
         'construction-production-skeleton', 'credit-indicator-skeleton', 'energy-consumption-skeleton', 'government-revenue-skeleton',
-        'international-accounts-skeleton'
+        'international-accounts-skeleton',
+        'labour-cost-index-skeleton', 'rd-expenditure-skeleton', 'salmon-export-skeleton', 'oil-gas-investment-skeleton',
+        'immigration-rate-skeleton', 'household-income-skeleton', 'life-expectancy-skeleton', 'crime-rate-skeleton',
+        'education-level-skeleton', 'holiday-property-sales-skeleton', 'greenhouse-gas-skeleton', 'economic-forecasts-skeleton',
+        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -1065,6 +1090,21 @@ async function runDiagnostics() {
         { name: 'Energy Consumption', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en' },
         { name: 'Government Revenue', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en' },
         { name: 'International Accounts', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en' },
+        { name: 'Labour Cost Index', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en' },
+        { name: 'R&D Expenditure', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en' },
+        { name: 'Salmon Export Value', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en' },
+        { name: 'Oil & Gas Investment', url: 'https://data.ssb.no/api/v0/dataset/166334.json?lang=en' },
+        { name: 'Immigration Rate', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en' },
+        { name: 'Household Income', url: 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en' },
+        { name: 'Life Expectancy', url: 'https://data.ssb.no/api/v0/dataset/102811.json?lang=en' },
+        { name: 'Crime Rate', url: 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en' },
+        { name: 'Education Level', url: 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en' },
+        { name: 'Holiday Property Sales', url: 'https://data.ssb.no/api/v0/dataset/65962.json?lang=en' },
+        { name: 'Greenhouse Gas Emissions', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en' },
+        { name: 'Economic Forecasts', url: 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en' },
+        { name: 'New Dwellings Price', url: 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en' },
+        { name: 'Lifestyle Habits', url: 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en' },
+        { name: 'Long-term Illness', url: 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en' },
         { name: 'Exchange Rate', url: 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no' },
         { name: 'Interest Rate', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no' },
         { name: 'Government Debt', url: 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01' }

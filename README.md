@@ -4,7 +4,7 @@ A modern, interactive dashboard displaying Norwegian economic indicators with po
 
 ## Features
 
-- **33 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent), Monetary Aggregates, Job Vacancies, Household Consumption, Producer Prices, Construction Production, Credit Indicator, Energy Consumption, Government Revenue, International Accounts
+- **48 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent), Monetary Aggregates, Job Vacancies, Household Consumption, Producer Prices, Construction Production, Credit Indicator, Energy Consumption, Government Revenue, International Accounts, Labour Cost Index, R&D Expenditure, Salmon Export Value, Oil & Gas Investment, Immigration Rate, Household Income, Life Expectancy, Crime Rate, Education Level, Holiday Property Sales, Greenhouse Gas Emissions, Economic Forecasts, New Dwellings Price, Lifestyle Habits, Long-term Illness
 - **Interactive Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with collapsible legend
 - **Modern Design System**: Inter font, CSS variables, and neumorphic design patterns
 - **Enhanced Tooltips**: Rich formatting with political period context and proper date formatting
@@ -76,6 +76,21 @@ The charts include background shading for the following Norwegian government per
        - **Energy Consumption**: Dataset 928196 from SSB (Energy accounts)
        - **Government Revenue**: Dataset 928194 from SSB (General government revenue)
        - **International Accounts**: Dataset 924820 from SSB (Current and capital account)
+       - **Labour Cost Index**: Dataset 760065 from SSB (Labour cost index by section)
+       - **R&D Expenditure**: Dataset 61819 from SSB (R&D personnel and expenditure)
+       - **Salmon Export Value**: Dataset 1122 from SSB (Export of salmon, fresh and frozen)
+       - **Oil & Gas Investment**: Dataset 166334 from SSB (Oil and gas extraction investments)
+       - **Immigration Rate**: Dataset 48651 from SSB (Immigrants by country background)
+       - **Household Income**: Dataset 56900 from SSB (Income by type of household)
+       - **Life Expectancy**: Dataset 102811 from SSB (Life tables by sex and age)
+       - **Crime Rate**: Dataset 97445 from SSB (Offences reported to police)
+       - **Education Level**: Dataset 85454 from SSB (Education level by sex)
+       - **Holiday Property Sales**: Dataset 65962 from SSB (Transfers of holiday properties)
+       - **Greenhouse Gas Emissions**: Dataset 832678 from SSB (Greenhouse gases by source)
+       - **Economic Forecasts**: Dataset 934513 from SSB (Economic trends and forecasts)
+       - **New Dwellings Price**: Dataset 26158 from SSB (Price index for new dwellings)
+       - **Lifestyle Habits**: Dataset 832683 from SSB (Lifestyle habits by sex and age)
+       - **Long-term Illness**: Dataset 832685 from SSB (Long-term illness by sex and age)
 
 ### Norges Bank
 - **Exchange Rates**: USD/NOK and EUR/NOK exchange rates from Norges Bank API

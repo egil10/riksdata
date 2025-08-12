@@ -1,0 +1,1030 @@
+{
+  "timestamp": "2025-08-13T01:32:35.857809",
+  "api_connectivity": {
+    "https://data.ssb.no/api/v0/dataset/1086.json?lang=en": {
+      "status": "success",
+      "response_time": "N/A",
+      "data_size": 31065,
+      "has_dataset": true
+    },
+    "https://data.ssb.no/api/v0/dataset/1052.json?lang=en": {
+      "status": "success",
+      "response_time": "N/A",
+      "data_size": 1627,
+      "has_dataset": true
+    },
+    "https://data.ssb.no/api/v0/dataset/1060.json?lang=en": {
+      "status": "success",
+      "response_time": "N/A",
+      "data_size": 159460,
+      "has_dataset": true
+    },
+    "https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2024-01-01&endPeriod=2024-12-31&locale=no": {
+      "status": "success",
+      "response_time": "N/A",
+      "data_size": 5127,
+      "has_data": true
+    },
+    "https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2024-01-01&endPeriod=2024-12-31&locale=no": {
+      "status": "success",
+      "response_time": "N/A",
+      "data_size": 4902,
+      "has_data": true
+    }
+  },
+  "cache_status": {
+    "ssb": {
+      "bankruptcies-total.json": {
+        "size_mb": 0.04,
+        "modified": "2025-08-12T23:08:43.229060",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "bankruptcies.json": {
+        "size_mb": 0.05,
+        "modified": "2025-08-12T23:20:46.944315",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "basic-salary.json": {
+        "size_mb": 0.04,
+        "modified": "2025-08-12T23:06:29.744642",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "births-deaths.json": {
+        "size_mb": 0.99,
+        "modified": "2025-08-12T23:06:24.062595",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "business-confidence.json": {
+        "size_mb": 0.05,
+        "modified": "2025-08-12T23:20:53.731945",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cohabiting-arrangements.json": {
+        "size_mb": 0.09,
+        "modified": "2025-08-12T23:08:17.089667",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "construction-cost-multi.json": {
+        "size_mb": 0.31,
+        "modified": "2025-08-12T23:07:49.337692",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "construction-cost-wood.json": {
+        "size_mb": 0.39,
+        "modified": "2025-08-12T23:07:47.553763",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "construction-costs.json": {
+        "size_mb": 0.11,
+        "modified": "2025-08-12T23:20:48.046359",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "construction-production.json": {
+        "size_mb": 0.1,
+        "modified": "2025-08-12T23:21:02.763918",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "consumer-confidence.json": {
+        "size_mb": 0.1,
+        "modified": "2025-08-12T23:20:54.312118",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cpi-ate.json": {
+        "size_mb": 0.56,
+        "modified": "2025-08-12T23:06:25.945285",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cpi-coicop.json": {
+        "size_mb": 0.36,
+        "modified": "2025-08-12T23:08:00.676029",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cpi-delivery.json": {
+        "size_mb": 0.1,
+        "modified": "2025-08-12T23:08:08.492856",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cpi-items.json": {
+        "size_mb": 1.64,
+        "modified": "2025-08-12T23:08:07.068573",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cpi-subgroups.json": {
+        "size_mb": 3.26,
+        "modified": "2025-08-12T23:18:10.966595",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "cpi.json": {
+        "size_mb": 0.06,
+        "modified": "2025-08-12T23:20:42.588097",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "credit-indicator.json": {
+        "size_mb": 0.34,
+        "modified": "2025-08-12T23:21:03.389366",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "crime-rate.json": {
+        "size_mb": 0.01,
+        "modified": "2025-08-12T23:06:00.338887",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "deaths-age.json": {
+        "size_mb": 0.14,
+        "modified": "2025-08-12T23:08:38.968765",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "economic-forecasts.json": {
+        "size_mb": 0.03,
+        "modified": "2025-08-12T23:06:09.183083",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "education-level.json": {
+        "size_mb": 0.03,
+        "modified": "2025-08-12T23:06:00.884578",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "energy-consumption.json": {
+        "size_mb": 2.28,
+        "modified": "2025-08-12T23:21:04.210028",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "export-commodity.json": {
+        "size_mb": 0.93,
+        "modified": "2025-08-12T23:07:40.472430",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "export-country.json": {
+        "size_mb": 0.16,
+        "modified": "2025-08-12T23:17:38.791770",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "export-volume.json": {
+        "size_mb": 0.08,
+        "modified": "2025-08-12T23:20:50.080608",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "gdp-growth.json": {
+        "size_mb": 0.46,
+        "modified": "2025-08-12T23:20:45.758866",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "government-revenue.json": {
+        "size_mb": 0.08,
+        "modified": "2025-08-12T23:21:04.797355",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "greenhouse-gas.json": {
+        "size_mb": 0.49,
+        "modified": "2025-08-12T23:17:06.996420",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "holiday-property-sales.json": {
+        "size_mb": 0.19,
+        "modified": "2025-08-12T23:06:05.216195",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "house-prices.json": {
+        "size_mb": 0.28,
+        "modified": "2025-08-12T23:20:43.902033",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "household-income-size.json": {
+        "size_mb": 2.21,
+        "modified": "2025-08-12T23:08:12.707000",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "household-income.json": {
+        "size_mb": 0.01,
+        "modified": "2025-08-12T23:05:56.044413",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "household-types.json": {
+        "size_mb": 0.01,
+        "modified": "2025-08-12T23:07:55.197140",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "housing-starts.json": {
+        "size_mb": 0.06,
+        "modified": "2025-08-12T23:20:54.861816",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "immigration-rate.json": {
+        "size_mb": 0.01,
+        "modified": "2025-08-12T23:05:55.501929",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "import-commodity.json": {
+        "size_mb": 0.59,
+        "modified": "2025-08-12T23:07:45.741582",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "import-country.json": {
+        "size_mb": 0.13,
+        "modified": "2025-08-12T23:07:33.448647",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "industrial-production.json": {
+        "size_mb": 0.35,
+        "modified": "2025-08-12T23:20:48.643427",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "international-accounts.json": {
+        "size_mb": 0.14,
+        "modified": "2025-08-12T23:21:05.381214",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "job-vacancies.json": {
+        "size_mb": 0.07,
+        "modified": "2025-08-12T23:20:55.949357",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "labour-cost-index.json": {
+        "size_mb": 0.13,
+        "modified": "2025-08-12T23:21:05.980380",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "life-expectancy.json": {
+        "size_mb": 0.98,
+        "modified": "2025-08-12T23:05:59.799355",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "lifestyle-habits.json": {
+        "size_mb": 0.14,
+        "modified": "2025-08-12T23:06:14.165171",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "long-term-illness.json": {
+        "size_mb": 0.08,
+        "modified": "2025-08-12T23:06:16.916800",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "monetary-aggregates.json": {
+        "size_mb": 0.04,
+        "modified": "2025-08-12T23:20:55.401581",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "monetary-m3.json": {
+        "size_mb": 0.05,
+        "modified": "2025-08-12T23:08:47.431560",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "new-dwellings-price.json": {
+        "size_mb": 0.03,
+        "modified": "2025-08-12T23:06:10.685863",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "oil-gas-investment.json": {
+        "size_mb": 0.03,
+        "modified": "2025-08-12T23:05:52.617593",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "oil-gas-turnover.json": {
+        "size_mb": 0.76,
+        "modified": "2025-08-12T23:08:27.970265",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "population-age.json": {
+        "size_mb": 0.01,
+        "modified": "2025-08-12T23:07:58.263620",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "population-growth-alt.json": {
+        "size_mb": 0.0,
+        "modified": "2025-08-12T23:06:19.099304",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "population-growth.json": {
+        "size_mb": 0.01,
+        "modified": "2025-08-12T23:20:47.484617",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "ppi.json": {
+        "size_mb": 0.3,
+        "modified": "2025-08-12T23:20:44.535074",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "producer-price-industry.json": {
+        "size_mb": 0.83,
+        "modified": "2025-08-12T23:18:42.822328",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "rd-expenditure.json": {
+        "size_mb": 0.02,
+        "modified": "2025-08-12T23:05:50.488066",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "retail-sales.json": {
+        "size_mb": 2.47,
+        "modified": "2025-08-12T23:20:49.517311",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "salmon-export-volume.json": {
+        "size_mb": 0.0,
+        "modified": "2025-08-12T23:06:27.787113",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "salmon-export.json": {
+        "size_mb": 0.15,
+        "modified": "2025-08-12T23:05:52.069148",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "trade-balance.json": {
+        "size_mb": 0.24,
+        "modified": "2025-08-12T23:20:46.375785",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "trade-volume-price.json": {
+        "size_mb": 0.24,
+        "modified": "2025-08-12T23:08:31.303181",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "unemployment.json": {
+        "size_mb": 0.9,
+        "modified": "2025-08-12T23:20:43.285208",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "utility-floor-space.json": {
+        "size_mb": 0.14,
+        "modified": "2025-08-12T23:08:18.889627",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      },
+      "wage.json": {
+        "size_mb": 0.04,
+        "modified": "2025-08-12T23:20:45.102981",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "ssb",
+        "has_data": true
+      }
+    },
+    "norges_bank": {
+      "exchange-rates.json": {
+        "size_mb": 0.04,
+        "modified": "2025-08-12T23:19:05.374972",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "norges_bank",
+        "has_data": true
+      },
+      "government-debt.json": {
+        "size_mb": 0.1,
+        "modified": "2025-08-12T23:19:06.473029",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "norges_bank",
+        "has_data": true
+      },
+      "interest-rate.json": {
+        "size_mb": 0.11,
+        "modified": "2025-08-12T23:19:05.922262",
+        "age_days": 0,
+        "status": "valid",
+        "data_type": "norges_bank",
+        "has_data": true
+      }
+    },
+    "static": {
+      "exchange-rates.json": {
+        "size_mb": 0.0,
+        "modified": "2025-08-11T21:27:03.664577",
+        "age_days": 1,
+        "status": "corrupted",
+        "data_type": "norges_bank",
+        "error": "File error: 'list' object has no attribute 'get'"
+      },
+      "oil-fund.json": {
+        "size_mb": 0.0,
+        "modified": "2025-08-11T21:23:59.788251",
+        "age_days": 1,
+        "status": "corrupted",
+        "data_type": "norges_bank",
+        "error": "File error: 'list' object has no attribute 'get'"
+      }
+    },
+    "summary": {
+      "total_files": 69,
+      "valid_files": 67,
+      "corrupted_files": 2,
+      "missing_files": 0,
+      "total_size_mb": 25.169999999999998
+    }
+  },
+  "data_quality": {
+    "ssb": {
+      "bankruptcies-total": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 546
+      },
+      "bankruptcies": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1830
+      },
+      "basic-salary": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1998
+      },
+      "births-deaths": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 92664
+      },
+      "business-confidence": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 3408
+      },
+      "cohabiting-arrangements": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 5340
+      },
+      "construction-cost-multi": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 20520
+      },
+      "construction-cost-wood": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 27360
+      },
+      "construction-costs": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 5130
+      },
+      "construction-production": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 7410
+      },
+      "consumer-confidence": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 6060
+      },
+      "cpi-ate": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 30828
+      },
+      "cpi-coicop": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 26832
+      },
+      "cpi-delivery": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 7112
+      },
+      "cpi-items": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 65224
+      },
+      "cpi-subgroups": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 155961
+      },
+      "cpi": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1677
+      },
+      "credit-indicator": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 18525
+      },
+      "crime-rate": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 476
+      },
+      "deaths-age": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 12402
+      },
+      "economic-forecasts": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1596
+      },
+      "education-level": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1932
+      },
+      "energy-consumption": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 88200
+      },
+      "export-commodity": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 54704
+      },
+      "export-country": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 9657
+      },
+      "export-volume": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 3936
+      },
+      "gdp-growth": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 36057
+      },
+      "government-revenue": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 5475
+      },
+      "greenhouse-gas": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 19845
+      },
+      "holiday-property-sales": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 10680
+      },
+      "house-prices": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 12864
+      },
+      "household-income-size": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 106128
+      },
+      "household-income": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 285
+      },
+      "household-types": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 220
+      },
+      "housing-starts": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 2340
+      },
+      "immigration-rate": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 672
+      },
+      "import-commodity": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 41004
+      },
+      "import-country": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 7569
+      },
+      "industrial-production": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 23004
+      },
+      "international-accounts": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 9292
+      },
+      "job-vacancies": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 5124
+      },
+      "labour-cost-index": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 10302
+      },
+      "life-expectancy": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 75756
+      },
+      "lifestyle-habits": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 6027
+      },
+      "long-term-illness": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 3150
+      },
+      "monetary-aggregates": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1890
+      },
+      "monetary-m3": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 2310
+      },
+      "new-dwellings-price": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 870
+      },
+      "oil-gas-investment": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1843
+      },
+      "oil-gas-turnover": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 53460
+      },
+      "population-age": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 106
+      },
+      "population-growth-alt": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 11
+      },
+      "population-growth": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 375
+      },
+      "ppi": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 22104
+      },
+      "producer-price-industry": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 55260
+      },
+      "rd-expenditure": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 888
+      },
+      "retail-sales": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 111996
+      },
+      "salmon-export-volume": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 8
+      },
+      "salmon-export": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 5340
+      },
+      "trade-balance": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 14196
+      },
+      "trade-volume-price": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 16060
+      },
+      "unemployment": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 67392
+      },
+      "utility-floor-space": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 10692
+      },
+      "wage": {
+        "is_valid": true,
+        "score": 120,
+        "issues": [],
+        "data_points": 1998
+      }
+    },
+    "norges_bank": {
+      "exchange-rates": {
+        "is_valid": true,
+        "score": 130,
+        "issues": [],
+        "datasets_count": 1
+      },
+      "government-debt": {
+        "is_valid": true,
+        "score": 130,
+        "issues": [],
+        "datasets_count": 1
+      },
+      "interest-rate": {
+        "is_valid": true,
+        "score": 130,
+        "issues": [],
+        "datasets_count": 1
+      }
+    },
+    "static": {},
+    "overall_score": 100.0
+  },
+  "missing_data": [
+    "ssb/import-volume.json",
+    "ssb/household-consumption.json",
+    "ssb/producer-prices.json",
+    "ssb/wholesale-retail.json",
+    "ssb/credit-indicator-c2.json",
+    "ssb/job-vacancies-new.json",
+    "ssb/energy-accounts.json",
+    "ssb/business-tendency.json"
+  ],
+  "corrupted_data": [
+    "data\\exchange-rates.json",
+    "data\\oil-fund.json"
+  ],
+  "recommendations": [
+    "Fetch 8 missing datasets",
+    "Re-fetch 2 corrupted files"
+  ]
+}

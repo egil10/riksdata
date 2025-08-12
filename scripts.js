@@ -134,34 +134,63 @@ const CHART_CONFIG = {
 // Function to create static tooltip content
 function createStaticTooltipContent(context) {
     const value = context.parsed.y;
+    const date = new Date(context.parsed.x);
     const period = getPoliticalPeriod(context.parsed.x);
     const formattedValue = typeof value === 'number' ? value.toLocaleString() : value;
     
-    let tooltipContent = `${context.dataset.label}: ${formattedValue}`;
+    // Format date
+    const formattedDate = date.toLocaleDateString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric' 
+    });
+    
+    // Get prime minister name and party
+    let primeMinisterName = '';
+    let partyShortname = '';
+    let partyColor = '#000000';
     
     if (period) {
-        const partyColors = {
-            'Ap': '#E11926',
-            'KrF': '#FDED34', 
-            'H': '#87add7',
-            'V': '#006666',
-            'Sp': '#00843D',
-            'SV': '#B5317C',
-            'FrP': '#004F80',
-            'MDG': '#6A9325'
-        };
+        // Extract prime minister name from period name (before the parentheses)
+        const nameMatch = period.name.match(/^([^(]+)/);
+        if (nameMatch) {
+            primeMinisterName = nameMatch[1].trim();
+        }
         
         // Extract party abbreviations from period name
         const partyMatch = period.name.match(/\((.*?)\)/);
         if (partyMatch) {
             const parties = partyMatch[1].split(', ');
-            const partyDisplay = parties.map(party => {
-                const color = partyColors[party] || '#000000';
-                return `<span style="color: ${color}; font-weight: bold;">${party}</span>`;
-            }).join(', ');
+            // Use the first party as the main party
+            partyShortname = parties[0];
             
-            tooltipContent += ` (${partyDisplay})`;
+            // Define party colors
+            const partyColors = {
+                'Ap': '#E11926',
+                'KrF': '#FDED34', 
+                'H': '#87add7',
+                'V': '#006666',
+                'Sp': '#00843D',
+                'SV': '#B5317C',
+                'FrP': '#004F80',
+                'MDG': '#6A9325'
+            };
+            
+            partyColor = partyColors[partyShortname] || '#000000';
         }
+    }
+    
+    // Create tooltip content with the requested format
+    let tooltipContent = `
+        <div style="font-weight: bold; margin-bottom: 4px;">${formattedDate}, ${formattedValue}</div>
+    `;
+    
+    if (primeMinisterName && partyShortname) {
+        tooltipContent += `
+            <div style="font-size: 0.9em; color: #666;">
+                <span style="color: ${partyColor}; font-weight: bold;">${partyShortname}</span> • ${primeMinisterName}
+            </div>
+        `;
     }
     
     return tooltipContent;
@@ -246,10 +275,35 @@ function toggleLanguage() {
         body.classList.remove('lang-en');
         body.classList.add('lang-no');
         updateLanguageText('no');
+        updatePageLanguage('no');
     } else {
         body.classList.remove('lang-no');
         body.classList.add('lang-en');
         updateLanguageText('en');
+        updatePageLanguage('en');
+    }
+}
+
+// Update page language
+function updatePageLanguage(lang) {
+    const searchInput = document.getElementById('chartSearch');
+    if (searchInput) {
+        searchInput.placeholder = lang === 'no' ? 'Søk i diagrammer...' : 'Search charts...';
+    }
+    
+    // Update filter button texts
+    const allSourcesBtn = document.querySelector('[data-source="all"]');
+    const ssbBtn = document.querySelector('[data-source="ssb"]');
+    const norgesBankBtn = document.querySelector('[data-source="norges-bank"]');
+    
+    if (allSourcesBtn) {
+        allSourcesBtn.textContent = lang === 'no' ? 'Alle kilder' : 'All Sources';
+    }
+    if (ssbBtn) {
+        ssbBtn.textContent = 'SSB'; // Same in both languages
+    }
+    if (norgesBankBtn) {
+        norgesBankBtn.textContent = lang === 'no' ? 'Norges Bank' : 'Norges Bank';
     }
 }
 
@@ -1346,7 +1400,30 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize filter toggle functionality
     initializeFilterToggle();
+    
+    // Sort charts alphabetically by title
+    sortChartsAlphabetically();
 });
+
+// Sort charts alphabetically by title
+function sortChartsAlphabetically() {
+    const chartGrid = document.querySelector('.chart-grid');
+    if (!chartGrid) return;
+    
+    const chartCards = Array.from(chartGrid.querySelectorAll('.chart-card'));
+    
+    // Sort chart cards by their title text
+    chartCards.sort((a, b) => {
+        const titleA = a.querySelector('h3').textContent.toLowerCase();
+        const titleB = b.querySelector('h3').textContent.toLowerCase();
+        return titleA.localeCompare(titleB);
+    });
+    
+    // Re-append sorted cards to the grid
+    chartCards.forEach(card => {
+        chartGrid.appendChild(card);
+    });
+}
 
 // Filter toggle functionality
 function initializeFilterToggle() {

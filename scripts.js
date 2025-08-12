@@ -341,8 +341,8 @@ async function initializeCharts() {
             // Fixed charts (replacing failing ones)
             loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', 'Industrial Production'),
             loadChartData('retail-sales-chart', 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', 'Retail Sales'),
-            loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
-            loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Import Volume'),
+                    loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
+        loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/179422.json?lang=en', 'Import Volume'),
             loadExchangeRateData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
             loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
             loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Confidence'),
@@ -353,8 +353,8 @@ async function initializeCharts() {
             // 9 Additional charts
             loadChartData('monetary-aggregates-chart', 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', 'Monetary Aggregates'),
             loadChartData('job-vacancies-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies', 'bar'),
-            loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
-            loadChartData('producer-prices-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Prices'),
+            loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166331.json?lang=en', 'Household Consumption'),
+            loadChartData('producer-prices-chart', 'https://data.ssb.no/api/v0/dataset/26427.json?lang=en', 'Producer Prices'),
             loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', 'Construction Production'),
             loadChartData('credit-indicator-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator'),
             loadChartData('energy-consumption-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Consumption'),
@@ -390,7 +390,7 @@ async function initializeCharts() {
             loadChartData('import-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', 'Import by Commodity'),
             loadChartData('construction-cost-wood-chart', 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', 'Construction Cost Wood'),
             loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
-            loadChartData('wholesale-retail-chart', 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', 'Wholesale Retail Sales'),
+            loadChartData('wholesale-retail-chart', 'https://data.ssb.no/api/v0/dataset/1065.json?lang=en', 'Wholesale Retail Sales'),
             loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),
             loadChartData('population-age-chart', 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', 'Population by Age'),
             loadChartData('cpi-coicop-chart', 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', 'CPI Coicop Divisions'),
@@ -400,18 +400,18 @@ async function initializeCharts() {
             loadChartData('household-income-size-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income Size'),
             loadChartData('cohabiting-arrangements-chart', 'https://data.ssb.no/api/v0/dataset/85440.json?lang=en', 'Cohabiting Arrangements'),
             loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
-            loadChartData('credit-indicator-c2-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator C2'),
-            loadChartData('job-vacancies-new-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies'),
+            loadChartData('credit-indicator-c2-chart', 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', 'Credit Indicator C2'),
+            loadChartData('job-vacancies-new-chart', 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', 'Job Vacancies'),
             loadChartData('oil-gas-turnover-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Turnover'),
             loadChartData('trade-volume-price-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price'),
             loadChartData('producer-price-industry-chart', 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', 'Producer Price Industry'),
             loadChartData('deaths-age-chart', 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', 'Deaths by Age'),
-            loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', 'Construction Production'),
+            loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924809.json?lang=en', 'Construction Production'),
             loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
-            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Accounts'),
+            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928197.json?lang=en', 'Energy Accounts'),
             loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3'),
-            loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/25138.json?lang=en', 'New Dwellings Price'),
-            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Tendency Survey')
+            loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/25139.json?lang=en', 'New Dwellings Price'),
+            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Tendency Survey')
         ];
         
         // Wait for all charts to load
@@ -591,7 +591,7 @@ async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
             return;
         }
 
-        // Fetch data from SSB API
+        // Fetch data from API
         const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -599,8 +599,29 @@ async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
 
         const data = await response.json();
         
-        // Parse SSB PXWeb JSON format
-        const parsedData = parseSSBData(data, chartTitle);
+        // Parse data based on source
+        let parsedData;
+        if (apiUrl.includes('ssb.no')) {
+            parsedData = parseSSBData(data, chartTitle);
+        } else if (apiUrl.includes('norges-bank.no')) {
+            if (chartTitle === 'Exchange Rate') {
+                parsedData = parseExchangeRateData(data);
+            } else if (chartTitle === 'Interest Rate') {
+                parsedData = parseInterestRateData(data);
+            } else if (chartTitle === 'Government Debt') {
+                parsedData = parseGovernmentDebtData(data);
+            } else {
+                throw new Error(`Unknown Norges Bank chart type: ${chartTitle}`);
+            }
+        } else if (apiUrl.includes('oil-fund.json')) {
+            parsedData = parseOilFundData(data);
+        } else {
+            throw new Error(`Unknown data source: ${apiUrl}`);
+        }
+        
+        if (!parsedData || parsedData.length === 0) {
+            throw new Error('No data points after parsing');
+        }
         
         // Filter data from 2000 onwards
         const filteredData = parsedData.filter(item => {
@@ -609,7 +630,7 @@ async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
         });
 
         if (filteredData.length === 0) {
-            throw new Error('No data available for the specified period');
+            throw new Error('No data available from 2000 onwards');
         }
 
         // Aggregate by month for bar charts
@@ -619,8 +640,8 @@ async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
         renderChart(canvas, finalData, chartTitle, chartType);
 
     } catch (error) {
-        console.error(`Error loading data for ${canvasId}:`, error);
-        showError(`Failed to load ${chartTitle} data. Please try again later.`, canvas);
+        console.error(`Error loading data for ${canvasId} (${chartTitle}):`, error);
+        showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
     }
 }
 
@@ -650,6 +671,7 @@ function parseSSBData(ssbData, chartTitle) {
             const contentIndices = dimension.ContentsCode.category.index;
             
             // Find the right content code based on the data type
+            let found = false;
             for (const [key, label] of Object.entries(contentLabels)) {
                 if (label.includes('Consumer Price Index (2015=100)') || 
                     label.includes('Unemployment rate (LFS)') ||
@@ -660,11 +682,77 @@ function parseSSBData(ssbData, chartTitle) {
                     label.includes('Trade balance') ||
                     label.includes('Bankruptcies') ||
                     label.includes('Population') ||
-                    label.includes('Construction cost')) {
+                    label.includes('Construction cost') ||
+                    label.includes('Industrial production') ||
+                    label.includes('Retail sales') ||
+                    label.includes('Export') ||
+                    label.includes('Import') ||
+                    label.includes('Employment') ||
+                    label.includes('Business confidence') ||
+                    label.includes('Consumer confidence') ||
+                    label.includes('Housing starts') ||
+                    label.includes('Oil price') ||
+                    label.includes('Monetary aggregates') ||
+                    label.includes('Job vacancies') ||
+                    label.includes('Household consumption') ||
+                    label.includes('Credit indicator') ||
+                    label.includes('Energy consumption') ||
+                    label.includes('Government revenue') ||
+                    label.includes('International accounts') ||
+                    label.includes('Labour cost') ||
+                    label.includes('R&D') ||
+                    label.includes('Salmon export') ||
+                    label.includes('Oil & gas investment') ||
+                    label.includes('Immigration') ||
+                    label.includes('Household income') ||
+                    label.includes('Life expectancy') ||
+                    label.includes('Crime rate') ||
+                    label.includes('Education level') ||
+                    label.includes('Holiday property') ||
+                    label.includes('Greenhouse gas') ||
+                    label.includes('Economic forecasts') ||
+                    label.includes('New dwellings') ||
+                    label.includes('Lifestyle habits') ||
+                    label.includes('Long-term illness') ||
+                    label.includes('Births and deaths') ||
+                    label.includes('CPI-ATE') ||
+                    label.includes('Basic salary') ||
+                    label.includes('Export by country') ||
+                    label.includes('Import by country') ||
+                    label.includes('Export by commodity') ||
+                    label.includes('Import by commodity') ||
+                    label.includes('Construction cost wood') ||
+                    label.includes('Construction cost multi') ||
+                    label.includes('Wholesale retail') ||
+                    label.includes('Household types') ||
+                    label.includes('Population by age') ||
+                    label.includes('CPI Coicop') ||
+                    label.includes('CPI Sub-groups') ||
+                    label.includes('CPI Items') ||
+                    label.includes('CPI Delivery') ||
+                    label.includes('Household income size') ||
+                    label.includes('Cohabiting arrangements') ||
+                    label.includes('Utility floor space') ||
+                    label.includes('Oil gas turnover') ||
+                    label.includes('Trade volume price') ||
+                    label.includes('Producer price industry') ||
+                    label.includes('Deaths by age') ||
+                    label.includes('Energy accounts') ||
+                    label.includes('Monetary M3') ||
+                    label.includes('Business tendency')) {
                     targetSeriesIndex = contentIndices[key];
+                    found = true;
                     break;
                 }
             }
+            
+            // If no specific content code found, use the first one
+            if (!found && Object.keys(contentIndices).length > 0) {
+                const firstKey = Object.keys(contentIndices)[0];
+                targetSeriesIndex = contentIndices[firstKey];
+                console.log(`Using first content code for ${chartTitle}: ${contentLabels[firstKey]}`);
+            }
+            
             numSeries = Object.keys(contentIndices).length;
         }
 
@@ -1047,20 +1135,26 @@ function parseExchangeRateData(data) {
         const dataPoints = [];
         const series = data.data.dataSets[0].series;
         
+        // Get the time dimension from the structure
+        const timeDimension = data.data.structure.dimensions.observation[0];
+        const timeValues = timeDimension.values;
+        
         // Parse USD/NOK (series 0:0:0:0)
         if (series['0:0:0:0'] && series['0:0:0:0'].observations) {
-            Object.keys(series['0:0:0:0'].observations).forEach(key => {
+            Object.keys(series['0:0:0:0'].observations).forEach((key, index) => {
                 const value = series['0:0:0:0'].observations[key][0];
-                // Calculate proper date from index (starting from 2015-09)
-                const monthOffset = parseInt(key);
-                const month = 9 + monthOffset;
-                const year = 2015 + Math.floor((month - 1) / 12);
-                const actualMonth = ((month - 1) % 12) + 1;
-                const date = new Date(year, actualMonth - 1, 1);
-                dataPoints.push({
-                    date: date,
-                    value: parseFloat(value)
-                });
+                if (value && value.value !== undefined) {
+                    // Use the actual time value from the structure
+                    const timeValue = timeValues[index];
+                    const date = new Date(timeValue.id);
+                    
+                    if (!isNaN(date.getTime())) {
+                        dataPoints.push({
+                            date: date,
+                            value: parseFloat(value.value)
+                        });
+                    }
+                }
             });
         }
 
@@ -1069,7 +1163,34 @@ function parseExchangeRateData(data) {
 
     } catch (error) {
         console.error('Error parsing exchange rate data:', error);
-        throw new Error('Invalid exchange rate data format');
+        // Fallback to simpler parsing if structure is different
+        try {
+            const dataPoints = [];
+            const series = data.data.dataSets[0].series;
+            
+            Object.keys(series).forEach(seriesKey => {
+                const seriesData = series[seriesKey];
+                if (seriesData.observations) {
+                    Object.keys(seriesData.observations).forEach(obsKey => {
+                        const obs = seriesData.observations[obsKey][0];
+                        if (obs && obs.value !== undefined) {
+                            const date = new Date(obsKey);
+                            if (!isNaN(date.getTime())) {
+                                dataPoints.push({
+                                    date: date,
+                                    value: parseFloat(obs.value)
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            
+            dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+            return dataPoints;
+        } catch (fallbackError) {
+            throw new Error('Invalid exchange rate data format');
+        }
     }
 }
 
@@ -1079,20 +1200,26 @@ function parseInterestRateData(data) {
         const dataPoints = [];
         const series = data.data.dataSets[0].series;
         
+        // Get the time dimension from the structure
+        const timeDimension = data.data.structure.dimensions.observation[0];
+        const timeValues = timeDimension.values;
+        
         // Parse Key Policy Rate (series 0:0:0:0)
         if (series['0:0:0:0'] && series['0:0:0:0'].observations) {
-            Object.keys(series['0:0:0:0'].observations).forEach(key => {
+            Object.keys(series['0:0:0:0'].observations).forEach((key, index) => {
                 const value = series['0:0:0:0'].observations[key][0];
-                // Calculate proper date from index (starting from 2000-01)
-                const monthOffset = parseInt(key);
-                const month = 1 + monthOffset;
-                const year = 2000 + Math.floor((month - 1) / 12);
-                const actualMonth = ((month - 1) % 12) + 1;
-                const date = new Date(year, actualMonth - 1, 1);
-                dataPoints.push({
-                    date: date,
-                    value: parseFloat(value)
-                });
+                if (value && value.value !== undefined) {
+                    // Use the actual time value from the structure
+                    const timeValue = timeValues[index];
+                    const date = new Date(timeValue.id);
+                    
+                    if (!isNaN(date.getTime())) {
+                        dataPoints.push({
+                            date: date,
+                            value: parseFloat(value.value)
+                        });
+                    }
+                }
             });
         }
 
@@ -1101,7 +1228,34 @@ function parseInterestRateData(data) {
 
     } catch (error) {
         console.error('Error parsing interest rate data:', error);
-        throw new Error('Invalid interest rate data format');
+        // Fallback to simpler parsing if structure is different
+        try {
+            const dataPoints = [];
+            const series = data.data.dataSets[0].series;
+            
+            Object.keys(series).forEach(seriesKey => {
+                const seriesData = series[seriesKey];
+                if (seriesData.observations) {
+                    Object.keys(seriesData.observations).forEach(obsKey => {
+                        const obs = seriesData.observations[obsKey][0];
+                        if (obs && obs.value !== undefined) {
+                            const date = new Date(obsKey);
+                            if (!isNaN(date.getTime())) {
+                                dataPoints.push({
+                                    date: date,
+                                    value: parseFloat(obs.value)
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            
+            dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+            return dataPoints;
+        } catch (fallbackError) {
+            throw new Error('Invalid interest rate data format');
+        }
     }
 }
 
@@ -1110,6 +1264,10 @@ function parseGovernmentDebtData(data) {
     try {
         const dataPoints = [];
         const series = data.data.dataSets[0].series;
+        
+        // Get the time dimension from the structure
+        const timeDimension = data.data.structure.dimensions.observation[0];
+        const timeValues = timeDimension.values;
         
         // Find the series with the most observations (likely the main government debt series)
         let bestSeries = null;
@@ -1127,18 +1285,20 @@ function parseGovernmentDebtData(data) {
         });
         
         if (bestSeries && series[bestSeries].observations) {
-            Object.keys(series[bestSeries].observations).forEach(key => {
+            Object.keys(series[bestSeries].observations).forEach((key, index) => {
                 const value = series[bestSeries].observations[key][0];
-                // Calculate proper date from index (starting from 2000-01)
-                const monthOffset = parseInt(key);
-                const month = 1 + monthOffset;
-                const year = 2000 + Math.floor((month - 1) / 12);
-                const actualMonth = ((month - 1) % 12) + 1;
-                const date = new Date(year, actualMonth - 1, 1);
-                dataPoints.push({
-                    date: date,
-                    value: parseFloat(value)
-                });
+                if (value && value.value !== undefined) {
+                    // Use the actual time value from the structure
+                    const timeValue = timeValues[index];
+                    const date = new Date(timeValue.id);
+                    
+                    if (!isNaN(date.getTime())) {
+                        dataPoints.push({
+                            date: date,
+                            value: parseFloat(value.value)
+                        });
+                    }
+                }
             });
         }
 
@@ -1147,7 +1307,34 @@ function parseGovernmentDebtData(data) {
 
     } catch (error) {
         console.error('Error parsing government debt data:', error);
-        throw new Error('Invalid government debt data format');
+        // Fallback to simpler parsing if structure is different
+        try {
+            const dataPoints = [];
+            const series = data.data.dataSets[0].series;
+            
+            Object.keys(series).forEach(seriesKey => {
+                const seriesData = series[seriesKey];
+                if (seriesData.observations) {
+                    Object.keys(seriesData.observations).forEach(obsKey => {
+                        const obs = seriesData.observations[obsKey][0];
+                        if (obs && obs.value !== undefined) {
+                            const date = new Date(obsKey);
+                            if (!isNaN(date.getTime())) {
+                                dataPoints.push({
+                                    date: date,
+                                    value: parseFloat(obs.value)
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+            
+            dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+            return dataPoints;
+        } catch (fallbackError) {
+            throw new Error('Invalid government debt data format');
+        }
     }
 }
 

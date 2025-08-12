@@ -4,7 +4,7 @@ A modern, interactive dashboard displaying Norwegian economic indicators with po
 
 ## Features
 
-- **48 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent), Monetary Aggregates, Job Vacancies, Household Consumption, Producer Prices, Construction Production, Credit Indicator, Energy Consumption, Government Revenue, International Accounts, Labour Cost Index, R&D Expenditure, Salmon Export Value, Oil & Gas Investment, Immigration Rate, Household Income, Life Expectancy, Crime Rate, Education Level, Holiday Property Sales, Greenhouse Gas Emissions, Economic Forecasts, New Dwellings Price, Lifestyle Habits, Long-term Illness
+- **75 Economic Indicators**: CPI, Unemployment, House Prices, Producer Prices, Wages, Oil Fund, Exchange Rates (USD/NOK, EUR/NOK), Interest Rates, Government Debt, GDP Growth, Trade Balance, Bankruptcies, Population Growth, Construction Costs, Industrial Production, Retail Sales, Export Volume, Import Volume, Employment Rate, Business Confidence, Consumer Confidence, Housing Starts, Oil Price (Brent), Monetary Aggregates, Job Vacancies, Household Consumption, Producer Prices, Construction Production, Credit Indicator, Energy Consumption, Government Revenue, International Accounts, Labour Cost Index, R&D Expenditure, Salmon Export Value, Oil & Gas Investment, Immigration Rate, Household Income, Life Expectancy, Crime Rate, Education Level, Holiday Property Sales, Greenhouse Gas Emissions, Economic Forecasts, New Dwellings Price, Lifestyle Habits, Long-term Illness, Population Growth, Births and Deaths, CPI-ATE Index, Salmon Export Volume, Basic Salary Index, Export by Country, Import by Country, Export by Commodity, Import by Commodity, Construction Cost Wood, Construction Cost Multi, Wholesale Retail Sales, Household Types, Population by Age, CPI Coicop Divisions, CPI Sub-groups, CPI Items, CPI Delivery Sectors, Household Income Size, Cohabiting Arrangements, Utility Floor Space, Credit Indicator C2, Job Vacancies, Oil Gas Turnover, Trade Volume Price, Producer Price Industry, Deaths by Age, Construction Production, Bankruptcies Total, Energy Accounts, Monetary Aggregate M3, New Dwellings Price, Business Tendency Survey
 - **Interactive Political Period Coloring**: Chart lines colored by ruling party periods since 2000 with collapsible legend
 - **Modern Design System**: Inter font, CSS variables, and neumorphic design patterns
 - **Enhanced Tooltips**: Rich formatting with political period context and proper date formatting
@@ -90,9 +90,42 @@ The charts include background shading for the following Norwegian government per
        - **Economic Forecasts**: Dataset 934513 from SSB (Economic trends and forecasts)
        - **New Dwellings Price**: Dataset 26158 from SSB (Price index for new dwellings)
        - **Lifestyle Habits**: Dataset 832683 from SSB (Lifestyle habits by sex and age)
-       - **Long-term Illness**: Dataset 832685 from SSB (Long-term illness by sex and age)
-
-### Norges Bank
+               - **Long-term Illness**: Dataset 832685 from SSB (Long-term illness by sex and age)
+        - **Population Growth**: Dataset 1104 from SSB (Population change, whole country)
+        - **Births and Deaths**: Dataset 1106 from SSB (Population changes, municipalities)
+        - **CPI-ATE Index**: Dataset 1118 from SSB (Consumer Price index, CPI-AT and CPI-ATE)
+        - **Salmon Export Volume**: Dataset 1120 from SSB (Export of salmon, fresh and frozen)
+        - **Basic Salary Index**: Dataset 1126 from SSB (Wage index, average monthly basic salary)
+        - **Export by Country**: Dataset 1130 from SSB (Export of goods, value by country)
+        - **Import by Country**: Dataset 1132 from SSB (Import of goods, value by country)
+        - **Export by Commodity**: Dataset 1134 from SSB (Export of goods, by commodity group)
+        - **Import by Commodity**: Dataset 1140 from SSB (Import of goods, by commodity group)
+        - **Construction Cost Wood**: Dataset 1056 from SSB (Construction cost index for detached houses of wood)
+        - **Construction Cost Multi**: Dataset 1058 from SSB (Construction cost index for multi dwelling houses)
+        - **Wholesale Retail Sales**: Dataset 1064 from SSB (Index of wholesale and retail sales)
+        - **Household Types**: Dataset 1068 from SSB (Households, by type)
+        - **Population by Age**: Dataset 1074 from SSB (Population, by one-year age groups)
+        - **CPI Coicop Divisions**: Dataset 1084 from SSB (Consumer Price Index - Coicop divisions)
+        - **CPI Sub-groups**: Dataset 1090 from SSB (Consumer Price Index - sub-groups 1)
+        - **CPI Items**: Dataset 1096 from SSB (Consumer Price Index - items and itemgroups)
+        - **CPI Delivery Sectors**: Dataset 1100 from SSB (Consumer Price Index for goods and services by delivery sector)
+        - **Household Income Size**: Dataset 56957 from SSB (Households, by size of after tax income)
+        - **Cohabiting Arrangements**: Dataset 85440 from SSB (Persons 18 years and over, by cohabiting arrangements)
+        - **Utility Floor Space**: Dataset 95177 from SSB (Utility floor space other than in dwellings)
+        - **Credit Indicator C2**: Dataset 166326 from SSB (Credit indicator C2, domestic loan debt)
+        - **Job Vacancies**: Dataset 166328 from SSB (Job vacancies, by major industry division)
+        - **Oil Gas Turnover**: Dataset 124322 from SSB (Oil and gas extraction, manufacturing, mining and quarrying turnover)
+        - **Trade Volume Price**: Dataset 179415 from SSB (External trade in commodities, indices of volume and price)
+        - **Producer Price Industry**: Dataset 741023 from SSB (Producer price index, industry combined)
+        - **Deaths by Age**: Dataset 567324 from SSB (Deaths, by sex and one-year age groups)
+        - **Construction Production**: Dataset 924808 from SSB (Production index for construction)
+        - **Bankruptcies Total**: Dataset 924816 from SSB (Bankruptcies, total)
+        - **Energy Accounts**: Dataset 928196 from SSB (Energy accounts, production and consumption)
+        - **Monetary Aggregate M3**: Dataset 172793 from SSB (Monetary aggregate M3, by financial instrument)
+        - **New Dwellings Price**: Dataset 25138 from SSB (Prices per square meter new detached houses)
+        - **Business Tendency Survey**: Dataset 166316 from SSB (Business tendency survey, composite indicators)
+        
+        ### Norges Bank
 - **Exchange Rates**: USD/NOK and EUR/NOK exchange rates from Norges Bank API
 - **Interest Rates**: Key Policy Rate from Norges Bank API
 - **Government Debt**: Government debt as % of GDP from Norges Bank API

@@ -84,13 +84,12 @@ const CHART_CONFIG = {
                 callback: function(value, index, values) {
                     const date = new Date(value);
                     const year = date.getFullYear();
-                    const month = date.getMonth();
                     
-                    // Show full year for first tick of each year
-                    if (month === 0) {
+                    // Show full year for the very first tick, then compressed format for all subsequent year ticks
+                    if (index === 0) {
                         return year.toString();
                     } else {
-                        // Show compressed format for other months
+                        // Show compressed format for all other ticks
                         return "'" + year.toString().slice(-2);
                     }
                 }
@@ -323,7 +322,42 @@ async function initializeCharts() {
             loadChartData('economic-forecasts-chart', 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', 'Economic Forecasts'),
             loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en', 'New Dwellings Price'),
             loadChartData('lifestyle-habits-chart', 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en', 'Lifestyle Habits'),
-            loadChartData('long-term-illness-chart', 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', 'Long-term Illness')
+            loadChartData('long-term-illness-chart', 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', 'Long-term Illness'),
+            
+            // 27 Additional charts
+            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en', 'Population Growth'),
+            loadChartData('births-deaths-chart', 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', 'Births and Deaths'),
+            loadChartData('cpi-ate-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI-ATE Index'),
+            loadChartData('salmon-export-volume-chart', 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en', 'Salmon Export Volume'),
+            loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
+            loadChartData('export-country-chart', 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', 'Export by Country'),
+            loadChartData('import-country-chart', 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', 'Import by Country'),
+            loadChartData('export-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en', 'Export by Commodity'),
+            loadChartData('import-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', 'Import by Commodity'),
+            loadChartData('construction-cost-wood-chart', 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', 'Construction Cost Wood'),
+            loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
+            loadChartData('wholesale-retail-chart', 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', 'Wholesale Retail Sales'),
+            loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),
+            loadChartData('population-age-chart', 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', 'Population by Age'),
+            loadChartData('cpi-coicop-chart', 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', 'CPI Coicop Divisions'),
+            loadChartData('cpi-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'CPI Sub-groups'),
+            loadChartData('cpi-items-chart', 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', 'CPI Items'),
+            loadChartData('cpi-delivery-chart', 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', 'CPI Delivery Sectors'),
+            loadChartData('household-income-size-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income Size'),
+            loadChartData('cohabiting-arrangements-chart', 'https://data.ssb.no/api/v0/dataset/85440.json?lang=en', 'Cohabiting Arrangements'),
+            loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
+            loadChartData('credit-indicator-c2-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator C2'),
+            loadChartData('job-vacancies-new-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies'),
+            loadChartData('oil-gas-turnover-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Turnover'),
+            loadChartData('trade-volume-price-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price'),
+            loadChartData('producer-price-industry-chart', 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', 'Producer Price Industry'),
+            loadChartData('deaths-age-chart', 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', 'Deaths by Age'),
+            loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', 'Construction Production'),
+            loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
+            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Accounts'),
+            loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3'),
+            loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/25138.json?lang=en', 'New Dwellings Price'),
+            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Tendency Survey')
         ];
         
         // Wait for all charts to load
@@ -373,7 +407,16 @@ function showSkeletonLoading() {
         'labour-cost-index-skeleton', 'rd-expenditure-skeleton', 'salmon-export-skeleton', 'oil-gas-investment-skeleton',
         'immigration-rate-skeleton', 'household-income-skeleton', 'life-expectancy-skeleton', 'crime-rate-skeleton',
         'education-level-skeleton', 'holiday-property-sales-skeleton', 'greenhouse-gas-skeleton', 'economic-forecasts-skeleton',
-        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton'
+        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton',
+        'population-growth-skeleton', 'births-deaths-skeleton', 'cpi-ate-skeleton', 'salmon-export-volume-skeleton',
+        'basic-salary-skeleton', 'export-country-skeleton', 'import-country-skeleton', 'export-commodity-skeleton',
+        'import-commodity-skeleton', 'construction-cost-wood-skeleton', 'construction-cost-multi-skeleton', 'wholesale-retail-skeleton',
+        'household-types-skeleton', 'population-age-skeleton', 'cpi-coicop-skeleton', 'cpi-subgroups-skeleton',
+        'cpi-items-skeleton', 'cpi-delivery-skeleton', 'household-income-size-skeleton', 'cohabiting-arrangements-skeleton',
+        'utility-floor-space-skeleton', 'credit-indicator-c2-skeleton', 'job-vacancies-new-skeleton', 'oil-gas-turnover-skeleton',
+        'trade-volume-price-skeleton', 'producer-price-industry-skeleton', 'deaths-age-skeleton', 'construction-production-skeleton',
+        'bankruptcies-total-skeleton', 'energy-accounts-skeleton', 'monetary-m3-skeleton', 'new-dwellings-price-skeleton',
+        'business-tendency-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -400,7 +443,16 @@ function hideSkeletonLoading() {
         'labour-cost-index-skeleton', 'rd-expenditure-skeleton', 'salmon-export-skeleton', 'oil-gas-investment-skeleton',
         'immigration-rate-skeleton', 'household-income-skeleton', 'life-expectancy-skeleton', 'crime-rate-skeleton',
         'education-level-skeleton', 'holiday-property-sales-skeleton', 'greenhouse-gas-skeleton', 'economic-forecasts-skeleton',
-        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton'
+        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton',
+        'population-growth-skeleton', 'births-deaths-skeleton', 'cpi-ate-skeleton', 'salmon-export-volume-skeleton',
+        'basic-salary-skeleton', 'export-country-skeleton', 'import-country-skeleton', 'export-commodity-skeleton',
+        'import-commodity-skeleton', 'construction-cost-wood-skeleton', 'construction-cost-multi-skeleton', 'wholesale-retail-skeleton',
+        'household-types-skeleton', 'population-age-skeleton', 'cpi-coicop-skeleton', 'cpi-subgroups-skeleton',
+        'cpi-items-skeleton', 'cpi-delivery-skeleton', 'household-income-size-skeleton', 'cohabiting-arrangements-skeleton',
+        'utility-floor-space-skeleton', 'credit-indicator-c2-skeleton', 'job-vacancies-new-skeleton', 'oil-gas-turnover-skeleton',
+        'trade-volume-price-skeleton', 'producer-price-industry-skeleton', 'deaths-age-skeleton', 'construction-production-skeleton',
+        'bankruptcies-total-skeleton', 'energy-accounts-skeleton', 'monetary-m3-skeleton', 'new-dwellings-price-skeleton',
+        'business-tendency-skeleton'
     ];
     
     skeletonIds.forEach(id => {
@@ -1105,6 +1157,39 @@ async function runDiagnostics() {
         { name: 'New Dwellings Price', url: 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en' },
         { name: 'Lifestyle Habits', url: 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en' },
         { name: 'Long-term Illness', url: 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en' },
+        { name: 'Population Growth', url: 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en' },
+        { name: 'Births and Deaths', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en' },
+        { name: 'CPI-ATE Index', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en' },
+        { name: 'Salmon Export Volume', url: 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en' },
+        { name: 'Basic Salary Index', url: 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en' },
+        { name: 'Export by Country', url: 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en' },
+        { name: 'Import by Country', url: 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en' },
+        { name: 'Export by Commodity', url: 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en' },
+        { name: 'Import by Commodity', url: 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en' },
+        { name: 'Construction Cost Wood', url: 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en' },
+        { name: 'Construction Cost Multi', url: 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en' },
+        { name: 'Wholesale Retail Sales', url: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en' },
+        { name: 'Household Types', url: 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en' },
+        { name: 'Population by Age', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en' },
+        { name: 'CPI Coicop Divisions', url: 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en' },
+        { name: 'CPI Sub-groups', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en' },
+        { name: 'CPI Items', url: 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en' },
+        { name: 'CPI Delivery Sectors', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en' },
+        { name: 'Household Income Size', url: 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en' },
+        { name: 'Cohabiting Arrangements', url: 'https://data.ssb.no/api/v0/dataset/85440.json?lang=en' },
+        { name: 'Utility Floor Space', url: 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en' },
+        { name: 'Credit Indicator C2', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en' },
+        { name: 'Job Vacancies', url: 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en' },
+        { name: 'Oil Gas Turnover', url: 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en' },
+        { name: 'Trade Volume Price', url: 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en' },
+        { name: 'Producer Price Industry', url: 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en' },
+        { name: 'Deaths by Age', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en' },
+        { name: 'Construction Production', url: 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en' },
+        { name: 'Bankruptcies Total', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en' },
+        { name: 'Energy Accounts', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en' },
+        { name: 'Monetary Aggregate M3', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en' },
+        { name: 'New Dwellings Price', url: 'https://data.ssb.no/api/v0/dataset/25138.json?lang=en' },
+        { name: 'Business Tendency Survey', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en' },
         { name: 'Exchange Rate', url: 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no' },
         { name: 'Interest Rate', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no' },
         { name: 'Government Debt', url: 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01' }
@@ -1187,3 +1272,82 @@ if (typeof window !== 'undefined') {
     window.runDiagnostics = runDiagnostics;
     console.log('🔍 Diagnostics script loaded. Run runDiagnostics() to test all data sources.');
 }
+
+// Chart filtering functionality
+function initializeFilters() {
+    const searchInput = document.getElementById('chartSearch');
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const chartCards = document.querySelectorAll('.chart-card');
+
+    // Search functionality
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        filterCharts(searchTerm, getActiveSourceFilter());
+    });
+
+    // Source filter functionality
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Apply filters
+            const searchTerm = searchInput.value.toLowerCase();
+            const sourceFilter = this.getAttribute('data-source');
+            filterCharts(searchTerm, sourceFilter);
+        });
+    });
+
+    function getActiveSourceFilter() {
+        const activeButton = document.querySelector('.filter-btn.active');
+        return activeButton ? activeButton.getAttribute('data-source') : 'all';
+    }
+
+    function filterCharts(searchTerm, sourceFilter) {
+        chartCards.forEach(card => {
+            // Skip political table card - always show it
+            if (card.classList.contains('political-table-card')) {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+                return;
+            }
+
+            const title = card.querySelector('h3').textContent.toLowerCase();
+            const sourceLink = card.querySelector('.source-link').textContent.toLowerCase();
+            
+            let matchesSearch = true;
+            let matchesSource = true;
+
+            // Check search term
+            if (searchTerm && !title.includes(searchTerm)) {
+                matchesSearch = false;
+            }
+
+            // Check source filter
+            if (sourceFilter !== 'all') {
+                if (sourceFilter === 'ssb' && !sourceLink.includes('ssb')) {
+                    matchesSource = false;
+                } else if (sourceFilter === 'norges-bank' && !sourceLink.includes('norges-bank')) {
+                    matchesSource = false;
+                }
+            }
+
+            // Show/hide card based on filters
+            if (matchesSearch && matchesSource) {
+                card.style.display = 'flex';
+                card.style.opacity = '1';
+            } else {
+                card.style.display = 'none';
+                card.style.opacity = '0';
+            }
+        });
+    }
+}
+
+// Initialize filters when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize filters after a short delay to ensure all elements are loaded
+    setTimeout(initializeFilters, 100);
+});

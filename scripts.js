@@ -1307,13 +1307,6 @@ function initializeFilters() {
 
     function filterCharts(searchTerm, sourceFilter) {
         chartCards.forEach(card => {
-            // Skip political table card - always show it
-            if (card.classList.contains('political-table-card')) {
-                card.style.display = 'flex';
-                card.style.opacity = '1';
-                return;
-            }
-
             const title = card.querySelector('h3').textContent.toLowerCase();
             const sourceLink = card.querySelector('.source-link').textContent.toLowerCase();
             
@@ -1350,4 +1343,27 @@ function initializeFilters() {
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize filters after a short delay to ensure all elements are loaded
     setTimeout(initializeFilters, 100);
+    
+    // Initialize filter toggle functionality
+    initializeFilterToggle();
 });
+
+// Filter toggle functionality
+function initializeFilterToggle() {
+    const filterToggle = document.getElementById('filterToggle');
+    const filterPanel = document.getElementById('filterPanel');
+    
+    if (filterToggle && filterPanel) {
+        filterToggle.addEventListener('click', function() {
+            const isVisible = filterPanel.style.display !== 'none';
+            
+            if (isVisible) {
+                filterPanel.style.display = 'none';
+                filterToggle.classList.remove('active');
+            } else {
+                filterPanel.style.display = 'block';
+                filterToggle.classList.add('active');
+            }
+        });
+    }
+}

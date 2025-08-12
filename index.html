@@ -22,6 +22,11 @@
         <div class="header-content">
                             <h1 onclick="window.location.reload()">Riksdata</h1>
             <div class="header-controls">
+                <button id="filterToggle" class="control-btn" title="Toggle Filters">
+                    <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10 18h4v-2h-4v2zM3 6v2h18V6H3zm3 7h12v-2H6v2z"/>
+                    </svg>
+                </button>
                 <button id="langToggle" class="control-btn">NO</button>
                 <button id="themeToggle" class="control-btn">
                     <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -33,7 +38,7 @@
     </header>
 
     <!-- Slim Header with Filters -->
-    <div class="slim-header">
+    <div class="slim-header" id="filterPanel" style="display: none;">
         <div class="filter-container">
             <div class="search-box">
                 <input type="text" id="chartSearch" placeholder="Search charts..." class="search-input">
@@ -1116,55 +1121,49 @@
             <div class="footer-left">
                 <div class="political-periods">
                     <h4>Norwegian Political Periods (2000-Present)</h4>
-                    <div class="political-table-container">
-                        <table class="political-table">
-                            <thead>
-                                <tr>
-                                    <th>Prime Minister</th>
-                                    <th>Ruling Party</th>
-                                    <th>Other Parties</th>
-                                    <th>Period</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Kjell Magne Bondevik I</td>
-                                    <td>KrF</td>
-                                    <td>Sp, V</td>
-                                    <td>1997-2000</td>
-                                </tr>
-                                <tr>
-                                    <td>Jens Stoltenberg I</td>
-                                    <td>Ap</td>
-                                    <td>-</td>
-                                    <td>2000-2001</td>
-                                </tr>
-                                <tr>
-                                    <td>Kjell Magne Bondevik II</td>
-                                    <td>KrF</td>
-                                    <td>H, V</td>
-                                    <td>2001-2005</td>
-                                </tr>
-                                <tr>
-                                    <td>Jens Stoltenberg II</td>
-                                    <td>Ap</td>
-                                    <td>SV, Sp</td>
-                                    <td>2005-2013</td>
-                                </tr>
-                                <tr>
-                                    <td>Erna Solberg</td>
-                                    <td>H</td>
-                                    <td>FrP, V, KrF</td>
-                                    <td>2013-2021</td>
-                                </tr>
-                                <tr>
-                                    <td>Jonas Gahr Støre</td>
-                                    <td>Ap</td>
-                                    <td>Sp</td>
-                                    <td>2021-Present</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="political-text">
+                        <div class="political-period">
+                            <span class="period-name">Kjell Magne Bondevik I</span>
+                            <span class="party-square krf"></span>
+                            <span class="party-name krf">KrF</span>
+                            <span class="other-parties">Sp, V</span>
+                            <span class="period-dates">1997-2000</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="period-name">Jens Stoltenberg I</span>
+                            <span class="party-square ap"></span>
+                            <span class="party-name ap">Ap</span>
+                            <span class="other-parties">-</span>
+                            <span class="period-dates">2000-2001</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="period-name">Kjell Magne Bondevik II</span>
+                            <span class="party-square krf"></span>
+                            <span class="party-name krf">KrF</span>
+                            <span class="other-parties">H, V</span>
+                            <span class="period-dates">2001-2005</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="period-name">Jens Stoltenberg II</span>
+                            <span class="party-square ap"></span>
+                            <span class="party-name ap">Ap</span>
+                            <span class="other-parties">SV, Sp</span>
+                            <span class="period-dates">2005-2013</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="period-name">Erna Solberg</span>
+                            <span class="party-square h"></span>
+                            <span class="party-name h">H</span>
+                            <span class="other-parties">FrP, V, KrF</span>
+                            <span class="period-dates">2013-2021</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="period-name">Jonas Gahr Støre</span>
+                            <span class="party-square ap"></span>
+                            <span class="party-name ap">Ap</span>
+                            <span class="other-parties">Sp</span>
+                            <span class="period-dates">2021-Present</span>
+                        </div>
                     </div>
                 </div>
                 <div class="party-colors">

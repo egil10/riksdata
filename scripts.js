@@ -1401,6 +1401,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize filter toggle functionality
     initializeFilterToggle();
     
+    // Initialize sort toggle functionality
+    initializeSortToggle();
+    
     // Sort charts alphabetically by title
     sortChartsAlphabetically();
 });
@@ -1441,6 +1444,38 @@ function initializeFilterToggle() {
                 filterPanel.style.display = 'block';
                 filterToggle.classList.add('active');
             }
+        });
+    }
+}
+
+// Sort toggle functionality
+function initializeSortToggle() {
+    const sortToggle = document.getElementById('sortToggle');
+    let isAscending = true;
+    
+    if (sortToggle) {
+        sortToggle.addEventListener('click', function() {
+            const chartGrid = document.querySelector('.chart-grid');
+            if (!chartGrid) return;
+            
+            const chartCards = Array.from(chartGrid.querySelectorAll('.chart-card'));
+            
+            // Sort chart cards by their title text
+            chartCards.sort((a, b) => {
+                const titleA = a.querySelector('h3').textContent.toLowerCase();
+                const titleB = b.querySelector('h3').textContent.toLowerCase();
+                return isAscending ? titleA.localeCompare(titleB) : titleB.localeCompare(titleA);
+            });
+            
+            // Re-append sorted cards to the grid
+            chartCards.forEach(card => {
+                chartGrid.appendChild(card);
+            });
+            
+            // Toggle sort direction and update button text
+            isAscending = !isAscending;
+            sortToggle.textContent = isAscending ? 'A-Z' : 'Z-A';
+            sortToggle.classList.toggle('active');
         });
     }
 }

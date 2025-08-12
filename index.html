@@ -22,15 +22,15 @@
         <div class="header-content">
                             <h1 onclick="window.location.reload()">Riksdata</h1>
             <div class="header-controls">
-                <button id="filterToggle" class="control-btn" title="Toggle Filters">
-                    <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
-                    </svg>
-                </button>
                 <button id="langToggle" class="control-btn">NO</button>
                 <button id="themeToggle" class="control-btn">
                     <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>
+                    </svg>
+                </button>
+                <button id="filterToggle" class="control-btn" title="Toggle Filters">
+                    <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
                     </svg>
                 </button>
             </div>
@@ -50,6 +50,7 @@
                 <button class="filter-btn active" data-source="all">All Sources</button>
                 <button class="filter-btn" data-source="ssb">SSB</button>
                 <button class="filter-btn" data-source="norges-bank">Norges Bank</button>
+                <button id="sortToggle" class="filter-btn" title="Sort Alphabetically">A-Z</button>
             </div>
         </div>
     </div>
@@ -1120,62 +1121,61 @@
         <div class="footer-content">
             <div class="footer-left">
                 <div class="political-periods">
-                    <h4>Norwegian Political Periods (2000-Present)</h4>
                     <div class="political-text">
                         <div class="political-period">
                             <span class="party-square krf"></span>
-                            <span class="party-name krf">KrF</span>
+                            <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                             <span class="pm-name">Bondevik I</span>
                             <span class="other-parties">
-                                <span class="party-square sp"></span>Sp, 
-                                <span class="party-square v"></span>V
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>, 
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                             </span>
                             <span class="period-dates">1997-2000</span>
                         </div>
                         <div class="political-period">
                             <span class="party-square ap"></span>
-                            <span class="party-name ap">Ap</span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
                             <span class="pm-name">Stoltenberg I</span>
-                            <span class="other-parties">-</span>
+                            <span class="other-parties"></span>
                             <span class="period-dates">2000-2001</span>
                         </div>
                         <div class="political-period">
                             <span class="party-square krf"></span>
-                            <span class="party-name krf">KrF</span>
+                            <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                             <span class="pm-name">Bondevik II</span>
                             <span class="other-parties">
-                                <span class="party-square h"></span>H, 
-                                <span class="party-square v"></span>V
+                                <span class="party-square h"></span><a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>, 
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                             </span>
                             <span class="period-dates">2001-2005</span>
                         </div>
                         <div class="political-period">
                             <span class="party-square ap"></span>
-                            <span class="party-name ap">Ap</span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
                             <span class="pm-name">Stoltenberg II</span>
                             <span class="other-parties">
-                                <span class="party-square sv"></span>SV, 
-                                <span class="party-square sp"></span>Sp
+                                <span class="party-square sv"></span><a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>, 
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                             </span>
                             <span class="period-dates">2005-2013</span>
                         </div>
                         <div class="political-period">
                             <span class="party-square h"></span>
-                            <span class="party-name h">H</span>
+                            <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                             <span class="pm-name">Solberg</span>
                             <span class="other-parties">
-                                <span class="party-square frp"></span>FrP, 
-                                <span class="party-square v"></span>V, 
-                                <span class="party-square krf"></span>KrF
+                                <span class="party-square frp"></span><a href="https://www.frp.no" target="_blank" class="party-name frp">FrP</a>, 
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>, 
+                                <span class="party-square krf"></span><a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                             </span>
                             <span class="period-dates">2013-2021</span>
                         </div>
                         <div class="political-period">
                             <span class="party-square ap"></span>
-                            <span class="party-name ap">Ap</span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
                             <span class="pm-name">Støre</span>
                             <span class="other-parties">
-                                <span class="party-square sp"></span>Sp
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                             </span>
                             <span class="period-dates">2021-Present</span>
                         </div>
@@ -1187,35 +1187,35 @@
                 <div class="party-colors">
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #B5317C;"></div>
-                        <a href="https://www.sv.no" target="_blank" class="party-link">SV</a>
+                        <span class="party-name">SV</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #E11926;"></div>
-                        <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-link">Ap</a>
+                        <span class="party-name">Ap</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #6A9325;"></div>
-                        <a href="https://www.mdg.no" target="_blank" class="party-link">MDG</a>
+                        <span class="party-name">MDG</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #00843D;"></div>
-                        <a href="https://www.senterpartiet.no" target="_blank" class="party-link">Sp</a>
+                        <span class="party-name">Sp</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #FDED34;"></div>
-                        <a href="https://www.krf.no" target="_blank" class="party-link">KrF</a>
+                        <span class="party-name">KrF</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #006666;"></div>
-                        <a href="https://www.venstre.no" target="_blank" class="party-link">V</a>
+                        <span class="party-name">V</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #87add7;"></div>
-                        <a href="https://www.hoyre.no" target="_blank" class="party-link">H</a>
+                        <span class="party-name">H</span>
                     </div>
                     <div class="party-color-item">
                         <div class="party-color" style="background-color: #004F80;"></div>
-                        <a href="https://www.frp.no" target="_blank" class="party-link">FrP</a>
+                        <span class="party-name">FrP</span>
                     </div>
                 </div>
                 <div class="social-links">

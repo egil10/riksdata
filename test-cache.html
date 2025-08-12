@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riksdata Cache Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .error { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .loading { background: #d1ecf1; color: #0c5460; border: 1px solid #bee5eb; }
+        canvas {
+            max-width: 100%;
+            height: 200px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+</head>
+<body>
+    <h1>🧪 Riksdata Cache Test</h1>
+    
+    <div class="test-container">
+        <h2>Cache Status</h2>
+        <div id="cache-status" class="status loading">Checking cache...</div>
+    </div>
+
+    <div class="test-container">
+        <h2>Test Charts</h2>
+        <p>Testing a few key charts with cached data:</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div>
+                <h3>CPI (Consumer Price Index)</h3>
+                <canvas id="test-cpi"></canvas>
+            </div>
+            <div>
+                <h3>Unemployment Rate</h3>
+                <canvas id="test-unemployment"></canvas>
+            </div>
+            <div>
+                <h3>House Prices</h3>
+                <canvas id="test-house-prices"></canvas>
+            </div>
+            <div>
+                <h3>Exchange Rates</h3>
+                <canvas id="test-exchange-rates"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Import the loadChartData function from scripts.js
+        async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
+            try {
+                const canvas = document.getElementById(canvasId);
+                if (!canvas) {
+                    throw new Error(`Canvas with id '${canvasId}' not found`);
+                }
+
+                // Determine cache file path based on API URL
+                let cachePath;
+                if (apiUrl.includes('ssb.no')) {
+                    // Extract dataset ID from SSB URL
+                    const datasetId = apiUrl.match(/dataset\/(\d+)\.json/)?.[1];
+                    if (!datasetId) {
+                        throw new Error('Could not extract dataset ID from SSB URL');
+                    }
+                    
+                    // Map dataset ID to cache filename
+                    const datasetMap = {
+                        '1086': 'cpi',
+                        '1054': 'unemployment', 
+                        '1060': 'house-prices',
+                        '26426': 'ppi',
+                        '1124': 'wage',
+                        '59012': 'gdp-growth',
+                        '58962': 'trade-balance',
+                        '95265': 'bankruptcies',
+                        '49626': 'population-growth',
+                        '26944': 'construction-costs',
+                        '27002': 'industrial-production',
+                        '1064': 'retail-sales',
+                        '179421': 'export-volume',
+                        '166316': 'business-confidence',
+                        '166330': 'consumer-confidence',
+                        '95146': 'housing-starts',
+                        '172769': 'monetary-aggregates',
+                        '166328': 'job-vacancies',
+                        '924808': 'construction-production',
+                        '166326': 'credit-indicator',
+                        '928196': 'energy-consumption',
+                        '928194': 'government-revenue',
+                        '924820': 'international-accounts',
+                        '760065': 'labour-cost-index',
+                        '1122': 'salmon-export',
+                        '48651': 'immigration-rate',
+                        '56900': 'household-income',
+                        '102811': 'life-expectancy',
+                        '97445': 'crime-rate',
+                        '85454': 'education-level',
+                        '65962': 'holiday-property-sales',
+                        '832678': 'greenhouse-gas',
+                        '934513': 'economic-forecasts',
+                        '26158': 'new-dwellings-price',
+                        '832683': 'lifestyle-habits',
+                        '832685': 'long-term-illness',
+                        '1104': 'population-growth-alt',
+                        '1106': 'births-deaths',
+                        '1118': 'cpi-ate',
+                        '1120': 'salmon-export-volume',
+                        '1126': 'basic-salary',
+                        '1130': 'export-country',
+                        '1132': 'import-country',
+                        '1134': 'export-commodity',
+                        '1140': 'import-commodity',
+                        '1056': 'construction-cost-wood',
+                        '1058': 'construction-cost-multi',
+                        '1065': 'wholesale-retail',
+                        '1068': 'household-types',
+                        '1074': 'population-age',
+                        '1084': 'cpi-coicop',
+                        '1090': 'cpi-subgroups',
+                        '1096': 'cpi-items',
+                        '1100': 'cpi-delivery',
+                        '56957': 'household-income-size',
+                        '85440': 'cohabiting-arrangements',
+                        '95177': 'utility-floor-space',
+                        '166327': 'credit-indicator-c2',
+                        '166329': 'job-vacancies-new',
+                        '124322': 'oil-gas-turnover',
+                        '179415': 'trade-volume-price',
+                        '741023': 'producer-price-industry',
+                        '567324': 'deaths-age',
+                        '924809': 'construction-production-alt',
+                        '924816': 'bankruptcies-total',
+                        '928197': 'energy-accounts',
+                        '172793': 'monetary-m3',
+                        '25139': 'new-dwellings-price-alt',
+                        '166317': 'business-tendency'
+                    };
+                    
+                    const cacheName = datasetMap[datasetId];
+                    if (!cacheName) {
+                        throw new Error(`No cache mapping found for dataset ID: ${datasetId}`);
+                    }
+                    
+                    cachePath = `data/cached/ssb/${cacheName}.json`;
+                    
+                } else if (apiUrl.includes('norges-bank.no')) {
+                    // Map Norges Bank URLs to cache files
+                    if (apiUrl.includes('EXR/M.USD+EUR.NOK.SP')) {
+                        cachePath = 'data/cached/norges-bank/exchange-rates.json';
+                    } else if (apiUrl.includes('IR/M.KPRA')) {
+                        cachePath = 'data/cached/norges-bank/interest-rate.json';
+                    } else if (apiUrl.includes('GOVT_KEYFIGURES')) {
+                        cachePath = 'data/cached/norges-bank/government-debt.json';
+                    } else {
+                        throw new Error(`Unknown Norges Bank API URL: ${apiUrl}`);
+                    }
+                } else {
+                    throw new Error(`Unknown data source: ${apiUrl}`);
+                }
+
+                // Fetch data from cache file
+                const response = await fetch(cachePath);
+                if (!response.ok) {
+                    throw new Error(`Failed to load cached data: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                
+                // Simple data parsing for test
+                let parsedData = [];
+                if (data.dataset && data.dataset.value) {
+                    // SSB data structure
+                    const values = data.dataset.value;
+                    const timeIndex = data.dataset.dimension.Tid.category.index;
+                    const timeLabels = data.dataset.dimension.Tid.category.label;
+                    
+                    Object.keys(values).forEach(key => {
+                        const timeKey = timeIndex[key];
+                        const date = timeLabels[timeKey];
+                        const value = values[key];
+                        
+                        if (date && value !== null && value !== undefined) {
+                            parsedData.push({
+                                date: new Date(date),
+                                value: parseFloat(value)
+                            });
+                        }
+                    });
+                } else if (data.data && data.data.dataSets) {
+                    // Norges Bank data structure
+                    const dataSet = data.data.dataSets[0];
+                    const series = dataSet.series;
+                    
+                    Object.keys(series).forEach(seriesKey => {
+                        const seriesData = series[seriesKey];
+                        const observations = seriesData.observations;
+                        
+                        Object.keys(observations).forEach(obsKey => {
+                            const value = observations[obsKey][0];
+                            if (value !== null && value !== undefined) {
+                                // Use the observation key as a simple date (this is simplified)
+                                parsedData.push({
+                                    date: new Date(2020 + parseInt(obsKey)),
+                                    value: parseFloat(value)
+                                });
+                            }
+                        });
+                    });
+                }
+                
+                if (parsedData.length === 0) {
+                    throw new Error('No data points after parsing');
+                }
+                
+                // Sort by date
+                parsedData.sort((a, b) => a.date - b.date);
+                
+                // Filter data from 2000 onwards
+                const filteredData = parsedData.filter(item => {
+                    const year = item.date.getFullYear();
+                    return year >= 2000;
+                });
+
+                if (filteredData.length === 0) {
+                    throw new Error('No data available from 2000 onwards');
+                }
+
+                // Create simple chart
+                const ctx = canvas.getContext('2d');
+                new Chart(ctx, {
+                    type: chartType,
+                    data: {
+                        labels: filteredData.map(d => d.date.toLocaleDateString()),
+                        datasets: [{
+                            label: chartTitle,
+                            data: filteredData.map(d => d.value),
+                            borderColor: '#007bff',
+                            backgroundColor: 'rgba(0, 123, 255, 0.1)',
+                            borderWidth: 2,
+                            fill: false
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: false
+                            }
+                        }
+                    }
+                });
+
+                return true;
+
+            } catch (error) {
+                console.error(`Error loading data for ${canvasId} (${chartTitle}):`, error);
+                return false;
+            }
+        }
+
+        // Test the cache
+        async function testCache() {
+            const statusDiv = document.getElementById('cache-status');
+            
+            try {
+                // Test loading a few key datasets
+                const tests = [
+                    { id: 'test-cpi', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', title: 'CPI' },
+                    { id: 'test-unemployment', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Unemployment' },
+                    { id: 'test-house-prices', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Prices' },
+                    { id: 'test-exchange-rates', url: 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', title: 'Exchange Rates' }
+                ];
+
+                let successCount = 0;
+                for (const test of tests) {
+                    const success = await loadChartData(test.id, test.url, test.title);
+                    if (success) successCount++;
+                }
+
+                if (successCount === tests.length) {
+                    statusDiv.className = 'status success';
+                    statusDiv.innerHTML = `✅ Cache test successful! All ${tests.length} charts loaded from cached data.`;
+                } else {
+                    statusDiv.className = 'status error';
+                    statusDiv.innerHTML = `⚠️ Cache test partially successful. ${successCount}/${tests.length} charts loaded.`;
+                }
+
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.innerHTML = `❌ Cache test failed: ${error.message}`;
+            }
+        }
+
+        // Run the test when page loads
+        window.addEventListener('load', testCache);
+    </script>
+</body>
+</html>

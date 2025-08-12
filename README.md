@@ -141,16 +141,47 @@ The charts include background shading for the following Norwegian government per
    cd riksdata
    ```
 
-2. **Open the site**:
+2. **Set up the cache system** (for 100% reliable data):
+   ```bash
+   # Install Python dependencies
+   pip install -r requirements.txt
+   
+   # Set up and fetch cached data
+   python scripts/setup-cache.py
+   ```
+
+3. **Open the site**:
    - Open `index.html` in your web browser
    - Or serve it locally: `python -m http.server 8000` then visit `http://localhost:8000/`
 
-3. **Deploy to GitHub Pages**:
+4. **Deploy to GitHub Pages**:
    - Push to the `main` branch
    - Go to Settings > Pages
    - Set Source to "Deploy from a branch"
    - Select "main" branch and "/(root)" folder
    - Your site will be available at `https://egil10.github.io/riksdata/`
+
+## Data Management
+
+### Cache System
+The website uses a local cache system for **100% reliable data loading**:
+
+- **Cached Data**: Stored in `data/cached/` (git-ignored)
+- **Static Data**: Stored in `data/static/` (git-tracked)
+- **Automatic Updates**: Run `python scripts/fetch-data.py` to refresh data
+- **Validation**: Run `python scripts/validate-data.py` to check data integrity
+
+### Update Data
+```bash
+# Fetch fresh data from APIs
+python scripts/fetch-data.py
+
+# Validate cached data
+python scripts/validate-data.py
+
+# Complete setup (fetch + validate)
+python scripts/setup-cache.py
+```
 
 ## Project Structure
 

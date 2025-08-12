@@ -415,7 +415,21 @@ async function initializeCharts() {
         ];
         
         // Wait for all charts to load
-        await Promise.allSettled(chartPromises);
+        const results = await Promise.allSettled(chartPromises);
+        
+        // Log results for debugging
+        let successCount = 0;
+        let failureCount = 0;
+        results.forEach((result, index) => {
+            if (result.status === 'fulfilled') {
+                successCount++;
+            } else {
+                failureCount++;
+                console.error(`Chart ${index} failed:`, result.reason);
+            }
+        });
+        
+        console.log(`Chart loading results: ${successCount} successful, ${failureCount} failed`);
         
         // Hide skeleton loading
         hideSkeletonLoading();
@@ -582,7 +596,7 @@ function aggregateDataByMonth(data) {
     return result;
 }
 
-// Load and render chart data
+// Load and render chart data from cached files
 async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
     try {
         const canvas = document.getElementById(canvasId);
@@ -591,37 +605,148 @@ async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
             return;
         }
 
-        // Fetch data from API
-        const response = await fetch(apiUrl);
+        // Determine cache file path based on API URL
+        let cachePath;
+        if (apiUrl.includes('ssb.no')) {
+            // Extract dataset ID from SSB URL
+            const datasetId = apiUrl.match(/dataset\/(\d+)\.json/)?.[1];
+            if (!datasetId) {
+                throw new Error('Could not extract dataset ID from SSB URL');
+            }
+            
+            // Map dataset ID to cache filename
+            const datasetMap = {
+                '1086': 'cpi',
+                '1054': 'unemployment', 
+                '1060': 'house-prices',
+                '26426': 'ppi',
+                '1124': 'wage',
+                '59012': 'gdp-growth',
+                '58962': 'trade-balance',
+                '95265': 'bankruptcies',
+                '49626': 'population-growth',
+                '26944': 'construction-costs',
+                '27002': 'industrial-production',
+                '1064': 'retail-sales',
+                '179421': 'export-volume',
+                '179422': 'import-volume',
+                '166316': 'business-confidence',
+                '166330': 'consumer-confidence',
+                '95146': 'housing-starts',
+                '172769': 'monetary-aggregates',
+                '166328': 'job-vacancies',
+                '166331': 'household-consumption',
+                '26427': 'producer-prices',
+                '924808': 'construction-production',
+                '166326': 'credit-indicator',
+                '928196': 'energy-consumption',
+                '928194': 'government-revenue',
+                '924820': 'international-accounts',
+                '760065': 'labour-cost-index',
+                '61819': 'rd-expenditure',
+                '1122': 'salmon-export',
+                '166334': 'oil-gas-investment',
+                '48651': 'immigration-rate',
+                '56900': 'household-income',
+                '102811': 'life-expectancy',
+                '97445': 'crime-rate',
+                '85454': 'education-level',
+                '65962': 'holiday-property-sales',
+                '832678': 'greenhouse-gas',
+                '934513': 'economic-forecasts',
+                '26158': 'new-dwellings-price',
+                '832683': 'lifestyle-habits',
+                '832685': 'long-term-illness',
+                '1104': 'population-growth-alt',
+                '1106': 'births-deaths',
+                '1118': 'cpi-ate',
+                '1120': 'salmon-export-volume',
+                '1126': 'basic-salary',
+                '1130': 'export-country',
+                '1132': 'import-country',
+                '1134': 'export-commodity',
+                '1140': 'import-commodity',
+                '1056': 'construction-cost-wood',
+                '1058': 'construction-cost-multi',
+                '1065': 'wholesale-retail',
+                '1068': 'household-types',
+                '1074': 'population-age',
+                '1084': 'cpi-coicop',
+                '1090': 'cpi-subgroups',
+                '1096': 'cpi-items',
+                '1100': 'cpi-delivery',
+                '56957': 'household-income-size',
+                '85440': 'cohabiting-arrangements',
+                '95177': 'utility-floor-space',
+                '166327': 'credit-indicator-c2',
+                '166329': 'job-vacancies-new',
+                '124322': 'oil-gas-turnover',
+                '179415': 'trade-volume-price',
+                '741023': 'producer-price-industry',
+                '567324': 'deaths-age',
+                '924809': 'construction-production-alt',
+                '924816': 'bankruptcies-total',
+                '928197': 'energy-accounts',
+                '172793': 'monetary-m3',
+                '25139': 'new-dwellings-price-alt',
+                '166317': 'business-tendency'
+            };
+            
+            const cacheName = datasetMap[datasetId];
+            if (!cacheName) {
+                throw new Error(`No cache mapping found for dataset ID: ${datasetId}`);
+            }
+            
+            cachePath = `data/cached/ssb/${cacheName}.json`;
+            
+        } else if (apiUrl.includes('norges-bank.no')) {
+            // Map Norges Bank URLs to cache files
+            if (apiUrl.includes('EXR/M.USD+EUR.NOK.SP')) {
+                cachePath = 'data/cached/norges-bank/exchange-rates.json';
+            } else if (apiUrl.includes('IR/M.KPRA')) {
+                cachePath = 'data/cached/norges-bank/interest-rate.json';
+            } else if (apiUrl.includes('GOVT_KEYFIGURES')) {
+                cachePath = 'data/cached/norges-bank/government-debt.json';
+            } else {
+                throw new Error(`Unknown Norges Bank API URL: ${apiUrl}`);
+            }
+        } else {
+            throw new Error(`Unknown data source: ${apiUrl}`);
+        }
+
+        // Fetch data from cache file
+        console.log(`Loading cached data from: ${cachePath}`);
+        const response = await fetch(cachePath);
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`Failed to load cached data: ${response.status} ${response.statusText}`);
         }
 
         const data = await response.json();
+        console.log(`Successfully loaded data for ${chartTitle}:`, data.dataset ? 'Dataset found' : 'No dataset');
         
         // Parse data based on source
         let parsedData;
         if (apiUrl.includes('ssb.no')) {
             parsedData = parseSSBData(data, chartTitle);
         } else if (apiUrl.includes('norges-bank.no')) {
-            if (chartTitle === 'Exchange Rate') {
+            if (chartTitle.includes('Exchange Rate')) {
                 parsedData = parseExchangeRateData(data);
-            } else if (chartTitle === 'Interest Rate') {
+            } else if (chartTitle.includes('Interest Rate')) {
                 parsedData = parseInterestRateData(data);
-            } else if (chartTitle === 'Government Debt') {
+            } else if (chartTitle.includes('Government Debt')) {
                 parsedData = parseGovernmentDebtData(data);
             } else {
                 throw new Error(`Unknown Norges Bank chart type: ${chartTitle}`);
             }
-        } else if (apiUrl.includes('oil-fund.json')) {
-            parsedData = parseOilFundData(data);
         } else {
             throw new Error(`Unknown data source: ${apiUrl}`);
         }
         
-        if (!parsedData || parsedData.length === 0) {
-            throw new Error('No data points after parsing');
-        }
+                        if (!parsedData || parsedData.length === 0) {
+                    throw new Error('No data points after parsing');
+                }
+                
+                console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
         
         // Filter data from 2000 onwards
         const filteredData = parsedData.filter(item => {

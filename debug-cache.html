@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Cache</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
+        .error { background: #ffebee; color: #c62828; }
+        .success { background: #e8f5e8; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>Debug Cache Loading</h1>
+    <div id="debug-output"></div>
+
+    <script>
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = `debug ${type}`;
+            div.textContent = message;
+            document.getElementById('debug-output').appendChild(div);
+        }
+
+        async function testCache() {
+            try {
+                log('Testing cache loading...');
+                
+                // Test loading CPI data
+                const response = await fetch('data/cached/ssb/cpi.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const data = await response.json();
+                log(`✅ Successfully loaded CPI data`, 'success');
+                log(`Data structure: ${JSON.stringify(Object.keys(data), null, 2)}`);
+                
+                if (data.dataset && data.dataset.value) {
+                    log(`✅ Dataset and value found`, 'success');
+                    log(`Value array length: ${data.dataset.value.length}`);
+                    log(`First 10 values: ${data.dataset.value.slice(0, 10).join(', ')}`);
+                } else {
+                    log(`❌ Dataset or value missing`, 'error');
+                }
+                
+                if (data.dataset && data.dataset.dimension && data.dataset.dimension.Tid) {
+                    log(`✅ Time dimension found`, 'success');
+                    const timeLabels = data.dataset.dimension.Tid.category.label;
+                    log(`Time labels count: ${Object.keys(timeLabels).length}`);
+                    log(`First 5 time labels: ${Object.keys(timeLabels).slice(0, 5).join(', ')}`);
+                } else {
+                    log(`❌ Time dimension missing`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Run the test
+        testCache();
+    </script>
+</body>
+</html>
+

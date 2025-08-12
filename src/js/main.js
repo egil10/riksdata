@@ -1,0 +1,483 @@
+// ============================================================================
+// RIKSDATA MAIN APPLICATION
+// ============================================================================
+
+import { loadChartData } from './charts.js';
+import { showSkeletonLoading, hideSkeletonLoading, showError, debounce } from './utils.js';
+
+// Global state
+let currentLanguage = 'en';
+let currentTheme = 'light'; // Changed from 'dark' to 'light'
+let isFilterPanelVisible = false;
+let currentSourceFilter = 'all';
+
+/**
+ * Initialize the application
+ */
+export async function initializeApp() {
+    try {
+        // Show loading screen and progress bar
+        const loadingScreen = document.getElementById('loading-screen');
+        const progressBar = document.getElementById('progress-bar');
+        
+        // Initialize progress bar
+        updateProgressBar(0);
+        
+        // Show skeleton loading for all charts
+        showSkeletonLoading();
+        
+        // Load all charts in parallel with progress tracking
+        const chartPromises = [
+            // Original charts
+            loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'Consumer Price Index'),
+            loadChartData('unemployment-chart', 'https://data.ssb.no/api/v0/dataset/1052.json?lang=en', 'Unemployment Rate'),
+            loadChartData('house-prices-chart', 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', 'House Price Index'),
+            loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index'),
+            loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
+            loadChartData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value'),
+            loadChartData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
+            loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
+            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
+            
+            // Bar charts
+            loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
+            loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
+            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'bar'),
+            loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
+            loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs'),
+            
+            // Fixed charts (replacing failing ones)
+            loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', 'Industrial Production'),
+            loadChartData('retail-sales-chart', 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', 'Retail Sales'),
+            loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
+            loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/179422.json?lang=en', 'Import Volume'),
+            loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
+            loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
+            loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Confidence'),
+            loadChartData('consumer-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Consumer Confidence'),
+            loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en', 'Housing Starts', 'bar'),
+            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Oil Price (Brent)'),
+            
+            // 9 Additional charts
+            loadChartData('monetary-aggregates-chart', 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', 'Monetary Aggregates'),
+            loadChartData('job-vacancies-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies', 'bar'),
+            loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166331.json?lang=en', 'Household Consumption'),
+            loadChartData('producer-prices-chart', 'https://data.ssb.no/api/v0/dataset/26427.json?lang=en', 'Producer Prices'),
+            loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', 'Construction Production'),
+            loadChartData('credit-indicator-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator'),
+            loadChartData('energy-consumption-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Consumption'),
+            loadChartData('government-revenue-chart', 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', 'Government Revenue'),
+            loadChartData('international-accounts-chart', 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', 'International Accounts'),
+            
+            // 15 Additional charts
+            loadChartData('labour-cost-index-chart', 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', 'Labour Cost Index'),
+            loadChartData('rd-expenditure-chart', 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', 'R&D Expenditure'),
+            loadChartData('salmon-export-chart', 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', 'Salmon Export Value'),
+            loadChartData('oil-gas-investment-chart', 'https://data.ssb.no/api/v0/dataset/166334.json?lang=en', 'Oil & Gas Investment'),
+            loadChartData('immigration-rate-chart', 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', 'Immigration Rate'),
+            loadChartData('household-income-chart', 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en', 'Household Income'),
+            loadChartData('life-expectancy-chart', 'https://data.ssb.no/api/v0/dataset/102811.json?lang=en', 'Life Expectancy'),
+            loadChartData('crime-rate-chart', 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en', 'Crime Rate'),
+            loadChartData('education-level-chart', 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', 'Education Level'),
+            loadChartData('holiday-property-sales-chart', 'https://data.ssb.no/api/v0/dataset/65962.json?lang=en', 'Holiday Property Sales'),
+            loadChartData('greenhouse-gas-chart', 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', 'Greenhouse Gas Emissions'),
+            loadChartData('economic-forecasts-chart', 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', 'Economic Forecasts'),
+            loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en', 'New Dwellings Price'),
+            loadChartData('lifestyle-habits-chart', 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en', 'Lifestyle Habits'),
+            loadChartData('long-term-illness-chart', 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', 'Long-term Illness'),
+            
+            // 27 Additional charts
+            // Removed duplicate population-growth-chart
+            loadChartData('births-deaths-chart', 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', 'Births and Deaths'),
+            loadChartData('cpi-ate-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI-ATE Index'),
+            loadChartData('salmon-export-volume-chart', 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en', 'Salmon Export Volume'),
+            loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
+            loadChartData('export-country-chart', 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', 'Export by Country'),
+            loadChartData('import-country-chart', 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', 'Import by Country'),
+            loadChartData('export-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en', 'Export by Commodity'),
+            loadChartData('import-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', 'Import by Commodity'),
+            loadChartData('construction-cost-wood-chart', 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', 'Construction Cost Wood'),
+            loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
+            loadChartData('wholesale-retail-chart', 'https://data.ssb.no/api/v0/dataset/1065.json?lang=en', 'Wholesale Retail Sales'),
+            loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),
+            loadChartData('population-age-chart', 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', 'Population by Age'),
+            loadChartData('cpi-coicop-chart', 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', 'CPI Coicop Divisions'),
+            loadChartData('cpi-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'CPI Sub-groups'),
+            loadChartData('cpi-items-chart', 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', 'CPI Items'),
+            loadChartData('cpi-delivery-chart', 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', 'CPI Delivery Sectors'),
+            loadChartData('household-income-size-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income Size'),
+            loadChartData('cohabiting-arrangements-chart', 'https://data.ssb.no/api/v0/dataset/85440.json?lang=en', 'Cohabiting Arrangements'),
+            loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
+            loadChartData('credit-indicator-c2-chart', 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', 'Credit Indicator C2'),
+            loadChartData('job-vacancies-new-chart', 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', 'Job Vacancies'),
+            loadChartData('oil-gas-turnover-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Turnover'),
+            loadChartData('trade-volume-price-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price'),
+            loadChartData('producer-price-industry-chart', 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', 'Producer Price Industry'),
+            loadChartData('deaths-age-chart', 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', 'Deaths by Age'),
+            // Removed duplicate construction-production-chart
+            loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
+            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928197.json?lang=en', 'Energy Accounts'),
+            loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3'),
+            // Removed duplicate new-dwellings-price-chart
+            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Tendency Survey')
+        ];
+        
+        // Wait for all charts to load with progress tracking
+        const totalCharts = chartPromises.length;
+        let completedCharts = 0;
+        
+        const results = await Promise.allSettled(chartPromises.map(promise => 
+            promise.then(result => {
+                completedCharts++;
+                const progress = (completedCharts / totalCharts) * 100;
+                updateProgressBar(progress);
+                return result;
+            }).catch(error => {
+                completedCharts++;
+                const progress = (completedCharts / totalCharts) * 100;
+                updateProgressBar(progress);
+                throw error;
+            })
+        ));
+        
+        // Log results for debugging
+        let successCount = 0;
+        let failureCount = 0;
+        results.forEach((result, index) => {
+            if (result.status === 'fulfilled') {
+                successCount++;
+            } else {
+                failureCount++;
+                console.error(`Chart ${index} failed:`, result.reason);
+            }
+        });
+        
+        console.log(`Chart loading results: ${successCount} successful, ${failureCount} failed`);
+        
+        // Update progress bar to 100%
+        updateProgressBar(100);
+        
+        // Hide skeleton loading
+        hideSkeletonLoading();
+        
+        // Hide loading screen with fade out
+        setTimeout(() => {
+            loadingScreen.classList.add('hidden');
+            // Enable scrolling after loading screen is hidden
+            document.body.classList.add('loaded');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }, 500);
+        
+        // Sort charts alphabetically by default
+        sortChartsAlphabetically();
+        
+    } catch (error) {
+        console.error('Error initializing charts:', error);
+        showError('Failed to load chart data. Please try again later.');
+        
+        // Hide loading screen even if there's an error
+        const loadingScreen = document.getElementById('loading-screen');
+        loadingScreen.classList.add('hidden');
+        // Enable scrolling even if there's an error
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+}
+
+/**
+ * Initialize UI event listeners
+ */
+export function initializeUI() {
+    // Language toggle
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.addEventListener('click', toggleLanguage);
+    }
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', toggleTheme);
+    }
+
+    // Filter toggle
+    const filterToggle = document.getElementById('filterToggle');
+    if (filterToggle) {
+        filterToggle.addEventListener('click', toggleFilterPanel);
+    }
+
+    // Search functionality
+    const searchInput = document.getElementById('chartSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', debounce(handleSearch, 300));
+    }
+
+    // Source filters
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    filterButtons.forEach(button => {
+        button.addEventListener('click', handleSourceFilter);
+    });
+
+    // Sort toggle
+    const sortToggle = document.getElementById('sortToggle');
+    if (sortToggle) {
+        sortToggle.addEventListener('click', toggleSort);
+    }
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', scrollToTop);
+    }
+
+    // Progress bar on scroll
+    window.addEventListener('scroll', updateProgressBarOnScroll);
+}
+
+/**
+ * Toggle language between English and Norwegian
+ */
+function toggleLanguage() {
+    currentLanguage = currentLanguage === 'en' ? 'no' : 'en';
+    document.body.className = `lang-${currentLanguage}`;
+    
+    const langToggle = document.getElementById('langToggle');
+    if (langToggle) {
+        langToggle.textContent = currentLanguage === 'en' ? 'NO' : 'EN';
+    }
+    
+    updateLanguageTexts();
+}
+
+/**
+ * Toggle theme between light and dark
+ */
+function toggleTheme() {
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    // Apply dark mode class to body
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+    } else {
+        document.body.classList.remove('dark-mode');
+    }
+    
+    // Swap the icon
+    const themeIcon = document.querySelector('#themeToggle .theme-icon');
+    if (!themeIcon) return;
+
+    if (currentTheme === 'dark') {
+        // MOON icon for dark mode
+        themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
+    } else {
+        // SUN icon for light mode
+        themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
+    }
+    
+    // Store preference
+    localStorage.setItem('theme', currentTheme);
+}
+
+/**
+ * Toggle filter panel visibility
+ */
+function toggleFilterPanel() {
+    const filterPanel = document.getElementById('filterPanel');
+    if (filterPanel) {
+        isFilterPanelVisible = !isFilterPanelVisible;
+        filterPanel.style.display = isFilterPanelVisible ? 'block' : 'none';
+    }
+}
+
+/**
+ * Handle search functionality
+ * @param {Event} event - Search input event
+ */
+function handleSearch(event) {
+    const searchTerm = event.target.value.toLowerCase();
+    const chartCards = document.querySelectorAll('.chart-card');
+    
+    chartCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        const source = card.querySelector('.source-link').textContent.toLowerCase();
+        
+        if (title.includes(searchTerm) || source.includes(searchTerm)) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+/**
+ * Handle source filter
+ * @param {Event} event - Filter button click event
+ */
+function handleSourceFilter(event) {
+    const source = event.target.dataset.source;
+    currentSourceFilter = source;
+    
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    event.target.classList.add('active');
+    
+    // Filter charts
+    const chartCards = document.querySelectorAll('.chart-card');
+    chartCards.forEach(card => {
+        const sourceLink = card.querySelector('.source-link');
+        const cardSource = sourceLink.textContent.includes('SSB') ? 'ssb' : 
+                          sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' : 'static';
+        
+        if (source === 'all' || cardSource === source) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+/**
+ * Sort charts alphabetically by default
+ */
+function sortChartsAlphabetically() {
+    const chartGrid = document.querySelector('.chart-grid');
+    const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+    
+    // Sort alphabetically
+    chartCards.sort((a, b) => {
+        const titleA = a.querySelector('h3').textContent;
+        const titleB = b.querySelector('h3').textContent;
+        return titleA.localeCompare(titleB);
+    });
+    
+    // Re-append cards in new order
+    chartCards.forEach(card => {
+        chartGrid.appendChild(card);
+    });
+}
+
+/**
+ * Toggle alphabetical sorting
+ */
+function toggleSort() {
+    const sortToggle = document.getElementById('sortToggle');
+    const chartGrid = document.querySelector('.chart-grid');
+    const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+    
+    if (sortToggle.textContent === 'A-Z') {
+        // Sort reverse alphabetically
+        chartCards.sort((a, b) => {
+            const titleA = a.querySelector('h3').textContent;
+            const titleB = b.querySelector('h3').textContent;
+            return titleB.localeCompare(titleA);
+        });
+        sortToggle.textContent = 'Z-A';
+        sortToggle.classList.add('active');
+    } else {
+        // Sort alphabetically
+        chartCards.sort((a, b) => {
+            const titleA = a.querySelector('h3').textContent;
+            const titleB = b.querySelector('h3').textContent;
+            return titleA.localeCompare(titleB);
+        });
+        sortToggle.textContent = 'A-Z';
+        sortToggle.classList.remove('active');
+    }
+    
+    // Re-append cards in new order
+    chartCards.forEach(card => {
+        chartGrid.appendChild(card);
+    });
+}
+
+/**
+ * Update language-specific texts
+ */
+function updateLanguageTexts() {
+    const lang = currentLanguage;
+    
+    // Update filter button texts
+    const allSourcesBtn = document.querySelector('[data-source="all"]');
+    if (allSourcesBtn) {
+        allSourcesBtn.textContent = lang === 'no' ? 'Alle kilder' : 'All Sources';
+    }
+    
+    // Update search placeholder
+    const searchInput = document.getElementById('chartSearch');
+    if (searchInput) {
+        searchInput.placeholder = lang === 'no' ? 'Søk i diagrammer...' : 'Search charts...';
+    }
+}
+
+
+
+/**
+ * Update progress bar
+ * @param {number} percentage - Progress percentage (0-100)
+ */
+function updateProgressBar(percentage) {
+    const progressBar = document.getElementById('progress-bar');
+    if (progressBar) {
+        progressBar.style.width = `${percentage}%`;
+    }
+}
+
+/**
+ * Update progress bar based on scroll position
+ */
+function updateProgressBarOnScroll() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrollPercentage = (scrollTop / scrollHeight) * 100;
+    
+    updateProgressBar(scrollPercentage);
+    
+    // Show/hide back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+        if (scrollTop > 300) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    }
+}
+
+/**
+ * Scroll to top of page
+ */
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Load saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        currentTheme = 'dark';
+        document.body.classList.add('dark-mode');
+        // Set moon icon for dark mode
+        const themeIcon = document.querySelector('#themeToggle .theme-icon');
+        if (themeIcon) {
+            themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
+        }
+    } else {
+        // Default to light theme
+        currentTheme = 'light';
+        document.body.classList.remove('dark-mode');
+        // Moon icon is already set in HTML for light mode
+    }
+    
+    initializeUI();
+    initializeApp();
+});

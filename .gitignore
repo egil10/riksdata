@@ -1,6 +1,6 @@
-# Cached API data (exclude from git)
-data/cached/
-data/cache/
+# Cached API data (exclude from git, but allow for GitHub Pages)
+# data/cached/
+# data/cache/
 *.cache
 
 # Python cache

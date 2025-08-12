@@ -1,0 +1,4564 @@
+{
+  "meta": {
+    "id": "IREF335473",
+    "prepared": "2025-08-12T21:19:06",
+    "test": false,
+    "datasetId": "f11567ea-5c93-482f-89a7-ea5b9627b391",
+    "sender": {
+      "id": "Unknown"
+    },
+    "receiver": {
+      "id": "guest"
+    },
+    "links": [
+      {
+        "rel": "self",
+        "href": "/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01",
+        "uri": "https://raw.githubusercontent.com/sdmx-twg/sdmx-json/develop/data-message/tools/schemas/1.0/sdmx-json-data-schema.json"
+      }
+    ]
+  },
+  "data": {
+    "dataSets": [
+      {
+        "links": [
+          {
+            "rel": "dataflow",
+            "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=NB:GOVT_KEYFIGURES(1.0)"
+          }
+        ],
+        "reportingBegin": "2000-03-31T00:00:00",
+        "reportingEnd": "2025-06-30T23:59:59",
+        "action": "Information",
+        "series": {
+          "0:0:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "0": [
+                "394000"
+              ]
+            }
+          },
+          "1:1:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "1": [
+                "54000"
+              ]
+            }
+          },
+          "2:2:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "2": [
+                "5"
+              ]
+            }
+          },
+          "2:3:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "3": [
+                "16"
+              ]
+            }
+          },
+          "1:4:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "4": [
+                "23500"
+              ]
+            }
+          },
+          "0:5:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "5": [
+                "185307"
+              ]
+            }
+          },
+          "0:6:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "6": [
+                "516825"
+              ]
+            }
+          },
+          "1:7:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "7": [
+                "50000"
+              ]
+            }
+          },
+          "2:8:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "8": [
+                "29"
+              ]
+            }
+          },
+          "0:9:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "9": [
+                "204406"
+              ]
+            }
+          },
+          "1:10:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "10": [
+                "46000"
+              ]
+            }
+          },
+          "1:11:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "11": [
+                "9700"
+              ]
+            }
+          },
+          "2:12:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "12": [
+                "36"
+              ]
+            }
+          },
+          "0:13:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "13": [
+                "327737"
+              ]
+            }
+          },
+          "1:14:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "14": [
+                "64000"
+              ]
+            }
+          },
+          "2:15:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "15": [
+                "6"
+              ]
+            }
+          },
+          "1:16:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "16": [
+                "6400"
+              ]
+            }
+          },
+          "1:17:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "17": [
+                "12500"
+              ]
+            }
+          },
+          "2:18:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "18": [
+                "6"
+              ]
+            }
+          },
+          "0:19:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "19": [
+                "91700"
+              ]
+            }
+          },
+          "0:20:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "20": [
+                "384000"
+              ]
+            }
+          },
+          "1:21:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "21": [
+                "56000"
+              ]
+            }
+          },
+          "2:22:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "22": [
+                "6"
+              ]
+            }
+          },
+          "2:23:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "23": [
+                "10"
+              ]
+            }
+          },
+          "2:24:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "24": [
+                "5"
+              ]
+            }
+          },
+          "0:25:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "25": [
+                "502000"
+              ]
+            }
+          },
+          "1:26:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "26": [
+                "50000"
+              ]
+            }
+          },
+          "2:27:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "27": [
+                "10"
+              ]
+            }
+          },
+          "0:28:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "28": [
+                "199406"
+              ]
+            }
+          },
+          "1:29:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "29": [
+                "27000"
+              ]
+            }
+          },
+          "2:30:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "30": [
+                "10"
+              ]
+            }
+          },
+          "1:31:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "31": [
+                "9700"
+              ]
+            }
+          },
+          "2:32:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "32": [
+                "7"
+              ]
+            }
+          },
+          "0:33:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "33": [
+                "88700"
+              ]
+            }
+          },
+          "1:34:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "34": [
+                "4800"
+              ]
+            }
+          },
+          "0:35:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "35": [
+                "321737"
+              ]
+            }
+          },
+          "1:36:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "36": [
+                "56000"
+              ]
+            }
+          },
+          "0:37:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "37": [
+                "174800"
+              ]
+            }
+          },
+          "1:38:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "38": [
+                "12500"
+              ]
+            }
+          },
+          "2:39:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "39": [
+                "3"
+              ]
+            }
+          },
+          "2:40:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "40": [
+                "3"
+              ]
+            }
+          },
+          "1:41:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "41": [
+                "50000"
+              ]
+            }
+          },
+          "0:42:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "42": [
+                "380000"
+              ]
+            }
+          },
+          "2:43:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "43": [
+                "10"
+              ]
+            }
+          },
+          "1:44:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "44": [
+                "52000"
+              ]
+            }
+          },
+          "0:45:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "45": [
+                "490000"
+              ]
+            }
+          },
+          "2:46:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "46": [
+                "7"
+              ]
+            }
+          },
+          "1:47:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "47": [
+                "27000"
+              ]
+            }
+          },
+          "1:48:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "48": [
+                "7700"
+              ]
+            }
+          },
+          "0:49:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "49": [
+                "171800"
+              ]
+            }
+          },
+          "2:50:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "50": [
+                "16"
+              ]
+            }
+          },
+          "0:51:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "51": [
+                "242556"
+              ]
+            }
+          },
+          "0:2:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "2": [
+                "85700"
+              ]
+            }
+          },
+          "1:52:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "52": [
+                "4800"
+              ]
+            }
+          },
+          "1:53:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "53": [
+                "56000"
+              ]
+            }
+          },
+          "1:54:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "54": [
+                "15000"
+              ]
+            }
+          },
+          "2:55:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "55": [
+                "9"
+              ]
+            }
+          },
+          "0:3:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "3": [
+                "367656"
+              ]
+            }
+          },
+          "2:56:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "56": [
+                "9"
+              ]
+            }
+          },
+          "1:57:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "57": [
+                "38000"
+              ]
+            }
+          },
+          "2:58:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "58": [
+                "21"
+              ]
+            }
+          },
+          "0:8:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "8": [
+                "421940"
+              ]
+            }
+          },
+          "1:59:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "59": [
+                "52000"
+              ]
+            }
+          },
+          "2:60:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "60": [
+                "22"
+              ]
+            }
+          },
+          "0:12:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "12": [
+                "534567"
+              ]
+            }
+          },
+          "1:61:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "61": [
+                "27000"
+              ]
+            }
+          },
+          "0:15:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "15": [
+                "160300"
+              ]
+            }
+          },
+          "1:62:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "62": [
+                "7700"
+              ]
+            }
+          },
+          "2:63:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "63": [
+                "10"
+              ]
+            }
+          },
+          "0:18:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "18": [
+                "236556"
+              ]
+            }
+          },
+          "0:24:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "24": [
+                "79700"
+              ]
+            }
+          },
+          "1:64:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "64": [
+                "56000"
+              ]
+            }
+          },
+          "0:22:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "22": [
+                "213007"
+              ]
+            }
+          },
+          "1:65:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "65": [
+                "6400"
+              ]
+            }
+          },
+          "2:66:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "66": [
+                "6"
+              ]
+            }
+          },
+          "0:23:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "23": [
+                "343656"
+              ]
+            }
+          },
+          "1:67:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "67": [
+                "4800"
+              ]
+            }
+          },
+          "1:68:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "68": [
+                "42000"
+              ]
+            }
+          },
+          "2:69:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "69": [
+                "23"
+              ]
+            }
+          },
+          "2:70:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "70": [
+                "6"
+              ]
+            }
+          },
+          "0:27:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "27": [
+                "400101"
+              ]
+            }
+          },
+          "1:71:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "71": [
+                "52000"
+              ]
+            }
+          },
+          "1:72:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "72": [
+                "7700"
+              ]
+            }
+          },
+          "2:73:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "73": [
+                "11"
+              ]
+            }
+          },
+          "0:30:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "30": [
+                "532457"
+              ]
+            }
+          },
+          "2:74:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "74": [
+                "9"
+              ]
+            }
+          },
+          "0:32:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "32": [
+                "152000"
+              ]
+            }
+          },
+          "2:75:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "75": [
+                "28"
+              ]
+            }
+          },
+          "0:39:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "39": [
+                "230556"
+              ]
+            }
+          },
+          "1:76:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "76": [
+                "23000"
+              ]
+            }
+          },
+          "0:40:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "40": [
+                "207007"
+              ]
+            }
+          },
+          "2:77:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "77": [
+                "10"
+              ]
+            }
+          },
+          "0:43:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "43": [
+                "333656"
+              ]
+            }
+          },
+          "1:78:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "78": [
+                "56000"
+              ]
+            }
+          },
+          "1:79:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "79": [
+                "4800"
+              ]
+            }
+          },
+          "2:80:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "80": [
+                "7"
+              ]
+            }
+          },
+          "2:81:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "81": [
+                "11"
+              ]
+            }
+          },
+          "2:82:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "82": [
+                "5"
+              ]
+            }
+          },
+          "0:46:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "46": [
+                "400175"
+              ]
+            }
+          },
+          "1:83:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "83": [
+                "42000"
+              ]
+            }
+          },
+          "2:84:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "84": [
+                "10"
+              ]
+            }
+          },
+          "0:50:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "50": [
+                "526457"
+              ]
+            }
+          },
+          "1:85:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "85": [
+                "46000"
+              ]
+            }
+          },
+          "2:86:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "86": [
+                "11"
+              ]
+            }
+          },
+          "0:87:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "87": [
+                "145000"
+              ]
+            }
+          },
+          "0:55:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "55": [
+                "227556"
+              ]
+            }
+          },
+          "1:88:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "88": [
+                "23000"
+              ]
+            }
+          },
+          "0:56:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "56": [
+                "204007"
+              ]
+            }
+          },
+          "2:89:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "89": [
+                "17"
+              ]
+            }
+          },
+          "0:58:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "58": [
+                "326327"
+              ]
+            }
+          },
+          "1:90:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "90": [
+                "4800"
+              ]
+            }
+          },
+          "2:91:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "91": [
+                "4"
+              ]
+            }
+          },
+          "1:92:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "92": [
+                "48000"
+              ]
+            }
+          },
+          "2:93:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "93": [
+                "16"
+              ]
+            }
+          },
+          "2:94:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "94": [
+                "8"
+              ]
+            }
+          },
+          "0:60:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "60": [
+                "399515"
+              ]
+            }
+          },
+          "1:0:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "0": [
+                "36000"
+              ]
+            }
+          },
+          "2:95:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "95": [
+                "7"
+              ]
+            }
+          },
+          "1:5:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "5": [
+                "19800"
+              ]
+            }
+          },
+          "0:63:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "63": [
+                "508760"
+              ]
+            }
+          },
+          "1:6:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "6": [
+                "44000"
+              ]
+            }
+          },
+          "2:96:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "96": [
+                "8"
+              ]
+            }
+          },
+          "0:66:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "66": [
+                "214556"
+              ]
+            }
+          },
+          "1:9:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "9": [
+                "23000"
+              ]
+            }
+          },
+          "0:70:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "70": [
+                "191307"
+              ]
+            }
+          },
+          "2:97:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "97": [
+                "22"
+              ]
+            }
+          },
+          "0:69:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "69": [
+                "319862"
+              ]
+            }
+          },
+          "1:19:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "19": [
+                "4800"
+              ]
+            }
+          },
+          "2:98:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "98": [
+                "4"
+              ]
+            }
+          },
+          "1:13:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "13": [
+                "48000"
+              ]
+            }
+          },
+          "2:99:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "99": [
+                "7"
+              ]
+            }
+          },
+          "2:100:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "100": [
+                "12"
+              ]
+            }
+          },
+          "0:73:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "73": [
+                "401000"
+              ]
+            }
+          },
+          "2:101:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "101": [
+                "4"
+              ]
+            }
+          },
+          "1:20:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "20": [
+                "34000"
+              ]
+            }
+          },
+          "2:1:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "1": [
+                "17"
+              ]
+            }
+          },
+          "0:75:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "75": [
+                "500000"
+              ]
+            }
+          },
+          "1:25:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "25": [
+                "44000"
+              ]
+            }
+          },
+          "1:37:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "37": [
+                "15000"
+              ]
+            }
+          },
+          "2:4:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "4": [
+                "6"
+              ]
+            }
+          },
+          "2:7:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "7": [
+                "32"
+              ]
+            }
+          },
+          "0:74:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "74": [
+                "204356"
+              ]
+            }
+          },
+          "0:80:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "80": [
+                "145000"
+              ]
+            }
+          },
+          "1:28:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "28": [
+                "23000"
+              ]
+            }
+          },
+          "2:10:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "10": [
+                "13"
+              ]
+            }
+          },
+          "1:33:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "33": [
+                "4800"
+              ]
+            }
+          },
+          "2:11:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "11": [
+                "4"
+              ]
+            }
+          },
+          "0:77:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "77": [
+                "288862"
+              ]
+            }
+          },
+          "1:35:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "35": [
+                "48000"
+              ]
+            }
+          },
+          "2:16:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "16": [
+                "3"
+              ]
+            }
+          },
+          "0:82:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "82": [
+                "142250"
+              ]
+            }
+          },
+          "2:14:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "14": [
+                "19"
+              ]
+            }
+          },
+          "2:17:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "17": [
+                "6"
+              ]
+            }
+          },
+          "0:81:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "81": [
+                "390000"
+              ]
+            }
+          },
+          "1:42:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "42": [
+                "34000"
+              ]
+            }
+          },
+          "2:21:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "21": [
+                "31"
+              ]
+            }
+          },
+          "0:84:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "84": [
+                "466000"
+              ]
+            }
+          },
+          "1:45:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "45": [
+                "44000"
+              ]
+            }
+          },
+          "1:49:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "49": [
+                "15000"
+              ]
+            }
+          },
+          "2:26:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "26": [
+                "43"
+              ]
+            }
+          },
+          "1:51:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "51": [
+                "29000"
+              ]
+            }
+          },
+          "0:86:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "86": [
+                "193056"
+              ]
+            }
+          },
+          "0:91:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "91": [
+                "137500"
+              ]
+            }
+          },
+          "2:29:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "29": [
+                "13"
+              ]
+            }
+          },
+          "0:89:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "89": [
+                "278862"
+              ]
+            }
+          },
+          "1:3:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "3": [
+                "56000"
+              ]
+            }
+          },
+          "1:2:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "2": [
+                "4800"
+              ]
+            }
+          },
+          "2:31:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "31": [
+                "6"
+              ]
+            }
+          },
+          "2:36:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "36": [
+                "11"
+              ]
+            }
+          },
+          "2:34:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "34": [
+                "4"
+              ]
+            }
+          },
+          "0:93:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "93": [
+                "137250"
+              ]
+            }
+          },
+          "0:94:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "94": [
+                "379000"
+              ]
+            }
+          },
+          "1:8:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "8": [
+                "36000"
+              ]
+            }
+          },
+          "2:38:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "38": [
+                "7"
+              ]
+            }
+          },
+          "2:41:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "41": [
+                "8"
+              ]
+            }
+          },
+          "0:95:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "95": [
+                "456000"
+              ]
+            }
+          },
+          "1:12:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "12": [
+                "48000"
+              ]
+            }
+          },
+          "2:44:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "44": [
+                "16"
+              ]
+            }
+          },
+          "1:15:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "15": [
+                "12500"
+              ]
+            }
+          },
+          "1:18:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "18": [
+                "29000"
+              ]
+            }
+          },
+          "0:96:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "96": [
+                "182056"
+              ]
+            }
+          },
+          "0:98:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "98": [
+                "133500"
+              ]
+            }
+          },
+          "0:101:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "101": [
+                "179307"
+              ]
+            }
+          },
+          "1:22:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "22": [
+                "23500"
+              ]
+            }
+          },
+          "2:47:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "47": [
+                "8"
+              ]
+            }
+          },
+          "0:99:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "99": [
+                "121250"
+              ]
+            }
+          },
+          "2:48:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "48": [
+                "6"
+              ]
+            }
+          },
+          "1:24:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "24": [
+                "3200"
+              ]
+            }
+          },
+          "0:97:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "97": [
+                "261862"
+              ]
+            }
+          },
+          "1:23:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "23": [
+                "48000"
+              ]
+            }
+          },
+          "2:52:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "52": [
+                "2"
+              ]
+            }
+          },
+          "2:53:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "53": [
+                "7"
+              ]
+            }
+          },
+          "2:54:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "54": [
+                "16"
+              ]
+            }
+          },
+          "0:100:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "100": [
+                "371000"
+              ]
+            }
+          },
+          "1:27:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "27": [
+                "32000"
+              ]
+            }
+          },
+          "2:57:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "57": [
+                "6"
+              ]
+            }
+          },
+          "0:4:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "4": [
+                "219007"
+              ]
+            }
+          },
+          "0:1:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "1": [
+                "449000"
+              ]
+            }
+          },
+          "1:30:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "30": [
+                "66000"
+              ]
+            }
+          },
+          "0:11:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "11": [
+                "158694"
+              ]
+            }
+          },
+          "1:32:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "32": [
+                "10200"
+              ]
+            }
+          },
+          "2:59:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "59": [
+                "14"
+              ]
+            }
+          },
+          "0:10:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "10": [
+                "306406"
+              ]
+            }
+          },
+          "0:7:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "7": [
+                "575933"
+              ]
+            }
+          },
+          "1:39:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "39": [
+                "29000"
+              ]
+            }
+          },
+          "1:40:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "40": [
+                "23500"
+              ]
+            }
+          },
+          "2:61:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "61": [
+                "11"
+              ]
+            }
+          },
+          "0:14:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "14": [
+                "403439"
+              ]
+            }
+          },
+          "0:16:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "16": [
+                "118100"
+              ]
+            }
+          },
+          "2:62:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "62": [
+                "3"
+              ]
+            }
+          },
+          "1:43:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "43": [
+                "48000"
+              ]
+            }
+          },
+          "0:17:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "17": [
+                "168007"
+              ]
+            }
+          },
+          "2:67:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "67": [
+                "2"
+              ]
+            }
+          },
+          "2:64:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "64": [
+                "15"
+              ]
+            }
+          },
+          "0:21:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "21": [
+                "488612"
+              ]
+            }
+          },
+          "2:65:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "65": [
+                "5"
+              ]
+            }
+          },
+          "1:46:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "46": [
+                "40000"
+              ]
+            }
+          },
+          "2:68:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "68": [
+                "24"
+              ]
+            }
+          },
+          "0:26:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "26": [
+                "551183"
+              ]
+            }
+          },
+          "1:50:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "50": [
+                "66000"
+              ]
+            }
+          },
+          "1:87:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "87": [
+                "10200"
+              ]
+            }
+          },
+          "0:31:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "31": [
+                "155319"
+              ]
+            }
+          },
+          "2:71:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "71": [
+                "32"
+              ]
+            }
+          },
+          "2:72:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "72": [
+                "5"
+              ]
+            }
+          },
+          "0:29:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "29": [
+                "274406"
+              ]
+            }
+          },
+          "1:55:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "55": [
+                "29000"
+              ]
+            }
+          },
+          "1:56:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "56": [
+                "23500"
+              ]
+            }
+          },
+          "2:76:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "76": [
+                "28"
+              ]
+            }
+          },
+          "0:36:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "36": [
+                "382959"
+              ]
+            }
+          },
+          "0:34:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "34": [
+                "108100"
+              ]
+            }
+          },
+          "1:58:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "58": [
+                "48000"
+              ]
+            }
+          },
+          "0:38:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "38": [
+                "162007"
+              ]
+            }
+          },
+          "2:78:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "78": [
+                "19"
+              ]
+            }
+          },
+          "0:41:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "41": [
+                "469005"
+              ]
+            }
+          },
+          "1:60:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "60": [
+                "40000"
+              ]
+            }
+          },
+          "2:79:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "79": [
+                "3"
+              ]
+            }
+          },
+          "2:83:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "83": [
+                "33"
+              ]
+            }
+          },
+          "1:66:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "66": [
+                "25000"
+              ]
+            }
+          },
+          "0:44:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "44": [
+                "566030"
+              ]
+            }
+          },
+          "1:63:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "63": [
+                "60000"
+              ]
+            }
+          },
+          "0:48:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "48": [
+                "156250"
+              ]
+            }
+          },
+          "2:85:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "85": [
+                "40"
+              ]
+            }
+          },
+          "0:47:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "47": [
+                "261406"
+              ]
+            }
+          },
+          "1:69:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "69": [
+                "48000"
+              ]
+            }
+          },
+          "1:73:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "73": [
+                "56000"
+              ]
+            }
+          },
+          "0:53:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "53": [
+                "378417"
+              ]
+            }
+          },
+          "0:52:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "52": [
+                "104100"
+              ]
+            }
+          },
+          "0:54:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "54": [
+                "184533"
+              ]
+            }
+          },
+          "1:70:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "70": [
+                "19800"
+              ]
+            }
+          },
+          "2:88:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "88": [
+                "6"
+              ]
+            }
+          },
+          "0:57:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "57": [
+                "457085"
+              ]
+            }
+          },
+          "1:75:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "75": [
+                "60000"
+              ]
+            }
+          },
+          "2:92:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "92": [
+                "10"
+              ]
+            }
+          },
+          "2:90:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "90": [
+                "5"
+              ]
+            }
+          },
+          "1:74:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "74": [
+                "20800"
+              ]
+            }
+          },
+          "0:59:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "59": [
+                "551700"
+              ]
+            }
+          },
+          "2:0:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "0": [
+                "8"
+              ]
+            }
+          },
+          "0:62:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "62": [
+                "150250"
+              ]
+            }
+          },
+          "0:61:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "61": [
+                "253406"
+              ]
+            }
+          },
+          "1:77:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "77": [
+                "40000"
+              ]
+            }
+          },
+          "2:6:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "6": [
+                "20"
+              ]
+            }
+          },
+          "1:80:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "80": [
+                "10200"
+              ]
+            }
+          },
+          "2:5:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "5": [
+                "6"
+              ]
+            }
+          },
+          "1:82:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "82": [
+                "7700"
+              ]
+            }
+          },
+          "0:64:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "64": [
+                "377207"
+              ]
+            }
+          },
+          "1:81:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "81": [
+                "56000"
+              ]
+            }
+          },
+          "0:67:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "67": [
+                "102100"
+              ]
+            }
+          },
+          "0:65:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "65": [
+                "115100"
+              ]
+            }
+          },
+          "2:9:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "9": [
+                "5"
+              ]
+            }
+          },
+          "0:68:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "68": [
+                "457000"
+              ]
+            }
+          },
+          "1:84:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "84": [
+                "54000"
+              ]
+            }
+          },
+          "2:19:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "19": [
+                "3"
+              ]
+            }
+          },
+          "2:13:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "13": [
+                "6"
+              ]
+            }
+          },
+          "0:71:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "71": [
+                "538000"
+              ]
+            }
+          },
+          "1:86:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "86": [
+                "18500"
+              ]
+            }
+          },
+          "2:20:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "20": [
+                "4"
+              ]
+            }
+          },
+          "0:76:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "76": [
+                "238406"
+              ]
+            }
+          },
+          "0:72:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "72": [
+                "147250"
+              ]
+            }
+          },
+          "1:89:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "89": [
+                "40000"
+              ]
+            }
+          },
+          "1:91:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "91": [
+                "9700"
+              ]
+            }
+          },
+          "2:25:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "25": [
+                "12"
+              ]
+            }
+          },
+          "0:78:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "78": [
+                "364737"
+              ]
+            }
+          },
+          "1:93:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "93": [
+                "7700"
+              ]
+            }
+          },
+          "2:37:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "37": [
+                "3"
+              ]
+            }
+          },
+          "1:94:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "94": [
+                "56000"
+              ]
+            }
+          },
+          "2:28:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "28": [
+                "3"
+              ]
+            }
+          },
+          "0:79:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "79": [
+                "99700"
+              ]
+            }
+          },
+          "0:83:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "83": [
+                "433000"
+              ]
+            }
+          },
+          "1:95:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "95": [
+                "54000"
+              ]
+            }
+          },
+          "2:33:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "33": [
+                "3"
+              ]
+            }
+          },
+          "2:35:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "35": [
+                "14"
+              ]
+            }
+          },
+          "0:85:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "85": [
+                "500000"
+              ]
+            }
+          },
+          "1:96:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "96": [
+                "18500"
+              ]
+            }
+          },
+          "2:42:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "42": [
+                "9"
+              ]
+            }
+          },
+          "0:88:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "88": [
+                "210406"
+              ]
+            }
+          },
+          "1:97:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "97": [
+                "40000"
+              ]
+            }
+          },
+          "1:98:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "98": [
+                "9700"
+              ]
+            }
+          },
+          "2:45:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "45": [
+                "12"
+              ]
+            }
+          },
+          "1:99:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "99": [
+                "7700"
+              ]
+            }
+          },
+          "2:49:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "49": [
+                "9"
+              ]
+            }
+          },
+          "0:92:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "92": [
+                "337737"
+              ]
+            }
+          },
+          "1:100:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "100": [
+                "56000"
+              ]
+            }
+          },
+          "1:101:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "101": [
+                "19800"
+              ]
+            }
+          },
+          "2:51:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "51": [
+                "6"
+              ]
+            }
+          },
+          "0:90:0:0": {
+            "attributes": [
+              0,
+              0
+            ],
+            "observations": {
+              "90": [
+                "96700"
+              ]
+            }
+          }
+        }
+      }
+    ],
+    "structure": {
+      "links": [
+        {
+          "rel": "dataflow",
+          "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.Dataflow=NB:GOVT_KEYFIGURES(1.0)"
+        },
+        {
+          "rel": "datastructure",
+          "urn": "urn:sdmx:org.sdmx.infomodel.datastructure.DataStructure=NB:DSD_GOVT_KEYFIGURES(1.0)"
+        }
+      ],
+      "name": "Nøkkeltall for statsgjelden",
+      "names": {
+        "no": "Nøkkeltall for statsgjelden"
+      },
+      "description": "Nøkkeltall for statsgjelden",
+      "descriptions": {
+        "no": "Nøkkeltall for statsgjelden"
+      },
+      "dimensions": {
+        "dataset": [],
+        "series": [
+          {
+            "id": "UNIT_MEASURE",
+            "name": "Måleenhet",
+            "description": "Enheten verdier er målt i.",
+            "keyPosition": 0,
+            "role": null,
+            "values": [
+              {
+                "id": "N_V",
+                "name": "Pålydende verdi",
+                "description": "Pålydende verdi inkludert statens egenbeholdning"
+              },
+              {
+                "id": "V_O",
+                "name": "Egenbeholdning",
+                "description": "Egenbeholdning"
+              },
+              {
+                "id": "V_I",
+                "name": "Volum utstedt",
+                "description": "Volum utstedt"
+              }
+            ]
+          },
+          {
+            "id": "QUARTER",
+            "name": "Kvartal",
+            "description": "Kvartal-år",
+            "keyPosition": 1,
+            "role": null,
+            "values": [
+              {
+                "id": "Q4-2019",
+                "name": "Q4-2019"
+              },
+              {
+                "id": "Q2-2021",
+                "name": "Q2-2021"
+              },
+              {
+                "id": "Q2-2000",
+                "name": "Q2-2000"
+              },
+              {
+                "id": "Q1-2015",
+                "name": "Q1-2015"
+              },
+              {
+                "id": "Q1-2009",
+                "name": "Q1-2009"
+              },
+              {
+                "id": "Q4-2007",
+                "name": "Q4-2007"
+              },
+              {
+                "id": "Q4-2023",
+                "name": "Q4-2023"
+              },
+              {
+                "id": "Q2-2025",
+                "name": "Q2-2025"
+              },
+              {
+                "id": "Q1-2019",
+                "name": "Q1-2019"
+              },
+              {
+                "id": "Q3-2011",
+                "name": "Q3-2011"
+              },
+              {
+                "id": "Q1-2013",
+                "name": "Q1-2013"
+              },
+              {
+                "id": "Q3-2004",
+                "name": "Q3-2004"
+              },
+              {
+                "id": "Q1-2023",
+                "name": "Q1-2023"
+              },
+              {
+                "id": "Q3-2015",
+                "name": "Q3-2015"
+              },
+              {
+                "id": "Q1-2017",
+                "name": "Q1-2017"
+              },
+              {
+                "id": "Q1-2006",
+                "name": "Q1-2006"
+              },
+              {
+                "id": "Q3-2002",
+                "name": "Q3-2002"
+              },
+              {
+                "id": "Q2-2007",
+                "name": "Q2-2007"
+              },
+              {
+                "id": "Q4-2010",
+                "name": "Q4-2010"
+              },
+              {
+                "id": "Q4-2000",
+                "name": "Q4-2000"
+              },
+              {
+                "id": "Q3-2019",
+                "name": "Q3-2019"
+              },
+              {
+                "id": "Q1-2021",
+                "name": "Q1-2021"
+              },
+              {
+                "id": "Q4-2008",
+                "name": "Q4-2008"
+              },
+              {
+                "id": "Q4-2014",
+                "name": "Q4-2014"
+              },
+              {
+                "id": "Q1-2000",
+                "name": "Q1-2000"
+              },
+              {
+                "id": "Q3-2023",
+                "name": "Q3-2023"
+              },
+              {
+                "id": "Q1-2025",
+                "name": "Q1-2025"
+              },
+              {
+                "id": "Q4-2018",
+                "name": "Q4-2018"
+              },
+              {
+                "id": "Q2-2011",
+                "name": "Q2-2011"
+              },
+              {
+                "id": "Q4-2012",
+                "name": "Q4-2012"
+              },
+              {
+                "id": "Q4-2022",
+                "name": "Q4-2022"
+              },
+              {
+                "id": "Q2-2004",
+                "name": "Q2-2004"
+              },
+              {
+                "id": "Q4-2005",
+                "name": "Q4-2005"
+              },
+              {
+                "id": "Q3-2000",
+                "name": "Q3-2000"
+              },
+              {
+                "id": "Q1-2002",
+                "name": "Q1-2002"
+              },
+              {
+                "id": "Q2-2015",
+                "name": "Q2-2015"
+              },
+              {
+                "id": "Q4-2016",
+                "name": "Q4-2016"
+              },
+              {
+                "id": "Q3-2006",
+                "name": "Q3-2006"
+              },
+              {
+                "id": "Q1-2007",
+                "name": "Q1-2007"
+              },
+              {
+                "id": "Q3-2010",
+                "name": "Q3-2010"
+              },
+              {
+                "id": "Q3-2008",
+                "name": "Q3-2008"
+              },
+              {
+                "id": "Q4-2020",
+                "name": "Q4-2020"
+              },
+              {
+                "id": "Q2-2019",
+                "name": "Q2-2019"
+              },
+              {
+                "id": "Q3-2014",
+                "name": "Q3-2014"
+              },
+              {
+                "id": "Q4-2024",
+                "name": "Q4-2024"
+              },
+              {
+                "id": "Q2-2023",
+                "name": "Q2-2023"
+              },
+              {
+                "id": "Q3-2018",
+                "name": "Q3-2018"
+              },
+              {
+                "id": "Q3-2012",
+                "name": "Q3-2012"
+              },
+              {
+                "id": "Q1-2004",
+                "name": "Q1-2004"
+              },
+              {
+                "id": "Q2-2006",
+                "name": "Q2-2006"
+              },
+              {
+                "id": "Q3-2022",
+                "name": "Q3-2022"
+              },
+              {
+                "id": "Q1-2011",
+                "name": "Q1-2011"
+              },
+              {
+                "id": "Q4-2001",
+                "name": "Q4-2001"
+              },
+              {
+                "id": "Q3-2016",
+                "name": "Q3-2016"
+              },
+              {
+                "id": "Q4-2006",
+                "name": "Q4-2006"
+              },
+              {
+                "id": "Q2-2010",
+                "name": "Q2-2010"
+              },
+              {
+                "id": "Q2-2008",
+                "name": "Q2-2008"
+              },
+              {
+                "id": "Q3-2020",
+                "name": "Q3-2020"
+              },
+              {
+                "id": "Q2-2014",
+                "name": "Q2-2014"
+              },
+              {
+                "id": "Q3-2024",
+                "name": "Q3-2024"
+              },
+              {
+                "id": "Q2-2018",
+                "name": "Q2-2018"
+              },
+              {
+                "id": "Q2-2012",
+                "name": "Q2-2012"
+              },
+              {
+                "id": "Q4-2003",
+                "name": "Q4-2003"
+              },
+              {
+                "id": "Q2-2022",
+                "name": "Q2-2022"
+              },
+              {
+                "id": "Q2-2016",
+                "name": "Q2-2016"
+              },
+              {
+                "id": "Q2-2002",
+                "name": "Q2-2002"
+              },
+              {
+                "id": "Q1-2010",
+                "name": "Q1-2010"
+              },
+              {
+                "id": "Q3-2001",
+                "name": "Q3-2001"
+              },
+              {
+                "id": "Q2-2020",
+                "name": "Q2-2020"
+              },
+              {
+                "id": "Q1-2014",
+                "name": "Q1-2014"
+              },
+              {
+                "id": "Q1-2008",
+                "name": "Q1-2008"
+              },
+              {
+                "id": "Q2-2024",
+                "name": "Q2-2024"
+              },
+              {
+                "id": "Q3-2003",
+                "name": "Q3-2003"
+              },
+              {
+                "id": "Q1-2018",
+                "name": "Q1-2018"
+              },
+              {
+                "id": "Q4-2009",
+                "name": "Q4-2009"
+              },
+              {
+                "id": "Q1-2022",
+                "name": "Q1-2022"
+              },
+              {
+                "id": "Q1-2012",
+                "name": "Q1-2012"
+              },
+              {
+                "id": "Q4-2013",
+                "name": "Q4-2013"
+              },
+              {
+                "id": "Q1-2016",
+                "name": "Q1-2016"
+              },
+              {
+                "id": "Q2-2001",
+                "name": "Q2-2001"
+              },
+              {
+                "id": "Q2-2005",
+                "name": "Q2-2005"
+              },
+              {
+                "id": "Q4-2017",
+                "name": "Q4-2017"
+              },
+              {
+                "id": "Q2-2003",
+                "name": "Q2-2003"
+              },
+              {
+                "id": "Q1-2020",
+                "name": "Q1-2020"
+              },
+              {
+                "id": "Q4-2021",
+                "name": "Q4-2021"
+              },
+              {
+                "id": "Q1-2024",
+                "name": "Q1-2024"
+              },
+              {
+                "id": "Q3-2009",
+                "name": "Q3-2009"
+              },
+              {
+                "id": "Q3-2005",
+                "name": "Q3-2005"
+              },
+              {
+                "id": "Q4-2011",
+                "name": "Q4-2011"
+              },
+              {
+                "id": "Q3-2013",
+                "name": "Q3-2013"
+              },
+              {
+                "id": "Q1-2001",
+                "name": "Q1-2001"
+              },
+              {
+                "id": "Q1-2005",
+                "name": "Q1-2005"
+              },
+              {
+                "id": "Q4-2015",
+                "name": "Q4-2015"
+              },
+              {
+                "id": "Q1-2003",
+                "name": "Q1-2003"
+              },
+              {
+                "id": "Q3-2017",
+                "name": "Q3-2017"
+              },
+              {
+                "id": "Q3-2021",
+                "name": "Q3-2021"
+              },
+              {
+                "id": "Q2-2009",
+                "name": "Q2-2009"
+              },
+              {
+                "id": "Q2-2013",
+                "name": "Q2-2013"
+              },
+              {
+                "id": "Q4-2004",
+                "name": "Q4-2004"
+              },
+              {
+                "id": "Q4-2002",
+                "name": "Q4-2002"
+              },
+              {
+                "id": "Q2-2017",
+                "name": "Q2-2017"
+              },
+              {
+                "id": "Q3-2007",
+                "name": "Q3-2007"
+              }
+            ]
+          },
+          {
+            "id": "FREQ",
+            "name": "Frekvens",
+            "description": "Tidsintervallet for observasjoner over en gitt tidsperiode.",
+            "keyPosition": 2,
+            "role": null,
+            "values": [
+              {
+                "id": "B",
+                "name": "Virkedag",
+                "description": "Virkedag"
+              }
+            ]
+          },
+          {
+            "id": "INSTRUMENT_TYPE",
+            "name": "Instrumenttype",
+            "description": "Type finansielt instrument.",
+            "keyPosition": 3,
+            "role": null,
+            "values": [
+              {
+                "id": "GBON",
+                "name": "Statsobligasjoner",
+                "description": "En obligasjon er et rentebærende verdipapir med opprinnelig løpetid over 1 år."
+              }
+            ]
+          }
+        ],
+        "observation": [
+          {
+            "id": "TIME_PERIOD",
+            "name": "Tidsperiode",
+            "description": "Tidsperioden eller tidspunktet for den målte observasjonen.",
+            "keyPosition": 4,
+            "role": "time",
+            "values": [
+              {
+                "start": "2019-12-31T00:00:00",
+                "end": "2019-12-31T23:59:59",
+                "id": "2019-12-31",
+                "name": "2019-12-31"
+              },
+              {
+                "start": "2021-06-30T00:00:00",
+                "end": "2021-06-30T23:59:59",
+                "id": "2021-06-30",
+                "name": "2021-06-30"
+              },
+              {
+                "start": "2000-06-30T00:00:00",
+                "end": "2000-06-30T23:59:59",
+                "id": "2000-06-30",
+                "name": "2000-06-30"
+              },
+              {
+                "start": "2015-03-31T00:00:00",
+                "end": "2015-03-31T23:59:59",
+                "id": "2015-03-31",
+                "name": "2015-03-31"
+              },
+              {
+                "start": "2009-03-31T00:00:00",
+                "end": "2009-03-31T23:59:59",
+                "id": "2009-03-31",
+                "name": "2009-03-31"
+              },
+              {
+                "start": "2007-12-31T00:00:00",
+                "end": "2007-12-31T23:59:59",
+                "id": "2007-12-31",
+                "name": "2007-12-31"
+              },
+              {
+                "start": "2023-12-31T00:00:00",
+                "end": "2023-12-31T23:59:59",
+                "id": "2023-12-31",
+                "name": "2023-12-31"
+              },
+              {
+                "start": "2025-06-30T00:00:00",
+                "end": "2025-06-30T23:59:59",
+                "id": "2025-06-30",
+                "name": "2025-06-30"
+              },
+              {
+                "start": "2019-03-31T00:00:00",
+                "end": "2019-03-31T23:59:59",
+                "id": "2019-03-31",
+                "name": "2019-03-31"
+              },
+              {
+                "start": "2011-09-30T00:00:00",
+                "end": "2011-09-30T23:59:59",
+                "id": "2011-09-30",
+                "name": "2011-09-30"
+              },
+              {
+                "start": "2013-03-31T00:00:00",
+                "end": "2013-03-31T23:59:59",
+                "id": "2013-03-31",
+                "name": "2013-03-31"
+              },
+              {
+                "start": "2004-09-30T00:00:00",
+                "end": "2004-09-30T23:59:59",
+                "id": "2004-09-30",
+                "name": "2004-09-30"
+              },
+              {
+                "start": "2023-03-31T00:00:00",
+                "end": "2023-03-31T23:59:59",
+                "id": "2023-03-31",
+                "name": "2023-03-31"
+              },
+              {
+                "start": "2015-09-30T00:00:00",
+                "end": "2015-09-30T23:59:59",
+                "id": "2015-09-30",
+                "name": "2015-09-30"
+              },
+              {
+                "start": "2017-03-31T00:00:00",
+                "end": "2017-03-31T23:59:59",
+                "id": "2017-03-31",
+                "name": "2017-03-31"
+              },
+              {
+                "start": "2006-03-31T00:00:00",
+                "end": "2006-03-31T23:59:59",
+                "id": "2006-03-31",
+                "name": "2006-03-31"
+              },
+              {
+                "start": "2002-09-30T00:00:00",
+                "end": "2002-09-30T23:59:59",
+                "id": "2002-09-30",
+                "name": "2002-09-30"
+              },
+              {
+                "start": "2007-06-30T00:00:00",
+                "end": "2007-06-30T23:59:59",
+                "id": "2007-06-30",
+                "name": "2007-06-30"
+              },
+              {
+                "start": "2010-12-31T00:00:00",
+                "end": "2010-12-31T23:59:59",
+                "id": "2010-12-31",
+                "name": "2010-12-31"
+              },
+              {
+                "start": "2000-12-31T00:00:00",
+                "end": "2000-12-31T23:59:59",
+                "id": "2000-12-31",
+                "name": "2000-12-31"
+              },
+              {
+                "start": "2019-09-30T00:00:00",
+                "end": "2019-09-30T23:59:59",
+                "id": "2019-09-30",
+                "name": "2019-09-30"
+              },
+              {
+                "start": "2021-03-31T00:00:00",
+                "end": "2021-03-31T23:59:59",
+                "id": "2021-03-31",
+                "name": "2021-03-31"
+              },
+              {
+                "start": "2008-12-31T00:00:00",
+                "end": "2008-12-31T23:59:59",
+                "id": "2008-12-31",
+                "name": "2008-12-31"
+              },
+              {
+                "start": "2014-12-31T00:00:00",
+                "end": "2014-12-31T23:59:59",
+                "id": "2014-12-31",
+                "name": "2014-12-31"
+              },
+              {
+                "start": "2000-03-31T00:00:00",
+                "end": "2000-03-31T23:59:59",
+                "id": "2000-03-31",
+                "name": "2000-03-31"
+              },
+              {
+                "start": "2023-09-30T00:00:00",
+                "end": "2023-09-30T23:59:59",
+                "id": "2023-09-30",
+                "name": "2023-09-30"
+              },
+              {
+                "start": "2025-03-31T00:00:00",
+                "end": "2025-03-31T23:59:59",
+                "id": "2025-03-31",
+                "name": "2025-03-31"
+              },
+              {
+                "start": "2018-12-31T00:00:00",
+                "end": "2018-12-31T23:59:59",
+                "id": "2018-12-31",
+                "name": "2018-12-31"
+              },
+              {
+                "start": "2011-06-30T00:00:00",
+                "end": "2011-06-30T23:59:59",
+                "id": "2011-06-30",
+                "name": "2011-06-30"
+              },
+              {
+                "start": "2012-12-31T00:00:00",
+                "end": "2012-12-31T23:59:59",
+                "id": "2012-12-31",
+                "name": "2012-12-31"
+              },
+              {
+                "start": "2022-12-31T00:00:00",
+                "end": "2022-12-31T23:59:59",
+                "id": "2022-12-31",
+                "name": "2022-12-31"
+              },
+              {
+                "start": "2004-06-30T00:00:00",
+                "end": "2004-06-30T23:59:59",
+                "id": "2004-06-30",
+                "name": "2004-06-30"
+              },
+              {
+                "start": "2005-12-31T00:00:00",
+                "end": "2005-12-31T23:59:59",
+                "id": "2005-12-31",
+                "name": "2005-12-31"
+              },
+              {
+                "start": "2000-09-30T00:00:00",
+                "end": "2000-09-30T23:59:59",
+                "id": "2000-09-30",
+                "name": "2000-09-30"
+              },
+              {
+                "start": "2002-03-31T00:00:00",
+                "end": "2002-03-31T23:59:59",
+                "id": "2002-03-31",
+                "name": "2002-03-31"
+              },
+              {
+                "start": "2015-06-30T00:00:00",
+                "end": "2015-06-30T23:59:59",
+                "id": "2015-06-30",
+                "name": "2015-06-30"
+              },
+              {
+                "start": "2016-12-31T00:00:00",
+                "end": "2016-12-31T23:59:59",
+                "id": "2016-12-31",
+                "name": "2016-12-31"
+              },
+              {
+                "start": "2006-09-30T00:00:00",
+                "end": "2006-09-30T23:59:59",
+                "id": "2006-09-30",
+                "name": "2006-09-30"
+              },
+              {
+                "start": "2007-03-31T00:00:00",
+                "end": "2007-03-31T23:59:59",
+                "id": "2007-03-31",
+                "name": "2007-03-31"
+              },
+              {
+                "start": "2010-09-30T00:00:00",
+                "end": "2010-09-30T23:59:59",
+                "id": "2010-09-30",
+                "name": "2010-09-30"
+              },
+              {
+                "start": "2008-09-30T00:00:00",
+                "end": "2008-09-30T23:59:59",
+                "id": "2008-09-30",
+                "name": "2008-09-30"
+              },
+              {
+                "start": "2020-12-31T00:00:00",
+                "end": "2020-12-31T23:59:59",
+                "id": "2020-12-31",
+                "name": "2020-12-31"
+              },
+              {
+                "start": "2019-06-30T00:00:00",
+                "end": "2019-06-30T23:59:59",
+                "id": "2019-06-30",
+                "name": "2019-06-30"
+              },
+              {
+                "start": "2014-09-30T00:00:00",
+                "end": "2014-09-30T23:59:59",
+                "id": "2014-09-30",
+                "name": "2014-09-30"
+              },
+              {
+                "start": "2024-12-31T00:00:00",
+                "end": "2024-12-31T23:59:59",
+                "id": "2024-12-31",
+                "name": "2024-12-31"
+              },
+              {
+                "start": "2023-06-30T00:00:00",
+                "end": "2023-06-30T23:59:59",
+                "id": "2023-06-30",
+                "name": "2023-06-30"
+              },
+              {
+                "start": "2018-09-30T00:00:00",
+                "end": "2018-09-30T23:59:59",
+                "id": "2018-09-30",
+                "name": "2018-09-30"
+              },
+              {
+                "start": "2012-09-30T00:00:00",
+                "end": "2012-09-30T23:59:59",
+                "id": "2012-09-30",
+                "name": "2012-09-30"
+              },
+              {
+                "start": "2004-03-31T00:00:00",
+                "end": "2004-03-31T23:59:59",
+                "id": "2004-03-31",
+                "name": "2004-03-31"
+              },
+              {
+                "start": "2006-06-30T00:00:00",
+                "end": "2006-06-30T23:59:59",
+                "id": "2006-06-30",
+                "name": "2006-06-30"
+              },
+              {
+                "start": "2022-09-30T00:00:00",
+                "end": "2022-09-30T23:59:59",
+                "id": "2022-09-30",
+                "name": "2022-09-30"
+              },
+              {
+                "start": "2011-03-31T00:00:00",
+                "end": "2011-03-31T23:59:59",
+                "id": "2011-03-31",
+                "name": "2011-03-31"
+              },
+              {
+                "start": "2001-12-31T00:00:00",
+                "end": "2001-12-31T23:59:59",
+                "id": "2001-12-31",
+                "name": "2001-12-31"
+              },
+              {
+                "start": "2016-09-30T00:00:00",
+                "end": "2016-09-30T23:59:59",
+                "id": "2016-09-30",
+                "name": "2016-09-30"
+              },
+              {
+                "start": "2006-12-31T00:00:00",
+                "end": "2006-12-31T23:59:59",
+                "id": "2006-12-31",
+                "name": "2006-12-31"
+              },
+              {
+                "start": "2010-06-30T00:00:00",
+                "end": "2010-06-30T23:59:59",
+                "id": "2010-06-30",
+                "name": "2010-06-30"
+              },
+              {
+                "start": "2008-06-30T00:00:00",
+                "end": "2008-06-30T23:59:59",
+                "id": "2008-06-30",
+                "name": "2008-06-30"
+              },
+              {
+                "start": "2020-09-30T00:00:00",
+                "end": "2020-09-30T23:59:59",
+                "id": "2020-09-30",
+                "name": "2020-09-30"
+              },
+              {
+                "start": "2014-06-30T00:00:00",
+                "end": "2014-06-30T23:59:59",
+                "id": "2014-06-30",
+                "name": "2014-06-30"
+              },
+              {
+                "start": "2024-09-30T00:00:00",
+                "end": "2024-09-30T23:59:59",
+                "id": "2024-09-30",
+                "name": "2024-09-30"
+              },
+              {
+                "start": "2018-06-30T00:00:00",
+                "end": "2018-06-30T23:59:59",
+                "id": "2018-06-30",
+                "name": "2018-06-30"
+              },
+              {
+                "start": "2012-06-30T00:00:00",
+                "end": "2012-06-30T23:59:59",
+                "id": "2012-06-30",
+                "name": "2012-06-30"
+              },
+              {
+                "start": "2003-12-31T00:00:00",
+                "end": "2003-12-31T23:59:59",
+                "id": "2003-12-31",
+                "name": "2003-12-31"
+              },
+              {
+                "start": "2022-06-30T00:00:00",
+                "end": "2022-06-30T23:59:59",
+                "id": "2022-06-30",
+                "name": "2022-06-30"
+              },
+              {
+                "start": "2016-06-30T00:00:00",
+                "end": "2016-06-30T23:59:59",
+                "id": "2016-06-30",
+                "name": "2016-06-30"
+              },
+              {
+                "start": "2002-06-30T00:00:00",
+                "end": "2002-06-30T23:59:59",
+                "id": "2002-06-30",
+                "name": "2002-06-30"
+              },
+              {
+                "start": "2010-03-31T00:00:00",
+                "end": "2010-03-31T23:59:59",
+                "id": "2010-03-31",
+                "name": "2010-03-31"
+              },
+              {
+                "start": "2001-09-30T00:00:00",
+                "end": "2001-09-30T23:59:59",
+                "id": "2001-09-30",
+                "name": "2001-09-30"
+              },
+              {
+                "start": "2020-06-30T00:00:00",
+                "end": "2020-06-30T23:59:59",
+                "id": "2020-06-30",
+                "name": "2020-06-30"
+              },
+              {
+                "start": "2014-03-31T00:00:00",
+                "end": "2014-03-31T23:59:59",
+                "id": "2014-03-31",
+                "name": "2014-03-31"
+              },
+              {
+                "start": "2008-03-31T00:00:00",
+                "end": "2008-03-31T23:59:59",
+                "id": "2008-03-31",
+                "name": "2008-03-31"
+              },
+              {
+                "start": "2024-06-30T00:00:00",
+                "end": "2024-06-30T23:59:59",
+                "id": "2024-06-30",
+                "name": "2024-06-30"
+              },
+              {
+                "start": "2003-09-30T00:00:00",
+                "end": "2003-09-30T23:59:59",
+                "id": "2003-09-30",
+                "name": "2003-09-30"
+              },
+              {
+                "start": "2018-03-31T00:00:00",
+                "end": "2018-03-31T23:59:59",
+                "id": "2018-03-31",
+                "name": "2018-03-31"
+              },
+              {
+                "start": "2009-12-31T00:00:00",
+                "end": "2009-12-31T23:59:59",
+                "id": "2009-12-31",
+                "name": "2009-12-31"
+              },
+              {
+                "start": "2022-03-31T00:00:00",
+                "end": "2022-03-31T23:59:59",
+                "id": "2022-03-31",
+                "name": "2022-03-31"
+              },
+              {
+                "start": "2012-03-31T00:00:00",
+                "end": "2012-03-31T23:59:59",
+                "id": "2012-03-31",
+                "name": "2012-03-31"
+              },
+              {
+                "start": "2013-12-31T00:00:00",
+                "end": "2013-12-31T23:59:59",
+                "id": "2013-12-31",
+                "name": "2013-12-31"
+              },
+              {
+                "start": "2016-03-31T00:00:00",
+                "end": "2016-03-31T23:59:59",
+                "id": "2016-03-31",
+                "name": "2016-03-31"
+              },
+              {
+                "start": "2001-06-30T00:00:00",
+                "end": "2001-06-30T23:59:59",
+                "id": "2001-06-30",
+                "name": "2001-06-30"
+              },
+              {
+                "start": "2005-06-30T00:00:00",
+                "end": "2005-06-30T23:59:59",
+                "id": "2005-06-30",
+                "name": "2005-06-30"
+              },
+              {
+                "start": "2017-12-31T00:00:00",
+                "end": "2017-12-31T23:59:59",
+                "id": "2017-12-31",
+                "name": "2017-12-31"
+              },
+              {
+                "start": "2003-06-30T00:00:00",
+                "end": "2003-06-30T23:59:59",
+                "id": "2003-06-30",
+                "name": "2003-06-30"
+              },
+              {
+                "start": "2020-03-31T00:00:00",
+                "end": "2020-03-31T23:59:59",
+                "id": "2020-03-31",
+                "name": "2020-03-31"
+              },
+              {
+                "start": "2021-12-31T00:00:00",
+                "end": "2021-12-31T23:59:59",
+                "id": "2021-12-31",
+                "name": "2021-12-31"
+              },
+              {
+                "start": "2024-03-31T00:00:00",
+                "end": "2024-03-31T23:59:59",
+                "id": "2024-03-31",
+                "name": "2024-03-31"
+              },
+              {
+                "start": "2009-09-30T00:00:00",
+                "end": "2009-09-30T23:59:59",
+                "id": "2009-09-30",
+                "name": "2009-09-30"
+              },
+              {
+                "start": "2005-09-30T00:00:00",
+                "end": "2005-09-30T23:59:59",
+                "id": "2005-09-30",
+                "name": "2005-09-30"
+              },
+              {
+                "start": "2011-12-31T00:00:00",
+                "end": "2011-12-31T23:59:59",
+                "id": "2011-12-31",
+                "name": "2011-12-31"
+              },
+              {
+                "start": "2013-09-30T00:00:00",
+                "end": "2013-09-30T23:59:59",
+                "id": "2013-09-30",
+                "name": "2013-09-30"
+              },
+              {
+                "start": "2001-03-31T00:00:00",
+                "end": "2001-03-31T23:59:59",
+                "id": "2001-03-31",
+                "name": "2001-03-31"
+              },
+              {
+                "start": "2005-03-31T00:00:00",
+                "end": "2005-03-31T23:59:59",
+                "id": "2005-03-31",
+                "name": "2005-03-31"
+              },
+              {
+                "start": "2015-12-31T00:00:00",
+                "end": "2015-12-31T23:59:59",
+                "id": "2015-12-31",
+                "name": "2015-12-31"
+              },
+              {
+                "start": "2003-03-31T00:00:00",
+                "end": "2003-03-31T23:59:59",
+                "id": "2003-03-31",
+                "name": "2003-03-31"
+              },
+              {
+                "start": "2017-09-30T00:00:00",
+                "end": "2017-09-30T23:59:59",
+                "id": "2017-09-30",
+                "name": "2017-09-30"
+              },
+              {
+                "start": "2021-09-30T00:00:00",
+                "end": "2021-09-30T23:59:59",
+                "id": "2021-09-30",
+                "name": "2021-09-30"
+              },
+              {
+                "start": "2009-06-30T00:00:00",
+                "end": "2009-06-30T23:59:59",
+                "id": "2009-06-30",
+                "name": "2009-06-30"
+              },
+              {
+                "start": "2013-06-30T00:00:00",
+                "end": "2013-06-30T23:59:59",
+                "id": "2013-06-30",
+                "name": "2013-06-30"
+              },
+              {
+                "start": "2004-12-31T00:00:00",
+                "end": "2004-12-31T23:59:59",
+                "id": "2004-12-31",
+                "name": "2004-12-31"
+              },
+              {
+                "start": "2002-12-31T00:00:00",
+                "end": "2002-12-31T23:59:59",
+                "id": "2002-12-31",
+                "name": "2002-12-31"
+              },
+              {
+                "start": "2017-06-30T00:00:00",
+                "end": "2017-06-30T23:59:59",
+                "id": "2017-06-30",
+                "name": "2017-06-30"
+              },
+              {
+                "start": "2007-09-30T00:00:00",
+                "end": "2007-09-30T23:59:59",
+                "id": "2007-09-30",
+                "name": "2007-09-30"
+              }
+            ]
+          }
+        ]
+      },
+      "attributes": {
+        "dataset": [],
+        "series": [
+          {
+            "id": "DECIMALS",
+            "name": "Desimaler",
+            "description": "Antall sifre til høyre for desimalskilletegnet.",
+            "relationship": {
+              "dimensions": [
+                "UNIT_MEASURE",
+                "QUARTER",
+                "FREQ"
+              ]
+            },
+            "role": null,
+            "values": [
+              {
+                "id": "0",
+                "name": "0"
+              }
+            ]
+          },
+          {
+            "id": "UNIT_MULT",
+            "name": "Multiplikator",
+            "description": "Eksponent i tiende potens slik at en multiplikasjon av observasjonsverdien med 10^UNIT_MULT gir verdien av en enhet.",
+            "relationship": {
+              "dimensions": [
+                "UNIT_MEASURE",
+                "QUARTER",
+                "FREQ"
+              ]
+            },
+            "role": null,
+            "values": [
+              {
+                "id": "6",
+                "name": "6"
+              },
+              {
+                "id": "9",
+                "name": "9"
+              }
+            ]
+          }
+        ],
+        "observation": []
+      }
+    }
+  },
+  "_metadata": {
+    "source": "Norges Bank",
+    "title": "Government Debt",
+    "fetched_at": "2025-08-12T23:19:06.449358",
+    "url": "https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01"
+  }
+}

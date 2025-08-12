@@ -1,0 +1,275 @@
+{
+  "cache_created_at": "2025-08-12T23:19:06.475452",
+  "total_datasets": 67,
+  "datasets": {
+    "norges-bank\\exchange-rates.json": {
+      "size_bytes": 46523,
+      "modified_at": "2025-08-12T23:19:05.374972"
+    },
+    "norges-bank\\government-debt.json": {
+      "size_bytes": 106992,
+      "modified_at": "2025-08-12T23:19:06.473029"
+    },
+    "norges-bank\\interest-rate.json": {
+      "size_bytes": 118089,
+      "modified_at": "2025-08-12T23:19:05.922262"
+    },
+    "ssb\\bankruptcies-total.json": {
+      "size_bytes": 42569,
+      "modified_at": "2025-08-12T23:08:43.229060"
+    },
+    "ssb\\bankruptcies.json": {
+      "size_bytes": 49506,
+      "modified_at": "2025-08-12T23:16:16.057456"
+    },
+    "ssb\\basic-salary.json": {
+      "size_bytes": 37349,
+      "modified_at": "2025-08-12T23:06:29.744642"
+    },
+    "ssb\\births-deaths.json": {
+      "size_bytes": 1038291,
+      "modified_at": "2025-08-12T23:06:24.062595"
+    },
+    "ssb\\business-confidence.json": {
+      "size_bytes": 53454,
+      "modified_at": "2025-08-12T23:16:22.971603"
+    },
+    "ssb\\cohabiting-arrangements.json": {
+      "size_bytes": 92467,
+      "modified_at": "2025-08-12T23:08:17.089667"
+    },
+    "ssb\\construction-cost-multi.json": {
+      "size_bytes": 326324,
+      "modified_at": "2025-08-12T23:07:49.337692"
+    },
+    "ssb\\construction-cost-wood.json": {
+      "size_bytes": 410860,
+      "modified_at": "2025-08-12T23:07:47.553763"
+    },
+    "ssb\\construction-costs.json": {
+      "size_bytes": 118923,
+      "modified_at": "2025-08-12T23:16:17.150826"
+    },
+    "ssb\\construction-production.json": {
+      "size_bytes": 107424,
+      "modified_at": "2025-08-12T23:16:32.016019"
+    },
+    "ssb\\consumer-confidence.json": {
+      "size_bytes": 100188,
+      "modified_at": "2025-08-12T23:16:23.531191"
+    },
+    "ssb\\cpi-ate.json": {
+      "size_bytes": 582900,
+      "modified_at": "2025-08-12T23:06:25.945285"
+    },
+    "ssb\\cpi-coicop.json": {
+      "size_bytes": 376606,
+      "modified_at": "2025-08-12T23:08:00.676029"
+    },
+    "ssb\\cpi-delivery.json": {
+      "size_bytes": 106574,
+      "modified_at": "2025-08-12T23:08:08.492856"
+    },
+    "ssb\\cpi-items.json": {
+      "size_bytes": 1718536,
+      "modified_at": "2025-08-12T23:08:07.068573"
+    },
+    "ssb\\cpi-subgroups.json": {
+      "size_bytes": 3419310,
+      "modified_at": "2025-08-12T23:18:10.966595"
+    },
+    "ssb\\cpi.json": {
+      "size_bytes": 58602,
+      "modified_at": "2025-08-12T23:16:11.484194"
+    },
+    "ssb\\credit-indicator.json": {
+      "size_bytes": 356995,
+      "modified_at": "2025-08-12T23:16:32.612991"
+    },
+    "ssb\\crime-rate.json": {
+      "size_bytes": 10821,
+      "modified_at": "2025-08-12T23:06:00.338887"
+    },
+    "ssb\\deaths-age.json": {
+      "size_bytes": 151824,
+      "modified_at": "2025-08-12T23:08:38.968765"
+    },
+    "ssb\\economic-forecasts.json": {
+      "size_bytes": 34280,
+      "modified_at": "2025-08-12T23:06:09.183083"
+    },
+    "ssb\\education-level.json": {
+      "size_bytes": 34231,
+      "modified_at": "2025-08-12T23:06:00.884578"
+    },
+    "ssb\\energy-consumption.json": {
+      "size_bytes": 2390929,
+      "modified_at": "2025-08-12T23:16:33.437125"
+    },
+    "ssb\\export-commodity.json": {
+      "size_bytes": 974066,
+      "modified_at": "2025-08-12T23:07:40.472430"
+    },
+    "ssb\\export-country.json": {
+      "size_bytes": 171070,
+      "modified_at": "2025-08-12T23:17:38.791770"
+    },
+    "ssb\\export-volume.json": {
+      "size_bytes": 85317,
+      "modified_at": "2025-08-12T23:16:19.256244"
+    },
+    "ssb\\gdp-growth.json": {
+      "size_bytes": 483008,
+      "modified_at": "2025-08-12T23:16:14.940216"
+    },
+    "ssb\\government-revenue.json": {
+      "size_bytes": 81748,
+      "modified_at": "2025-08-12T23:16:33.986073"
+    },
+    "ssb\\greenhouse-gas.json": {
+      "size_bytes": 514262,
+      "modified_at": "2025-08-12T23:17:06.996420"
+    },
+    "ssb\\holiday-property-sales.json": {
+      "size_bytes": 194613,
+      "modified_at": "2025-08-12T23:06:05.216195"
+    },
+    "ssb\\house-prices.json": {
+      "size_bytes": 293943,
+      "modified_at": "2025-08-12T23:16:13.100192"
+    },
+    "ssb\\household-income-size.json": {
+      "size_bytes": 2313001,
+      "modified_at": "2025-08-12T23:08:12.707000"
+    },
+    "ssb\\household-income.json": {
+      "size_bytes": 8119,
+      "modified_at": "2025-08-12T23:05:56.044413"
+    },
+    "ssb\\household-types.json": {
+      "size_bytes": 7252,
+      "modified_at": "2025-08-12T23:07:55.197140"
+    },
+    "ssb\\housing-starts.json": {
+      "size_bytes": 60248,
+      "modified_at": "2025-08-12T23:16:24.072603"
+    },
+    "ssb\\immigration-rate.json": {
+      "size_bytes": 13817,
+      "modified_at": "2025-08-12T23:05:55.501929"
+    },
+    "ssb\\import-commodity.json": {
+      "size_bytes": 622447,
+      "modified_at": "2025-08-12T23:07:45.741582"
+    },
+    "ssb\\import-country.json": {
+      "size_bytes": 132838,
+      "modified_at": "2025-08-12T23:07:33.448647"
+    },
+    "ssb\\industrial-production.json": {
+      "size_bytes": 364146,
+      "modified_at": "2025-08-12T23:16:17.739763"
+    },
+    "ssb\\international-accounts.json": {
+      "size_bytes": 145641,
+      "modified_at": "2025-08-12T23:16:34.552875"
+    },
+    "ssb\\job-vacancies.json": {
+      "size_bytes": 76691,
+      "modified_at": "2025-08-12T23:16:25.188121"
+    },
+    "ssb\\labour-cost-index.json": {
+      "size_bytes": 138029,
+      "modified_at": "2025-08-12T23:16:35.119937"
+    },
+    "ssb\\life-expectancy.json": {
+      "size_bytes": 1029422,
+      "modified_at": "2025-08-12T23:05:59.799355"
+    },
+    "ssb\\lifestyle-habits.json": {
+      "size_bytes": 148355,
+      "modified_at": "2025-08-12T23:06:14.165171"
+    },
+    "ssb\\long-term-illness.json": {
+      "size_bytes": 82980,
+      "modified_at": "2025-08-12T23:06:16.916800"
+    },
+    "ssb\\monetary-aggregates.json": {
+      "size_bytes": 45500,
+      "modified_at": "2025-08-12T23:16:24.642256"
+    },
+    "ssb\\monetary-m3.json": {
+      "size_bytes": 50976,
+      "modified_at": "2025-08-12T23:08:47.431560"
+    },
+    "ssb\\new-dwellings-price.json": {
+      "size_bytes": 29397,
+      "modified_at": "2025-08-12T23:06:10.685863"
+    },
+    "ssb\\oil-gas-investment.json": {
+      "size_bytes": 32996,
+      "modified_at": "2025-08-12T23:05:52.617593"
+    },
+    "ssb\\oil-gas-turnover.json": {
+      "size_bytes": 796680,
+      "modified_at": "2025-08-12T23:08:27.970265"
+    },
+    "ssb\\population-age.json": {
+      "size_bytes": 9369,
+      "modified_at": "2025-08-12T23:07:58.263620"
+    },
+    "ssb\\population-growth-alt.json": {
+      "size_bytes": 3750,
+      "modified_at": "2025-08-12T23:06:19.099304"
+    },
+    "ssb\\population-growth.json": {
+      "size_bytes": 11796,
+      "modified_at": "2025-08-12T23:16:16.601336"
+    },
+    "ssb\\ppi.json": {
+      "size_bytes": 310797,
+      "modified_at": "2025-08-12T23:16:13.719305"
+    },
+    "ssb\\producer-price-industry.json": {
+      "size_bytes": 871519,
+      "modified_at": "2025-08-12T23:18:42.822328"
+    },
+    "ssb\\rd-expenditure.json": {
+      "size_bytes": 18254,
+      "modified_at": "2025-08-12T23:05:50.488066"
+    },
+    "ssb\\retail-sales.json": {
+      "size_bytes": 2588279,
+      "modified_at": "2025-08-12T23:16:18.689492"
+    },
+    "ssb\\salmon-export-volume.json": {
+      "size_bytes": 2235,
+      "modified_at": "2025-08-12T23:06:27.787113"
+    },
+    "ssb\\salmon-export.json": {
+      "size_bytes": 159198,
+      "modified_at": "2025-08-12T23:05:52.069148"
+    },
+    "ssb\\trade-balance.json": {
+      "size_bytes": 251651,
+      "modified_at": "2025-08-12T23:16:15.506785"
+    },
+    "ssb\\trade-volume-price.json": {
+      "size_bytes": 252129,
+      "modified_at": "2025-08-12T23:08:31.303181"
+    },
+    "ssb\\unemployment.json": {
+      "size_bytes": 942295,
+      "modified_at": "2025-08-12T23:16:12.490053"
+    },
+    "ssb\\utility-floor-space.json": {
+      "size_bytes": 148222,
+      "modified_at": "2025-08-12T23:08:18.889627"
+    },
+    "ssb\\wage.json": {
+      "size_bytes": 37299,
+      "modified_at": "2025-08-12T23:16:14.290521"
+    }
+  },
+  "last_update": "2025-08-12T23:19:06.475452"
+}

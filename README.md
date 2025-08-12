@@ -1,4 +1,4 @@
-# Riksklokken
+# Riksdata
 
 A modern, interactive dashboard displaying Norwegian economic indicators with political party period shading. Built with cutting-edge web technologies and inspired by industry standards like Tableau and Google Data Studio.
 

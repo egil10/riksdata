@@ -1109,9 +1109,9 @@ window.NorwayDashboard = {
     parseSSBData
 };
 
-// Diagnostic script for Riksklokken data sources
+// Diagnostic script for Riksdata data sources
 async function runDiagnostics() {
-    console.log('🔍 Starting Riksklokken Diagnostics...\n');
+    console.log('🔍 Starting Riksdata Diagnostics...\n');
 
     const dataSources = [
         { name: 'CPI', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en' },
@@ -1327,9 +1327,9 @@ function initializeFilters() {
 
             // Check source filter
             if (sourceFilter !== 'all') {
-                if (sourceFilter === 'ssb' && !sourceLink.includes('ssb')) {
+                if (sourceFilter === 'ssb' && !sourceLink.includes('SSB')) {
                     matchesSource = false;
-                } else if (sourceFilter === 'norges-bank' && !sourceLink.includes('norges-bank')) {
+                } else if (sourceFilter === 'norges-bank' && !sourceLink.includes('Norges Bank')) {
                     matchesSource = false;
                 }
             }

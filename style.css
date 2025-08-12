@@ -575,6 +575,11 @@ footer {
 .party-name.sv { color: #B5317C; }
 .party-name.mdg { color: #6A9325; }
 
+/* Ensure party names in political periods don't have underlines */
+.political-period .party-name {
+    text-decoration: none;
+}
+
 .other-parties {
     color: #6B7280;
     font-size: 0.7rem;
@@ -844,4 +849,50 @@ footer {
 
 .error {
     color: var(--ap-red);
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #ef4444, #3b82f6, #eab308);
+    z-index: 9999;
+    transition: width 0.3s ease;
+}
+
+/* Back to top button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--bg-color);
+    border: 2px solid var(--border-color);
+    color: var(--text-color);
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-to-top-btn:hover {
+    background: var(--border-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.back-to-top-btn:hover svg {
+    transform: translateY(-1px);
 }

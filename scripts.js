@@ -1395,6 +1395,9 @@ function initializeFilters() {
 
 // Initialize filters when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure page starts at the top on refresh
+    window.scrollTo(0, 0);
+    
     // Initialize filters after a short delay to ensure all elements are loaded
     setTimeout(initializeFilters, 100);
     
@@ -1403,6 +1406,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize sort toggle functionality
     initializeSortToggle();
+    
+    // Initialize back to top button
+    initializeBackToTop();
     
     // Sort charts alphabetically by title
     sortChartsAlphabetically();
@@ -1476,6 +1482,58 @@ function initializeSortToggle() {
             isAscending = !isAscending;
             sortToggle.textContent = isAscending ? 'A-Z' : 'Z-A';
             sortToggle.classList.toggle('active');
+        });
+    }
+}
+
+// Back to top functionality
+function initializeBackToTop() {
+    // Create back to top button
+    const backToTopBtn = document.createElement('button');
+    backToTopBtn.id = 'backToTop';
+    backToTopBtn.className = 'back-to-top-btn';
+    backToTopBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    `;
+    backToTopBtn.title = 'Back to top';
+    
+    // Add button to body
+    document.body.appendChild(backToTopBtn);
+    
+    // Show/hide button based on scroll position
+    window.addEventListener('scroll', function() {
+        if (window.pageYOffset > 300) {
+            backToTopBtn.style.display = 'flex';
+        } else {
+            backToTopBtn.style.display = 'none';
+        }
+    });
+    
+    // Scroll to top when clicked
+    backToTopBtn.addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+    
+    // Initialize progress bar
+    initializeProgressBar();
+}
+
+// Progress bar functionality
+function initializeProgressBar() {
+    const progressBar = document.getElementById('progress-bar');
+    
+    if (progressBar) {
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.offsetHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            
+            progressBar.style.width = scrollPercent + '%';
         });
     }
 }

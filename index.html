@@ -9,6 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
 </head>
 <body class="lang-en">
+    <!-- Progress Bar -->
+    <div id="progress-bar" class="progress-bar"></div>
+    
     <!-- Loading Screen -->
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
@@ -1127,7 +1130,7 @@
                             <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                             <span class="pm-name">Bondevik I</span>
                             <span class="other-parties">
-                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>, 
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                                 <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                             </span>
                             <span class="period-dates">1997-2000</span>
@@ -1144,7 +1147,7 @@
                             <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                             <span class="pm-name">Bondevik II</span>
                             <span class="other-parties">
-                                <span class="party-square h"></span><a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>, 
+                                <span class="party-square h"></span><a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                                 <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                             </span>
                             <span class="period-dates">2001-2005</span>
@@ -1154,7 +1157,7 @@
                             <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
                             <span class="pm-name">Stoltenberg II</span>
                             <span class="other-parties">
-                                <span class="party-square sv"></span><a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>, 
+                                <span class="party-square sv"></span><a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
                                 <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                             </span>
                             <span class="period-dates">2005-2013</span>
@@ -1164,8 +1167,8 @@
                             <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                             <span class="pm-name">Solberg</span>
                             <span class="other-parties">
-                                <span class="party-square frp"></span><a href="https://www.frp.no" target="_blank" class="party-name frp">FrP</a>, 
-                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>, 
+                                <span class="party-square frp"></span><a href="https://www.frp.no" target="_blank" class="party-name frp">FrP</a>
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                                 <span class="party-square krf"></span><a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                             </span>
                             <span class="period-dates">2013-2021</span>
@@ -1184,40 +1187,6 @@
 
             </div>
             <div class="footer-right">
-                <div class="party-colors">
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #B5317C;"></div>
-                        <span class="party-name">SV</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #E11926;"></div>
-                        <span class="party-name">Ap</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #6A9325;"></div>
-                        <span class="party-name">MDG</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #00843D;"></div>
-                        <span class="party-name">Sp</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #FDED34;"></div>
-                        <span class="party-name">KrF</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #006666;"></div>
-                        <span class="party-name">V</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #87add7;"></div>
-                        <span class="party-name">H</span>
-                    </div>
-                    <div class="party-color-item">
-                        <div class="party-color" style="background-color: #004F80;"></div>
-                        <span class="party-name">FrP</span>
-                    </div>
-                </div>
                 <div class="social-links">
                     <a href="https://github.com/egil10/riksdata" target="_blank" class="social-link">
                         <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">

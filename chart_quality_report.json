@@ -1,0 +1,37 @@
+{
+  "repair_timestamp": "C:\\Users\\ofurn\\Dokumenter\\Github\\riksdata",
+  "removed_charts": [
+    "bankruptcies-municipalities.json",
+    "education-level-counties.json",
+    "education-level-municipalities-percent.json",
+    "education-level-municipalities.json",
+    "household-income-counties.json",
+    "household-income-districts.json",
+    "household-income-municipalities.json",
+    "households-by-type-districts.json",
+    "households-by-type-municipalities.json",
+    "living-arrangements-districts.json",
+    "new-detached-house-prices-cities.json",
+    "new-detached-house-prices-regions.json",
+    "population-by-age-counties.json",
+    "population-by-age-municipalities.json",
+    "population-by-gender-age-districts.json",
+    "population-by-gender-age-municipalities-detailed.json",
+    "population-by-gender-age-municipalities.json",
+    "population-changes-counties.json",
+    "population-changes-municipalities.json",
+    "population-development-counties.json",
+    "population-development-municipalities.json",
+    "population-municipalities-timeline.json",
+    "tax-returns-counties.json",
+    "tax-returns-districts.json",
+    "tax-returns-municipalities.json"
+  ],
+  "fixed_charts": [
+    "consumer-confidence -> household-consumption.json"
+  ],
+  "summary": {
+    "total_removed": 25,
+    "total_fixed": 1
+  }
+}

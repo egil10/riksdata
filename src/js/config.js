@@ -48,7 +48,7 @@ export const POLITICAL_PERIODS = [
     }
 ];
 
-// Chart configuration with compressed x-axis format
+// Chart configuration with compressed x-axis format and mobile optimization
 export const CHART_CONFIG = {
     responsive: true,
     maintainAspectRatio: false,
@@ -59,7 +59,14 @@ export const CHART_CONFIG = {
     },
     plugins: {
         tooltip: {
-            enabled: false // Disable default tooltips
+            enabled: false, // Disable default tooltips
+            callbacks: {
+                label: function(context) {
+                    let label = context.dataset.label || '';
+                    // Wrap long labels for mobile
+                    return label.length > 40 ? label.match(/.{1,40}/g) : label;
+                }
+            }
         },
         legend: {
             display: false
@@ -76,14 +83,14 @@ export const CHART_CONFIG = {
                 }
             },
             ticks: {
-                maxTicksLimit: 8,
+                maxTicksLimit: window.innerWidth < 768 ? 6 : 8, // Fewer ticks on mobile
                 color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim() || '#6B7280',
                 font: {
-                    size: 11,
+                    size: window.innerWidth < 768 ? 8 : 11, // Smaller font on mobile
                     family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                     weight: '600'
                 },
-                padding: 10,
+                padding: window.innerWidth < 768 ? 5 : 10, // Less padding on mobile
                 callback: function(value, index, values) {
                     const date = new Date(value);
                     const year = date.getFullYear();
@@ -113,11 +120,11 @@ export const CHART_CONFIG = {
             ticks: {
                 color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim() || '#6B7280',
                 font: {
-                    size: 11,
+                    size: window.innerWidth < 768 ? 8 : 11, // Smaller font on mobile
                     family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                     weight: '600'
                 },
-                padding: 10,
+                padding: window.innerWidth < 768 ? 5 : 10, // Less padding on mobile
                 callback: function(value) {
                     return value.toLocaleString();
                 }

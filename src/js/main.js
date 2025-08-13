@@ -364,6 +364,12 @@ export function initializeUI() {
         filterToggle.addEventListener('click', toggleFilterPanel);
     }
 
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    if (mobileMenuToggle) {
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    }
+
     // Search functionality
     const searchInput = document.getElementById('chartSearch');
     if (searchInput) {
@@ -399,6 +405,9 @@ export function initializeUI() {
         }
     });
     
+    // Handle window resize for mobile optimization
+    window.addEventListener('resize', debounce(handleWindowResize, 250));
+    
     // Debug panel toggle (Ctrl+Shift+D)
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && e.key === 'D') {
@@ -428,32 +437,66 @@ function toggleLanguage() {
 }
 
 /**
- * Toggle theme between light and dark
+ * Toggle theme between light and dark (optimized for speed)
  */
 function toggleTheme() {
     currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     
-    // Apply dark mode class to body
-    if (currentTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-    } else {
-        document.body.classList.remove('dark-mode');
-    }
+    // Apply dark mode class to body (faster transition)
+    document.body.classList.toggle('dark-mode', currentTheme === 'dark');
     
-    // Swap the icon
+    // Swap the icon (pre-optimized for speed)
     const themeIcon = document.querySelector('#themeToggle .theme-icon');
-    if (!themeIcon) return;
-
-    if (currentTheme === 'dark') {
-        // MOON icon for dark mode
-        themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
-    } else {
-        // SUN icon for light mode
-        themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
+    if (themeIcon) {
+        if (currentTheme === 'dark') {
+            // MOON icon for dark mode
+            themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
+        } else {
+            // SUN icon for light mode
+            themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
+        }
     }
     
     // Store preference
     localStorage.setItem('theme', currentTheme);
+    
+    // Update chart colors for mobile optimization
+    updateChartColorsForTheme();
+}
+
+/**
+ * Update chart colors for current theme (mobile optimized)
+ */
+function updateChartColorsForTheme() {
+    const isDark = currentTheme === 'dark';
+    const isMobile = window.innerWidth < 768;
+    
+    // Update chart instances with new colors
+    if (window.chartInstances) {
+        Object.values(window.chartInstances).forEach(chart => {
+            if (chart && chart.options) {
+                // Update axis colors
+                if (chart.options.scales?.x?.ticks) {
+                    chart.options.scales.x.ticks.color = isDark ? '#9CA3AF' : '#6B7280';
+                    chart.options.scales.x.ticks.font.size = isMobile ? 8 : 12;
+                }
+                if (chart.options.scales?.y?.ticks) {
+                    chart.options.scales.y.ticks.color = isDark ? '#9CA3AF' : '#6B7280';
+                    chart.options.scales.y.ticks.font.size = isMobile ? 8 : 12;
+                }
+                
+                // Update grid colors
+                if (chart.options.scales?.x?.grid) {
+                    chart.options.scales.x.grid.color = isDark ? 'rgba(51, 51, 51, 0.6)' : 'rgba(229, 231, 235, 0.6)';
+                }
+                if (chart.options.scales?.y?.grid) {
+                    chart.options.scales.y.grid.color = isDark ? 'rgba(51, 51, 51, 0.6)' : 'rgba(229, 231, 235, 0.6)';
+                }
+                
+                chart.update('none'); // Update without animation for speed
+            }
+        });
+    }
 }
 
 /**
@@ -464,6 +507,34 @@ function toggleFilterPanel() {
     if (filterPanel) {
         isFilterPanelVisible = !isFilterPanelVisible;
         filterPanel.style.display = isFilterPanelVisible ? 'block' : 'none';
+    }
+}
+
+/**
+ * Toggle mobile menu visibility
+ */
+function toggleMobileMenu() {
+    const headerControls = document.querySelector('.header-controls');
+    if (headerControls) {
+        headerControls.classList.toggle('mobile-open');
+    }
+}
+
+/**
+ * Handle window resize for mobile optimization
+ */
+function handleWindowResize() {
+    const isMobile = window.innerWidth < 768;
+    
+    // Update chart colors and fonts for new screen size
+    updateChartColorsForTheme();
+    
+    // Close mobile menu if switching to desktop
+    if (!isMobile) {
+        const headerControls = document.querySelector('.header-controls');
+        if (headerControls) {
+            headerControls.classList.remove('mobile-open');
+        }
     }
 }
 

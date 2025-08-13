@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <title>Riksdata</title>
     <link rel="stylesheet" href="./src/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -26,7 +27,15 @@
 
     <header>
         <div class="header-content">
-                            <h1 onclick="window.location.reload()">Riksdata</h1>
+            <h1 onclick="window.location.reload()">Riksdata</h1>
+            
+            <!-- Mobile hamburger menu -->
+            <button id="mobileMenuToggle" class="mobile-menu-toggle" title="Menu">
+                <svg class="hamburger-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3 6h18v2H3V6zm0 5h18v2H3v-2zm0 5h18v2H3v-2z"/>
+                </svg>
+            </button>
+            
             <div class="header-controls">
                 <button id="langToggle" class="control-btn">NO</button>
                 <button id="themeToggle" class="control-btn">

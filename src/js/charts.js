@@ -18,6 +18,51 @@ function rel(p) {
 }
 
 /**
+ * Lazy load charts when they become visible (mobile optimization)
+ * @param {string} chartId - Chart canvas ID
+ * @param {Function} createChartFn - Function to create the chart
+ */
+export function initChartWhenVisible(chartId, createChartFn) {
+    const el = document.getElementById(chartId);
+    if (!el) return;
+    
+    // Check if IntersectionObserver is supported
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    createChartFn();
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, {
+            rootMargin: '50px' // Start loading 50px before chart becomes visible
+        });
+        observer.observe(el);
+    } else {
+        // Fallback for older browsers - load immediately
+        createChartFn();
+    }
+}
+
+/**
+ * Optimize data for mobile devices
+ * @param {Array} data - Chart data
+ * @param {boolean} isMobile - Whether we're on mobile
+ * @returns {Array} Optimized data
+ */
+function optimizeDataForMobile(data, isMobile = false) {
+    if (!isMobile || !data || data.length <= 12) {
+        return data;
+    }
+    
+    // On mobile, limit to recent 12 months for better performance
+    const recentData = data.slice(-12);
+    console.log(`Mobile optimization: reduced ${data.length} data points to ${recentData.length}`);
+    return recentData;
+}
+
+/**
  * Load and render chart data from cached files
  * @param {string} canvasId - Canvas element ID
  * @param {string} apiUrl - Original API URL
@@ -171,6 +216,10 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         // Aggregate by month for bar charts
         const finalData = chartType === 'bar' ? aggregateDataByMonth(finalFiltered) : finalFiltered;
 
+        // Mobile optimization - limit data points on mobile for better performance
+        const isMobile = window.innerWidth < 768;
+        const optimizedData = optimizeDataForMobile(finalData, isMobile);
+
         // Optional subtitle from SSB content label (e.g., "(2015=100)")
         if (ssbSelectedContentLabel && ssbSelectedContentLabel.includes('(')) {
             const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
@@ -180,7 +229,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         }
 
         // Render the chart
-        renderChart(canvas, finalData, chartTitle, chartType);
+        renderChart(canvas, optimizedData, chartTitle, chartType);
         
         return true; // Indicate success
 

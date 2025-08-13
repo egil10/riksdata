@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Theme Toggle Test</title>
+    <link rel="stylesheet" href="./src/css/main.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .test-button {
+            background: var(--button-bg);
+            color: var(--text-color);
+            border: 1px solid var(--border-color);
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 10px;
+            transition: background-color 0.2s ease;
+        }
+        
+        .test-button:hover {
+            background: var(--button-hover);
+        }
+        
+        .test-chart {
+            width: 100%;
+            height: 300px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Theme Toggle Test</h1>
+        <p>This page tests the optimized light/dark mode toggle functionality.</p>
+        
+        <button id="themeToggle" class="test-button">
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+                <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+            </svg>
+            Toggle Theme
+        </button>
+        
+        <div class="test-chart">
+            <canvas id="test-chart"></canvas>
+        </div>
+        
+        <div>
+            <h3>Test Results:</h3>
+            <ul>
+                <li>Theme toggle should be instant (under 100ms)</li>
+                <li>All colors should update smoothly</li>
+                <li>Chart colors should adapt to theme</li>
+                <li>Theme preference should be saved</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module">
+        // Import theme functionality from main.js
+        import { initializeUI } from './src/js/main.js';
+        
+        // Initialize UI
+        initializeUI();
+        
+        // Create a test chart
+        const ctx = document.getElementById('test-chart').getContext('2d');
+        const testChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Test Data',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderColor: getComputedStyle(document.documentElement).getPropertyValue('--chart-line-color').trim(),
+                    backgroundColor: 'transparent',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim()
+                        },
+                        grid: {
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim()
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim()
+                        },
+                        grid: {
+                            color: getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim()
+                        }
+                    }
+                }
+            }
+        });
+        
+        // Store chart instance for theme updates
+        if (!window.chartInstances) {
+            window.chartInstances = {};
+        }
+        window.chartInstances['test-chart'] = testChart;
+        
+        console.log('Theme test page loaded successfully!');
+    </script>
+</body>
+</html>

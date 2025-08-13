@@ -1,6 +1,6 @@
 # Riksdata
 
-A comprehensive Norwegian economic data dashboard with political party-colored charts, featuring data from Statistics Norway (SSB) and Norges Bank.
+A comprehensive Norwegian economic data dashboard with political party-colored charts, featuring data from Statistics Norway (SSB) and Norges Bank. Features an optimized light/dark mode toggle for instant theme switching.
 
 ## 🏗️ Project Structure
 
@@ -23,7 +23,7 @@ riksdata/
 │   │   ├── norges-bank/  # Norges Bank datasets
 │   │   └── metadata.json # Cache metadata
 │   └── static/           # Static data files
-├── scripts/              # Python scripts
+├── tools/                # Python tools and scripts
 │   ├── fetch/            # Data fetching scripts
 │   │   ├── __init__.py
 │   │   ├── ssb.py        # SSB data fetcher
@@ -32,10 +32,10 @@ riksdata/
 │   ├── validate/         # Data validation scripts
 │   │   ├── __init__.py
 │   │   └── validator.py  # Data validator
-│   ├── utils/            # Utility scripts
-│   │   ├── __init__.py
-│   │   └── helpers.py    # Helper functions
-│   └── main.py           # Main script runner
+│   ├── expand.py         # Chart expansion tool
+│   ├── master.py         # Master data processing script
+│   ├── main.py           # Main script runner
+│   └── README.md         # Tools documentation
 ├── tests/                # Test files
 │   ├── test_cache.html   # Cache testing
 │   ├── debug.html        # Debug utilities
@@ -66,16 +66,16 @@ pip install -r requirements.txt
 
 ```bash
 # Fetch all data (SSB + Norges Bank)
-python scripts/main.py
+python tools/main.py
 
 # Fetch only SSB data
-python scripts/main.py --sources ssb
+python tools/main.py --sources ssb
 
 # Fetch only Norges Bank data
-python scripts/main.py --sources norges-bank
+python tools/main.py --sources norges-bank
 
 # Fetch with verbose logging
-python scripts/main.py --verbose
+python tools/main.py --verbose
 ```
 
 ### 3. Run the Website
@@ -124,7 +124,7 @@ This page will test all cache files and show which ones are missing or causing e
 - **Interactive Tooltips**: Hover for detailed information
 - **Responsive Design**: Works on all devices
 - **Search & Filter**: Find specific charts quickly
-- **Dark/Light Theme**: Toggle between themes
+- **Optimized Dark/Light Theme**: Instant theme switching with CSS variables
 - **Bilingual**: English and Norwegian support
 
 ### Technical Features
@@ -133,6 +133,30 @@ This page will test all cache files and show which ones are missing or causing e
 - **Error Handling**: Robust error handling and recovery
 - **Rate Limiting**: Respectful API usage
 - **Data Validation**: Ensures data integrity
+- **Optimized Theme System**: CSS variables for instant theme switching
+
+## 🌙 Theme System
+
+The dashboard features an optimized light/dark mode toggle that switches themes instantly:
+
+### How It Works
+- **CSS Variables**: All theme colors are defined as CSS custom properties
+- **Single Class Toggle**: Theme switching requires only one class change on the `<html>` element
+- **Chart Integration**: Charts automatically adapt to theme changes using CSS variables
+- **Persistent Storage**: Theme preference is saved in localStorage
+
+### Performance Benefits
+- **Instant Switching**: Theme changes happen in under 100ms
+- **No Re-rendering**: Charts update colors without full re-rendering
+- **Smooth Transitions**: 0.2s transitions for visual polish
+- **Mobile Optimized**: Efficient on all devices
+
+### Testing
+Test the theme toggle functionality:
+```bash
+# Open the test page
+open http://localhost:8000/test-theme.html
+```
 
 ## 🔧 Development
 

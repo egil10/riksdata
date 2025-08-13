@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
+    /* Light theme variables */
     --bg-color: #F9FAFB;
     --text-color: #1F2937;
     --card-bg: #FFFFFF;
@@ -14,16 +15,28 @@
     --h-blue: #87add7;
     --axis-color: #6B7280;
     --grid-color: rgba(229, 231, 235, 0.6);
+    --chart-line-color: #1a73e8;
+    --button-bg: #f0f0f0;
+    --button-hover: #e0e0e0;
+    --header-bg: rgba(255, 255, 255, 0.95);
+    --progress-bg: rgba(26, 115, 232, 0.1);
+    --progress-fill: #1a73e8;
 }
 
-/* Dark mode variables */
-.dark-mode {
+/* Dark theme variables - optimized for fast switching */
+html.dark-mode {
     --bg-color: #000000;
     --text-color: #FFFFFF;
     --card-bg: #111111;
     --border-color: #333333;
     --axis-color: #9CA3AF;
     --grid-color: rgba(51, 51, 51, 0.6);
+    --chart-line-color: #4a90e2;
+    --button-bg: #333333;
+    --button-hover: #444444;
+    --header-bg: rgba(0, 0, 0, 0.95);
+    --progress-bg: rgba(74, 144, 226, 0.1);
+    --progress-fill: #4a90e2;
 }
 
 * {
@@ -41,7 +54,7 @@ body {
     overflow-y: hidden;
     font-size: 16px;
     line-height: 1.5;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 body.loaded {
@@ -67,15 +80,15 @@ body.loaded {
     background: #9CA3AF;
 }
 
-.dark-mode ::-webkit-scrollbar-track {
+html.dark-mode ::-webkit-scrollbar-track {
     background: var(--bg-color);
 }
 
-.dark-mode ::-webkit-scrollbar-thumb {
+html.dark-mode ::-webkit-scrollbar-thumb {
     background: var(--border-color);
 }
 
-.dark-mode ::-webkit-scrollbar-thumb:hover {
+html.dark-mode ::-webkit-scrollbar-thumb:hover {
     background: #6B7280;
 }
 

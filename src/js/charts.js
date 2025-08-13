@@ -692,11 +692,45 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         };
     }
 
+    // Get current theme colors from CSS variables
+    const axisColor = getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim();
+    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim();
+    
+    // Create chart options with theme-aware colors
+    const chartOptions = {
+        ...CHART_CONFIG,
+        scales: {
+            ...CHART_CONFIG.scales,
+            x: {
+                ...CHART_CONFIG.scales?.x,
+                ticks: {
+                    ...CHART_CONFIG.scales?.x?.ticks,
+                    color: axisColor
+                },
+                grid: {
+                    ...CHART_CONFIG.scales?.x?.grid,
+                    color: gridColor
+                }
+            },
+            y: {
+                ...CHART_CONFIG.scales?.y,
+                ticks: {
+                    ...CHART_CONFIG.scales?.y?.ticks,
+                    color: axisColor
+                },
+                grid: {
+                    ...CHART_CONFIG.scales?.y?.grid,
+                    color: gridColor
+                }
+            }
+        }
+    };
+    
     // Create the chart
     canvas.chart = new Chart(canvas, {
         type: chartType,
         data: chartData,
-        options: CHART_CONFIG
+        options: chartOptions
     });
 
     // Add static tooltip functionality

@@ -346,6 +346,9 @@ function hideLoadingScreen() {
 export function initializeUI() {
     console.log('Initializing UI...');
     
+    // Initialize theme from localStorage
+    initializeTheme();
+    
     // Language toggle
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
@@ -437,63 +440,84 @@ function toggleLanguage() {
 }
 
 /**
- * Toggle theme between light and dark (optimized for speed)
+ * Initialize theme from localStorage
  */
-function toggleTheme() {
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    // Apply dark mode class to body (faster transition)
-    document.body.classList.toggle('dark-mode', currentTheme === 'dark');
-    
-    // Swap the icon (pre-optimized for speed)
-    const themeIcon = document.querySelector('#themeToggle .theme-icon');
-    if (themeIcon) {
-        if (currentTheme === 'dark') {
-            // MOON icon for dark mode
-            themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
-        } else {
-            // SUN icon for light mode
-            themeIcon.innerHTML = '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
+function initializeTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        currentTheme = savedTheme;
+        document.documentElement.classList.toggle('dark-mode', currentTheme === 'dark');
+        
+        // Update icon to match saved theme
+        const themeIcon = document.querySelector('#themeToggle .theme-icon');
+        if (themeIcon) {
+            themeIcon.innerHTML = currentTheme === 'dark' 
+                ? '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>'
+                : '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
         }
     }
+}
+
+/**
+ * Toggle theme between light and dark (highly optimized for speed)
+ */
+function toggleTheme() {
+    // Toggle theme state
+    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
     
-    // Store preference
+    // Apply dark mode class to html element (fastest possible transition)
+    document.documentElement.classList.toggle('dark-mode', currentTheme === 'dark');
+    
+    // Update icon efficiently (pre-optimized SVG paths)
+    const themeIcon = document.querySelector('#themeToggle .theme-icon');
+    if (themeIcon) {
+        themeIcon.innerHTML = currentTheme === 'dark' 
+            ? '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>'
+            : '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
+    }
+    
+    // Store preference efficiently
     localStorage.setItem('theme', currentTheme);
     
-    // Update chart colors for mobile optimization
+    // Update chart colors without re-rendering (CSS variables handle most changes)
     updateChartColorsForTheme();
 }
 
 /**
- * Update chart colors for current theme (mobile optimized)
+ * Update chart colors for current theme (highly optimized)
  */
 function updateChartColorsForTheme() {
     const isDark = currentTheme === 'dark';
     const isMobile = window.innerWidth < 768;
     
-    // Update chart instances with new colors
+    // Get CSS variables for consistent theming
+    const axisColor = getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim();
+    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim();
+    
+    // Update chart instances efficiently
     if (window.chartInstances) {
         Object.values(window.chartInstances).forEach(chart => {
             if (chart && chart.options) {
-                // Update axis colors
+                // Update axis colors using CSS variables
                 if (chart.options.scales?.x?.ticks) {
-                    chart.options.scales.x.ticks.color = isDark ? '#9CA3AF' : '#6B7280';
+                    chart.options.scales.x.ticks.color = axisColor;
                     chart.options.scales.x.ticks.font.size = isMobile ? 8 : 12;
                 }
                 if (chart.options.scales?.y?.ticks) {
-                    chart.options.scales.y.ticks.color = isDark ? '#9CA3AF' : '#6B7280';
+                    chart.options.scales.y.ticks.color = axisColor;
                     chart.options.scales.y.ticks.font.size = isMobile ? 8 : 12;
                 }
                 
-                // Update grid colors
+                // Update grid colors using CSS variables
                 if (chart.options.scales?.x?.grid) {
-                    chart.options.scales.x.grid.color = isDark ? 'rgba(51, 51, 51, 0.6)' : 'rgba(229, 231, 235, 0.6)';
+                    chart.options.scales.x.grid.color = gridColor;
                 }
                 if (chart.options.scales?.y?.grid) {
-                    chart.options.scales.y.grid.color = isDark ? 'rgba(51, 51, 51, 0.6)' : 'rgba(229, 231, 235, 0.6)';
+                    chart.options.scales.y.grid.color = gridColor;
                 }
                 
-                chart.update('none'); // Update without animation for speed
+                // Update without animation for maximum speed
+                chart.update('none');
             }
         });
     }

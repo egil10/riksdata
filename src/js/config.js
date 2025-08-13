@@ -52,6 +52,7 @@ export const POLITICAL_PERIODS = [
 export const CHART_CONFIG = {
     responsive: true,
     maintainAspectRatio: false,
+    spanGaps: true,
     animation: {
         duration: 750,
         easing: 'easeInOutQuart'

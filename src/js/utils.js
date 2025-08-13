@@ -512,3 +512,18 @@ export function debounce(func, wait) {
         timeout = setTimeout(later, wait);
     };
 }
+
+/**
+ * Hide regional-level cards (municipalities, counties, districts, regions)
+ */
+export function hideRegionalCards() {
+    try {
+        const terms = ['municipal', 'counties', 'county', 'district', 'regions', 'by county', 'by region'];
+        document.querySelectorAll('.chart-card').forEach(card => {
+            const title = (card.querySelector('h3')?.textContent || '').toLowerCase();
+            if (terms.some(t => title.includes(t))) {
+                card.style.display = 'none';
+            }
+        });
+    } catch (_) {}
+}

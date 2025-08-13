@@ -34,7 +34,7 @@ export async function initializeApp() {
             loadChartData('ppi-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Price Index'),
             loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
             loadChartData('oil-fund-chart', 'data/oil-fund.json', 'Oil Fund Value'),
-            loadChartData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
+            loadChartData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
             loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
             loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
             loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
@@ -45,7 +45,7 @@ export async function initializeApp() {
             loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', 'Industrial Production'),
             loadChartData('retail-sales-chart', 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', 'Retail Sales'),
             loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
-            loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
+            loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
             loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Confidence'),
             loadChartData('consumer-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Consumer Confidence'),
             loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en', 'Housing Starts', 'bar'),
@@ -117,7 +117,8 @@ export async function initializeApp() {
             loadChartData('new-detached-house-prices-cities-chart', 'https://data.ssb.no/api/v0/dataset/25156.json?lang=en', 'New Detached House Prices Cities'),
             loadChartData('credit-indicator-k3-chart', 'https://data.ssb.no/api/v0/dataset/62266.json?lang=en', 'Credit Indicator K3'),
             loadChartData('tax-returns-municipalities-chart', 'https://data.ssb.no/api/v0/dataset/49607.json?lang=en', 'Tax Returns Municipalities'),
-            loadChartData('bankruptcies-by-industry-chart', 'https://data.ssb.no/api/v0/dataset/62495.json?lang=en', 'Bankruptcies by Industry', 'bar'),
+            // Use line for coherence across time (avoid ultra-thin bars)
+            loadChartData('bankruptcies-by-industry-chart', 'https://data.ssb.no/api/v0/dataset/62495.json?lang=en', 'Bankruptcies by Industry'),
             loadChartData('immigrants-with-immigrant-parents-chart', 'https://data.ssb.no/api/v0/dataset/48670.json?lang=en', 'Immigrants with Immigrant Parents'),
             loadChartData('tax-returns-counties-chart', 'https://data.ssb.no/api/v0/dataset/49613.json?lang=en', 'Tax Returns Counties'),
             loadChartData('living-arrangements-districts-chart', 'https://data.ssb.no/api/v0/dataset/85450.json?lang=en', 'Living Arrangements Districts', 'bar'),
@@ -144,7 +145,7 @@ export async function initializeApp() {
             loadChartData('population-by-gender-age-municipalities-detailed-chart', 'https://data.ssb.no/api/v0/dataset/577297.json?lang=en', 'Population by Gender Age Municipalities Detailed', 'bar'),
             loadChartData('producer-price-index-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/741154.json?lang=en', 'Producer Price Index Subgroups'),
             loadChartData('education-level-municipalities-chart', 'https://data.ssb.no/api/v0/dataset/1172668.json?lang=en', 'Education Level Municipalities', 'bar'),
-            loadChartData('education-level-municipalities-percent-chart', 'https://data.ssb.no/api/v0/dataset/1172672.json?lang=en', 'Education Level Municipalities Percent', 'bar'),
+            // Removed municipal/district/county-level charts to focus on national level
             loadChartData('credit-indicator-k2-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/435959.json?lang=en', 'Credit Indicator K2 Seasonally Adjusted'),
             loadChartData('cpi-delivery-sector-recent-chart', 'https://data.ssb.no/api/v0/dataset/868304.json?lang=en', 'CPI Delivery Sector Recent'),
             loadChartData('cpi-adjusted-delivery-sector-recent-chart', 'https://data.ssb.no/api/v0/dataset/868330.json?lang=en', 'CPI Adjusted Delivery Sector Recent'),
@@ -536,4 +537,5 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initializeUI();
     initializeApp();
+    // Note: regional-level cards remain in DOM but are filtered by data selection
 });

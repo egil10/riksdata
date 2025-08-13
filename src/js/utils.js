@@ -364,37 +364,10 @@ export function showError(message, canvas = null) {
  * Show skeleton loading for all charts
  */
 export function showSkeletonLoading() {
-    const skeletonIds = [
-        'cpi-skeleton', 'unemployment-skeleton', 'house-prices-skeleton', 'ppi-skeleton',
-        'wage-skeleton', 'oil-fund-skeleton', 'exchange-skeleton', 'interest-rate-skeleton',
-        'govt-debt-skeleton', 'gdp-growth-skeleton', 'trade-balance-skeleton', 'bankruptcies-skeleton',
-        'population-growth-skeleton', 'construction-costs-skeleton',
-        'industrial-production-skeleton', 'retail-sales-skeleton', 'export-volume-skeleton', 'import-volume-skeleton',
-        'eur-exchange-skeleton', 'employment-rate-skeleton', 'business-confidence-skeleton', 'consumer-confidence-skeleton',
-        'housing-starts-skeleton', 'oil-price-skeleton',
-        'monetary-aggregates-skeleton', 'job-vacancies-skeleton', 'household-consumption-skeleton', 'producer-prices-skeleton',
-        'construction-production-skeleton', 'credit-indicator-skeleton', 'energy-consumption-skeleton', 'government-revenue-skeleton',
-        'international-accounts-skeleton',
-        'labour-cost-index-skeleton', 'rd-expenditure-skeleton', 'salmon-export-skeleton', 'oil-gas-investment-skeleton',
-        'immigration-rate-skeleton', 'household-income-skeleton', 'life-expectancy-skeleton', 'crime-rate-skeleton',
-        'education-level-skeleton', 'holiday-property-sales-skeleton', 'greenhouse-gas-skeleton', 'economic-forecasts-skeleton',
-        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton',
-        'population-growth-skeleton', 'births-deaths-skeleton', 'cpi-ate-skeleton', 'salmon-export-volume-skeleton',
-        'basic-salary-skeleton', 'export-country-skeleton', 'import-country-skeleton', 'export-commodity-skeleton',
-        'import-commodity-skeleton', 'construction-cost-wood-skeleton', 'construction-cost-multi-skeleton', 'wholesale-retail-skeleton',
-        'household-types-skeleton', 'population-age-skeleton', 'cpi-coicop-skeleton', 'cpi-subgroups-skeleton',
-        'cpi-items-skeleton', 'cpi-delivery-skeleton', 'household-income-size-skeleton', 'cohabiting-arrangements-skeleton',
-        'utility-floor-space-skeleton', 'credit-indicator-c2-skeleton', 'job-vacancies-new-skeleton', 'oil-gas-turnover-skeleton',
-        'trade-volume-price-skeleton', 'producer-price-industry-skeleton', 'deaths-age-skeleton', 'construction-production-skeleton',
-        'bankruptcies-total-skeleton', 'energy-accounts-skeleton', 'monetary-m3-skeleton', 'new-dwellings-price-skeleton',
-        'business-tendency-skeleton'
-    ];
-    
-    skeletonIds.forEach(id => {
-        const skeleton = document.getElementById(id);
-        if (skeleton) {
-            skeleton.style.display = 'block';
-        }
+    // Find all skeleton elements dynamically instead of hardcoding IDs
+    const skeletonElements = document.querySelectorAll('.skeleton-chart');
+    skeletonElements.forEach(skeleton => {
+        skeleton.style.display = 'block';
     });
 }
 
@@ -402,37 +375,10 @@ export function showSkeletonLoading() {
  * Hide skeleton loading
  */
 export function hideSkeletonLoading() {
-    const skeletonIds = [
-        'cpi-skeleton', 'unemployment-skeleton', 'house-prices-skeleton', 'ppi-skeleton',
-        'wage-skeleton', 'oil-fund-skeleton', 'exchange-skeleton', 'interest-rate-skeleton',
-        'govt-debt-skeleton', 'gdp-growth-skeleton', 'trade-balance-skeleton', 'bankruptcies-skeleton',
-        'population-growth-skeleton', 'construction-costs-skeleton',
-        'industrial-production-skeleton', 'retail-sales-skeleton', 'export-volume-skeleton', 'import-volume-skeleton',
-        'eur-exchange-skeleton', 'employment-rate-skeleton', 'business-confidence-skeleton', 'consumer-confidence-skeleton',
-        'housing-starts-skeleton', 'oil-price-skeleton',
-        'monetary-aggregates-skeleton', 'job-vacancies-skeleton', 'household-consumption-skeleton', 'producer-prices-skeleton',
-        'construction-production-skeleton', 'credit-indicator-skeleton', 'energy-consumption-skeleton', 'government-revenue-skeleton',
-        'international-accounts-skeleton',
-        'labour-cost-index-skeleton', 'rd-expenditure-skeleton', 'salmon-export-skeleton', 'oil-gas-investment-skeleton',
-        'immigration-rate-skeleton', 'household-income-skeleton', 'life-expectancy-skeleton', 'crime-rate-skeleton',
-        'education-level-skeleton', 'holiday-property-sales-skeleton', 'greenhouse-gas-skeleton', 'economic-forecasts-skeleton',
-        'new-dwellings-price-skeleton', 'lifestyle-habits-skeleton', 'long-term-illness-skeleton',
-        'population-growth-skeleton', 'births-deaths-skeleton', 'cpi-ate-skeleton', 'salmon-export-volume-skeleton',
-        'basic-salary-skeleton', 'export-country-skeleton', 'import-country-skeleton', 'export-commodity-skeleton',
-        'import-commodity-skeleton', 'construction-cost-wood-skeleton', 'construction-cost-multi-skeleton', 'wholesale-retail-skeleton',
-        'household-types-skeleton', 'population-age-skeleton', 'cpi-coicop-skeleton', 'cpi-subgroups-skeleton',
-        'cpi-items-skeleton', 'cpi-delivery-skeleton', 'household-income-size-skeleton', 'cohabiting-arrangements-skeleton',
-        'utility-floor-space-skeleton', 'credit-indicator-c2-skeleton', 'job-vacancies-new-skeleton', 'oil-gas-turnover-skeleton',
-        'trade-volume-price-skeleton', 'producer-price-industry-skeleton', 'deaths-age-skeleton', 'construction-production-skeleton',
-        'bankruptcies-total-skeleton', 'energy-accounts-skeleton', 'monetary-m3-skeleton', 'new-dwellings-price-skeleton',
-        'business-tendency-skeleton'
-    ];
-    
-    skeletonIds.forEach(id => {
-        const skeleton = document.getElementById(id);
-        if (skeleton) {
-            skeleton.style.display = 'none';
-        }
+    // Find all skeleton elements dynamically instead of hardcoding IDs
+    const skeletonElements = document.querySelectorAll('.skeleton-chart');
+    skeletonElements.forEach(skeleton => {
+        skeleton.style.display = 'none';
     });
 }
 

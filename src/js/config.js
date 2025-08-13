@@ -162,6 +162,10 @@ export const CHART_FILTER_CONFIG = {
         'nasjonal', 'landsomfattende', 'hele landet', 'landsdekkende'
     ],
     
+    // Keywords that indicate regional-level data (to exclude)
+    regionalKeywords: [
+        'municipal', 'counties', 'county', 'district', 'regions', 'by county', 'by region',
+        'kommune', 'fylker', 'fylke', 'distrikt', 'regioner', 'etter fylke', 'etter region'
     ],
     
     // Datasets that should always be included regardless of filters

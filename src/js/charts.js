@@ -79,7 +79,12 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         
         let response;
         try {
-            response = await fetch(cachePath, { cache: 'no-store' });
+            response = await fetch(cachePath, { 
+                cache: 'no-store',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
             li.textContent = `GET ${cachePath} → ${response.status}`;
             
             if (!response.ok) {
@@ -91,8 +96,14 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             throw new Error(`Network error loading ${cachePath}: ${error.message}`);
         }
 
-        const data = await response.json();
-        console.log(`Successfully loaded data for ${chartTitle}:`, data.dataset ? 'Dataset found' : 'No dataset');
+        let data;
+        try {
+            data = await response.json();
+            console.log(`Successfully loaded data for ${chartTitle}:`, data.dataset ? 'Dataset found' : 'No dataset');
+        } catch (error) {
+            console.error(`Failed to parse JSON for ${chartTitle}:`, error);
+            throw new Error(`Invalid JSON data in ${cachePath}: ${error.message}`);
+        }
         
         // Parse data based on source
         let parsedData;
@@ -536,6 +547,13 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
  * @param {string} chartType - Chart type
  */
 export function renderChart(canvas, data, title, chartType = 'line') {
+    // Check if Chart.js is available
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js is not loaded');
+        showError('Chart.js library not loaded', canvas);
+        return;
+    }
+    
     // Clear any existing chart
     if (canvas.chart) {
         canvas.chart.destroy();

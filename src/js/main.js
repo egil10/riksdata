@@ -532,6 +532,15 @@ function boot() {
     try {
         console.log('DOM loaded, starting application...');
         
+        // Wait for Chart.js to be loaded
+        if (typeof Chart === 'undefined') {
+            console.log('Waiting for Chart.js to load...');
+            setTimeout(boot, 100);
+            return;
+        }
+        
+        console.log('Chart.js is loaded, proceeding with initialization...');
+        
         // Load saved theme preference
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'dark') {
@@ -571,3 +580,16 @@ if (document.readyState === 'loading') {
     // DOMContentLoaded already fired (common on GH Pages); run immediately
     boot();
 }
+
+// Add a timeout to prevent infinite waiting for Chart.js
+setTimeout(() => {
+    if (typeof Chart === 'undefined') {
+        console.error('Chart.js failed to load after 10 seconds');
+        hideSkeletonLoading();
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
+        showError('Failed to load Chart.js library. Please refresh the page.');
+    }
+}, 10000);

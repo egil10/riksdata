@@ -160,8 +160,8 @@ export async function initializeApp() {
             loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
             
             // Additional charts that exist in HTML
-            loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166331.json?lang=en', 'Household Consumption'),
-            loadChartData('producer-prices-chart', 'https://data.ssb.no/api/v0/dataset/26427.json?lang=en', 'Producer Prices'),
+            // Removed: household-consumption-chart (dataset 166331 failed to fetch)
+            // Removed: producer-prices-chart (dataset 26427 failed to fetch)
             loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
             loadChartData('oil-price-chart', './data/cached/exchange-rates.json', 'Oil Price'),
             loadChartData('immigrants-with-immigrant-parents-chart', 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', 'Immigrants with Immigrant Parents'),
@@ -173,7 +173,7 @@ export async function initializeApp() {
             loadChartData('cpi-delivery-sector-recent-chart', 'https://data.ssb.no/api/v0/dataset/1101.json?lang=en', 'CPI Delivery Sector Recent'),
             loadChartData('credit-indicator-k2-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', 'Credit Indicator K2 Seasonally Adjusted'),
             loadChartData('producer-price-index-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/26429.json?lang=en', 'Producer Price Index Subgroups'),
-            loadChartData('retail-sales-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/1065.json?lang=en', 'Retail Sales Seasonally Adjusted'),
+            // Removed: retail-sales-seasonally-adjusted-chart (dataset 1065 failed to fetch)
             loadChartData('import-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/34641.json?lang=en', 'Import Value SITC3'),
             loadChartData('export-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/34643.json?lang=en', 'Export Value SITC3'),
             loadChartData('trade-volume-price-bec-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price BEC'),
@@ -201,7 +201,7 @@ export async function initializeApp() {
             loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
             loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
             loadChartData('births-deaths-chart', 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', 'Births and Deaths'),
-            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Tendency Survey'),
+            // Removed: business-tendency-chart (dataset 166317 failed to fetch)
             loadChartData('cohabiting-arrangements-chart', 'https://data.ssb.no/api/v0/dataset/85440.json?lang=en', 'Cohabiting Arrangements'),
             loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
             loadChartData('construction-cost-wood-chart', 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', 'Construction Cost Wood'),
@@ -223,7 +223,7 @@ export async function initializeApp() {
             loadChartData('trade-volume-price-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price'),
             loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
 
-            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928197.json?lang=en', 'Energy Accounts')
+            // Removed: energy-accounts-chart (dataset 928197 failed to fetch)
         ];
         
         // Wait for all charts to load with progress tracking and timeouts

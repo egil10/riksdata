@@ -18,12 +18,12 @@
         "label": "week",
         "category": {
           "index": {
-            "2025U30": 0,
-            "2025U31": 1
+            "2025U31": 0,
+            "2025U32": 1
           },
           "label": {
-            "2025U30": "2025U30",
-            "2025U31": "2025U31"
+            "2025U31": "2025U31",
+            "2025U32": "2025U32"
           }
         }
       },
@@ -80,22 +80,22 @@
     },
     "label": "03024: Export of salmon, fish-farm bred, by commodity group, week and contents",
     "source": "Statistics Norway",
-    "updated": "2025-08-06T06:00:00Z",
+    "updated": "2025-08-13T06:00:00Z",
     "value": [
-      26055,
-      65.1,
       25317,
       60.58,
-      718,
-      70.76,
+      25796,
+      62.05,
       854,
-      71.67
+      71.67,
+      624,
+      65.93
     ]
   },
   "_metadata": {
     "source": "SSB",
     "title": "Salmon Export Volume",
-    "fetched_at": "2025-08-13T02:14:28.122923",
+    "fetched_at": "2025-08-14T01:00:24.980658",
     "url": "https://data.ssb.no/api/v0/dataset/1120.json?lang=en"
   }
 }

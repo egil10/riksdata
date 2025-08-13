@@ -1,0 +1,106 @@
+{
+  "dataset": {
+    "dimension": {
+      "Konsumgrp": {
+        "label": "consumption group",
+        "category": {
+          "index": {
+            "TOTAL": 0
+          },
+          "label": {
+            "TOTAL": "All-item index"
+          }
+        },
+        "link": {
+          "describedby": [
+            {
+              "extension": {
+                "Konsumgrp": "urn:ssb:classification:klass:134"
+              }
+            }
+          ]
+        }
+      },
+      "Tid": {
+        "label": "month",
+        "category": {
+          "index": {
+            "2025M06": 0,
+            "2025M07": 1
+          },
+          "label": {
+            "2025M06": "2025M06",
+            "2025M07": "2025M07"
+          }
+        }
+      },
+      "ContentsCode": {
+        "label": "contents",
+        "category": {
+          "index": {
+            "KpiIndMnd": 0,
+            "Manedsendring": 1,
+            "Tolvmanedersendring": 2
+          },
+          "label": {
+            "KpiIndMnd": "Consumer Price Index (2015=100)",
+            "Manedsendring": "Monthly change (per cent)",
+            "Tolvmanedersendring": "12-month rate (per cent)"
+          },
+          "unit": {
+            "KpiIndMnd": {
+              "base": "index",
+              "decimals": 1
+            },
+            "Manedsendring": {
+              "base": "per cent",
+              "decimals": 1
+            },
+            "Tolvmanedersendring": {
+              "base": "per cent",
+              "decimals": 1
+            }
+          }
+        },
+        "link": {
+          "describedby": [
+            {
+              "extension": {
+                "KpiIndMnd": "urn:ssb:conceptvariable:vardok:2755"
+              }
+            }
+          ]
+        }
+      },
+      "id": [
+        "Konsumgrp",
+        "Tid",
+        "ContentsCode"
+      ],
+      "size": [
+        1,
+        2,
+        3
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      }
+    },
+    "label": "03013: Consumer Price Index, by consumption group, month and contents",
+    "source": "Statistics Norway",
+    "updated": "2025-08-11T06:00:00Z",
+    "value": [
+      137.8,
+      0.2,
+      3,
+      138.9,
+      0.8,
+      3.3
+    ]
+  }
+}

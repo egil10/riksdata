@@ -1,0 +1,331 @@
+{
+  "dataset": {
+    "dimension": {
+      "Region": {
+        "label": "region",
+        "category": {
+          "index": {
+            "0": 0
+          },
+          "label": {
+            "0": "The whole country"
+          }
+        }
+      },
+      "ContentsCode": {
+        "label": "contents",
+        "category": {
+          "index": {
+            "Hushold": 0,
+            "Inntekt1": 1,
+            "Inntekt2": 2,
+            "Inntekt3": 3,
+            "Inntekt4": 4,
+            "Inntekt5": 5,
+            "Inntekt6": 6,
+            "Inntekt7": 7,
+            "Inntekt8": 8
+          },
+          "label": {
+            "Hushold": "Number of households",
+            "Inntekt1": "After tax income below NOK 150 000 (per cent)",
+            "Inntekt2": "After tax income NOK 150 000 - 249 999 (per cent)",
+            "Inntekt3": "After tax income NOK 250 000 - 349 999 (per cent)",
+            "Inntekt4": "After tax income NOK 350 000 - 449 999 (per cent)",
+            "Inntekt5": "After tax income NOK 450 000 - 549 999 (per cent)",
+            "Inntekt6": "After tax income NOK 550 000 - 749 999 (per cent)",
+            "Inntekt7": "After tax income NOK 750 000 - 999 999 (per cent)",
+            "Inntekt8": "After tax income NOK 1 000 000 and over (per cent)"
+          },
+          "unit": {
+            "Hushold": {
+              "base": "households",
+              "decimals": 0
+            },
+            "Inntekt1": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt2": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt3": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt4": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt5": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt6": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt7": {
+              "base": "per cent",
+              "decimals": 0
+            },
+            "Inntekt8": {
+              "base": "per cent",
+              "decimals": 0
+            }
+          }
+        },
+        "link": {
+          "describedby": [
+            {
+              "extension": {
+                "Inntekt1": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt2": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt3": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt4": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt5": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt6": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt7": "urn:ssb:conceptvariable:vardok:2",
+                "Inntekt8": "urn:ssb:conceptvariable:vardok:2"
+              }
+            }
+          ]
+        }
+      },
+      "Tid": {
+        "label": "year",
+        "category": {
+          "index": {
+            "2006": 0,
+            "2007": 1,
+            "2008": 2,
+            "2009": 3,
+            "2010": 4,
+            "2011": 5,
+            "2012": 6,
+            "2013": 7,
+            "2014": 8,
+            "2015": 9,
+            "2016": 10,
+            "2017": 11,
+            "2018": 12,
+            "2019": 13,
+            "2020": 14,
+            "2021": 15,
+            "2022": 16,
+            "2023": 17
+          },
+          "label": {
+            "2006": "2006",
+            "2007": "2007",
+            "2008": "2008",
+            "2009": "2009",
+            "2010": "2010",
+            "2011": "2011",
+            "2012": "2012",
+            "2013": "2013",
+            "2014": "2014",
+            "2015": "2015",
+            "2016": "2016",
+            "2017": "2017",
+            "2018": "2018",
+            "2019": "2019",
+            "2020": "2020",
+            "2021": "2021",
+            "2022": "2022",
+            "2023": "2023"
+          }
+        }
+      },
+      "id": [
+        "Region",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        1,
+        9,
+        18
+      ],
+      "role": {
+        "geo": [
+          "Region"
+        ],
+        "metric": [
+          "ContentsCode"
+        ],
+        "time": [
+          "Tid"
+        ]
+      }
+    },
+    "label": "07137: Households, by region, contents and year",
+    "source": "Statistics Norway",
+    "updated": "2025-01-15T07:00:00Z",
+    "value": [
+      2051473,
+      2093483,
+      2127365,
+      2152031,
+      2172063,
+      2206168,
+      2245460,
+      2267336,
+      2298922,
+      2317361,
+      2341292,
+      2368453,
+      2398247,
+      2436001,
+      2467329,
+      2499398,
+      2544718,
+      2583538,
+      12,
+      10,
+      7,
+      7,
+      5,
+      5,
+      4,
+      4,
+      4,
+      4,
+      4,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      3,
+      21,
+      20,
+      19,
+      19,
+      19,
+      18,
+      17,
+      15,
+      14,
+      13,
+      13,
+      12,
+      11,
+      10,
+      9,
+      8,
+      6,
+      3,
+      18,
+      18,
+      18,
+      18,
+      17,
+      16,
+      16,
+      15,
+      15,
+      15,
+      15,
+      15,
+      15,
+      14,
+      15,
+      15,
+      14,
+      14,
+      14,
+      13,
+      13,
+      13,
+      14,
+      14,
+      14,
+      14,
+      14,
+      13,
+      13,
+      13,
+      13,
+      12,
+      12,
+      12,
+      12,
+      12,
+      13,
+      13,
+      12,
+      12,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      11,
+      10,
+      14,
+      17,
+      19,
+      19,
+      19,
+      19,
+      19,
+      19,
+      18,
+      18,
+      18,
+      18,
+      18,
+      17,
+      17,
+      17,
+      17,
+      17,
+      5,
+      6,
+      8,
+      9,
+      10,
+      11,
+      13,
+      14,
+      14,
+      15,
+      15,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      16,
+      2,
+      3,
+      4,
+      4,
+      5,
+      6,
+      7,
+      8,
+      10,
+      11,
+      11,
+      12,
+      14,
+      15,
+      16,
+      18,
+      21,
+      25
+    ]
+  }
+}

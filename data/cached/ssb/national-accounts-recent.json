@@ -1,0 +1,307 @@
+{
+  "dataset": {
+    "dimension": {
+      "Makrost": {
+        "label": "macroeconomic indicator",
+        "category": {
+          "index": {
+            "koh.nrpriv": 0,
+            "koo.nroff": 1,
+            "bif.nr83_6": 2,
+            "makrok.nrianv": 3,
+            "eks.nrtot": 4,
+            "imp.nrtot": 5,
+            "bnpb.nr23_9": 6,
+            "bnpb.nr23_9fn": 7,
+            "bnpb.nr23oljsj": 8
+          },
+          "label": {
+            "koh.nrpriv": "Final consumption expenditure of households and NPISHs",
+            "koo.nroff": "Final consumption expenditure of general governmen",
+            "bif.nr83_6": "Gross fixed capital formation  (GFCF)",
+            "makrok.nrianv": "Final domestic use of goods and services",
+            "eks.nrtot": "Total exports",
+            "imp.nrtot": "Total imports",
+            "bnpb.nr23_9": "Gross domestic product, market values",
+            "bnpb.nr23_9fn": "Gross domestic product Mainland Norway, market values",
+            "bnpb.nr23oljsj": "Petroleum activities and ocean transport"
+          }
+        },
+        "link": {
+          "describedby": [
+            {
+              "extension": {
+                "koo.nroff": "urn:ssb:conceptvariable:vardok:1751",
+                "bif.nr83_6": "urn:ssb:conceptvariable:vardok:1741",
+                "bnpb.nr23_9": "urn:ssb:conceptvariable:vardok:1743"
+              }
+            }
+          ]
+        }
+      },
+      "ContentsCode": {
+        "label": "contents",
+        "category": {
+          "index": {
+            "Priser": 0,
+            "Faste": 1,
+            "PriserSesJust": 2,
+            "FastePriserSesJust": 3,
+            "PrisIndex": 4,
+            "Volum": 5,
+            "PriserSesJustPros": 6,
+            "VolumEndrSesJust": 7,
+            "Endringer": 8
+          },
+          "label": {
+            "Priser": "Current prices (NOK million)",
+            "Faste": "Constant 2022-prices (NOK million)",
+            "PriserSesJust": "Current prices, seasonally adjusted (NOK million)",
+            "FastePriserSesJust": "Constant 2022-prices, seasonally adjusted (NOK million)",
+            "PrisIndex": "Price indices, seasonally adjusted (2022=100)",
+            "Volum": "Change in volume from the same period in the previous year (per cent)",
+            "PriserSesJustPros": "Change in value from the same previous quarter, sesongjustert (per cent)",
+            "VolumEndrSesJust": "Change in volume from the previous quarter, seasonally adjusted (per cent)",
+            "Endringer": "Change in prices from the same period in the previous year (per cent)"
+          },
+          "unit": {
+            "Priser": {
+              "base": "NOK million",
+              "decimals": 0
+            },
+            "Faste": {
+              "base": "NOK million",
+              "decimals": 0
+            },
+            "PriserSesJust": {
+              "base": "NOK million",
+              "decimals": 0
+            },
+            "FastePriserSesJust": {
+              "base": "NOK million",
+              "decimals": 0
+            },
+            "PrisIndex": {
+              "base": "index",
+              "decimals": 1
+            },
+            "Volum": {
+              "base": "per cent",
+              "decimals": 1
+            },
+            "PriserSesJustPros": {
+              "base": "per cent",
+              "decimals": 1
+            },
+            "VolumEndrSesJust": {
+              "base": "per cent",
+              "decimals": 1
+            },
+            "Endringer": {
+              "base": "per cent",
+              "decimals": 1
+            }
+          }
+        }
+      },
+      "Tid": {
+        "label": "quarter",
+        "category": {
+          "index": {
+            "2024K4": 0,
+            "2025K1": 1
+          },
+          "label": {
+            "2024K4": "2024K4",
+            "2025K1": "2025K1"
+          }
+        }
+      },
+      "id": [
+        "Makrost",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        9,
+        9,
+        2
+      ],
+      "role": {
+        "metric": [
+          "ContentsCode"
+        ],
+        "time": [
+          "Tid"
+        ]
+      }
+    },
+    "label": "09190: Final expenditure and gross domestic product, by macroeconomic indicator, contents and quarter",
+    "source": "Statistics Norway",
+    "updated": "2025-05-15T06:00:00Z",
+    "value": [
+      541575,
+      513486,
+      489917,
+      457381,
+      519104,
+      530555,
+      467547,
+      474484,
+      111,
+      111.8,
+      1.8,
+      3.5,
+      0.7,
+      2.2,
+      -0.3,
+      1.5,
+      2,
+      2.1,
+      300311,
+      301125,
+      278066,
+      275593,
+      300466,
+      305490,
+      275915,
+      276994,
+      108.9,
+      110.3,
+      2,
+      1.9,
+      0.6,
+      1.7,
+      0.5,
+      0.4,
+      1.5,
+      3,
+      325853,
+      266878,
+      286988,
+      233378,
+      300518,
+      284013,
+      263969,
+      248769,
+      113.8,
+      114.2,
+      0,
+      0.6,
+      4,
+      -5.5,
+      2,
+      -5.8,
+      4.6,
+      4.6,
+      1180101,
+      1145761,
+      1067621,
+      1024707,
+      1135191,
+      1144905,
+      1022452,
+      1028881,
+      111,
+      111.3,
+      1,
+      1.9,
+      -1.4,
+      0.9,
+      -1.1,
+      0.6,
+      2.5,
+      3.6,
+      662370,
+      666141,
+      856913,
+      821146,
+      636542,
+      679559,
+      835562,
+      819365,
+      76.2,
+      82.9,
+      1.3,
+      -0.8,
+      8,
+      6.8,
+      -0.3,
+      -1.9,
+      1.9,
+      17.2,
+      463754,
+      425957,
+      412472,
+      375988,
+      458186,
+      451052,
+      408372,
+      399635,
+      112.2,
+      112.9,
+      6.8,
+      5.1,
+      2.4,
+      -1.6,
+      -0.1,
+      -2.1,
+      2,
+      4.1,
+      1378717,
+      1385945,
+      1512061,
+      1469865,
+      1313547,
+      1373412,
+      1449642,
+      1448612,
+      90.6,
+      94.8,
+      -0.3,
+      -0.4,
+      1.6,
+      4.6,
+      -0.9,
+      -0.1,
+      2.1,
+      9.6,
+      1054473,
+      1053111,
+      967785,
+      945075,
+      1027191,
+      1045438,
+      932804,
+      942120,
+      110.1,
+      111,
+      0.4,
+      3,
+      0.8,
+      1.8,
+      -0.4,
+      1,
+      2.8,
+      3.1,
+      324244,
+      332834,
+      544277,
+      524790,
+      286356,
+      327975,
+      516838,
+      506491,
+      55.4,
+      64.8,
+      -1.6,
+      -5.9,
+      4.6,
+      14.5,
+      -1.7,
+      -2,
+      -1.1,
+      27.8
+    ]
+  }
+}

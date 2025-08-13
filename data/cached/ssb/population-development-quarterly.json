@@ -1,0 +1,142 @@
+{
+  "dataset": {
+    "dimension": {
+      "Region": {
+        "label": "region",
+        "category": {
+          "index": {
+            "0": 0
+          },
+          "label": {
+            "0": "The whole country"
+          }
+        }
+      },
+      "ContentsCode": {
+        "label": "contents",
+        "category": {
+          "index": {
+            "Folketallet1": 0,
+            "Fodte2": 1,
+            "Dode3": 2,
+            "Fodselsoverskudd4": 3,
+            "Innvandring5": 4,
+            "Utvandring6": 5,
+            "Tilflytting7": 6,
+            "Fraflytting8": 7,
+            "Nettoinnflytting9": 8,
+            "Folketilvekst10": 9,
+            "Folketallet11": 10
+          },
+          "label": {
+            "Folketallet1": "Population at the beginning of the quarter",
+            "Fodte2": "Births",
+            "Dode3": "Deaths",
+            "Fodselsoverskudd4": "Excess of births",
+            "Innvandring5": "Immigration",
+            "Utvandring6": "Emigration",
+            "Tilflytting7": "In-migration, domestic",
+            "Fraflytting8": "Emigration, domestic",
+            "Nettoinnflytting9": "Net migration, immigration and emigration incl",
+            "Folketilvekst10": "Population growth",
+            "Folketallet11": "Population at the end of the quarter"
+          },
+          "unit": {
+            "Folketallet1": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Fodte2": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Dode3": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Fodselsoverskudd4": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Innvandring5": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Utvandring6": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Tilflytting7": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Fraflytting8": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Nettoinnflytting9": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Folketilvekst10": {
+              "base": "persons",
+              "decimals": 0
+            },
+            "Folketallet11": {
+              "base": "persons",
+              "decimals": 0
+            }
+          }
+        }
+      },
+      "Tid": {
+        "label": "quarter",
+        "category": {
+          "index": {
+            "2025K1": 0
+          },
+          "label": {
+            "2025K1": "2025K1"
+          }
+        }
+      },
+      "id": [
+        "Region",
+        "ContentsCode",
+        "Tid"
+      ],
+      "size": [
+        1,
+        11,
+        1
+      ],
+      "role": {
+        "geo": [
+          "Region"
+        ],
+        "metric": [
+          "ContentsCode"
+        ],
+        "time": [
+          "Tid"
+        ]
+      }
+    },
+    "label": "01222: Population and changes during the quarter, by region, contents and quarter",
+    "source": "Statistics Norway",
+    "updated": "2025-05-21T06:00:00Z",
+    "value": [
+      5594340,
+      13102,
+      11827,
+      1275,
+      12793,
+      7359,
+      0,
+      0,
+      5434,
+      6709,
+      5601049
+    ]
+  }
+}

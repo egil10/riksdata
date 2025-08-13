@@ -3,7 +3,11 @@
 // ============================================================================
 
 import { loadChartData } from './charts.js';
-import { showSkeletonLoading, hideSkeletonLoading, showError, debounce } from './utils.js';
+import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout } from './utils.js';
+
+// Top-level error guards
+window.addEventListener('error', e => console.error('Global error:', e.error || e.message));
+window.addEventListener('unhandledrejection', e => console.error('Unhandled promise rejection:', e.reason));
 
 // Global state
 let currentLanguage = 'en';
@@ -163,12 +167,15 @@ export async function initializeApp() {
             loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3')
         ];
         
-        // Wait for all charts to load with progress tracking
+        // Wait for all charts to load with progress tracking and timeouts
         console.log('Waiting for charts to load...');
         const totalCharts = chartPromises.length;
         
+        // Wrap each chart promise with timeout
+        const chartPromisesWithTimeout = chartPromises.map(promise => withTimeout(promise, 15000));
+        
         // Use Promise.allSettled to prevent deadlocks if any chart fails
-        const results = await Promise.allSettled(chartPromises);
+        const results = await Promise.allSettled(chartPromisesWithTimeout);
         
         // Update progress based on completion
         let completedCharts = 0;
@@ -184,7 +191,7 @@ export async function initializeApp() {
         let successCount = 0;
         let failureCount = 0;
         results.forEach((result, index) => {
-            if (result.status === 'fulfilled') {
+            if (result.status === 'fulfilled' && result.value) {
                 successCount++;
                 console.log(`Chart ${index} loaded successfully`);
             } else {
@@ -287,6 +294,16 @@ export function initializeUI() {
 
     // Progress bar on scroll
     window.addEventListener('scroll', updateProgressBarOnScroll);
+    
+    // Debug panel toggle (Ctrl+Shift+D)
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+            const debugPanel = document.getElementById('debug');
+            if (debugPanel) {
+                debugPanel.style.display = debugPanel.style.display === 'none' ? 'block' : 'none';
+            }
+        }
+    });
     
     console.log('UI initialization complete!');
 }
@@ -510,30 +527,47 @@ function scrollToTop() {
     });
 }
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded, starting application...');
-    
-    // Load saved theme preference
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        currentTheme = 'dark';
-        document.body.classList.add('dark-mode');
-        // Set moon icon for dark mode
-        const themeIcon = document.querySelector('#themeToggle .theme-icon');
-        if (themeIcon) {
-            themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
+// Fail-safe boot function
+function boot() {
+    try {
+        console.log('DOM loaded, starting application...');
+        
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            currentTheme = 'dark';
+            document.body.classList.add('dark-mode');
+            // Set moon icon for dark mode
+            const themeIcon = document.querySelector('#themeToggle .theme-icon');
+            if (themeIcon) {
+                themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
+            }
+        } else {
+            // Default to light theme
+            currentTheme = 'light';
+            document.body.classList.remove('dark-mode');
+            // Moon icon is already set in HTML for light mode
         }
-    } else {
-        // Default to light theme
-        currentTheme = 'light';
-        document.body.classList.remove('dark-mode');
-        // Moon icon is already set in HTML for light mode
+        
+        console.log('Initializing UI...');
+        initializeUI();
+        console.log('Initializing app...');
+        initializeApp();
+        // Note: regional-level cards remain in DOM but are filtered by data selection
+    } catch (e) {
+        console.error('BOOT ERROR:', e);
+        hideSkeletonLoading();
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+        }
     }
-    
-    console.log('Initializing UI...');
-    initializeUI();
-    console.log('Initializing app...');
-    initializeApp();
-    // Note: regional-level cards remain in DOM but are filtered by data selection
-});
+}
+
+// Initialize when DOM is loaded or if already past
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+} else {
+    // DOMContentLoaded already fired (common on GH Pages); run immediately
+    boot();
+}

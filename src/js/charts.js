@@ -12,6 +12,11 @@ import {
     hideStaticTooltip
 } from './utils.js';
 
+// Helper function to normalize relative paths for GitHub Pages
+function rel(p) {
+    return new URL(p, document.baseURI).toString();
+}
+
 /**
  * Load and render chart data from cached files
  * @param {string} canvasId - Canvas element ID
@@ -41,38 +46,47 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 throw new Error(`No cache mapping found for dataset ID: ${datasetId}`);
             }
             
-            cachePath = `${API_CONFIG.CACHE_BASE_PATH}/ssb/${cacheName}.json`;
+            cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/ssb/${cacheName}.json`);
             
         } else if (apiUrl.includes('norges-bank.no')) {
             // Map Norges Bank URLs to cache files (support both USD+EUR bundle and single-currency endpoints)
             if (apiUrl.includes('/EXR/')) {
-                cachePath = `${API_CONFIG.CACHE_BASE_PATH}/norges-bank/exchange-rates.json`;
+                cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/exchange-rates.json`);
             } else if (apiUrl.includes('/IR/')) {
-                cachePath = `${API_CONFIG.CACHE_BASE_PATH}/norges-bank/interest-rate.json`;
+                cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/interest-rate.json`);
             } else if (apiUrl.includes('/GOVT_KEYFIGURES/')) {
-                cachePath = `${API_CONFIG.CACHE_BASE_PATH}/norges-bank/government-debt.json`;
+                cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/government-debt.json`);
             } else {
                 throw new Error(`Unknown Norges Bank API URL: ${apiUrl}`);
             }
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
-            cachePath = apiUrl;
+            cachePath = rel(apiUrl);
         } else if (apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
             // Handle static data files (legacy path)
-            cachePath = apiUrl.replace(/^\.?\/?data\//, './data/cached/');
+            cachePath = rel(apiUrl.replace(/^\.?\/?data\//, './data/cached/'));
         } else {
             throw new Error(`Unknown data source: ${apiUrl}`);
         }
 
-        // Fetch data from cache file
+        // Fetch data from cache file with logging
         console.log(`Loading cached data from: ${cachePath}`);
+        
+        // Log fetch attempt to debug panel
+        const li = document.createElement('li');
+        li.textContent = `GET ${cachePath} ...`;
+        document.getElementById('fetchStatus')?.appendChild(li);
+        
         let response;
         try {
-            response = await fetch(cachePath);
+            response = await fetch(cachePath, { cache: 'no-store' });
+            li.textContent = `GET ${cachePath} → ${response.status}`;
+            
             if (!response.ok) {
                 throw new Error(`Failed to load cached data: ${response.status} ${response.statusText} for ${cachePath}`);
             }
         } catch (error) {
+            li.textContent = `GET ${cachePath} → ERROR: ${error.message}`;
             console.error(`Failed to load ${cachePath}:`, error);
             throw new Error(`Network error loading ${cachePath}: ${error.message}`);
         }

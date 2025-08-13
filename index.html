@@ -2176,6 +2176,12 @@
         </svg>
     </button>
 
+    <!-- Debug Panel (hidden by default) -->
+    <div id="debug" style="display: none; position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; max-width: 300px; z-index: 10000;">
+        <h4>Fetch Status</h4>
+        <ul id="fetchStatus"></ul>
+    </div>
+
     <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>

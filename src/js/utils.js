@@ -527,3 +527,19 @@ export function hideRegionalCards() {
         });
     } catch (_) {}
 }
+
+/**
+ * Timeout wrapper for promises
+ * @param {Promise} promise - Promise to wrap
+ * @param {number} ms - Timeout in milliseconds
+ * @returns {Promise} Promise with timeout
+ */
+export async function withTimeout(promise, ms = 15000) {
+    let t;
+    const timeout = new Promise((_, rej) => t = setTimeout(() => rej(new Error('timeout')), ms));
+    try {
+        return await Promise.race([promise, timeout]);
+    } finally {
+        clearTimeout(t);
+    }
+}

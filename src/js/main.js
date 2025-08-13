@@ -129,16 +129,12 @@ export async function initializeApp() {
             loadChartData('household-income-national-chart', 'https://data.ssb.no/api/v0/dataset/97435.json?lang=en', 'Household Income National'),
             loadChartData('business-cycle-barometer-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Cycle Barometer'),
             loadChartData('business-cycle-barometer-products-chart', 'https://data.ssb.no/api/v0/dataset/166318.json?lang=en', 'Business Cycle Barometer Products'),
-            loadChartData('export-by-country-monthly-chart', 'https://data.ssb.no/api/v0/dataset/1136.json?lang=en', 'Export by Country Monthly'),
+            // Removed: Export by Country Monthly (category breakdown)
             loadChartData('producer-price-index-products-chart', 'https://data.ssb.no/api/v0/dataset/26433.json?lang=en', 'Producer Price Index Products'),
-            loadChartData('trade-volume-price-sitc2-chart', 'https://data.ssb.no/api/v0/dataset/179417.json?lang=en', 'Trade Volume Price SITC2'),
-            loadChartData('trade-volume-price-product-groups-chart', 'https://data.ssb.no/api/v0/dataset/179419.json?lang=en', 'Trade Volume Price Product Groups'),
-            loadChartData('trade-main-figures-by-country-chart', 'https://data.ssb.no/api/v0/dataset/179423.json?lang=en', 'Trade Main Figures by Country'),
+            // Removed: trade category breakdown (SITC2/Product Groups/Main by Country)
             loadChartData('producer-price-index-industries-chart', 'https://data.ssb.no/api/v0/dataset/27263.json?lang=en', 'Producer Price Index Industries'),
             loadChartData('production-index-by-industry-chart', 'https://data.ssb.no/api/v0/dataset/29843.json?lang=en', 'Production Index by Industry'),
-            loadChartData('trade-volume-price-bec-chart', 'https://data.ssb.no/api/v0/dataset/367182.json?lang=en', 'Trade Volume Price BEC'),
-            loadChartData('export-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/367189.json?lang=en', 'Export Value SITC3'),
-            loadChartData('import-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/367187.json?lang=en', 'Import Value SITC3'),
+            // Removed: detailed BEC/SITC3 breakdowns
             loadChartData('retail-sales-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/1066.json?lang=en', 'Retail Sales Seasonally Adjusted'),
             loadChartData('population-basic-districts-national-chart', 'https://data.ssb.no/api/v0/dataset/534445.json?lang=en', 'Population Basic Districts National', 'bar'),
             loadChartData('population-by-gender-age-districts-chart', 'https://data.ssb.no/api/v0/dataset/559736.json?lang=en', 'Population by Gender Age Districts', 'bar'),
@@ -156,10 +152,7 @@ export async function initializeApp() {
             loadChartData('national-accounts-recent-chart', 'https://data.ssb.no/api/v0/dataset/372144.json?lang=en', 'National Accounts Recent'),
             loadChartData('cpi-ate-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI-ATE Index'),
             loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
-            loadChartData('export-country-chart', 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', 'Export by Country'),
-            loadChartData('import-country-chart', 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', 'Import by Country'),
-            loadChartData('export-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en', 'Export by Commodity'),
-            loadChartData('import-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', 'Import by Commodity'),
+            // Removed: by country/commodity charts
             loadChartData('construction-cost-wood-chart', 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', 'Construction Cost Wood'),
             loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
             loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),

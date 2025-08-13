@@ -360,7 +360,8 @@ function setChartSubtitle(canvas, text) {
 export function parseExchangeRateData(data, preferredBaseCurrency = null) {
     try {
         const structure = data.data.structure;
-        const timeValues = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD')?.values || [];
+        const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
+        const timeValues = timeDim?.values || [];
         const seriesMap = data.data.dataSets[0].series;
 
         // Determine series keys and optionally filter by base currency if requested
@@ -378,7 +379,8 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
             const observations = seriesMap[sk].observations;
             Object.keys(observations).forEach(obsIdxStr => {
                 const obsIdx = parseInt(obsIdxStr, 10);
-                const timeId = timeValues[obsIdx]?.id; // e.g., '2015-09'
+                const timeObj = timeValues[obsIdx];
+                const timeId = (typeof timeObj === 'string') ? timeObj : timeObj?.id; // NB sometimes uses plain strings
                 const val = observations[obsIdxStr][0];
                 if (timeId && val !== null && val !== undefined) {
                     const [y, m] = timeId.split('-');
@@ -404,13 +406,15 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
 export function parseInterestRateData(data) {
     try {
         const structure = data.data.structure;
-        const timeValues = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD')?.values || [];
+        const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
+        const timeValues = timeDim?.values || [];
         const series = data.data.dataSets[0].series;
         const points = [];
         Object.keys(series).forEach(k => {
             const obs = series[k].observations;
             Object.keys(obs).forEach(i => {
-                const timeId = timeValues[Number(i)]?.id; // e.g., '2000-01'
+                const tv = timeValues[Number(i)];
+                const timeId = (typeof tv === 'string') ? tv : tv?.id; // e.g., '2000-01'
                 const v = obs[i][0];
                 if (timeId && v !== null && v !== undefined) {
                     const [y, m] = timeId.split('-');
@@ -434,13 +438,15 @@ export function parseInterestRateData(data) {
 export function parseGovernmentDebtData(data) {
     try {
         const structure = data.data.structure;
-        const timeValues = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD')?.values || [];
+        const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
+        const timeValues = timeDim?.values || [];
         const series = data.data.dataSets[0].series;
         const points = [];
         Object.keys(series).forEach(k => {
             const obs = series[k].observations;
             Object.keys(obs).forEach(i => {
-                const timeId = timeValues[Number(i)]?.id; // e.g., '2000-01'
+                const tv = timeValues[Number(i)];
+                const timeId = (typeof tv === 'string') ? tv : tv?.id; // e.g., '2000-01'
                 const v = obs[i][0];
                 if (timeId && v !== null && v !== undefined) {
                     const [y, m] = timeId.split('-');
@@ -522,6 +528,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     label: title,
                     data: data.map(item => ({ x: item.date, y: item.value })),
                     borderWidth: 2,
+                    borderColor: '#3b82f6',
                     fill: false,
                     segment: {
                         borderColor: (ctx) => {

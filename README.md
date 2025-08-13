@@ -98,6 +98,18 @@ The website is automatically deployed to GitHub Pages from the `main` branch. Th
 **Important**: 
 - The root `index.html` is configured for GitHub Pages deployment
 - The `src/html/index.html` is for local development testing
+
+#### Debug Cache Issues
+If you encounter loading problems, visit the diagnostics page:
+```bash
+# Local development
+open http://localhost:8000/tests/debug-cache.html
+
+# GitHub Pages
+open https://egil10.github.io/riksdata/tests/debug-cache.html
+```
+
+This page will test all cache files and show which ones are missing or causing errors.
 - Both versions use the same JavaScript modules and CSS files
 
 ## 📊 Features

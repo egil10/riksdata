@@ -54,21 +54,27 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             } else {
                 throw new Error(`Unknown Norges Bank API URL: ${apiUrl}`);
             }
-        } else if (apiUrl.startsWith('data/cached/')) {
+        } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = apiUrl;
-        } else if (apiUrl.startsWith('data/')) {
+        } else if (apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
             // Handle static data files (legacy path)
-            cachePath = apiUrl.replace('data/', 'data/cached/');
+            cachePath = apiUrl.replace(/^\.?\/?data\//, './data/cached/');
         } else {
             throw new Error(`Unknown data source: ${apiUrl}`);
         }
 
         // Fetch data from cache file
         console.log(`Loading cached data from: ${cachePath}`);
-        const response = await fetch(cachePath);
-        if (!response.ok) {
-            throw new Error(`Failed to load cached data: ${response.status} ${response.statusText}`);
+        let response;
+        try {
+            response = await fetch(cachePath);
+            if (!response.ok) {
+                throw new Error(`Failed to load cached data: ${response.status} ${response.statusText} for ${cachePath}`);
+            }
+        } catch (error) {
+            console.error(`Failed to load ${cachePath}:`, error);
+            throw new Error(`Network error loading ${cachePath}: ${error.message}`);
         }
 
         const data = await response.json();
@@ -97,7 +103,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             } else {
                 throw new Error(`Unknown Norges Bank endpoint in URL: ${apiUrl}`);
             }
-        } else if (apiUrl.startsWith('data/cached/') || apiUrl.startsWith('data/')) {
+        } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
             // Handle static data files
             parsedData = parseStaticData(data, chartTitle);
         } else {

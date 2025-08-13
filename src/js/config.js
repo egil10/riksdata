@@ -180,7 +180,7 @@ export const CHART_FILTER_CONFIG = {
 export const API_CONFIG = {
     SSB_BASE_URL: 'https://data.ssb.no/api/v0/dataset',
     NORGES_BANK_BASE_URL: 'https://data.norges-bank.no/api/data',
-    CACHE_BASE_PATH: 'data/cached'
+    CACHE_BASE_PATH: './data/cached'
 };
 
 // Dataset mappings for cache files

@@ -3,64 +3,392 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Debug Cache</title>
+    <title>Riksdata Cache Diagnostics</title>
     <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .debug { background: #f0f0f0; padding: 10px; margin: 10px 0; border-radius: 5px; }
-        .error { background: #ffebee; color: #c62828; }
-        .success { background: #e8f5e8; color: #2e7d32; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .success { color: #10b981; }
+        .error { color: #ef4444; }
+        .warning { color: #f59e0b; }
+        .results {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .file-result {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .file-result:last-child {
+            border-bottom: none;
+        }
+        .file-name {
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        .status.success { background: #d1fae5; color: #065f46; }
+        .status.error { background: #fee2e2; color: #991b1b; }
+        .status.warning { background: #fef3c7; color: #92400e; }
+        .progress {
+            width: 100%;
+            height: 20px;
+            background: #e5e7eb;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+        button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
-    <h1>Debug Cache Loading</h1>
-    <div id="debug-output"></div>
+    <div class="header">
+        <h1>🔍 Riksdata Cache Diagnostics</h1>
+        <p>This page tests all cache files to ensure they're accessible and valid.</p>
+        <button id="runTest" onclick="runDiagnostics()">Run Diagnostics</button>
+        <button id="exportResults" onclick="exportResults()" disabled>Export Results</button>
+    </div>
+
+    <div class="stats">
+        <div class="stat-card">
+            <div class="stat-number" id="totalFiles">-</div>
+            <div>Total Files</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number success" id="successCount">-</div>
+            <div>Successful</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number error" id="errorCount">-</div>
+            <div>Failed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number warning" id="warningCount">-</div>
+            <div>Warnings</div>
+        </div>
+    </div>
+
+    <div class="progress">
+        <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+    </div>
+
+    <div class="results">
+        <h2>Test Results</h2>
+        <div id="resultsContainer">
+            <p>Click "Run Diagnostics" to start testing cache files.</p>
+        </div>
+    </div>
 
     <script>
-        function log(message, type = 'info') {
-            const div = document.createElement('div');
-            div.className = `debug ${type}`;
-            div.textContent = message;
-            document.getElementById('debug-output').appendChild(div);
-        }
+        let testResults = [];
+        let cacheFiles = [
+            // SSB files
+            './data/cached/ssb/cpi.json',
+            './data/cached/ssb/unemployment.json',
+            './data/cached/ssb/house-prices.json',
+            './data/cached/ssb/ppi.json',
+            './data/cached/ssb/wage.json',
+            './data/cached/ssb/gdp-growth.json',
+            './data/cached/ssb/trade-balance.json',
+            './data/cached/ssb/bankruptcies.json',
+            './data/cached/ssb/population-growth.json',
+            './data/cached/ssb/construction-costs.json',
+            './data/cached/ssb/industrial-production.json',
+            './data/cached/ssb/retail-sales.json',
+            './data/cached/ssb/export-volume.json',
+            './data/cached/ssb/import-value-volume-sitc.json',
+            './data/cached/ssb/business-confidence.json',
+            './data/cached/ssb/housing-starts.json',
+            './data/cached/ssb/monetary-aggregates.json',
+            './data/cached/ssb/job-vacancies.json',
+            './data/cached/ssb/construction-production.json',
+            './data/cached/ssb/credit-indicator.json',
+            './data/cached/ssb/energy-consumption.json',
+            './data/cached/ssb/government-revenue.json',
+            './data/cached/ssb/international-accounts.json',
+            './data/cached/ssb/labour-cost-index.json',
+            './data/cached/ssb/rd-expenditure.json',
+            './data/cached/ssb/salmon-export.json',
+            './data/cached/ssb/oil-gas-investment.json',
+            './data/cached/ssb/immigration-rate.json',
+            './data/cached/ssb/household-income.json',
+            './data/cached/ssb/life-expectancy.json',
+            './data/cached/ssb/crime-rate.json',
+            './data/cached/ssb/education-level.json',
+            './data/cached/ssb/greenhouse-gas.json',
+            './data/cached/ssb/economic-forecasts.json',
+            './data/cached/ssb/new-dwellings-price.json',
+            './data/cached/ssb/population-development-quarterly.json',
+            './data/cached/ssb/cpi-adjusted-indices.json',
+            './data/cached/ssb/wage-indices-by-industry.json',
+            './data/cached/ssb/import-by-country-monthly.json',
+            './data/cached/ssb/population-by-gender-age-timeline.json',
+            './data/cached/ssb/cpi-group-level.json',
+            './data/cached/ssb/cpi-subgroup-level2.json',
+            './data/cached/ssb/cpi-weights-subgroup.json',
+            './data/cached/ssb/import-value-volume-sitc.json',
+            './data/cached/ssb/export-value-volume-sitc.json',
+            './data/cached/ssb/tax-returns-main-items.json',
+            './data/cached/ssb/public-administration-expenditures.json',
+            './data/cached/ssb/money-supply-m0.json',
+            './data/cached/ssb/money-supply-m3-by-sector.json',
+            './data/cached/ssb/money-supply-by-sector.json',
+            './data/cached/ssb/money-supply-m3-net-claims.json',
+            './data/cached/ssb/new-detached-house-prices-national.json',
+            './data/cached/ssb/import-value-volume-sitc1.json',
+            './data/cached/ssb/export-value-volume-sitc1.json',
+            './data/cached/ssb/population-by-gender-age-historical.json',
+            './data/cached/ssb/oil-gas-industry-turnover.json',
+            './data/cached/ssb/employed-by-residence-workplace.json',
+            './data/cached/ssb/living-arrangements-national.json',
+            './data/cached/ssb/cpi-seasonally-adjusted.json',
+            './data/cached/ssb/credit-indicator-k2-detailed.json',
+            './data/cached/ssb/first-hand-price-index.json',
+            './data/cached/ssb/first-hand-price-index-groups.json',
+            './data/cached/ssb/cpi-adjusted-delivery-sector.json',
+            './data/cached/ssb/wage-indices-by-industry-sn88.json',
+            './data/cached/ssb/production-index-by-product.json',
+            './data/cached/ssb/population-by-gender-age-5year.json',
+            './data/cached/ssb/household-consumption.json',
+            './data/cached/ssb/producer-price-index-recent.json',
+            './data/cached/ssb/employment-rate.json',
+            './data/cached/ssb/immigrants-with-immigrant-parents.json',
+            './data/cached/ssb/credit-indicator-k3.json',
+            './data/cached/ssb/cpi-delivery-sector-annual.json',
+            './data/cached/ssb/first-hand-price-index-subgroups.json',
+            './data/cached/ssb/cpi-adjusted-delivery-sector-recent.json',
+            './data/cached/ssb/producer-price-index-recent.json',
+            './data/cached/ssb/cpi-delivery-sector-recent.json',
+            './data/cached/ssb/credit-indicator-k2-seasonally-adjusted.json',
+            './data/cached/ssb/producer-price-index-subgroups.json',
+            './data/cached/ssb/retail-sales-seasonally-adjusted.json',
+            './data/cached/ssb/import-value-sitc3.json',
+            './data/cached/ssb/export-value-sitc3.json',
+            './data/cached/ssb/trade-volume-price-bec.json',
+            './data/cached/ssb/production-index-by-industry.json',
+            './data/cached/ssb/producer-price-index-industries.json',
+            './data/cached/ssb/trade-main-figures-by-country.json',
+            './data/cached/ssb/trade-volume-price-product-groups.json',
+            './data/cached/ssb/trade-volume-price-sitc2.json',
+            './data/cached/ssb/producer-price-index-products.json',
+            './data/cached/ssb/business-cycle-barometer-products.json',
+            './data/cached/ssb/business-cycle-barometer.json',
+            './data/cached/ssb/household-income-national.json',
+            './data/cached/ssb/wages-by-occupation.json',
+            './data/cached/ssb/oil-gas-industry-turnover-sn2007.json',
+            './data/cached/ssb/house-price-index-recent.json',
+            './data/cached/ssb/national-accounts-recent.json',
+            './data/cached/ssb/producer-price-index-subgroups-detailed.json',
+            './data/cached/ssb/cpi-total-index-recent.json',
+            './data/cached/ssb/trade-main-figures-recent.json',
+            './data/cached/ssb/production-index-industry-recent.json',
+            './data/cached/ssb/producer-price-index-totals-recent.json',
+            './data/cached/ssb/economic-forecasts-selected.json',
+            './data/cached/ssb/deaths-by-week-age.json',
+            './data/cached/ssb/monetary-m3.json',
+            
+            // Norges Bank files
+            './data/cached/norges-bank/exchange-rates.json',
+            './data/cached/norges-bank/interest-rate.json',
+            './data/cached/norges-bank/government-debt.json',
+            
+            // Static files
+            './data/cached/oil-fund.json',
+            './data/cached/exchange-rates.json'
+        ];
 
-        async function testCache() {
+        async function testFile(filePath) {
             try {
-                log('Testing cache loading...');
-                
-                // Test loading CPI data
-                const response = await fetch('data/cached/ssb/cpi.json');
+                const response = await fetch(filePath);
                 if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                    return {
+                        file: filePath,
+                        status: 'error',
+                        message: `HTTP ${response.status}: ${response.statusText}`,
+                        size: 0
+                    };
                 }
                 
                 const data = await response.json();
-                log(`✅ Successfully loaded CPI data`, 'success');
-                log(`Data structure: ${JSON.stringify(Object.keys(data), null, 2)}`);
+                const size = JSON.stringify(data).length;
                 
-                if (data.dataset && data.dataset.value) {
-                    log(`✅ Dataset and value found`, 'success');
-                    log(`Value array length: ${data.dataset.value.length}`);
-                    log(`First 10 values: ${data.dataset.value.slice(0, 10).join(', ')}`);
-                } else {
-                    log(`❌ Dataset or value missing`, 'error');
+                // Check if data has expected structure
+                let warning = null;
+                if (!data.dataset && !data.data) {
+                    warning = 'No dataset or data property found';
                 }
                 
-                if (data.dataset && data.dataset.dimension && data.dataset.dimension.Tid) {
-                    log(`✅ Time dimension found`, 'success');
-                    const timeLabels = data.dataset.dimension.Tid.category.label;
-                    log(`Time labels count: ${Object.keys(timeLabels).length}`);
-                    log(`First 5 time labels: ${Object.keys(timeLabels).slice(0, 5).join(', ')}`);
-                } else {
-                    log(`❌ Time dimension missing`, 'error');
-                }
-                
+                return {
+                    file: filePath,
+                    status: warning ? 'warning' : 'success',
+                    message: warning || `OK (${size} bytes)`,
+                    size: size
+                };
             } catch (error) {
-                log(`❌ Error: ${error.message}`, 'error');
+                return {
+                    file: filePath,
+                    status: 'error',
+                    message: error.message,
+                    size: 0
+                };
             }
         }
 
-        // Run the test
-        testCache();
+        async function runDiagnostics() {
+            const button = document.getElementById('runTest');
+            const exportButton = document.getElementById('exportResults');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            button.disabled = true;
+            exportButton.disabled = true;
+            testResults = [];
+            
+            // Update stats
+            document.getElementById('totalFiles').textContent = cacheFiles.length;
+            document.getElementById('successCount').textContent = '0';
+            document.getElementById('errorCount').textContent = '0';
+            document.getElementById('warningCount').textContent = '0';
+            
+            resultsContainer.innerHTML = '<p>Testing cache files...</p>';
+            
+            let completed = 0;
+            let successCount = 0;
+            let errorCount = 0;
+            let warningCount = 0;
+            
+            for (const file of cacheFiles) {
+                const result = await testFile(file);
+                testResults.push(result);
+                
+                // Update counters
+                if (result.status === 'success') successCount++;
+                else if (result.status === 'error') errorCount++;
+                else if (result.status === 'warning') warningCount++;
+                
+                completed++;
+                
+                // Update progress
+                const progress = (completed / cacheFiles.length) * 100;
+                document.getElementById('progressBar').style.width = `${progress}%`;
+                
+                // Update stats
+                document.getElementById('successCount').textContent = successCount;
+                document.getElementById('errorCount').textContent = errorCount;
+                document.getElementById('warningCount').textContent = warningCount;
+                
+                // Update results display
+                displayResults();
+            }
+            
+            button.disabled = false;
+            exportButton.disabled = false;
+            
+            // Final summary
+            const summary = `
+                <h3>Diagnostics Complete</h3>
+                <p><strong>Total files tested:</strong> ${cacheFiles.length}</p>
+                <p><strong>Successful:</strong> ${successCount}</p>
+                <p><strong>Failed:</strong> ${errorCount}</p>
+                <p><strong>Warnings:</strong> ${warningCount}</p>
+            `;
+            
+            resultsContainer.innerHTML = summary + resultsContainer.innerHTML;
+        }
+
+        function displayResults() {
+            const resultsContainer = document.getElementById('resultsContainer');
+            const resultsDiv = document.createElement('div');
+            
+            // Clear existing results
+            const existingResults = resultsContainer.querySelector('.file-results');
+            if (existingResults) {
+                existingResults.remove();
+            }
+            
+            resultsDiv.className = 'file-results';
+            
+            testResults.forEach(result => {
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'file-result';
+                resultDiv.innerHTML = `
+                    <div class="file-name">${result.file}</div>
+                    <div class="status ${result.status}">${result.message}</div>
+                `;
+                resultsDiv.appendChild(resultDiv);
+            });
+            
+            resultsContainer.appendChild(resultsDiv);
+        }
+
+        function exportResults() {
+            const dataStr = JSON.stringify(testResults, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'riksdata-cache-diagnostics.json';
+            link.click();
+            URL.revokeObjectURL(url);
+        }
     </script>
 </body>
 </html>

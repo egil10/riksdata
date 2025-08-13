@@ -301,6 +301,23 @@ export function parseTimeLabel(timeLabel) {
             return new Date(parseInt(timeLabel), 0, 1);
         }
         
+        // Handle weekly format: "2025U30", "2025U31", etc.
+        if (timeLabel.includes('U')) {
+            const [year, week] = timeLabel.split('U');
+            const yearNum = parseInt(year);
+            const weekNum = parseInt(week);
+            
+            // Calculate the date of the first day of the week (Monday)
+            // ISO week 1 is the week containing January 4th
+            const jan4 = new Date(yearNum, 0, 4);
+            const jan4Day = jan4.getDay(); // 0 = Sunday, 1 = Monday, etc.
+            const week1Start = new Date(yearNum, 0, 4 - jan4Day + (jan4Day === 0 ? -6 : 1));
+            const targetDate = new Date(week1Start);
+            targetDate.setDate(week1Start.getDate() + (weekNum - 1) * 7);
+            
+            return targetDate;
+        }
+        
         // Handle other formats as needed
         return new Date(timeLabel);
         

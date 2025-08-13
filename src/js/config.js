@@ -198,7 +198,7 @@ export const DATASET_MAPPINGS = {
         '1124': 'wage',
         '59012': 'gdp-growth',
         '58962': 'trade-balance',
-        '95265': 'bankruptcies',
+        '95265': 'bankruptcies-total',
         '49626': 'population-growth',
         '26944': 'construction-costs',
         '27002': 'industrial-production',
@@ -242,6 +242,14 @@ export const DATASET_MAPPINGS = {
         '1134': 'export-commodity',
         '1140': 'import-commodity',
         '1056': 'construction-cost-wood',
+        
+        // Additional mappings for problematic charts
+        '1098': 'cpi-weights-subgroup',
+        '95146': 'housing-starts',
+        '166328': 'job-vacancies',
+        '166331': 'household-consumption',
+        '166330': 'consumer-confidence',
+        '924816': 'bankruptcies-total',
         '1058': 'construction-cost-multi',
         '1065': 'retail-sales-seasonally-adjusted',
         '1068': 'household-types',

@@ -156,13 +156,17 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         
         console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
         
-        // Filter data from 2000 onwards
+        // Filter data from 2000 onwards, but be more lenient for charts with limited data
         const filteredData = parsedData.filter(item => {
             const year = new Date(item.date).getFullYear();
             return year >= 2000;
         });
 
-        const finalFiltered = filteredData.length >= 2 ? filteredData : parsedData;
+        // If we have very few data points, use all data regardless of year
+        // This helps with charts that only have recent data (like weekly salmon exports)
+        const finalFiltered = filteredData.length >= 2 ? filteredData : 
+                             parsedData.length >= 2 ? parsedData : 
+                             filteredData;
 
         // Aggregate by month for bar charts
         const finalData = chartType === 'bar' ? aggregateDataByMonth(finalFiltered) : finalFiltered;
@@ -601,15 +605,23 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             ]
         };
     } else {
-        // Bar charts: one dataset using default color
+        // Bar charts: use single color for now (Chart.js bar charts don't support array colors easily)
+        // We'll use the most common political period color or default
+        const periods = data.map(item => getPoliticalPeriod(item.date)).filter(Boolean);
+        const mostCommonPeriod = periods.length > 0 ? 
+            periods.sort((a, b) => 
+                periods.filter(p => p.name === a.name).length - 
+                periods.filter(p => p.name === b.name).length
+            ).pop() : null;
+        
         chartData = {
             labels: data.map(item => item.date),
             datasets: [
                 {
                     label: title,
                     data: data.map(item => ({ x: item.date, y: item.value })),
-                    backgroundColor: 'rgba(59,130,246,0.2)',
-                    borderColor: '#3b82f6',
+                    backgroundColor: mostCommonPeriod ? mostCommonPeriod.backgroundColor : 'rgba(59,130,246,0.2)',
+                    borderColor: mostCommonPeriod ? mostCommonPeriod.color : '#3b82f6',
                     borderWidth: 1
                 }
             ]

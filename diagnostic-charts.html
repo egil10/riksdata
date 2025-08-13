@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chart Diagnostics</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .error { color: red; }
+        .success { color: green; }
+        .warning { color: orange; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; }
+        .chart-test { margin: 10px 0; }
+        button { margin: 5px; padding: 8px 15px; }
+        #results { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Chart Diagnostics Tool</h1>
+    
+    <div class="test-section">
+        <h2>Problematic Charts Test</h2>
+        <button onclick="testAllCharts()">Test All Problematic Charts</button>
+        <button onclick="testAPIEndpoints()">Test API Endpoints</button>
+        <button onclick="testCacheFiles()">Test Cache Files</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        const problematicCharts = {
+            // Category 1: Strange chart format, missing political colours, strange bunch of bars
+            'bankruptcies': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en',
+                cachePath: './data/cached/ssb/bankruptcies.json',
+                title: 'Bankruptcies'
+            },
+            'cpi-weights-subgroup': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1098.json?lang=en',
+                cachePath: './data/cached/ssb/cpi-weights-subgroup.json',
+                title: 'CPI Weights Subgroup'
+            },
+            'gdp-growth': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en',
+                cachePath: './data/cached/ssb/gdp-growth.json',
+                title: 'GDP Growth'
+            },
+            'housing-starts': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en',
+                cachePath: './data/cached/ssb/housing-starts.json',
+                title: 'Housing Starts'
+            },
+            'job-vacancies': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en',
+                cachePath: './data/cached/ssb/job-vacancies.json',
+                title: 'Job Vacancies'
+            },
+            'living-arrangements-national': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166331.json?lang=en',
+                cachePath: './data/cached/ssb/household-consumption.json',
+                title: 'Living Arrangements National'
+            },
+            'trade-balance': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en',
+                cachePath: './data/cached/ssb/trade-balance.json',
+                title: 'Trade Balance'
+            },
+            
+            // Category 2: Totally empty charts
+            'wholesale-retail-sales': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en',
+                cachePath: './data/cached/ssb/retail-sales.json',
+                title: 'Wholesale Retail Sales'
+            },
+            'unemployment-duration': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1052.json?lang=en',
+                cachePath: './data/cached/ssb/unemployment.json',
+                title: 'Unemployment Duration'
+            },
+            'salmon-export-volume': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en',
+                cachePath: './data/cached/ssb/salmon-export-volume.json',
+                title: 'Salmon Export Volume'
+            },
+            'salmon-export-value': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en',
+                cachePath: './data/cached/ssb/salmon-export.json',
+                title: 'Salmon Export Value'
+            },
+            'population-development-quarterly': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en',
+                cachePath: './data/cached/ssb/population-development-quarterly.json',
+                title: 'Population Development Quarterly'
+            },
+            'oil-price-brent': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166334.json?lang=en',
+                cachePath: './data/cached/ssb/oil-gas-investment.json',
+                title: 'Oil Price (Brent)'
+            },
+            'labor-force-quarterly': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en',
+                cachePath: './data/cached/ssb/credit-indicator.json',
+                title: 'Labor Force Quarterly'
+            },
+            'labor-force-monthly': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en',
+                cachePath: './data/cached/ssb/job-vacancies.json',
+                title: 'Labor Force Monthly'
+            },
+            'labor-force-flows': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en',
+                cachePath: './data/cached/ssb/consumer-confidence.json',
+                title: 'Labor Force Flows'
+            },
+            'labor-force-annual': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166331.json?lang=en',
+                cachePath: './data/cached/ssb/household-consumption.json',
+                title: 'Labor Force Annual'
+            },
+            'energy-accounts': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en',
+                cachePath: './data/cached/ssb/energy-consumption.json',
+                title: 'Energy Accounts'
+            },
+            'employment-status-quarterly': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en',
+                cachePath: './data/cached/ssb/labour-cost-index.json',
+                title: 'Employment Status Quarterly'
+            },
+            'employment-status-annual': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en',
+                cachePath: './data/cached/ssb/rd-expenditure.json',
+                title: 'Employment Status Annual'
+            },
+            'education-labor-quarterly': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en',
+                cachePath: './data/cached/ssb/education-level.json',
+                title: 'Education & Labor Quarterly'
+            },
+            'crime-rate': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en',
+                cachePath: './data/cached/ssb/crime-rate.json',
+                title: 'Crime Rate'
+            },
+            'credit-indicator-c2': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en',
+                cachePath: './data/cached/ssb/credit-indicator.json',
+                title: 'Credit Indicator C2'
+            },
+            'cpi-seasonally-adjusted-recent': {
+                apiUrl: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en',
+                cachePath: './data/cached/ssb/cpi-ate.json',
+                title: 'CPI Seasonally Adjusted Recent'
+            },
+            
+            // Category 3: Strange aggregation, jumpy or down to zero
+            'government-debt': {
+                apiUrl: 'https://data.norges-bank.no/api/v0/dataset/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON',
+                cachePath: './data/cached/norges-bank/government-debt.json',
+                title: 'Government Debt'
+            },
+            'key-policy-rate': {
+                apiUrl: 'https://data.norges-bank.no/api/v0/dataset/IR/M.KPRA..',
+                cachePath: './data/cached/norges-bank/interest-rate.json',
+                title: 'Key Policy Rate'
+            }
+        };
+
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = type;
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            results.appendChild(div);
+            console.log(message);
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testAPIEndpoint(chartKey, chartInfo) {
+            log(`Testing API endpoint for ${chartInfo.title}...`, 'info');
+            
+            try {
+                const response = await fetch(chartInfo.apiUrl);
+                if (!response.ok) {
+                    log(`❌ API failed for ${chartInfo.title}: ${response.status} ${response.statusText}`, 'error');
+                    return false;
+                }
+                
+                const data = await response.json();
+                log(`✅ API success for ${chartInfo.title}`, 'success');
+                
+                // Analyze data structure
+                if (data.dataset) {
+                    const dataset = data.dataset;
+                    log(`📊 Dataset structure for ${chartInfo.title}:`, 'info');
+                    log(`   - Dimensions: ${dataset.dimension ? Object.keys(dataset.dimension).length : 'none'}`, 'info');
+                    log(`   - Value count: ${dataset.value ? dataset.value.length : 'none'}`, 'info');
+                    
+                    if (dataset.dimension) {
+                        Object.keys(dataset.dimension).forEach(key => {
+                            const dim = dataset.dimension[key];
+                            log(`   - Dimension "${key}": ${dim.category ? dim.category.index ? Object.keys(dim.category.index).length : 'no index' : 'no category'} labels`, 'info');
+                        });
+                    }
+                } else {
+                    log(`⚠️ No dataset structure found for ${chartInfo.title}`, 'warning');
+                }
+                
+                return true;
+            } catch (error) {
+                log(`❌ API error for ${chartInfo.title}: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        async function testCacheFile(chartKey, chartInfo) {
+            log(`Testing cache file for ${chartInfo.title}...`, 'info');
+            
+            try {
+                const response = await fetch(chartInfo.cachePath);
+                if (!response.ok) {
+                    log(`❌ Cache file not found for ${chartInfo.title}: ${response.status} ${response.statusText}`, 'error');
+                    return false;
+                }
+                
+                const data = await response.json();
+                log(`✅ Cache file exists for ${chartInfo.title}`, 'success');
+                
+                // Analyze cached data structure
+                if (data.dataset) {
+                    const dataset = data.dataset;
+                    log(`📊 Cached data for ${chartInfo.title}:`, 'info');
+                    log(`   - Value count: ${dataset.value ? dataset.value.length : 'none'}`, 'info');
+                    
+                    if (dataset.value && dataset.value.length > 0) {
+                        const nonNullValues = dataset.value.filter(v => v !== null && v !== undefined);
+                        log(`   - Non-null values: ${nonNullValues.length}/${dataset.value.length}`, 'info');
+                        
+                        if (nonNullValues.length > 0) {
+                            const sampleValues = nonNullValues.slice(0, 5);
+                            log(`   - Sample values: [${sampleValues.join(', ')}]`, 'info');
+                        }
+                    }
+                } else {
+                    log(`⚠️ No dataset structure in cache for ${chartInfo.title}`, 'warning');
+                }
+                
+                return true;
+            } catch (error) {
+                log(`❌ Cache file error for ${chartInfo.title}: ${error.message}`, 'error');
+                return false;
+            }
+        }
+
+        async function testAllCharts() {
+            log('=== STARTING COMPREHENSIVE CHART TEST ===', 'info');
+            
+            for (const [chartKey, chartInfo] of Object.entries(problematicCharts)) {
+                log(`\n--- Testing ${chartInfo.title} ---`, 'info');
+                
+                // Test API endpoint
+                const apiSuccess = await testAPIEndpoint(chartKey, chartInfo);
+                
+                // Test cache file
+                const cacheSuccess = await testCacheFile(chartKey, chartInfo);
+                
+                if (apiSuccess && cacheSuccess) {
+                    log(`✅ ${chartInfo.title}: Both API and cache working`, 'success');
+                } else if (apiSuccess && !cacheSuccess) {
+                    log(`⚠️ ${chartInfo.title}: API works but cache missing`, 'warning');
+                } else if (!apiSuccess && cacheSuccess) {
+                    log(`⚠️ ${chartInfo.title}: Cache exists but API fails`, 'warning');
+                } else {
+                    log(`❌ ${chartInfo.title}: Both API and cache failing`, 'error');
+                }
+                
+                // Small delay to avoid overwhelming the APIs
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            log('\n=== CHART TEST COMPLETE ===', 'info');
+        }
+
+        async function testAPIEndpoints() {
+            log('=== TESTING API ENDPOINTS ONLY ===', 'info');
+            
+            for (const [chartKey, chartInfo] of Object.entries(problematicCharts)) {
+                await testAPIEndpoint(chartKey, chartInfo);
+                await new Promise(resolve => setTimeout(resolve, 300));
+            }
+        }
+
+        async function testCacheFiles() {
+            log('=== TESTING CACHE FILES ONLY ===', 'info');
+            
+            for (const [chartKey, chartInfo] of Object.entries(problematicCharts)) {
+                await testCacheFile(chartKey, chartInfo);
+            }
+        }
+    </script>
+</body>
+</html>

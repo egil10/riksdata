@@ -132,6 +132,7 @@ export async function initializeApp() {
             loadChartData('cpi-group-level-chart', 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', 'CPI Group Level'),
             loadChartData('cpi-subgroup-level2-chart', 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en', 'CPI Subgroup Level 2'),
             loadChartData('cpi-weights-subgroup-chart', 'https://data.ssb.no/api/v0/dataset/1098.json?lang=en', 'CPI Weights Subgroup', 'bar'),
+            loadChartData('cpi-seasonally-adjusted-recent-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI Seasonally Adjusted Recent'),
             loadChartData('import-value-volume-sitc-chart', 'https://data.ssb.no/api/v0/dataset/34640.json?lang=en', 'Import Value Volume SITC'),
             loadChartData('export-value-volume-sitc-chart', 'https://data.ssb.no/api/v0/dataset/34642.json?lang=en', 'Export Value Volume SITC'),
             loadChartData('tax-returns-main-items-chart', 'https://data.ssb.no/api/v0/dataset/49656.json?lang=en', 'Tax Returns Main Items'),

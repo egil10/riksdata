@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Problematic Charts Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        .error { color: red; }
+        .success { color: green; }
+        .warning { color: orange; }
+        pre { background: #f5f5f5; padding: 10px; overflow-x: auto; max-height: 300px; }
+        button { margin: 5px; padding: 8px 15px; }
+        #results { margin-top: 20px; }
+        .chart-result { margin: 10px 0; padding: 10px; border: 1px solid #ddd; }
+    </style>
+</head>
+<body>
+    <h1>Problematic Charts Diagnostic Tool</h1>
+    
+    <div class="test-section">
+        <h2>Test Specific Charts</h2>
+        <button onclick="testBankruptcies()">Test Bankruptcies</button>
+        <button onclick="testCPIWeights()">Test CPI Weights</button>
+        <button onclick="testGDPGrowth()">Test GDP Growth</button>
+        <button onclick="testHousingStarts()">Test Housing Starts</button>
+        <button onclick="testJobVacancies()">Test Job Vacancies</button>
+        <button onclick="testTradeBalance()">Test Trade Balance</button>
+        <button onclick="testSalmonExport()">Test Salmon Export</button>
+        <button onclick="testPopulationDevelopment()">Test Population Development</button>
+        <button onclick="testAllProblematic()">Test All Problematic</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+
+    <div id="results"></div>
+
+    <script>
+        // Import the parsing functions (simplified versions for testing)
+        function parseTimeLabel(timeLabel) {
+            try {
+                if (timeLabel.includes('M')) {
+                    const [year, month] = timeLabel.split('M');
+                    return new Date(parseInt(year), parseInt(month) - 1, 1);
+                }
+                if (timeLabel.includes('K')) {
+                    const [year, quarter] = timeLabel.split('K');
+                    const quarterNum = parseInt(quarter);
+                    const month = (quarterNum - 1) * 3;
+                    return new Date(parseInt(year), month, 1);
+                }
+                if (timeLabel.includes('U')) {
+                    const [year, week] = timeLabel.split('U');
+                    const yearNum = parseInt(year);
+                    const weekNum = parseInt(week);
+                    const jan4 = new Date(yearNum, 0, 4);
+                    const jan4Day = jan4.getDay();
+                    const week1Start = new Date(yearNum, 0, 4 - jan4Day + (jan4Day === 0 ? -6 : 1));
+                    const targetDate = new Date(week1Start);
+                    targetDate.setDate(week1Start.getDate() + (weekNum - 1) * 7);
+                    return targetDate;
+                }
+                if (/^\d{4}$/.test(timeLabel)) {
+                    return new Date(parseInt(timeLabel), 0, 1);
+                }
+                return new Date(timeLabel);
+            } catch (error) {
+                console.error('Error parsing time label:', timeLabel, error);
+                return null;
+            }
+        }
+
+        function parseSSBData(data, chartTitle) {
+            try {
+                const dataset = data.dataset;
+                const dimByName = dataset.dimension;
+                const values = dataset.value;
+
+                if (!dimByName || !values) throw new Error('Invalid SSB dataset');
+
+                const dims = Array.isArray(dataset.id) ? dataset.id : Object.keys(dimByName);
+                const sizes = Array.isArray(dataset.size) ? dataset.size : dims.map(d => {
+                    const idx = dimByName[d]?.category?.index || {};
+                    return Object.keys(idx).length || 1;
+                });
+
+                const timeDimName = 'Tid';
+                const timeDim = dimByName[timeDimName];
+                if (!timeDim) throw new Error('Time dimension not found in SSB data');
+                const timeLabels = timeDim.category.label;
+                const timeIndexMap = timeDim.category.index;
+
+                // Pick content code index if present
+                let contentsIndex = 0;
+                if (dimByName.ContentsCode) {
+                    const contentLabels = dimByName.ContentsCode.category.label;
+                    const contentIndices = dimByName.ContentsCode.category.index;
+                    const preferred = Object.entries(contentLabels).find(([_, lbl]) =>
+                        lbl.toLowerCase().includes('index') ||
+                        lbl.toLowerCase().includes('total') ||
+                        lbl.toLowerCase().includes('rate') ||
+                        lbl.toLowerCase().includes('main')
+                    );
+                    const key = preferred ? preferred[0] : Object.keys(contentIndices)[0];
+                    contentsIndex = contentIndices[key] ?? 0;
+                }
+
+                // Choose default category index for non-time, non-contents dims
+                function pickDefaultIndexForDim(dimName) {
+                    const dim = dimByName[dimName];
+                    if (!dim?.category?.index) return 0;
+                    const labels = dim.category.label || {};
+                    const indices = dim.category.index || {};
+                    const preferredKey = Object.keys(labels).find(k => {
+                        const lbl = (labels[k] + '').toLowerCase();
+                        return lbl.includes('total') || lbl.includes('the whole country') || lbl.includes('hele landet') || k === '0' || k === '99';
+                    });
+                    if (preferredKey && typeof indices[preferredKey] === 'number') return indices[preferredKey];
+                    const firstKey = Object.keys(indices)[0];
+                    return typeof indices[firstKey] === 'number' ? indices[firstKey] : 0;
+                }
+
+                // Precompute multipliers for flatten index
+                const multipliers = new Array(dims.length).fill(1);
+                for (let i = 0; i < dims.length - 1; i++) {
+                    let prod = 1;
+                    for (let j = i + 1; j < dims.length; j++) prod *= sizes[j];
+                    multipliers[i] = prod;
+                }
+                multipliers[dims.length - 1] = 1;
+
+                const timePos = dims.findIndex(d => d === timeDimName);
+                const contentsPos = dims.findIndex(d => d === 'ContentsCode');
+
+                const dataPoints = [];
+                Object.keys(timeLabels).forEach(timeKey => {
+                    const timeLabel = timeLabels[timeKey];
+                    const tIdx = timeIndexMap[timeKey];
+                    const date = parseTimeLabel(timeLabel);
+                    if (!date) return;
+
+                    const idxPerDim = new Array(dims.length).fill(0);
+                    for (let k = 0; k < dims.length; k++) {
+                        const dn = dims[k];
+                        if (k === timePos) {
+                            idxPerDim[k] = tIdx;
+                        } else if (k === contentsPos) {
+                            idxPerDim[k] = contentsIndex;
+                        } else {
+                            idxPerDim[k] = pickDefaultIndexForDim(dn);
+                        }
+                    }
+                    // Flatten index
+                    let flat = 0;
+                    for (let k = 0; k < dims.length; k++) {
+                        flat += idxPerDim[k] * multipliers[k];
+                    }
+                    if (flat < values.length) {
+                        const v = values[flat];
+                        if (v !== null && v !== undefined) {
+                            dataPoints.push({ date, value: Number(v) });
+                        }
+                    }
+                });
+
+                dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+                return dataPoints;
+            } catch (error) {
+                console.error('Error parsing SSB data:', error);
+                throw new Error('Invalid SSB data format');
+            }
+        }
+
+        function log(message, type = 'info') {
+            const results = document.getElementById('results');
+            const div = document.createElement('div');
+            div.className = type;
+            div.innerHTML = `<strong>[${new Date().toLocaleTimeString()}]</strong> ${message}`;
+            results.appendChild(div);
+            console.log(message);
+        }
+
+        function clearResults() {
+            document.getElementById('results').innerHTML = '';
+        }
+
+        async function testChart(chartName, cachePath, apiUrl) {
+            log(`\n=== Testing ${chartName} ===`, 'info');
+            
+            try {
+                // Test cache file
+                const response = await fetch(cachePath);
+                if (!response.ok) {
+                    log(`❌ Cache file not found: ${response.status}`, 'error');
+                    return;
+                }
+                
+                const data = await response.json();
+                log(`✅ Cache file loaded (${JSON.stringify(data).length} chars)`, 'success');
+                
+                // Analyze data structure
+                if (data.dataset) {
+                    const dataset = data.dataset;
+                    log(`📊 Dataset structure:`, 'info');
+                    log(`   - Dimensions: ${Object.keys(dataset.dimension || {}).length}`, 'info');
+                    log(`   - Value count: ${dataset.value ? dataset.value.length : 'none'}`, 'info');
+                    
+                    if (dataset.dimension) {
+                        Object.keys(dataset.dimension).forEach(key => {
+                            const dim = dataset.dimension[key];
+                            const indexCount = dim.category?.index ? Object.keys(dim.category.index).length : 0;
+                            const labelCount = dim.category?.label ? Object.keys(dim.category.label).length : 0;
+                            log(`   - Dimension "${key}": ${indexCount} indices, ${labelCount} labels`, 'info');
+                            
+                            if (dim.category?.label) {
+                                const sampleLabels = Object.values(dim.category.label).slice(0, 3);
+                                log(`     Sample labels: ${sampleLabels.join(', ')}`, 'info');
+                            }
+                        });
+                    }
+                    
+                    // Test parsing
+                    try {
+                        const parsedData = parseSSBData(data, chartName);
+                        log(`✅ Parsing successful: ${parsedData.length} data points`, 'success');
+                        
+                        if (parsedData.length > 0) {
+                            const sampleData = parsedData.slice(0, 5);
+                            log(`📈 Sample data:`, 'info');
+                            sampleData.forEach((point, i) => {
+                                log(`   ${i+1}. ${point.date.toISOString().split('T')[0]}: ${point.value}`, 'info');
+                            });
+                            
+                            // Check for data quality issues
+                            const nonNullValues = parsedData.filter(p => p.value !== null && p.value !== undefined);
+                            const nullPercentage = ((parsedData.length - nonNullValues.length) / parsedData.length) * 100;
+                            
+                            if (nullPercentage > 20) {
+                                log(`⚠️ High null percentage: ${nullPercentage.toFixed(1)}%`, 'warning');
+                            }
+                            
+                            if (parsedData.length < 10) {
+                                log(`⚠️ Low data point count: ${parsedData.length}`, 'warning');
+                            }
+                            
+                            // Check date range
+                            const dates = parsedData.map(p => p.date).sort();
+                            const dateRange = `${dates[0].toISOString().split('T')[0]} to ${dates[dates.length-1].toISOString().split('T')[0]}`;
+                            log(`📅 Date range: ${dateRange}`, 'info');
+                        } else {
+                            log(`❌ No data points after parsing`, 'error');
+                        }
+                    } catch (parseError) {
+                        log(`❌ Parsing failed: ${parseError.message}`, 'error');
+                    }
+                } else {
+                    log(`❌ No dataset structure found`, 'error');
+                }
+                
+            } catch (error) {
+                log(`❌ Error testing ${chartName}: ${error.message}`, 'error');
+            }
+        }
+
+        async function testBankruptcies() {
+            await testChart('Bankruptcies', './data/cached/ssb/bankruptcies-total.json', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en');
+        }
+
+        async function testCPIWeights() {
+            await testChart('CPI Weights Subgroup', './data/cached/ssb/cpi-weights-subgroup.json', 'https://data.ssb.no/api/v0/dataset/1098.json?lang=en');
+        }
+
+        async function testGDPGrowth() {
+            await testChart('GDP Growth', './data/cached/ssb/gdp-growth.json', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en');
+        }
+
+        async function testHousingStarts() {
+            await testChart('Housing Starts', './data/cached/ssb/housing-starts.json', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en');
+        }
+
+        async function testJobVacancies() {
+            await testChart('Job Vacancies', './data/cached/ssb/job-vacancies.json', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en');
+        }
+
+        async function testTradeBalance() {
+            await testChart('Trade Balance', './data/cached/ssb/trade-balance.json', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en');
+        }
+
+        async function testSalmonExport() {
+            await testChart('Salmon Export Volume', './data/cached/ssb/salmon-export-volume.json', 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en');
+        }
+
+        async function testPopulationDevelopment() {
+            await testChart('Population Development Quarterly', './data/cached/ssb/population-development-quarterly.json', 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en');
+        }
+
+        async function testAllProblematic() {
+            const charts = [
+                { name: 'Bankruptcies', path: './data/cached/ssb/bankruptcies-total.json' },
+                { name: 'CPI Weights Subgroup', path: './data/cached/ssb/cpi-weights-subgroup.json' },
+                { name: 'GDP Growth', path: './data/cached/ssb/gdp-growth.json' },
+                { name: 'Housing Starts', path: './data/cached/ssb/housing-starts.json' },
+                { name: 'Job Vacancies', path: './data/cached/ssb/job-vacancies.json' },
+                { name: 'Trade Balance', path: './data/cached/ssb/trade-balance.json' },
+                { name: 'Salmon Export Volume', path: './data/cached/ssb/salmon-export-volume.json' },
+                { name: 'Population Development Quarterly', path: './data/cached/ssb/population-development-quarterly.json' },
+                { name: 'Retail Sales', path: './data/cached/ssb/retail-sales.json' },
+                { name: 'Unemployment', path: './data/cached/ssb/unemployment.json' },
+                { name: 'Salmon Export', path: './data/cached/ssb/salmon-export.json' },
+                { name: 'Oil Gas Investment', path: './data/cached/ssb/oil-gas-investment.json' },
+                { name: 'Credit Indicator', path: './data/cached/ssb/credit-indicator.json' },
+                { name: 'Consumer Confidence', path: './data/cached/ssb/consumer-confidence.json' },
+                { name: 'Household Consumption', path: './data/cached/ssb/household-consumption.json' },
+                { name: 'Energy Consumption', path: './data/cached/ssb/energy-consumption.json' },
+                { name: 'Labour Cost Index', path: './data/cached/ssb/labour-cost-index.json' },
+                { name: 'RD Expenditure', path: './data/cached/ssb/rd-expenditure.json' },
+                { name: 'Education Level', path: './data/cached/ssb/education-level.json' },
+                { name: 'Crime Rate', path: './data/cached/ssb/crime-rate.json' },
+                { name: 'CPI Seasonally Adjusted Recent', path: './data/cached/ssb/cpi-seasonally-adjusted-recent.json' }
+            ];
+
+            for (const chart of charts) {
+                await testChart(chart.name, chart.path);
+                await new Promise(resolve => setTimeout(resolve, 100)); // Small delay
+            }
+        }
+    </script>
+</body>
+</html>

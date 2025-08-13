@@ -54,9 +54,12 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             } else {
                 throw new Error(`Unknown Norges Bank API URL: ${apiUrl}`);
             }
-        } else if (apiUrl.startsWith('data/')) {
-            // Handle static data files
+        } else if (apiUrl.startsWith('data/cached/')) {
+            // Handle static data files in cache directory
             cachePath = apiUrl;
+        } else if (apiUrl.startsWith('data/')) {
+            // Handle static data files (legacy path)
+            cachePath = apiUrl.replace('data/', 'data/cached/');
         } else {
             throw new Error(`Unknown data source: ${apiUrl}`);
         }
@@ -94,7 +97,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             } else {
                 throw new Error(`Unknown Norges Bank endpoint in URL: ${apiUrl}`);
             }
-        } else if (apiUrl.startsWith('data/')) {
+        } else if (apiUrl.startsWith('data/cached/') || apiUrl.startsWith('data/')) {
             // Handle static data files
             parsedData = parseStaticData(data, chartTitle);
         } else {

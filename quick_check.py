@@ -46,9 +46,19 @@ def check_file(filepath):
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
         
+        # Check for SSB format
         if 'dataset' in data:
             values = data['dataset'].get('value', {})
             return True, f"OK ({len(values)} values)"
+        # Check for Norges Bank SDMX format
+        elif 'data' in data and 'dataSets' in data['data']:
+            dataSet = data['data']['dataSets'][0]
+            series = dataSet.get('series', {})
+            total_values = 0
+            for seriesKey in series:
+                observations = series[seriesKey].get('observations', {})
+                total_values += len(observations)
+            return True, f"OK ({total_values} values)"
         else:
             return True, "Wrong format"
             

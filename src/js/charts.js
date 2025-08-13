@@ -462,23 +462,31 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
  */
 export function parseInterestRateData(data) {
     try {
-        const structure = data.data.structure;
-        const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
-        const timeValues = timeDim?.values || [];
-        const series = data.data.dataSets[0].series;
+        // Handle SDMX-JSON format from Norges Bank
+        const dataSet = data.data.dataSets[0];
+        const series = dataSet.series;
         const points = [];
-        Object.keys(series).forEach(k => {
-            const obs = series[k].observations;
-            Object.keys(obs).forEach(i => {
-                const tv = timeValues[Number(i)];
-                const timeId = (typeof tv === 'string') ? tv : tv?.id; // e.g., '2000-01'
-                const v = obs[i][0];
-                if (timeId && v !== null && v !== undefined) {
-                    const [y, m] = timeId.split('-');
-                    points.push({ date: new Date(Number(y), Number(m) - 1, 1), value: Number(v) });
+        
+        // Extract time periods from the series keys
+        const timeMap = {};
+        Object.keys(series).forEach(seriesKey => {
+            const observations = series[seriesKey].observations;
+            Object.keys(observations).forEach(timeIndex => {
+                const value = observations[timeIndex][0];
+                if (value !== null && value !== undefined) {
+                    // Calculate the actual date based on the time index
+                    // The time index corresponds to the position in the time series
+                    const date = new Date(2000, 0, 1); // Start from 2000-01-01
+                    date.setMonth(date.getMonth() + parseInt(timeIndex));
+                    
+                    points.push({ 
+                        date: date, 
+                        value: Number(value) 
+                    });
                 }
             });
         });
+        
         return points.sort((a, b) => a.date - b.date);
 
     } catch (error) {
@@ -494,23 +502,30 @@ export function parseInterestRateData(data) {
  */
 export function parseGovernmentDebtData(data) {
     try {
-        const structure = data.data.structure;
-        const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
-        const timeValues = timeDim?.values || [];
-        const series = data.data.dataSets[0].series;
+        // Handle SDMX-JSON format from Norges Bank
+        const dataSet = data.data.dataSets[0];
+        const series = dataSet.series;
         const points = [];
-        Object.keys(series).forEach(k => {
-            const obs = series[k].observations;
-            Object.keys(obs).forEach(i => {
-                const tv = timeValues[Number(i)];
-                const timeId = (typeof tv === 'string') ? tv : tv?.id; // e.g., '2000-01'
-                const v = obs[i][0];
-                if (timeId && v !== null && v !== undefined) {
-                    const [y, m] = timeId.split('-');
-                    points.push({ date: new Date(Number(y), Number(m) - 1, 1), value: Number(v) });
+        
+        // Extract time periods from the series keys
+        Object.keys(series).forEach(seriesKey => {
+            const observations = series[seriesKey].observations;
+            Object.keys(observations).forEach(timeIndex => {
+                const value = observations[timeIndex][0];
+                if (value !== null && value !== undefined) {
+                    // Calculate the actual date based on the time index
+                    // The time index corresponds to the position in the time series
+                    const date = new Date(2000, 0, 1); // Start from 2000-01-01
+                    date.setMonth(date.getMonth() + parseInt(timeIndex));
+                    
+                    points.push({ 
+                        date: date, 
+                        value: Number(value) 
+                    });
                 }
             });
         });
+        
         return points.sort((a, b) => a.date - b.date);
 
     } catch (error) {

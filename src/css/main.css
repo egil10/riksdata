@@ -943,16 +943,35 @@ footer {
     color: var(--ap-red);
 }
 
-/* Progress Bar */
+/* Progress Bars */
 .progress-bar {
     position: fixed;
     top: 0;
     left: 0;
     width: 0%;
     height: 3px;
-    background: linear-gradient(90deg, #ef4444, #3b82f6, #eab308);
     z-index: 9999;
     transition: width 0.3s ease;
+}
+
+/* Loading Progress Bar */
+.load-progress-bar {
+    background: linear-gradient(90deg, #ef4444, #3b82f6, #eab308);
+    opacity: 0;
+}
+
+.load-progress-bar.active {
+    opacity: 1;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress-bar {
+    background: linear-gradient(90deg, #3b82f6, #eab308);
+    opacity: 0;
+}
+
+.scroll-progress-bar.active {
+    opacity: 1;
 }
 
 /* Back to top button */

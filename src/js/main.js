@@ -7,7 +7,7 @@ import { showSkeletonLoading, hideSkeletonLoading, showError, debounce } from '.
 
 // Global state
 let currentLanguage = 'en';
-let currentTheme = 'light'; // Changed from 'dark' to 'light'
+let currentTheme = 'light';
 let isFilterPanelVisible = false;
 let currentSourceFilter = 'all';
 
@@ -26,17 +26,26 @@ window.addEventListener('beforeunload', () => {
  */
 export async function initializeApp() {
     try {
+        console.log('Starting application initialization...');
+        
         // Show loading screen and progress bar
         const loadingScreen = document.getElementById('loading-screen');
         const progressBar = document.getElementById('progress-bar');
         
+        console.log('Loading screen element:', loadingScreen);
+        console.log('Progress bar element:', progressBar);
+        
         // Initialize progress bar
-        updateProgressBar(0);
+        if (progressBar) {
+            progressBar.style.width = '0%';
+        }
         
         // Show skeleton loading for all charts
+        console.log('Showing skeleton loading...');
         showSkeletonLoading();
         
         // Load all charts in parallel with progress tracking
+        console.log('Loading charts...');
         const chartPromises = [
             // Core economic indicators
             loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'Consumer Price Index'),
@@ -155,6 +164,7 @@ export async function initializeApp() {
         ];
         
         // Wait for all charts to load with progress tracking
+        console.log('Waiting for charts to load...');
         const totalCharts = chartPromises.length;
         let completedCharts = 0;
         
@@ -162,12 +172,16 @@ export async function initializeApp() {
             promise.then(result => {
                 completedCharts++;
                 const progress = (completedCharts / totalCharts) * 100;
-                updateProgressBar(progress);
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
                 return result;
             }).catch(error => {
                 completedCharts++;
                 const progress = (completedCharts / totalCharts) * 100;
-                updateProgressBar(progress);
+                if (progressBar) {
+                    progressBar.style.width = `${progress}%`;
+                }
                 throw error;
             })
         ));
@@ -178,6 +192,7 @@ export async function initializeApp() {
         results.forEach((result, index) => {
             if (result.status === 'fulfilled') {
                 successCount++;
+                console.log(`Chart ${index} loaded successfully`);
             } else {
                 failureCount++;
                 console.error(`Chart ${index} failed:`, result.reason);
@@ -187,23 +202,29 @@ export async function initializeApp() {
         console.log(`Chart loading results: ${successCount} successful, ${failureCount} failed`);
         
         // Update progress bar to 100%
-        updateProgressBar(100);
+        if (progressBar) {
+            progressBar.style.width = '100%';
+        }
         
         // Hide skeleton loading
+        console.log('Hiding skeleton loading...');
         hideSkeletonLoading();
         
         // Hide loading screen with fade out
-        setTimeout(() => {
+        console.log('Hiding loading screen...');
+        if (loadingScreen) {
             loadingScreen.classList.add('hidden');
             // Enable scrolling after loading screen is hidden
             document.body.classList.add('loaded');
             setTimeout(() => {
                 loadingScreen.style.display = 'none';
             }, 500);
-        }, 500);
+        }
         
         // Sort charts alphabetically by default
         sortChartsAlphabetically();
+        
+        console.log('Application initialization complete!');
         
     } catch (error) {
         console.error('Error initializing charts:', error);
@@ -211,12 +232,14 @@ export async function initializeApp() {
         
         // Hide loading screen even if there's an error
         const loadingScreen = document.getElementById('loading-screen');
-        loadingScreen.classList.add('hidden');
-        // Enable scrolling even if there's an error
-        document.body.classList.add('loaded');
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-        }, 500);
+        if (loadingScreen) {
+            loadingScreen.classList.add('hidden');
+            // Enable scrolling even if there's an error
+            document.body.classList.add('loaded');
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+            }, 500);
+        }
     }
 }
 
@@ -224,6 +247,8 @@ export async function initializeApp() {
  * Initialize UI event listeners
  */
 export function initializeUI() {
+    console.log('Initializing UI...');
+    
     // Language toggle
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
@@ -268,6 +293,8 @@ export function initializeUI() {
 
     // Progress bar on scroll
     window.addEventListener('scroll', updateProgressBarOnScroll);
+    
+    console.log('UI initialization complete!');
 }
 
 /**
@@ -447,8 +474,6 @@ function updateLanguageTexts() {
     }
 }
 
-
-
 /**
  * Update progress bar
  * @param {number} percentage - Progress percentage (0-100)
@@ -493,6 +518,8 @@ function scrollToTop() {
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, starting application...');
+    
     // Load saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -510,7 +537,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Moon icon is already set in HTML for light mode
     }
     
+    console.log('Initializing UI...');
     initializeUI();
+    console.log('Initializing app...');
     initializeApp();
     // Note: regional-level cards remain in DOM but are filtered by data selection
 });

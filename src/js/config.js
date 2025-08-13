@@ -78,7 +78,7 @@ export const CHART_CONFIG = {
                 maxTicksLimit: 8,
                 color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim() || '#6B7280',
                 font: {
-                    size: 13,
+                    size: 11,
                     family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                     weight: '600'
                 },
@@ -112,7 +112,7 @@ export const CHART_CONFIG = {
             ticks: {
                 color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim() || '#6B7280',
                 font: {
-                    size: 13,
+                    size: 11,
                     family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
                     weight: '600'
                 },
@@ -140,6 +140,44 @@ export const CHART_CONFIG = {
             borderWidth: 2
         }
     }
+};
+
+// Chart Quality Filter Configuration
+export const CHART_FILTER_CONFIG = {
+    // Minimum data points required for a chart to be considered valid
+    minDataPoints: 10,
+    
+    // Maximum percentage of null/undefined values allowed
+    maxNullPercentage: 20,
+    
+    // Minimum time span required (in months)
+    minTimeSpan: 12,
+    
+    // National-level datasets only (exclude regional/municipal data)
+    nationalOnly: true,
+    
+    // Keywords that indicate national-level data
+    nationalKeywords: [
+        'hele landet', 'national', 'total', 'alt', 'i alt', 'samlet',
+        'nasjonal', 'landsomfattende', 'hele landet', 'landsdekkende'
+    ],
+    
+    // Keywords that indicate regional/municipal data (to exclude)
+    regionalKeywords: [
+        'kommuner', 'fylker', 'bydeler', 'regioner', 'landsdeler',
+        'municipalities', 'counties', 'districts', 'regions'
+    ],
+    
+    // Datasets that should always be included regardless of filters
+    alwaysInclude: [
+        'cpi', 'unemployment', 'house-prices', 'gdp-growth', 'trade-balance',
+        'interest-rate', 'exchange', 'oil-fund', 'government-debt'
+    ],
+    
+    // Datasets that should be excluded (low quality or irrelevant)
+    excludeList: [
+        'test', 'lite_datasett', 'foreløpige', 'preliminary'
+    ]
 };
 
 // API Configuration

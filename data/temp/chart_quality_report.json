@@ -1,0 +1,2111 @@
+{
+  "timestamp": "2025-08-13T02:53:22.318632",
+  "total_datasets": 162,
+  "display_charts": [
+    {
+      "source": "ssb",
+      "dataset_id": "bankruptcies-total",
+      "title": "09695: Bankruptcies, by month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 546,
+        "null_percentage": 0.0,
+        "time_span": 546,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "bankruptcies",
+      "title": "07218: Bankruptcies, by month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1830,
+        "null_percentage": 4.480874316939891,
+        "time_span": 366,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "basic-salary",
+      "title": "11654: Employees, jobs, earnings, and earnings index, by region, industry (SIC2007), contents and quarter",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1998,
+        "null_percentage": 14.264264264264265,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "business-confidence",
+      "title": "08267: Business tendency survey. Composite indicators, by industry/main industrial grouping, type of adjustment, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3408,
+        "null_percentage": 0.2347417840375587,
+        "time_span": 142,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "business-cycle-barometer-products",
+      "title": "08267: Business tendency survey. Composite indicators, by industry/main industrial grouping, type of adjustment, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 5112,
+        "null_percentage": 0.11737089201877934,
+        "time_span": 142,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "business-cycle-barometer",
+      "title": "08267: Business tendency survey. Composite indicators, by industry/main industrial grouping, type of adjustment, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3408,
+        "null_percentage": 0.2347417840375587,
+        "time_span": 142,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "construction-cost-multi",
+      "title": "08655: Construction cost index for multi dwelling houses (2015=100), by type of employment, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 20520,
+        "null_percentage": 17.743664717348928,
+        "time_span": 570,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "construction-cost-wood",
+      "title": "08653: Construction cost index for detached houses houses of wood (2015=100), by type of employment, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 27360,
+        "null_percentage": 15.741959064327485,
+        "time_span": 570,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "construction-production",
+      "title": "13430: Production index for construction, by industry, contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 7410,
+        "null_percentage": 0.0,
+        "time_span": 114,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "consumer-confidence",
+      "title": "05333: Index of household consumption (2005=100), by commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 6060,
+        "null_percentage": 0.49504950495049505,
+        "time_span": 303,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-adjusted-delivery-sector",
+      "title": "11119: CPI-AT and CPI-ATE for goods and services, by delivery sector, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 13716,
+        "null_percentage": 3.805774278215223,
+        "time_span": 127,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-coicop",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 26832,
+        "null_percentage": 7.110912343470482,
+        "time_span": 559,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-delivery",
+      "title": "11117: Consumer Price Index for goods and services, by delivery sector, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 7112,
+        "null_percentage": 3.852643419572553,
+        "time_span": 127,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-group-level",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 87204,
+        "null_percentage": 14.550938030365579,
+        "time_span": 559,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-weights-subgroup",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 51987,
+        "null_percentage": 4.247215650066362,
+        "time_span": 559,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1677,
+        "null_percentage": 4.353011329755516,
+        "time_span": 559,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "credit-indicator-k3",
+      "title": "11598: Domestic and foreign loan debt, by loan debt, debt by industry, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1296,
+        "null_percentage": 3.7037037037037033,
+        "time_span": 36,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "credit-indicator",
+      "title": "11596: Domestic loan debt,  stocks and transactions, by loan debt, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 18525,
+        "null_percentage": 19.773279352226723,
+        "time_span": 475,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "crime-rate",
+      "title": "08487: Offences reported to the police. Average per year, by scene of crime, type of offence, interval (year) and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 476,
+        "null_percentage": 0.0,
+        "time_span": 17,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "deaths-age",
+      "title": "10325: Deaths, by sex, age, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 12402,
+        "null_percentage": 0.6773101112723754,
+        "time_span": 39,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "economic-forecasts",
+      "title": "12880: Main economic indicators. Accounts and forecasts, by year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1596,
+        "null_percentage": 7.957393483709272,
+        "time_span": 38,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "education-level",
+      "title": "09429: Persons 16 years and over, by region, level, sex, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1932,
+        "null_percentage": 18.633540372670808,
+        "time_span": 46,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "employed-by-residence-workplace",
+      "title": "07984: Employed persons per 4th quarter, by region, industry (SIC2007), sex, age, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 8092,
+        "null_percentage": 0.0,
+        "time_span": 17,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-country",
+      "title": "08801: External trade in goods, by imports/exports, country, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 9657,
+        "null_percentage": 18.680749715232473,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-value-sitc3",
+      "title": "08818: External trade in goods (NOK 1 000), by imports/exports, commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 54704,
+        "null_percentage": 7.913498098859316,
+        "time_span": 208,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-value-volume-sitc",
+      "title": "08809: External trade in goods, by imports/exports, commodity group, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 4958,
+        "null_percentage": 3.247277127874143,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-value-volume-sitc1",
+      "title": "08809: External trade in goods, by imports/exports, commodity group, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 814,
+        "null_percentage": 0.0,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-volume",
+      "title": "08864: External trade in goods, main figures (NOK million), by trade flow, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3936,
+        "null_percentage": 14.634146341463413,
+        "time_span": 246,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "first-hand-price-index-groups",
+      "title": "03675: Price index of first-hand domestic sales (2021=100), by market, commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 31860,
+        "null_percentage": 8.010043942247332,
+        "time_span": 295,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "first-hand-price-index",
+      "title": "03675: Price index of first-hand domestic sales (2021=100), by market, commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3540,
+        "null_percentage": 1.864406779661017,
+        "time_span": 295,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "gdp-growth",
+      "title": "09190: Final expenditure and gross domestic product, by macroeconomic indicator, contents and quarter",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 36057,
+        "null_percentage": 1.0566602878775273,
+        "time_span": 101,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "government-revenue",
+      "title": "10721: General government. Revenue and expenditure (NOK million), by sector, type, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 5475,
+        "null_percentage": 13.315068493150687,
+        "time_span": 25,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-income-national",
+      "title": "07137: Households, by region, contents and year",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 162,
+        "null_percentage": 0.0,
+        "time_span": 18,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-income",
+      "title": "06944: Households' income, by region, type of household, contents and year",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 285,
+        "null_percentage": 0.0,
+        "time_span": 19,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-types",
+      "title": "06070: Private households, by region, type of household, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 220,
+        "null_percentage": 9.090909090909092,
+        "time_span": 20,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "housing-starts",
+      "title": "03723: Dwellings and utility floor space in dwellings, by region, contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 2340,
+        "null_percentage": 0.0,
+        "time_span": 390,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "import-commodity",
+      "title": "08806: External trade in goods, by imports/exports, commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 41004,
+        "null_percentage": 3.4411276948590386,
+        "time_span": 306,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "import-value-sitc3",
+      "title": "08818: External trade in goods (NOK 1 000), by imports/exports, commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 80478,
+        "null_percentage": 3.4369641392678743,
+        "time_span": 306,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "import-value-volume-sitc",
+      "title": "08809: External trade in goods, by imports/exports, commodity group, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 4958,
+        "null_percentage": 2.440500201694231,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "import-value-volume-sitc1",
+      "title": "08809: External trade in goods, by imports/exports, commodity group, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 814,
+        "null_percentage": 0.0,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "industrial-production",
+      "title": "07095: Index of production (2021=100), by industry/main industrial grouping, contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 23004,
+        "null_percentage": 6.259780907668231,
+        "time_span": 426,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "international-accounts",
+      "title": "09672: Current and capital account. Current prices (NOK million), by item, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 9292,
+        "null_percentage": 3.1532501076194577,
+        "time_span": 101,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "job-vacancies",
+      "title": "08771: Job vacancies, by industry (SIC2007), quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 5124,
+        "null_percentage": 6.674473067915692,
+        "time_span": 61,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "labour-cost-index",
+      "title": "07251: Labour Cost Index (2020=100), by industry (SIC2007), quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 10302,
+        "null_percentage": 2.145214521452145,
+        "time_span": 101,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "life-expectancy",
+      "title": "07902: Life tables, by sex, age x, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 75756,
+        "null_percentage": 0.3801679074924758,
+        "time_span": 59,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "living-arrangements-national",
+      "title": "06096: Persons 18 years and over in private households (per cent), by region, cohabiting arrangements, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 60,
+        "null_percentage": 0.0,
+        "time_span": 20,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "monetary-aggregates",
+      "title": "10945: Monetary aggregates M1, M2 and M3, by contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1890,
+        "null_percentage": 3.968253968253968,
+        "time_span": 210,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "monetary-m3",
+      "title": "10947: Monetary aggregate M3 (NOK million), by contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 2310,
+        "null_percentage": 0.0,
+        "time_span": 210,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "money-supply-by-sector",
+      "title": "10949: Monetary aggregates M1, M2 and M3, by holding sector, money supply (M1/M2/M3), month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 9450,
+        "null_percentage": 3.8730158730158735,
+        "time_span": 210,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "money-supply-m0",
+      "title": "10946: Base money M0 (NOK million), by month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1050,
+        "null_percentage": 10.952380952380953,
+        "time_span": 210,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "money-supply-m3-by-sector",
+      "title": "10948: Monetary aggregate M3, seasonally adjusted, by holding sector, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3150,
+        "null_percentage": 3.9365079365079367,
+        "time_span": 210,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "money-supply-m3-net-claims",
+      "title": "10993: SDDS, net foreign assets in M3 (NOK million), by month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 420,
+        "null_percentage": 0.0,
+        "time_span": 210,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "oil-gas-industry-turnover-sn2007",
+      "title": "07096: Turnover Statistics SIC2007, by market, industry/main industrial grouping, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 124740,
+        "null_percentage": 7.7857944524611185,
+        "time_span": 330,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "oil-gas-industry-turnover",
+      "title": "07096: Turnover Statistics SIC2007, by market, industry/main industrial grouping, contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 35640,
+        "null_percentage": 4.848484848484849,
+        "time_span": 330,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "oil-gas-investment",
+      "title": "09602: Accrued investments. Extraction of crude petroleum and natural gas, and pipeline transportation (NOK million), by type of investment, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1843,
+        "null_percentage": 1.519262072707542,
+        "time_span": 97,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "oil-gas-turnover",
+      "title": "07096: Turnover Statistics SIC2007, by market, industry/main industrial grouping, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 53460,
+        "null_percentage": 6.3299663299663305,
+        "time_span": 330,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-gender-age-5year",
+      "title": "10211: Population, by age, sex, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 11340,
+        "null_percentage": 0.017636684303350973,
+        "time_span": 180,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-gender-age-historical",
+      "title": "10211: Population, by age, sex, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 57240,
+        "null_percentage": 1.509433962264151,
+        "time_span": 180,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-gender-age-timeline",
+      "title": "07459: Population, by region, sex, age, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 8480,
+        "null_percentage": 0.02358490566037736,
+        "time_span": 40,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-changes-counties",
+      "title": "06913: Population and population changes, by region, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 9000,
+        "null_percentage": 1.866666666666667,
+        "time_span": 75,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-changes-municipalities",
+      "title": "06913: Population and population changes, by region, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 81225,
+        "null_percentage": 4.290550938750385,
+        "time_span": 75,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-growth",
+      "title": "06913: Population and population changes, by region, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 375,
+        "null_percentage": 1.0666666666666667,
+        "time_span": 75,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-municipalities-timeline",
+      "title": "07459: Population, by region, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 14400,
+        "null_percentage": 1.8055555555555554,
+        "time_span": 40,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "ppi",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 22104,
+        "null_percentage": 2.099167571480275,
+        "time_span": 307,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-index-products",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 22104,
+        "null_percentage": 7.111834961997829,
+        "time_span": 307,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-industry",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 55260,
+        "null_percentage": 14.379297864639884,
+        "time_span": 307,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "production-index-by-industry",
+      "title": "07095: Index of production (2021=100), by industry/main industrial grouping, contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 53676,
+        "null_percentage": 16.100305536925255,
+        "time_span": 426,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "production-index-by-product",
+      "title": "07095: Index of production (2021=100), by industry/main industrial grouping, contents and month",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 15336,
+        "null_percentage": 0.0,
+        "time_span": 426,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "production-index-industry-recent",
+      "title": "07095: Index of production (2021=100), by industry/main industrial grouping, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 702,
+        "null_percentage": 0.0,
+        "time_span": 13,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "public-administration-expenditures",
+      "title": "10725: General government. Total expenditure (NOK million), by sector, function, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 6612,
+        "null_percentage": 16.954022988505745,
+        "time_span": 29,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "rd-expenditure",
+      "title": "11010: R&D personell, R&D full-time equivalents (FTE) and R&D expenditures, by sector, contents and year",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 888,
+        "null_percentage": 0.6756756756756757,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "retail-sales-seasonally-adjusted",
+      "title": "07129: The Index of wholesale and retail trade, by industry, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 13,
+        "null_percentage": 0.0,
+        "time_span": 13,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "salmon-export",
+      "title": "03024: Export of salmon, fish-farm bred, by commodity group, week and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 5340,
+        "null_percentage": 0.0,
+        "time_span": 1335,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "tax-returns-main-items",
+      "title": "05854: Main entries from the tax assessment for residents 17 years and older (NOK), by region, age, year and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1400,
+        "null_percentage": 2.857142857142857,
+        "time_span": 25,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-balance",
+      "title": "08792: External trade in goods, main figures (NOK million), by trade flow, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 14196,
+        "null_percentage": 11.28486897717667,
+        "time_span": 546,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-volume-price-bec",
+      "title": "05987: Imports and exports (2000=100), by imports/exports, groups of end use (BEC), quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 11096,
+        "null_percentage": 0.0,
+        "time_span": 146,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-volume-price-product-groups",
+      "title": "08241: External trade in commodities. Indices of volume and price (2000=100), by imports/exports, SITC/commodity group, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 14600,
+        "null_percentage": 7.575342465753425,
+        "time_span": 146,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-volume-price",
+      "title": "08241: External trade in commodities. Indices of volume and price (2000=100), by imports/exports, SITC/commodity group, quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 16060,
+        "null_percentage": 9.283935242839354,
+        "time_span": 146,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "unemployment",
+      "title": "13760: Labour force, employment, unemployment and man-weeks worked for persons aged 15-74, by sex, age, type of adjustment, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 67392,
+        "null_percentage": 5.94284188034188,
+        "time_span": 234,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "utility-floor-space",
+      "title": "09286: Utility floor space other than in dwellings (1 000 m²), by region, industry, month and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 10692,
+        "null_percentage": 10.643471754582865,
+        "time_span": 162,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "wage-indices-by-industry-sn88",
+      "title": "12314: Employees, jobs, earnings, and earnings index, by industry (SIC2007), quarter and contents",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 6512,
+        "null_percentage": 5.988943488943489,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "wage",
+      "title": "11654: Employees, jobs, earnings, and earnings index, by region, industry (SIC2007), contents and quarter",
+      "quality_score": 100,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1998,
+        "null_percentage": 14.264264264264265,
+        "time_span": 37,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cohabiting-arrangements",
+      "title": "06096: Persons 18 years and over in private households (per cent), by region, cohabiting arrangements, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 5340,
+        "null_percentage": 6.404494382022471,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-adjusted-delivery-sector-recent",
+      "title": "11119: CPI-AT and CPI-ATE for goods and services, by delivery sector, month and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 162,
+        "null_percentage": 2.4691358024691357,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-delivery-sector-annual",
+      "title": "11118: Consumer Price Index for goods and services, by delivery sector, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 280,
+        "null_percentage": 5.0,
+        "time_span": 10,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-delivery-sector-recent",
+      "title": "11117: Consumer Price Index for goods and services, by delivery sector, month and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 84,
+        "null_percentage": 2.380952380952381,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "economic-forecasts-selected",
+      "title": "12880: Main economic indicators. Accounts and forecasts, by year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 40,
+        "null_percentage": 5.0,
+        "time_span": 4,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "education-level-municipalities-percent",
+      "title": "09429: Persons 16 years and over, by region, level, sex, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 37380,
+        "null_percentage": 19.775280898876403,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "education-level-municipalities",
+      "title": "09429: Persons 16 years and over, by region, level, sex, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 37380,
+        "null_percentage": 6.8164794007490634,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "households-by-type-municipalities",
+      "title": "06070: Private households, by region, type of household, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 19580,
+        "null_percentage": 15.199182839632277,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "national-accounts-recent",
+      "title": "09190: Final expenditure and gross domestic product, by macroeconomic indicator, contents and quarter",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 162,
+        "null_percentage": 0.6172839506172839,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "new-detached-house-prices-cities",
+      "title": "13500: Price per square meter new detached houses, by region, type of dwelling, contents and year",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 48,
+        "null_percentage": 0.0,
+        "time_span": 4,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "new-detached-house-prices-national",
+      "title": "13500: Price per square meter new detached houses, by type of dwelling, contents and year",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 12,
+        "null_percentage": 0.0,
+        "time_span": 4,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "new-detached-house-prices-regions",
+      "title": "13500: Price per square meter new detached houses, by region, type of dwelling, contents and year",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 84,
+        "null_percentage": 14.285714285714285,
+        "time_span": 4,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-age",
+      "title": "07459: Population, by region, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 106,
+        "null_percentage": 0.0,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-basic-districts-national",
+      "title": "04317: Population, by basic statistical unit, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 14463,
+        "null_percentage": 4.425084698886814,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-age-counties",
+      "title": "07459: Population, by region, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 1696,
+        "null_percentage": 6.544811320754718,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-age-municipalities",
+      "title": "07459: Population, by region, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 37842,
+        "null_percentage": 5.6180962951218225,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-gender-age-districts",
+      "title": "10826: Population, by region, sex, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 9752,
+        "null_percentage": 7.526661197703036,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-gender-age-municipalities-detailed",
+      "title": "07459: Population, by region, sex, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 75684,
+        "null_percentage": 7.795571058612125,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-by-gender-age-municipalities",
+      "title": "07459: Population, by region, sex, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 14994,
+        "null_percentage": 3.034547152194211,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-development-counties",
+      "title": "01222: Population and changes during the quarter, by region, quarter and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 176,
+        "null_percentage": 6.25,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-development-municipalities",
+      "title": "01222: Population and changes during the quarter, by region, quarter and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3927,
+        "null_percentage": 3.590527119938885,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-development-quarterly",
+      "title": "01222: Population and changes during the quarter, by region, contents and quarter",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 11,
+        "null_percentage": 18.181818181818183,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "population-growth-alt",
+      "title": "01222: Population and changes during the quarter, by region, contents and quarter",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 11,
+        "null_percentage": 18.181818181818183,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-index-totals-recent",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 144,
+        "null_percentage": 0.0,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "tax-returns-counties",
+      "title": "05854: Main entries from the tax assessment for residents 17 years and older (NOK), by region, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 2464,
+        "null_percentage": 1.948051948051948,
+        "time_span": 4,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "tax-returns-municipalities",
+      "title": "05854: Main entries from the tax assessment for residents 17 years and older (NOK), by region, age, year and contents",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 79744,
+        "null_percentage": 2.825290930979133,
+        "time_span": 4,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "wage-indices-by-industry",
+      "title": "11654: Employees, jobs, earnings, and earnings index, by contents, region, industry (SIC2007) and quarter",
+      "quality_score": 80,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 180,
+        "null_percentage": 0.0,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "bankruptcies-by-industry",
+      "title": "07165: Bankruptcies, by region, industry (SIC2007), legal form, quarter and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 62478,
+        "null_percentage": 76.91827523288197,
+        "time_span": 78,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "construction-costs",
+      "title": "08651: Construction cost index for residential buildings (2015=100), by type of employment, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 5130,
+        "null_percentage": 24.717348927875243,
+        "time_span": 570,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-adjusted-indices",
+      "title": "05327: CPI-AT and CPI-ATE, by consumption group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 30828,
+        "null_percentage": 29.05475541715324,
+        "time_span": 367,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-ate",
+      "title": "05327: CPI-AT and CPI-ATE, by consumption group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 30828,
+        "null_percentage": 29.05475541715324,
+        "time_span": 367,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-items",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 65224,
+        "null_percentage": 60.01011897461057,
+        "time_span": 526,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-seasonally-adjusted",
+      "title": "06444: CPI and CPI-ATE seasonal adjusted (2015=100), by index, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 974,
+        "null_percentage": 22.073921971252567,
+        "time_span": 487,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-subgroup-level2",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 114036,
+        "null_percentage": 67.57865937072503,
+        "time_span": 559,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-subgroups",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 155961,
+        "null_percentage": 46.0288148960317,
+        "time_span": 559,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "credit-indicator-k2-detailed",
+      "title": "06718: Domestic loan debt (NOK million), by currency, borrower sector, loan debt, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 70356,
+        "null_percentage": 41.0299050542953,
+        "time_span": 451,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "credit-indicator-k2-seasonally-adjusted",
+      "title": "11599: Domestic loan debt, seasonly adjusted and unadjusted stocks and transactions, by currency, borrower sector, contents and month",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 51300,
+        "null_percentage": 49.87134502923977,
+        "time_span": 475,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "education-level-counties",
+      "title": "09429: Persons 16 years and over, by region, level, sex, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 54096,
+        "null_percentage": 45.933155871044065,
+        "time_span": 46,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "energy-consumption",
+      "title": "11558: Energy accounts. Production and consumption of energy products, by industries and households by energy account item, energy product accounts, industry, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 88200,
+        "null_percentage": 71.30498866213152,
+        "time_span": 25,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-by-country-monthly",
+      "title": "08806: External trade in goods, by imports/exports, country, commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 80172,
+        "null_percentage": 29.86578855460759,
+        "time_span": 306,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "export-commodity",
+      "title": "08806: External trade in goods, by imports/exports, country, commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 54704,
+        "null_percentage": 29.418324071365898,
+        "time_span": 208,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "first-hand-price-index-subgroups",
+      "title": "03675: Price index of first-hand domestic sales (2021=100), by market, commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 166380,
+        "null_percentage": 20.537925231398006,
+        "time_span": 295,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "greenhouse-gas",
+      "title": "13931: Greenhouse gases AR5, by source (activity), energy product, pollutant, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 19845,
+        "null_percentage": 68.50088183421516,
+        "time_span": 35,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "house-prices",
+      "title": "07221: Price for existing dwellings, by region, type of dwelling, quarter and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 12864,
+        "null_percentage": 56.90298507462687,
+        "time_span": 134,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-income-counties",
+      "title": "07137: Households, by region, contents and year",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 4374,
+        "null_percentage": 36.62551440329218,
+        "time_span": 18,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-income-districts",
+      "title": "06944: Households' income, by region, type of household, contents and year",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 14535,
+        "null_percentage": 29.1640866873065,
+        "time_span": 19,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-income-municipalities",
+      "title": "06944: Households' income, by region, type of household, contents and year",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 210045,
+        "null_percentage": 44.364778975933724,
+        "time_span": 19,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "household-income-size",
+      "title": "07182: Households, by region, contents and year",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 106128,
+        "null_percentage": 44.81663651439771,
+        "time_span": 18,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "immigrants-by-county",
+      "title": "05182: Persons, by region, sex, immigration category, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 11340,
+        "null_percentage": 34.5679012345679,
+        "time_span": 42,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "immigrants-with-immigrant-parents",
+      "title": "07108: Immigrants and Norwegian-born to immigrant parents, by region, sex, country background, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 672,
+        "null_percentage": 24.25595238095238,
+        "time_span": 42,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "immigration-rate",
+      "title": "07110: Immigrants, by region, sex, country background, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 672,
+        "null_percentage": 24.851190476190478,
+        "time_span": 42,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "import-by-country-monthly",
+      "title": "08806: External trade in goods, by imports/exports, country, commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 80478,
+        "null_percentage": 39.35858246974328,
+        "time_span": 306,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "import-country",
+      "title": "08801: External trade in goods, by imports/exports, country, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 7569,
+        "null_percentage": 26.872770511296075,
+        "time_span": 29,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "living-arrangements-districts",
+      "title": "06096: Persons 18 years and over in private households (per cent), by region, cohabiting arrangements, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 3420,
+        "null_percentage": 30.584795321637426,
+        "time_span": 20,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "new-dwellings-price",
+      "title": "11386: Price index for new dwellings, by type of dwelling, quarter and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 870,
+        "null_percentage": 41.95402298850575,
+        "time_span": 145,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-index-industries",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 73680,
+        "null_percentage": 25.42480998914224,
+        "time_span": 307,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-index-subgroups-detailed",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 47892,
+        "null_percentage": 27.55575043848659,
+        "time_span": 307,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-index-subgroups",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 47892,
+        "null_percentage": 27.55575043848659,
+        "time_span": 307,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "retail-sales",
+      "title": "07129: The Index of wholesale and retail trade, by industry, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 111996,
+        "null_percentage": 45.769491767563125,
+        "time_span": 306,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "tax-returns-districts",
+      "title": "05854: Main entries from the tax assessment for residents 17 years and older (NOK), by region, age, year and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 59584,
+        "null_percentage": 32.64466970998926,
+        "time_span": 19,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-main-figures-by-country",
+      "title": "08803: External trade in goods, main figures (NOK million), by trade flow, country, month and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 170300,
+        "null_percentage": 73.05989430416912,
+        "time_span": 25,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-volume-price-sitc2",
+      "title": "08241: External trade in commodities. Indices of volume and price (2000=100), by imports/exports, SITC/commodity group, quarter and contents",
+      "quality_score": 75,
+      "reason": "High quality national data",
+      "metrics": {
+        "data_points": 80300,
+        "null_percentage": 43.05853051058531,
+        "time_span": 146,
+        "is_national": true
+      }
+    }
+  ],
+  "excluded_charts": [
+    {
+      "source": "ssb",
+      "dataset_id": "deaths-by-week-age",
+      "title": "12954: Deaths per week. Preliminary figures, by sex, age, week and contents",
+      "quality_score": 85,
+      "reason": "Not national-level data",
+      "metrics": {
+        "data_points": 66654,
+        "null_percentage": 13.339034416539143,
+        "time_span": 1058,
+        "is_national": false
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "bankruptcies-municipalities",
+      "title": "07165: Bankruptcies, by region, industry (SIC2007), legal form, quarter and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (99.4% > 20%), Insufficient time span (5 months < 12 months)",
+      "metrics": {
+        "data_points": 188235,
+        "null_percentage": 99.37843652880709,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "births-deaths",
+      "title": "01222: Population and changes during the quarter, by region, quarter and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (63.2% > 20%), Insufficient time span (9 months < 12 months)",
+      "metrics": {
+        "data_points": 92664,
+        "null_percentage": 63.16152982819649,
+        "time_span": 9,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "employed-by-municipality",
+      "title": "07984: Employed persons per 4th quarter, by region, industry (SIC2007), sex, age, year and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (52.2% > 20%), Insufficient time span (1 months < 12 months)",
+      "metrics": {
+        "data_points": 269136,
+        "null_percentage": 52.23418643362464,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "holiday-property-sales",
+      "title": "11694: Transfers and purchase price of holiday properties with building, by region, year and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (35.1% > 20%), Insufficient time span (5 months < 12 months)",
+      "metrics": {
+        "data_points": 10680,
+        "null_percentage": 35.149812734082396,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "house-price-index-recent",
+      "title": "07221: Price for existing dwellings, by region, type of dwelling, quarter and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (37.5% > 20%), Insufficient time span (5 months < 12 months)",
+      "metrics": {
+        "data_points": 480,
+        "null_percentage": 37.5,
+        "time_span": 5,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "households-by-type-districts",
+      "title": "06070: Private households, by region, type of household, year and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (31.9% > 20%), Insufficient time span (2 months < 12 months)",
+      "metrics": {
+        "data_points": 1144,
+        "null_percentage": 31.905594405594407,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "lifestyle-habits",
+      "title": "06181: Life style habits (per cent), by living habit, sex, age, year and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (58.2% > 20%), Insufficient time span (7 months < 12 months)",
+      "metrics": {
+        "data_points": 6027,
+        "null_percentage": 58.237929318068694,
+        "time_span": 7,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "long-term-illness",
+      "title": "11190: Long-term illness. Disease, injury or impairment (per cent), by chronic illness, sex, age, year and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (66.4% > 20%), Insufficient time span (7 months < 12 months)",
+      "metrics": {
+        "data_points": 3150,
+        "null_percentage": 66.38095238095238,
+        "time_span": 7,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "producer-price-index-recent",
+      "title": "12462: Producer price index. Oil/ gas extraction, manufacturing, mining and electricity (2021=100), by market, industry/commodity group, month and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (22.5% > 20%), Insufficient time span (2 months < 12 months)",
+      "metrics": {
+        "data_points": 360,
+        "null_percentage": 22.5,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "trade-main-figures-recent",
+      "title": "08792: External trade in goods, main figures (NOK million), by trade flow, month and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (25.0% > 20%), Insufficient time span (2 months < 12 months)",
+      "metrics": {
+        "data_points": 28,
+        "null_percentage": 25.0,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "wages-by-occupation",
+      "title": "11418: Monthly earnings, by measuring method, occupation, sector, sex, contractual/usual working hours per week, year and contents",
+      "quality_score": 55,
+      "reason": "Too many null values (53.2% > 20%), Insufficient time span (1 months < 12 months)",
+      "metrics": {
+        "data_points": 146520,
+        "null_percentage": 53.24324324324324,
+        "time_span": 1,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-seasonally-adjusted-recent",
+      "title": "06444: CPI and CPI-ATE seasonal adjusted (2015=100), by index, month and contents",
+      "quality_score": 50,
+      "reason": "Insufficient data points (4/10), Insufficient time span (2 months < 12 months)",
+      "metrics": {
+        "data_points": 4,
+        "null_percentage": 0.0,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "cpi-total-index-recent",
+      "title": "03013: Consumer Price Index, by consumption group, month and contents",
+      "quality_score": 50,
+      "reason": "Insufficient data points (6/10), Insufficient time span (2 months < 12 months)",
+      "metrics": {
+        "data_points": 6,
+        "null_percentage": 0.0,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "ssb",
+      "dataset_id": "salmon-export-volume",
+      "title": "03024: Export of salmon, fish-farm bred, by commodity group, week and contents",
+      "quality_score": 50,
+      "reason": "Insufficient data points (8/10), Insufficient time span (2 months < 12 months)",
+      "metrics": {
+        "data_points": 8,
+        "null_percentage": 0.0,
+        "time_span": 2,
+        "is_national": true
+      }
+    },
+    {
+      "source": "norges-bank",
+      "dataset_id": "exchange-rates",
+      "title": "Dataset exchange-rates",
+      "quality_score": 0,
+      "reason": "No data available",
+      "metrics": {}
+    },
+    {
+      "source": "norges-bank",
+      "dataset_id": "government-debt",
+      "title": "Dataset government-debt",
+      "quality_score": 0,
+      "reason": "No data available",
+      "metrics": {}
+    },
+    {
+      "source": "norges-bank",
+      "dataset_id": "interest-rate",
+      "title": "Dataset interest-rate",
+      "quality_score": 0,
+      "reason": "No data available",
+      "metrics": {}
+    }
+  ],
+  "quality_summary": {
+    "total": 162,
+    "display": 144,
+    "excluded": 18,
+    "quality_distribution": {
+      "excellent": 82,
+      "good": 28,
+      "fair": 35,
+      "poor": 17
+    }
+  },
+  "recommendations": []
+}

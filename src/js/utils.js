@@ -1,4 +1,258 @@
 // ============================================================================
+// RIKSDATA UTILITIES
+// ============================================================================
+
+import { CHART_FILTER_CONFIG } from './config.js';
+
+/**
+ * Chart Quality Filter - Ensures only high-quality, nationally relevant charts are displayed
+ */
+export class ChartQualityFilter {
+    
+    /**
+     * Check if a dataset is national-level (not regional/municipal)
+     */
+    static isNationalDataset(datasetTitle, datasetId) {
+        const title = datasetTitle.toLowerCase();
+        const id = datasetId.toString();
+        
+        // Check if it's in the always include list
+        if (CHART_FILTER_CONFIG.alwaysInclude.some(keyword => 
+            title.includes(keyword) || id.includes(keyword))) {
+            return true;
+        }
+        
+        // Check if it's in the exclude list
+        if (CHART_FILTER_CONFIG.excludeList.some(keyword => 
+            title.includes(keyword) || id.includes(keyword))) {
+            return false;
+        }
+        
+        // Check for regional keywords (exclude these)
+        if (CHART_FILTER_CONFIG.regionalKeywords.some(keyword => 
+            title.includes(keyword))) {
+            return false;
+        }
+        
+        // Check for national keywords (include these)
+        if (CHART_FILTER_CONFIG.nationalKeywords.some(keyword => 
+            title.includes(keyword))) {
+            return true;
+        }
+        
+        // Default: include if no regional keywords found
+        return !CHART_FILTER_CONFIG.regionalKeywords.some(keyword => 
+            title.includes(keyword));
+    }
+    
+    /**
+     * Analyze data quality and determine if chart should be displayed
+     */
+    static analyzeDataQuality(data, datasetTitle, datasetId) {
+        if (!data || !data.dataset || !data.dataset.value) {
+            return {
+                shouldDisplay: false,
+                reason: 'No data available',
+                quality: 0
+            };
+        }
+        
+        const values = data.dataset.value;
+        const timeData = data.dataset.dimension.Tid?.category?.index || {};
+        const timeLabels = data.dataset.dimension.Tid?.category?.label || {};
+        
+        // Count data points
+        const dataPoints = Object.keys(values).length;
+        
+        // Count null/undefined values
+        const nullCount = Object.values(values).filter(v => 
+            v === null || v === undefined || v === '' || isNaN(v)).length;
+        const nullPercentage = (nullCount / dataPoints) * 100;
+        
+        // Calculate time span
+        const timeKeys = Object.keys(timeData);
+        const timeSpan = timeKeys.length;
+        
+        // Check if it's national data
+        const isNational = this.isNationalDataset(datasetTitle, datasetId);
+        
+        // Calculate quality score (0-100)
+        let qualityScore = 100;
+        
+        if (dataPoints < CHART_FILTER_CONFIG.minDataPoints) {
+            qualityScore -= 30;
+        }
+        
+        if (nullPercentage > CHART_FILTER_CONFIG.maxNullPercentage) {
+            qualityScore -= 25;
+        }
+        
+        if (timeSpan < CHART_FILTER_CONFIG.minTimeSpan) {
+            qualityScore -= 20;
+        }
+        
+        if (!isNational) {
+            qualityScore -= 15;
+        }
+        
+        // Determine if chart should be displayed
+        const shouldDisplay = qualityScore >= 70 && isNational;
+        
+        return {
+            shouldDisplay,
+            reason: shouldDisplay ? 'High quality national data' : this.getRejectionReason(dataPoints, nullPercentage, timeSpan, isNational),
+            quality: Math.max(0, qualityScore),
+            metrics: {
+                dataPoints,
+                nullPercentage,
+                timeSpan,
+                isNational
+            }
+        };
+    }
+    
+    /**
+     * Get rejection reason for low-quality charts
+     */
+    static getRejectionReason(dataPoints, nullPercentage, timeSpan, isNational) {
+        const reasons = [];
+        
+        if (dataPoints < CHART_FILTER_CONFIG.minDataPoints) {
+            reasons.push(`Insufficient data points (${dataPoints}/${CHART_FILTER_CONFIG.minDataPoints})`);
+        }
+        
+        if (nullPercentage > CHART_FILTER_CONFIG.maxNullPercentage) {
+            reasons.push(`Too many null values (${nullPercentage.toFixed(1)}% > ${CHART_FILTER_CONFIG.maxNullPercentage}%)`);
+        }
+        
+        if (timeSpan < CHART_FILTER_CONFIG.minTimeSpan) {
+            reasons.push(`Insufficient time span (${timeSpan} months < ${CHART_FILTER_CONFIG.minTimeSpan} months)`);
+        }
+        
+        if (!isNational) {
+            reasons.push('Not national-level data');
+        }
+        
+        return reasons.join(', ');
+    }
+    
+    /**
+     * Filter chart list to only include high-quality charts
+     */
+    static filterChartList(chartList, cachedData) {
+        const filteredCharts = [];
+        const excludedCharts = [];
+        
+        for (const chart of chartList) {
+            const cacheName = chart.cacheName || chart.id;
+            const data = cachedData[cacheName];
+            
+            if (data) {
+                const quality = this.analyzeDataQuality(data, chart.title, chart.datasetId);
+                
+                if (quality.shouldDisplay) {
+                    filteredCharts.push({
+                        ...chart,
+                        quality: quality.quality,
+                        qualityMetrics: quality.metrics
+                    });
+                } else {
+                    excludedCharts.push({
+                        ...chart,
+                        quality: quality.quality,
+                        reason: quality.reason,
+                        qualityMetrics: quality.metrics
+                    });
+                }
+            } else {
+                // If no cached data, exclude the chart
+                excludedCharts.push({
+                    ...chart,
+                    quality: 0,
+                    reason: 'No cached data available'
+                });
+            }
+        }
+        
+        return {
+            displayCharts: filteredCharts.sort((a, b) => b.quality - a.quality),
+            excludedCharts: excludedCharts.sort((a, b) => b.quality - a.quality)
+        };
+    }
+}
+
+/**
+ * Enhanced chart loading with quality filtering
+ */
+export async function loadChartDataWithQualityFilter(chartId, dataUrl, title, chartType = 'line', datasetId = null) {
+    try {
+        // Load the data
+        const response = await fetch(dataUrl);
+        const data = await response.json();
+        
+        // Analyze quality
+        const quality = ChartQualityFilter.analyzeDataQuality(data, title, datasetId);
+        
+        if (!quality.shouldDisplay) {
+            console.warn(`Chart ${chartId} excluded: ${quality.reason}`);
+            return null; // Don't create chart
+        }
+        
+        // If quality is good, proceed with chart creation
+        return loadChartData(chartId, dataUrl, title, chartType);
+        
+    } catch (error) {
+        console.error(`Error loading chart ${chartId}:`, error);
+        return null;
+    }
+}
+
+/**
+ * Get chart quality report for all charts
+ */
+export async function generateQualityReport(chartList, cachedData) {
+    const report = {
+        total: chartList.length,
+        display: 0,
+        excluded: 0,
+        byReason: {},
+        byQuality: {
+            excellent: 0, // 90-100
+            good: 0,      // 80-89
+            fair: 0,      // 70-79
+            poor: 0       // 0-69
+        }
+    };
+    
+    for (const chart of chartList) {
+        const cacheName = chart.cacheName || chart.id;
+        const data = cachedData[cacheName];
+        
+        if (data) {
+            const quality = ChartQualityFilter.analyzeDataQuality(data, chart.title, chart.datasetId);
+            
+            if (quality.shouldDisplay) {
+                report.display++;
+            } else {
+                report.excluded++;
+                report.byReason[quality.reason] = (report.byReason[quality.reason] || 0) + 1;
+            }
+            
+            // Categorize by quality score
+            if (quality.quality >= 90) report.byQuality.excellent++;
+            else if (quality.quality >= 80) report.byQuality.good++;
+            else if (quality.quality >= 70) report.byQuality.fair++;
+            else report.byQuality.poor++;
+        } else {
+            report.excluded++;
+            report.byReason['No cached data'] = (report.byReason['No cached data'] || 0) + 1;
+        }
+    }
+    
+    return report;
+}
+
+// ============================================================================
 // RIKSDATA UTILITY FUNCTIONS
 // ============================================================================
 

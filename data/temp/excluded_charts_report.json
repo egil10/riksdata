@@ -1,0 +1,1553 @@
+{
+  "excluded_charts": [
+    {
+      "chart_id": "import-volume-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/179422.json?lang=en",
+      "title": "Import Volume",
+      "chart_type": "line",
+      "dataset_id": "179422",
+      "cache_name": "import-volume"
+    },
+    {
+      "chart_id": "employment-rate-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1054.json?lang=en",
+      "title": "Employment Rate",
+      "chart_type": "line",
+      "dataset_id": "1054",
+      "cache_name": "employment-rate"
+    },
+    {
+      "chart_id": "oil-price-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26426.json?lang=en",
+      "title": "Oil Price (Brent)",
+      "chart_type": "line",
+      "dataset_id": "26426",
+      "cache_name": "oil-price"
+    },
+    {
+      "chart_id": "household-consumption-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166331.json?lang=en",
+      "title": "Household Consumption",
+      "chart_type": "line",
+      "dataset_id": "166331",
+      "cache_name": "household-consumption"
+    },
+    {
+      "chart_id": "producer-prices-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26427.json?lang=en",
+      "title": "Producer Prices",
+      "chart_type": "line",
+      "dataset_id": "26427",
+      "cache_name": "producer-prices"
+    },
+    {
+      "chart_id": "holiday-property-sales-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/65962.json?lang=en",
+      "title": "Holiday Property Sales",
+      "chart_type": "line",
+      "dataset_id": "65962",
+      "cache_name": "holiday-property-sales"
+    },
+    {
+      "chart_id": "lifestyle-habits-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/832683.json?lang=en",
+      "title": "Lifestyle Habits",
+      "chart_type": "line",
+      "dataset_id": "832683",
+      "cache_name": "lifestyle-habits"
+    },
+    {
+      "chart_id": "long-term-illness-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/832685.json?lang=en",
+      "title": "Long-term Illness",
+      "chart_type": "line",
+      "dataset_id": "832685",
+      "cache_name": "long-term-illness"
+    },
+    {
+      "chart_id": "house-price-index-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1062.json?lang=en",
+      "title": "House Price Index Recent",
+      "chart_type": "line",
+      "dataset_id": "1062",
+      "cache_name": "house-price-index-recent"
+    },
+    {
+      "chart_id": "households-by-type-districts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1072.json?lang=en",
+      "title": "Households by Type Districts",
+      "chart_type": "bar",
+      "dataset_id": "1072",
+      "cache_name": "households-by-type-districts"
+    },
+    {
+      "chart_id": "employed-by-municipality-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/44574.json?lang=en",
+      "title": "Employed by Municipality",
+      "chart_type": "line",
+      "dataset_id": "44574",
+      "cache_name": "employed-by-municipality"
+    },
+    {
+      "chart_id": "bankruptcies-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/66000.json?lang=en",
+      "title": "Bankruptcies Municipalities",
+      "chart_type": "bar",
+      "dataset_id": "66000",
+      "cache_name": "bankruptcies-municipalities"
+    },
+    {
+      "chart_id": "wages-by-occupation-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/317687.json?lang=en",
+      "title": "Wages by Occupation",
+      "chart_type": "line",
+      "dataset_id": "317687",
+      "cache_name": "wages-by-occupation"
+    },
+    {
+      "chart_id": "cpi-seasonally-adjusted-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/868306.json?lang=en",
+      "title": "CPI Seasonally Adjusted Recent",
+      "chart_type": "line",
+      "dataset_id": "868306",
+      "cache_name": "cpi-seasonally-adjusted-recent"
+    },
+    {
+      "chart_id": "producer-price-index-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/868328.json?lang=en",
+      "title": "Producer Price Index Recent",
+      "chart_type": "line",
+      "dataset_id": "868328",
+      "cache_name": "producer-price-index-recent"
+    },
+    {
+      "chart_id": "deaths-by-week-age-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/932937.json?lang=en",
+      "title": "Deaths by Week Age",
+      "chart_type": "line",
+      "dataset_id": "932937",
+      "cache_name": "deaths-by-week-age"
+    },
+    {
+      "chart_id": "trade-main-figures-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/372133.json?lang=en",
+      "title": "Trade Main Figures Recent",
+      "chart_type": "line",
+      "dataset_id": "372133",
+      "cache_name": "trade-main-figures-recent"
+    },
+    {
+      "chart_id": "cpi-total-index-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1088.json?lang=en",
+      "title": "CPI Total Index Recent",
+      "chart_type": "line",
+      "dataset_id": "1088",
+      "cache_name": "cpi-total-index-recent"
+    },
+    {
+      "chart_id": "births-deaths-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1106.json?lang=en",
+      "title": "Births and Deaths",
+      "chart_type": "line",
+      "dataset_id": "1106",
+      "cache_name": "births-deaths"
+    },
+    {
+      "chart_id": "salmon-export-volume-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1120.json?lang=en",
+      "title": "Salmon Export Volume",
+      "chart_type": "line",
+      "dataset_id": "1120",
+      "cache_name": "salmon-export-volume"
+    },
+    {
+      "chart_id": "wholesale-retail-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1065.json?lang=en",
+      "title": "Wholesale Retail Sales",
+      "chart_type": "line",
+      "dataset_id": "1065",
+      "cache_name": "wholesale-retail"
+    },
+    {
+      "chart_id": "credit-indicator-c2-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166327.json?lang=en",
+      "title": "Credit Indicator C2",
+      "chart_type": "line",
+      "dataset_id": "166327",
+      "cache_name": "credit-indicator-c2"
+    },
+    {
+      "chart_id": "job-vacancies-new-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166329.json?lang=en",
+      "title": "Job Vacancies",
+      "chart_type": "line",
+      "dataset_id": "166329",
+      "cache_name": "job-vacancies-new"
+    },
+    {
+      "chart_id": "energy-accounts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/928197.json?lang=en",
+      "title": "Energy Accounts",
+      "chart_type": "line",
+      "dataset_id": "928197",
+      "cache_name": "energy-accounts"
+    },
+    {
+      "chart_id": "business-tendency-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166317.json?lang=en",
+      "title": "Business Tendency Survey",
+      "chart_type": "line",
+      "dataset_id": "166317",
+      "cache_name": "business-tendency"
+    },
+    {
+      "chart_id": "labor-force-monthly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13760.json?lang=en",
+      "title": "Labor Force Monthly",
+      "chart_type": "line",
+      "dataset_id": "13760",
+      "cache_name": "labor-force-monthly"
+    },
+    {
+      "chart_id": "labor-force-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/14483.json?lang=en",
+      "title": "Labor Force Quarterly",
+      "chart_type": "line",
+      "dataset_id": "14483",
+      "cache_name": "labor-force-quarterly"
+    },
+    {
+      "chart_id": "labor-force-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13618.json?lang=en",
+      "title": "Labor Force Annual",
+      "chart_type": "line",
+      "dataset_id": "13618",
+      "cache_name": "labor-force-annual"
+    },
+    {
+      "chart_id": "labor-force-quarterly-break-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13619.json?lang=en",
+      "title": "Labor Force Quarterly Break",
+      "chart_type": "line",
+      "dataset_id": "13619",
+      "cache_name": "labor-force-quarterly-break"
+    },
+    {
+      "chart_id": "employment-status-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/05110.json?lang=en",
+      "title": "Employment Status Quarterly",
+      "chart_type": "line",
+      "dataset_id": "05110",
+      "cache_name": "employment-status-quarterly"
+    },
+    {
+      "chart_id": "employment-status-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/05111.json?lang=en",
+      "title": "Employment Status Annual",
+      "chart_type": "line",
+      "dataset_id": "05111",
+      "cache_name": "employment-status-annual"
+    },
+    {
+      "chart_id": "education-labor-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/14077.json?lang=en",
+      "title": "Education & Labor Quarterly",
+      "chart_type": "line",
+      "dataset_id": "14077",
+      "cache_name": "education-labor-quarterly"
+    },
+    {
+      "chart_id": "education-labor-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/14090.json?lang=en",
+      "title": "Education & Labor Annual",
+      "chart_type": "line",
+      "dataset_id": "14090",
+      "cache_name": "education-labor-annual"
+    },
+    {
+      "chart_id": "employment-education-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13784.json?lang=en",
+      "title": "Employment by Education Quarterly",
+      "chart_type": "line",
+      "dataset_id": "13784",
+      "cache_name": "employment-education-quarterly"
+    },
+    {
+      "chart_id": "employment-education-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13785.json?lang=en",
+      "title": "Employment by Education Annual",
+      "chart_type": "line",
+      "dataset_id": "13785",
+      "cache_name": "employment-education-annual"
+    },
+    {
+      "chart_id": "labor-force-age-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/03777.json?lang=en",
+      "title": "Labor Force by Age Quarterly",
+      "chart_type": "line",
+      "dataset_id": "03777",
+      "cache_name": "labor-force-age-quarterly"
+    },
+    {
+      "chart_id": "labor-force-age-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/03780.json?lang=en",
+      "title": "Labor Force by Age Annual",
+      "chart_type": "line",
+      "dataset_id": "03780",
+      "cache_name": "labor-force-age-annual"
+    },
+    {
+      "chart_id": "labor-force-flows-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/11433.json?lang=en",
+      "title": "Labor Force Flows",
+      "chart_type": "line",
+      "dataset_id": "11433",
+      "cache_name": "labor-force-flows"
+    },
+    {
+      "chart_id": "unemployed-age-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/08518.json?lang=en",
+      "title": "Unemployed by Age Quarterly",
+      "chart_type": "line",
+      "dataset_id": "08518",
+      "cache_name": "unemployed-age-quarterly"
+    },
+    {
+      "chart_id": "unemployed-age-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/08517.json?lang=en",
+      "title": "Unemployed by Age Annual",
+      "chart_type": "line",
+      "dataset_id": "08517",
+      "cache_name": "unemployed-age-annual"
+    },
+    {
+      "chart_id": "unemployment-duration-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/04552.json?lang=en",
+      "title": "Unemployment Duration Quarterly",
+      "chart_type": "line",
+      "dataset_id": "04552",
+      "cache_name": "unemployment-duration-quarterly"
+    },
+    {
+      "chart_id": "unemployment-duration-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/04553.json?lang=en",
+      "title": "Unemployment Duration Annual",
+      "chart_type": "line",
+      "dataset_id": "04553",
+      "cache_name": "unemployment-duration-annual"
+    },
+    {
+      "chart_id": "unemployed-industry-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13891.json?lang=en",
+      "title": "Unemployed by Industry Quarterly",
+      "chart_type": "line",
+      "dataset_id": "13891",
+      "cache_name": "unemployed-industry-quarterly"
+    },
+    {
+      "chart_id": "unemployed-industry-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/13892.json?lang=en",
+      "title": "Unemployed by Industry Annual",
+      "chart_type": "line",
+      "dataset_id": "13892",
+      "cache_name": "unemployed-industry-annual"
+    },
+    {
+      "chart_id": "unemployed-nav-status-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/14454.json?lang=en",
+      "title": "Unemployed by NAV Status",
+      "chart_type": "line",
+      "dataset_id": "14454",
+      "cache_name": "unemployed-nav-status"
+    }
+  ],
+  "included_charts": [
+    {
+      "chart_id": "cpi-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1086.json?lang=en",
+      "title": "Consumer Price Index",
+      "chart_type": "line",
+      "dataset_id": "1086",
+      "cache_name": "cpi"
+    },
+    {
+      "chart_id": "unemployment-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1052.json?lang=en",
+      "title": "Unemployment Rate",
+      "chart_type": "line",
+      "dataset_id": "1052",
+      "cache_name": "unemployment"
+    },
+    {
+      "chart_id": "house-prices-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1060.json?lang=en",
+      "title": "House Price Index",
+      "chart_type": "line",
+      "dataset_id": "1060",
+      "cache_name": "house-prices"
+    },
+    {
+      "chart_id": "ppi-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26426.json?lang=en",
+      "title": "Producer Price Index",
+      "chart_type": "line",
+      "dataset_id": "26426",
+      "cache_name": "ppi"
+    },
+    {
+      "chart_id": "wage-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1124.json?lang=en",
+      "title": "Wage Index",
+      "chart_type": "line",
+      "dataset_id": "1124",
+      "cache_name": "wage"
+    },
+    {
+      "chart_id": "oil-fund-chart",
+      "url": "data/oil-fund.json",
+      "title": "Oil Fund Value",
+      "chart_type": "line",
+      "dataset_id": null,
+      "cache_name": "oil-fund"
+    },
+    {
+      "chart_id": "exchange-chart",
+      "url": "https://data.norges-bank.no/api/data/EXR/M.USD+EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no",
+      "title": "USD/NOK",
+      "chart_type": "line",
+      "dataset_id": "EXR/M.USD+EUR.NOK.SP",
+      "cache_name": "exchange"
+    },
+    {
+      "chart_id": "interest-rate-chart",
+      "url": "https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no",
+      "title": "Key Policy Rate",
+      "chart_type": "line",
+      "dataset_id": "IR/M.KPRA..",
+      "cache_name": "interest-rate"
+    },
+    {
+      "chart_id": "govt-debt-chart",
+      "url": "https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01",
+      "title": "Government Debt",
+      "chart_type": "line",
+      "dataset_id": "GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON",
+      "cache_name": "govt-debt"
+    },
+    {
+      "chart_id": "gdp-growth-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/59012.json?lang=en",
+      "title": "GDP Growth",
+      "chart_type": "bar",
+      "dataset_id": "59012",
+      "cache_name": "gdp-growth"
+    },
+    {
+      "chart_id": "trade-balance-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/58962.json?lang=en",
+      "title": "Trade Balance",
+      "chart_type": "bar",
+      "dataset_id": "58962",
+      "cache_name": "trade-balance"
+    },
+    {
+      "chart_id": "bankruptcies-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/95265.json?lang=en",
+      "title": "Bankruptcies",
+      "chart_type": "bar",
+      "dataset_id": "95265",
+      "cache_name": "bankruptcies"
+    },
+    {
+      "chart_id": "population-growth-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49626.json?lang=en",
+      "title": "Population Growth",
+      "chart_type": "line",
+      "dataset_id": "49626",
+      "cache_name": "population-growth"
+    },
+    {
+      "chart_id": "construction-costs-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26944.json?lang=en",
+      "title": "Construction Costs",
+      "chart_type": "line",
+      "dataset_id": "26944",
+      "cache_name": "construction-costs"
+    },
+    {
+      "chart_id": "industrial-production-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/27002.json?lang=en",
+      "title": "Industrial Production",
+      "chart_type": "line",
+      "dataset_id": "27002",
+      "cache_name": "industrial-production"
+    },
+    {
+      "chart_id": "retail-sales-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1064.json?lang=en",
+      "title": "Retail Sales",
+      "chart_type": "line",
+      "dataset_id": "1064",
+      "cache_name": "retail-sales"
+    },
+    {
+      "chart_id": "export-volume-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/179421.json?lang=en",
+      "title": "Export Volume",
+      "chart_type": "line",
+      "dataset_id": "179421",
+      "cache_name": "export-volume"
+    },
+    {
+      "chart_id": "eur-exchange-chart",
+      "url": "https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-11&endPeriod=2025-08-01&locale=no",
+      "title": "EUR/NOK",
+      "chart_type": "line",
+      "dataset_id": "EXR/M.EUR.NOK.SP",
+      "cache_name": "eur-exchange"
+    },
+    {
+      "chart_id": "business-confidence-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166316.json?lang=en",
+      "title": "Business Confidence",
+      "chart_type": "line",
+      "dataset_id": "166316",
+      "cache_name": "business-confidence"
+    },
+    {
+      "chart_id": "consumer-confidence-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166330.json?lang=en",
+      "title": "Consumer Confidence",
+      "chart_type": "line",
+      "dataset_id": "166330",
+      "cache_name": "consumer-confidence"
+    },
+    {
+      "chart_id": "housing-starts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/95146.json?lang=en",
+      "title": "Housing Starts",
+      "chart_type": "bar",
+      "dataset_id": "95146",
+      "cache_name": "housing-starts"
+    },
+    {
+      "chart_id": "monetary-aggregates-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/172769.json?lang=en",
+      "title": "Monetary Aggregates",
+      "chart_type": "line",
+      "dataset_id": "172769",
+      "cache_name": "monetary-aggregates"
+    },
+    {
+      "chart_id": "job-vacancies-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166328.json?lang=en",
+      "title": "Job Vacancies",
+      "chart_type": "bar",
+      "dataset_id": "166328",
+      "cache_name": "job-vacancies"
+    },
+    {
+      "chart_id": "construction-production-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/924808.json?lang=en",
+      "title": "Construction Production",
+      "chart_type": "line",
+      "dataset_id": "924808",
+      "cache_name": "construction-production"
+    },
+    {
+      "chart_id": "credit-indicator-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166326.json?lang=en",
+      "title": "Credit Indicator",
+      "chart_type": "line",
+      "dataset_id": "166326",
+      "cache_name": "credit-indicator"
+    },
+    {
+      "chart_id": "energy-consumption-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/928196.json?lang=en",
+      "title": "Energy Consumption",
+      "chart_type": "line",
+      "dataset_id": "928196",
+      "cache_name": "energy-consumption"
+    },
+    {
+      "chart_id": "government-revenue-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/928194.json?lang=en",
+      "title": "Government Revenue",
+      "chart_type": "line",
+      "dataset_id": "928194",
+      "cache_name": "government-revenue"
+    },
+    {
+      "chart_id": "international-accounts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/924820.json?lang=en",
+      "title": "International Accounts",
+      "chart_type": "line",
+      "dataset_id": "924820",
+      "cache_name": "international-accounts"
+    },
+    {
+      "chart_id": "labour-cost-index-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/760065.json?lang=en",
+      "title": "Labour Cost Index",
+      "chart_type": "line",
+      "dataset_id": "760065",
+      "cache_name": "labour-cost-index"
+    },
+    {
+      "chart_id": "rd-expenditure-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/61819.json?lang=en",
+      "title": "R&D Expenditure",
+      "chart_type": "line",
+      "dataset_id": "61819",
+      "cache_name": "rd-expenditure"
+    },
+    {
+      "chart_id": "salmon-export-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1122.json?lang=en",
+      "title": "Salmon Export Value",
+      "chart_type": "line",
+      "dataset_id": "1122",
+      "cache_name": "salmon-export"
+    },
+    {
+      "chart_id": "oil-gas-investment-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166334.json?lang=en",
+      "title": "Oil & Gas Investment",
+      "chart_type": "line",
+      "dataset_id": "166334",
+      "cache_name": "oil-gas-investment"
+    },
+    {
+      "chart_id": "immigration-rate-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/48651.json?lang=en",
+      "title": "Immigration Rate",
+      "chart_type": "line",
+      "dataset_id": "48651",
+      "cache_name": "immigration-rate"
+    },
+    {
+      "chart_id": "household-income-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/56900.json?lang=en",
+      "title": "Household Income",
+      "chart_type": "line",
+      "dataset_id": "56900",
+      "cache_name": "household-income"
+    },
+    {
+      "chart_id": "life-expectancy-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/102811.json?lang=en",
+      "title": "Life Expectancy",
+      "chart_type": "line",
+      "dataset_id": "102811",
+      "cache_name": "life-expectancy"
+    },
+    {
+      "chart_id": "crime-rate-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/97445.json?lang=en",
+      "title": "Crime Rate",
+      "chart_type": "line",
+      "dataset_id": "97445",
+      "cache_name": "crime-rate"
+    },
+    {
+      "chart_id": "education-level-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/85454.json?lang=en",
+      "title": "Education Level",
+      "chart_type": "line",
+      "dataset_id": "85454",
+      "cache_name": "education-level"
+    },
+    {
+      "chart_id": "greenhouse-gas-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/832678.json?lang=en",
+      "title": "Greenhouse Gas Emissions",
+      "chart_type": "line",
+      "dataset_id": "832678",
+      "cache_name": "greenhouse-gas"
+    },
+    {
+      "chart_id": "economic-forecasts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/934513.json?lang=en",
+      "title": "Economic Forecasts",
+      "chart_type": "line",
+      "dataset_id": "934513",
+      "cache_name": "economic-forecasts"
+    },
+    {
+      "chart_id": "new-dwellings-price-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26158.json?lang=en",
+      "title": "New Dwellings Price",
+      "chart_type": "line",
+      "dataset_id": "26158",
+      "cache_name": "new-dwellings-price"
+    },
+    {
+      "chart_id": "population-development-quarterly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1104.json?lang=en",
+      "title": "Population Development Quarterly",
+      "chart_type": "line",
+      "dataset_id": "1104",
+      "cache_name": "population-development-quarterly"
+    },
+    {
+      "chart_id": "population-development-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1108.json?lang=en",
+      "title": "Population Development Municipalities",
+      "chart_type": "line",
+      "dataset_id": "1108",
+      "cache_name": "population-development-municipalities"
+    },
+    {
+      "chart_id": "cpi-adjusted-indices-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1118.json?lang=en",
+      "title": "CPI Adjusted Indices",
+      "chart_type": "line",
+      "dataset_id": "1118",
+      "cache_name": "cpi-adjusted-indices"
+    },
+    {
+      "chart_id": "wage-indices-by-industry-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1128.json?lang=en",
+      "title": "Wage Indices by Industry",
+      "chart_type": "line",
+      "dataset_id": "1128",
+      "cache_name": "wage-indices-by-industry"
+    },
+    {
+      "chart_id": "import-by-country-monthly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1138.json?lang=en",
+      "title": "Import by Country Monthly",
+      "chart_type": "line",
+      "dataset_id": "1138",
+      "cache_name": "import-by-country-monthly"
+    },
+    {
+      "chart_id": "households-by-type-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1070.json?lang=en",
+      "title": "Households by Type Municipalities",
+      "chart_type": "bar",
+      "dataset_id": "1070",
+      "cache_name": "households-by-type-municipalities"
+    },
+    {
+      "chart_id": "population-by-age-counties-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1076.json?lang=en",
+      "title": "Population by Age Counties",
+      "chart_type": "bar",
+      "dataset_id": "1076",
+      "cache_name": "population-by-age-counties"
+    },
+    {
+      "chart_id": "population-by-gender-age-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1078.json?lang=en",
+      "title": "Population by Gender Age Municipalities",
+      "chart_type": "bar",
+      "dataset_id": "1078",
+      "cache_name": "population-by-gender-age-municipalities"
+    },
+    {
+      "chart_id": "population-by-age-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1080.json?lang=en",
+      "title": "Population by Age Municipalities",
+      "chart_type": "bar",
+      "dataset_id": "1080",
+      "cache_name": "population-by-age-municipalities"
+    },
+    {
+      "chart_id": "population-by-gender-age-timeline-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1082.json?lang=en",
+      "title": "Population by Gender Age Timeline",
+      "chart_type": "line",
+      "dataset_id": "1082",
+      "cache_name": "population-by-gender-age-timeline"
+    },
+    {
+      "chart_id": "cpi-group-level-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1092.json?lang=en",
+      "title": "CPI Group Level",
+      "chart_type": "line",
+      "dataset_id": "1092",
+      "cache_name": "cpi-group-level"
+    },
+    {
+      "chart_id": "cpi-subgroup-level2-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1094.json?lang=en",
+      "title": "CPI Subgroup Level 2",
+      "chart_type": "line",
+      "dataset_id": "1094",
+      "cache_name": "cpi-subgroup-level2"
+    },
+    {
+      "chart_id": "cpi-weights-subgroup-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1098.json?lang=en",
+      "title": "CPI Weights Subgroup",
+      "chart_type": "bar",
+      "dataset_id": "1098",
+      "cache_name": "cpi-weights-subgroup"
+    },
+    {
+      "chart_id": "population-development-counties-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1102.json?lang=en",
+      "title": "Population Development Counties",
+      "chart_type": "line",
+      "dataset_id": "1102",
+      "cache_name": "population-development-counties"
+    },
+    {
+      "chart_id": "import-value-volume-sitc-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/34640.json?lang=en",
+      "title": "Import Value Volume SITC",
+      "chart_type": "line",
+      "dataset_id": "34640",
+      "cache_name": "import-value-volume-sitc"
+    },
+    {
+      "chart_id": "export-value-volume-sitc-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/34642.json?lang=en",
+      "title": "Export Value Volume SITC",
+      "chart_type": "line",
+      "dataset_id": "34642",
+      "cache_name": "export-value-volume-sitc"
+    },
+    {
+      "chart_id": "tax-returns-main-items-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49656.json?lang=en",
+      "title": "Tax Returns Main Items",
+      "chart_type": "line",
+      "dataset_id": "49656",
+      "cache_name": "tax-returns-main-items"
+    },
+    {
+      "chart_id": "public-administration-expenditures-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/112175.json?lang=en",
+      "title": "Public Administration Expenditures",
+      "chart_type": "line",
+      "dataset_id": "112175",
+      "cache_name": "public-administration-expenditures"
+    },
+    {
+      "chart_id": "money-supply-m0-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/172771.json?lang=en",
+      "title": "Money Supply M0",
+      "chart_type": "line",
+      "dataset_id": "172771",
+      "cache_name": "money-supply-m0"
+    },
+    {
+      "chart_id": "money-supply-m3-by-sector-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/172795.json?lang=en",
+      "title": "Money Supply M3 by Sector",
+      "chart_type": "line",
+      "dataset_id": "172795",
+      "cache_name": "money-supply-m3-by-sector"
+    },
+    {
+      "chart_id": "money-supply-by-sector-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/172798.json?lang=en",
+      "title": "Money Supply by Sector",
+      "chart_type": "line",
+      "dataset_id": "172798",
+      "cache_name": "money-supply-by-sector"
+    },
+    {
+      "chart_id": "money-supply-m3-net-claims-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/172800.json?lang=en",
+      "title": "Money Supply M3 Net Claims",
+      "chart_type": "line",
+      "dataset_id": "172800",
+      "cache_name": "money-supply-m3-net-claims"
+    },
+    {
+      "chart_id": "new-detached-house-prices-regions-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/25138.json?lang=en",
+      "title": "New Detached House Prices Regions",
+      "chart_type": "line",
+      "dataset_id": "25138",
+      "cache_name": "new-detached-house-prices-regions"
+    },
+    {
+      "chart_id": "new-detached-house-prices-national-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/25151.json?lang=en",
+      "title": "New Detached House Prices National",
+      "chart_type": "line",
+      "dataset_id": "25151",
+      "cache_name": "new-detached-house-prices-national"
+    },
+    {
+      "chart_id": "import-value-volume-sitc1-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/34254.json?lang=en",
+      "title": "Import Value Volume SITC1",
+      "chart_type": "line",
+      "dataset_id": "34254",
+      "cache_name": "import-value-volume-sitc1"
+    },
+    {
+      "chart_id": "export-value-volume-sitc1-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/34256.json?lang=en",
+      "title": "Export Value Volume SITC1",
+      "chart_type": "line",
+      "dataset_id": "34256",
+      "cache_name": "export-value-volume-sitc1"
+    },
+    {
+      "chart_id": "household-income-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49678.json?lang=en",
+      "title": "Household Income Municipalities",
+      "chart_type": "line",
+      "dataset_id": "49678",
+      "cache_name": "household-income-municipalities"
+    },
+    {
+      "chart_id": "population-by-gender-age-historical-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/59322.json?lang=en",
+      "title": "Population by Gender Age Historical",
+      "chart_type": "line",
+      "dataset_id": "59322",
+      "cache_name": "population-by-gender-age-historical"
+    },
+    {
+      "chart_id": "oil-gas-industry-turnover-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/124341.json?lang=en",
+      "title": "Oil Gas Industry Turnover",
+      "chart_type": "line",
+      "dataset_id": "124341",
+      "cache_name": "oil-gas-industry-turnover"
+    },
+    {
+      "chart_id": "employed-by-residence-workplace-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/44631.json?lang=en",
+      "title": "Employed by Residence Workplace",
+      "chart_type": "line",
+      "dataset_id": "44631",
+      "cache_name": "employed-by-residence-workplace"
+    },
+    {
+      "chart_id": "living-arrangements-national-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/86813.json?lang=en",
+      "title": "Living Arrangements National",
+      "chart_type": "bar",
+      "dataset_id": "86813",
+      "cache_name": "living-arrangements-national"
+    },
+    {
+      "chart_id": "cpi-seasonally-adjusted-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/45590.json?lang=en",
+      "title": "CPI Seasonally Adjusted",
+      "chart_type": "line",
+      "dataset_id": "45590",
+      "cache_name": "cpi-seasonally-adjusted"
+    },
+    {
+      "chart_id": "tax-returns-districts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49619.json?lang=en",
+      "title": "Tax Returns Districts",
+      "chart_type": "line",
+      "dataset_id": "49619",
+      "cache_name": "tax-returns-districts"
+    },
+    {
+      "chart_id": "credit-indicator-k2-detailed-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/62264.json?lang=en",
+      "title": "Credit Indicator K2 Detailed",
+      "chart_type": "line",
+      "dataset_id": "62264",
+      "cache_name": "credit-indicator-k2-detailed"
+    },
+    {
+      "chart_id": "first-hand-price-index-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/82677.json?lang=en",
+      "title": "First Hand Price Index",
+      "chart_type": "line",
+      "dataset_id": "82677",
+      "cache_name": "first-hand-price-index"
+    },
+    {
+      "chart_id": "first-hand-price-index-groups-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/82679.json?lang=en",
+      "title": "First Hand Price Index Groups",
+      "chart_type": "line",
+      "dataset_id": "82679",
+      "cache_name": "first-hand-price-index-groups"
+    },
+    {
+      "chart_id": "immigrants-by-county-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/96304.json?lang=en",
+      "title": "Immigrants by County",
+      "chart_type": "bar",
+      "dataset_id": "96304",
+      "cache_name": "immigrants-by-county"
+    },
+    {
+      "chart_id": "cpi-adjusted-delivery-sector-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/130297.json?lang=en",
+      "title": "CPI Adjusted Delivery Sector",
+      "chart_type": "line",
+      "dataset_id": "130297",
+      "cache_name": "cpi-adjusted-delivery-sector"
+    },
+    {
+      "chart_id": "wage-indices-by-industry-sn88-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/215588.json?lang=en",
+      "title": "Wage Indices by Industry SN88",
+      "chart_type": "line",
+      "dataset_id": "215588",
+      "cache_name": "wage-indices-by-industry-sn88"
+    },
+    {
+      "chart_id": "population-municipalities-timeline-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26975.json?lang=en",
+      "title": "Population Municipalities Timeline",
+      "chart_type": "line",
+      "dataset_id": "26975",
+      "cache_name": "population-municipalities-timeline"
+    },
+    {
+      "chart_id": "production-index-by-product-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26952.json?lang=en",
+      "title": "Production Index by Product",
+      "chart_type": "line",
+      "dataset_id": "26952",
+      "cache_name": "production-index-by-product"
+    },
+    {
+      "chart_id": "population-changes-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49577.json?lang=en",
+      "title": "Population Changes Municipalities",
+      "chart_type": "line",
+      "dataset_id": "49577",
+      "cache_name": "population-changes-municipalities"
+    },
+    {
+      "chart_id": "population-changes-counties-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49623.json?lang=en",
+      "title": "Population Changes Counties",
+      "chart_type": "line",
+      "dataset_id": "49623",
+      "cache_name": "population-changes-counties"
+    },
+    {
+      "chart_id": "population-by-gender-age-5year-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/65195.json?lang=en",
+      "title": "Population by Gender Age 5-Year",
+      "chart_type": "bar",
+      "dataset_id": "65195",
+      "cache_name": "population-by-gender-age-5year"
+    },
+    {
+      "chart_id": "first-hand-price-index-subgroups-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/82647.json?lang=en",
+      "title": "First Hand Price Index Subgroups",
+      "chart_type": "line",
+      "dataset_id": "82647",
+      "cache_name": "first-hand-price-index-subgroups"
+    },
+    {
+      "chart_id": "cpi-delivery-sector-annual-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/95134.json?lang=en",
+      "title": "CPI Delivery Sector Annual",
+      "chart_type": "line",
+      "dataset_id": "95134",
+      "cache_name": "cpi-delivery-sector-annual"
+    },
+    {
+      "chart_id": "new-detached-house-prices-cities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/25156.json?lang=en",
+      "title": "New Detached House Prices Cities",
+      "chart_type": "line",
+      "dataset_id": "25156",
+      "cache_name": "new-detached-house-prices-cities"
+    },
+    {
+      "chart_id": "credit-indicator-k3-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/62266.json?lang=en",
+      "title": "Credit Indicator K3",
+      "chart_type": "line",
+      "dataset_id": "62266",
+      "cache_name": "credit-indicator-k3"
+    },
+    {
+      "chart_id": "tax-returns-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49607.json?lang=en",
+      "title": "Tax Returns Municipalities",
+      "chart_type": "line",
+      "dataset_id": "49607",
+      "cache_name": "tax-returns-municipalities"
+    },
+    {
+      "chart_id": "bankruptcies-by-industry-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/62495.json?lang=en",
+      "title": "Bankruptcies by Industry",
+      "chart_type": "bar",
+      "dataset_id": "62495",
+      "cache_name": "bankruptcies-by-industry"
+    },
+    {
+      "chart_id": "immigrants-with-immigrant-parents-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/48670.json?lang=en",
+      "title": "Immigrants with Immigrant Parents",
+      "chart_type": "line",
+      "dataset_id": "48670",
+      "cache_name": "immigrants-with-immigrant-parents"
+    },
+    {
+      "chart_id": "tax-returns-counties-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/49613.json?lang=en",
+      "title": "Tax Returns Counties",
+      "chart_type": "line",
+      "dataset_id": "49613",
+      "cache_name": "tax-returns-counties"
+    },
+    {
+      "chart_id": "living-arrangements-districts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/85450.json?lang=en",
+      "title": "Living Arrangements Districts",
+      "chart_type": "bar",
+      "dataset_id": "85450",
+      "cache_name": "living-arrangements-districts"
+    },
+    {
+      "chart_id": "education-level-counties-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/85452.json?lang=en",
+      "title": "Education Level Counties",
+      "chart_type": "bar",
+      "dataset_id": "85452",
+      "cache_name": "education-level-counties"
+    },
+    {
+      "chart_id": "household-income-counties-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/97611.json?lang=en",
+      "title": "Household Income Counties",
+      "chart_type": "line",
+      "dataset_id": "97611",
+      "cache_name": "household-income-counties"
+    },
+    {
+      "chart_id": "oil-gas-industry-turnover-sn2007-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/124363.json?lang=en",
+      "title": "Oil Gas Industry Turnover SN2007",
+      "chart_type": "line",
+      "dataset_id": "124363",
+      "cache_name": "oil-gas-industry-turnover-sn2007"
+    },
+    {
+      "chart_id": "household-income-districts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/56928.json?lang=en",
+      "title": "Household Income Districts",
+      "chart_type": "line",
+      "dataset_id": "56928",
+      "cache_name": "household-income-districts"
+    },
+    {
+      "chart_id": "household-income-national-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/97435.json?lang=en",
+      "title": "Household Income National",
+      "chart_type": "line",
+      "dataset_id": "97435",
+      "cache_name": "household-income-national"
+    },
+    {
+      "chart_id": "business-cycle-barometer-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166316.json?lang=en",
+      "title": "Business Cycle Barometer",
+      "chart_type": "line",
+      "dataset_id": "166316",
+      "cache_name": "business-cycle-barometer"
+    },
+    {
+      "chart_id": "business-cycle-barometer-products-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/166318.json?lang=en",
+      "title": "Business Cycle Barometer Products",
+      "chart_type": "line",
+      "dataset_id": "166318",
+      "cache_name": "business-cycle-barometer-products"
+    },
+    {
+      "chart_id": "export-by-country-monthly-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1136.json?lang=en",
+      "title": "Export by Country Monthly",
+      "chart_type": "line",
+      "dataset_id": "1136",
+      "cache_name": "export-by-country-monthly"
+    },
+    {
+      "chart_id": "producer-price-index-products-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/26433.json?lang=en",
+      "title": "Producer Price Index Products",
+      "chart_type": "line",
+      "dataset_id": "26433",
+      "cache_name": "producer-price-index-products"
+    },
+    {
+      "chart_id": "trade-volume-price-sitc2-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/179417.json?lang=en",
+      "title": "Trade Volume Price SITC2",
+      "chart_type": "line",
+      "dataset_id": "179417",
+      "cache_name": "trade-volume-price-sitc2"
+    },
+    {
+      "chart_id": "trade-volume-price-product-groups-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/179419.json?lang=en",
+      "title": "Trade Volume Price Product Groups",
+      "chart_type": "line",
+      "dataset_id": "179419",
+      "cache_name": "trade-volume-price-product-groups"
+    },
+    {
+      "chart_id": "trade-main-figures-by-country-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/179423.json?lang=en",
+      "title": "Trade Main Figures by Country",
+      "chart_type": "line",
+      "dataset_id": "179423",
+      "cache_name": "trade-main-figures-by-country"
+    },
+    {
+      "chart_id": "producer-price-index-industries-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/27263.json?lang=en",
+      "title": "Producer Price Index Industries",
+      "chart_type": "line",
+      "dataset_id": "27263",
+      "cache_name": "producer-price-index-industries"
+    },
+    {
+      "chart_id": "production-index-by-industry-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/29843.json?lang=en",
+      "title": "Production Index by Industry",
+      "chart_type": "line",
+      "dataset_id": "29843",
+      "cache_name": "production-index-by-industry"
+    },
+    {
+      "chart_id": "trade-volume-price-bec-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/367182.json?lang=en",
+      "title": "Trade Volume Price BEC",
+      "chart_type": "line",
+      "dataset_id": "367182",
+      "cache_name": "trade-volume-price-bec"
+    },
+    {
+      "chart_id": "export-value-sitc3-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/367189.json?lang=en",
+      "title": "Export Value SITC3",
+      "chart_type": "line",
+      "dataset_id": "367189",
+      "cache_name": "export-value-sitc3"
+    },
+    {
+      "chart_id": "import-value-sitc3-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/367187.json?lang=en",
+      "title": "Import Value SITC3",
+      "chart_type": "line",
+      "dataset_id": "367187",
+      "cache_name": "import-value-sitc3"
+    },
+    {
+      "chart_id": "retail-sales-seasonally-adjusted-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1066.json?lang=en",
+      "title": "Retail Sales Seasonally Adjusted",
+      "chart_type": "line",
+      "dataset_id": "1066",
+      "cache_name": "retail-sales-seasonally-adjusted"
+    },
+    {
+      "chart_id": "population-basic-districts-national-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/534445.json?lang=en",
+      "title": "Population Basic Districts National",
+      "chart_type": "bar",
+      "dataset_id": "534445",
+      "cache_name": "population-basic-districts-national"
+    },
+    {
+      "chart_id": "population-by-gender-age-districts-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/559736.json?lang=en",
+      "title": "Population by Gender Age Districts",
+      "chart_type": "bar",
+      "dataset_id": "559736",
+      "cache_name": "population-by-gender-age-districts"
+    },
+    {
+      "chart_id": "population-by-gender-age-municipalities-detailed-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/577297.json?lang=en",
+      "title": "Population by Gender Age Municipalities Detailed",
+      "chart_type": "bar",
+      "dataset_id": "577297",
+      "cache_name": "population-by-gender-age-municipalities-detailed"
+    },
+    {
+      "chart_id": "producer-price-index-subgroups-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/741154.json?lang=en",
+      "title": "Producer Price Index Subgroups",
+      "chart_type": "line",
+      "dataset_id": "741154",
+      "cache_name": "producer-price-index-subgroups"
+    },
+    {
+      "chart_id": "education-level-municipalities-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1172668.json?lang=en",
+      "title": "Education Level Municipalities",
+      "chart_type": "bar",
+      "dataset_id": "1172668",
+      "cache_name": "education-level-municipalities"
+    },
+    {
+      "chart_id": "education-level-municipalities-percent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1172672.json?lang=en",
+      "title": "Education Level Municipalities Percent",
+      "chart_type": "bar",
+      "dataset_id": "1172672",
+      "cache_name": "education-level-municipalities-percent"
+    },
+    {
+      "chart_id": "credit-indicator-k2-seasonally-adjusted-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/435959.json?lang=en",
+      "title": "Credit Indicator K2 Seasonally Adjusted",
+      "chart_type": "line",
+      "dataset_id": "435959",
+      "cache_name": "credit-indicator-k2-seasonally-adjusted"
+    },
+    {
+      "chart_id": "cpi-delivery-sector-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/868304.json?lang=en",
+      "title": "CPI Delivery Sector Recent",
+      "chart_type": "line",
+      "dataset_id": "868304",
+      "cache_name": "cpi-delivery-sector-recent"
+    },
+    {
+      "chart_id": "cpi-adjusted-delivery-sector-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/868330.json?lang=en",
+      "title": "CPI Adjusted Delivery Sector Recent",
+      "chart_type": "line",
+      "dataset_id": "868330",
+      "cache_name": "cpi-adjusted-delivery-sector-recent"
+    },
+    {
+      "chart_id": "economic-forecasts-selected-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/934516.json?lang=en",
+      "title": "Economic Forecasts Selected",
+      "chart_type": "line",
+      "dataset_id": "934516",
+      "cache_name": "economic-forecasts-selected"
+    },
+    {
+      "chart_id": "producer-price-index-totals-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/372129.json?lang=en",
+      "title": "Producer Price Index Totals Recent",
+      "chart_type": "line",
+      "dataset_id": "372129",
+      "cache_name": "producer-price-index-totals-recent"
+    },
+    {
+      "chart_id": "production-index-industry-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/372131.json?lang=en",
+      "title": "Production Index Industry Recent",
+      "chart_type": "line",
+      "dataset_id": "372131",
+      "cache_name": "production-index-industry-recent"
+    },
+    {
+      "chart_id": "producer-price-index-subgroups-detailed-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/741154.json?lang=en",
+      "title": "Producer Price Index Subgroups Detailed",
+      "chart_type": "line",
+      "dataset_id": "741154",
+      "cache_name": "producer-price-index-subgroups-detailed"
+    },
+    {
+      "chart_id": "national-accounts-recent-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/372144.json?lang=en",
+      "title": "National Accounts Recent",
+      "chart_type": "line",
+      "dataset_id": "372144",
+      "cache_name": "national-accounts-recent"
+    },
+    {
+      "chart_id": "cpi-ate-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1118.json?lang=en",
+      "title": "CPI-ATE Index",
+      "chart_type": "line",
+      "dataset_id": "1118",
+      "cache_name": "cpi-ate"
+    },
+    {
+      "chart_id": "basic-salary-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1126.json?lang=en",
+      "title": "Basic Salary Index",
+      "chart_type": "line",
+      "dataset_id": "1126",
+      "cache_name": "basic-salary"
+    },
+    {
+      "chart_id": "export-country-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1130.json?lang=en",
+      "title": "Export by Country",
+      "chart_type": "line",
+      "dataset_id": "1130",
+      "cache_name": "export-country"
+    },
+    {
+      "chart_id": "import-country-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en",
+      "title": "Import by Country",
+      "chart_type": "line",
+      "dataset_id": "1132",
+      "cache_name": "import-country"
+    },
+    {
+      "chart_id": "export-commodity-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1134.json?lang=en",
+      "title": "Export by Commodity",
+      "chart_type": "line",
+      "dataset_id": "1134",
+      "cache_name": "export-commodity"
+    },
+    {
+      "chart_id": "import-commodity-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1140.json?lang=en",
+      "title": "Import by Commodity",
+      "chart_type": "line",
+      "dataset_id": "1140",
+      "cache_name": "import-commodity"
+    },
+    {
+      "chart_id": "construction-cost-wood-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1056.json?lang=en",
+      "title": "Construction Cost Wood",
+      "chart_type": "line",
+      "dataset_id": "1056",
+      "cache_name": "construction-cost-wood"
+    },
+    {
+      "chart_id": "construction-cost-multi-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1058.json?lang=en",
+      "title": "Construction Cost Multi",
+      "chart_type": "line",
+      "dataset_id": "1058",
+      "cache_name": "construction-cost-multi"
+    },
+    {
+      "chart_id": "household-types-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1068.json?lang=en",
+      "title": "Household Types",
+      "chart_type": "line",
+      "dataset_id": "1068",
+      "cache_name": "household-types"
+    },
+    {
+      "chart_id": "population-age-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1074.json?lang=en",
+      "title": "Population by Age",
+      "chart_type": "line",
+      "dataset_id": "1074",
+      "cache_name": "population-age"
+    },
+    {
+      "chart_id": "cpi-coicop-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1084.json?lang=en",
+      "title": "CPI Coicop Divisions",
+      "chart_type": "line",
+      "dataset_id": "1084",
+      "cache_name": "cpi-coicop"
+    },
+    {
+      "chart_id": "cpi-subgroups-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1090.json?lang=en",
+      "title": "CPI Sub-groups",
+      "chart_type": "line",
+      "dataset_id": "1090",
+      "cache_name": "cpi-subgroups"
+    },
+    {
+      "chart_id": "cpi-items-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1096.json?lang=en",
+      "title": "CPI Items",
+      "chart_type": "line",
+      "dataset_id": "1096",
+      "cache_name": "cpi-items"
+    },
+    {
+      "chart_id": "cpi-delivery-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/1100.json?lang=en",
+      "title": "CPI Delivery Sectors",
+      "chart_type": "line",
+      "dataset_id": "1100",
+      "cache_name": "cpi-delivery"
+    },
+    {
+      "chart_id": "household-income-size-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/56957.json?lang=en",
+      "title": "Household Income Size",
+      "chart_type": "line",
+      "dataset_id": "56957",
+      "cache_name": "household-income-size"
+    },
+    {
+      "chart_id": "cohabiting-arrangements-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/85440.json?lang=en",
+      "title": "Cohabiting Arrangements",
+      "chart_type": "line",
+      "dataset_id": "85440",
+      "cache_name": "cohabiting-arrangements"
+    },
+    {
+      "chart_id": "utility-floor-space-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/95177.json?lang=en",
+      "title": "Utility Floor Space",
+      "chart_type": "line",
+      "dataset_id": "95177",
+      "cache_name": "utility-floor-space"
+    },
+    {
+      "chart_id": "oil-gas-turnover-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/124322.json?lang=en",
+      "title": "Oil Gas Turnover",
+      "chart_type": "line",
+      "dataset_id": "124322",
+      "cache_name": "oil-gas-turnover"
+    },
+    {
+      "chart_id": "trade-volume-price-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/179415.json?lang=en",
+      "title": "Trade Volume Price",
+      "chart_type": "line",
+      "dataset_id": "179415",
+      "cache_name": "trade-volume-price"
+    },
+    {
+      "chart_id": "producer-price-industry-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/741023.json?lang=en",
+      "title": "Producer Price Industry",
+      "chart_type": "line",
+      "dataset_id": "741023",
+      "cache_name": "producer-price-industry"
+    },
+    {
+      "chart_id": "deaths-age-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/567324.json?lang=en",
+      "title": "Deaths by Age",
+      "chart_type": "line",
+      "dataset_id": "567324",
+      "cache_name": "deaths-age"
+    },
+    {
+      "chart_id": "bankruptcies-total-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/924816.json?lang=en",
+      "title": "Bankruptcies Total",
+      "chart_type": "line",
+      "dataset_id": "924816",
+      "cache_name": "bankruptcies-total"
+    },
+    {
+      "chart_id": "monetary-m3-chart",
+      "url": "https://data.ssb.no/api/v0/dataset/172793.json?lang=en",
+      "title": "Monetary Aggregate M3",
+      "chart_type": "line",
+      "dataset_id": "172793",
+      "cache_name": "monetary-m3"
+    }
+  ],
+  "total_original": 193,
+  "total_filtered": 148,
+  "total_excluded": 45
+}

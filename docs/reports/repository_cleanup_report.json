@@ -1,0 +1,29 @@
+{
+  "cleanup_timestamp": "2025-08-13T22:46:39.809171",
+  "moved_files": [
+    "docs/reports/diagnostics_report.md",
+    "docs/reports/diagnostics_results.json",
+    "docs/reports/comprehensive_cleanup_report.json",
+    "docs/reports/final_fixes_report.json",
+    "docs/reports/chart_quality_report.json",
+    "data/reports/excluded_charts_report.json",
+    "data/reports/chart_quality_report.json",
+    "data/reports/realistic_expansion.json",
+    "data/reports/repair_results.json",
+    "data/reports/diagnostics_results.json",
+    "data/reports/expansion_results.json",
+    "data/logs/diagnostics.log",
+    "data/logs/expand.log",
+    "scripts/tools/diagnostics.py",
+    "scripts/tools/repair.py",
+    "scripts/tools/final_fixes.py",
+    "scripts/tools/comprehensive_cleanup.py"
+  ],
+  "removed_files": [
+    "expansion_results.json"
+  ],
+  "summary": {
+    "total_moved": 17,
+    "total_removed": 1
+  }
+}

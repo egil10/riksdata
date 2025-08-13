@@ -120,9 +120,7 @@ export async function initializeApp() {
             loadChartData('new-dwellings-price-chart', 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en', 'New Dwellings Price'),
             loadChartData('population-development-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en', 'Population Development Quarterly'),
             loadChartData('cpi-adjusted-indices-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI Adjusted Indices'),
-            loadChartData('wage-indices-by-industry-chart', 'https://data.ssb.no/api/v0/dataset/1128.json?lang=en', 'Wage Indices by Industry'),
-            loadChartData('import-by-country-monthly-chart', 'https://data.ssb.no/api/v0/dataset/1138.json?lang=en', 'Import by Country Monthly'),
-            loadChartData('population-by-gender-age-timeline-chart', 'https://data.ssb.no/api/v0/dataset/1082.json?lang=en', 'Population by Gender Age Timeline'),
+
             loadChartData('cpi-group-level-chart', 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', 'CPI Group Level'),
             loadChartData('cpi-subgroup-level2-chart', 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en', 'CPI Subgroup Level 2'),
             loadChartData('cpi-weights-subgroup-chart', 'https://data.ssb.no/api/v0/dataset/1098.json?lang=en', 'CPI Weights Subgroup', 'bar'),
@@ -131,24 +129,19 @@ export async function initializeApp() {
             loadChartData('tax-returns-main-items-chart', 'https://data.ssb.no/api/v0/dataset/49656.json?lang=en', 'Tax Returns Main Items'),
             loadChartData('public-administration-expenditures-chart', 'https://data.ssb.no/api/v0/dataset/112175.json?lang=en', 'Public Administration Expenditures'),
             loadChartData('money-supply-m0-chart', 'https://data.ssb.no/api/v0/dataset/172771.json?lang=en', 'Money Supply M0'),
-            loadChartData('money-supply-m3-by-sector-chart', 'https://data.ssb.no/api/v0/dataset/172795.json?lang=en', 'Money Supply M3 by Sector'),
-            loadChartData('money-supply-by-sector-chart', 'https://data.ssb.no/api/v0/dataset/172798.json?lang=en', 'Money Supply by Sector'),
+
             loadChartData('money-supply-m3-net-claims-chart', 'https://data.ssb.no/api/v0/dataset/172800.json?lang=en', 'Money Supply M3 Net Claims'),
             loadChartData('new-detached-house-prices-national-chart', 'https://data.ssb.no/api/v0/dataset/25151.json?lang=en', 'New Detached House Prices National'),
             loadChartData('import-value-volume-sitc1-chart', 'https://data.ssb.no/api/v0/dataset/34254.json?lang=en', 'Import Value Volume SITC1'),
             loadChartData('export-value-volume-sitc1-chart', 'https://data.ssb.no/api/v0/dataset/34256.json?lang=en', 'Export Value Volume SITC1'),
-            loadChartData('population-by-gender-age-historical-chart', 'https://data.ssb.no/api/v0/dataset/59322.json?lang=en', 'Population by Gender Age Historical'),
             loadChartData('oil-gas-industry-turnover-chart', 'https://data.ssb.no/api/v0/dataset/124341.json?lang=en', 'Oil Gas Industry Turnover'),
-            loadChartData('employed-by-residence-workplace-chart', 'https://data.ssb.no/api/v0/dataset/44631.json?lang=en', 'Employed by Residence Workplace'),
             loadChartData('living-arrangements-national-chart', 'https://data.ssb.no/api/v0/dataset/86813.json?lang=en', 'Living Arrangements National', 'bar'),
             loadChartData('cpi-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/45590.json?lang=en', 'CPI Seasonally Adjusted'),
             loadChartData('credit-indicator-k2-detailed-chart', 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', 'Credit Indicator K2 Detailed'),
             loadChartData('first-hand-price-index-chart', 'https://data.ssb.no/api/v0/dataset/82677.json?lang=en', 'First Hand Price Index'),
             loadChartData('first-hand-price-index-groups-chart', 'https://data.ssb.no/api/v0/dataset/82679.json?lang=en', 'First Hand Price Index Groups'),
             loadChartData('cpi-adjusted-delivery-sector-chart', 'https://data.ssb.no/api/v0/dataset/130297.json?lang=en', 'CPI Adjusted Delivery Sector'),
-            loadChartData('wage-indices-by-industry-sn88-chart', 'https://data.ssb.no/api/v0/dataset/215588.json?lang=en', 'Wage Indices by Industry SN88'),
-            loadChartData('production-index-by-product-chart', 'https://data.ssb.no/api/v0/dataset/26952.json?lang=en', 'Production Index by Product'),
-            loadChartData('population-by-gender-age-5year-chart', 'https://data.ssb.no/api/v0/dataset/65195.json?lang=en', 'Population by Gender Age 5-Year', 'bar'),
+
             
             // Norges Bank data
             loadChartData('oil-fund-chart', './data/cached/oil-fund.json', 'Oil Fund Value'),
@@ -175,16 +168,13 @@ export async function initializeApp() {
             loadChartData('import-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/34641.json?lang=en', 'Import Value SITC3'),
             loadChartData('export-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/34643.json?lang=en', 'Export Value SITC3'),
             loadChartData('trade-volume-price-bec-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price BEC'),
-            loadChartData('production-index-by-industry-chart', 'https://data.ssb.no/api/v0/dataset/26951.json?lang=en', 'Production Index by Industry'),
             loadChartData('producer-price-index-industries-chart', 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', 'Producer Price Index Industries'),
-            loadChartData('trade-main-figures-by-country-chart', 'https://data.ssb.no/api/v0/dataset/179416.json?lang=en', 'Trade Main Figures by Country'),
             loadChartData('trade-volume-price-product-groups-chart', 'https://data.ssb.no/api/v0/dataset/179417.json?lang=en', 'Trade Volume Price Product Groups'),
             loadChartData('trade-volume-price-sitc2-chart', 'https://data.ssb.no/api/v0/dataset/179418.json?lang=en', 'Trade Volume Price SITC2'),
             loadChartData('producer-price-index-products-chart', 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', 'Producer Price Index Products'),
             loadChartData('business-cycle-barometer-products-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Cycle Barometer Products'),
             loadChartData('business-cycle-barometer-chart', 'https://data.ssb.no/api/v0/dataset/166318.json?lang=en', 'Business Cycle Barometer'),
             loadChartData('household-income-national-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income National'),
-            loadChartData('wages-by-occupation-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Wages by Occupation'),
             loadChartData('oil-gas-industry-turnover-sn2007-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Industry Turnover SN2007'),
             loadChartData('house-price-index-recent-chart', 'https://data.ssb.no/api/v0/dataset/1061.json?lang=en', 'House Price Index Recent'),
             loadChartData('national-accounts-recent-chart', 'https://data.ssb.no/api/v0/dataset/59013.json?lang=en', 'National Accounts Recent'),
@@ -194,11 +184,11 @@ export async function initializeApp() {
             loadChartData('production-index-industry-recent-chart', 'https://data.ssb.no/api/v0/dataset/26953.json?lang=en', 'Production Index Industry Recent'),
             loadChartData('producer-price-index-totals-recent-chart', 'https://data.ssb.no/api/v0/dataset/26433.json?lang=en', 'Producer Price Index Totals Recent'),
             loadChartData('economic-forecasts-selected-chart', 'https://data.ssb.no/api/v0/dataset/934514.json?lang=en', 'Economic Forecasts Selected'),
-            loadChartData('deaths-by-week-age-chart', 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', 'Deaths by Week Age'),
+
             loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3'),
             
             // Additional charts that exist in HTML but weren't being loaded (only those with cache files)
-            loadChartData('bankruptcies-by-industry-chart', 'https://data.ssb.no/api/v0/dataset/62495.json?lang=en', 'Bankruptcies by Industry'),
+
             loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
             loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
             loadChartData('births-deaths-chart', 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', 'Births and Deaths'),
@@ -212,26 +202,19 @@ export async function initializeApp() {
             loadChartData('cpi-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'CPI Sub-Groups'),
             loadChartData('cpi-ate-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI-ATE Index'),
             loadChartData('crime-rate-chart', 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en', 'Crime Rate'),
-            loadChartData('deaths-age-chart', 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', 'Deaths by Age'),
             loadChartData('education-level-chart', 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', 'Education Level'),
             loadChartData('holiday-property-sales-chart', 'https://data.ssb.no/api/v0/dataset/65962.json?lang=en', 'Holiday Property Sales'),
             loadChartData('household-income-size-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income Size'),
             loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),
-            loadChartData('import-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', 'Import by Commodity'),
-            loadChartData('import-country-chart', 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', 'Import by Country'),
             loadChartData('lifestyle-habits-chart', 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en', 'Lifestyle Habits'),
             loadChartData('long-term-illness-chart', 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', 'Long-term Illness'),
             loadChartData('oil-gas-turnover-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Turnover'),
-            loadChartData('population-age-chart', 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', 'Population by Age'),
             loadChartData('producer-price-industry-chart', 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', 'Producer Price Industry'),
             loadChartData('salmon-export-volume-chart', 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en', 'Salmon Export Volume'),
             loadChartData('trade-volume-price-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price'),
             loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
-            loadChartData('wages-by-occupation-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Wages by Occupation'),
-            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928197.json?lang=en', 'Energy Accounts'),
-            loadChartData('export-commodity-chart', 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en', 'Export by Commodity'),
-            loadChartData('export-country-chart', 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', 'Export by Country'),
-            loadChartData('export-by-country-monthly-chart', 'https://data.ssb.no/api/v0/dataset/1136.json?lang=en', 'Export by Country Monthly')
+
+            loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928197.json?lang=en', 'Energy Accounts')
         ];
         
         // Wait for all charts to load with progress tracking and timeouts

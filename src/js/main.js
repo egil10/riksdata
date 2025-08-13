@@ -70,14 +70,24 @@ export async function initializeApp() {
         console.log('Loading screen element:', loadingScreen);
         console.log('Progress bar element:', progressBar);
         
-        // Initialize progress bar
+        // Initialize progress bar to 0% and ensure it's hidden initially
         if (progressBar) {
             progressBar.style.width = '0%';
+            progressBar.style.opacity = '0';
+            // Ensure it stays at 0% until loading is complete
+            progressBar.dataset.loading = 'true';
         }
         
         // Show skeleton loading for all charts
         console.log('Showing skeleton loading...');
         showSkeletonLoading();
+        
+        // Show progress bar after a brief moment
+        if (progressBar) {
+            setTimeout(() => {
+                progressBar.style.opacity = '1';
+            }, 100);
+        }
         
         // Load all charts in parallel with progress tracking
         console.log('Loading charts...');
@@ -219,6 +229,7 @@ export async function initializeApp() {
         
         // Wait for all charts to load with progress tracking and timeouts
         console.log('Waiting for charts to load...');
+        console.log(`Total charts to load: ${chartPromises.length}`);
         const totalCharts = chartPromises.length;
         
         // Wrap each chart promise with timeout and error handling
@@ -230,17 +241,23 @@ export async function initializeApp() {
         );
         
         // Use Promise.allSettled to prevent deadlocks if any chart fails
+        console.log('Starting Promise.allSettled...');
         const results = await Promise.allSettled(chartPromisesWithTimeout);
+        console.log('Promise.allSettled completed');
         
-        // Update progress based on completion
+        // Update progress based on completion with smooth animation
+        console.log('Starting progress update loop...');
         let completedCharts = 0;
-        results.forEach((result, index) => {
+        for (let i = 0; i < results.length; i++) {
             completedCharts++;
             const progress = (completedCharts / totalCharts) * 100;
-            if (progressBar) {
+            console.log(`Progress: ${progress.toFixed(1)}% (${completedCharts}/${totalCharts})`);
+            if (progressBar && progressBar.dataset.loading) {
                 progressBar.style.width = `${progress}%`;
             }
-        });
+            // Remove the delay - it was causing the 10-second load time
+        }
+        console.log('Progress update loop completed');
         
         // Log results for debugging
         let successCount = 0;
@@ -257,9 +274,13 @@ export async function initializeApp() {
         
         console.log(`Chart loading results: ${successCount} successful, ${failureCount} failed`);
         
-        // Update progress bar to 100%
+        // Update progress bar to 100% and enable scroll updates
+        console.log('Setting progress bar to 100%');
         if (progressBar) {
             progressBar.style.width = '100%';
+            progressBar.style.opacity = '1';
+            // Remove loading state to allow scroll-based updates
+            delete progressBar.dataset.loading;
         }
         
         // Hide skeleton loading
@@ -275,6 +296,7 @@ export async function initializeApp() {
         // Hide loading screen with fade out
         console.log('Hiding loading screen...');
         hideLoadingScreen();
+        console.log('Loading screen hidden');
         
         // Sort charts alphabetically by default
         sortChartsAlphabetically();
@@ -291,6 +313,12 @@ export async function initializeApp() {
         }
         
         showError('Failed to load chart data. Please try again later.');
+        
+        // Remove loading state from progress bar even on error
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+            delete progressBar.dataset.loading;
+        }
         
         // Hide loading screen even if there's an error
         hideLoadingScreen();
@@ -560,7 +588,10 @@ function updateLanguageTexts() {
 function updateProgressBar(percentage) {
     const progressBar = document.getElementById('progress-bar');
     if (progressBar) {
-        progressBar.style.width = `${percentage}%`;
+        // Only update if not in loading state, or if explicitly setting to 0% or 100%
+        if (!progressBar.dataset.loading || percentage === 0 || percentage === 100) {
+            progressBar.style.width = `${percentage}%`;
+        }
     }
 }
 
@@ -568,6 +599,17 @@ function updateProgressBar(percentage) {
  * Update progress bar based on scroll position
  */
 function updateProgressBarOnScroll() {
+    // Only update progress bar on scroll after loading is complete
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen && loadingScreen.style.display !== 'none') {
+        return; // Don't update progress bar during loading
+    }
+    
+    // Also check if the body has the 'loaded' class to ensure loading is truly complete
+    if (!document.body.classList.contains('loaded')) {
+        return; // Don't update progress bar until loading is complete
+    }
+    
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrollPercentage = (scrollTop / scrollHeight) * 100;

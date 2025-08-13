@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/x-icon" href="./src/assets/favicon.ico">
     <title>Riksdata</title>
     <link rel="stylesheet" href="./src/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -646,18 +646,7 @@
                 </div>
             </div>
             
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h3>CPI Weights Subgroup</h3>
-                    <a href="#" target="_blank" class="source-link">Source</a>
-                    <div class="chart-subtitle"></div>
-                </div>
-                <div class="skeleton-chart" id="cpi-weights-subgroup-skeleton"></div>
-                <div class="chart-container">
-                    <canvas id="cpi-weights-subgroup-chart"></canvas>
-                    <div class="static-tooltip" id="cpi-weights-subgroup-tooltip"></div>
-                </div>
-            </div>
+
             <div class="chart-card">
                 <div class="chart-header">
                     <h3>CPI Subgroup Level 2</h3>
@@ -1647,52 +1636,6 @@
                 </div>
             </div>
             
-            <!-- Removed: Labor Force and Employment charts (datasets failed to fetch) -->
-            
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h3>Education & Labor Quarterly</h3>
-                    <a href="#" target="_blank" class="source-link">Source</a>
-                    <div class="chart-subtitle">Education and labor market interaction</div>
-                </div>
-                <div class="skeleton-chart" id="education-labor-quarterly-skeleton"></div>
-                <div class="chart-container">
-                    <canvas id="education-labor-quarterly-chart"></canvas>
-                    <div class="static-tooltip" id="education-labor-quarterly-tooltip"></div>
-                </div>
-            </div>
-            
-
-            
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h3>Labor Force Flows</h3>
-                    <a href="#" target="_blank" class="source-link">Source</a>
-                    <div class="chart-subtitle">Transitions between labor force statuses</div>
-                </div>
-                <div class="skeleton-chart" id="labor-force-flows-skeleton"></div>
-                <div class="chart-container">
-                    <canvas id="labor-force-flows-chart"></canvas>
-                    <div class="static-tooltip" id="labor-force-flows-tooltip"></div>
-                </div>
-            </div>
-            
-
-            
-            <div class="chart-card">
-                <div class="chart-header">
-                    <h3>Unemployment Duration</h3>
-                    <a href="#" target="_blank" class="source-link">Source</a>
-                    <div class="chart-subtitle">Duration of unemployment spells</div>
-                </div>
-                <div class="skeleton-chart" id="unemployment-duration-quarterly-skeleton"></div>
-                <div class="chart-container">
-                    <canvas id="unemployment-duration-quarterly-chart"></canvas>
-                    <div class="static-tooltip" id="unemployment-duration-quarterly-tooltip"></div>
-                </div>
-            </div>
-            
-
         </div>
     </main>
 

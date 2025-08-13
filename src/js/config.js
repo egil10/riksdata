@@ -251,7 +251,6 @@ export const DATASET_MAPPINGS = {
         '1056': 'construction-cost-wood',
         
         // Additional mappings for charts that exist
-        '1098': 'cpi-weights-subgroup',
         '1058': 'construction-cost-multi',
         '1068': 'household-types',
         '1074': 'population-age',
@@ -271,7 +270,7 @@ export const DATASET_MAPPINGS = {
         '924816': 'bankruptcies-total',
         '172793': 'monetary-m3',
         '08517': 'unemployed-age-annual',
-        '04552': 'unemployment-duration-quarterly',
+
         '04553': 'unemployment-duration-annual',
         '13891': 'unemployed-industry-quarterly',
         '13892': 'unemployed-industry-annual',
@@ -329,7 +328,6 @@ export const DATASET_MAPPINGS = {
         '1118': 'cpi-adjusted-indices',
         '1092': 'cpi-group-level',
         '1094': 'cpi-subgroup-level2',
-        '1098': 'cpi-weights-subgroup',
         
         // Additional mappings for charts that exist in HTML but were missing (these files exist)
     },

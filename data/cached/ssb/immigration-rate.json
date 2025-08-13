@@ -893,9 +893,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "48651",
     "title": "Immigration Rate",
-    "fetched_at": "2025-08-12T23:05:55.501929",
+    "fetched_at": "2025-08-13T02:13:29.178500",
     "url": "https://data.ssb.no/api/v0/dataset/48651.json?lang=en"
   }
 }

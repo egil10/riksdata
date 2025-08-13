@@ -42625,9 +42625,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1140",
     "title": "Import by Commodity",
-    "fetched_at": "2025-08-12T23:07:45.679356",
+    "fetched_at": "2025-08-13T02:15:43.725612",
     "url": "https://data.ssb.no/api/v0/dataset/1140.json?lang=en"
   }
 }

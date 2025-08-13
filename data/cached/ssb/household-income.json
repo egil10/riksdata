@@ -431,9 +431,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "56900",
     "title": "Household Income",
-    "fetched_at": "2025-08-12T23:05:56.044412",
+    "fetched_at": "2025-08-13T02:13:33.745316",
     "url": "https://data.ssb.no/api/v0/dataset/56900.json?lang=en"
   }
 }

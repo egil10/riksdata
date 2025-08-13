@@ -10654,9 +10654,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "760065",
     "title": "Labour Cost Index",
-    "fetched_at": "2025-08-12T23:21:05.968307",
+    "fetched_at": "2025-08-13T02:13:16.540333",
     "url": "https://data.ssb.no/api/v0/dataset/760065.json?lang=en"
   }
 }

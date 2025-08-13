@@ -119,7 +119,27 @@ export async function initializeApp() {
             loadChartData('energy-accounts-chart', 'https://data.ssb.no/api/v0/dataset/928197.json?lang=en', 'Energy Accounts'),
             loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3'),
             // Removed duplicate new-dwellings-price-chart
-            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Tendency Survey')
+            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Tendency Survey'),
+            loadChartData('labor-force-monthly-chart', 'https://data.ssb.no/api/v0/dataset/13760.json?lang=en', 'Labor Force Monthly'),
+            loadChartData('labor-force-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/14483.json?lang=en', 'Labor Force Quarterly'),
+            loadChartData('labor-force-annual-chart', 'https://data.ssb.no/api/v0/dataset/13618.json?lang=en', 'Labor Force Annual'),
+            loadChartData('labor-force-quarterly-break-chart', 'https://data.ssb.no/api/v0/dataset/13619.json?lang=en', 'Labor Force Quarterly Break'),
+            loadChartData('employment-status-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/05110.json?lang=en', 'Employment Status Quarterly'),
+            loadChartData('employment-status-annual-chart', 'https://data.ssb.no/api/v0/dataset/05111.json?lang=en', 'Employment Status Annual'),
+            loadChartData('education-labor-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/14077.json?lang=en', 'Education & Labor Quarterly'),
+            loadChartData('education-labor-annual-chart', 'https://data.ssb.no/api/v0/dataset/14090.json?lang=en', 'Education & Labor Annual'),
+            loadChartData('employment-education-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/13784.json?lang=en', 'Employment by Education Quarterly'),
+            loadChartData('employment-education-annual-chart', 'https://data.ssb.no/api/v0/dataset/13785.json?lang=en', 'Employment by Education Annual'),
+            loadChartData('labor-force-age-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/03777.json?lang=en', 'Labor Force by Age Quarterly'),
+            loadChartData('labor-force-age-annual-chart', 'https://data.ssb.no/api/v0/dataset/03780.json?lang=en', 'Labor Force by Age Annual'),
+            loadChartData('labor-force-flows-chart', 'https://data.ssb.no/api/v0/dataset/11433.json?lang=en', 'Labor Force Flows'),
+            loadChartData('unemployed-age-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/08518.json?lang=en', 'Unemployed by Age Quarterly'),
+            loadChartData('unemployed-age-annual-chart', 'https://data.ssb.no/api/v0/dataset/08517.json?lang=en', 'Unemployed by Age Annual'),
+            loadChartData('unemployment-duration-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/04552.json?lang=en', 'Unemployment Duration Quarterly'),
+            loadChartData('unemployment-duration-annual-chart', 'https://data.ssb.no/api/v0/dataset/04553.json?lang=en', 'Unemployment Duration Annual'),
+            loadChartData('unemployed-industry-quarterly-chart', 'https://data.ssb.no/api/v0/dataset/13891.json?lang=en', 'Unemployed by Industry Quarterly'),
+            loadChartData('unemployed-industry-annual-chart', 'https://data.ssb.no/api/v0/dataset/13892.json?lang=en', 'Unemployed by Industry Annual'),
+            loadChartData('unemployed-nav-status-chart', 'https://data.ssb.no/api/v0/dataset/14454.json?lang=en', 'Unemployed by NAV Status')
         ];
         
         // Wait for all charts to load with progress tracking

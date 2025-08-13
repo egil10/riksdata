@@ -66993,9 +66993,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1134",
     "title": "Export by Commodity",
-    "fetched_at": "2025-08-12T23:07:40.365063",
+    "fetched_at": "2025-08-13T02:15:35.874225",
     "url": "https://data.ssb.no/api/v0/dataset/1134.json?lang=en"
   }
 }

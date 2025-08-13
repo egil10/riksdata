@@ -1082,9 +1082,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "61819",
     "title": "R&D Expenditure",
-    "fetched_at": "2025-08-12T23:05:50.488065",
+    "fetched_at": "2025-08-13T02:13:19.409917",
     "url": "https://data.ssb.no/api/v0/dataset/61819.json?lang=en"
   }
 }

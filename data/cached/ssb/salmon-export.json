@@ -8092,9 +8092,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1122",
     "title": "Salmon Export Value",
-    "fetched_at": "2025-08-12T23:05:52.051433",
+    "fetched_at": "2025-08-13T02:13:22.505653",
     "url": "https://data.ssb.no/api/v0/dataset/1122.json?lang=en"
   }
 }

@@ -105748,9 +105748,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1096",
     "title": "CPI Items",
-    "fetched_at": "2025-08-12T23:08:06.875267",
+    "fetched_at": "2025-08-13T02:16:30.613927",
     "url": "https://data.ssb.no/api/v0/dataset/1096.json?lang=en"
   }
 }

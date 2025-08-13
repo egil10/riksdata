@@ -16721,9 +16721,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "58962",
     "title": "Trade Balance",
-    "fetched_at": "2025-08-12T23:20:46.353717",
+    "fetched_at": "2025-08-13T02:11:29.452290",
     "url": "https://data.ssb.no/api/v0/dataset/58962.json?lang=en"
   }
 }

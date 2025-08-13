@@ -3232,9 +3232,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "95146",
     "title": "Housing Starts",
-    "fetched_at": "2025-08-12T23:20:54.856003",
+    "fetched_at": "2025-08-13T02:12:13.780769",
     "url": "https://data.ssb.no/api/v0/dataset/95146.json?lang=en"
   }
 }

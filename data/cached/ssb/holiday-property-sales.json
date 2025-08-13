@@ -13502,9 +13502,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "65962",
     "title": "Holiday Property Sales",
-    "fetched_at": "2025-08-12T23:06:05.191392",
+    "fetched_at": "2025-08-13T02:13:51.888991",
     "url": "https://data.ssb.no/api/v0/dataset/65962.json?lang=en"
   }
 }

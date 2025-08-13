@@ -2298,9 +2298,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "85454",
     "title": "Education Level",
-    "fetched_at": "2025-08-12T23:06:00.884578",
+    "fetched_at": "2025-08-13T02:13:45.520240",
     "url": "https://data.ssb.no/api/v0/dataset/85454.json?lang=en"
   }
 }

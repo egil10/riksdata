@@ -370,9 +370,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1068",
     "title": "Household Types",
-    "fetched_at": "2025-08-12T23:07:55.197140",
+    "fetched_at": "2025-08-13T02:16:10.502225",
     "url": "https://data.ssb.no/api/v0/dataset/1068.json?lang=en"
   }
 }

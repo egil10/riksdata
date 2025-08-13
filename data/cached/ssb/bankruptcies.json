@@ -2722,9 +2722,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "95265",
     "title": "Bankruptcies",
-    "fetched_at": "2025-08-12T23:20:46.942553",
+    "fetched_at": "2025-08-13T02:11:32.047128",
     "url": "https://data.ssb.no/api/v0/dataset/95265.json?lang=en"
   }
 }

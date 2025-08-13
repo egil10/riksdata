@@ -1690,9 +1690,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "924816",
     "title": "Bankruptcies Total",
-    "fetched_at": "2025-08-12T23:08:43.222265",
+    "fetched_at": "2025-08-13T02:17:52.966669",
     "url": "https://data.ssb.no/api/v0/dataset/924816.json?lang=en"
   }
 }

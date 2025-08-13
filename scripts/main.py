@@ -39,20 +39,20 @@ def fetch_data(cache_dir, sources=None):
         sources = ['ssb', 'norges-bank']
     
     if 'ssb' in sources:
-        logging.info("🔄 Fetching SSB data...")
+        logging.info("FETCHING SSB data...")
         ssb_fetcher = SSBFetcher(cache_path)
         successful, failed = ssb_fetcher.fetch_all()
         total_successful += successful
         total_failed += failed
     
     if 'norges-bank' in sources:
-        logging.info("🔄 Fetching Norges Bank data...")
+        logging.info("FETCHING Norges Bank data...")
         nb_fetcher = NorgesBankFetcher(cache_path)
         successful, failed = nb_fetcher.fetch_all()
         total_successful += successful
         total_failed += failed
     
-    logging.info(f"\n📊 Fetch Summary:")
+    logging.info(f"\nFETCH SUMMARY:")
     logging.info(f"   Total successful: {total_successful}")
     logging.info(f"   Total failed: {total_failed}")
     
@@ -60,7 +60,7 @@ def fetch_data(cache_dir, sources=None):
 
 def validate_data(cache_dir):
     """Validate cached data"""
-    logging.info("🔍 Validating cached data...")
+    logging.info("VALIDATING cached data...")
     validator = RiksdataValidator(cache_dir)
     return validator.run_validation()
 
@@ -83,31 +83,31 @@ def main():
     
     setup_logging(args.verbose)
     
-    logging.info("🚀 Starting Riksdata data management...")
+    logging.info("STARTING Riksdata data management...")
     
     try:
         # Fetch data
         if not args.validate_only:
             successful, failed = fetch_data(args.cache_dir, args.sources)
             if failed > 0:
-                logging.warning(f"⚠️  {failed} fetches failed")
+                logging.warning(f"WARNING: {failed} fetches failed")
         
         # Validate data
         if not args.fetch_only:
             is_valid = validate_data(args.cache_dir)
             if is_valid:
-                logging.info("✅ All data validation passed!")
+                logging.info("SUCCESS: All data validation passed!")
             else:
-                logging.error("❌ Data validation failed!")
+                logging.error("ERROR: Data validation failed!")
                 sys.exit(1)
         
-        logging.info("🎉 Riksdata data management completed successfully!")
+        logging.info("SUCCESS: Riksdata data management completed successfully!")
         
     except KeyboardInterrupt:
         logging.info("\n⏹️  Operation cancelled by user")
         sys.exit(1)
     except Exception as e:
-        logging.error(f"💥 Unexpected error: {e}")
+        logging.error(f"ERROR: Unexpected error: {e}")
         sys.exit(1)
 
 if __name__ == '__main__':

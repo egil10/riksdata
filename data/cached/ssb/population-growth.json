@@ -623,9 +623,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "49626",
     "title": "Population Growth",
-    "fetched_at": "2025-08-12T23:20:47.484617",
+    "fetched_at": "2025-08-13T02:11:36.262444",
     "url": "https://data.ssb.no/api/v0/dataset/49626.json?lang=en"
   }
 }

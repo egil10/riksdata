@@ -2484,9 +2484,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1124",
     "title": "Wage Index",
-    "fetched_at": "2025-08-12T23:20:45.102981",
+    "fetched_at": "2025-08-13T02:11:20.496982",
     "url": "https://data.ssb.no/api/v0/dataset/1124.json?lang=en"
   }
 }

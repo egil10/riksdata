@@ -76204,9 +76204,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "102811",
     "title": "Life Expectancy",
-    "fetched_at": "2025-08-12T23:05:59.667719",
+    "fetched_at": "2025-08-13T02:13:35.857951",
     "url": "https://data.ssb.no/api/v0/dataset/102811.json?lang=en"
   }
 }

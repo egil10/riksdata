@@ -5769,9 +5769,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "928194",
     "title": "Government Revenue",
-    "fetched_at": "2025-08-12T23:21:04.791930",
+    "fetched_at": "2025-08-13T02:13:08.824132",
     "url": "https://data.ssb.no/api/v0/dataset/928194.json?lang=en"
   }
 }

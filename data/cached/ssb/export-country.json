@@ -10350,9 +10350,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1130",
     "title": "Export by Country",
-    "fetched_at": "2025-08-12T23:17:38.781239",
+    "fetched_at": "2025-08-13T02:15:09.060809",
     "url": "https://data.ssb.no/api/v0/dataset/1130.json?lang=en"
   }
 }

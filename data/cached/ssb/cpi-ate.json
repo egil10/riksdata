@@ -39478,9 +39478,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1118",
     "title": "CPI-ATE Index",
-    "fetched_at": "2025-08-12T23:06:25.879148",
+    "fetched_at": "2025-08-13T02:14:25.999009",
     "url": "https://data.ssb.no/api/v0/dataset/1118.json?lang=en"
   }
 }

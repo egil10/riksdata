@@ -2501,9 +2501,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "172769",
     "title": "Monetary Aggregates",
-    "fetched_at": "2025-08-12T23:20:55.401580",
+    "fetched_at": "2025-08-13T02:12:16.341518",
     "url": "https://data.ssb.no/api/v0/dataset/172769.json?lang=en"
   }
 }

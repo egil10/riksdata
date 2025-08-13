@@ -629,9 +629,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "97445",
     "title": "Crime Rate",
-    "fetched_at": "2025-08-12T23:06:00.338886",
+    "fetched_at": "2025-08-13T02:13:40.240048",
     "url": "https://data.ssb.no/api/v0/dataset/97445.json?lang=en"
   }
 }

@@ -77,9 +77,9 @@ class RiksdataRepair:
             }
         }
 
-    async def repair_missing_data(self, missing_files: List[str]) -> Dict:
+    def repair_missing_data(self, missing_files: List[str]) -> Dict:
         """Repair missing data files"""
-        self.logger.info(f"🔧 Repairing {len(missing_files)} missing data files...")
+        self.logger.info(f"REPAIRING {len(missing_files)} missing data files...")
         
         repair_results = {
             'successful': [],
@@ -95,7 +95,7 @@ class RiksdataRepair:
         # Repair SSB files
         if ssb_files:
             self.logger.info(f"Repairing {len(ssb_files)} SSB files...")
-            ssb_results = await self._repair_ssb_files(ssb_files)
+            ssb_results = self._repair_ssb_files(ssb_files)
             repair_results['successful'].extend(ssb_results['successful'])
             repair_results['failed'].extend(ssb_results['failed'])
             repair_results['skipped'].extend(ssb_results['skipped'])
@@ -103,7 +103,7 @@ class RiksdataRepair:
         # Repair Norges Bank files
         if nb_files:
             self.logger.info(f"Repairing {len(nb_files)} Norges Bank files...")
-            nb_results = await self._repair_nb_files(nb_files)
+            nb_results = self._repair_nb_files(nb_files)
             repair_results['successful'].extend(nb_results['successful'])
             repair_results['failed'].extend(nb_results['failed'])
             repair_results['skipped'].extend(nb_results['skipped'])
@@ -111,14 +111,14 @@ class RiksdataRepair:
         # Repair static files
         if static_files:
             self.logger.info(f"Repairing {len(static_files)} static files...")
-            static_results = await self._repair_static_files(static_files)
+            static_results = self._repair_static_files(static_files)
             repair_results['successful'].extend(static_results['successful'])
             repair_results['failed'].extend(static_results['failed'])
             repair_results['skipped'].extend(static_results['skipped'])
         
         return repair_results
 
-    async def _repair_ssb_files(self, missing_files: List[str]) -> Dict:
+    def _repair_ssb_files(self, missing_files: List[str]) -> Dict:
         """Repair missing SSB files"""
         results = {'successful': [], 'failed': [], 'skipped': []}
         
@@ -206,7 +206,7 @@ class RiksdataRepair:
                 continue
             
             dataset_id = ssb_datasets[dataset_name]
-            success = await self._fetch_ssb_dataset(dataset_id, dataset_name)
+            success = self._fetch_ssb_dataset(dataset_id, dataset_name)
             
             if success:
                 results['successful'].append(file_path)
@@ -214,11 +214,11 @@ class RiksdataRepair:
                 results['failed'].append(file_path)
             
             # Rate limiting
-            await asyncio.sleep(0.5)
+            time.sleep(0.5)
         
         return results
 
-    async def _repair_nb_files(self, missing_files: List[str]) -> Dict:
+    def _repair_nb_files(self, missing_files: List[str]) -> Dict:
         """Repair missing Norges Bank files"""
         results = {'successful': [], 'failed': [], 'skipped': []}
         
@@ -238,7 +238,7 @@ class RiksdataRepair:
                 continue
             
             api_url = f"https://data.norges-bank.no/api/data/{nb_datasets[dataset_name]}"
-            success = await self._fetch_nb_dataset(api_url, dataset_name)
+            success = self._fetch_nb_dataset(api_url, dataset_name)
             
             if success:
                 results['successful'].append(file_path)
@@ -246,11 +246,11 @@ class RiksdataRepair:
                 results['failed'].append(file_path)
             
             # Rate limiting
-            await asyncio.sleep(0.5)
+            time.sleep(0.5)
         
         return results
 
-    async def _repair_static_files(self, missing_files: List[str]) -> Dict:
+    def _repair_static_files(self, missing_files: List[str]) -> Dict:
         """Repair missing static files"""
         results = {'successful': [], 'failed': [], 'skipped': []}
         
@@ -258,7 +258,7 @@ class RiksdataRepair:
             file_name = file_path.replace('static/', '')
             
             if file_name == 'oil-fund.json':
-                success = await self._create_oil_fund_data()
+                success = self._create_oil_fund_data()
                 if success:
                     results['successful'].append(file_path)
                 else:
@@ -269,69 +269,69 @@ class RiksdataRepair:
         
         return results
 
-    async def _fetch_ssb_dataset(self, dataset_id: str, dataset_name: str) -> bool:
+    def _fetch_ssb_dataset(self, dataset_id: str, dataset_name: str) -> bool:
         """Fetch a single SSB dataset"""
         try:
+            import requests
             url = f"https://data.ssb.no/api/v0/dataset/{dataset_id}.json?lang=en"
             
-            async with aiohttp.ClientSession() as session:
-                async with session.get(url, timeout=30) as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        
-                        # Validate data structure
-                        if 'dataset' not in data:
-                            self.logger.error(f"Invalid SSB data structure for {dataset_name}")
-                            return False
-                        
-                        # Save to cache
-                        cache_file = self.cache_dir / 'ssb' / f'{dataset_name}.json'
-                        cache_file.parent.mkdir(parents=True, exist_ok=True)
-                        
-                        with open(cache_file, 'w', encoding='utf-8') as f:
-                            json.dump(data, f, indent=2, ensure_ascii=False)
-                        
-                        self.logger.info(f"✅ Successfully fetched and cached {dataset_name}")
-                        return True
-                    else:
-                        self.logger.error(f"Failed to fetch {dataset_name}: HTTP {response.status}")
-                        return False
-                        
+            response = requests.get(url, timeout=30)
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Validate data structure
+                if 'dataset' not in data:
+                    self.logger.error(f"Invalid SSB data structure for {dataset_name}")
+                    return False
+                
+                # Save to cache
+                cache_file = self.cache_dir / 'ssb' / f'{dataset_name}.json'
+                cache_file.parent.mkdir(parents=True, exist_ok=True)
+                
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                
+                self.logger.info(f"SUCCESS: Successfully fetched and cached {dataset_name}")
+                return True
+            else:
+                self.logger.error(f"Failed to fetch {dataset_name}: HTTP {response.status_code}")
+                return False
+                
         except Exception as e:
             self.logger.error(f"Error fetching {dataset_name}: {str(e)}")
             return False
 
-    async def _fetch_nb_dataset(self, api_url: str, dataset_name: str) -> bool:
+    def _fetch_nb_dataset(self, api_url: str, dataset_name: str) -> bool:
         """Fetch a single Norges Bank dataset"""
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(api_url, timeout=30) as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        
-                        # Validate data structure
-                        if 'data' not in data:
-                            self.logger.error(f"Invalid Norges Bank data structure for {dataset_name}")
-                            return False
-                        
-                        # Save to cache
-                        cache_file = self.cache_dir / 'norges-bank' / f'{dataset_name}.json'
-                        cache_file.parent.mkdir(parents=True, exist_ok=True)
-                        
-                        with open(cache_file, 'w', encoding='utf-8') as f:
-                            json.dump(data, f, indent=2, ensure_ascii=False)
-                        
-                        self.logger.info(f"✅ Successfully fetched and cached {dataset_name}")
-                        return True
-                    else:
-                        self.logger.error(f"Failed to fetch {dataset_name}: HTTP {response.status}")
-                        return False
-                        
+            import requests
+            response = requests.get(api_url, timeout=30)
+            if response.status_code == 200:
+                data = response.json()
+                
+                # Validate data structure
+                if 'data' not in data:
+                    self.logger.error(f"Invalid Norges Bank data structure for {dataset_name}")
+                    return False
+                
+                # Save to cache
+                cache_file = self.cache_dir / 'norges-bank' / f'{dataset_name}.json'
+                cache_file.parent.mkdir(parents=True, exist_ok=True)
+                
+                with open(cache_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                
+                self.logger.info(f"SUCCESS: Successfully fetched and cached {dataset_name}")
+                return True
+            else:
+                self.logger.error(f"Failed to fetch {dataset_name}: HTTP {response.status_code}")
+                return False
+                
         except Exception as e:
             self.logger.error(f"Error fetching {dataset_name}: {str(e)}")
             return False
 
-    async def _create_oil_fund_data(self) -> bool:
+    def _create_oil_fund_data(self) -> bool:
         """Create oil fund data file"""
         try:
             # Sample oil fund data (you might want to fetch this from a real source)
@@ -356,16 +356,16 @@ class RiksdataRepair:
             with open(data_file, 'w', encoding='utf-8') as f:
                 json.dump(oil_fund_data, f, indent=2, ensure_ascii=False)
             
-            self.logger.info("✅ Successfully created oil fund data")
+            self.logger.info("SUCCESS: Successfully created oil fund data")
             return True
             
         except Exception as e:
             self.logger.error(f"Error creating oil fund data: {str(e)}")
             return False
 
-    async def repair_corrupted_data(self, corrupted_files: List[str]) -> Dict:
+    def repair_corrupted_data(self, corrupted_files: List[str]) -> Dict:
         """Repair corrupted data files"""
-        self.logger.info(f"🔧 Repairing {len(corrupted_files)} corrupted data files...")
+        self.logger.info(f"REPAIRING {len(corrupted_files)} corrupted data files...")
         
         repair_results = {
             'successful': [],
@@ -380,11 +380,11 @@ class RiksdataRepair:
             if 'ssb' in str(file_path_obj):
                 source = 'ssb'
                 dataset_name = file_path_obj.stem
-                success = await self._repair_ssb_file(dataset_name)
+                success = self._repair_ssb_file(dataset_name)
             elif 'norges-bank' in str(file_path_obj):
                 source = 'norges-bank'
                 dataset_name = file_path_obj.stem
-                success = await self._repair_nb_file(dataset_name)
+                success = self._repair_nb_file(dataset_name)
             else:
                 self.logger.warning(f"Unknown source for corrupted file: {file_path}")
                 repair_results['skipped'].append(file_path)
@@ -396,11 +396,11 @@ class RiksdataRepair:
                 repair_results['failed'].append(file_path)
             
             # Rate limiting
-            await asyncio.sleep(0.5)
+            time.sleep(0.5)
         
         return repair_results
 
-    async def _repair_ssb_file(self, dataset_name: str) -> bool:
+    def _repair_ssb_file(self, dataset_name: str) -> bool:
         """Repair a single SSB file"""
         # Use the same logic as missing data repair
         ssb_datasets = {
@@ -410,12 +410,12 @@ class RiksdataRepair:
         }
         
         if dataset_name in ssb_datasets:
-            return await self._fetch_ssb_dataset(ssb_datasets[dataset_name], dataset_name)
+            return self._fetch_ssb_dataset(ssb_datasets[dataset_name], dataset_name)
         else:
             self.logger.warning(f"Unknown SSB dataset for repair: {dataset_name}")
             return False
 
-    async def _repair_nb_file(self, dataset_name: str) -> bool:
+    def _repair_nb_file(self, dataset_name: str) -> bool:
         """Repair a single Norges Bank file"""
         # Use the same logic as missing data repair
         nb_datasets = {
@@ -426,14 +426,14 @@ class RiksdataRepair:
         
         if dataset_name in nb_datasets:
             api_url = f"https://data.norges-bank.no/api/data/{nb_datasets[dataset_name]}"
-            return await self._fetch_nb_dataset(api_url, dataset_name)
+            return self._fetch_nb_dataset(api_url, dataset_name)
         else:
             self.logger.warning(f"Unknown Norges Bank dataset for repair: {dataset_name}")
             return False
 
     def validate_repaired_data(self) -> Dict:
         """Validate all repaired data"""
-        self.logger.info("✅ Validating repaired data...")
+        self.logger.info("VALIDATING repaired data...")
         
         validator = RiksdataValidator(self.cache_dir)
         validation_results = validator.run_validation()
@@ -450,7 +450,7 @@ class RiksdataRepair:
         report.append("")
         
         summary = self.repair_results['summary']
-        report.append("📊 REPAIR SUMMARY")
+        report.append("REPAIR SUMMARY")
         report.append("-" * 30)
         report.append(f"Total attempted: {summary['total_attempted']}")
         report.append(f"Successful: {summary['successful']}")
@@ -459,7 +459,7 @@ class RiksdataRepair:
         report.append("")
         
         if self.repair_results['repaired_files']:
-            report.append("✅ SUCCESSFULLY REPAIRED")
+            report.append("SUCCESSFULLY REPAIRED")
             report.append("-" * 30)
             for file_path in self.repair_results['repaired_files'][:10]:
                 report.append(f"  • {file_path}")
@@ -468,7 +468,7 @@ class RiksdataRepair:
             report.append("")
         
         if self.repair_results['failed_repairs']:
-            report.append("❌ FAILED REPAIRS")
+            report.append("FAILED REPAIRS")
             report.append("-" * 30)
             for file_path in self.repair_results['failed_repairs'][:10]:
                 report.append(f"  • {file_path}")
@@ -489,23 +489,23 @@ class RiksdataRepair:
         
         return "\n".join(report)
 
-    async def run_full_repair(self, diagnostic_file: str = 'diagnostics_results.json') -> Dict:
+    def run_full_repair(self, diagnostic_file: str = 'diagnostics_results.json') -> Dict:
         """Run complete repair process"""
-        self.logger.info("🚀 Starting full data repair...")
+        self.logger.info("STARTING full data repair...")
         
         # Load diagnostic results
         diagnostic_results = self.load_diagnostic_results(diagnostic_file)
         
         # Repair missing data
         if diagnostic_results.get('missing_data'):
-            missing_results = await self.repair_missing_data(diagnostic_results['missing_data'])
+            missing_results = self.repair_missing_data(diagnostic_results['missing_data'])
             self.repair_results['repaired_files'].extend(missing_results['successful'])
             self.repair_results['failed_repairs'].extend(missing_results['failed'])
             self.repair_results['skipped_files'].extend(missing_results['skipped'])
         
         # Repair corrupted data
         if diagnostic_results.get('corrupted_data'):
-            corrupted_results = await self.repair_corrupted_data(diagnostic_results['corrupted_data'])
+            corrupted_results = self.repair_corrupted_data(diagnostic_results['corrupted_data'])
             self.repair_results['repaired_files'].extend(corrupted_results['successful'])
             self.repair_results['failed_repairs'].extend(corrupted_results['failed'])
             self.repair_results['skipped_files'].extend(corrupted_results['skipped'])
@@ -531,11 +531,11 @@ class RiksdataRepair:
         with open(results_file, 'w', encoding='utf-8') as f:
             json.dump(self.repair_results, f, indent=2, default=str)
         
-        self.logger.info(f"📊 Detailed repair results saved to: {results_file}")
+        self.logger.info(f"DETAILED repair results saved to: {results_file}")
         
         return self.repair_results
 
-async def main():
+def main():
     """Main entry point"""
     import argparse
     
@@ -550,7 +550,7 @@ async def main():
     args = parser.parse_args()
     
     repair = RiksdataRepair(args.cache_dir)
-    results = await repair.run_full_repair(args.diagnostic_file)
+    results = repair.run_full_repair(args.diagnostic_file)
     
     # Exit with error code if there are failed repairs
     if results['summary']['failed'] > 0:
@@ -559,4 +559,4 @@ async def main():
         sys.exit(0)
 
 if __name__ == '__main__':
-    asyncio.run(main())
+    main()

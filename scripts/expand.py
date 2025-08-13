@@ -105,7 +105,7 @@ class RiksdataExpander:
         
         return sources
 
-    async def add_ssb_dataset(self, dataset_id: str, cache_name: str, title: str, 
+    def add_ssb_dataset(self, dataset_id: str, cache_name: str, title: str, 
                             description: str = "", chart_type: str = "line") -> bool:
         """Add a new SSB dataset"""
         try:
@@ -113,7 +113,7 @@ class RiksdataExpander:
             
             # Test the API endpoint
             url = f"https://data.ssb.no/api/v0/dataset/{dataset_id}.json?lang=en"
-            success = await self._test_ssb_endpoint(url, dataset_id)
+            success = self._test_ssb_endpoint(url, dataset_id)
             
             if not success:
                 return False
@@ -131,7 +131,7 @@ class RiksdataExpander:
             self._add_to_html(cache_name, title, description)
             
             # Fetch and cache the data
-            await self._fetch_and_cache_ssb(dataset_id, cache_name)
+            self._fetch_and_cache_ssb(dataset_id, cache_name)
             
             self.expansion_results['new_datasets'].append({
                 'source': 'ssb',
@@ -276,24 +276,24 @@ class RiksdataExpander:
             self.expansion_results['summary']['failed'] += 1
             return False
 
-    async def _test_ssb_endpoint(self, url: str, dataset_id: str) -> bool:
+    def _test_ssb_endpoint(self, url: str, dataset_id: str) -> bool:
         """Test SSB API endpoint"""
         try:
-            async with aiohttp.ClientSession() as session:
-                async with session.get(url, timeout=10) as response:
-                    if response.status == 200:
-                        data = await response.json()
-                        if 'dataset' in data:
-                            self.logger.info(f"✅ SSB endpoint {dataset_id} is valid")
-                            return True
-                        else:
-                            self.logger.error(f"❌ SSB endpoint {dataset_id} has invalid structure")
-                            return False
-                    else:
-                        self.logger.error(f"❌ SSB endpoint {dataset_id} returned HTTP {response.status}")
-                        return False
+            import requests
+            response = requests.get(url, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                if 'dataset' in data:
+                    self.logger.info(f"SUCCESS: SSB endpoint {dataset_id} is valid")
+                    return True
+                else:
+                    self.logger.error(f"ERROR: SSB endpoint {dataset_id} has invalid structure")
+                    return False
+            else:
+                self.logger.error(f"ERROR: SSB endpoint {dataset_id} returned HTTP {response.status_code}")
+                return False
         except Exception as e:
-            self.logger.error(f"❌ SSB endpoint {dataset_id} test failed: {str(e)}")
+            self.logger.error(f"ERROR: SSB endpoint {dataset_id} test failed: {str(e)}")
             return False
 
     async def _test_nb_endpoint(self, url: str, cache_name: str) -> bool:
@@ -316,23 +316,23 @@ class RiksdataExpander:
             self.logger.error(f"❌ Norges Bank endpoint {cache_name} test failed: {str(e)}")
             return False
 
-    async def _fetch_and_cache_ssb(self, dataset_id: str, cache_name: str):
+    def _fetch_and_cache_ssb(self, dataset_id: str, cache_name: str):
         """Fetch and cache SSB data"""
         url = f"https://data.ssb.no/api/v0/dataset/{dataset_id}.json?lang=en"
         
-        async with aiohttp.ClientSession() as session:
-            async with session.get(url, timeout=30) as response:
-                if response.status == 200:
-                    data = await response.json()
-                    
-                    # Save to cache
-                    cache_file = self.cache_dir / 'ssb' / f'{cache_name}.json'
-                    cache_file.parent.mkdir(parents=True, exist_ok=True)
-                    
-                    with open(cache_file, 'w', encoding='utf-8') as f:
-                        json.dump(data, f, indent=2, ensure_ascii=False)
-                    
-                    self.logger.info(f"✅ Cached SSB data for {cache_name}")
+        import requests
+        response = requests.get(url, timeout=30)
+        if response.status_code == 200:
+            data = response.json()
+            
+            # Save to cache
+            cache_file = self.cache_dir / 'ssb' / f'{cache_name}.json'
+            cache_file.parent.mkdir(parents=True, exist_ok=True)
+            
+            with open(cache_file, 'w', encoding='utf-8') as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+            
+            self.logger.info(f"SUCCESS: Cached SSB data for {cache_name}")
 
     async def _fetch_and_cache_nb(self, api_path: str, cache_name: str):
         """Fetch and cache Norges Bank data"""
@@ -427,7 +427,8 @@ class RiksdataExpander:
                 # Add to the end of chart promises
                 chart_promises_end = content.rfind('        ];')
                 if chart_promises_end != -1:
-                    new_chart_line = f'            loadChartData(\'{cache_name}-chart\', \'{url}\', \'{title}\'{", \'" + chart_type + "\'" if chart_type != "line" else ""}),\n        '
+                    chart_type_param = f', \'{chart_type}\'' if chart_type != "line" else ""
+                    new_chart_line = f'            loadChartData(\'{cache_name}-chart\', \'{url}\', \'{title}\'{chart_type_param}),\n        '
                     content = content[:chart_promises_end] + new_chart_line + content[chart_promises_end:]
             
             with open(main_js_file, 'w', encoding='utf-8') as f:
@@ -694,7 +695,7 @@ class {source_name.title()}Fetcher(BaseFetcher):
             # Add new datasets
             for dataset in expansion_config.get('datasets', []):
                 if dataset['type'] == 'ssb':
-                    await self.add_ssb_dataset(
+                    self.add_ssb_dataset(
                         dataset['dataset_id'],
                         dataset['cache_name'],
                         dataset['title'],
@@ -727,7 +728,7 @@ class {source_name.title()}Fetcher(BaseFetcher):
             with open(results_file, 'w', encoding='utf-8') as f:
                 json.dump(self.expansion_results, f, indent=2, default=str)
             
-            self.logger.info(f"📊 Detailed expansion results saved to: {results_file}")
+            self.logger.info(f"DETAILED expansion results saved to: {results_file}")
             
             return self.expansion_results
             

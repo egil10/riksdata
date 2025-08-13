@@ -2856,9 +2856,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "172793",
     "title": "Monetary Aggregate M3",
-    "fetched_at": "2025-08-12T23:08:47.419220",
+    "fetched_at": "2025-08-13T02:18:10.783483",
     "url": "https://data.ssb.no/api/v0/dataset/172793.json?lang=en"
   }
 }

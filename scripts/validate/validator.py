@@ -177,25 +177,25 @@ class RiksdataValidator:
             
             if valid:
                 validation_results['valid_files'] += 1
-                logging.info(f"✅ {filepath.name}: {message}")
+                logging.info(f"VALID: {filepath.name}: {message}")
             else:
                 validation_results['invalid_files'] += 1
-                error_msg = f"❌ {filepath.name}: {message}"
+                error_msg = f"ERROR: {filepath.name}: {message}"
                 validation_results['errors'].append(error_msg)
                 logging.error(error_msg)
         
         # Summary
-        logging.info(f"\n📊 Validation Summary:")
+        logging.info(f"\nVALIDATION SUMMARY:")
         logging.info(f"   Total files: {validation_results['total_files']}")
         logging.info(f"   Valid files: {validation_results['valid_files']}")
         logging.info(f"   Invalid files: {validation_results['invalid_files']}")
         
         if validation_results['errors']:
-            logging.info(f"\n❌ Errors found:")
+            logging.info(f"\nERRORS FOUND:")
             for error in validation_results['errors']:
                 logging.info(f"   {error}")
         
         success_rate = (validation_results['valid_files'] / validation_results['total_files']) * 100 if validation_results['total_files'] > 0 else 0
-        logging.info(f"\n📈 Success rate: {success_rate:.1f}%")
+        logging.info(f"\nSUCCESS RATE: {success_rate:.1f}%")
         
         return validation_results['invalid_files'] == 0

@@ -28232,9 +28232,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1084",
     "title": "CPI Coicop Divisions",
-    "fetched_at": "2025-08-12T23:08:00.625758",
+    "fetched_at": "2025-08-13T02:16:19.639415",
     "url": "https://data.ssb.no/api/v0/dataset/1084.json?lang=en"
   }
 }

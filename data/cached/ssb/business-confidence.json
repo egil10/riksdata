@@ -3794,9 +3794,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "166316",
     "title": "Business Confidence",
-    "fetched_at": "2025-08-12T23:20:53.724719",
+    "fetched_at": "2025-08-13T02:12:07.067193",
     "url": "https://data.ssb.no/api/v0/dataset/166316.json?lang=en"
   }
 }

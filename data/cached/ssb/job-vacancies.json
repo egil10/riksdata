@@ -5639,9 +5639,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "166328",
     "title": "Job Vacancies",
-    "fetched_at": "2025-08-12T23:20:55.943013",
+    "fetched_at": "2025-08-13T02:12:19.704766",
     "url": "https://data.ssb.no/api/v0/dataset/166328.json?lang=en"
   }
 }

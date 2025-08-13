@@ -1620,9 +1620,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "26158",
     "title": "New Dwellings Price",
-    "fetched_at": "2025-08-12T23:06:10.685862",
+    "fetched_at": "2025-08-13T02:13:59.747436",
     "url": "https://data.ssb.no/api/v0/dataset/26158.json?lang=en"
   }
 }

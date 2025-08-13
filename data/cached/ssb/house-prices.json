@@ -18872,9 +18872,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1060",
     "title": "House Price Index",
-    "fetched_at": "2025-08-12T23:20:43.877398",
+    "fetched_at": "2025-08-13T02:11:17.130204",
     "url": "https://data.ssb.no/api/v0/dataset/1060.json?lang=en"
   }
 }

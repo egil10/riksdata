@@ -220543,9 +220543,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1090",
     "title": "CPI Sub-groups",
-    "fetched_at": "2025-08-12T23:18:10.705205",
+    "fetched_at": "2025-08-13T02:16:25.710832",
     "url": "https://data.ssb.no/api/v0/dataset/1090.json?lang=en"
   }
 }

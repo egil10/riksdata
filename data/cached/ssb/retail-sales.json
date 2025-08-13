@@ -164094,9 +164094,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1064",
     "title": "Retail Sales",
-    "fetched_at": "2025-08-12T23:20:49.300867",
+    "fetched_at": "2025-08-13T02:11:44.060193",
     "url": "https://data.ssb.no/api/v0/dataset/1064.json?lang=en"
   }
 }

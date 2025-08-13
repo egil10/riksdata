@@ -94689,9 +94689,8 @@
   },
   "_metadata": {
     "source": "SSB",
-    "dataset_id": "1106",
     "title": "Births and Deaths",
-    "fetched_at": "2025-08-12T23:06:23.946322",
+    "fetched_at": "2025-08-13T02:14:22.499010",
     "url": "https://data.ssb.no/api/v0/dataset/1106.json?lang=en"
   }
 }

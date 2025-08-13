@@ -29,7 +29,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         // Proceed with all charts; filtering handled elsewhere if needed
         const canvas = document.getElementById(canvasId);
         if (!canvas) {
-            throw new Error(`Canvas with id '${canvasId}' not found`);
+            console.warn(`Canvas with id '${canvasId}' not found - skipping chart`);
+            return null;
         }
 
         // Determine cache file path based on API URL
@@ -38,12 +39,14 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             // Extract dataset ID from SSB URL; allow alphanumeric IDs
             const datasetId = apiUrl.match(/dataset\/([\w\d]+)\.json/)?.[1];
             if (!datasetId) {
-                throw new Error('Could not extract dataset ID from SSB URL');
+                console.warn(`Could not extract dataset ID from SSB URL: ${apiUrl}`);
+                return null;
             }
             
             const cacheName = DATASET_MAPPINGS.ssb[datasetId];
             if (!cacheName) {
-                throw new Error(`No cache mapping found for dataset ID: ${datasetId}`);
+                console.warn(`No cache mapping found for dataset ID: ${datasetId}`);
+                return null;
             }
             
             cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/ssb/${cacheName}.json`);
@@ -57,7 +60,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             } else if (apiUrl.includes('/GOVT_KEYFIGURES/')) {
                 cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/government-debt.json`);
             } else {
-                throw new Error(`Unknown Norges Bank API URL: ${apiUrl}`);
+                console.warn(`Unknown Norges Bank API URL: ${apiUrl}`);
+                return null;
             }
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
@@ -66,7 +70,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             // Handle static data files (legacy path)
             cachePath = rel(apiUrl.replace(/^\.?\/?data\//, './data/cached/'));
         } else {
-            throw new Error(`Unknown data source: ${apiUrl}`);
+            console.warn(`Unknown data source: ${apiUrl}`);
+            return null;
         }
 
         // Fetch data from cache file with logging
@@ -93,7 +98,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } catch (error) {
             li.textContent = `GET ${cachePath} → ERROR: ${error.message}`;
             console.error(`Failed to load ${cachePath}:`, error);
-            throw new Error(`Network error loading ${cachePath}: ${error.message}`);
+            // Don't throw here, just return null to allow other charts to continue loading
+            return null;
         }
 
         let data;
@@ -102,41 +108,50 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             console.log(`Successfully loaded data for ${chartTitle}:`, data.dataset ? 'Dataset found' : 'No dataset');
         } catch (error) {
             console.error(`Failed to parse JSON for ${chartTitle}:`, error);
-            throw new Error(`Invalid JSON data in ${cachePath}: ${error.message}`);
+            // Don't throw here, just return null to allow other charts to continue loading
+            return null;
         }
         
         // Parse data based on source
         let parsedData;
         let ssbSelectedContentLabel = null;
-        if (apiUrl.includes('ssb.no')) {
-            // Capture selected content label for subtitle if available
-            const contentInfo = getSSBSelectedContentLabel(data, chartTitle);
-            ssbSelectedContentLabel = contentInfo?.label || null;
-            parsedData = parseSSBData(data, chartTitle);
-        } else if (apiUrl.includes('norges-bank.no')) {
-            // Choose parser based on endpoint
-            if (apiUrl.includes('/EXR/')) {
-                // Try to pick series from title if specified (e.g., "USD/NOK" or "EUR/NOK")
-                let preferredBaseCur = null;
-                if (/USD/i.test(chartTitle)) preferredBaseCur = 'USD';
-                if (/EUR/i.test(chartTitle)) preferredBaseCur = 'EUR';
-                parsedData = parseExchangeRateData(data, preferredBaseCur);
-            } else if (apiUrl.includes('/IR/')) {
-                parsedData = parseInterestRateData(data);
-            } else if (apiUrl.includes('/GOVT_KEYFIGURES/')) {
-                parsedData = parseGovernmentDebtData(data);
+        try {
+            if (apiUrl.includes('ssb.no')) {
+                // Capture selected content label for subtitle if available
+                const contentInfo = getSSBSelectedContentLabel(data, chartTitle);
+                ssbSelectedContentLabel = contentInfo?.label || null;
+                parsedData = parseSSBData(data, chartTitle);
+            } else if (apiUrl.includes('norges-bank.no')) {
+                // Choose parser based on endpoint
+                if (apiUrl.includes('/EXR/')) {
+                    // Try to pick series from title if specified (e.g., "USD/NOK" or "EUR/NOK")
+                    let preferredBaseCur = null;
+                    if (/USD/i.test(chartTitle)) preferredBaseCur = 'USD';
+                    if (/EUR/i.test(chartTitle)) preferredBaseCur = 'EUR';
+                    parsedData = parseExchangeRateData(data, preferredBaseCur);
+                } else if (apiUrl.includes('/IR/')) {
+                    parsedData = parseInterestRateData(data);
+                } else if (apiUrl.includes('/GOVT_KEYFIGURES/')) {
+                    parsedData = parseGovernmentDebtData(data);
+                } else {
+                    console.warn(`Unknown Norges Bank endpoint in URL: ${apiUrl}`);
+                    return null;
+                }
+            } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
+                // Handle static data files
+                parsedData = parseStaticData(data, chartTitle);
             } else {
-                throw new Error(`Unknown Norges Bank endpoint in URL: ${apiUrl}`);
+                console.warn(`Unknown data source: ${apiUrl}`);
+                return null;
             }
-        } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
-            // Handle static data files
-            parsedData = parseStaticData(data, chartTitle);
-        } else {
-            throw new Error(`Unknown data source: ${apiUrl}`);
+        } catch (error) {
+            console.error(`Failed to parse data for ${chartTitle}:`, error);
+            return null;
         }
         
         if (!parsedData || parsedData.length < 2) {
-            throw new Error('No sufficient data points after parsing');
+            console.warn(`No sufficient data points after parsing for ${chartTitle}`);
+            return null;
         }
         
         console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
@@ -162,10 +177,14 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // Render the chart
         renderChart(canvas, finalData, chartTitle, chartType);
+        
+        return true; // Indicate success
 
     } catch (error) {
         console.error(`Error loading data for ${canvasId} (${chartTitle}):`, error);
-        showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
+        // Don't show error for individual chart failures, just log them
+        // showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
+        return null; // Return null to indicate failure
     }
 }
 

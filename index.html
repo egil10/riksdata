@@ -2182,6 +2182,71 @@
         <ul id="fetchStatus"></ul>
     </div>
 
+    <!-- Diagnostic Script -->
+    <script>
+        // Quick diagnostic to help identify loading issues
+        (function() {
+            console.log('=== RIKSDATA DIAGNOSTIC ===');
+            console.log('Document ready state:', document.readyState);
+            console.log('Chart.js available:', typeof Chart !== 'undefined');
+            console.log('Current URL:', window.location.href);
+            console.log('User agent:', navigator.userAgent);
+            
+            // Check if we're on GitHub Pages
+            if (window.location.hostname.includes('github.io')) {
+                console.log('Running on GitHub Pages');
+            }
+            
+            // Check for common issues
+            const issues = [];
+            
+            if (document.readyState === 'loading') {
+                console.log('Document still loading...');
+            }
+            
+            if (typeof Chart === 'undefined') {
+                issues.push('Chart.js not loaded');
+            }
+            
+            // Check if critical files exist
+            const criticalFiles = [
+                './src/js/main.js',
+                './src/js/charts.js',
+                './src/js/config.js',
+                './src/js/utils.js',
+                './src/css/main.css'
+            ];
+            
+            Promise.all(criticalFiles.map(async (file) => {
+                try {
+                    const response = await fetch(file, { method: 'HEAD' });
+                    if (!response.ok) {
+                        issues.push(`Missing file: ${file}`);
+                    }
+                } catch (error) {
+                    issues.push(`Cannot access: ${file}`);
+                }
+            })).then(() => {
+                if (issues.length > 0) {
+                    console.error('Issues detected:', issues);
+                } else {
+                    console.log('All critical files accessible');
+                }
+            });
+            
+            // Monitor for errors
+            window.addEventListener('error', (e) => {
+                console.error('Runtime error:', e.error || e.message);
+            });
+            
+            window.addEventListener('unhandledrejection', (e) => {
+                console.error('Unhandled promise rejection:', e.reason);
+            });
+            
+            console.log('=== END DIAGNOSTIC ===');
+        })();
+    </script>
+
     <script type="module" src="./src/js/main.js"></script>
 </body>
 </html>

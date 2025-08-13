@@ -489,3 +489,65 @@ export async function withTimeout(promise, ms = 15000) {
         clearTimeout(t);
     }
 }
+
+/**
+ * Check if a file exists at the given URL
+ * @param {string} url - URL to check
+ * @returns {Promise<boolean>} True if file exists
+ */
+export async function fileExists(url) {
+    try {
+        const response = await fetch(url, { 
+            method: 'HEAD',
+            cache: 'no-store'
+        });
+        return response.ok;
+    } catch (error) {
+        console.warn(`Failed to check if file exists at ${url}:`, error);
+        return false;
+    }
+}
+
+/**
+ * Show a user-friendly error message
+ * @param {string} message - Error message
+ * @param {HTMLElement} element - Optional element to show error near
+ */
+export function showUserError(message, element = null) {
+    console.error('User Error:', message);
+    
+    // Create error notification
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-notification';
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #ef4444;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-family: Inter, sans-serif;
+        font-size: 14px;
+        z-index: 10000;
+        max-width: 300px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    `;
+    errorDiv.textContent = message;
+    
+    document.body.appendChild(errorDiv);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (errorDiv.parentNode) {
+            errorDiv.parentNode.removeChild(errorDiv);
+        }
+    }, 5000);
+    
+    // Allow manual dismissal
+    errorDiv.addEventListener('click', () => {
+        if (errorDiv.parentNode) {
+            errorDiv.parentNode.removeChild(errorDiv);
+        }
+    });
+}

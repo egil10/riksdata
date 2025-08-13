@@ -6,14 +6,38 @@ import { loadChartData } from './charts.js';
 import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout } from './utils.js';
 
 // Top-level error guards
-window.addEventListener('error', e => console.error('Global error:', e.error || e.message));
-window.addEventListener('unhandledrejection', e => console.error('Unhandled promise rejection:', e.reason));
+window.addEventListener('error', e => {
+    console.error('Global error:', e.error || e.message);
+    // Hide loading screen on critical errors
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+});
+
+window.addEventListener('unhandledrejection', e => {
+    console.error('Unhandled promise rejection:', e.reason);
+    // Hide loading screen on unhandled rejections
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
+    }
+});
 
 // Global state
 let currentLanguage = 'en';
 let currentTheme = 'light';
 let isFilterPanelVisible = false;
 let currentSourceFilter = 'all';
+let initializationTimeout = null;
 
 // Scroll to top on page load/reload
 window.addEventListener('load', () => {
@@ -31,6 +55,13 @@ window.addEventListener('beforeunload', () => {
 export async function initializeApp() {
     try {
         console.log('Starting application initialization...');
+        
+        // Set a global timeout for the entire initialization process
+        initializationTimeout = setTimeout(() => {
+            console.error('Application initialization timed out after 30 seconds');
+            hideLoadingScreen();
+            showError('Application initialization timed out. Please refresh the page.');
+        }, 30000);
         
         // Show loading screen and progress bar
         const loadingScreen = document.getElementById('loading-screen');
@@ -171,8 +202,13 @@ export async function initializeApp() {
         console.log('Waiting for charts to load...');
         const totalCharts = chartPromises.length;
         
-        // Wrap each chart promise with timeout
-        const chartPromisesWithTimeout = chartPromises.map(promise => withTimeout(promise, 15000));
+        // Wrap each chart promise with timeout and error handling
+        const chartPromisesWithTimeout = chartPromises.map((promise, index) => 
+            withTimeout(promise, 15000).catch(error => {
+                console.error(`Chart ${index} failed with timeout or error:`, error);
+                return null; // Return null instead of throwing to prevent Promise.allSettled from failing
+            })
+        );
         
         // Use Promise.allSettled to prevent deadlocks if any chart fails
         const results = await Promise.allSettled(chartPromisesWithTimeout);
@@ -211,16 +247,15 @@ export async function initializeApp() {
         console.log('Hiding skeleton loading...');
         hideSkeletonLoading();
         
+        // Clear the initialization timeout since we're done
+        if (initializationTimeout) {
+            clearTimeout(initializationTimeout);
+            initializationTimeout = null;
+        }
+        
         // Hide loading screen with fade out
         console.log('Hiding loading screen...');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-            // Enable scrolling after loading screen is hidden
-            document.body.classList.add('loaded');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500);
-        }
+        hideLoadingScreen();
         
         // Sort charts alphabetically by default
         sortChartsAlphabetically();
@@ -229,18 +264,32 @@ export async function initializeApp() {
         
     } catch (error) {
         console.error('Error initializing charts:', error);
+        
+        // Clear the initialization timeout
+        if (initializationTimeout) {
+            clearTimeout(initializationTimeout);
+            initializationTimeout = null;
+        }
+        
         showError('Failed to load chart data. Please try again later.');
         
         // Hide loading screen even if there's an error
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-            // Enable scrolling even if there's an error
-            document.body.classList.add('loaded');
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-            }, 500);
-        }
+        hideLoadingScreen();
+    }
+}
+
+/**
+ * Hide loading screen with proper cleanup
+ */
+function hideLoadingScreen() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.classList.add('hidden');
+        // Enable scrolling after loading screen is hidden
+        document.body.classList.add('loaded');
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+        }, 500);
     }
 }
 
@@ -528,9 +577,22 @@ function scrollToTop() {
 }
 
 // Fail-safe boot function
+let bootAttempts = 0;
+const MAX_BOOT_ATTEMPTS = 100; // Prevent infinite loops
+
 function boot() {
     try {
-        console.log('DOM loaded, starting application...');
+        bootAttempts++;
+        console.log(`DOM loaded, starting application... (attempt ${bootAttempts})`);
+        
+        // Prevent infinite loops
+        if (bootAttempts > MAX_BOOT_ATTEMPTS) {
+            console.error('Maximum boot attempts reached. Chart.js may not be loading properly.');
+            hideSkeletonLoading();
+            hideLoadingScreen();
+            showError('Failed to load Chart.js library. Please refresh the page.');
+            return;
+        }
         
         // Wait for Chart.js to be loaded
         if (typeof Chart === 'undefined') {
@@ -566,10 +628,8 @@ function boot() {
     } catch (e) {
         console.error('BOOT ERROR:', e);
         hideSkeletonLoading();
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-        }
+        hideLoadingScreen();
+        showError('Application failed to start. Please refresh the page.');
     }
 }
 
@@ -586,10 +646,7 @@ setTimeout(() => {
     if (typeof Chart === 'undefined') {
         console.error('Chart.js failed to load after 10 seconds');
         hideSkeletonLoading();
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.classList.add('hidden');
-        }
+        hideLoadingScreen();
         showError('Failed to load Chart.js library. Please refresh the page.');
     }
 }, 10000);

@@ -120,11 +120,26 @@ body.loaded {
     justify-content: center;
     z-index: 9999;
     transition: opacity 0.5s ease-out;
+    /* CSS-based timeout: hide after 45 seconds as a fallback */
+    animation: loading-timeout 45s forwards;
+}
+
+@keyframes loading-timeout {
+    0%, 95% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+    }
 }
 
 .loading-screen.hidden {
     opacity: 0;
     pointer-events: none;
+    animation: none; /* Disable timeout animation when manually hidden */
 }
 
 .loading-content {

@@ -785,6 +785,96 @@ function scrollToTop() {
     });
 }
 
+/**
+ * Drawer functionality
+ */
+(function () {
+    const drawer = document.getElementById('govDrawer');
+    const toggleBtn = document.getElementById('drawerToggle');
+    const closeBtn = document.getElementById('drawerClose');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const search = document.getElementById('drawerSearch');
+    const mainContainer = document.querySelector('.main-container') || document.body;
+    const partyChips = Array.from(document.querySelectorAll('.drawer-footer .chip input'));
+    
+    if (!drawer || !toggleBtn) return;
+    
+    // Restore state
+    const PREF_KEY = 'govDrawerOpen';
+    const wasOpen = localStorage.getItem(PREF_KEY) === '1';
+    const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+    
+    function openDrawer() {
+        drawer.classList.add('open');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        drawer.setAttribute('aria-hidden', 'false');
+        if (!isDesktop()) {
+            backdrop.hidden = false;
+            backdrop.classList.add('show');
+            document.documentElement.style.overflow = 'hidden';
+        } else {
+            document.body.classList.add('drawer-open-docked');
+        }
+        localStorage.setItem(PREF_KEY, '1');
+        // Focus management
+        setTimeout(() => {
+            (search || drawer).focus();
+        }, 0);
+    }
+    
+    function closeDrawer() {
+        drawer.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        drawer.setAttribute('aria-hidden', 'true');
+        if (!isDesktop()) {
+            backdrop.classList.remove('show');
+            setTimeout(() => (backdrop.hidden = true), 150);
+            document.documentElement.style.overflow = '';
+        } else {
+            document.body.classList.remove('drawer-open-docked');
+        }
+        localStorage.setItem(PREF_KEY, '0');
+        toggleBtn.focus();
+    }
+    
+    function toggle() {
+        if (drawer.classList.contains('open')) closeDrawer();
+        else openDrawer();
+    }
+    
+    // Events
+    toggleBtn.addEventListener('click', toggle);
+    closeBtn && closeBtn.addEventListener('click', closeDrawer);
+    backdrop && backdrop.addEventListener('click', closeDrawer);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+    });
+    
+    // Basic filter by search & party chips
+    function applyFilters() {
+        const q = (search?.value || '').trim().toLowerCase();
+        const activeParties = new Set(
+            partyChips.filter(c => c.checked).map(c => c.getAttribute('data-party').toLowerCase())
+        );
+        const rows = drawer.querySelectorAll('#gov-history tr, #gov-history li, #gov-history .political-period');
+        rows.forEach(row => {
+            const text = row.textContent.toLowerCase();
+            const partyHit = activeParties.size === 0 || Array.from(activeParties).some(p => text.includes(p));
+            const textHit = q === '' || text.includes(q);
+            row.style.display = (partyHit && textHit) ? '' : 'none';
+        });
+    }
+    
+    search && search.addEventListener('input', applyFilters);
+    partyChips.forEach(chip => chip.addEventListener('change', applyFilters));
+    
+    // Open on load if previously open
+    if (wasOpen) {
+        // delay until layout paints to avoid jank
+        requestAnimationFrame(openDrawer);
+    }
+})();
+
 // Fail-safe boot function
 let bootAttempts = 0;
 const MAX_BOOT_ATTEMPTS = 50; // Reduced to prevent long waits

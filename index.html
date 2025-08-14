@@ -69,6 +69,12 @@
             </button>
             
             <div class="header-controls">
+                <button id="drawerToggle" class="btn-ghost" aria-controls="govDrawer" aria-expanded="false" title="Toggle Political History">
+                    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 6h18M3 12h14M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                    <span class="sr-only">Toggle Political History</span>
+                </button>
                 <button id="langToggle" class="control-btn">NO</button>
                 <button id="themeToggle" class="control-btn">
                     <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -102,7 +108,420 @@
         </div>
     </div>
 
-    <main>
+    <!-- Non-JS fallback: visible link near the KPI section -->
+    <noscript>
+        <p><a href="#gov-history-fallback">Jump to Political History</a></p>
+    </noscript>
+
+    <!-- Drawer -->
+    <aside id="govDrawer" class="drawer" aria-hidden="true" aria-labelledby="drawerTitle">
+        <header class="drawer-header">
+            <h2 id="drawerTitle">Political History</h2>
+            <div class="drawer-actions">
+                <input id="drawerSearch" class="input" type="search" placeholder="Filter by party or PM…" aria-label="Filter political list"/>
+                <button id="drawerClose" class="btn-ghost" aria-label="Close drawer">
+                    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <section class="drawer-content" role="region" aria-label="Governments timeline">
+            <!-- Move the EXISTING markup here -->
+            <div id="gov-history">
+                <div class="political-periods">
+                    <div class="political-text">
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Gerhardsen II</span>
+                                    <span class="period-dates">1945-1951</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Other parties would go here if any -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Torp</span>
+                                    <span class="period-dates">1951-1955</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Gerhardsen III</span>
+                                    <span class="period-dates">1955-1963</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square h"></span>
+                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Lyng</span>
+                                    <span class="period-dates">1963</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square v"></span>
+                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                                <span class="party-square krf"></span>
+                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Gerhardsen IV</span>
+                                    <span class="period-dates">1963-1965</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square sp"></span>
+                                    <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Borten</span>
+                                    <span class="period-dates">1965-1971</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square h"></span>
+                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                <span class="party-square v"></span>
+                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                                <span class="party-square krf"></span>
+                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Bratteli I</span>
+                                    <span class="period-dates">1971-1972</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square krf"></span>
+                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Korvald</span>
+                                    <span class="period-dates">1972-1973</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square v"></span>
+                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Bratteli II</span>
+                                    <span class="period-dates">1973-1976</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sv"></span>
+                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Nordli</span>
+                                    <span class="period-dates">1976-1981</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sv"></span>
+                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Brundtland I</span>
+                                    <span class="period-dates">1981</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square h"></span>
+                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Willoch</span>
+                                    <span class="period-dates">1981-1986</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square krf"></span>
+                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Brundtland II</span>
+                                    <span class="period-dates">1986-1989</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square h"></span>
+                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Syse</span>
+                                    <span class="period-dates">1989-1990</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square krf"></span>
+                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Brundtland III</span>
+                                    <span class="period-dates">1990-1996</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Jagland</span>
+                                    <span class="period-dates">1996-1997</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square krf"></span>
+                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Bondevik I</span>
+                                    <span class="period-dates">1997-2000</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square v"></span>
+                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Stoltenberg I</span>
+                                    <span class="period-dates">2000-2001</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <!-- Single-party government -->
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square krf"></span>
+                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Bondevik II</span>
+                                    <span class="period-dates">2001-2005</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square h"></span>
+                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                <span class="party-square v"></span>
+                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Stoltenberg II</span>
+                                    <span class="period-dates">2005-2013</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sv"></span>
+                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square h"></span>
+                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Solberg</span>
+                                    <span class="period-dates">2013-2021</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square frp"></span>
+                                <a href="https://www.frp.no" target="_blank" class="party-name frp">FrP</a>
+                                <span class="party-square v"></span>
+                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                                <span class="party-square krf"></span>
+                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square ap"></span>
+                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <span class="pm-name">Støre</span>
+                                    <span class="period-dates">2021-Present</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="drawer-footer">
+            <div class="filters">
+                <label class="chip"><input type="checkbox" data-party="Ap"> Ap</label>
+                <label class="chip"><input type="checkbox" data-party="H"> H</label>
+                <label class="chip"><input type="checkbox" data-party="Sp"> Sp</label>
+                <label class="chip"><input type="checkbox" data-party="KrF"> KrF</label>
+                <label class="chip"><input type="checkbox" data-party="V"> V</label>
+                <label class="chip"><input type="checkbox" data-party="FrP"> FrP</label>
+            </div>
+        </footer>
+    </aside>
+
+    <!-- Backdrop for mobile overlay -->
+    <div id="drawerBackdrop" class="drawer-backdrop" hidden></div>
+
+    <!-- Inline fallback anchor target (visible if JS disabled) -->
+    <div id="gov-history-fallback">
+        <!-- Optionally echo a compact version or a note: "Turn on JS to view the interactive panel." -->
+    </div>
+
+    <main class="main-container">
         <div class="chart-grid">
 
             <div class="chart-card">
@@ -1077,374 +1496,8 @@
         <div class="footer-content">
             <div class="footer-left">
                 <div class="political-periods">
-                    <div class="political-text">
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Gerhardsen II</span>
-                                    <span class="period-dates">1945-1951</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Other parties would go here if any -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Torp</span>
-                                    <span class="period-dates">1951-1955</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Gerhardsen III</span>
-                                    <span class="period-dates">1955-1963</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square h"></span>
-                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Lyng</span>
-                                    <span class="period-dates">1963</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                                <span class="party-square v"></span>
-                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
-                                <span class="party-square krf"></span>
-                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Gerhardsen IV</span>
-                                    <span class="period-dates">1963-1965</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square sp"></span>
-                                    <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Borten</span>
-                                    <span class="period-dates">1965-1971</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square h"></span>
-                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
-                                <span class="party-square v"></span>
-                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
-                                <span class="party-square krf"></span>
-                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Bratteli I</span>
-                                    <span class="period-dates">1971-1972</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square krf"></span>
-                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Korvald</span>
-                                    <span class="period-dates">1972-1973</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                                <span class="party-square v"></span>
-                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Bratteli II</span>
-                                    <span class="period-dates">1973-1976</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Nordli</span>
-                                    <span class="period-dates">1976-1981</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Brundtland I</span>
-                                    <span class="period-dates">1981</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square h"></span>
-                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Willoch</span>
-                                    <span class="period-dates">1981-1986</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square krf"></span>
-                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Brundtland II</span>
-                                    <span class="period-dates">1986-1989</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square h"></span>
-                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Syse</span>
-                                    <span class="period-dates">1989-1990</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square krf"></span>
-                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Brundtland III</span>
-                                    <span class="period-dates">1990-1996</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Jagland</span>
-                                    <span class="period-dates">1996-1997</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square krf"></span>
-                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Bondevik I</span>
-                                    <span class="period-dates">1997-2000</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                                <span class="party-square v"></span>
-                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Stoltenberg I</span>
-                                    <span class="period-dates">2000-2001</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <!-- Single-party government -->
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square krf"></span>
-                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Bondevik II</span>
-                                    <span class="period-dates">2001-2005</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square h"></span>
-                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
-                                <span class="party-square v"></span>
-                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Stoltenberg II</span>
-                                    <span class="period-dates">2005-2013</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square sv"></span>
-                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square h"></span>
-                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Solberg</span>
-                                    <span class="period-dates">2013-2021</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square frp"></span>
-                                <a href="https://www.frp.no" target="_blank" class="party-name frp">FrP</a>
-                                <span class="party-square v"></span>
-                                <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
-                                <span class="party-square krf"></span>
-                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
-                            </div>
-                        </div>
-                        <div class="political-period">
-                            <div class="political-period-header">
-                                <div class="main-party">
-                                    <span class="party-square ap"></span>
-                                    <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
-                                </div>
-                                <div class="regjering-info">
-                                    <span class="pm-name">Støre</span>
-                                    <span class="period-dates">2021-Present</span>
-                                </div>
-                            </div>
-                            <div class="political-parties">
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
-                            </div>
-                        </div>
-                    </div>
+                    <p>Political history moved to interactive drawer. Click the menu button in the header to view.</p>
                 </div>
-
             </div>
             <div class="footer-right">
                 <div class="social-links">

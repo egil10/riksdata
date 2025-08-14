@@ -503,6 +503,11 @@ export function parseSSBData(ssbData, chartTitle) {
         return parseCreditIndicatorC2Data(ssbData);
     }
     
+    // Special handling for Housing Starts - use "BoligIgang" (Building permits dwellings)
+    if (chartTitle.toLowerCase().includes('housing starts')) {
+        return parseHousingStartsData(ssbData);
+    }
+    
     // Special handling for GDP Growth - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('gdp growth')) {
         // Let the generic parser handle it with automatic content selection
@@ -686,6 +691,56 @@ function parseGDPGrowthData(ssbData) {
         return dataPoints;
     } catch (error) {
         console.error('Error parsing GDP Growth data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse Housing Starts data by filtering for "BoligIgang" (Building permits dwellings)
+ */
+function parseHousingStartsData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.ContentsCode) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const contentIndices = dimension.ContentsCode.category.index;
+        
+        // Find the index for "BoligIgang" (Building permits dwellings)
+        const boligIgangIndex = contentIndices['BoligIgang'];
+        
+        if (boligIgangIndex === undefined) {
+            console.error('BoligIgang category not found in Housing Starts data');
+            return [];
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Get the value for BoligIgang (Building permits dwellings)
+            const valueIndex = timeIndexValue * Object.keys(contentIndices).length + boligIgangIndex;
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null) {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing Housing Starts data:', error);
         return [];
     }
 }
@@ -954,24 +1009,76 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     });
     } else {
         // Bar charts: color each bar individually by political party
-        chartData = {
-            labels: data.map(item => item.date),
-            datasets: [
-                {
-                    label: title,
-                    data: data.map(item => ({ x: item.date, y: item.value })),
-                    backgroundColor: data.map(item => {
-                        const period = getPoliticalPeriod(item.date);
-                        return period ? period.backgroundColor : 'rgba(59,130,246,0.2)';
-                    }),
-                    borderColor: data.map(item => {
-                        const period = getPoliticalPeriod(item.date);
-                        return period ? period.color : '#3b82f6';
-                    }),
-                    borderWidth: 1
-                }
-            ]
-        };
+        let chartData;
+        
+        // Special styling for Housing Starts chart
+        if (title === 'Housing Starts') {
+            chartData = {
+                labels: data.map(item => item.date),
+                datasets: [
+                    {
+                        label: title,
+                        data: data.map(item => ({ x: item.date, y: item.value })),
+                        backgroundColor: data.map(item => {
+                            const period = getPoliticalPeriod(item.date);
+                            return period ? period.backgroundColor : 'rgba(34, 197, 94, 0.8)'; // Green with opacity
+                        }),
+                        borderColor: data.map(item => {
+                            const period = getPoliticalPeriod(item.date);
+                            return period ? period.color : '#22c55e'; // Green
+                        }),
+                        borderWidth: 2,
+                        borderRadius: 4,
+                        borderSkipped: false
+                    }
+                ]
+            };
+        } else if (title === 'Job Vacancies') {
+            // Special styling for Job Vacancies chart
+            chartData = {
+                labels: data.map(item => item.date),
+                datasets: [
+                    {
+                        label: title,
+                        data: data.map(item => ({ x: item.date, y: item.value })),
+                        backgroundColor: data.map(item => {
+                            const period = getPoliticalPeriod(item.date);
+                            return period ? period.backgroundColor : 'rgba(59, 130, 246, 0.8)'; // Blue with opacity
+                        }),
+                        borderColor: data.map(item => {
+                            const period = getPoliticalPeriod(item.date);
+                            return period ? period.color : '#3b82f6'; // Blue
+                        }),
+                        borderWidth: 2,
+                        borderRadius: 4,
+                        borderSkipped: false
+                    }
+                ]
+            };
+        } else {
+            // Default bar chart styling - improved with better colors and styling
+            chartData = {
+                labels: data.map(item => item.date),
+                datasets: [
+                    {
+                        label: title,
+                        data: data.map(item => ({ x: item.date, y: item.value })),
+                        backgroundColor: data.map(item => {
+                            const period = getPoliticalPeriod(item.date);
+                            return period ? period.backgroundColor : 'rgba(99, 102, 241, 0.7)'; // Indigo with opacity
+                        }),
+                        borderColor: data.map(item => {
+                            const period = getPoliticalPeriod(item.date);
+                            return period ? period.color : '#6366f1'; // Indigo
+                        }),
+                        borderWidth: 2,
+                        borderRadius: 3,
+                        borderSkipped: false
+                    }
+                ]
+            };
+        }
+        
         console.log(`Bar chart data for ${title}:`, {
             labels: chartData.labels.length,
             dataPoints: chartData.datasets[0].data.length,
@@ -984,7 +1091,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim();
     
     // Create chart options with theme-aware colors
-    const chartOptions = {
+    let chartOptions = {
         ...CHART_CONFIG,
         scales: {
             ...CHART_CONFIG.scales,
@@ -1010,9 +1117,65 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     color: gridColor
                 }
             }
-        },
-        // Add specific bar chart options
-        ...(chartType === 'bar' && {
+        }
+    };
+    
+    // Special options for Housing Starts chart
+    if (title === 'Housing Starts' && chartType === 'bar') {
+        chartOptions = {
+            ...chartOptions,
+            plugins: {
+                ...CHART_CONFIG.plugins,
+                tooltip: {
+                    ...CHART_CONFIG.plugins?.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} dwellings`;
+                        }
+                    }
+                }
+            },
+            elements: {
+                ...CHART_CONFIG.elements,
+                bar: {
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                    backgroundColor: 'rgba(34, 197, 94, 0.8)',
+                    borderColor: '#22c55e'
+                }
+            }
+        };
+    } else if (title === 'Job Vacancies' && chartType === 'bar') {
+        // Special options for Job Vacancies chart
+        chartOptions = {
+            ...chartOptions,
+            plugins: {
+                ...CHART_CONFIG.plugins,
+                tooltip: {
+                    ...CHART_CONFIG.plugins?.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} positions`;
+                        }
+                    }
+                }
+            },
+            elements: {
+                ...CHART_CONFIG.elements,
+                bar: {
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                    backgroundColor: 'rgba(59, 130, 246, 0.8)',
+                    borderColor: '#3b82f6'
+                }
+            }
+        };
+    } else if (chartType === 'bar') {
+        // Default bar chart options - improved styling
+        chartOptions = {
+            ...chartOptions,
             plugins: {
                 ...CHART_CONFIG.plugins,
                 tooltip: {
@@ -1023,9 +1186,19 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                         }
                     }
                 }
+            },
+            elements: {
+                ...CHART_CONFIG.elements,
+                bar: {
+                    borderWidth: 2,
+                    borderRadius: 3,
+                    borderSkipped: false,
+                    backgroundColor: 'rgba(99, 102, 241, 0.7)',
+                    borderColor: '#6366f1'
+                }
             }
-        })
-    };
+        };
+    }
     
     // Create the chart
     console.log(`Creating Chart.js instance for ${title}...`);

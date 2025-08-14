@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Starts Chart Test</title>
+    <link rel="stylesheet" href="src/css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Housing Starts Chart Test</h1>
+        <p>Testing the improved housing starts chart with better colors and styling.</p>
+        
+        <div class="chart-card">
+            <div class="chart-header">
+                <h3>Housing Starts</h3>
+                <a href="https://data.ssb.no/api/v0/dataset/95146" target="_blank" class="source-link">SSB 95146</a>
+                <div class="chart-subtitle">Monthly Count</div>
+            </div>
+            <div class="skeleton-chart" id="housing-starts-skeleton"></div>
+            <div class="chart-container">
+                <canvas id="housing-starts-chart"></canvas>
+                <div class="static-tooltip" id="housing-starts-tooltip"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { loadChartData } from './src/js/charts.js';
+        
+        // Load the housing starts chart
+        loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en', 'Housing Starts', 'bar');
+    </script>
+</body>
+</html>

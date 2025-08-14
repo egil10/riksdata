@@ -1,0 +1,77 @@
+
+/* Political Periods Styling */
+.political-periods {
+    font-size: 0.85em;
+    line-height: 1.4;
+    margin: 20px 0;
+}
+
+.political-periods h4 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 1.1em;
+}
+
+.periods-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.decade-section h5 {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 0.9em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.governments {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.government {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.government:last-child {
+    border-bottom: none;
+}
+
+.period {
+    font-weight: 600;
+    color: #333;
+    min-width: 80px;
+}
+
+.pm {
+    color: #555;
+    font-style: italic;
+}
+
+.parties {
+    color: #777;
+    font-size: 0.9em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .periods-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .government {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .period {
+        min-width: auto;
+    }
+}

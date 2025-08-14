@@ -1,0 +1,481 @@
+{
+  "total_charts_1945_onwards": 16,
+  "top_historical_charts": [
+    {
+      "title": "Population Growth",
+      "period": "1951 to 2025",
+      "years_covered": 74,
+      "data_points": 75
+    },
+    {
+      "title": "Life Expectancy",
+      "period": "1966 to 2024",
+      "years_covered": 58,
+      "data_points": 59
+    },
+    {
+      "title": "Immigration Rate",
+      "period": "1970 to 2025",
+      "years_covered": 55,
+      "data_points": 42
+    },
+    {
+      "title": "Immigrants with Immigrant Parents",
+      "period": "1970 to 2025",
+      "years_covered": 55,
+      "data_points": 42
+    },
+    {
+      "title": "Education Level",
+      "period": "1970 to 2024",
+      "years_covered": 54,
+      "data_points": 46
+    },
+    {
+      "title": "Education Level",
+      "period": "1970 to 2024",
+      "years_covered": 54,
+      "data_points": 46
+    },
+    {
+      "title": "R&D Expenditure",
+      "period": "1970 to 2023",
+      "years_covered": 53,
+      "data_points": 35
+    },
+    {
+      "title": "Construction Costs",
+      "period": "1978M01 to 2025M06",
+      "years_covered": 47,
+      "data_points": 557
+    },
+    {
+      "title": "Construction Cost Multi",
+      "period": "1978M01 to 2025M06",
+      "years_covered": 47,
+      "data_points": 557
+    },
+    {
+      "title": "Construction Cost Wood",
+      "period": "1978M01 to 2025M06",
+      "years_covered": 47,
+      "data_points": 557
+    },
+    {
+      "title": "Consumer Price Index",
+      "period": "1979M01 to 2025M07",
+      "years_covered": 46,
+      "data_points": 559
+    },
+    {
+      "title": "CPI Group Level",
+      "period": "1979M01 to 2025M07",
+      "years_covered": 46,
+      "data_points": 546
+    },
+    {
+      "title": "CPI Coicop Divisions",
+      "period": "1979M01 to 2025M07",
+      "years_covered": 46,
+      "data_points": 546
+    },
+    {
+      "title": "CPI Sub-Groups",
+      "period": "1979M01 to 2025M07",
+      "years_covered": 46,
+      "data_points": 546
+    },
+    {
+      "title": "Trade Balance",
+      "period": "1980M01 to 2025M06",
+      "years_covered": 45,
+      "data_points": 546
+    },
+    {
+      "title": "Bankruptcies Total",
+      "period": "1980M01 to 2025M06",
+      "years_covered": 45,
+      "data_points": 546
+    }
+  ],
+  "top_political_coverage": [
+    {
+      "title": "Population Growth",
+      "governments_covered": 22,
+      "years_covered": 74,
+      "period": "1951 to 2025",
+      "data_points": 75
+    },
+    {
+      "title": "Life Expectancy",
+      "governments_covered": 17,
+      "years_covered": 58,
+      "period": "1966 to 2024",
+      "data_points": 59
+    },
+    {
+      "title": "Immigration Rate",
+      "governments_covered": 17,
+      "years_covered": 55,
+      "period": "1970 to 2025",
+      "data_points": 42
+    },
+    {
+      "title": "Immigrants with Immigrant Parents",
+      "governments_covered": 17,
+      "years_covered": 55,
+      "period": "1970 to 2025",
+      "data_points": 42
+    },
+    {
+      "title": "Education Level",
+      "governments_covered": 17,
+      "years_covered": 54,
+      "period": "1970 to 2024",
+      "data_points": 46
+    },
+    {
+      "title": "Education Level",
+      "governments_covered": 17,
+      "years_covered": 54,
+      "period": "1970 to 2024",
+      "data_points": 46
+    },
+    {
+      "title": "R&D Expenditure",
+      "governments_covered": 17,
+      "years_covered": 53,
+      "period": "1970 to 2023",
+      "data_points": 35
+    },
+    {
+      "title": "Construction Costs",
+      "governments_covered": 13,
+      "years_covered": 47,
+      "period": "1978M01 to 2025M06",
+      "data_points": 557
+    },
+    {
+      "title": "Construction Cost Multi",
+      "governments_covered": 13,
+      "years_covered": 47,
+      "period": "1978M01 to 2025M06",
+      "data_points": 557
+    },
+    {
+      "title": "Construction Cost Wood",
+      "governments_covered": 13,
+      "years_covered": 47,
+      "period": "1978M01 to 2025M06",
+      "data_points": 557
+    },
+    {
+      "title": "Consumer Price Index",
+      "governments_covered": 13,
+      "years_covered": 46,
+      "period": "1979M01 to 2025M07",
+      "data_points": 559
+    },
+    {
+      "title": "CPI Group Level",
+      "governments_covered": 13,
+      "years_covered": 46,
+      "period": "1979M01 to 2025M07",
+      "data_points": 546
+    },
+    {
+      "title": "CPI Coicop Divisions",
+      "governments_covered": 13,
+      "years_covered": 46,
+      "period": "1979M01 to 2025M07",
+      "data_points": 546
+    },
+    {
+      "title": "CPI Sub-Groups",
+      "governments_covered": 13,
+      "years_covered": 46,
+      "period": "1979M01 to 2025M07",
+      "data_points": 546
+    },
+    {
+      "title": "Trade Balance",
+      "governments_covered": 13,
+      "years_covered": 45,
+      "period": "1980M01 to 2025M06",
+      "data_points": 546
+    },
+    {
+      "title": "Bankruptcies Total",
+      "governments_covered": 13,
+      "years_covered": 45,
+      "period": "1980M01 to 2025M06",
+      "data_points": 546
+    }
+  ],
+  "norwegian_governments": [
+    {
+      "period": "1945-1951",
+      "start_date": "1945-11-05",
+      "end_date": "1951-11-19",
+      "prime_minister": "Einar Gerhardsen",
+      "government": "Einar Gerhardsens andre regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 6.0
+    },
+    {
+      "period": "1951-1955",
+      "start_date": "1951-11-19",
+      "end_date": "1955-01-22",
+      "prime_minister": "Oscar Torp",
+      "government": "Oscar Torps regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 3.2
+    },
+    {
+      "period": "1955-1963",
+      "start_date": "1955-01-22",
+      "end_date": "1963-08-28",
+      "prime_minister": "Einar Gerhardsen",
+      "government": "Einar Gerhardsens tredje regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 8.6
+    },
+    {
+      "period": "1963",
+      "start_date": "1963-08-28",
+      "end_date": "1963-09-25",
+      "prime_minister": "John Lyng",
+      "government": "John Lyngs regjering",
+      "parties": [
+        "H",
+        "Sp",
+        "V",
+        "KrF"
+      ],
+      "years": 0.1
+    },
+    {
+      "period": "1963-1965",
+      "start_date": "1963-09-25",
+      "end_date": "1965-10-12",
+      "prime_minister": "Einar Gerhardsen",
+      "government": "Einar Gerhardsens fjerde regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 2.0
+    },
+    {
+      "period": "1965-1971",
+      "start_date": "1965-10-12",
+      "end_date": "1971-03-17",
+      "prime_minister": "Per Borten",
+      "government": "Per Bortens regjering",
+      "parties": [
+        "Sp",
+        "H",
+        "V",
+        "KrF"
+      ],
+      "years": 5.4
+    },
+    {
+      "period": "1971-1972",
+      "start_date": "1971-03-17",
+      "end_date": "1972-10-18",
+      "prime_minister": "Trygve Bratteli",
+      "government": "Trygve Brattelis første regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 1.6
+    },
+    {
+      "period": "1972-1973",
+      "start_date": "1972-10-18",
+      "end_date": "1973-10-16",
+      "prime_minister": "Lars Korvald",
+      "government": "Lars Korvalds regjering",
+      "parties": [
+        "KrF",
+        "Sp",
+        "V"
+      ],
+      "years": 1.0
+    },
+    {
+      "period": "1973-1976",
+      "start_date": "1973-10-16",
+      "end_date": "1976-01-15",
+      "prime_minister": "Trygve Bratteli",
+      "government": "Trygve Brattelis andre regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 2.3
+    },
+    {
+      "period": "1976-1981",
+      "start_date": "1976-01-15",
+      "end_date": "1981-02-04",
+      "prime_minister": "Odvar Nordli",
+      "government": "Odvar Nordlis regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 5.1
+    },
+    {
+      "period": "1981",
+      "start_date": "1981-02-04",
+      "end_date": "1981-10-14",
+      "prime_minister": "Gro Harlem Brundtland",
+      "government": "Gro Harlem Brundtlands første regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 0.7
+    },
+    {
+      "period": "1981-1986",
+      "start_date": "1981-10-14",
+      "end_date": "1986-05-09",
+      "prime_minister": "Kåre Willoch",
+      "government": "Kåre Willochs regjering",
+      "parties": [
+        "H",
+        "KrF",
+        "Sp"
+      ],
+      "years": 4.6
+    },
+    {
+      "period": "1986-1989",
+      "start_date": "1986-05-09",
+      "end_date": "1989-10-16",
+      "prime_minister": "Gro Harlem Brundtland",
+      "government": "Gro Harlem Brundtlands andre regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 3.4
+    },
+    {
+      "period": "1989-1990",
+      "start_date": "1989-10-16",
+      "end_date": "1990-11-03",
+      "prime_minister": "Jan P. Syse",
+      "government": "Jan P. Syses regjering",
+      "parties": [
+        "H",
+        "KrF",
+        "Sp"
+      ],
+      "years": 1.0
+    },
+    {
+      "period": "1990-1996",
+      "start_date": "1990-11-03",
+      "end_date": "1996-10-25",
+      "prime_minister": "Gro Harlem Brundtland",
+      "government": "Gro Harlem Brundtlands tredje regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 6.0
+    },
+    {
+      "period": "1996-1997",
+      "start_date": "1996-10-25",
+      "end_date": "1997-10-17",
+      "prime_minister": "Thorbjørn Jagland",
+      "government": "Thorbjørn Jaglands regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 1.0
+    },
+    {
+      "period": "1997-2000",
+      "start_date": "1997-10-17",
+      "end_date": "2000-03-17",
+      "prime_minister": "Kjell Magne Bondevik",
+      "government": "Kjell Magne Bondeviks første regjering",
+      "parties": [
+        "KrF",
+        "Sp",
+        "V"
+      ],
+      "years": 2.4
+    },
+    {
+      "period": "2000-2001",
+      "start_date": "2000-03-17",
+      "end_date": "2001-10-19",
+      "prime_minister": "Jens Stoltenberg",
+      "government": "Jens Stoltenbergs første regjering",
+      "parties": [
+        "Ap"
+      ],
+      "years": 1.6
+    },
+    {
+      "period": "2001-2005",
+      "start_date": "2001-10-19",
+      "end_date": "2005-10-17",
+      "prime_minister": "Kjell Magne Bondevik",
+      "government": "Kjell Magne Bondeviks andre regjering",
+      "parties": [
+        "KrF",
+        "H",
+        "V"
+      ],
+      "years": 4.0
+    },
+    {
+      "period": "2005-2013",
+      "start_date": "2005-10-17",
+      "end_date": "2013-10-16",
+      "prime_minister": "Jens Stoltenberg",
+      "government": "Jens Stoltenbergs andre regjering",
+      "parties": [
+        "Ap",
+        "SV",
+        "Sp"
+      ],
+      "years": 8.0
+    },
+    {
+      "period": "2013-2021",
+      "start_date": "2013-10-16",
+      "end_date": "2021-10-14",
+      "prime_minister": "Erna Solberg",
+      "government": "Erna Solbergs regjering",
+      "parties": [
+        "H",
+        "FrP",
+        "V",
+        "KrF"
+      ],
+      "years": 8.0
+    },
+    {
+      "period": "2021-2025",
+      "start_date": "2021-10-14",
+      "end_date": "2025-01-04",
+      "prime_minister": "Jonas Gahr Støre",
+      "government": "Jonas Gahr Støres regjering",
+      "parties": [
+        "Ap",
+        "Sp"
+      ],
+      "years": 3.2
+    }
+  ]
+}

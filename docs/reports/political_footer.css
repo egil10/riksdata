@@ -1,0 +1,154 @@
+
+/* Political Footer Styling */
+.political-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e9ecef;
+    margin-top: 40px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.political-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.political-header h4 {
+    margin: 0;
+    color: #495057;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+
+.toggle-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.2s;
+}
+
+.toggle-btn:hover {
+    background: #0056b3;
+}
+
+.toggle-icon {
+    font-size: 0.8em;
+    transition: transform 0.2s;
+}
+
+.political-content {
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.periods-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 15px;
+}
+
+.timeline-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    border-radius: 6px;
+    padding: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.timeline-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.ap-government {
+    border-left: 4px solid #dc3545; /* Red for Ap */
+}
+
+.other-government {
+    border-left: 4px solid #6c757d; /* Gray for others */
+}
+
+.timeline-period {
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.timeline-pm {
+    color: #6c757d;
+    font-style: italic;
+    font-size: 0.85em;
+    margin-bottom: 2px;
+}
+
+.timeline-parties {
+    color: #868e96;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .political-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+    
+    .periods-timeline {
+        grid-template-columns: 1fr;
+    }
+    
+    .political-content {
+        padding: 15px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-item {
+        padding: 10px;
+    }
+    
+    .timeline-period {
+        font-size: 0.85em;
+    }
+    
+    .timeline-pm {
+        font-size: 0.8em;
+    }
+    
+    .timeline-parties {
+        font-size: 0.75em;
+    }
+}
+
+/* Scrollbar styling */
+.political-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.political-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.political-content::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.political-content::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

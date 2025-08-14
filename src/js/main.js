@@ -164,6 +164,22 @@ export async function initializeApp() {
             ,
             loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', 'Key Policy Rate'),
             loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line'),
+            
+            // Government Debt - Key Indicators (TBIL - Treasury Bills)
+            loadChartData('govt-debt-tbil-nominal-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/N_V..B.TBIL?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - TBIL Nominal Value', 'line'),
+            loadChartData('govt-debt-tbil-issued-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_I..B.TBIL?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - TBIL Volume Issued', 'line'),
+            loadChartData('govt-debt-tbil-holdings-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O..B.TBIL?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - TBIL Own Holdings', 'line'),
+            
+            // Government Debt - Key Indicators (GBON - Government Bonds)
+            loadChartData('govt-debt-gbon-nominal-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/N_V..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Nominal Value', 'line'),
+            loadChartData('govt-debt-gbon-issued-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_I..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Volume Issued', 'line'),
+            loadChartData('govt-debt-gbon-holdings-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Own Holdings', 'line'),
+            loadChartData('govt-debt-gbon-atri-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/ATRI..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Avg Time to Re-fixing (incl. IRS)', 'line'),
+            loadChartData('govt-debt-gbon-atre-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/ATRE..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Avg Time to Re-fixing (excl. IRS)', 'line'),
+            
+            // Government Debt - Key Indicators (IRS - Interest Rate Swaps)
+            loadChartData('govt-debt-irs-volume-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_IRS..B.IRS?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - IRS Volume', 'line'),
+            loadChartData('govt-debt-irs-atri-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/ATRI..B.IRS?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - IRS Avg Time to Re-fixing (incl. IRS)', 'line'),
             ,
             
             // Additional charts that exist in HTML

@@ -101,15 +101,19 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/ssb/${cacheName}.json`);
             
         } else if (apiUrl.includes('norges-bank.no')) {
-            // Map Norges Bank URLs to cache files (support both USD+EUR bundle and single-currency endpoints)
-            if (apiUrl.includes('/EXR/')) {
-                cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/exchange-rates.json`);
-            } else if (apiUrl.includes('/IR/')) {
-                cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/interest-rate.json`);
-            } else if (apiUrl.includes('/GOVT_KEYFIGURES/')) {
-                cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/government-debt.json`);
+            // Extract the API endpoint from the URL for mapping
+            const urlMatch = apiUrl.match(/\/api\/data\/([^?]+)/);
+            if (urlMatch) {
+                const endpoint = urlMatch[1];
+                const cacheName = DATASET_MAPPINGS.norges_bank[endpoint];
+                if (cacheName) {
+                    cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/norges-bank/${cacheName}.json`);
+                } else {
+                    console.warn(`No cache mapping found for Norges Bank endpoint: ${endpoint}`);
+                    return null;
+                }
             } else {
-                console.warn(`Unknown Norges Bank API URL: ${apiUrl}`);
+                console.warn(`Could not extract endpoint from Norges Bank URL: ${apiUrl}`);
                 return null;
             }
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
@@ -1131,30 +1135,56 @@ export function parseGovernmentDebtData(data) {
         // Handle SDMX-JSON format from Norges Bank
         const dataSet = data.data.dataSets[0];
         const series = dataSet.series;
+        const structure = data.structure;
         const points = [];
         
-        // Extract time periods from the series keys
-        // Filter for main government debt figures (large numbers, not small percentages)
+        // Get dimension information for proper parsing
+        const dimensions = structure?.dimensions?.series || [];
+        const timeDimension = structure?.dimensions?.observation?.[0];
+        
+        // Extract time periods mapping
+        const timeMapping = {};
+        if (timeDimension && timeDimension.values) {
+            timeDimension.values.forEach((timeValue, index) => {
+                timeMapping[index] = timeValue.id;
+            });
+        }
+        
+        // Parse series data with proper dimension handling
         Object.keys(series).forEach(seriesKey => {
             const observations = series[seriesKey].observations;
+            
             Object.keys(observations).forEach(timeIndex => {
                 const value = observations[timeIndex][0];
                 if (value !== null && value !== undefined) {
                     const numValue = Number(value);
                     
-                    // Filter out small values (likely percentages or other metrics)
-                    // Government debt should be in billions of NOK, so values should be large
-                    if (numValue > 1000) {
-                        // Calculate the actual date based on the time index
-                        // The time index corresponds to the position in the time series
-                        const date = new Date(2000, 0, 1); // Start from 2000-01-01
+                    // Get the actual time period from mapping
+                    let date;
+                    if (timeMapping[timeIndex]) {
+                        // Parse quarter format like "Q1-2020" or date format like "2020-03-31"
+                        const timeStr = timeMapping[timeIndex];
+                        if (timeStr.includes('Q')) {
+                            // Handle quarter format: "Q1-2020"
+                            const [quarter, year] = timeStr.split('-');
+                            const quarterNum = parseInt(quarter.substring(1));
+                            const month = (quarterNum - 1) * 3; // Q1=0, Q2=3, Q3=6, Q4=9
+                            date = new Date(parseInt(year), month, 1);
+                        } else {
+                            // Handle date format: "2020-03-31"
+                            date = new Date(timeStr);
+                        }
+                    } else {
+                        // Fallback: calculate date based on index
+                        date = new Date(2000, 0, 1);
                         date.setMonth(date.getMonth() + parseInt(timeIndex));
-                        
-                        points.push({ 
-                            date: date, 
-                            value: numValue 
-                        });
                     }
+                    
+                    // Include all values, let the chart configuration determine filtering
+                    points.push({ 
+                        date: date, 
+                        value: numValue 
+                    });
                 }
             });
         });

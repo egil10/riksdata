@@ -450,6 +450,19 @@ export const DATASET_MAPPINGS = {
         'EXR/M.USD+EUR.NOK.SP': 'exchange-rates',
         'IR/M.KPRA.SD.': 'interest-rate',
         'GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON': 'government-debt',
+        // Government Debt - Key Indicators (TBIL - Treasury Bills)
+        'GOVT_KEYFIGURES/N_V..B.TBIL': 'government-debt-tbil-nominal',
+        'GOVT_KEYFIGURES/V_I..B.TBIL': 'government-debt-tbil-issued',
+        'GOVT_KEYFIGURES/V_O..B.TBIL': 'government-debt-tbil-holdings',
+        // Government Debt - Key Indicators (GBON - Government Bonds)
+        'GOVT_KEYFIGURES/N_V..B.GBON': 'government-debt-gbon-nominal',
+        'GOVT_KEYFIGURES/V_I..B.GBON': 'government-debt-gbon-issued',
+        'GOVT_KEYFIGURES/V_O..B.GBON': 'government-debt-gbon-holdings',
+        'GOVT_KEYFIGURES/ATRI..B.GBON': 'government-debt-gbon-atri',
+        'GOVT_KEYFIGURES/ATRE..B.GBON': 'government-debt-gbon-atre',
+        // Government Debt - Key Indicators (IRS - Interest Rate Swaps)
+        'GOVT_KEYFIGURES/V_IRS..B.IRS': 'government-debt-irs-volume',
+        'GOVT_KEYFIGURES/ATRI..B.IRS': 'government-debt-irs-atri',
     }
 };
 

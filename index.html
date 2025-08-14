@@ -109,7 +109,12 @@
     <!-- Political History Sidebar -->
     <aside id="sidebar" class="sidebar collapsed">
         <div class="sidebar-content">
-            <div class="political-table">
+            <div class="table-wrapper">
+                <div class="table-actions">
+                    <button class="btn-action" data-action="copy" title="Copy political history">📋</button>
+                    <button class="btn-action" data-action="download" title="Download CSV">⬇</button>
+                </div>
+                <div class="political-table" id="political-history-table">
                 <div class="political-row">
                     <span class="party-color ap"></span>
                     <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>

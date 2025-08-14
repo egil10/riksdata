@@ -976,3 +976,99 @@ document.addEventListener('click', (e) => {
         copyChartDataTSV(card, getDataById);
     }
 });
+
+// ---- Table Actions: Copy / Download ----
+/**
+ * Copy political table data to clipboard
+ */
+function copyPoliticalTable(tableId) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+
+    const rows = Array.from(table.querySelectorAll(".political-row"))
+        .map(row => {
+            const colorBox = row.querySelector('.party-color');
+            const partyShort = row.querySelector('.party-short');
+            const regjeringName = row.querySelector('.regjering-name');
+            const years = row.querySelector('.years');
+            const coalitionParties = row.querySelector('.coalition-parties');
+            
+            const partyName = partyShort ? partyShort.textContent.trim() : '';
+            const regjering = regjeringName ? regjeringName.textContent.trim() : '';
+            const period = years ? years.textContent.trim() : '';
+            const coalition = coalitionParties ? coalitionParties.textContent.trim() : '';
+            
+            return `${partyName}\t${regjering}\t${period}\t${coalition}`;
+        })
+        .join('\n');
+
+    // Add header row
+    const headerRow = 'Party\tGovernment\tPeriod\tCoalition\n';
+    const fullData = headerRow + rows;
+
+    if (navigator.clipboard) {
+        navigator.clipboard.writeText(fullData)
+            .then(() => console.log("Political table copied to clipboard"))
+            .catch(err => console.error("Copy failed", err));
+    } else {
+        // Fallback for older browsers
+        const textarea = document.createElement("textarea");
+        textarea.value = fullData;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand("copy");
+        document.body.removeChild(textarea);
+    }
+}
+
+/**
+ * Download political table as CSV
+ */
+function downloadPoliticalTable(tableId, filename = "norwegian-political-history.csv") {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+
+    const rows = Array.from(table.querySelectorAll(".political-row"))
+        .map(row => {
+            const colorBox = row.querySelector('.party-color');
+            const partyShort = row.querySelector('.party-short');
+            const regjeringName = row.querySelector('.regjering-name');
+            const years = row.querySelector('.years');
+            const coalitionParties = row.querySelector('.coalition-parties');
+            
+            const partyName = partyShort ? partyShort.textContent.trim() : '';
+            const regjering = regjeringName ? regjeringName.textContent.trim() : '';
+            const period = years ? years.textContent.trim() : '';
+            const coalition = coalitionParties ? coalitionParties.textContent.trim() : '';
+            
+            return `"${partyName}","${regjering}","${period}","${coalition}"`;
+        })
+        .join('\n');
+
+    // Add header row
+    const headerRow = '"Party","Government","Period","Coalition"\n';
+    const fullData = headerRow + rows;
+
+    const blob = new Blob([fullData], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", filename);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+// Wire up table action buttons
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll(".btn-action").forEach(btn => {
+        const action = btn.getAttribute("data-action");
+        const table = btn.closest(".table-wrapper")?.querySelector(".political-table");
+        const tableId = table?.id;
+
+        btn.addEventListener("click", () => {
+            if (!tableId) return;
+            if (action === "copy") copyPoliticalTable(tableId);
+            if (action === "download") downloadPoliticalTable(tableId);
+        });
+    });
+});

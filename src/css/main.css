@@ -24,7 +24,7 @@
     
     /* Sidebar variables */
     --sidebar-width: 260px;
-    --sidebar-collapsed-width: 60px;
+    --sidebar-collapsed-width: 40px;
     --header-height: 60px;
 }
 
@@ -77,14 +77,14 @@ body.loaded {
 
 .app-title {
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1.3rem;
     color: var(--text);
     cursor: pointer;
     transition: color var(--t) var(--ease);
 }
 
 .app-title:hover {
-    color: var(--accent);
+    color: var(--text);
 }
 
 .icon-btn {
@@ -103,6 +103,15 @@ body.loaded {
 .icon-btn:hover {
     background: var(--bg-elev);
     border-color: var(--accent);
+}
+
+/* Toggle icon animation */
+.toggle-icon {
+    transition: transform 0.2s ease;
+}
+
+body.sidebar-expanded .toggle-icon {
+    transform: rotate(180deg);
 }
 
 .btn {
@@ -145,8 +154,20 @@ body.loaded {
     width: var(--sidebar-collapsed-width);
 }
 
+.sidebar.collapsed .sidebar-content {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
 .sidebar.expanded {
     width: var(--sidebar-width);
+}
+
+.sidebar.expanded .sidebar-content {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
 }
 
 .sidebar-content {
@@ -189,6 +210,22 @@ body.loaded {
 .party-main {
     font-weight: 500;
     color: var(--text);
+    text-decoration: none;
+    transition: color var(--t) var(--ease);
+}
+
+.party-main:hover {
+    color: var(--accent);
+}
+
+.party-link {
+    color: var(--text);
+    text-decoration: none;
+    transition: color var(--t) var(--ease);
+}
+
+.party-link:hover {
+    color: var(--accent);
 }
 
 .party-regjering {

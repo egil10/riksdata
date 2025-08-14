@@ -508,6 +508,11 @@ export function parseSSBData(ssbData, chartTitle) {
         return parseHousingStartsData(ssbData);
     }
     
+    // Special handling for Job Vacancies - use "LedigeStillinger" (Job vacancies) and filter negative values
+    if (chartTitle.toLowerCase().includes('job vacancies')) {
+        return parseJobVacanciesData(ssbData);
+    }
+    
     // Special handling for GDP Growth - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('gdp growth')) {
         // Let the generic parser handle it with automatic content selection
@@ -741,6 +746,68 @@ function parseHousingStartsData(ssbData) {
         return dataPoints;
     } catch (error) {
         console.error('Error parsing Housing Starts data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse Job Vacancies data by filtering for "LedigeStillinger" (Job vacancies) and filtering negative values
+ */
+function parseJobVacanciesData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.ContentsCode || !dimension.NACE2007) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const contentIndices = dimension.ContentsCode.category.index;
+        const industryIndices = dimension.NACE2007.category.index;
+        
+        // Find the index for "LedigeStillinger" (Job vacancies)
+        const ledigeStillingerIndex = contentIndices['LedigeStillinger'];
+        
+        if (ledigeStillingerIndex === undefined) {
+            console.error('LedigeStillinger category not found in Job Vacancies data');
+            return [];
+        }
+        
+        // Find the index for "All industries" (01-96)
+        const allIndustriesIndex = industryIndices['01-96'];
+        
+        if (allIndustriesIndex === undefined) {
+            console.error('All industries category not found in Job Vacancies data');
+            return [];
+        }
+        
+        const numIndustries = Object.keys(industryIndices).length;
+        const numContentTypes = Object.keys(contentIndices).length;
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Get the value for All industries and LedigeStillinger content type
+            const valueIndex = (timeIndexValue * numIndustries + allIndustriesIndex) * numContentTypes + ledigeStillingerIndex;
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null && v >= 0) { // Filter out negative values
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing Job Vacancies data:', error);
         return [];
     }
 }

@@ -209,10 +209,10 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
         console.log(`Sample data for ${chartTitle}:`, parsedData.slice(0, 3));
         
-        // Filter data from 2000 onwards, but be more lenient for charts with limited data
+        // Filter data from 1945 onwards, but be more lenient for charts with limited data
         const filteredData = parsedData.filter(item => {
             const year = new Date(item.date).getFullYear();
-            return year >= 2000;
+            return year >= 1945;
         });
 
         // If we have very few data points, use all data regardless of year

@@ -733,6 +733,462 @@
 
             <!-- Removed duplicate new-dwellings-price-chart -->
 
+            <!-- Additional CPI Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>CPI Adjusted Indices</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/1118" target="_blank" class="source-link">SSB 1118</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="cpi-adjusted-indices-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cpi-adjusted-indices-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-adjusted-indices-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>CPI Group Level</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/1092" target="_blank" class="source-link">SSB 1092</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="cpi-group-level-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cpi-group-level-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-group-level-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>CPI Seasonally Adjusted</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/45590" target="_blank" class="source-link">SSB 45590</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="cpi-seasonally-adjusted-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cpi-seasonally-adjusted-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-seasonally-adjusted-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>CPI Adjusted Delivery Sector</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/130297" target="_blank" class="source-link">SSB 130297</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="cpi-adjusted-delivery-sector-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cpi-adjusted-delivery-sector-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-adjusted-delivery-sector-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Trade and Export Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Import Value Volume SITC</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/34640" target="_blank" class="source-link">SSB 34640</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="import-value-volume-sitc-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="import-value-volume-sitc-chart"></canvas>
+                    <div class="static-tooltip" id="import-value-volume-sitc-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Export Value Volume SITC</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/34642" target="_blank" class="source-link">SSB 34642</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="export-value-volume-sitc-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="export-value-volume-sitc-chart"></canvas>
+                    <div class="static-tooltip" id="export-value-volume-sitc-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Import Value Volume SITC1</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/34254" target="_blank" class="source-link">SSB 34254</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="import-value-volume-sitc1-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="import-value-volume-sitc1-chart"></canvas>
+                    <div class="static-tooltip" id="import-value-volume-sitc1-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Export Value Volume SITC1</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/34256" target="_blank" class="source-link">SSB 34256</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="export-value-volume-sitc1-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="export-value-volume-sitc1-chart"></canvas>
+                    <div class="static-tooltip" id="export-value-volume-sitc1-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Import Value SITC3</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/34641" target="_blank" class="source-link">SSB 34641</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="import-value-sitc3-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="import-value-sitc3-chart"></canvas>
+                    <div class="static-tooltip" id="import-value-sitc3-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Export Value SITC3</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/34643" target="_blank" class="source-link">SSB 34643</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="export-value-sitc3-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="export-value-sitc3-chart"></canvas>
+                    <div class="static-tooltip" id="export-value-sitc3-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Trade Volume Price BEC</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/179415" target="_blank" class="source-link">SSB 179415</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="trade-volume-price-bec-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="trade-volume-price-bec-chart"></canvas>
+                    <div class="static-tooltip" id="trade-volume-price-bec-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Producer Price Index Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Producer Price Index Subgroups</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26429" target="_blank" class="source-link">SSB 26429</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="producer-price-index-subgroups-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="producer-price-index-subgroups-chart"></canvas>
+                    <div class="static-tooltip" id="producer-price-index-subgroups-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Financial and Monetary Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Money Supply M0</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/172771" target="_blank" class="source-link">SSB 172771</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="money-supply-m0-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="money-supply-m0-chart"></canvas>
+                    <div class="static-tooltip" id="money-supply-m0-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Money Supply M3 Net Claims</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/172800" target="_blank" class="source-link">SSB 172800</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="money-supply-m3-net-claims-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="money-supply-m3-net-claims-chart"></canvas>
+                    <div class="static-tooltip" id="money-supply-m3-net-claims-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Credit Indicator Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Credit Indicator K2 Detailed</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/62264" target="_blank" class="source-link">SSB 62264</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="credit-indicator-k2-detailed-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="credit-indicator-k2-detailed-chart"></canvas>
+                    <div class="static-tooltip" id="credit-indicator-k2-detailed-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Credit Indicator K3</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/166327" target="_blank" class="source-link">SSB 166327</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="credit-indicator-k3-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="credit-indicator-k3-chart"></canvas>
+                    <div class="static-tooltip" id="credit-indicator-k3-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Credit Indicator K2 Seasonally Adjusted</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/166329" target="_blank" class="source-link">SSB 166329</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="credit-indicator-k2-seasonally-adjusted-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="credit-indicator-k2-seasonally-adjusted-chart"></canvas>
+                    <div class="static-tooltip" id="credit-indicator-k2-seasonally-adjusted-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Price Index Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>First Hand Price Index</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/82677" target="_blank" class="source-link">SSB 82677</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="first-hand-price-index-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="first-hand-price-index-chart"></canvas>
+                    <div class="static-tooltip" id="first-hand-price-index-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>First Hand Price Index Groups</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/82679" target="_blank" class="source-link">SSB 82679</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="first-hand-price-index-groups-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="first-hand-price-index-groups-chart"></canvas>
+                    <div class="static-tooltip" id="first-hand-price-index-groups-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>First Hand Price Index Subgroups</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/82681" target="_blank" class="source-link">SSB 82681</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="first-hand-price-index-subgroups-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="first-hand-price-index-subgroups-chart"></canvas>
+                    <div class="static-tooltip" id="first-hand-price-index-subgroups-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Oil and Gas Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Oil & Gas Industry Turnover</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/124341" target="_blank" class="source-link">SSB 124341</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="oil-gas-industry-turnover-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="oil-gas-industry-turnover-chart"></canvas>
+                    <div class="static-tooltip" id="oil-gas-industry-turnover-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Social and Demographic Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Living Arrangements National</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/86813" target="_blank" class="source-link">SSB 86813</a>
+                    <div class="chart-subtitle">Number</div>
+                </div>
+                <div class="skeleton-chart" id="living-arrangements-national-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="living-arrangements-national-chart"></canvas>
+                    <div class="static-tooltip" id="living-arrangements-national-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Immigrants with Immigrant Parents</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/96304" target="_blank" class="source-link">SSB 96304</a>
+                    <div class="chart-subtitle">Number</div>
+                </div>
+                <div class="skeleton-chart" id="immigrants-with-immigrant-parents-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="immigrants-with-immigrant-parents-chart"></canvas>
+                    <div class="static-tooltip" id="immigrants-with-immigrant-parents-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Government and Public Finance Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Tax Returns Main Items</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/49656" target="_blank" class="source-link">SSB 49656</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="tax-returns-main-items-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="tax-returns-main-items-chart"></canvas>
+                    <div class="static-tooltip" id="tax-returns-main-items-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Public Administration Expenditures</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/112175" target="_blank" class="source-link">SSB 112175</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="public-administration-expenditures-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="public-administration-expenditures-chart"></canvas>
+                    <div class="static-tooltip" id="public-administration-expenditures-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Additional Producer Price Index Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Producer Price Index Industries</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26430" target="_blank" class="source-link">SSB 26430</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="producer-price-index-industries-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="producer-price-index-industries-chart"></canvas>
+                    <div class="static-tooltip" id="producer-price-index-industries-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Producer Price Index Products</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26431" target="_blank" class="source-link">SSB 26431</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="producer-price-index-products-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="producer-price-index-products-chart"></canvas>
+                    <div class="static-tooltip" id="producer-price-index-products-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Producer Price Index Subgroups Detailed</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26432" target="_blank" class="source-link">SSB 26432</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="producer-price-index-subgroups-detailed-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="producer-price-index-subgroups-detailed-chart"></canvas>
+                    <div class="static-tooltip" id="producer-price-index-subgroups-detailed-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Trade Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Trade Volume Price Product Groups</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/179417" target="_blank" class="source-link">SSB 179417</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="trade-volume-price-product-groups-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="trade-volume-price-product-groups-chart"></canvas>
+                    <div class="static-tooltip" id="trade-volume-price-product-groups-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Business Cycle Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Business Cycle Barometer Products</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/166317" target="_blank" class="source-link">SSB 166317</a>
+                    <div class="chart-subtitle">Index</div>
+                </div>
+                <div class="skeleton-chart" id="business-cycle-barometer-products-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="business-cycle-barometer-products-chart"></canvas>
+                    <div class="static-tooltip" id="business-cycle-barometer-products-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Business Cycle Barometer</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/166318" target="_blank" class="source-link">SSB 166318</a>
+                    <div class="chart-subtitle">Index</div>
+                </div>
+                <div class="skeleton-chart" id="business-cycle-barometer-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="business-cycle-barometer-chart"></canvas>
+                    <div class="static-tooltip" id="business-cycle-barometer-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Income and Production Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Household Income National</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/56957" target="_blank" class="source-link">SSB 56957</a>
+                    <div class="chart-subtitle">Median NOK</div>
+                </div>
+                <div class="skeleton-chart" id="household-income-national-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="household-income-national-chart"></canvas>
+                    <div class="static-tooltip" id="household-income-national-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Production Index Industry Recent</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26953" target="_blank" class="source-link">SSB 26953</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="production-index-industry-recent-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="production-index-industry-recent-chart"></canvas>
+                    <div class="static-tooltip" id="production-index-industry-recent-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Oil and Gas Charts -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Oil & Gas Industry Turnover SN2007</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/124322" target="_blank" class="source-link">SSB 124322</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="oil-gas-industry-turnover-sn2007-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="oil-gas-industry-turnover-sn2007-chart"></canvas>
+                    <div class="static-tooltip" id="oil-gas-industry-turnover-sn2007-tooltip"></div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -741,6 +1197,132 @@
             <div class="footer-left">
                 <div class="political-periods">
                     <div class="political-text">
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Gerhardsen II</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1945-1951</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Torp</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1951-1955</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Gerhardsen III</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1955-1963</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square h"></span>
+                            <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                            <span class="pm-name">Lyng</span>
+                            <span class="other-parties">
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                                <span class="party-square krf"></span><a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            </span>
+                            <span class="period-dates">1963</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Gerhardsen IV</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1963-1965</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square sp"></span>
+                            <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                            <span class="pm-name">Borten</span>
+                            <span class="other-parties">
+                                <span class="party-square h"></span><a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                                <span class="party-square krf"></span><a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            </span>
+                            <span class="period-dates">1965-1971</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Bratteli I</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1971-1972</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square krf"></span>
+                            <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            <span class="pm-name">Korvald</span>
+                            <span class="other-parties">
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square v"></span><a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
+                            </span>
+                            <span class="period-dates">1972-1973</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Bratteli II</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1973-1976</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Nordli</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1976-1981</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Brundtland I</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1981</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square h"></span>
+                            <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                            <span class="pm-name">Willoch</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1981-1986</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Brundtland II</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1986-1989</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square h"></span>
+                            <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                            <span class="pm-name">Syse</span>
+                            <span class="other-parties">
+                                <span class="party-square krf"></span><a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                <span class="party-square sp"></span><a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                            </span>
+                            <span class="period-dates">1989-1990</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Brundtland III</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1990-1996</span>
+                        </div>
+                        <div class="political-period">
+                            <span class="party-square ap"></span>
+                            <a href="https://www.arbeiderpartiet.no" target="_blank" class="party-name ap">Ap</a>
+                            <span class="pm-name">Jagland</span>
+                            <span class="other-parties"></span>
+                            <span class="period-dates">1996-1997</span>
+                        </div>
                         <div class="political-period">
                             <span class="party-square krf"></span>
                             <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>

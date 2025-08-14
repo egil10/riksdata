@@ -2,8 +2,120 @@
 // RIKSDATA CONFIGURATION
 // ============================================================================
 
-// Political party periods for chart coloring (post-2000) with correct Norwegian colors
+// Political party periods for chart coloring (1945 onwards) with correct Norwegian colors
 export const POLITICAL_PERIODS = [
+    {
+        name: "Einar Gerhardsen II (Ap)",
+        start: "1945-11-05",
+        end: "1951-11-19",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Oscar Torp (Ap)",
+        start: "1951-11-19",
+        end: "1955-01-22",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Einar Gerhardsen III (Ap)",
+        start: "1955-01-22",
+        end: "1963-08-28",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "John Lyng (H, Sp, V, KrF)",
+        start: "1963-08-28",
+        end: "1963-09-25",
+        color: "#87add7", // Høyre light blue
+        backgroundColor: "rgba(135, 173, 215, 0.7)"
+    },
+    {
+        name: "Einar Gerhardsen IV (Ap)",
+        start: "1963-09-25",
+        end: "1965-10-12",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Per Borten (Sp, H, V, KrF)",
+        start: "1965-10-12",
+        end: "1971-03-17",
+        color: "#4CAF50", // Senterpartiet green
+        backgroundColor: "rgba(76, 175, 80, 0.7)"
+    },
+    {
+        name: "Trygve Bratteli I (Ap)",
+        start: "1971-03-17",
+        end: "1972-10-18",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Lars Korvald (KrF, Sp, V)",
+        start: "1972-10-18",
+        end: "1973-10-16",
+        color: "#FDED34", // Kristelig Folkeparti yellow
+        backgroundColor: "rgba(253, 237, 52, 0.7)"
+    },
+    {
+        name: "Trygve Bratteli II (Ap)",
+        start: "1973-10-16",
+        end: "1976-01-15",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Odvar Nordli (Ap)",
+        start: "1976-01-15",
+        end: "1981-02-04",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Gro Harlem Brundtland I (Ap)",
+        start: "1981-02-04",
+        end: "1981-10-14",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Kåre Willoch (H)",
+        start: "1981-10-14",
+        end: "1986-05-09",
+        color: "#87add7", // Høyre light blue
+        backgroundColor: "rgba(135, 173, 215, 0.7)"
+    },
+    {
+        name: "Gro Harlem Brundtland II (Ap)",
+        start: "1986-05-09",
+        end: "1989-10-16",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Jan P. Syse (H, KrF, Sp)",
+        start: "1989-10-16",
+        end: "1990-11-03",
+        color: "#87add7", // Høyre light blue
+        backgroundColor: "rgba(135, 173, 215, 0.7)"
+    },
+    {
+        name: "Gro Harlem Brundtland III (Ap)",
+        start: "1990-11-03",
+        end: "1996-10-25",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
+    {
+        name: "Thorbjørn Jagland (Ap)",
+        start: "1996-10-25",
+        end: "1997-10-17",
+        color: "#E11926", // Arbeiderpartiet red
+        backgroundColor: "rgba(225, 25, 38, 0.7)"
+    },
     {
         name: "Kjell Magne Bondevik I (KrF, Sp, V)",
         start: "1997-10-17",

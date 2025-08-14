@@ -492,6 +492,84 @@ function parseSSBDataLegacy(ssbData, chartTitle) {
     }
 }
 
+/**
+ * Parse oil price data by extracting oil and gas extraction data from PPI dataset
+ */
+function parseOilPriceData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.NaringUtenriks) {
+            console.warn('Oil price data: Missing required dimensions');
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const industryLabels = dimension.NaringUtenriks.category.label;
+        const industryIndices = dimension.NaringUtenriks.category.index;
+        
+        // Find the oil and gas extraction category (SNN06_TOT)
+        const oilGasKey = Object.keys(industryLabels).find(key => 
+            industryLabels[key].toLowerCase().includes('extraction of oil and natural gas') ||
+            key === 'SNN06_TOT'
+        );
+        
+        if (!oilGasKey) {
+            console.warn('Oil price data: Could not find oil and gas extraction category');
+            return [];
+        }
+        
+        const oilGasIndex = industryIndices[oilGasKey];
+        console.log(`Oil price data: Using category "${industryLabels[oilGasKey]}" (index: ${oilGasIndex})`);
+        
+        // Calculate the number of industries and markets
+        const numIndustries = Object.keys(industryIndices).length;
+        const numMarkets = dimension.Marked ? Object.keys(dimension.Marked.category.index).length : 1;
+        
+        // Use total market (00) if available, otherwise use first market
+        let marketIndex = 0;
+        if (dimension.Marked) {
+            const marketLabels = dimension.Marked.category.label;
+            const marketIndices = dimension.Marked.category.index;
+            const totalMarketKey = Object.keys(marketLabels).find(key => 
+                marketLabels[key].toLowerCase().includes('total') ||
+                key === '00'
+            );
+            if (totalMarketKey) {
+                marketIndex = marketIndices[totalMarketKey];
+            }
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Calculate the value index: time * (industries * markets) + market * industries + industry
+            const valueIndex = timeIndexValue * (numIndustries * numMarkets) + marketIndex * numIndustries + oilGasIndex;
+            
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null && v !== '..') {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        console.log(`Oil price data: Extracted ${dataPoints.length} data points`);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing oil price data:', error);
+        return [];
+    }
+}
+
 export function parseSSBData(ssbData, chartTitle) {
     // Special handling for bankruptcies - sum all bankruptcy types
     if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
@@ -511,6 +589,11 @@ export function parseSSBData(ssbData, chartTitle) {
     // Special handling for Job Vacancies - use "LedigeStillinger" (Job vacancies) and filter negative values
     if (chartTitle.toLowerCase().includes('job vacancies')) {
         return parseJobVacanciesData(ssbData);
+    }
+    
+    // Special handling for Oil Price - extract oil and gas extraction data from PPI
+    if (chartTitle.toLowerCase().includes('oil price')) {
+        return parseOilPriceData(ssbData);
     }
     
     // Special handling for GDP Growth - use generic parsing with automatic content selection

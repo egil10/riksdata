@@ -170,7 +170,7 @@ export async function initializeApp() {
             loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
             // Removed: producer-prices-chart (dataset 26427 failed to fetch)
             loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
-            loadChartData('oil-price-chart', './data/cached/exchange-rates.json', 'Oil Price'),
+            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Oil Price (Brent)'),
             loadChartData('immigrants-with-immigrant-parents-chart', 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', 'Immigrants with Immigrant Parents'),
             loadChartData('credit-indicator-k3-chart', 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', 'Credit Indicator K3'),
             loadChartData('cpi-delivery-sector-annual-chart', 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', 'CPI Delivery Sector Annual'),

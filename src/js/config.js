@@ -321,7 +321,7 @@ export const DATASET_MAPPINGS = {
         '1124': 'wage',
         '59012': 'gdp-growth',
         '58962': 'trade-balance',
-        '95265': 'bankruptcies-total',
+        // Removed: '95265': 'bankruptcies-total', // Keeping only bankruptcies-total chart
         '49626': 'population-growth',
         '26944': 'construction-costs',
         '27002': 'industrial-production',

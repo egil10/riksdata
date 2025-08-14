@@ -103,21 +103,16 @@ export async function initializeApp() {
             loadChartData('wage-chart', 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', 'Wage Index'),
             loadChartData('gdp-growth-chart', 'https://data.ssb.no/api/v0/dataset/59012.json?lang=en', 'GDP Growth', 'bar'),
             loadChartData('trade-balance-chart', 'https://data.ssb.no/api/v0/dataset/58962.json?lang=en', 'Trade Balance', 'bar'),
-            loadChartData('bankruptcies-chart', 'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 'Bankruptcies', 'line'),
             loadChartData('population-growth-chart', 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', 'Population Growth'),
             loadChartData('construction-costs-chart', 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', 'Construction Costs'),
             loadChartData('industrial-production-chart', 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', 'Industrial Production'),
-            ,
             loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
-            ,
             loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Confidence'),
-            ,
             loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en', 'Housing Starts', 'bar'),
             loadChartData('monetary-aggregates-chart', 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', 'Monetary Aggregates'),
             loadChartData('job-vacancies-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies', 'bar'),
             loadChartData('construction-production-chart', 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', 'Construction Production'),
             loadChartData('credit-indicator-chart', 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', 'Credit Indicator'),
-            ,
             loadChartData('energy-consumption-chart', 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', 'Energy Consumption'),
             loadChartData('government-revenue-chart', 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', 'Government Revenue'),
             loadChartData('international-accounts-chart', 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', 'International Accounts'),
@@ -133,11 +128,9 @@ export async function initializeApp() {
             loadChartData('greenhouse-gas-chart', 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', 'Greenhouse Gas Emissions'),
             loadChartData('economic-forecasts-chart', 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', 'Economic Forecasts'),
             ,
-            ,
             loadChartData('cpi-adjusted-indices-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI Adjusted Indices'),
 
             loadChartData('cpi-group-level-chart', 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', 'CPI Group Level'),
-            ,
             
             ,
             loadChartData('import-value-volume-sitc-chart', 'https://data.ssb.no/api/v0/dataset/34640.json?lang=en', 'Import Value Volume SITC'),
@@ -147,7 +140,6 @@ export async function initializeApp() {
             loadChartData('money-supply-m0-chart', 'https://data.ssb.no/api/v0/dataset/172771.json?lang=en', 'Money Supply M0'),
 
             loadChartData('money-supply-m3-net-claims-chart', 'https://data.ssb.no/api/v0/dataset/172800.json?lang=en', 'Money Supply M3 Net Claims'),
-            ,
             loadChartData('import-value-volume-sitc1-chart', 'https://data.ssb.no/api/v0/dataset/34254.json?lang=en', 'Import Value Volume SITC1'),
             loadChartData('export-value-volume-sitc1-chart', 'https://data.ssb.no/api/v0/dataset/34256.json?lang=en', 'Export Value Volume SITC1'),
             loadChartData('oil-gas-industry-turnover-chart', 'https://data.ssb.no/api/v0/dataset/124341.json?lang=en', 'Oil Gas Industry Turnover'),
@@ -161,38 +153,18 @@ export async function initializeApp() {
             
             // Norges Bank data
             ,
-            ,
             loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', 'Key Policy Rate'),
-            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line'),
-            
-            // Government Debt - Key Indicators (TBIL - Treasury Bills)
-            loadChartData('govt-debt-tbil-nominal-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/N_V..B.TBIL?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - TBIL Nominal Value', 'line'),
-            loadChartData('govt-debt-tbil-issued-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_I..B.TBIL?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - TBIL Volume Issued', 'line'),
-            loadChartData('govt-debt-tbil-holdings-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O..B.TBIL?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - TBIL Own Holdings', 'line'),
-            
+            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line')
             // Government Debt - Key Indicators (GBON - Government Bonds)
-            loadChartData('govt-debt-gbon-nominal-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/N_V..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Nominal Value', 'line'),
-            loadChartData('govt-debt-gbon-issued-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_I..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Volume Issued', 'line'),
-            loadChartData('govt-debt-gbon-holdings-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Own Holdings', 'line'),
-            loadChartData('govt-debt-gbon-atri-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/ATRI..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Avg Time to Re-fixing (incl. IRS)', 'line'),
-            loadChartData('govt-debt-gbon-atre-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/ATRE..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - GBON Avg Time to Re-fixing (excl. IRS)', 'line'),
-            
             // Government Debt - Key Indicators (IRS - Interest Rate Swaps)
-            loadChartData('govt-debt-irs-volume-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_IRS..B.IRS?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - IRS Volume', 'line'),
-            loadChartData('govt-debt-irs-atri-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/ATRI..B.IRS?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt - IRS Avg Time to Re-fixing (incl. IRS)', 'line'),
             ,
             
             // Additional charts that exist in HTML
             loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
             ,
-            ,
-            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Oil Price (Brent)', 'line'),
             loadChartData('immigrants-with-immigrant-parents-chart', 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', 'Immigrants with Immigrant Parents'),
             loadChartData('credit-indicator-k3-chart', 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', 'Credit Indicator K3'),
-            ,
             loadChartData('first-hand-price-index-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/82681.json?lang=en', 'First Hand Price Index Subgroups'),
-            ,
-            ,
             ,
             loadChartData('credit-indicator-k2-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', 'Credit Indicator K2 Seasonally Adjusted'),
 
@@ -202,18 +174,13 @@ export async function initializeApp() {
             loadChartData('trade-volume-price-bec-chart', 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', 'Trade Volume Price BEC'),
             loadChartData('producer-price-index-industries-chart', 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', 'Producer Price Index Industries'),
             loadChartData('trade-volume-price-product-groups-chart', 'https://data.ssb.no/api/v0/dataset/179417.json?lang=en', 'Trade Volume Price Product Groups'),
-            ,
             loadChartData('producer-price-index-products-chart', 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', 'Producer Price Index Products'),
             loadChartData('business-cycle-barometer-products-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Cycle Barometer Products'),
 
             loadChartData('household-income-national-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income National'),
             loadChartData('oil-gas-industry-turnover-sn2007-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Industry Turnover SN2007'),
             ,
-            ,
             loadChartData('producer-price-index-subgroups-detailed-chart', 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', 'Producer Price Index Subgroups Detailed'),
-            ,
-            ,
-            loadChartData('production-index-industry-recent-chart', 'https://data.ssb.no/api/v0/dataset/26953.json?lang=en', 'Production Index Industry Recent'),
             ,
             ,
 
@@ -223,7 +190,6 @@ export async function initializeApp() {
 
             loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
             loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
-            ,
             // Removed: business-tendency-chart (dataset 166317 failed to fetch)
             ,
             loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
@@ -232,16 +198,11 @@ export async function initializeApp() {
             loadChartData('cpi-delivery-chart', 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', 'CPI Delivery Sectors'),
             loadChartData('cpi-items-chart', 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', 'CPI Items'),
             loadChartData('cpi-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'CPI Sub-Groups'),
-            ,
             loadChartData('education-level-chart', 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', 'Education Level'),
-            ,
             ,
             loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),
             ,
-            ,
-            ,
             loadChartData('producer-price-industry-chart', 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', 'Producer Price Industry'),
-            ,
             ,
             loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
 

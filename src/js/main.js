@@ -791,11 +791,8 @@ function scrollToTop() {
 (function () {
     const drawer = document.getElementById('govDrawer');
     const toggleBtn = document.getElementById('drawerToggle');
-    const closeBtn = document.getElementById('drawerClose');
     const backdrop = document.getElementById('drawerBackdrop');
-    const search = document.getElementById('drawerSearch');
     const mainContainer = document.querySelector('.main-container') || document.body;
-    const partyChips = Array.from(document.querySelectorAll('.drawer-footer .chip input'));
     
     if (!drawer || !toggleBtn) return;
     
@@ -818,7 +815,7 @@ function scrollToTop() {
         localStorage.setItem(PREF_KEY, '1');
         // Focus management
         setTimeout(() => {
-            (search || drawer).focus();
+            drawer.focus();
         }, 0);
     }
     
@@ -844,29 +841,10 @@ function scrollToTop() {
     
     // Events
     toggleBtn.addEventListener('click', toggle);
-    closeBtn && closeBtn.addEventListener('click', closeDrawer);
     backdrop && backdrop.addEventListener('click', closeDrawer);
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
     });
-    
-    // Basic filter by search & party chips
-    function applyFilters() {
-        const q = (search?.value || '').trim().toLowerCase();
-        const activeParties = new Set(
-            partyChips.filter(c => c.checked).map(c => c.getAttribute('data-party').toLowerCase())
-        );
-        const rows = drawer.querySelectorAll('#gov-history tr, #gov-history li, #gov-history .political-period');
-        rows.forEach(row => {
-            const text = row.textContent.toLowerCase();
-            const partyHit = activeParties.size === 0 || Array.from(activeParties).some(p => text.includes(p));
-            const textHit = q === '' || text.includes(q);
-            row.style.display = (partyHit && textHit) ? '' : 'none';
-        });
-    }
-    
-    search && search.addEventListener('input', applyFilters);
-    partyChips.forEach(chip => chip.addEventListener('change', applyFilters));
     
     // Open on load if previously open
     if (wasOpen) {

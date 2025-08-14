@@ -59,6 +59,12 @@
 
     <header>
         <div class="header-content">
+            <button id="drawerToggle" class="btn-ghost drawer-toggle" aria-controls="govDrawer" aria-expanded="false" title="Toggle Political History">
+                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="drawer-icon">
+                    <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="sr-only">Toggle Political History</span>
+            </button>
             <h1 onclick="window.location.reload()">Riksdata</h1>
             
             <!-- Mobile hamburger menu -->
@@ -69,12 +75,6 @@
             </button>
             
             <div class="header-controls">
-                <button id="drawerToggle" class="btn-ghost" aria-controls="govDrawer" aria-expanded="false" title="Toggle Political History">
-                    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M3 6h18M3 12h14M3 18h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-                    </svg>
-                    <span class="sr-only">Toggle Political History</span>
-                </button>
                 <button id="langToggle" class="control-btn">NO</button>
                 <button id="themeToggle" class="control-btn">
                     <svg class="theme-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -115,17 +115,6 @@
 
     <!-- Drawer -->
     <aside id="govDrawer" class="drawer" aria-hidden="true" aria-labelledby="drawerTitle">
-        <header class="drawer-header">
-            <h2 id="drawerTitle">Political History</h2>
-            <div class="drawer-actions">
-                <input id="drawerSearch" class="input" type="search" placeholder="Filter by party or PM…" aria-label="Filter political list"/>
-                <button id="drawerClose" class="btn-ghost" aria-label="Close drawer">
-                    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/>
-                    </svg>
-                </button>
-            </div>
-        </header>
         <section class="drawer-content" role="region" aria-label="Governments timeline">
             <!-- Move the EXISTING markup here -->
             <div id="gov-history">
@@ -214,8 +203,8 @@
                         <div class="political-period">
                             <div class="political-period-header">
                                 <div class="main-party">
-                                    <span class="party-square sp"></span>
-                                    <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                    <span class="party-square h"></span>
+                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                                 </div>
                                 <div class="regjering-info">
                                     <a href="https://no.wikipedia.org/wiki/Per_Bortens_regjering" target="_blank" class="pm-name">Borten</a>
@@ -223,8 +212,8 @@
                                 </div>
                             </div>
                             <div class="political-parties">
-                                <span class="party-square h"></span>
-                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                <span class="party-square sp"></span>
+                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                                 <span class="party-square v"></span>
                                 <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                                 <span class="party-square krf"></span>
@@ -276,8 +265,7 @@
                                 </div>
                             </div>
                             <div class="political-parties">
-                                <span class="party-square sv"></span>
-                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
+                                <!-- Single-party government -->
                             </div>
                         </div>
                         <div class="political-period">
@@ -292,8 +280,7 @@
                                 </div>
                             </div>
                             <div class="political-parties">
-                                <span class="party-square sv"></span>
-                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
+                                <!-- Single-party government -->
                             </div>
                         </div>
                         <div class="political-period">
@@ -325,6 +312,22 @@
                             <div class="political-parties">
                                 <span class="party-square krf"></span>
                                 <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                            </div>
+                        </div>
+                        <div class="political-period">
+                            <div class="political-period-header">
+                                <div class="main-party">
+                                    <span class="party-square h"></span>
+                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                </div>
+                                <div class="regjering-info">
+                                    <a href="https://no.wikipedia.org/wiki/K%C3%A5re_Willochs_regjering" target="_blank" class="pm-name">Willoch</a>
+                                    <span class="period-dates">1986-1989</span>
+                                </div>
+                            </div>
+                            <div class="political-parties">
+                                <span class="party-square krf"></span>
+                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                                 <span class="party-square sp"></span>
                                 <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                             </div>
@@ -337,7 +340,7 @@
                                 </div>
                                 <div class="regjering-info">
                                     <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_andre_regjering" target="_blank" class="pm-name">Brundtland II</a>
-                                    <span class="period-dates">1986-1989</span>
+                                    <span class="period-dates">1989-1990</span>
                                 </div>
                             </div>
                             <div class="political-parties">
@@ -347,8 +350,8 @@
                         <div class="political-period">
                             <div class="political-period-header">
                                 <div class="main-party">
-                                    <span class="party-square h"></span>
-                                    <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
+                                    <span class="party-square krf"></span>
+                                    <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
                                 </div>
                                 <div class="regjering-info">
                                     <a href="https://no.wikipedia.org/wiki/Jan_P._Syses_regjering" target="_blank" class="pm-name">Syse</a>
@@ -356,8 +359,8 @@
                                 </div>
                             </div>
                             <div class="political-parties">
-                                <span class="party-square krf"></span>
-                                <a href="https://www.krf.no" target="_blank" class="party-name krf">KrF</a>
+                                <span class="party-square h"></span>
+                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                                 <span class="party-square sp"></span>
                                 <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
                             </div>
@@ -404,8 +407,8 @@
                                 </div>
                             </div>
                             <div class="political-parties">
-                                <span class="party-square sp"></span>
-                                <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square h"></span>
+                                <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                                 <span class="party-square v"></span>
                                 <a href="https://www.venstre.no" target="_blank" class="party-name v">V</a>
                             </div>
@@ -455,10 +458,10 @@
                                 </div>
                             </div>
                             <div class="political-parties">
-                                <span class="party-square sv"></span>
-                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
                                 <span class="party-square sp"></span>
                                 <a href="https://www.senterpartiet.no" target="_blank" class="party-name sp">Sp</a>
+                                <span class="party-square sv"></span>
+                                <a href="https://www.sv.no" target="_blank" class="party-name sv">SV</a>
                             </div>
                         </div>
                         <div class="political-period">
@@ -468,7 +471,7 @@
                                     <a href="https://www.hoyre.no" target="_blank" class="party-name h">H</a>
                                 </div>
                                 <div class="regjering-info">
-                                    <span class="pm-name">Solberg</span>
+                                    <a href="https://no.wikipedia.org/wiki/Erna_Solbergs_regjering" target="_blank" class="pm-name">Solberg</a>
                                     <span class="period-dates">2013-2021</span>
                                 </div>
                             </div>
@@ -501,16 +504,6 @@
                 </div>
             </div>
         </section>
-        <footer class="drawer-footer">
-            <div class="filters">
-                <label class="chip"><input type="checkbox" data-party="Ap"> Ap</label>
-                <label class="chip"><input type="checkbox" data-party="H"> H</label>
-                <label class="chip"><input type="checkbox" data-party="Sp"> Sp</label>
-                <label class="chip"><input type="checkbox" data-party="KrF"> KrF</label>
-                <label class="chip"><input type="checkbox" data-party="V"> V</label>
-                <label class="chip"><input type="checkbox" data-party="FrP"> FrP</label>
-            </div>
-        </footer>
     </aside>
 
     <!-- Backdrop for mobile overlay -->
@@ -1495,11 +1488,6 @@
     <footer>
         <div class="footer-content">
             <div class="footer-left">
-                <div class="political-periods">
-                    <p>Political history moved to interactive drawer. Click the menu button in the header to view.</p>
-                </div>
-            </div>
-            <div class="footer-right">
                 <div class="social-links">
                     <a href="https://github.com/egil10/riksdata" target="_blank" class="social-link">
                         <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -1514,6 +1502,8 @@
                         <span class="social-text">Email</span>
                     </a>
                 </div>
+            </div>
+            <div class="footer-right">
                 <div class="footer-text">
                     <p><strong>Riksdata</strong> - Norwegian Economic Indicators Dashboard</p>
                     <p>All data sourced from public APIs: <a href="https://www.ssb.no/" target="_blank">Statistics Norway (SSB)</a> and <a href="https://www.norges-bank.no/" target="_blank">Norges Bank</a></p>

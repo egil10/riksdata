@@ -516,27 +516,36 @@ export function parseInterestRateData(data) {
         const series = dataSet.series;
         const points = [];
         
-        // Extract time periods from the series keys
-        const timeMap = {};
+        // Get time dimension from structure
+        const structure = data.data.structure;
+        const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
+        const timeValues = timeDim?.values || [];
+        
+        // Extract data from series
         Object.keys(series).forEach(seriesKey => {
             const observations = series[seriesKey].observations;
             Object.keys(observations).forEach(timeIndex => {
                 const value = observations[timeIndex][0];
                 if (value !== null && value !== undefined) {
-                    // Calculate the actual date based on the time index
-                    // The time index corresponds to the position in the time series
-                    const date = new Date(2000, 0, 1); // Start from 2000-01-01
-                    date.setMonth(date.getMonth() + parseInt(timeIndex));
-                    
-                    points.push({ 
-                        date: date, 
-                        value: Number(value) 
-                    });
+                    // Get the actual time period from the time dimension
+                    const timeObj = timeValues[parseInt(timeIndex)];
+                    if (timeObj) {
+                        const timeId = timeObj.id || timeObj;
+                        // Parse the time period (format: "YYYY-MM")
+                        const [year, month] = timeId.split('-');
+                        if (year && month) {
+                            const date = new Date(parseInt(year, 10), parseInt(month, 10) - 1, 1);
+                            points.push({ 
+                                date: date, 
+                                value: Number(value) 
+                            });
+                        }
+                    }
                 }
             });
         });
         
-        return points.sort((a, b) => a.date - b.date);
+        return points.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     } catch (error) {
         console.error('Error parsing interest rate data:', error);
@@ -646,28 +655,28 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         canvas.chart.destroy();
     }
 
-    let chartData;
-    if (chartType === 'line') {
-        // Single dataset with segment coloring for seamless line without gaps
-        chartData = {
-            labels: data.map(item => item.date),
-            datasets: [
-                {
-                    label: title,
-                    data: data.map(item => ({ x: item.date, y: item.value })),
-                    borderWidth: 2,
-                    borderColor: '#3b82f6',
-                    fill: false,
-                    segment: {
-                        borderColor: (ctx) => {
-                            const xVal = ctx.p0?.parsed?.x;
-                            const period = xVal ? getPoliticalPeriod(new Date(xVal)) : null;
-                            return period?.color || '#3b82f6';
-                        }
-                    }
-                }
-            ]
-        };
+                    let chartData;
+                if (chartType === 'line') {
+                    // Single dataset with segment coloring for seamless line without gaps
+                    chartData = {
+                        labels: data.map(item => item.date),
+                        datasets: [
+                            {
+                                label: title,
+                                data: data.map(item => ({ x: item.date, y: item.value })),
+                                borderWidth: 2,
+                                borderColor: '#3b82f6',
+                                fill: false,
+                                segment: {
+                                    borderColor: (ctx) => {
+                                        const xVal = ctx.p0?.parsed?.x;
+                                        const period = xVal ? getPoliticalPeriod(new Date(xVal)) : null;
+                                        return period?.color || '#3b82f6';
+                                    }
+                                }
+                            }
+                        ]
+                    };
     } else {
         // Bar charts: use single color for now (Chart.js bar charts don't support array colors easily)
         // We'll use the most common political period color or default

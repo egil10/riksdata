@@ -333,7 +333,7 @@ export const DATASET_MAPPINGS = {
     },
     norges_bank: {
         'EXR/M.USD+EUR.NOK.SP': 'exchange-rates',
-        'IR/M.KPRA..': 'interest-rate',
+        'IR/M.KPRA.SD.': 'interest-rate',
         'GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON': 'government-debt',
     }
 };

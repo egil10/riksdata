@@ -1,9 +1,9 @@
 {
   "meta": {
-    "id": "IREF262950",
-    "prepared": "2025-08-13T23:04:53",
+    "id": "IREF587278",
+    "prepared": "2025-08-14T08:05:21",
     "test": false,
-    "datasetId": "fe84b198-f9f2-4c10-96a3-12a4bc88dabd",
+    "datasetId": "9ecc296d-ea3b-4edd-adf0-204447cf014c",
     "sender": {
       "id": "Unknown"
     },
@@ -1373,17 +1373,6 @@
               ]
             }
           },
-          "1:43:0:0": {
-            "attributes": [
-              0,
-              1
-            ],
-            "observations": {
-              "43": [
-                "10"
-              ]
-            }
-          },
           "0:36:0:0": {
             "attributes": [
               0,
@@ -1392,6 +1381,17 @@
             "observations": {
               "36": [
                 "321737"
+              ]
+            }
+          },
+          "1:43:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "43": [
+                "10"
               ]
             }
           },
@@ -1758,17 +1758,6 @@
               ]
             }
           },
-          "1:78:0:0": {
-            "attributes": [
-              0,
-              1
-            ],
-            "observations": {
-              "78": [
-                "10"
-              ]
-            }
-          },
           "0:75:0:0": {
             "attributes": [
               0,
@@ -1777,6 +1766,17 @@
             "observations": {
               "75": [
                 "343656"
+              ]
+            }
+          },
+          "1:78:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "78": [
+                "10"
               ]
             }
           },
@@ -2572,17 +2572,6 @@
               ]
             }
           },
-          "1:11:0:0": {
-            "attributes": [
-              0,
-              1
-            ],
-            "observations": {
-              "11": [
-                "8"
-              ]
-            }
-          },
           "0:68:0:0": {
             "attributes": [
               0,
@@ -2591,6 +2580,17 @@
             "observations": {
               "68": [
                 "288862"
+              ]
+            }
+          },
+          "1:11:0:0": {
+            "attributes": [
+              0,
+              1
+            ],
+            "observations": {
+              "11": [
+                "8"
               ]
             }
           },
@@ -4558,7 +4558,7 @@
   "_metadata": {
     "source": "Norges Bank",
     "title": "Government Debt",
-    "fetched_at": "2025-08-14T01:04:55.809929",
+    "fetched_at": "2025-08-14T10:05:23.773077",
     "url": "https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01"
   }
 }

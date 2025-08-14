@@ -21,7 +21,7 @@ class NorgesBankFetcher(BaseFetcher):
             },
             {
                 "name": "interest-rate",
-                "url": "https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no",
+                "url": "https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=en",
                 "title": "Key Policy Rate"
             },
             {

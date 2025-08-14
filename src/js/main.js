@@ -155,7 +155,7 @@ export async function initializeApp() {
             // Norges Bank data
             loadChartData('oil-fund-chart', './data/cached/oil-fund.json', 'Oil Fund Value'),
             loadChartData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
-            loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA..?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=no', 'Key Policy Rate'),
+            loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=en', 'Key Policy Rate'),
             loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
             loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
             

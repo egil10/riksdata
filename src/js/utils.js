@@ -367,11 +367,21 @@ export function aggregateDataByMonth(data) {
  */
 export function showError(message, canvas = null) {
     if (canvas) {
+        // Hide the canvas
         canvas.style.display = 'none';
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'chart-error';
-        errorDiv.innerHTML = `<p>${message}</p>`;
-        canvas.parentNode.appendChild(errorDiv);
+        
+        // Find the parent chart card and hide it completely
+        const chartCard = canvas.closest('.chart-card');
+        if (chartCard) {
+            console.log(`Hiding chart card due to error: ${message}`);
+            chartCard.style.display = 'none';
+        } else {
+            // Fallback: just show error message if we can't find the chart card
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'chart-error';
+            errorDiv.innerHTML = `<p>${message}</p>`;
+            canvas.parentNode.appendChild(errorDiv);
+        }
     } else {
         console.error('Error:', message);
     }

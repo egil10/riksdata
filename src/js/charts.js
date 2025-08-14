@@ -257,8 +257,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
     } catch (error) {
         console.error(`Error loading data for ${canvasId} (${chartTitle}):`, error);
-        // Don't show error for individual chart failures, just log them
-        // showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
+        // Show error and hide the chart card when chart fails to load
+        showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
         return null; // Return null to indicate failure
     }
 }

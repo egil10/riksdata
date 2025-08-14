@@ -48,7 +48,7 @@ window.addEventListener('unhandledrejection', e => {
 function updateLoadingStatus(message) {
     const statusElement = document.getElementById('loading-status');
     if (statusElement) {
-        statusElement.textContent = message;
+        statusElement.innerHTML = message + '<span class="loading-dots">...</span>';
     }
 }
 
@@ -119,7 +119,7 @@ window.addEventListener('beforeunload', () => {
 export async function initializeApp() {
     try {
         console.log('Starting application initialization...');
-        updateLoadingStatus('Initializing application...');
+        updateLoadingStatus('Initializing');
         
         // Set a global timeout for the entire initialization process
         initializationTimeout = setTimeout(() => {
@@ -273,7 +273,7 @@ export async function initializeApp() {
         
         // Use Promise.allSettled to prevent deadlocks if any chart fails
         console.log('Starting Promise.allSettled...');
-        updateLoadingStatus('Processing data...');
+        updateLoadingStatus('Fetching latest data');
         const results = await Promise.allSettled(chartPromisesWithTimeout);
         console.log('Promise.allSettled completed');
         
@@ -318,7 +318,6 @@ export async function initializeApp() {
         
         // Hide skeleton loading
         console.log('Hiding skeleton loading...');
-        updateLoadingStatus('Finalizing...');
         hideSkeletonLoading();
         
         // Clear the initialization timeout since we're done

@@ -35,3 +35,33 @@ logs/
 *.tmp
 *.temp
 
+# Cleanup archives (moved files)
+archives/
+
+# Development tools and reports
+tools/
+data/reports/
+data/ssb-api/
+docs/reports/
+
+# Backup files
+*.backup
+* copy.*
+
+# Test files
+test.html
+
+# Generated reports and analysis
+*.report
+*_report.*
+*_analysis.*
+*_results.*
+*_summary.*
+*_optimization.*
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Source maps
+*.map
+

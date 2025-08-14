@@ -449,6 +449,13 @@ export function parseSSBData(ssbData, chartTitle) {
         return parseCreditIndicatorC2Data(ssbData);
     }
     
+    // Special handling for GDP Growth - use generic parsing with automatic content selection
+    if (chartTitle.toLowerCase().includes('gdp growth')) {
+        // Let the generic parser handle it with automatic content selection
+        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return generic;
+    }
+    
     const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
     const sufficient = generic.length >= 3 && new Set(generic.map(p => p.value)).size > 1;
     if (sufficient) return generic;
@@ -564,6 +571,67 @@ function parseCreditIndicatorC2Data(ssbData) {
         return dataPoints;
     } catch (error) {
         console.error('Error parsing Credit Indicator C2 data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse GDP Growth data by filtering for GDP growth rate
+ */
+function parseGDPGrowthData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.ContentsCode || !dimension.Makrost) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const contentIndices = dimension.ContentsCode.category.index;
+        const macroIndices = dimension.Makrost.category.index;
+        const numContentTypes = Object.keys(contentIndices).length;
+        const numMacroTypes = Object.keys(macroIndices).length;
+        
+        // Find the index for GDP growth rate (VolumEndrSesJust - quarter-over-quarter change)
+        const gdpGrowthIndex = contentIndices['VolumEndrSesJust'];
+        
+        if (gdpGrowthIndex === undefined) {
+            console.error('VolumEndrSesJust category not found in GDP data');
+            return [];
+        }
+        
+        // Find the index for Mainland Norway GDP (bnpb.nr23_9fn - Gross domestic product Mainland Norway, market values)
+        const totalGDPIndex = macroIndices['bnpb.nr23_9fn'];
+        
+        if (totalGDPIndex === undefined) {
+            console.error('bnpb.nr23_9fn category not found in GDP data');
+            return [];
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Get the value for total GDP and quarterly growth rate
+            const valueIndex = (timeIndexValue * numMacroTypes + totalGDPIndex) * numContentTypes + gdpGrowthIndex;
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null) {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing GDP Growth data:', error);
         return [];
     }
 }
@@ -825,23 +893,21 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                         ]
                     };
     } else {
-        // Bar charts: use single color for now (Chart.js bar charts don't support array colors easily)
-        // We'll use the most common political period color or default
-        const periods = data.map(item => getPoliticalPeriod(item.date)).filter(Boolean);
-        const mostCommonPeriod = periods.length > 0 ? 
-            periods.sort((a, b) => 
-                periods.filter(p => p.name === a.name).length - 
-                periods.filter(p => p.name === b.name).length
-            ).pop() : null;
-        
+        // Bar charts: color each bar individually by political party
         chartData = {
             labels: data.map(item => item.date),
             datasets: [
                 {
                     label: title,
                     data: data.map(item => ({ x: item.date, y: item.value })),
-                    backgroundColor: mostCommonPeriod ? mostCommonPeriod.backgroundColor : 'rgba(59,130,246,0.2)',
-                    borderColor: mostCommonPeriod ? mostCommonPeriod.color : '#3b82f6',
+                    backgroundColor: data.map(item => {
+                        const period = getPoliticalPeriod(item.date);
+                        return period ? period.backgroundColor : 'rgba(59,130,246,0.2)';
+                    }),
+                    borderColor: data.map(item => {
+                        const period = getPoliticalPeriod(item.date);
+                        return period ? period.color : '#3b82f6';
+                    }),
                     borderWidth: 1
                 }
             ]

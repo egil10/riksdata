@@ -11,6 +11,7 @@ import {
     updateStaticTooltip,
     hideStaticTooltip
 } from './utils.js';
+import { registerChartData } from './main.js';
 
 // Helper function to normalize relative paths for GitHub Pages
 function rel(p) {
@@ -1614,6 +1615,22 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             options: chartOptions
         });
         console.log(`Chart created successfully for ${title}`);
+        
+        // Register chart data for download/copy functionality
+        const chartCard = canvas.closest('.chart-card');
+        if (chartCard) {
+            const chartId = chartCard.getAttribute('data-chart-id');
+            if (chartId) {
+                // Convert chart data to the format expected by the export functions
+                const exportData = optimizedData.map((item, index) => ({
+                    date: item.date.toISOString().split('T')[0], // Format as YYYY-MM-DD
+                    value: item.value,
+                    index: index + 1
+                }));
+                registerChartData(chartId, exportData);
+                console.log(`Registered data for chart: ${chartId}`);
+            }
+        }
     } catch (error) {
         console.error(`Error creating chart for ${title}:`, error);
         throw error;

@@ -5,7 +5,7 @@
 console.log('Main.js module loading...');
 
 import { loadChartData } from './charts.js';
-import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout } from './utils.js';
+import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout, downloadChartForCard, copyChartDataTSV } from './utils.js';
 
 console.log('All modules imported successfully');
 
@@ -949,3 +949,30 @@ setTimeout(() => {
         showError('Failed to load Chart.js library. Please refresh the page.');
     }
 }, 15000);
+
+// ---- Chart Data Registry and Actions ----
+const chartDataRegistry = new Map();
+
+export function registerChartData(id, dataArray) {
+    chartDataRegistry.set(id, dataArray);
+}
+
+function getDataById(id) {
+    return chartDataRegistry.get(id) || [];
+}
+
+// ---- Chart Actions: Download / Copy ----
+document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.icon-btn');
+    if (!btn) return;
+    
+    const card = btn.closest('.chart-card');
+    if (!card) return;
+    
+    const action = btn.getAttribute('data-action');
+    if (action === 'download') {
+        downloadChartForCard(card);
+    } else if (action === 'copy') {
+        copyChartDataTSV(card, getDataById);
+    }
+});

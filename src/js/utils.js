@@ -590,3 +590,122 @@ export function showUserError(message, element = null) {
         }
     });
 }
+
+// --- Export helpers for SVG & Canvas ---
+export function downloadChartForCard(cardEl) {
+    // Prefer <svg>, else fallback to <canvas>
+    const svg = cardEl.querySelector('svg');
+    const canvas = cardEl.querySelector('canvas');
+    if (svg) return downloadSVG(svg, getSuggestedFilename(cardEl, 'svg'));
+    if (canvas) return downloadPNG(canvas, getSuggestedFilename(cardEl, 'png'));
+    console.warn('No SVG or Canvas found in chart card', cardEl);
+}
+
+function getSuggestedFilename(cardEl, ext) {
+    const id = cardEl.getAttribute('data-chart-id') || 'chart';
+    const titleEl = cardEl.querySelector('.chart-header h3');
+    const base = (titleEl?.textContent || id).trim()
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, '');
+    const date = new Date().toISOString().slice(0,10);
+    return `${base}-${date}.${ext}`;
+}
+
+function download(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    a.rel = 'noopener';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+export function downloadSVG(svgEl, filename = 'chart.svg') {
+    // Inline computed styles for portability (minimal subset)
+    const clone = svgEl.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    clone.setAttribute('version', '1.1');
+    
+    // Ensure width/height attributes exist
+    const bbox = svgEl.getBBox?.();
+    if (!clone.getAttribute('width') && bbox) {
+        clone.setAttribute('width', Math.ceil(bbox.width) + 'px');
+    }
+    if (!clone.getAttribute('height') && bbox) {
+        clone.setAttribute('height', Math.ceil(bbox.height) + 'px');
+    }
+    
+    // Serialize
+    const svgData = new XMLSerializer().serializeToString(clone);
+    const blob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
+    download(blob, filename);
+}
+
+export function downloadPNG(canvasEl, filename = 'chart.png') {
+    // Scale up for crisper PNG (2x)
+    const scale = 2;
+    const w = canvasEl.width;
+    const h = canvasEl.height;
+    
+    try {
+        // If original canvas already high-res, use it directly
+        const url = canvasEl.toDataURL('image/png');
+        fetch(url).then(res => res.blob()).then(blob => download(blob, filename));
+    } catch (e) {
+        console.error('Canvas export failed, trying rasterize fallback', e);
+        // Fallback: draw onto a second canvas
+        const off = document.createElement('canvas');
+        off.width = w * scale;
+        off.height = h * scale;
+        const ctx = off.getContext('2d');
+        ctx.scale(scale, scale);
+        ctx.drawImage(canvasEl, 0, 0);
+        off.toBlob(blob => download(blob, filename), 'image/png');
+    }
+}
+
+// --- Copy Data (TSV) ---
+export async function copyChartDataTSV(cardEl, getDataById) {
+    const id = cardEl.getAttribute('data-chart-id');
+    if (!id) return;
+    
+    const data = await Promise.resolve(getDataById(id));
+    if (!data || !data.length) {
+        console.warn('No data for chart', id);
+        return;
+    }
+    
+    // data should be array of objects: [{col1:..., col2:...}, ...]
+    const cols = Object.keys(data[0]);
+    const header = cols.join('\t');
+    const rows = data.map(r => cols.map(c => String(r[c] ?? '')).join('\t'));
+    const tsv = [header, ...rows].join('\n');
+    
+    try {
+        await navigator.clipboard.writeText(tsv);
+        announce('Data copied to clipboard.');
+    } catch (err) {
+        console.warn('Clipboard blocked, downloading data.tsv', err);
+        const blob = new Blob([tsv], { type: 'text/tab-separated-values;charset=utf-8' });
+        download(blob, `${id}-data.tsv`);
+        announce('Clipboard blocked. Downloaded data.tsv instead.');
+    }
+}
+
+function announce(msg) {
+    // Simple polite ARIA live region
+    let live = document.getElementById('aria-live-helper');
+    if (!live) {
+        live = document.createElement('div');
+        live.id = 'aria-live-helper';
+        live.setAttribute('aria-live', 'polite');
+        live.style.position = 'absolute';
+        live.style.left = '-9999px';
+        document.body.appendChild(live);
+    }
+    live.textContent = msg;
+}

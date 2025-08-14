@@ -528,8 +528,14 @@ function toggleFilterPanel() {
  */
 function toggleMobileMenu() {
     const headerControls = document.querySelector('.header-controls');
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    
     if (headerControls) {
         headerControls.classList.toggle('mobile-open');
+    }
+    
+    if (mobileMenuToggle) {
+        mobileMenuToggle.classList.toggle('active');
     }
 }
 
@@ -545,8 +551,14 @@ function handleWindowResize() {
     // Close mobile menu if switching to desktop
     if (!isMobile) {
         const headerControls = document.querySelector('.header-controls');
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        
         if (headerControls) {
             headerControls.classList.remove('mobile-open');
+        }
+        
+        if (mobileMenuToggle) {
+            mobileMenuToggle.classList.remove('active');
         }
     }
 }

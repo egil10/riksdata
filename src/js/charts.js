@@ -781,9 +781,7 @@ export function parseSSBData(ssbData, chartTitle) {
         return generic;
     }
     
-        return generic;
-    }
-    
+    // Default: try generic parsing first, then legacy if needed
     const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
     const sufficient = generic.length >= 3 && new Set(generic.map(p => p.value)).size > 1;
     if (sufficient) return generic;
@@ -1689,7 +1687,7 @@ function parseCrimeRateData(ssbData) {
         const dimension = dataset.dimension;
         const value = dataset.value;
         
-        if (!dimension || !dimension.Tid || !dimension.LovbruddKrim) {
+        if (!dimension || !dimension.Tid || !dimension.LovbruddKrim || !dimension.Gjerningssted) {
             return [];
         }
         
@@ -1697,17 +1695,27 @@ function parseCrimeRateData(ssbData) {
         const timeIndex = dimension.Tid.category.index;
         const crimeTypeLabels = dimension.LovbruddKrim.category.label;
         const crimeTypeIndex = dimension.LovbruddKrim.category.index;
+        const sceneLabels = dimension.Gjerningssted.category.label;
+        const sceneIndex = dimension.Gjerningssted.category.index;
         
-        // Find the index for "All groups of offences"
+        // Find the index for "All groups of offences" and "Total" scene
         let totalCrimeIndex = null;
+        let totalSceneIndex = null;
+        
         Object.keys(crimeTypeLabels).forEach(key => {
             if (crimeTypeLabels[key].includes('All groups of offences')) {
                 totalCrimeIndex = crimeTypeIndex[key];
             }
         });
         
-        if (totalCrimeIndex === null) {
-            console.warn('Could not find "All groups of offences" in crime rate data');
+        Object.keys(sceneLabels).forEach(key => {
+            if (sceneLabels[key].includes('Total')) {
+                totalSceneIndex = sceneIndex[key];
+            }
+        });
+        
+        if (totalCrimeIndex === null || totalSceneIndex === null) {
+            console.warn('Could not find required categories in crime rate data');
             return [];
         }
         
@@ -1718,7 +1726,11 @@ function parseCrimeRateData(ssbData) {
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
             
-            const valueIndex = timeIndexValue * Object.keys(crimeTypeIndex).length + totalCrimeIndex;
+            // Calculate value index: time * scenes * crimes + scene * crimes + crime
+            const numScenes = Object.keys(sceneIndex).length;
+            const numCrimes = Object.keys(crimeTypeIndex).length;
+            const valueIndex = timeIndexValue * numScenes * numCrimes + totalSceneIndex * numCrimes + totalCrimeIndex;
+            
             if (valueIndex < value.length) {
                 const v = value[valueIndex];
                 if (v !== undefined && v !== null) {
@@ -1813,7 +1825,7 @@ function parseLivingArrangementsData(ssbData) {
         const dimension = dataset.dimension;
         const value = dataset.value;
         
-        if (!dimension || !dimension.Tid || !dimension.Samlivsform) {
+        if (!dimension || !dimension.Tid || !dimension.Samlivsform || !dimension.Region) {
             return [];
         }
         
@@ -1821,17 +1833,27 @@ function parseLivingArrangementsData(ssbData) {
         const timeIndex = dimension.Tid.category.index;
         const arrangementLabels = dimension.Samlivsform.category.label;
         const arrangementIndex = dimension.Samlivsform.category.index;
+        const regionLabels = dimension.Region.category.label;
+        const regionIndex = dimension.Region.category.index;
         
-        // Find the index for "In couples, married" (most common arrangement)
+        // Find the index for "In couples, married" and "The whole country"
         let marriedIndex = null;
+        let countryIndex = null;
+        
         Object.keys(arrangementLabels).forEach(key => {
             if (arrangementLabels[key].includes('married')) {
                 marriedIndex = arrangementIndex[key];
             }
         });
         
-        if (marriedIndex === null) {
-            console.warn('Could not find "married" arrangement in living arrangements data');
+        Object.keys(regionLabels).forEach(key => {
+            if (regionLabels[key].includes('whole country')) {
+                countryIndex = regionIndex[key];
+            }
+        });
+        
+        if (marriedIndex === null || countryIndex === null) {
+            console.warn('Could not find required categories in living arrangements data');
             return [];
         }
         
@@ -1842,7 +1864,11 @@ function parseLivingArrangementsData(ssbData) {
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
             
-            const valueIndex = timeIndexValue * Object.keys(arrangementIndex).length + marriedIndex;
+            // Calculate value index: time * regions * arrangements + region * arrangements + arrangement
+            const numRegions = Object.keys(regionIndex).length;
+            const numArrangements = Object.keys(arrangementIndex).length;
+            const valueIndex = timeIndexValue * numRegions * numArrangements + countryIndex * numArrangements + marriedIndex;
+            
             if (valueIndex < value.length) {
                 const v = value[valueIndex];
                 if (v !== undefined && v !== null) {

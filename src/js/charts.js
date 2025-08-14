@@ -221,10 +221,15 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         const optimizedData = optimizeDataForMobile(finalData, isMobile);
 
         // Optional subtitle from SSB content label (e.g., "(2015=100)")
-        if (ssbSelectedContentLabel && ssbSelectedContentLabel.includes('(')) {
-            const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
-            if (paren && paren[0]) {
-                setChartSubtitle(canvas, paren[0]);
+        if (ssbSelectedContentLabel) {
+            if (ssbSelectedContentLabel.includes('(')) {
+                const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
+                if (paren && paren[0]) {
+                    setChartSubtitle(canvas, paren[0]);
+                }
+            } else if (ssbSelectedContentLabel.toLowerCase().includes('confidence indicator')) {
+                // For Business Tendency Survey, show that it's a balance indicator
+                setChartSubtitle(canvas, '(Balance indicator)');
             }
         }
 
@@ -273,12 +278,26 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
         if (dimByName.ContentsCode) {
             const contentLabels = dimByName.ContentsCode.category.label;
             const contentIndices = dimByName.ContentsCode.category.index;
-            const preferred = Object.entries(contentLabels).find(([_, lbl]) =>
-                lbl.toLowerCase().includes('index') ||
-                lbl.toLowerCase().includes('total') ||
-                lbl.toLowerCase().includes('rate') ||
-                lbl.toLowerCase().includes('main')
-            );
+            
+            // Special handling for Business Tendency Survey - prefer "Confidence Indicator"
+            let preferred;
+            if (chartTitle.toLowerCase().includes('business tendency') || chartTitle.toLowerCase().includes('business confidence')) {
+                preferred = Object.entries(contentLabels).find(([_, lbl]) =>
+                    lbl.toLowerCase().includes('confidence indicator') ||
+                    lbl.toLowerCase().includes('sammensattkonj')
+                );
+            }
+            
+            // Fallback to general preferences
+            if (!preferred) {
+                preferred = Object.entries(contentLabels).find(([_, lbl]) =>
+                    lbl.toLowerCase().includes('index') ||
+                    lbl.toLowerCase().includes('total') ||
+                    lbl.toLowerCase().includes('rate') ||
+                    lbl.toLowerCase().includes('main')
+                );
+            }
+            
             const key = preferred ? preferred[0] : Object.keys(contentIndices)[0];
             contentsIndex = contentIndices[key] ?? 0;
         }
@@ -437,7 +456,8 @@ export function getSSBSelectedContentLabel(ssbData, chartTitle) {
             if (label.includes('Consumer Price Index') ||
                 label.toLowerCase().includes('index') ||
                 label.toLowerCase().includes('rate') ||
-                label.toLowerCase().includes('total')) {
+                label.toLowerCase().includes('total') ||
+                label.toLowerCase().includes('confidence indicator')) {
                 return { key, index: contentIndices[key], label };
             }
         }

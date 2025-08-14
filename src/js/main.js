@@ -106,6 +106,7 @@ export async function initializeApp() {
             loadChartData('export-volume-chart', 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', 'Export Volume'),
             loadChartData('import-volume-chart', 'https://data.ssb.no/api/v0/dataset/179422.json?lang=en', 'Import Volume'),
             loadChartData('business-confidence-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Confidence'),
+            loadChartData('business-tendency-chart', 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', 'Business Tendency Survey'),
             loadChartData('housing-starts-chart', 'https://data.ssb.no/api/v0/dataset/95146.json?lang=en', 'Housing Starts', 'bar'),
             loadChartData('monetary-aggregates-chart', 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', 'Monetary Aggregates'),
             loadChartData('job-vacancies-chart', 'https://data.ssb.no/api/v0/dataset/166328.json?lang=en', 'Job Vacancies', 'bar'),

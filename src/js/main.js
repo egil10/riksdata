@@ -21,6 +21,9 @@ window.addEventListener('error', e => {
             loadingScreen.style.display = 'none';
         }, 500);
     }
+    
+    // Show user-friendly error message
+    showGlobalError('An unexpected error occurred. Please refresh the page.');
 });
 
 window.addEventListener('unhandledrejection', e => {
@@ -34,7 +37,64 @@ window.addEventListener('unhandledrejection', e => {
             loadingScreen.style.display = 'none';
         }, 500);
     }
+    
+    // Show user-friendly error message
+    showGlobalError('Failed to load data. Please check your internet connection and refresh the page.');
 });
+
+/**
+ * Update loading status message
+ */
+function updateLoadingStatus(message) {
+    const statusElement = document.getElementById('loading-status');
+    if (statusElement) {
+        statusElement.textContent = message;
+    }
+}
+
+/**
+ * Show global error message
+ */
+function showGlobalError(message) {
+    // Remove any existing error message
+    const existingError = document.querySelector('.global-error');
+    if (existingError) {
+        existingError.remove();
+    }
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'global-error';
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #f8f9fa;
+        border: 2px solid #dc3545;
+        border-radius: 8px;
+        padding: 20px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #dc3545;
+        z-index: 10000;
+        max-width: 400px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    `;
+    errorDiv.innerHTML = `
+        <h3 style="margin: 0 0 10px 0; color: #dc3545;">Error</h3>
+        <p style="margin: 0 0 15px 0;">${message}</p>
+        <button onclick="window.location.reload()" style="
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        ">Refresh Page</button>
+    `;
+    document.body.appendChild(errorDiv);
+}
 
 // Global state
 let currentLanguage = 'en';
@@ -59,13 +119,14 @@ window.addEventListener('beforeunload', () => {
 export async function initializeApp() {
     try {
         console.log('Starting application initialization...');
+        updateLoadingStatus('Initializing application...');
         
         // Set a global timeout for the entire initialization process
         initializationTimeout = setTimeout(() => {
-            console.error('Application initialization timed out after 30 seconds');
+            console.error('Application initialization timed out after 20 seconds');
             hideLoadingScreen();
-            showError('Application initialization timed out. Please refresh the page.');
-        }, 30000);
+            showGlobalError('Application initialization timed out. Please refresh the page.');
+        }, 20000);
         
         // Show loading screen and progress bars
         const loadingScreen = document.getElementById('loading-screen');
@@ -84,6 +145,7 @@ export async function initializeApp() {
         
         // Show skeleton loading for all charts
         console.log('Showing skeleton loading...');
+        updateLoadingStatus('Preparing charts...');
         showSkeletonLoading();
         
         // Show loading progress bar immediately
@@ -93,6 +155,7 @@ export async function initializeApp() {
         
         // Load all charts in parallel with progress tracking
         console.log('Loading charts...');
+        updateLoadingStatus('Loading chart data...');
         console.log('Chart.js available:', typeof Chart !== 'undefined');
         const chartPromises = [
             // Core economic indicators
@@ -127,12 +190,8 @@ export async function initializeApp() {
             loadChartData('education-level-chart', 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', 'Education Level'),
             loadChartData('greenhouse-gas-chart', 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', 'Greenhouse Gas Emissions'),
             loadChartData('economic-forecasts-chart', 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', 'Economic Forecasts'),
-            ,
             loadChartData('cpi-adjusted-indices-chart', 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', 'CPI Adjusted Indices'),
-
             loadChartData('cpi-group-level-chart', 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', 'CPI Group Level'),
-            
-            ,
             loadChartData('import-value-volume-sitc-chart', 'https://data.ssb.no/api/v0/dataset/34640.json?lang=en', 'Import Value Volume SITC'),
             loadChartData('export-value-volume-sitc-chart', 'https://data.ssb.no/api/v0/dataset/34642.json?lang=en', 'Export Value Volume SITC'),
             loadChartData('tax-returns-main-items-chart', 'https://data.ssb.no/api/v0/dataset/49656.json?lang=en', 'Tax Returns Main Items'),
@@ -152,24 +211,17 @@ export async function initializeApp() {
 
             
             // Norges Bank data
-            ,
             loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', 'Key Policy Rate'),
             loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line'),
             
             // Static data
             loadChartData('oil-fund-chart', './data/static/oil-fund.json', 'Oil Fund Value', 'line'),
             
-            // Government Debt - Key Indicators (GBON - Government Bonds)
-            // Government Debt - Key Indicators (IRS - Interest Rate Swaps)
-            ,
-            
             // Additional charts that exist in HTML
             loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
-            ,
             loadChartData('immigrants-with-immigrant-parents-chart', 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', 'Immigrants with Immigrant Parents'),
             loadChartData('credit-indicator-k3-chart', 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', 'Credit Indicator K3'),
             loadChartData('first-hand-price-index-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/82681.json?lang=en', 'First Hand Price Index Subgroups'),
-            ,
             loadChartData('credit-indicator-k2-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', 'Credit Indicator K2 Seasonally Adjusted'),
 
             // Removed: retail-sales-seasonally-adjusted-chart (dataset 1065 failed to fetch)
@@ -183,19 +235,13 @@ export async function initializeApp() {
 
             loadChartData('household-income-national-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income National'),
             loadChartData('oil-gas-industry-turnover-sn2007-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Industry Turnover SN2007'),
-            ,
             loadChartData('producer-price-index-subgroups-detailed-chart', 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', 'Producer Price Index Subgroups Detailed'),
-            ,
-            ,
-
             loadChartData('monetary-m3-chart', 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', 'Monetary Aggregate M3'),
             
             // Additional charts that exist in HTML but weren't being loaded (only those with cache files)
 
             loadChartData('bankruptcies-total-chart', 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', 'Bankruptcies Total'),
             loadChartData('basic-salary-chart', 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', 'Basic Salary Index'),
-            // Removed: business-tendency-chart (dataset 166317 failed to fetch)
-            ,
             loadChartData('construction-cost-multi-chart', 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', 'Construction Cost Multi'),
             loadChartData('construction-cost-wood-chart', 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', 'Construction Cost Wood'),
             loadChartData('cpi-coicop-chart', 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', 'CPI Coicop Divisions'),
@@ -203,11 +249,8 @@ export async function initializeApp() {
             loadChartData('cpi-items-chart', 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', 'CPI Items'),
             loadChartData('cpi-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', 'CPI Sub-Groups'),
             loadChartData('education-level-chart', 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', 'Education Level'),
-            ,
             loadChartData('household-types-chart', 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', 'Household Types'),
-            ,
             loadChartData('producer-price-industry-chart', 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', 'Producer Price Industry'),
-            ,
             loadChartData('utility-floor-space-chart', 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', 'Utility Floor Space'),
 
             // Removed: energy-accounts-chart (dataset 928197 failed to fetch)
@@ -222,7 +265,7 @@ export async function initializeApp() {
         
         // Wrap each chart promise with timeout and error handling
         const chartPromisesWithTimeout = chartPromises.map((promise, index) => 
-            withTimeout(promise, 15000).catch(error => {
+            withTimeout(promise, 10000).catch(error => {
                 console.error(`Chart ${index} failed with timeout or error:`, error);
                 return null; // Return null instead of throwing to prevent Promise.allSettled from failing
             })
@@ -230,6 +273,7 @@ export async function initializeApp() {
         
         // Use Promise.allSettled to prevent deadlocks if any chart fails
         console.log('Starting Promise.allSettled...');
+        updateLoadingStatus('Processing data...');
         const results = await Promise.allSettled(chartPromisesWithTimeout);
         console.log('Promise.allSettled completed');
         
@@ -274,6 +318,7 @@ export async function initializeApp() {
         
         // Hide skeleton loading
         console.log('Hiding skeleton loading...');
+        updateLoadingStatus('Finalizing...');
         hideSkeletonLoading();
         
         // Clear the initialization timeout since we're done
@@ -745,12 +790,18 @@ function scrollToTop() {
 
 // Fail-safe boot function
 let bootAttempts = 0;
-const MAX_BOOT_ATTEMPTS = 100; // Prevent infinite loops
+const MAX_BOOT_ATTEMPTS = 50; // Reduced to prevent long waits
+let bootTimeout = null;
 
 function boot() {
     try {
         bootAttempts++;
         console.log(`DOM loaded, starting application... (attempt ${bootAttempts})`);
+        
+        // Clear any existing timeout
+        if (bootTimeout) {
+            clearTimeout(bootTimeout);
+        }
         
         // Prevent infinite loops
         if (bootAttempts > MAX_BOOT_ATTEMPTS) {
@@ -764,11 +815,13 @@ function boot() {
         // Wait for Chart.js to be loaded
         if (typeof Chart === 'undefined') {
             console.log('Waiting for Chart.js to load...');
-            setTimeout(boot, 100);
+            updateLoadingStatus('Loading Chart.js library...');
+            bootTimeout = setTimeout(boot, 200); // Increased interval to reduce CPU usage
             return;
         }
         
         console.log('Chart.js is loaded, proceeding with initialization...');
+        updateLoadingStatus('Chart.js loaded, initializing...');
         
         // Load saved theme preference
         const savedTheme = localStorage.getItem('theme');
@@ -811,9 +864,9 @@ if (document.readyState === 'loading') {
 // Add a timeout to prevent infinite waiting for Chart.js
 setTimeout(() => {
     if (typeof Chart === 'undefined') {
-        console.error('Chart.js failed to load after 10 seconds');
+        console.error('Chart.js failed to load after 15 seconds');
         hideSkeletonLoading();
         hideLoadingScreen();
         showError('Failed to load Chart.js library. Please refresh the page.');
     }
-}, 10000);
+}, 15000);

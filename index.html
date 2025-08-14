@@ -9,14 +9,33 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script>
+        // Enhanced Chart.js loading with fallback
+        let chartJsLoaded = false;
+        
+        function loadChartJsFallback() {
+            if (typeof Chart !== 'undefined') {
+                chartJsLoaded = true;
+                console.log('Chart.js loaded successfully from primary CDN');
+                return;
+            }
+            
+            console.log('Primary CDN failed, trying fallback...');
+            const script = document.createElement('script');
+            script.src = 'https://unpkg.com/chart.js@latest/dist/chart.umd.js';
+            script.onload = function() {
+                chartJsLoaded = true;
+                console.log('Chart.js loaded successfully from fallback CDN');
+            };
+            script.onerror = function() {
+                console.error('Both CDNs failed to load Chart.js');
+                document.body.innerHTML = '<div style="padding: 20px; text-align: center; color: red; font-family: Arial, sans-serif; background: #f8f9fa; border: 1px solid #dc3545; border-radius: 8px; margin: 20px;">Error: Chart.js library failed to load from all sources. Please check your internet connection and refresh the page.</div>';
+            };
+            document.head.appendChild(script);
+        }
+        
         // Test if Chart.js loaded properly
         window.addEventListener('load', function() {
-            if (typeof Chart === 'undefined') {
-                console.error('Chart.js failed to load!');
-                document.body.innerHTML = '<div style="padding: 20px; text-align: center; color: red;">Error: Chart.js library failed to load. Please refresh the page.</div>';
-            } else {
-                console.log('Chart.js loaded successfully');
-            }
+            setTimeout(loadChartJsFallback, 2000); // Give primary CDN 2 seconds
         });
     </script>
 </head>
@@ -31,8 +50,11 @@
     <div id="loading-screen" class="loading-screen">
         <div class="loading-content">
             <div class="loading-spinner"></div>
-                            <h2>Loading Riksdata</h2>
+            <h2>Loading Riksdata</h2>
             <p>Fetching latest economic data<span class="loading-dots">...</span></p>
+            <div id="loading-status" style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">
+                Initializing...
+            </div>
         </div>
     </div>
 

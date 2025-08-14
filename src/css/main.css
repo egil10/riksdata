@@ -397,12 +397,12 @@ body, .chart-card, .header-content, .slim-header {
     justify-content: center;
     z-index: 9999;
     transition: opacity 0.5s ease-out;
-    /* CSS-based timeout: hide after 45 seconds as a fallback */
-    animation: loading-timeout 45s forwards;
+    /* CSS-based timeout: hide after 30 seconds as a fallback */
+    animation: loading-timeout 30s forwards;
 }
 
 @keyframes loading-timeout {
-    0%, 95% {
+    0%, 90% {
         opacity: 1;
         visibility: visible;
     }

@@ -909,6 +909,21 @@ footer {
     max-width: 400px;
 }
 
+/* Desktop layout for the new nested structure */
+.political-period-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
+}
+
+.political-parties {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
 .pm-name {
     font-weight: 600;
     color: var(--text-color);
@@ -952,25 +967,11 @@ footer {
     text-decoration: none;
 }
 
-.other-parties {
-    color: #6B7280;
-    font-size: 0.7rem;
-    min-width: 60px;
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-}
-
-.other-parties .party-square {
-    width: 8px;
-    height: 8px;
-    border-radius: 1px;
-}
+/* Removed .other-parties styles as they're no longer used */
 
 .period-dates {
     font-weight: 500;
     color: var(--text-color);
-    margin-left: auto;
     font-size: 0.7rem;
 }
 
@@ -1204,20 +1205,7 @@ footer {
         min-width: auto;
     }
     
-    .other-parties {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        align-items: center;
-        min-width: auto;
-        font-size: 0.75rem;
-    }
-    
-    .other-parties .party-square {
-        width: 12px;
-        height: 12px;
-        border-radius: 2px;
-    }
+    /* Removed .other-parties styles as they're no longer used */
     
     /* Party colors grid for mobile */
     .party-colors {

@@ -663,6 +663,44 @@ function parseProducerPricesData(ssbData) {
     }
 }
 
+/**
+ * Parse static oil fund data from JSON file
+ */
+function parseStaticOilFundData(staticData) {
+    try {
+        if (!staticData || !staticData.data || !Array.isArray(staticData.data)) {
+            console.warn('Oil fund data: Invalid data format');
+            return [];
+        }
+
+        const dataPoints = [];
+        staticData.data.forEach(item => {
+            if (item.year && item.total !== undefined) {
+                // Create date for January 1st of each year
+                const date = new Date(item.year, 0, 1);
+                dataPoints.push({ 
+                    date, 
+                    value: Number(item.total),
+                    // Store all asset classes for potential future use
+                    equity: Number(item.equity),
+                    fixed_income: Number(item.fixed_income),
+                    real_estate: Number(item.real_estate),
+                    renewable_energy: Number(item.renewable_energy)
+                });
+            }
+        });
+
+        dataPoints.sort((a, b) => a.date - b.date);
+        console.log(`Oil fund data: Extracted ${dataPoints.length} data points`);
+        console.log(`Sample oil fund data:`, dataPoints.slice(0, 3));
+        
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing oil fund data:', error);
+        return [];
+    }
+}
+
 export function parseSSBData(ssbData, chartTitle) {
     // Special handling for bankruptcies - sum all bankruptcy types
     if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
@@ -698,6 +736,11 @@ export function parseSSBData(ssbData, chartTitle) {
     if (chartTitle.toLowerCase().includes('gdp growth')) {
         // Let the generic parser handle it with automatic content selection
         const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        
+    // Special handling for Oil Fund - parse static data
+    if (chartTitle.toLowerCase().includes('oil fund')) {
+        return parseStaticOilFundData(ssbData);
+    }
         return generic;
     }
     
@@ -1569,10 +1612,12 @@ export function parseStaticData(data, chartTitle) {
     try {
         if (chartTitle.includes('Oil Fund')) {
             // Parse oil fund data
-            return data.data.map(item => ({
-                date: new Date(item.year, 0, 1), // January 1st of the year
-                value: item.total
-            }));
+            if (data.data && Array.isArray(data.data)) {
+                return data.data.map(item => ({
+                    date: new Date(item.year, 0, 1), // January 1st of the year
+                    value: item.total
+                }));
+            }
         } else {
             // Generic static data parser
             if (data.data && Array.isArray(data.data)) {

@@ -154,7 +154,11 @@ export async function initializeApp() {
             // Norges Bank data
             ,
             loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', 'Key Policy Rate'),
-            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line')
+            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line'),
+            
+            // Static data
+            loadChartData('oil-fund-chart', './data/static/oil-fund.json', 'Oil Fund Value', 'line'),
+            
             // Government Debt - Key Indicators (GBON - Government Bonds)
             // Government Debt - Key Indicators (IRS - Interest Rate Swaps)
             ,

@@ -22,14 +22,10 @@
     --progress-bg: color-mix(in oklab, var(--accent), transparent 90%);
     --progress-fill: var(--accent);
     
-    /* Drawer variables - now using theme variables */
-    --drawer-w: 320px;
-    --surface: var(--card);
-    --surface-2: var(--bg-elev);
-    --text: var(--text);
-    --muted: var(--text-muted);
-    --border: var(--border);
-    --shadow: var(--shadow-md);
+    /* Sidebar variables */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 60px;
+    --header-height: 60px;
 }
 
 /* Dark theme is now handled by theme.css with [data-theme="dark"] */
@@ -56,6 +52,187 @@ body.loaded {
     overflow-y: auto;
 }
 
+/* New Header Layout */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--bg-elev);
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    height: var(--header-height);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+.left-section, .right-section {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.app-title {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: color var(--t) var(--ease);
+}
+
+.app-title:hover {
+    color: var(--accent);
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 6px);
+    padding: 8px;
+    cursor: pointer;
+    transition: all var(--t) var(--ease);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+}
+
+.icon-btn:hover {
+    background: var(--bg-elev);
+    border-color: var(--accent);
+}
+
+.btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 8px);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    cursor: pointer;
+    transition: all var(--t) var(--ease);
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem;
+}
+
+.btn:hover {
+    background: var(--border);
+    transform: translateY(-1px);
+}
+
+/* Sidebar Styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: var(--bg-elev);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    transition: width 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    z-index: 90;
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+.sidebar.expanded {
+    width: var(--sidebar-width);
+}
+
+.sidebar-content {
+    padding: 1rem;
+    padding-top: calc(var(--header-height) + 1rem);
+}
+
+/* Party List Layout */
+.party-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.party-row {
+    display: grid;
+    grid-template-columns: 20px 1fr 120px 100px 1fr;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    border-radius: calc(var(--radius) - 8px);
+    background: var(--card);
+    border: 1px solid var(--border);
+    font-size: 0.875rem;
+    transition: all var(--t) var(--ease);
+}
+
+.party-row:hover {
+    background: var(--bg-elev);
+    border-color: var(--accent);
+}
+
+.party-color {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+.party-main {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.party-regjering {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.party-years {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.party-coalition {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-wrap: wrap;
+}
+
+/* Party Colors */
+.party-color.ap { background: var(--ap-red); }
+.party-color.h { background: var(--h-blue); }
+.party-color.sp { background: #00ff00; }
+.party-color.v { background: #ff6600; }
+.party-color.krf { background: var(--krf-yellow); }
+.party-color.sv { background: #ff0000; }
+.party-color.frp { background: #0000ff; }
+
+/* Main Content */
+.main-content {
+    margin-left: var(--sidebar-collapsed-width);
+    margin-top: var(--header-height);
+    transition: margin-left 0.2s ease;
+    min-height: calc(100vh - var(--header-height));
+}
+
+body.sidebar-expanded .main-content {
+    margin-left: var(--sidebar-width);
+}
+
 /* Modern Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 8px;
@@ -74,8 +251,6 @@ body.loaded {
 ::-webkit-scrollbar-thumb:hover {
     background: var(--text-muted);
 }
-
-
 
 /* Firefox scrollbar */
 * {
@@ -473,75 +648,7 @@ body, .chart-card, .header-content, .slim-header {
     100% { background-position: -200% 0; }
 }
 
-/* Header */
-header {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    padding: 0.75rem 1rem;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-/* Header styles */
-.header-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    height: 60px;
-    background: var(--header-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content h1 {
-    font-size: var(--step-2);
-    font-weight: 600;
-    color: var(--text);
-    cursor: pointer;
-    transition: color var(--t) var(--ease);
-    margin: 0;
-}
-
-.header-content h1:hover {
-    color: var(--accent);
-}
-
-/* Drawer toggle button */
-.drawer-toggle {
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) - 6px);
-    padding: 8px;
-    cursor: pointer;
-    transition: all var(--t) var(--ease);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 12px;
-}
-
-.drawer-toggle:hover {
-    background: var(--bg-elev);
-    border-color: var(--accent);
-}
-
-.drawer-toggle .drawer-icon {
-    transition: transform var(--t) var(--ease);
-}
-
-.drawer-toggle[aria-expanded="true"] .drawer-icon {
-    transform: rotate(180deg);
-}
+/* Legacy header styles - removed in favor of new sidebar layout */
 
 /* Slim Header with Filters */
 .slim-header {
@@ -1363,163 +1470,7 @@ footer {
     transform: translateY(-1px);
 }
 
-/* Drawer Styles */
-.btn-ghost {
-    background: transparent;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 8px 10px;
-    line-height: 0;
-    cursor: pointer;
-    color: var(--text);
-    transition: all 0.2s ease;
-}
-
-.btn-ghost:hover {
-    background: var(--surface-2);
-    border-color: var(--muted);
-}
-
-.input {
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    color: var(--text);
-    padding: 8px 10px;
-    border-radius: 10px;
-    width: 100%;
-    font-size: 14px;
-}
-
-.input:focus {
-    outline: none;
-    border-color: var(--chart-line-color);
-    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
-}
-
-/* Drawer layout - simplified */
-.drawer {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100dvh;
-    width: var(--drawer-w);
-    background: var(--surface);
-    color: var(--text);
-    border-right: 1px solid var(--border);
-    box-shadow: var(--shadow);
-    transform: translateX(-100%);
-    transition: transform 200ms ease;
-    display: flex;
-    flex-direction: column;
-    z-index: 1000;
-    overflow: hidden;
-}
-
-.drawer.open {
-    transform: translateX(0);
-}
-
-.drawer-content {
-    overflow: auto;
-    padding: 16px;
-    flex: 1;
-    height: 100%;
-}
-
-/* Political periods styling for drawer */
-.drawer .political-periods {
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-.drawer .political-period {
-    margin-bottom: 16px;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--surface-2);
-}
-
-.drawer .political-period-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-}
-
-.drawer .main-party {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.drawer .party-square {
-    width: 12px;
-    height: 12px;
-    border-radius: 2px;
-    display: inline-block;
-}
-
-.drawer .party-name {
-    font-weight: 600;
-    text-decoration: none;
-    color: var(--text);
-}
-
-.drawer .regjering-info {
-    text-align: right;
-}
-
-.drawer .pm-name {
-    font-weight: 600;
-    display: block;
-}
-
-.drawer .period-dates {
-    font-size: 12px;
-    color: var(--muted);
-}
-
-.drawer .political-parties {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-/* Backdrop for mobile overlay */
-.drawer-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.35);
-    backdrop-filter: saturate(120%) blur(2px);
-    z-index: 900;
-    opacity: 0;
-    transition: opacity 150ms ease;
-}
-
-.drawer-backdrop.show {
-    opacity: 1;
-}
-
-/* Page shift when docked (≥1024px) */
-@media (min-width: 1024px) {
-    body.drawer-open-docked .main-container {
-        margin-left: var(--drawer-w);
-        transition: margin-left 200ms ease;
-    }
-    
-    /* Hide backdrop on desktop dock mode */
-    .drawer-backdrop {
-        display: none;
-    }
-    
-    /* Move drawer toggle with content */
-    body.drawer-open-docked .drawer-toggle {
-        transform: translateX(var(--drawer-w));
-        transition: transform 200ms ease;
-    }
-}
+/* Legacy drawer styles - removed in favor of new sidebar layout */
 
 /* Screen reader only text */
 .sr-only {
@@ -1562,4 +1513,124 @@ footer {
 .control-btn:hover {
     background: var(--border);
     transform: translateY(-1px);
+}
+
+/* Mobile backdrop for sidebar overlay */
+.sidebar-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: saturate(120%) blur(2px);
+    z-index: 85;
+    opacity: 0;
+    transition: opacity 150ms ease;
+    display: none;
+}
+
+.sidebar-backdrop.show {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Mobile sidebar behavior */
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.2s ease;
+    }
+    
+    .sidebar.expanded {
+        transform: translateX(0);
+        width: 280px;
+    }
+    
+    .sidebar.collapsed {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+    
+    /* Main content on mobile */
+    .main-content {
+        margin-left: 0;
+        margin-top: var(--header-height);
+    }
+    
+    body.sidebar-expanded .main-content {
+        margin-left: 0;
+    }
+    
+    /* Header adjustments for mobile */
+    .app-header {
+        padding: 0.5rem;
+    }
+    
+    .app-title {
+        font-size: 1rem;
+    }
+    
+    .right-section {
+        gap: 0.25rem;
+    }
+    
+    .btn {
+        padding: 0.5rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Party list adjustments for mobile */
+    .party-row {
+        grid-template-columns: 16px 1fr 80px 80px 1fr;
+        gap: 0.25rem;
+        padding: 0.25rem;
+        font-size: 0.75rem;
+    }
+    
+    .party-color {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .party-regjering,
+    .party-years {
+        font-size: 0.7rem;
+    }
+    
+    .party-coalition {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Very small screens */
+    .party-row {
+        grid-template-columns: 12px 1fr 60px 60px 1fr;
+        font-size: 0.7rem;
+    }
+    
+    .party-color {
+        width: 10px;
+        height: 10px;
+    }
+    
+    .party-regjering,
+    .party-years,
+    .party-coalition {
+        font-size: 0.65rem;
+    }
+    
+    .sidebar-content {
+        padding: 0.5rem;
+        padding-top: calc(var(--header-height) + 0.5rem);
+    }
+}
+
+/* Ensure sidebar is always visible on desktop */
+@media (min-width: 769px) {
+    .sidebar {
+        transform: none !important;
+    }
+    
+    .sidebar.collapsed {
+        transform: none !important;
+    }
 }

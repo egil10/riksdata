@@ -14,11 +14,11 @@
     
     const applyIcons = () => {
       const dark = document.documentElement.getAttribute('data-theme') === 'dark';
-      const sun = btn?.querySelector('.sun');
-      const moon = btn?.querySelector('.moon');
+      const sunIcon = btn?.querySelector('.sun-icon');
+      const moonIcon = btn?.querySelector('.moon-icon');
       
-      if (sun) sun.hidden = dark;
-      if (moon) moon.hidden = !dark;
+      if (sunIcon) sunIcon.style.display = dark ? 'none' : 'block';
+      if (moonIcon) moonIcon.style.display = dark ? 'block' : 'none';
     };
     
     applyIcons();

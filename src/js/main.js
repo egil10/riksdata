@@ -797,70 +797,73 @@ function scrollToTop() {
 }
 
 /**
- * Drawer functionality
+ * Sidebar functionality
  */
 (function () {
-    const drawer = document.getElementById('govDrawer');
-    const toggleBtn = document.getElementById('drawerToggle');
-    const backdrop = document.getElementById('drawerBackdrop');
-    const mainContainer = document.querySelector('.main-container') || document.body;
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    const backdrop = document.getElementById('sidebar-backdrop');
     
-    if (!drawer || !toggleBtn) return;
+    if (!sidebar || !toggleBtn) return;
     
     // Restore state
-    const PREF_KEY = 'govDrawerOpen';
-    const wasOpen = localStorage.getItem(PREF_KEY) === '1';
-    const isDesktop = () => window.matchMedia('(min-width: 1024px)').matches;
+    const PREF_KEY = 'sidebarExpanded';
+    const wasExpanded = localStorage.getItem(PREF_KEY) === '1';
+    const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
     
-    function openDrawer() {
-        drawer.classList.add('open');
-        toggleBtn.setAttribute('aria-expanded', 'true');
-        drawer.setAttribute('aria-hidden', 'false');
-        if (!isDesktop()) {
-            backdrop.hidden = false;
-            backdrop.classList.add('show');
-            document.documentElement.style.overflow = 'hidden';
-        } else {
-            document.body.classList.add('drawer-open-docked');
+    function expandSidebar() {
+        sidebar.classList.remove('collapsed');
+        sidebar.classList.add('expanded');
+        document.body.classList.add('sidebar-expanded');
+        
+        if (isMobile() && backdrop) {
+            backdrop.style.display = 'block';
+            setTimeout(() => backdrop.classList.add('show'), 10);
         }
+        
         localStorage.setItem(PREF_KEY, '1');
-        // Focus management
-        setTimeout(() => {
-            drawer.focus();
-        }, 0);
     }
     
-    function closeDrawer() {
-        drawer.classList.remove('open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        drawer.setAttribute('aria-hidden', 'true');
-        if (!isDesktop()) {
+    function collapseSidebar() {
+        sidebar.classList.remove('expanded');
+        sidebar.classList.add('collapsed');
+        document.body.classList.remove('sidebar-expanded');
+        
+        if (isMobile() && backdrop) {
             backdrop.classList.remove('show');
-            setTimeout(() => (backdrop.hidden = true), 150);
-            document.documentElement.style.overflow = '';
-        } else {
-            document.body.classList.remove('drawer-open-docked');
+            setTimeout(() => backdrop.style.display = 'none', 150);
         }
+        
         localStorage.setItem(PREF_KEY, '0');
-        toggleBtn.focus();
     }
     
     function toggle() {
-        if (drawer.classList.contains('open')) closeDrawer();
-        else openDrawer();
+        if (sidebar.classList.contains('expanded')) {
+            collapseSidebar();
+        } else {
+            expandSidebar();
+        }
     }
     
     // Events
     toggleBtn.addEventListener('click', toggle);
-    backdrop && backdrop.addEventListener('click', closeDrawer);
+    
+    // Close sidebar when clicking backdrop on mobile
+    if (backdrop) {
+        backdrop.addEventListener('click', collapseSidebar);
+    }
+    
+    // Close sidebar on escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && drawer.classList.contains('open')) closeDrawer();
+        if (e.key === 'Escape' && sidebar.classList.contains('expanded')) {
+            collapseSidebar();
+        }
     });
     
-    // Open on load if previously open
-    if (wasOpen) {
+    // Restore state on load
+    if (wasExpanded) {
         // delay until layout paints to avoid jank
-        requestAnimationFrame(openDrawer);
+        requestAnimationFrame(expandSidebar);
     }
 })();
 

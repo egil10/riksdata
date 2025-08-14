@@ -1211,64 +1211,80 @@ export function parseGovernmentDebtData(data) {
         // Handle SDMX-JSON format from Norges Bank
         const dataSet = data.data.dataSets[0];
         const series = dataSet.series;
-        const structure = data.structure;
+        const structure = data.data.structure;
         const points = [];
         
-        // Get dimension information for proper parsing
-        const dimensions = structure?.dimensions?.series || [];
-        const timeDimension = structure?.dimensions?.observation?.[0];
-        
-        // Extract time periods mapping
-        const timeMapping = {};
-        if (timeDimension && timeDimension.values) {
-            timeDimension.values.forEach((timeValue, index) => {
-                timeMapping[index] = timeValue.id;
-            });
+        // Get time dimension from structure
+        const timeDimension = structure?.dimensions?.observation?.find(d => d.id === 'TIME_PERIOD');
+        if (!timeDimension || !timeDimension.values) {
+            console.error('Time dimension not found in government debt data');
+            return [];
         }
         
-        // Parse series data with proper dimension handling
+        // Create time mapping: index -> date
+        const timeMapping = {};
+        timeDimension.values.forEach((timeValue, index) => {
+            const timeStr = timeValue.id;
+            // Parse date format like "2020-03-31" or "2020-06-30"
+            const date = new Date(timeStr);
+            if (!isNaN(date.getTime())) {
+                timeMapping[index] = date;
+            }
+        });
+        
+        // Get unit multiplier from attributes
+        let unitMultiplier = 1;
+        if (structure?.attributes?.series) {
+            const unitMultAttr = structure.attributes.series.find(attr => attr.id === 'UNIT_MULT');
+            if (unitMultAttr && unitMultAttr.values && unitMultAttr.values.length > 0) {
+                // Use the first unit multiplier value (usually 6 for millions or 9 for billions)
+                unitMultiplier = Math.pow(10, parseInt(unitMultAttr.values[0].id));
+            }
+        }
+        
+        console.log(`Government debt unit multiplier: ${unitMultiplier} (${unitMultiplier === 1000000 ? 'millions' : unitMultiplier === 1000000000 ? 'billions' : 'units'})`);
+        
+        // Parse series data
         Object.keys(series).forEach(seriesKey => {
             const observations = series[seriesKey].observations;
             
             Object.keys(observations).forEach(timeIndex => {
                 const value = observations[timeIndex][0];
                 if (value !== null && value !== undefined) {
-                    const numValue = Number(value);
+                    const numValue = Number(value) * unitMultiplier;
                     
-                    // Get the actual time period from mapping
-                    let date;
-                    if (timeMapping[timeIndex]) {
-                        // Parse quarter format like "Q1-2020" or date format like "2020-03-31"
-                        const timeStr = timeMapping[timeIndex];
-                        if (timeStr.includes('Q')) {
-                            // Handle quarter format: "Q1-2020"
-                            const [quarter, year] = timeStr.split('-');
-                            const quarterNum = parseInt(quarter.substring(1));
-                            const month = (quarterNum - 1) * 3; // Q1=0, Q2=3, Q3=6, Q4=9
-                            date = new Date(parseInt(year), month, 1);
-                        } else {
-                            // Handle date format: "2020-03-31"
-                            date = new Date(timeStr);
-                        }
-                    } else {
-                        // Fallback: calculate date based on index
-                        date = new Date(2000, 0, 1);
-                        date.setMonth(date.getMonth() + parseInt(timeIndex));
+                    // Get the date from mapping
+                    const date = timeMapping[parseInt(timeIndex)];
+                    if (date && !isNaN(numValue)) {
+                        points.push({ 
+                            date: date, 
+                            value: numValue 
+                        });
                     }
-                    
-                    // Include all values, let the chart configuration determine filtering
-                    points.push({ 
-                        date: date, 
-                        value: numValue 
-                    });
                 }
             });
         });
         
-        console.log(`Government debt data: Extracted ${points.length} data points`);
-        console.log(`Sample government debt data:`, points.slice(0, 3));
+        // Sort by date and remove duplicates
+        const sortedPoints = points.sort((a, b) => a.date - b.date);
+        const uniquePoints = [];
+        const seenDates = new Set();
         
-        return points.sort((a, b) => a.date - b.date);
+        sortedPoints.forEach(point => {
+            const dateKey = point.date.toISOString().split('T')[0];
+            if (!seenDates.has(dateKey)) {
+                seenDates.add(dateKey);
+                uniquePoints.push(point);
+            }
+        });
+        
+        console.log(`Government debt data: Extracted ${uniquePoints.length} unique data points`);
+        if (uniquePoints.length > 0) {
+            console.log(`Date range: ${uniquePoints[0].date.toISOString().split('T')[0]} to ${uniquePoints[uniquePoints.length - 1].date.toISOString().split('T')[0]}`);
+            console.log(`Sample values: ${uniquePoints.slice(0, 5).map(p => (p.value / 1000000000).toFixed(1) + 'B').join(', ')}`);
+        }
+        
+        return uniquePoints;
 
     } catch (error) {
         console.error('Error parsing government debt data:', error);
@@ -1480,8 +1496,36 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         }
     };
     
-    // Special options for Housing Starts chart
-    if (title === 'Housing Starts' && chartType === 'bar') {
+    // Special options for Government Debt chart
+    if (title === 'Government Debt' && chartType === 'line') {
+        chartOptions = {
+            ...chartOptions,
+            plugins: {
+                ...CHART_CONFIG.plugins,
+                tooltip: {
+                    ...CHART_CONFIG.plugins?.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            const valueInBillions = context.parsed.y / 1000000000;
+                            return `${context.dataset.label}: ${valueInBillions.toFixed(1)} billion NOK`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                ...chartOptions.scales,
+                y: {
+                    ...chartOptions.scales.y,
+                    ticks: {
+                        ...chartOptions.scales.y.ticks,
+                        callback: function(value) {
+                            return (value / 1000000000).toFixed(0) + 'B';
+                        }
+                    }
+                }
+            }
+        };
+    } else if (title === 'Housing Starts' && chartType === 'bar') {
         chartOptions = {
             ...chartOptions,
             plugins: {

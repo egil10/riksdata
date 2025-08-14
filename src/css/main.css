@@ -913,8 +913,22 @@ footer {
 .political-period-header {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    min-width: 120px;
+    gap: 0.75rem;
+    min-width: 140px;
+}
+
+.main-party {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 50px;
+}
+
+.regjering-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 90px;
 }
 
 .political-parties {
@@ -927,7 +941,8 @@ footer {
 .pm-name {
     font-weight: 600;
     color: var(--text-color);
-    min-width: 80px;
+    font-size: 0.7rem;
+    line-height: 1.1;
 }
 
 .party-square {
@@ -1166,15 +1181,29 @@ footer {
     .political-period-header {
         display: flex;
         align-items: center;
-        gap: 0.5rem;
+        gap: 0.75rem;
         margin-bottom: 0.5rem;
+    }
+    
+    .main-party {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        min-width: 50px;
+    }
+    
+    .regjering-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+        flex: 1;
     }
     
     .pm-name {
         font-size: 0.875rem;
         font-weight: 600;
         min-width: auto;
-        flex: 1;
+        line-height: 1.1;
     }
     
     .period-dates {

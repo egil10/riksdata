@@ -1,0 +1,264 @@
+/* theme.css - Robust theming foundation for Riksdata */
+
+:root {
+  /* Native hint */
+  color-scheme: light;
+  
+  /* Typography */
+  --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  
+  /* Size & radii */
+  --radius: 14px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 6px 16px rgba(0,0,0,.08);
+  
+  /* Light palette (OKLCH with hex fallbacks) */
+  --bg: oklch(99% 0.01 95); /* #f9fafb fallback */
+  --bg-elev: oklch(97% 0.02 95); /* #f3f4f6 */
+  --card: oklch(98% 0.015 95); /* #f7f8fa */
+  --border: oklch(88% 0.02 95); /* #e5e7eb */
+  --text: oklch(28% 0.02 95); /* #1f2937 */
+  --text-muted: oklch(45% 0.02 95); /* #6b7280 */
+  
+  /* Accents – cool blue & green for data viz */
+  --accent: oklch(63% 0.13 235); /* #3b82f6-ish */
+  --accent-2: oklch(72% 0.12 150); /* #22c55e-ish */
+  --accent-3: oklch(70% 0.10 30); /* warm oran./amber */
+  --accent-4: oklch(60% 0.10 280); /* purple */
+  --grid: oklch(90% 0.01 95); /* gridlines */
+  
+  /* States */
+  --success: oklch(70% 0.12 150);
+  --warn: oklch(75% 0.13 90);
+  --danger: oklch(62% 0.13 25);
+  
+  /* Transitions */
+  --ease: cubic-bezier(.2,.8,.2,1);
+  --t: 220ms;
+  
+  /* Typographic scale */
+  --step--1: clamp(.875rem, .83rem + .2vw, .95rem);
+  --step-0: clamp(1rem, .96rem + .25vw, 1.1rem);
+  --step-1: clamp(1.25rem, 1.1rem + .6vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3rem + .9vw, 1.75rem);
+  --step-3: clamp(1.875rem, 1.6rem + 1.2vw, 2.25rem);
+  
+  /* Spacing scale */
+  --space-1: .5rem;
+  --space-2: .75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+}
+
+html[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: oklch(17% 0.02 95);
+  --bg-elev: oklch(22% 0.02 95);
+  --card: oklch(20% 0.02 95);
+  --border: oklch(28% 0.02 95);
+  --text: oklch(95% 0.01 95);
+  --text-muted: oklch(78% 0.02 95);
+  --accent: oklch(65% 0.14 235);
+  --accent-2: oklch(75% 0.13 150);
+  --accent-3: oklch(72% 0.11 30);
+  --accent-4: oklch(67% 0.11 280);
+  --grid: oklch(35% 0.01 95);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-md: 0 10px 24px rgba(0,0,0,.45);
+}
+
+/* Base usage */
+html, body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography */
+h1 {
+  font-size: var(--step-3);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--step-2);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: var(--step-1);
+  line-height: 1.2;
+}
+
+body, p, li {
+  font-size: var(--step-0);
+}
+
+small {
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+/* Cards */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: background var(--t) var(--ease), border-color var(--t) var(--ease), box-shadow var(--t) var(--ease);
+}
+
+/* Links */
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .5rem .75rem;
+  border-radius: calc(var(--radius) - 6px);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t) var(--ease), border-color var(--t) var(--ease);
+}
+
+.btn-ghost:hover {
+  transform: translateY(-1px);
+}
+
+.btn-ghost:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .6rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text);
+  box-shadow: var(--shadow-sm);
+  transition: background var(--t) var(--ease), border-color var(--t) var(--ease), transform var(--t) var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: white;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent-4);
+  outline-offset: 2px;
+}
+
+/* Chips */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .35rem .6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  color: var(--text-muted);
+}
+
+/* Layout utilities */
+.stack > * + * {
+  margin-top: var(--space-3);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 960px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: .6rem .8rem;
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-elev);
+}
+
+tbody tr:nth-child(odd) {
+  background: color-mix(in oklab, var(--bg) 90%, var(--card) 10%);
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: saturate(160%) blur(6px);
+  background: color-mix(in oklab, var(--bg), transparent 20%);
+  border-bottom: 1px solid var(--border);
+}
+
+/* Skeletons */
+.skeleton {
+  border-radius: 8px;
+  height: 1rem;
+  background: linear-gradient(90deg, 
+    color-mix(in oklab, var(--card) 94%, var(--bg) 6%), 
+    color-mix(in oklab, var(--card) 86%, var(--bg) 14%), 
+    color-mix(in oklab, var(--card) 94%, var(--bg) 6%)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.2s var(--ease) infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+  
+  .skeleton {
+    animation: none;
+  }
+}

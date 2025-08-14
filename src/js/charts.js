@@ -1397,11 +1397,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                         data: data.map(item => ({ x: item.date, y: item.value })),
                         backgroundColor: data.map(item => {
                             const period = getPoliticalPeriod(item.date);
-                            return period ? period.backgroundColor : 'rgba(34, 197, 94, 0.8)'; // Green with opacity
+                            return period ? period.backgroundColor : `${accentColor}cc`; // Theme color with opacity
                         }),
                         borderColor: data.map(item => {
                             const period = getPoliticalPeriod(item.date);
-                            return period ? period.color : '#22c55e'; // Green
+                            return period ? period.color : accentColor; // Theme color
                         }),
                         borderWidth: 2,
                         borderRadius: 4,
@@ -1419,11 +1419,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                         data: data.map(item => ({ x: item.date, y: item.value })),
                         backgroundColor: data.map(item => {
                             const period = getPoliticalPeriod(item.date);
-                            return period ? period.backgroundColor : 'rgba(59, 130, 246, 0.8)'; // Blue with opacity
+                            return period ? period.backgroundColor : `${accentColor}cc`; // Theme color with opacity
                         }),
                         borderColor: data.map(item => {
                             const period = getPoliticalPeriod(item.date);
-                            return period ? period.color : '#3b82f6'; // Blue
+                            return period ? period.color : accentColor; // Theme color
                         }),
                         borderWidth: 2,
                         borderRadius: 4,
@@ -1441,11 +1441,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                         data: data.map(item => ({ x: item.date, y: item.value })),
                         backgroundColor: data.map(item => {
                             const period = getPoliticalPeriod(item.date);
-                            return period ? period.backgroundColor : 'rgba(99, 102, 241, 0.7)'; // Indigo with opacity
+                            return period ? period.backgroundColor : `${accentColor}cc`; // Theme color with opacity
                         }),
                         borderColor: data.map(item => {
                             const period = getPoliticalPeriod(item.date);
-                            return period ? period.color : '#6366f1'; // Indigo
+                            return period ? period.color : accentColor; // Theme color
                         }),
                         borderWidth: 2,
                         borderRadius: 3,
@@ -1463,8 +1463,9 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     }
 
     // Get current theme colors from CSS variables
-    const axisColor = getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim();
-    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim();
+    const textMuted = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim();
+    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid').trim();
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
     
     // Create chart options with theme-aware colors
     let chartOptions = {
@@ -1475,7 +1476,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 ...CHART_CONFIG.scales?.x,
                 ticks: {
                     ...CHART_CONFIG.scales?.x?.ticks,
-                    color: axisColor
+                    color: textMuted
                 },
                 grid: {
                     ...CHART_CONFIG.scales?.x?.grid,
@@ -1486,7 +1487,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 ...CHART_CONFIG.scales?.y,
                 ticks: {
                     ...CHART_CONFIG.scales?.y?.ticks,
-                    color: axisColor
+                    color: textMuted
                 },
                 grid: {
                     ...CHART_CONFIG.scales?.y?.grid,
@@ -1545,8 +1546,8 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     borderWidth: 2,
                     borderRadius: 4,
                     borderSkipped: false,
-                    backgroundColor: 'rgba(34, 197, 94, 0.8)',
-                    borderColor: '#22c55e'
+                    backgroundColor: `${accentColor}cc`,
+                    borderColor: accentColor
                 }
             }
         };
@@ -1571,8 +1572,8 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     borderWidth: 2,
                     borderRadius: 4,
                     borderSkipped: false,
-                    backgroundColor: 'rgba(59, 130, 246, 0.8)',
-                    borderColor: '#3b82f6'
+                    backgroundColor: `${accentColor}cc`,
+                    borderColor: accentColor
                 }
             }
         };
@@ -1597,8 +1598,8 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     borderWidth: 2,
                     borderRadius: 3,
                     borderSkipped: false,
-                    backgroundColor: 'rgba(99, 102, 241, 0.7)',
-                    borderColor: '#6366f1'
+                    backgroundColor: `${accentColor}cc`,
+                    borderColor: accentColor
                 }
             }
         };

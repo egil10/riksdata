@@ -157,6 +157,17 @@ export async function initializeApp() {
         console.log('Loading charts...');
         updateLoadingStatus('Loading chart data...');
         console.log('Chart.js available:', typeof Chart !== 'undefined');
+        
+        // Apply theme to Chart.js if available
+        if (typeof Chart !== 'undefined') {
+            try {
+                const { applyChartJsTheme } = await import('./chart-theme.js');
+                applyChartJsTheme(Chart);
+                console.log('Chart.js theme applied successfully');
+            } catch (error) {
+                console.warn('Failed to apply Chart.js theme:', error);
+            }
+        }
         const chartPromises = [
             // Core economic indicators
             loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'Consumer Price Index'),

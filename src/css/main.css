@@ -2,58 +2,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    /* Light theme variables */
-    --bg-color: #F9FAFB;
-    --text-color: #1F2937;
-    --card-bg: #FFFFFF;
-    --border-color: #E5E7EB;
-    --shadow-light: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    --shadow-medium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    --shadow-heavy: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    /* Legacy variables for backward compatibility */
+    --bg-color: var(--bg);
+    --text-color: var(--text);
+    --card-bg: var(--card);
+    --border-color: var(--border);
+    --shadow-light: var(--shadow-sm);
+    --shadow-medium: var(--shadow-md);
+    --shadow-heavy: var(--shadow-md);
     --ap-red: #E11926;
     --krf-yellow: #FDED34;
     --h-blue: #87add7;
-    --axis-color: #6B7280;
-    --grid-color: rgba(229, 231, 235, 0.6);
-    --chart-line-color: #1a73e8;
-    --button-bg: #f0f0f0;
-    --button-hover: #e0e0e0;
-    --header-bg: rgba(255, 255, 255, 0.95);
-    --progress-bg: rgba(26, 115, 232, 0.1);
-    --progress-fill: #1a73e8;
+    --axis-color: var(--text-muted);
+    --grid-color: var(--grid);
+    --chart-line-color: var(--accent);
+    --button-bg: var(--bg-elev);
+    --button-hover: var(--border);
+    --header-bg: color-mix(in oklab, var(--bg), transparent 20%);
+    --progress-bg: color-mix(in oklab, var(--accent), transparent 90%);
+    --progress-fill: var(--accent);
     
-    /* Drawer variables */
+    /* Drawer variables - now using theme variables */
     --drawer-w: 320px;
-    --surface: #fff;
-    --surface-2: #f7f7f8;
-    --text: #111;
-    --muted: #666;
-    --border: #e6e6e8;
-    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --surface: var(--card);
+    --surface-2: var(--bg-elev);
+    --text: var(--text);
+    --muted: var(--text-muted);
+    --border: var(--border);
+    --shadow: var(--shadow-md);
 }
 
-/* Dark theme variables - optimized for fast switching */
-html.dark-mode {
-    --bg-color: #000000;
-    --text-color: #FFFFFF;
-    --card-bg: #111111;
-    --border-color: #333333;
-    --axis-color: #9CA3AF;
-    --grid-color: rgba(51, 51, 51, 0.6);
-    --chart-line-color: #4a90e2;
-    --button-bg: #333333;
-    --button-hover: #444444;
-    --header-bg: rgba(0, 0, 0, 0.95);
-    --progress-bg: rgba(74, 144, 226, 0.1);
-    --progress-fill: #4a90e2;
-    
-    /* Drawer dark theme variables */
-    --surface: #121212;
-    --surface-2: #1a1a1a;
-    --text: #f2f2f2;
-    --muted: #a0a0a0;
-    --border: #2a2a2a;
-}
+/* Dark theme is now handled by theme.css with [data-theme="dark"] */
 
 * {
     margin: 0;
@@ -62,15 +41,15 @@ html.dark-mode {
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background: var(--bg-color);
-    color: var(--text-color);
+    font-family: var(--font-sans);
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
-    font-size: 16px;
+    font-size: var(--step-0);
     line-height: 1.5;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color var(--t) var(--ease), color var(--t) var(--ease);
 }
 
 body.loaded {
@@ -83,35 +62,25 @@ body.loaded {
 }
 
 ::-webkit-scrollbar-track {
-    background: var(--bg-color);
+    background: var(--bg);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--border-color);
+    background: var(--border);
     border-radius: 4px;
-    transition: background 0.3s ease;
+    transition: background var(--t) var(--ease);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #9CA3AF;
+    background: var(--text-muted);
 }
 
-html.dark-mode ::-webkit-scrollbar-track {
-    background: var(--bg-color);
-}
 
-html.dark-mode ::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-}
-
-html.dark-mode ::-webkit-scrollbar-thumb:hover {
-    background: #6B7280;
-}
 
 /* Firefox scrollbar */
 * {
     scrollbar-width: thin;
-    scrollbar-color: var(--border-color) var(--bg-color);
+    scrollbar-color: var(--border) var(--bg);
 }
 
 /* Mobile-first responsive design */
@@ -156,17 +125,17 @@ html {
         justify-content: center;
         background: none;
         border: none;
-        color: var(--text-color);
+        color: var(--text);
         cursor: pointer;
         padding: 0.375rem;
         border-radius: 6px;
-        transition: all 0.2s ease;
+        transition: all var(--t) var(--ease);
         width: 32px;
         height: 32px;
     }
     
     .mobile-menu-toggle:hover {
-        background: var(--border-color);
+        background: var(--border);
     }
     
     .hamburger-icon {
@@ -186,14 +155,14 @@ html {
         top: 100%;
         left: 0;
         right: 0;
-        background: var(--card-bg);
-        border: 1px solid var(--border-color);
+        background: var(--card);
+        border: 1px solid var(--border);
         border-top: none;
         flex-direction: column;
         padding: 0.75rem;
         gap: 0.5rem;
         z-index: 1000;
-        box-shadow: var(--shadow-medium);
+        box-shadow: var(--shadow-md);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
@@ -219,14 +188,14 @@ html {
         font-size: 0.875rem;
         width: 100%;
         justify-content: center;
-        border-radius: 8px;
+        border-radius: var(--radius);
         font-weight: 500;
-        transition: all 0.2s ease;
+        transition: all var(--t) var(--ease);
     }
     
     .control-btn:hover {
         transform: translateY(-1px);
-        box-shadow: var(--shadow-light);
+        box-shadow: var(--shadow-sm);
     }
     
     /* Improved chart grid for mobile */
@@ -239,15 +208,15 @@ html {
     .chart-card {
         width: 100%;
         margin-bottom: 0;
-        border-radius: 12px;
+        border-radius: var(--radius);
         padding: 0.875rem;
-        box-shadow: var(--shadow-light);
-        transition: all 0.3s ease;
+        box-shadow: var(--shadow-sm);
+        transition: all var(--t) var(--ease);
     }
     
     .chart-card:hover {
         transform: translateY(-1px);
-        box-shadow: var(--shadow-medium);
+        box-shadow: var(--shadow-md);
     }
     
     .chart-container {
@@ -285,7 +254,7 @@ html {
     /* Enhanced filter panel for mobile */
     .slim-header {
         padding: 0.5rem 0.75rem;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 1px solid var(--border);
     }
     
     .filter-container {
@@ -302,15 +271,23 @@ html {
     .search-input {
         font-size: 0.875rem;
         padding: 0.625rem 0.75rem 0.625rem 2.5rem;
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
-        background: var(--card-bg);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--card);
     }
     
     .search-input:focus {
-        border-color: var(--ap-red);
-        box-shadow: 0 0 0 3px rgba(225, 25, 38, 0.1);
-    }
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
+    outline: none;
+}
+
+.search-input:focus-visible {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
     
     .source-filters {
         display: grid;
@@ -322,15 +299,15 @@ html {
     .filter-btn, .sort-btn {
         padding: 0.5rem 0.75rem;
         font-size: 0.8rem;
-        border-radius: 8px;
+        border-radius: var(--radius);
         font-weight: 500;
         text-align: center;
-        transition: all 0.2s ease;
+        transition: all var(--t) var(--ease);
     }
     
     .filter-btn:hover, .sort-btn:hover {
         transform: translateY(-1px);
-        box-shadow: var(--shadow-light);
+        box-shadow: var(--shadow-sm);
     }
     
     /* Main content improvements */
@@ -350,7 +327,7 @@ html {
     .source-link {
         font-size: 0.7rem;
         padding: 0.25rem 0.5rem;
-        border-radius: 6px;
+        border-radius: calc(var(--radius) - 8px);
         top: 0.5rem;
         right: 0.5rem;
     }
@@ -375,19 +352,10 @@ html {
 
 /* Smooth transitions for theme switching */
 body, .chart-card, .header-content, .slim-header {
-    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    transition: background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease);
 }
 
-/* Theme Toggle Icon */
-.theme-icon {
-    width: 18px;
-    height: 18px;
-    transition: transform 0.3s ease;
-}
-
-.dark-mode .theme-icon {
-    transform: rotate(180deg);
-}
+/* Theme Toggle Icon - now handled by theme.js */
 
 /* Filter Toggle Icon */
 .filter-icon {
@@ -488,7 +456,11 @@ body, .chart-card, .header-content, .slim-header {
 
 /* Skeleton Loading */
 .skeleton-chart {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: linear-gradient(90deg, 
+        color-mix(in oklab, var(--card) 94%, var(--bg) 6%) 25%, 
+        color-mix(in oklab, var(--card) 86%, var(--bg) 14%) 50%, 
+        color-mix(in oklab, var(--card) 94%, var(--bg) 6%) 75%
+    );
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
     border-radius: 4px;
@@ -503,14 +475,14 @@ body, .chart-card, .header-content, .slim-header {
 
 /* Header */
 header {
-    background: var(--card-bg);
-    border-bottom: 1px solid var(--border-color);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
     padding: 0.75rem 1rem;
     height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -525,33 +497,33 @@ header {
     height: 60px;
     background: var(--header-bg);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
 .header-content h1 {
-    font-size: 1.5rem;
+    font-size: var(--step-2);
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text);
     cursor: pointer;
-    transition: color 0.2s ease;
+    transition: color var(--t) var(--ease);
     margin: 0;
 }
 
 .header-content h1:hover {
-    color: var(--chart-line-color);
+    color: var(--accent);
 }
 
 /* Drawer toggle button */
 .drawer-toggle {
     background: transparent;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 6px);
     padding: 8px;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--t) var(--ease);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -559,12 +531,12 @@ header {
 }
 
 .drawer-toggle:hover {
-    background: var(--button-hover);
-    border-color: var(--chart-line-color);
+    background: var(--bg-elev);
+    border-color: var(--accent);
 }
 
 .drawer-toggle .drawer-icon {
-    transition: transform 0.2s ease;
+    transition: transform var(--t) var(--ease);
 }
 
 .drawer-toggle[aria-expanded="true"] .drawer-icon {
@@ -573,10 +545,10 @@ header {
 
 /* Slim Header with Filters */
 .slim-header {
-    background: var(--card-bg);
-    border-bottom: 1px solid var(--border-color);
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
     padding: 0.5rem 1rem;
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-sm);
     position: sticky;
     top: 60px;
     z-index: 99;
@@ -600,13 +572,13 @@ header {
 .search-input {
     width: 100%;
     padding: 0.5rem 0.75rem 0.5rem 2.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    background: var(--card-bg);
-    color: var(--text-color);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 8px);
+    background: var(--card);
+    color: var(--text);
     font-size: 0.875rem;
     font-family: inherit;
-    transition: all 0.2s ease;
+    transition: all var(--t) var(--ease);
 }
 
 .search-input:focus {
@@ -622,7 +594,7 @@ header {
     transform: translateY(-50%);
     width: 16px;
     height: 16px;
-    color: #9CA3AF;
+    color: var(--text-muted);
     pointer-events: none;
 }
 
@@ -632,61 +604,61 @@ header {
 }
 
 .filter-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 8px);
     padding: 0.375rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--t) var(--ease);
     font-family: inherit;
 }
 
 .filter-btn:hover {
-    background: var(--border-color);
+    background: var(--border);
     transform: translateY(-1px);
 }
 
 .filter-btn.active {
-    background: var(--ap-red);
+    background: var(--accent);
     color: white;
-    border-color: var(--ap-red);
+    border-color: var(--accent);
 }
 
 .filter-btn.active:hover {
-    background: #C41230;
+    background: color-mix(in oklab, var(--accent), black 10%);
 }
 
 /* Standalone sort button */
 .sort-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 8px);
     padding: 0.375rem 0.75rem;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--t) var(--ease);
     font-family: inherit;
     margin-left: 0.5rem;
 }
 
 .sort-btn:hover {
-    background: var(--border-color);
+    background: var(--border);
     transform: translateY(-1px);
 }
 
 .sort-btn.active {
-    background: var(--ap-red);
+    background: var(--accent);
     color: white;
-    border-color: var(--ap-red);
+    border-color: var(--accent);
 }
 
 .sort-btn.active:hover {
-    background: #C41230;
+    background: color-mix(in oklab, var(--accent), black 10%);
 }
 
 /* Main Grid */
@@ -709,12 +681,12 @@ main {
 
 /* Chart Cards */
 .chart-card {
-    background: var(--card-bg);
-    border-radius: 8px;
+    background: var(--card);
+    border-radius: var(--radius);
     padding: 1rem;
-    box-shadow: var(--shadow-light);
-    border: 1px solid var(--border-color);
-    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: all var(--t) var(--ease);
     min-height: 200px;
     display: flex;
     flex-direction: column;
@@ -723,7 +695,7 @@ main {
 }
 
 .chart-card:hover {
-    box-shadow: var(--shadow-medium);
+    box-shadow: var(--shadow-md);
     transform: translateY(-2px);
 }
 
@@ -744,48 +716,42 @@ main {
     top: 0;
     right: 0;
     font-size: 0.75rem;
-    color: var(--text-color);
+    color: var(--text);
     text-decoration: none;
-    background: rgba(255,255,255,0.9);
+    background: color-mix(in oklab, var(--card), transparent 10%);
     padding: 0.25rem 0.5rem;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    border-radius: calc(var(--radius) - 10px);
+    transition: all var(--t) var(--ease);
     opacity: 0.6;
     font-weight: 500;
     z-index: 10;
 }
 
-.dark-mode .source-link {
-    background: rgba(55, 65, 81, 0.9);
-    color: var(--text-color);
-}
-
 .source-link:hover {
     opacity: 1;
-    background: var(--card-bg);
-    box-shadow: var(--shadow-light);
+    background: var(--card);
+    box-shadow: var(--shadow-sm);
 }
 
 .chart-header {
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border);
     position: relative;
 }
 
 .chart-header h3 {
-    font-size: 1rem;
+    font-size: var(--step-0);
     font-weight: 600;
-    color: var(--text-color);
+    color: var(--text);
     margin-bottom: 0.25rem;
     letter-spacing: -0.025em;
 }
 
 .chart-subtitle {
-    font-size: 0.875rem;
-    color: var(--text-color);
+    font-size: var(--step--1);
+    color: var(--text-muted);
     font-weight: 400;
-    opacity: 0.7;
 }
 
 .chart-container {
@@ -809,22 +775,17 @@ main {
     position: absolute;
     top: 2.5rem; /* Position below the source link button */
     right: 0;
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
+    background: color-mix(in oklab, var(--card), transparent 5%);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 10px);
     padding: 0.5rem;
     font-size: 0.75rem;
-    color: var(--text-color);
+    color: var(--text);
     max-width: 200px;
     z-index: 5;
     opacity: 0;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--t) var(--ease);
     pointer-events: none;
-}
-
-.dark-mode .static-tooltip {
-    background: rgba(17, 17, 17, 0.95);
-    border-color: var(--border-color);
 }
 
 .static-tooltip.visible {
@@ -841,19 +802,19 @@ main {
 .tooltip-title {
     font-weight: 600;
     font-size: 0.8rem;
-    color: var(--text-color);
+    color: var(--text);
 }
 
 .tooltip-value {
     font-size: 0.9rem;
     font-weight: 700;
-    color: var(--text-color);
+    color: var(--text);
 }
 
 .tooltip-date {
     font-size: 0.7rem;
     opacity: 0.8;
-    color: var(--text-color);
+    color: var(--text-muted);
 }
 
 .tooltip-political {
@@ -880,12 +841,12 @@ main {
 
 /* Footer - COMPLETELY OVERHAULED FOR MOBILE */
 footer {
-    background: var(--card-bg);
-    border-top: 1px solid var(--border-color);
+    background: var(--card);
+    border-top: 1px solid var(--border);
     padding: 2rem;
     height: auto;
     min-height: 300px;
-    box-shadow: var(--shadow-light);
+    box-shadow: var(--shadow-sm);
     width: 100%;
 }
 
@@ -1094,7 +1055,7 @@ footer {
 .footer-text {
     text-align: right;
     font-size: 0.75rem;
-    color: var(--text-color);
+    color: var(--text-muted);
     opacity: 0.7;
 }
 
@@ -1106,7 +1067,7 @@ footer {
 .footer-text a {
     color: var(--ap-red);
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--t) var(--ease);
 }
 
 .footer-text a:hover {
@@ -1185,16 +1146,16 @@ footer {
         align-items: stretch;
         gap: 0.5rem;
         padding: 1rem;
-        background: var(--bg-color);
-        border-radius: 12px;
-        border: 1px solid var(--border-color);
-        box-shadow: var(--shadow-light);
-        transition: all 0.2s ease;
+        background: var(--bg);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-sm);
+        transition: all var(--t) var(--ease);
     }
     
     .political-period:hover {
         transform: translateY(-1px);
-        box-shadow: var(--shadow-medium);
+        box-shadow: var(--shadow-md);
     }
     
     /* Header row for each political period */
@@ -1230,7 +1191,7 @@ footer {
         font-size: 0.75rem;
         font-weight: 500;
         margin-left: 0;
-        color: var(--text-color);
+        color: var(--text-muted);
         opacity: 0.8;
     }
     
@@ -1267,9 +1228,9 @@ footer {
     .party-color-item {
         font-size: 0.8rem;
         padding: 0.5rem;
-        background: var(--bg-color);
-        border-radius: 8px;
-        border: 1px solid var(--border-color);
+        background: var(--bg);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
     }
     
     .party-color {
@@ -1294,15 +1255,15 @@ footer {
     .social-link {
         padding: 0.75rem 1rem;
         font-size: 0.875rem;
-        background: var(--bg-color);
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        transition: all 0.2s ease;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        transition: all var(--t) var(--ease);
     }
     
     .social-link:hover {
         transform: translateY(-2px);
-        box-shadow: var(--shadow-medium);
+        box-shadow: var(--shadow-md);
     }
     
     .footer-text {
@@ -1330,7 +1291,7 @@ footer {
     justify-content: center;
     height: 100%;
     font-size: 0.875rem;
-    color: var(--text-color);
+    color: var(--text);
 }
 
 .error {
@@ -1376,20 +1337,20 @@ footer {
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    background: var(--bg-color);
-    border: 2px solid var(--border-color);
-    color: var(--text-color);
+    background: var(--bg);
+    border: 2px solid var(--border);
+    color: var(--text);
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all var(--t) var(--ease);
     z-index: 1000;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .back-to-top-btn:hover {
-    background: var(--border-color);
+    background: var(--border);
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
@@ -1581,17 +1542,17 @@ footer {
 }
 
 .control-btn {
-    background: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 8px);
     padding: 0.5rem;
     width: 40px;
     height: 40px;
     font-size: 0.875rem;
     font-weight: 500;
-    color: var(--text-color);
+    color: var(--text);
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all var(--t) var(--ease);
     font-family: inherit;
     display: flex;
     align-items: center;
@@ -1599,6 +1560,6 @@ footer {
 }
 
 .control-btn:hover {
-    background: var(--border-color);
+    background: var(--border);
     transform: translateY(-1px);
 }

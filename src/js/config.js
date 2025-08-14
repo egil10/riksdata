@@ -196,7 +196,7 @@ export const CHART_CONFIG = {
             },
             ticks: {
                 maxTicksLimit: window.innerWidth < 768 ? 6 : 8, // Fewer ticks on mobile
-                color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim() || '#6B7280',
+                color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#6B7280',
                 font: {
                     size: window.innerWidth < 768 ? 8 : 11, // Smaller font on mobile
                     family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -223,14 +223,14 @@ export const CHART_CONFIG = {
         y: {
             beginAtZero: false,
             grid: {
-                color: getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim() || 'rgba(229, 231, 235, 0.6)',
+                color: getComputedStyle(document.documentElement).getPropertyValue('--grid').trim() || 'rgba(229, 231, 235, 0.6)',
                 drawBorder: false,
                 lineWidth: 1,
                 drawOnChartArea: true,
                 drawTicks: false
             },
             ticks: {
-                color: getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim() || '#6B7280',
+                color: getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim() || '#6B7280',
                 font: {
                     size: window.innerWidth < 768 ? 8 : 11, // Smaller font on mobile
                     family: 'Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
@@ -257,11 +257,9 @@ export const CHART_CONFIG = {
         },
         line: {
             tension: 0.1,
-            borderWidth: 2
-        },
-        bar: {
-            borderWidth: 1,
-            borderSkipped: false
+            borderWidth: 2,
+            borderColor: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#3b82f6',
+            backgroundColor: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#3b82f6'
         }
     }
 };

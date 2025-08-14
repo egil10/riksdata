@@ -149,6 +149,10 @@
                 </div>
             </div>
 
+
+
+
+
             <div class="chart-card">
                 <div class="chart-header">
                     <h3>Key Policy Rate</h3>
@@ -256,6 +260,19 @@
 
             <div class="chart-card">
                 <div class="chart-header">
+                    <h3>Retail Sales</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/1064" target="_blank" class="source-link">SSB 1064</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="retail-sales-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="retail-sales-chart"></canvas>
+                    <div class="static-tooltip" id="retail-sales-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
                     <h3>Export Volume</h3>
                     <a href="https://data.ssb.no/api/v0/dataset/179421" target="_blank" class="source-link">SSB 179421</a>
                     <div class="chart-subtitle">NOK Million</div>
@@ -267,9 +284,44 @@
                 </div>
             </div>
 
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Import Volume</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/179421" target="_blank" class="source-link">SSB 179421</a>
+                    <div class="chart-subtitle">NOK Million</div>
+                </div>
+                <div class="skeleton-chart" id="import-volume-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="import-volume-chart"></canvas>
+                    <div class="static-tooltip" id="import-volume-tooltip"></div>
+                </div>
+            </div>
 
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>EUR/NOK Exchange Rate</h3>
+                    <a href="https://www.norges-bank.no/en/topics/Statistics/open-data/" target="_blank" class="source-link">Norges Bank</a>
+                    <div class="chart-subtitle">NOK per EUR</div>
+                </div>
+                <div class="skeleton-chart" id="eur-exchange-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="eur-exchange-chart"></canvas>
+                    <div class="static-tooltip" id="eur-exchange-tooltip"></div>
+                </div>
+            </div>
 
-
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Employment Rate</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/1054" target="_blank" class="source-link">SSB 1054</a>
+                    <div class="chart-subtitle">Percentage</div>
+                </div>
+                <div class="skeleton-chart" id="employment-rate-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="employment-rate-chart"></canvas>
+                    <div class="static-tooltip" id="employment-rate-tooltip"></div>
+                </div>
+            </div>
 
             <div class="chart-card">
                 <div class="chart-header">
@@ -350,7 +402,18 @@
                 </div>
             </div>
 
-
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Producer Prices</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26426" target="_blank" class="source-link">SSB 26426</a>
+                    <div class="chart-subtitle">Index</div>
+                </div>
+                <div class="skeleton-chart" id="producer-prices-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="producer-prices-chart"></canvas>
+                    <div class="static-tooltip" id="producer-prices-tooltip"></div>
+                </div>
+            </div>
 
             <div class="chart-card">
                 <div class="chart-header">
@@ -538,6 +601,19 @@
 
             <div class="chart-card">
                 <div class="chart-header">
+                    <h3>Holiday Property Sales</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/65962" target="_blank" class="source-link">SSB 65962</a>
+                    <div class="chart-subtitle">Number of Sales</div>
+                </div>
+                <div class="skeleton-chart" id="holiday-property-sales-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="holiday-property-sales-chart"></canvas>
+                    <div class="static-tooltip" id="holiday-property-sales-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
                     <h3>Greenhouse Gas Emissions</h3>
                     <a href="https://data.ssb.no/api/v0/dataset/832678" target="_blank" class="source-link">SSB 832678</a>
                     <div class="chart-subtitle">CO2 Equivalent</div>
@@ -562,8 +638,75 @@
                 </div>
             </div>
 
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>New Dwellings Price</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/26158" target="_blank" class="source-link">SSB 26158</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="new-dwellings-price-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="new-dwellings-price-chart"></canvas>
+                    <div class="static-tooltip" id="new-dwellings-price-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Lifestyle Habits</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/832683" target="_blank" class="source-link">SSB 832683</a>
+                    <div class="chart-subtitle">Percentage</div>
+                </div>
+                <div class="skeleton-chart" id="lifestyle-habits-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="lifestyle-habits-chart"></canvas>
+                    <div class="static-tooltip" id="lifestyle-habits-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Long-term Illness</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/832685" target="_blank" class="source-link">SSB 832685</a>
+                    <div class="chart-subtitle">Percentage</div>
+                </div>
+                <div class="skeleton-chart" id="long-term-illness-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="long-term-illness-chart"></canvas>
+                    <div class="static-tooltip" id="long-term-illness-tooltip"></div>
+                </div>
+            </div>
+
             <!-- 27 Additional Charts -->
             <!-- Removed duplicate population-growth-chart -->
+
+
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>CPI-ATE Index</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/1118" target="_blank" class="source-link">SSB 1118</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="cpi-ate-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cpi-ate-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-ate-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Salmon Export Volume</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/1120" target="_blank" class="source-link">SSB 1120</a>
+                    <div class="chart-subtitle">Tonnes</div>
+                </div>
+                <div class="skeleton-chart" id="salmon-export-volume-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="salmon-export-volume-chart"></canvas>
+                    <div class="static-tooltip" id="salmon-export-volume-tooltip"></div>
+                </div>
+            </div>
 
             <div class="chart-card">
                 <div class="chart-header">
@@ -673,6 +816,32 @@
 
             <div class="chart-card">
                 <div class="chart-header">
+                    <h3>Household Income Size</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/56957" target="_blank" class="source-link">SSB 56957</a>
+                    <div class="chart-subtitle">NOK</div>
+                </div>
+                <div class="skeleton-chart" id="household-income-size-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="household-income-size-chart"></canvas>
+                    <div class="static-tooltip" id="household-income-size-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Cohabiting Arrangements</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/85440" target="_blank" class="source-link">SSB 85440</a>
+                    <div class="chart-subtitle">Percentage</div>
+                </div>
+                <div class="skeleton-chart" id="cohabiting-arrangements-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cohabiting-arrangements-chart"></canvas>
+                    <div class="static-tooltip" id="cohabiting-arrangements-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card">
+                <div class="chart-header">
                     <h3>Utility Floor Space</h3>
                     <a href="https://data.ssb.no/api/v0/dataset/95177" target="_blank" class="source-link">SSB 95177</a>
                     <div class="chart-subtitle">Square meters</div>
@@ -684,9 +853,44 @@
                 </div>
             </div>
 
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Credit Indicator C2</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/166326" target="_blank" class="source-link">SSB 166326</a>
+                    <div class="chart-subtitle">Million NOK</div>
+                </div>
+                <div class="skeleton-chart" id="credit-indicator-c2-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="credit-indicator-c2-chart"></canvas>
+                    <div class="static-tooltip" id="credit-indicator-c2-tooltip"></div>
+                </div>
+            </div>
 
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Oil Gas Turnover</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/124322" target="_blank" class="source-link">SSB 124322</a>
+                    <div class="chart-subtitle">Million NOK</div>
+                </div>
+                <div class="skeleton-chart" id="oil-gas-turnover-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="oil-gas-turnover-chart"></canvas>
+                    <div class="static-tooltip" id="oil-gas-turnover-tooltip"></div>
+                </div>
+            </div>
 
-
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Trade Volume Price</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/179415" target="_blank" class="source-link">SSB 179415</a>
+                    <div class="chart-subtitle">Index (2015=100)</div>
+                </div>
+                <div class="skeleton-chart" id="trade-volume-price-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="trade-volume-price-chart"></canvas>
+                    <div class="static-tooltip" id="trade-volume-price-tooltip"></div>
+                </div>
+            </div>
 
             <div class="chart-card">
                 <div class="chart-header">
@@ -733,6 +937,19 @@
 
             <!-- Removed duplicate new-dwellings-price-chart -->
 
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Business Tendency Survey</h3>
+                    <a href="https://data.ssb.no/api/v0/dataset/166316" target="_blank" class="source-link">SSB 166316</a>
+                    <div class="chart-subtitle">Index</div>
+                </div>
+                <div class="skeleton-chart" id="business-tendency-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="business-tendency-chart"></canvas>
+                    <div class="static-tooltip" id="business-tendency-tooltip"></div>
+                </div>
+            </div>
+            
         </div>
     </main>
 

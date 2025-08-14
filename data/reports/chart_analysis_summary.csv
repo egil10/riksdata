@@ -1,0 +1,119 @@
+chart_id,title,source,dataset_id,chart_type,status,data_points,valid_values,null_percentage,period,data_type,time_span_months
+cpi-chart,Consumer Price Index,SSB,1086,line,Success,559,559,0.0,1979M01 to 2025M07,Float,559
+unemployment-chart,Unemployment Rate,SSB,1052,line,Success,147,147,0.0,2006M01 to 2025M06,Float,147
+house-prices-chart,House Price Index,SSB,1060,line,Success,82,82,0.0,1992K1 to 2025K2,Float,82
+ppi-chart,Producer Price Index,SSB,26426,line,Success,296,296,0.0,2000M01 to 2025M07,Float,296
+wage-chart,Wage Index,SSB,1124,line,Success,37,37,0.0,2016K1 to 2025K1,Float,37
+gdp-growth-chart,GDP Growth,SSB,59012,bar,Success,101,101,0.0,2000K1 to 2025K1,Integer,101
+trade-balance-chart,Trade Balance,SSB,58962,bar,Success,546,546,0.0,1980M01 to 2025M06,Integer,546
+bankruptcies-chart,Bankruptcies,SSB,95265,line,Success,366,366,0.0,1995M01 to 2025M06,Integer,366
+population-growth-chart,Population Growth,SSB,49626,line,Success,75,75,0.0,1951 to 2025,Integer,75
+construction-costs-chart,Construction Costs,SSB,26944,line,Success,557,557,0.0,1978M01 to 2025M06,Float,557
+industrial-production-chart,Industrial Production,SSB,27002,line,Success,426,426,0.0,1990M01 to 2025M06,Float,426
+retail-sales-chart,Retail Sales,SSB,1064,line,Success,0,0,0.0,Unknown,Unknown,0
+export-volume-chart,Export Volume,SSB,179421,line,Success,246,246,0.0,2005M01 to 2025M06,Integer,246
+import-volume-chart,Import Volume,SSB,179422,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+business-confidence-chart,Business Confidence,SSB,166316,line,Success,142,142,0.0,1990K1 to 2025K2,Float,142
+business-tendency-chart,Business Tendency Survey,SSB,166316,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+housing-starts-chart,Housing Starts,SSB,95146,bar,Success,390,390,0.0,1993M01 to 2025M06,Integer,390
+monetary-aggregates-chart,Monetary Aggregates,SSB,172769,line,Success,210,210,0.0,2008M01 to 2025M06,Integer,210
+job-vacancies-chart,Job Vacancies,SSB,166328,bar,Success,53,53,0.0,2010K1 to 2025K1,Float,53
+construction-production-chart,Construction Production,SSB,924808,line,Success,114,114,0.0,2016M01 to 2025M06,Float,114
+credit-indicator-chart,Credit Indicator,SSB,166326,line,Success,451,451,0.0,1985M12 to 2025M06,Integer,451
+credit-indicator-c2-chart,Credit Indicator C2,SSB,166326,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+energy-consumption-chart,Energy Consumption,SSB,928196,line,Success,17,17,0.0,2000 to 2024,Float,17
+government-revenue-chart,Government Revenue,SSB,928194,line,Success,25,25,0.0,2000 to 2024,Integer,25
+international-accounts-chart,International Accounts,SSB,924820,line,Success,101,101,0.0,2000K1 to 2025K1,Integer,101
+labour-cost-index-chart,Labour Cost Index,SSB,760065,line,Success,89,89,0.0,2000K1 to 2025K1,Float,89
+rd-expenditure-chart,R&D Expenditure,SSB,61819,line,Success,35,35,0.0,1970 to 2023,Integer,35
+salmon-export-chart,Salmon Export Value,SSB,1122,line,Success,1336,1336,0.0,2000U01 to 2025U32,Float,1336
+oil-gas-investment-chart,Oil & Gas Investment,SSB,166334,line,Success,97,97,0.0,2001K1 to 2025K1,Integer,97
+immigration-rate-chart,Immigration Rate,SSB,48651,line,Success,42,42,0.0,1970 to 2025,Integer,42
+household-income-chart,Household Income,SSB,56900,line,Success,19,19,0.0,2005 to 2023,Integer,19
+life-expectancy-chart,Life Expectancy,SSB,102811,line,Success,59,59,0.0,1966 to 2024,Float,59
+crime-rate-chart,Crime Rate,SSB,97445,line,Success,17,17,0.0,2007-2008 to 2023-2024,Float,17
+education-level-chart,Education Level,SSB,85454,line,Success,46,46,0.0,1970 to 2024,Integer,46
+greenhouse-gas-chart,Greenhouse Gas Emissions,SSB,832678,line,Success,35,35,0.0,1990 to 2024,Integer,35
+economic-forecasts-chart,Economic Forecasts,SSB,934513,line,Success,28,28,0.0,1991 to 2028,Float,28
+new-dwellings-price-chart,New Dwellings Price,SSB,26158,line,Success,0,0,0.0,Unknown,Unknown,0
+population-development-quarterly-chart,Population Development Quarterly,SSB,1104,line,Success,1,1,0.0,2025K1 to 2025K1,Integer,1
+cpi-adjusted-indices-chart,CPI Adjusted Indices,SSB,1118,line,Success,69,69,0.0,2018M10 to 2025M07,Float,69
+cpi-group-level-chart,CPI Group Level,SSB,1092,line,Success,546,546,0.0,1979M01 to 2025M07,Float,546
+cpi-subgroup-level2-chart,CPI Subgroup Level 2,SSB,1094,line,Success,0,0,0.0,Unknown,Unknown,0
+cpi-seasonally-adjusted-recent-chart,CPI Seasonally Adjusted Recent,SSB,1118,line,Success,2,2,0.0,2025M06 to 2025M07,Float,2
+import-value-volume-sitc-chart,Import Value Volume SITC,SSB,34640,line,Success,37,37,0.0,1988 to 2024,Integer,37
+export-value-volume-sitc-chart,Export Value Volume SITC,SSB,34642,line,Success,37,37,0.0,1988 to 2024,Integer,37
+tax-returns-main-items-chart,Tax Returns Main Items,SSB,49656,line,Success,25,25,0.0,1999 to 2023,Integer,25
+public-administration-expenditures-chart,Public Administration Expenditures,SSB,112175,line,Success,29,29,0.0,1996 to 2024,Integer,29
+money-supply-m0-chart,Money Supply M0,SSB,172771,line,Success,168,168,0.0,2008M01 to 2025M06,Integer,168
+money-supply-m3-net-claims-chart,Money Supply M3 Net Claims,SSB,172800,line,Success,210,210,0.0,2008M01 to 2025M06,Integer,210
+new-detached-house-prices-national-chart,New Detached House Prices National,SSB,25151,line,Success,4,4,0.0,2021 to 2024,Integer,4
+import-value-volume-sitc1-chart,Import Value Volume SITC1,SSB,34254,line,Success,37,37,0.0,1988 to 2024,Integer,37
+export-value-volume-sitc1-chart,Export Value Volume SITC1,SSB,34256,line,Success,37,37,0.0,1988 to 2024,Integer,37
+oil-gas-industry-turnover-chart,Oil Gas Industry Turnover,SSB,124341,line,Success,330,330,0.0,1998M01 to 2025M06,Integer,330
+living-arrangements-national-chart,Living Arrangements National,SSB,86813,bar,Success,20,20,0.0,2005 to 2024,Float,20
+cpi-seasonally-adjusted-chart,CPI Seasonally Adjusted,SSB,45590,line,Success,487,487,0.0,1985M01 to 2025M07,Float,487
+credit-indicator-k2-detailed-chart,Credit Indicator K2 Detailed,SSB,62264,line,Success,451,451,0.0,1987M12 to 2025M06,Integer,451
+first-hand-price-index-chart,First Hand Price Index,SSB,82677,line,Success,295,295,0.0,2001M01 to 2025M07,Float,295
+first-hand-price-index-groups-chart,First Hand Price Index Groups,SSB,82679,line,Success,295,295,0.0,2001M01 to 2025M07,Float,295
+cpi-adjusted-delivery-sector-chart,CPI Adjusted Delivery Sector,SSB,130297,line,Success,114,114,0.0,2015M01 to 2025M07,Float,114
+oil-fund-chart,Oil Fund Value,Cached,oil-fund,line,Error: 'data_points',0,0,0.0,Unknown,Unknown,0
+exchange-chart,USD/NOK,Norges Bank,EXR/M.USD.NOK.SP,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+interest-rate-chart,Key Policy Rate,Norges Bank,IR/M.KPRA.SD.,line,Success,307,307,0.0,Observation 0 to Observation 306,Float,307
+govt-debt-chart,Government Debt,Norges Bank,GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+eur-exchange-chart,EUR/NOK,Norges Bank,EXR/M.EUR.NOK.SP,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+household-consumption-chart,Household Consumption,SSB,166330,line,Success,302,302,0.0,2000M01 to 2025M03,Float,302
+producer-prices-chart,Producer Prices,SSB,26426,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+employment-rate-chart,Employment Rate,SSB,1054,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+oil-price-chart,Oil Price (Brent),SSB,26426,line,No cache file found,0,0,0.0,Unknown,Unknown,0
+immigrants-with-immigrant-parents-chart,Immigrants with Immigrant Parents,SSB,96304,line,Success,42,42,0.0,1970 to 2025,Integer,42
+credit-indicator-k3-chart,Credit Indicator K3,SSB,166327,line,Success,32,32,0.0,2016K2 to 2025K1,Float,32
+cpi-delivery-sector-annual-chart,CPI Delivery Sector Annual,SSB,1100,line,Success,9,9,0.0,2015 to 2024,Float,9
+first-hand-price-index-subgroups-chart,First Hand Price Index Subgroups,SSB,82681,line,Success,295,295,0.0,2001M01 to 2025M07,Float,295
+cpi-adjusted-delivery-sector-recent-chart,CPI Adjusted Delivery Sector Recent,SSB,130299,line,Success,2,2,0.0,2025M06 to 2025M07,Float,2
+producer-price-index-recent-chart,Producer Price Index Recent,SSB,26428,line,Success,2,2,0.0,2025M06 to 2025M07,Float,2
+cpi-delivery-sector-recent-chart,CPI Delivery Sector Recent,SSB,1101,line,Success,2,2,0.0,2025M06 to 2025M07,Float,2
+credit-indicator-k2-seasonally-adjusted-chart,Credit Indicator K2 Seasonally Adjusted,SSB,166329,line,Success,475,475,0.0,1985M12 to 2025M06,Integer,475
+producer-price-index-subgroups-chart,Producer Price Index Subgroups,SSB,26429,line,Success,296,296,0.0,2000M01 to 2025M07,Float,296
+import-value-sitc3-chart,Import Value SITC3,SSB,34641,line,Success,306,306,0.0,2000M01 to 2025M06,Integer,306
+export-value-sitc3-chart,Export Value SITC3,SSB,34643,line,Success,208,208,0.0,2008M03 to 2025M06,Integer,208
+trade-volume-price-bec-chart,Trade Volume Price BEC,SSB,179415,line,Success,146,146,0.0,1989K1 to 2025K2,Float,146
+producer-price-index-industries-chart,Producer Price Index Industries,SSB,26430,line,Success,296,296,0.0,2000M01 to 2025M07,Float,296
+trade-volume-price-product-groups-chart,Trade Volume Price Product Groups,SSB,179417,line,Success,146,146,0.0,1989K1 to 2025K2,Float,146
+trade-volume-price-sitc2-chart,Trade Volume Price SITC2,SSB,179418,line,Success,0,0,0.0,Unknown,Unknown,0
+producer-price-index-products-chart,Producer Price Index Products,SSB,26431,line,Success,296,296,0.0,2000M01 to 2025M07,Float,296
+business-cycle-barometer-products-chart,Business Cycle Barometer Products,SSB,166317,line,Success,142,142,0.0,1990K1 to 2025K2,Float,142
+business-cycle-barometer-chart,Business Cycle Barometer,SSB,166318,line,Success,142,142,0.0,1990K1 to 2025K2,Float,142
+household-income-national-chart,Household Income National,SSB,56957,line,Success,18,18,0.0,2006 to 2023,Integer,18
+oil-gas-industry-turnover-sn2007-chart,Oil Gas Industry Turnover SN2007,SSB,124322,line,Success,330,330,0.0,1998M01 to 2025M06,Float,330
+house-price-index-recent-chart,House Price Index Recent,SSB,1061,line,Success,5,5,0.0,2024K2 to 2025K2,Float,5
+national-accounts-recent-chart,National Accounts Recent,SSB,59013,line,Success,2,2,0.0,2024K4 to 2025K1,Integer,2
+producer-price-index-subgroups-detailed-chart,Producer Price Index Subgroups Detailed,SSB,26432,line,Success,296,296,0.0,2000M01 to 2025M07,Float,296
+cpi-total-index-recent-chart,CPI Total Index Recent,SSB,1087,line,Success,2,2,0.0,2025M06 to 2025M07,Float,2
+trade-main-figures-recent-chart,Trade Main Figures Recent,SSB,179419,line,Success,2,2,0.0,2025M05 to 2025M06,Integer,2
+production-index-industry-recent-chart,Production Index Industry Recent,SSB,26953,line,Success,13,13,0.0,2024M06 to 2025M06,Float,13
+producer-price-index-totals-recent-chart,Producer Price Index Totals Recent,SSB,26433,line,Success,2,2,0.0,2025M06 to 2025M07,Float,2
+economic-forecasts-selected-chart,Economic Forecasts Selected,SSB,934514,line,Success,4,4,0.0,2025 to 2028,Float,4
+monetary-m3-chart,Monetary Aggregate M3,SSB,172793,line,Success,210,210,0.0,2008M01 to 2025M06,Integer,210
+bankruptcies-total-chart,Bankruptcies Total,SSB,924816,line,Success,546,546,0.0,1980M01 to 2025M06,Integer,546
+basic-salary-chart,Basic Salary Index,SSB,1126,line,Success,37,37,0.0,2016K1 to 2025K1,Float,37
+births-deaths-chart,Births and Deaths,SSB,1106,line,Success,9,9,0.0,2023K1 to 2025K1,Integer,9
+cohabiting-arrangements-chart,Cohabiting Arrangements,SSB,85440,line,Success,5,5,0.0,2020 to 2024,Float,5
+construction-cost-multi-chart,Construction Cost Multi,SSB,1058,line,Success,557,557,0.0,1978M01 to 2025M06,Float,557
+construction-cost-wood-chart,Construction Cost Wood,SSB,1056,line,Success,557,557,0.0,1978M01 to 2025M06,Float,557
+cpi-coicop-chart,CPI Coicop Divisions,SSB,1084,line,Success,546,546,0.0,1979M01 to 2025M07,Float,546
+cpi-delivery-chart,CPI Delivery Sectors,SSB,1100,line,Success,114,114,0.0,2015M01 to 2025M07,Float,114
+cpi-items-chart,CPI Items,SSB,1096,line,Success,240,240,0.0,2005M08 to 2025M07,Float,240
+cpi-subgroups-chart,CPI Sub-Groups,SSB,1090,line,Success,546,546,0.0,1979M01 to 2025M07,Float,546
+cpi-ate-chart,CPI-ATE Index,SSB,1118,line,Success,69,69,0.0,2018M10 to 2025M07,Float,69
+education-level-chart,Education Level,SSB,85454,line,Success,46,46,0.0,1970 to 2024,Integer,46
+holiday-property-sales-chart,Holiday Property Sales,SSB,65962,line,Success,5,5,0.0,2020 to 2024,Integer,5
+household-income-size-chart,Household Income Size,SSB,56957,line,Success,4,4,0.0,2020 to 2023,Integer,4
+household-types-chart,Household Types,SSB,1068,line,Success,20,20,0.0,2005 to 2024,Integer,20
+lifestyle-habits-chart,Lifestyle Habits,SSB,832683,line,Success,5,5,0.0,1998 to 2012,Integer,5
+long-term-illness-chart,Long-term Illness,SSB,832685,line,Success,7,7,0.0,1998 to 2019,Integer,7
+oil-gas-turnover-chart,Oil Gas Turnover,SSB,124322,line,Success,330,330,0.0,1998M01 to 2025M06,Float,330
+producer-price-industry-chart,Producer Price Industry,SSB,741023,line,Success,296,296,0.0,2000M01 to 2025M07,Float,296
+salmon-export-volume-chart,Salmon Export Volume,SSB,1120,line,Success,2,2,0.0,2025U31 to 2025U32,Float,2
+trade-volume-price-chart,Trade Volume Price,SSB,179415,line,Success,146,146,0.0,1989K1 to 2025K2,Float,146
+utility-floor-space-chart,Utility Floor Space,SSB,95177,line,Success,162,162,0.0,2012M01 to 2025M06,Float,162

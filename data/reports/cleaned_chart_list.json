@@ -1,0 +1,7907 @@
+{
+  "timestamp": "2025-08-14T11:38:04.454009",
+  "summary": {
+    "original_charts": 118,
+    "cleaned_charts": 90,
+    "removed_charts": 37,
+    "removal_reasons": {
+      "duplicates": 10,
+      "failed": 10,
+      "zero_data": 14,
+      "short_term": 34
+    }
+  },
+  "charts": [
+    {
+      "chart_id": "ppi-chart",
+      "title": "Producer Price Index",
+      "source": "SSB",
+      "dataset_id": "26426",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -18.6,
+      "max_value": 1000.0,
+      "mean_value": 267.3182432432431,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 29.9,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 0.3,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 1000.0,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 31.0,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": 3.7,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 20.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 1000.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 46.1,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -3.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 19.7,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "business-confidence-chart",
+      "title": "Business Confidence",
+      "source": "SSB",
+      "dataset_id": "166316",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 142,
+      "valid_values": 142,
+      "null_percentage": 0.0,
+      "min_value": -9.7,
+      "max_value": 84.0,
+      "mean_value": 29.666901408450702,
+      "head_5": [
+        {
+          "date": "1990K1",
+          "value": 4.7,
+          "time_key": "1990K1"
+        },
+        {
+          "date": "1990K2",
+          "value": 81.7,
+          "time_key": "1990K2"
+        },
+        {
+          "date": "1990K3",
+          "value": 3.6,
+          "time_key": "1990K3"
+        },
+        {
+          "date": "1990K4",
+          "value": 24.0,
+          "time_key": "1990K4"
+        },
+        {
+          "date": "1991K1",
+          "value": 3.7,
+          "time_key": "1991K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 81.9,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 3.7,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 38.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": -8.0,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 81.1,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1990K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 142
+    },
+    {
+      "chart_id": "credit-indicator-chart",
+      "title": "Credit Indicator",
+      "source": "SSB",
+      "dataset_id": "166326",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 451,
+      "valid_values": 451,
+      "null_percentage": 0.0,
+      "min_value": -40844.0,
+      "max_value": 1206730.0,
+      "mean_value": 329967.3337028826,
+      "head_5": [
+        {
+          "date": "1985M12",
+          "value": 543932.0,
+          "time_key": "1985M12"
+        },
+        {
+          "date": "1986M03",
+          "value": 552791.0,
+          "time_key": "1986M03"
+        },
+        {
+          "date": "1986M06",
+          "value": 558223.0,
+          "time_key": "1986M06"
+        },
+        {
+          "date": "1986M09",
+          "value": 567365.0,
+          "time_key": "1986M09"
+        },
+        {
+          "date": "1986M12",
+          "value": 581168.0,
+          "time_key": "1986M12"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 8.3,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 1195039.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 86869.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 7.8,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 1206730.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1985M12 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 451
+    },
+    {
+      "chart_id": "education-level-chart",
+      "title": "Education Level",
+      "source": "SSB",
+      "dataset_id": "85454",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 46,
+      "valid_values": 46,
+      "null_percentage": 0.0,
+      "min_value": 100.0,
+      "max_value": 3571191.0,
+      "mean_value": 1682156.3043478262,
+      "head_5": [
+        {
+          "date": "1970",
+          "value": 2872950.0,
+          "time_key": "1970"
+        },
+        {
+          "date": "1980",
+          "value": 100.0,
+          "time_key": "1980"
+        },
+        {
+          "date": "1981",
+          "value": 3136190.0,
+          "time_key": "1981"
+        },
+        {
+          "date": "1982",
+          "value": 100.0,
+          "time_key": "1982"
+        },
+        {
+          "date": "1983",
+          "value": 3156003.0,
+          "time_key": "1983"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 100.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 3558436.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 100.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 3571191.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 100.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1970 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 46
+    },
+    {
+      "chart_id": "cpi-adjusted-indices-chart",
+      "title": "CPI Adjusted Indices",
+      "source": "SSB",
+      "dataset_id": "1118",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 69,
+      "valid_values": 69,
+      "null_percentage": 0.0,
+      "min_value": -2.3,
+      "max_value": 83.4,
+      "mean_value": 33.28115942028986,
+      "head_5": [
+        {
+          "date": "2018M10",
+          "value": 81.4,
+          "time_key": "2018M10"
+        },
+        {
+          "date": "2019M01",
+          "value": 83.3,
+          "time_key": "2019M01"
+        },
+        {
+          "date": "2019M02",
+          "value": 2.3,
+          "time_key": "2019M02"
+        },
+        {
+          "date": "2019M04",
+          "value": 83.4,
+          "time_key": "2019M04"
+        },
+        {
+          "date": "2019M05",
+          "value": 0.1,
+          "time_key": "2019M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.4,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 81.9,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 82.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2018M10 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 69
+    },
+    {
+      "chart_id": "cpi-delivery-chart",
+      "title": "CPI Delivery Sectors",
+      "source": "SSB",
+      "dataset_id": "1100",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 114,
+      "valid_values": 114,
+      "null_percentage": 0.0,
+      "min_value": -0.9,
+      "max_value": 504.3,
+      "mean_value": 165.58859649122815,
+      "head_5": [
+        {
+          "date": "2015M01",
+          "value": 98.2,
+          "time_key": "2015M01"
+        },
+        {
+          "date": "2015M04",
+          "value": 504.3,
+          "time_key": "2015M04"
+        },
+        {
+          "date": "2015M05",
+          "value": 98.9,
+          "time_key": "2015M05"
+        },
+        {
+          "date": "2015M06",
+          "value": 0.7,
+          "time_key": "2015M06"
+        },
+        {
+          "date": "2015M08",
+          "value": 504.3,
+          "time_key": "2015M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.7,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 496.4,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 104.8,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -0.9,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.3,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2015M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 114
+    },
+    {
+      "chart_id": "trade-volume-price-bec-chart",
+      "title": "Trade Volume Price BEC",
+      "source": "SSB",
+      "dataset_id": "179415",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 146,
+      "valid_values": 146,
+      "null_percentage": 0.0,
+      "min_value": 26.5,
+      "max_value": 161.6,
+      "mean_value": 93.58287671232874,
+      "head_5": [
+        {
+          "date": "1989K1",
+          "value": 129.3,
+          "time_key": "1989K1"
+        },
+        {
+          "date": "1989K2",
+          "value": 26.5,
+          "time_key": "1989K2"
+        },
+        {
+          "date": "1989K3",
+          "value": 136.4,
+          "time_key": "1989K3"
+        },
+        {
+          "date": "1989K4",
+          "value": 32.7,
+          "time_key": "1989K4"
+        },
+        {
+          "date": "1990K1",
+          "value": 138.6,
+          "time_key": "1990K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 132.1,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 89.2,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 161.6,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 90.9,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 151.1,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1989K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 146
+    },
+    {
+      "chart_id": "household-income-national-chart",
+      "title": "Household Income National",
+      "source": "SSB",
+      "dataset_id": "56957",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 18,
+      "valid_values": 18,
+      "null_percentage": 0.0,
+      "min_value": 2051473.0,
+      "max_value": 2583538.0,
+      "mean_value": 2309479.888888889,
+      "head_5": [
+        {
+          "date": "2006",
+          "value": 2051473.0,
+          "time_key": "2006"
+        },
+        {
+          "date": "2007",
+          "value": 2093483.0,
+          "time_key": "2007"
+        },
+        {
+          "date": "2008",
+          "value": 2127365.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2009",
+          "value": 2152031.0,
+          "time_key": "2009"
+        },
+        {
+          "date": "2010",
+          "value": 2172063.0,
+          "time_key": "2010"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2019",
+          "value": 2436001.0,
+          "time_key": "2019"
+        },
+        {
+          "date": "2020",
+          "value": 2467329.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 2499398.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 2544718.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 2583538.0,
+          "time_key": "2023"
+        }
+      ],
+      "period": "2006 to 2023",
+      "data_type": "Integer",
+      "time_span_months": 18
+    },
+    {
+      "chart_id": "oil-gas-industry-turnover-sn2007-chart",
+      "title": "Oil Gas Industry Turnover SN2007",
+      "source": "SSB",
+      "dataset_id": "124322",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 330,
+      "valid_values": 330,
+      "null_percentage": 0.0,
+      "min_value": 20.4,
+      "max_value": 29593.0,
+      "mean_value": 2796.4621212121197,
+      "head_5": [
+        {
+          "date": "1998M01",
+          "value": 12091.0,
+          "time_key": "1998M01"
+        },
+        {
+          "date": "1998M02",
+          "value": 36.7,
+          "time_key": "1998M02"
+        },
+        {
+          "date": "1998M03",
+          "value": 34.3,
+          "time_key": "1998M03"
+        },
+        {
+          "date": "1998M04",
+          "value": 34.7,
+          "time_key": "1998M04"
+        },
+        {
+          "date": "1998M05",
+          "value": 36.7,
+          "time_key": "1998M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 54.5,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 52.2,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 55.6,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 54.4,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 55.2,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1998M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 330
+    },
+    {
+      "chart_id": "cpi-chart",
+      "title": "Consumer Price Index",
+      "source": "SSB",
+      "dataset_id": "1086",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 559,
+      "valid_values": 559,
+      "null_percentage": 0.0,
+      "min_value": -0.4,
+      "max_value": 65.8,
+      "mean_value": 18.409660107334506,
+      "head_5": [
+        {
+          "date": "1979M01",
+          "value": 25.3,
+          "time_key": "1979M01"
+        },
+        {
+          "date": "1979M02",
+          "value": 0.0,
+          "time_key": "1979M02"
+        },
+        {
+          "date": "1979M03",
+          "value": 5.9,
+          "time_key": "1979M03"
+        },
+        {
+          "date": "1979M04",
+          "value": 25.4,
+          "time_key": "1979M04"
+        },
+        {
+          "date": "1979M05",
+          "value": 0.4,
+          "time_key": "1979M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.9,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 65.7,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.3,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 1.1,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 65.8,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "1979M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 559
+    },
+    {
+      "chart_id": "unemployment-chart",
+      "title": "Unemployment Rate",
+      "source": "SSB",
+      "dataset_id": "1052",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 147,
+      "valid_values": 147,
+      "null_percentage": 0.0,
+      "min_value": 2.6,
+      "max_value": 2598.0,
+      "mean_value": 1393.3095238095243,
+      "head_5": [
+        {
+          "date": "2006M01",
+          "value": 2448.0,
+          "time_key": "2006M01"
+        },
+        {
+          "date": "2006M02",
+          "value": 2345.0,
+          "time_key": "2006M02"
+        },
+        {
+          "date": "2006M03",
+          "value": 1788.0,
+          "time_key": "2006M03"
+        },
+        {
+          "date": "2006M04",
+          "value": 103.0,
+          "time_key": "2006M04"
+        },
+        {
+          "date": "2006M07",
+          "value": 4.2,
+          "time_key": "2006M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024M11",
+          "value": 1929.0,
+          "time_key": "2024M11"
+        },
+        {
+          "date": "2024M12",
+          "value": 72.0,
+          "time_key": "2024M12"
+        },
+        {
+          "date": "2025M03",
+          "value": 2.8,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M05",
+          "value": 2598.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 2523.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2006M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 147
+    },
+    {
+      "chart_id": "house-prices-chart",
+      "title": "House Price Index",
+      "source": "SSB",
+      "dataset_id": "1060",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 82,
+      "valid_values": 82,
+      "null_percentage": 0.0,
+      "min_value": 17.8,
+      "max_value": 72.0,
+      "mean_value": 44.23170731707317,
+      "head_5": [
+        {
+          "date": "1992K1",
+          "value": 18.8,
+          "time_key": "1992K1"
+        },
+        {
+          "date": "1992K3",
+          "value": 18.9,
+          "time_key": "1992K3"
+        },
+        {
+          "date": "1993K1",
+          "value": 19.0,
+          "time_key": "1993K1"
+        },
+        {
+          "date": "1993K3",
+          "value": 18.5,
+          "time_key": "1993K3"
+        },
+        {
+          "date": "1994K1",
+          "value": 17.8,
+          "time_key": "1994K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 71.0,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 72.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 70.7,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 69.6,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 69.4,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1992K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 82
+    },
+    {
+      "chart_id": "ppi-chart",
+      "title": "Producer Price Index",
+      "source": "SSB",
+      "dataset_id": "26426",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -18.6,
+      "max_value": 1000.0,
+      "mean_value": 267.3182432432431,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 29.9,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 0.3,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 1000.0,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 31.0,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": 3.7,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 20.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 1000.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 46.1,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -3.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 19.7,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "wage-chart",
+      "title": "Wage Index",
+      "source": "SSB",
+      "dataset_id": "1124",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 37,
+      "valid_values": 37,
+      "null_percentage": 0.0,
+      "min_value": 72.8,
+      "max_value": 105.2,
+      "mean_value": 85.39189189189189,
+      "head_5": [
+        {
+          "date": "2016K1",
+          "value": 75.9,
+          "time_key": "2016K1"
+        },
+        {
+          "date": "2016K2",
+          "value": 75.0,
+          "time_key": "2016K2"
+        },
+        {
+          "date": "2016K3",
+          "value": 72.8,
+          "time_key": "2016K3"
+        },
+        {
+          "date": "2016K4",
+          "value": 74.4,
+          "time_key": "2016K4"
+        },
+        {
+          "date": "2017K1",
+          "value": 77.0,
+          "time_key": "2017K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 100.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 99.5,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 97.7,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 101.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 105.2,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2016K1 to 2025K1",
+      "data_type": "Float",
+      "time_span_months": 37
+    },
+    {
+      "chart_id": "gdp-growth-chart",
+      "title": "GDP Growth",
+      "source": "SSB",
+      "dataset_id": "59012",
+      "chart_type": "bar",
+      "status": "Success",
+      "data_points": 101,
+      "valid_values": 101,
+      "null_percentage": 0.0,
+      "min_value": 150397.0,
+      "max_value": 541575.0,
+      "mean_value": 306996.0792079208,
+      "head_5": [
+        {
+          "date": "2000K1",
+          "value": 150397.0,
+          "time_key": "2000K1"
+        },
+        {
+          "date": "2000K2",
+          "value": 157276.0,
+          "time_key": "2000K2"
+        },
+        {
+          "date": "2000K3",
+          "value": 163079.0,
+          "time_key": "2000K3"
+        },
+        {
+          "date": "2000K4",
+          "value": 169198.0,
+          "time_key": "2000K4"
+        },
+        {
+          "date": "2001K1",
+          "value": 157565.0,
+          "time_key": "2001K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 485721.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 526067.0,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 497330.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 541575.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 513486.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2000K1 to 2025K1",
+      "data_type": "Integer",
+      "time_span_months": 101
+    },
+    {
+      "chart_id": "trade-balance-chart",
+      "title": "Trade Balance",
+      "source": "SSB",
+      "dataset_id": "58962",
+      "chart_type": "bar",
+      "status": "Success",
+      "data_points": 546,
+      "valid_values": 546,
+      "null_percentage": 0.0,
+      "min_value": 6335.0,
+      "max_value": 104077.0,
+      "mean_value": 33518.080586080585,
+      "head_5": [
+        {
+          "date": "1980M01",
+          "value": 6937.0,
+          "time_key": "1980M01"
+        },
+        {
+          "date": "1980M02",
+          "value": 6750.0,
+          "time_key": "1980M02"
+        },
+        {
+          "date": "1980M03",
+          "value": 7332.0,
+          "time_key": "1980M03"
+        },
+        {
+          "date": "1980M04",
+          "value": 6364.0,
+          "time_key": "1980M04"
+        },
+        {
+          "date": "1980M05",
+          "value": 6840.0,
+          "time_key": "1980M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 87282.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 96757.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 91518.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 92086.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 91964.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1980M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 546
+    },
+    {
+      "chart_id": "bankruptcies-chart",
+      "title": "Bankruptcies",
+      "source": "SSB",
+      "dataset_id": "95265",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 366,
+      "valid_values": 366,
+      "null_percentage": 0.0,
+      "min_value": 68.0,
+      "max_value": 2291.0,
+      "mean_value": 660.6612021857924,
+      "head_5": [
+        {
+          "date": "1995M01",
+          "value": 225.0,
+          "time_key": "1995M01"
+        },
+        {
+          "date": "1995M02",
+          "value": 101.0,
+          "time_key": "1995M02"
+        },
+        {
+          "date": "1995M03",
+          "value": 1685.0,
+          "time_key": "1995M03"
+        },
+        {
+          "date": "1995M04",
+          "value": 1056.0,
+          "time_key": "1995M04"
+        },
+        {
+          "date": "1995M05",
+          "value": 1801.0,
+          "time_key": "1995M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 132.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 836.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 555.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 1959.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 189.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1995M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 366
+    },
+    {
+      "chart_id": "population-growth-chart",
+      "title": "Population Growth",
+      "source": "SSB",
+      "dataset_id": "49626",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 75,
+      "valid_values": 75,
+      "null_percentage": 0.0,
+      "min_value": 5967.0,
+      "max_value": 3708609.0,
+      "mean_value": 723485.6133333333,
+      "head_5": [
+        {
+          "date": "1951",
+          "value": 3280296.0,
+          "time_key": "1951"
+        },
+        {
+          "date": "1952",
+          "value": 60571.0,
+          "time_key": "1952"
+        },
+        {
+          "date": "1953",
+          "value": 27736.0,
+          "time_key": "1953"
+        },
+        {
+          "date": "1954",
+          "value": 6046.0,
+          "time_key": "1954"
+        },
+        {
+          "date": "1955",
+          "value": 10172.0,
+          "time_key": "1955"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2021",
+          "value": 3708609.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 66277.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 35317.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 12148.0,
+          "time_key": "2024"
+        },
+        {
+          "date": "2025",
+          "value": 14021.0,
+          "time_key": "2025"
+        }
+      ],
+      "period": "1951 to 2025",
+      "data_type": "Integer",
+      "time_span_months": 75
+    },
+    {
+      "chart_id": "construction-costs-chart",
+      "title": "Construction Costs",
+      "source": "SSB",
+      "dataset_id": "26944",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 557,
+      "valid_values": 557,
+      "null_percentage": 0.0,
+      "min_value": -0.4,
+      "max_value": 47.5,
+      "mean_value": 13.825673249551167,
+      "head_5": [
+        {
+          "date": "1978M01",
+          "value": 20.7,
+          "time_key": "1978M01"
+        },
+        {
+          "date": "1978M04",
+          "value": 20.7,
+          "time_key": "1978M04"
+        },
+        {
+          "date": "1978M05",
+          "value": 0.0,
+          "time_key": "1978M05"
+        },
+        {
+          "date": "1978M07",
+          "value": 20.8,
+          "time_key": "1978M07"
+        },
+        {
+          "date": "1978M08",
+          "value": 0.5,
+          "time_key": "1978M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 0.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 0.4,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 47.5,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.6,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1978M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 557
+    },
+    {
+      "chart_id": "industrial-production-chart",
+      "title": "Industrial Production",
+      "source": "SSB",
+      "dataset_id": "27002",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 426,
+      "valid_values": 426,
+      "null_percentage": 0.0,
+      "min_value": 70.1,
+      "max_value": 129.2,
+      "mean_value": 102.5795774647888,
+      "head_5": [
+        {
+          "date": "1990M01",
+          "value": 75.0,
+          "time_key": "1990M01"
+        },
+        {
+          "date": "1990M02",
+          "value": 74.9,
+          "time_key": "1990M02"
+        },
+        {
+          "date": "1990M03",
+          "value": 74.6,
+          "time_key": "1990M03"
+        },
+        {
+          "date": "1990M04",
+          "value": 75.4,
+          "time_key": "1990M04"
+        },
+        {
+          "date": "1990M05",
+          "value": 75.9,
+          "time_key": "1990M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 102.7,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 102.3,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 104.6,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 104.1,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 104.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1990M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 426
+    },
+    {
+      "chart_id": "export-volume-chart",
+      "title": "Export Volume",
+      "source": "SSB",
+      "dataset_id": "179421",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 246,
+      "valid_values": 246,
+      "null_percentage": 0.0,
+      "min_value": 24375.0,
+      "max_value": 57202.0,
+      "mean_value": 39762.86991869919,
+      "head_5": [
+        {
+          "date": "2005M01",
+          "value": 25956.0,
+          "time_key": "2005M01"
+        },
+        {
+          "date": "2005M02",
+          "value": 24375.0,
+          "time_key": "2005M02"
+        },
+        {
+          "date": "2005M03",
+          "value": 28331.0,
+          "time_key": "2005M03"
+        },
+        {
+          "date": "2005M04",
+          "value": 26887.0,
+          "time_key": "2005M04"
+        },
+        {
+          "date": "2005M05",
+          "value": 28880.0,
+          "time_key": "2005M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 45392.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 48316.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 45272.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 51443.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 56390.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2005M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 246
+    },
+    {
+      "chart_id": "business-confidence-chart",
+      "title": "Business Confidence",
+      "source": "SSB",
+      "dataset_id": "166316",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 142,
+      "valid_values": 142,
+      "null_percentage": 0.0,
+      "min_value": -9.7,
+      "max_value": 84.0,
+      "mean_value": 29.666901408450702,
+      "head_5": [
+        {
+          "date": "1990K1",
+          "value": 4.7,
+          "time_key": "1990K1"
+        },
+        {
+          "date": "1990K2",
+          "value": 81.7,
+          "time_key": "1990K2"
+        },
+        {
+          "date": "1990K3",
+          "value": 3.6,
+          "time_key": "1990K3"
+        },
+        {
+          "date": "1990K4",
+          "value": 24.0,
+          "time_key": "1990K4"
+        },
+        {
+          "date": "1991K1",
+          "value": 3.7,
+          "time_key": "1991K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 81.9,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 3.7,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 38.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": -8.0,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 81.1,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1990K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 142
+    },
+    {
+      "chart_id": "housing-starts-chart",
+      "title": "Housing Starts",
+      "source": "SSB",
+      "dataset_id": "95146",
+      "chart_type": "bar",
+      "status": "Success",
+      "data_points": 390,
+      "valid_values": 390,
+      "null_percentage": 0.0,
+      "min_value": 761.0,
+      "max_value": 4138.0,
+      "mean_value": 2168.1384615384613,
+      "head_5": [
+        {
+          "date": "1993M01",
+          "value": 1072.0,
+          "time_key": "1993M01"
+        },
+        {
+          "date": "1993M02",
+          "value": 967.0,
+          "time_key": "1993M02"
+        },
+        {
+          "date": "1993M03",
+          "value": 1011.0,
+          "time_key": "1993M03"
+        },
+        {
+          "date": "1993M04",
+          "value": 915.0,
+          "time_key": "1993M04"
+        },
+        {
+          "date": "1993M05",
+          "value": 1093.0,
+          "time_key": "1993M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 1351.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 2910.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 1640.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 1235.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 2250.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1993M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 390
+    },
+    {
+      "chart_id": "monetary-aggregates-chart",
+      "title": "Monetary Aggregates",
+      "source": "SSB",
+      "dataset_id": "172769",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 210,
+      "valid_values": 210,
+      "null_percentage": 0.0,
+      "min_value": 710245.0,
+      "max_value": 2966654.0,
+      "mean_value": 1707858.8761904761,
+      "head_5": [
+        {
+          "date": "2008M01",
+          "value": 753646.0,
+          "time_key": "2008M01"
+        },
+        {
+          "date": "2008M02",
+          "value": 741081.0,
+          "time_key": "2008M02"
+        },
+        {
+          "date": "2008M03",
+          "value": 734245.0,
+          "time_key": "2008M03"
+        },
+        {
+          "date": "2008M04",
+          "value": 733570.0,
+          "time_key": "2008M04"
+        },
+        {
+          "date": "2008M05",
+          "value": 734997.0,
+          "time_key": "2008M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 2788465.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 2864789.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 2869432.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 2927118.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 2966654.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2008M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 210
+    },
+    {
+      "chart_id": "job-vacancies-chart",
+      "title": "Job Vacancies",
+      "source": "SSB",
+      "dataset_id": "166328",
+      "chart_type": "bar",
+      "status": "Success",
+      "data_points": 53,
+      "valid_values": 53,
+      "null_percentage": 0.0,
+      "min_value": -7100.0,
+      "max_value": 78500.0,
+      "mean_value": 19776.220754716982,
+      "head_5": [
+        {
+          "date": "2010K1",
+          "value": 60500.0,
+          "time_key": "2010K1"
+        },
+        {
+          "date": "2010K2",
+          "value": 2.5,
+          "time_key": "2010K2"
+        },
+        {
+          "date": "2011K1",
+          "value": 67900.0,
+          "time_key": "2011K1"
+        },
+        {
+          "date": "2011K2",
+          "value": 2.8,
+          "time_key": "2011K2"
+        },
+        {
+          "date": "2012K1",
+          "value": 63900.0,
+          "time_key": "2012K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 59100.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 2.3,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": -1800.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": -0.1,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 50900.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2010K1 to 2025K1",
+      "data_type": "Float",
+      "time_span_months": 53
+    },
+    {
+      "chart_id": "construction-production-chart",
+      "title": "Construction Production",
+      "source": "SSB",
+      "dataset_id": "924808",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 114,
+      "valid_values": 114,
+      "null_percentage": 0.0,
+      "min_value": 52.9,
+      "max_value": 122.8,
+      "mean_value": 97.43157894736838,
+      "head_5": [
+        {
+          "date": "2016M01",
+          "value": 82.9,
+          "time_key": "2016M01"
+        },
+        {
+          "date": "2016M02",
+          "value": 81.9,
+          "time_key": "2016M02"
+        },
+        {
+          "date": "2016M03",
+          "value": 79.2,
+          "time_key": "2016M03"
+        },
+        {
+          "date": "2016M04",
+          "value": 88.0,
+          "time_key": "2016M04"
+        },
+        {
+          "date": "2016M05",
+          "value": 82.0,
+          "time_key": "2016M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 91.7,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 100.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 88.2,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 98.4,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 100.3,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2016M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 114
+    },
+    {
+      "chart_id": "credit-indicator-chart",
+      "title": "Credit Indicator",
+      "source": "SSB",
+      "dataset_id": "166326",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 451,
+      "valid_values": 451,
+      "null_percentage": 0.0,
+      "min_value": -40844.0,
+      "max_value": 1206730.0,
+      "mean_value": 329967.3337028826,
+      "head_5": [
+        {
+          "date": "1985M12",
+          "value": 543932.0,
+          "time_key": "1985M12"
+        },
+        {
+          "date": "1986M03",
+          "value": 552791.0,
+          "time_key": "1986M03"
+        },
+        {
+          "date": "1986M06",
+          "value": 558223.0,
+          "time_key": "1986M06"
+        },
+        {
+          "date": "1986M09",
+          "value": 567365.0,
+          "time_key": "1986M09"
+        },
+        {
+          "date": "1986M12",
+          "value": 581168.0,
+          "time_key": "1986M12"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 8.3,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 1195039.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 86869.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 7.8,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 1206730.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1985M12 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 451
+    },
+    {
+      "chart_id": "energy-consumption-chart",
+      "title": "Energy Consumption",
+      "source": "SSB",
+      "dataset_id": "928196",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 17,
+      "valid_values": 17,
+      "null_percentage": 0.0,
+      "min_value": 9823.9,
+      "max_value": 2933861.0,
+      "mean_value": 1511660.2411764702,
+      "head_5": [
+        {
+          "date": "2000",
+          "value": 2791477.0,
+          "time_key": "2000"
+        },
+        {
+          "date": "2001",
+          "value": 10049.3,
+          "time_key": "2001"
+        },
+        {
+          "date": "2003",
+          "value": 2828406.0,
+          "time_key": "2003"
+        },
+        {
+          "date": "2004",
+          "value": 10182.3,
+          "time_key": "2004"
+        },
+        {
+          "date": "2006",
+          "value": 2892551.0,
+          "time_key": "2006"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2018",
+          "value": 2825519.0,
+          "time_key": "2018"
+        },
+        {
+          "date": "2019",
+          "value": 10171.9,
+          "time_key": "2019"
+        },
+        {
+          "date": "2021",
+          "value": 2728874.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 9823.9,
+          "time_key": "2022"
+        },
+        {
+          "date": "2024",
+          "value": 2775133.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2000 to 2024",
+      "data_type": "Float",
+      "time_span_months": 17
+    },
+    {
+      "chart_id": "government-revenue-chart",
+      "title": "Government Revenue",
+      "source": "SSB",
+      "dataset_id": "928194",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 25,
+      "valid_values": 25,
+      "null_percentage": 0.0,
+      "min_value": 850735.0,
+      "max_value": 3615516.0,
+      "mean_value": 1711626.96,
+      "head_5": [
+        {
+          "date": "2000",
+          "value": 850735.0,
+          "time_key": "2000"
+        },
+        {
+          "date": "2001",
+          "value": 883355.0,
+          "time_key": "2001"
+        },
+        {
+          "date": "2002",
+          "value": 863041.0,
+          "time_key": "2002"
+        },
+        {
+          "date": "2003",
+          "value": 890778.0,
+          "time_key": "2003"
+        },
+        {
+          "date": "2004",
+          "value": 993897.0,
+          "time_key": "2004"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 1874458.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 2447425.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 3615516.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 3188374.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 3203407.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2000 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 25
+    },
+    {
+      "chart_id": "international-accounts-chart",
+      "title": "International Accounts",
+      "source": "SSB",
+      "dataset_id": "924820",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 101,
+      "valid_values": 101,
+      "null_percentage": 0.0,
+      "min_value": 153980.0,
+      "max_value": 990448.0,
+      "mean_value": 320457.45544554456,
+      "head_5": [
+        {
+          "date": "2000K1",
+          "value": 155565.0,
+          "time_key": "2000K1"
+        },
+        {
+          "date": "2000K2",
+          "value": 160873.0,
+          "time_key": "2000K2"
+        },
+        {
+          "date": "2000K3",
+          "value": 176626.0,
+          "time_key": "2000K3"
+        },
+        {
+          "date": "2000K4",
+          "value": 195294.0,
+          "time_key": "2000K4"
+        },
+        {
+          "date": "2001K1",
+          "value": 182430.0,
+          "time_key": "2001K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 573068.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 630164.0,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 602355.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 662370.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 666141.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2000K1 to 2025K1",
+      "data_type": "Integer",
+      "time_span_months": 101
+    },
+    {
+      "chart_id": "labour-cost-index-chart",
+      "title": "Labour Cost Index",
+      "source": "SSB",
+      "dataset_id": "760065",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 89,
+      "valid_values": 89,
+      "null_percentage": 0.0,
+      "min_value": -3.8,
+      "max_value": 57.8,
+      "mean_value": 30.350561797752807,
+      "head_5": [
+        {
+          "date": "2000K1",
+          "value": 42.6,
+          "time_key": "2000K1"
+        },
+        {
+          "date": "2000K3",
+          "value": 45.3,
+          "time_key": "2000K3"
+        },
+        {
+          "date": "2001K1",
+          "value": 33.2,
+          "time_key": "2001K1"
+        },
+        {
+          "date": "2001K3",
+          "value": 43.2,
+          "time_key": "2001K3"
+        },
+        {
+          "date": "2002K1",
+          "value": 45.9,
+          "time_key": "2002K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 56.4,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 5.8,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 57.8,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 4.1,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 49.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2000K1 to 2025K1",
+      "data_type": "Float",
+      "time_span_months": 89
+    },
+    {
+      "chart_id": "rd-expenditure-chart",
+      "title": "R&D Expenditure",
+      "source": "SSB",
+      "dataset_id": "61819",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 35,
+      "valid_values": 35,
+      "null_percentage": 0.0,
+      "min_value": 16977.0,
+      "max_value": 98700.0,
+      "mean_value": 55008.28571428572,
+      "head_5": [
+        {
+          "date": "1970",
+          "value": 16977.0,
+          "time_key": "1970"
+        },
+        {
+          "date": "1972",
+          "value": 19676.0,
+          "time_key": "1972"
+        },
+        {
+          "date": "1974",
+          "value": 21820.0,
+          "time_key": "1974"
+        },
+        {
+          "date": "1977",
+          "value": 23952.0,
+          "time_key": "1977"
+        },
+        {
+          "date": "1979",
+          "value": 25154.0,
+          "time_key": "1979"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2019",
+          "value": 89864.0,
+          "time_key": "2019"
+        },
+        {
+          "date": "2020",
+          "value": 91341.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 94241.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 96779.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 98700.0,
+          "time_key": "2023"
+        }
+      ],
+      "period": "1970 to 2023",
+      "data_type": "Integer",
+      "time_span_months": 35
+    },
+    {
+      "chart_id": "salmon-export-chart",
+      "title": "Salmon Export Value",
+      "source": "SSB",
+      "dataset_id": "1122",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 1336,
+      "valid_values": 1336,
+      "null_percentage": 0.0,
+      "min_value": 17.46,
+      "max_value": 22369.0,
+      "mean_value": 4355.362919161677,
+      "head_5": [
+        {
+          "date": "2000U01",
+          "value": 3728.0,
+          "time_key": "2000U01"
+        },
+        {
+          "date": "2000U02",
+          "value": 30.98,
+          "time_key": "2000U02"
+        },
+        {
+          "date": "2000U03",
+          "value": 4054.0,
+          "time_key": "2000U03"
+        },
+        {
+          "date": "2000U04",
+          "value": 31.12,
+          "time_key": "2000U04"
+        },
+        {
+          "date": "2000U05",
+          "value": 4043.0,
+          "time_key": "2000U05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025U28",
+          "value": 24.28,
+          "time_key": "2025U28"
+        },
+        {
+          "date": "2025U29",
+          "value": 17499.0,
+          "time_key": "2025U29"
+        },
+        {
+          "date": "2025U30",
+          "value": 26.66,
+          "time_key": "2025U30"
+        },
+        {
+          "date": "2025U31",
+          "value": 18298.0,
+          "time_key": "2025U31"
+        },
+        {
+          "date": "2025U32",
+          "value": 26.24,
+          "time_key": "2025U32"
+        }
+      ],
+      "period": "2000U01 to 2025U32",
+      "data_type": "Float",
+      "time_span_months": 1336
+    },
+    {
+      "chart_id": "oil-gas-investment-chart",
+      "title": "Oil & Gas Investment",
+      "source": "SSB",
+      "dataset_id": "166334",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 97,
+      "valid_values": 97,
+      "null_percentage": 0.0,
+      "min_value": 12646.0,
+      "max_value": 68745.0,
+      "mean_value": 37461.9175257732,
+      "head_5": [
+        {
+          "date": "2001K1",
+          "value": 12646.0,
+          "time_key": "2001K1"
+        },
+        {
+          "date": "2001K2",
+          "value": 13830.0,
+          "time_key": "2001K2"
+        },
+        {
+          "date": "2001K3",
+          "value": 14434.0,
+          "time_key": "2001K3"
+        },
+        {
+          "date": "2001K4",
+          "value": 16234.0,
+          "time_key": "2001K4"
+        },
+        {
+          "date": "2002K1",
+          "value": 13341.0,
+          "time_key": "2002K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 55326.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 63671.0,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 63425.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 68745.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 61015.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2001K1 to 2025K1",
+      "data_type": "Integer",
+      "time_span_months": 97
+    },
+    {
+      "chart_id": "immigration-rate-chart",
+      "title": "Immigration Rate",
+      "source": "SSB",
+      "dataset_id": "48651",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 42,
+      "valid_values": 42,
+      "null_percentage": 0.0,
+      "min_value": 26095.0,
+      "max_value": 246298.0,
+      "mean_value": 99992.42857142857,
+      "head_5": [
+        {
+          "date": "1970",
+          "value": 26095.0,
+          "time_key": "1970"
+        },
+        {
+          "date": "1980",
+          "value": 31776.0,
+          "time_key": "1980"
+        },
+        {
+          "date": "1986",
+          "value": 36318.0,
+          "time_key": "1986"
+        },
+        {
+          "date": "1987",
+          "value": 37508.0,
+          "time_key": "1987"
+        },
+        {
+          "date": "1988",
+          "value": 38901.0,
+          "time_key": "1988"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2021",
+          "value": 185409.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 189950.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 214623.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 235304.0,
+          "time_key": "2024"
+        },
+        {
+          "date": "2025",
+          "value": 246298.0,
+          "time_key": "2025"
+        }
+      ],
+      "period": "1970 to 2025",
+      "data_type": "Integer",
+      "time_span_months": 42
+    },
+    {
+      "chart_id": "household-income-chart",
+      "title": "Household Income",
+      "source": "SSB",
+      "dataset_id": "56900",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 19,
+      "valid_values": 19,
+      "null_percentage": 0.0,
+      "min_value": 420000.0,
+      "max_value": 807000.0,
+      "mean_value": 601947.3684210526,
+      "head_5": [
+        {
+          "date": "2005",
+          "value": 420000.0,
+          "time_key": "2005"
+        },
+        {
+          "date": "2006",
+          "value": 438000.0,
+          "time_key": "2006"
+        },
+        {
+          "date": "2007",
+          "value": 471000.0,
+          "time_key": "2007"
+        },
+        {
+          "date": "2008",
+          "value": 502000.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2009",
+          "value": 510000.0,
+          "time_key": "2009"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2019",
+          "value": 686000.0,
+          "time_key": "2019"
+        },
+        {
+          "date": "2020",
+          "value": 694000.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 725000.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 756000.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 807000.0,
+          "time_key": "2023"
+        }
+      ],
+      "period": "2005 to 2023",
+      "data_type": "Integer",
+      "time_span_months": 19
+    },
+    {
+      "chart_id": "life-expectancy-chart",
+      "title": "Life Expectancy",
+      "source": "SSB",
+      "dataset_id": "102811",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 59,
+      "valid_values": 59,
+      "null_percentage": 0.0,
+      "min_value": 8.685,
+      "max_value": 100000.0,
+      "mean_value": 25736.52549152542,
+      "head_5": [
+        {
+          "date": "1966",
+          "value": 100000.0,
+          "time_key": "1966"
+        },
+        {
+          "date": "1967",
+          "value": 1493.0,
+          "time_key": "1967"
+        },
+        {
+          "date": "1968",
+          "value": 73.96,
+          "time_key": "1968"
+        },
+        {
+          "date": "1969",
+          "value": 14.932,
+          "time_key": "1969"
+        },
+        {
+          "date": "1970",
+          "value": 100000.0,
+          "time_key": "1970"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 75.42,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 8.769,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 100000.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 802.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 75.69,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1966 to 2024",
+      "data_type": "Float",
+      "time_span_months": 59
+    },
+    {
+      "chart_id": "crime-rate-chart",
+      "title": "Crime Rate",
+      "source": "SSB",
+      "dataset_id": "97445",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 17,
+      "valid_values": 17,
+      "null_percentage": 0.0,
+      "min_value": 70.0,
+      "max_value": 395859.0,
+      "mean_value": 201866.9470588235,
+      "head_5": [
+        {
+          "date": "2007-2008",
+          "value": 392225.0,
+          "time_key": "2007-2008"
+        },
+        {
+          "date": "2008-2009",
+          "value": 82.8,
+          "time_key": "2008-2009"
+        },
+        {
+          "date": "2009-2010",
+          "value": 391916.0,
+          "time_key": "2009-2010"
+        },
+        {
+          "date": "2010-2011",
+          "value": 81.7,
+          "time_key": "2010-2011"
+        },
+        {
+          "date": "2011-2012",
+          "value": 395859.0,
+          "time_key": "2011-2012"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2019-2020",
+          "value": 380307.0,
+          "time_key": "2019-2020"
+        },
+        {
+          "date": "2020-2021",
+          "value": 74.4,
+          "time_key": "2020-2021"
+        },
+        {
+          "date": "2021-2022",
+          "value": 361783.0,
+          "time_key": "2021-2022"
+        },
+        {
+          "date": "2022-2023",
+          "value": 70.0,
+          "time_key": "2022-2023"
+        },
+        {
+          "date": "2023-2024",
+          "value": 343936.0,
+          "time_key": "2023-2024"
+        }
+      ],
+      "period": "2007-2008 to 2023-2024",
+      "data_type": "Float",
+      "time_span_months": 17
+    },
+    {
+      "chart_id": "education-level-chart",
+      "title": "Education Level",
+      "source": "SSB",
+      "dataset_id": "85454",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 46,
+      "valid_values": 46,
+      "null_percentage": 0.0,
+      "min_value": 100.0,
+      "max_value": 3571191.0,
+      "mean_value": 1682156.3043478262,
+      "head_5": [
+        {
+          "date": "1970",
+          "value": 2872950.0,
+          "time_key": "1970"
+        },
+        {
+          "date": "1980",
+          "value": 100.0,
+          "time_key": "1980"
+        },
+        {
+          "date": "1981",
+          "value": 3136190.0,
+          "time_key": "1981"
+        },
+        {
+          "date": "1982",
+          "value": 100.0,
+          "time_key": "1982"
+        },
+        {
+          "date": "1983",
+          "value": 3156003.0,
+          "time_key": "1983"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 100.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 3558436.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 100.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 3571191.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 100.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1970 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 46
+    },
+    {
+      "chart_id": "greenhouse-gas-chart",
+      "title": "Greenhouse Gas Emissions",
+      "source": "SSB",
+      "dataset_id": "832678",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 35,
+      "valid_values": 35,
+      "null_percentage": 0.0,
+      "min_value": 45006.0,
+      "max_value": 56548.0,
+      "mean_value": 52734.37142857143,
+      "head_5": [
+        {
+          "date": "1990",
+          "value": 51348.0,
+          "time_key": "1990"
+        },
+        {
+          "date": "1991",
+          "value": 48987.0,
+          "time_key": "1991"
+        },
+        {
+          "date": "1992",
+          "value": 47450.0,
+          "time_key": "1992"
+        },
+        {
+          "date": "1993",
+          "value": 49379.0,
+          "time_key": "1993"
+        },
+        {
+          "date": "1994",
+          "value": 51331.0,
+          "time_key": "1994"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 49499.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 49325.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 48973.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 46654.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 45006.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1990 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 35
+    },
+    {
+      "chart_id": "economic-forecasts-chart",
+      "title": "Economic Forecasts",
+      "source": "SSB",
+      "dataset_id": "934513",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 28,
+      "valid_values": 28,
+      "null_percentage": 0.0,
+      "min_value": -15.2,
+      "max_value": 30.4,
+      "mean_value": 3.8864285714285716,
+      "head_5": [
+        {
+          "date": "1991",
+          "value": 2.1,
+          "time_key": "1991"
+        },
+        {
+          "date": "1992",
+          "value": 5.8,
+          "time_key": "1992"
+        },
+        {
+          "date": "1993",
+          "value": -0.4,
+          "time_key": "1993"
+        },
+        {
+          "date": "1994",
+          "value": 30.4,
+          "time_key": "1994"
+        },
+        {
+          "date": "1995",
+          "value": -5.2,
+          "time_key": "1995"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024",
+          "value": 1.7,
+          "time_key": "2024"
+        },
+        {
+          "date": "2025",
+          "value": 8.02,
+          "time_key": "2025"
+        },
+        {
+          "date": "2026",
+          "value": 26.0,
+          "time_key": "2026"
+        },
+        {
+          "date": "2027",
+          "value": 3.3,
+          "time_key": "2027"
+        },
+        {
+          "date": "2028",
+          "value": 2.0,
+          "time_key": "2028"
+        }
+      ],
+      "period": "1991 to 2028",
+      "data_type": "Float",
+      "time_span_months": 28
+    },
+    {
+      "chart_id": "cpi-adjusted-indices-chart",
+      "title": "CPI Adjusted Indices",
+      "source": "SSB",
+      "dataset_id": "1118",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 69,
+      "valid_values": 69,
+      "null_percentage": 0.0,
+      "min_value": -2.3,
+      "max_value": 83.4,
+      "mean_value": 33.28115942028986,
+      "head_5": [
+        {
+          "date": "2018M10",
+          "value": 81.4,
+          "time_key": "2018M10"
+        },
+        {
+          "date": "2019M01",
+          "value": 83.3,
+          "time_key": "2019M01"
+        },
+        {
+          "date": "2019M02",
+          "value": 2.3,
+          "time_key": "2019M02"
+        },
+        {
+          "date": "2019M04",
+          "value": 83.4,
+          "time_key": "2019M04"
+        },
+        {
+          "date": "2019M05",
+          "value": 0.1,
+          "time_key": "2019M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.4,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 81.9,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 82.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2018M10 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 69
+    },
+    {
+      "chart_id": "cpi-group-level-chart",
+      "title": "CPI Group Level",
+      "source": "SSB",
+      "dataset_id": "1092",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 546,
+      "valid_values": 546,
+      "null_percentage": 0.0,
+      "min_value": -1.4,
+      "max_value": 188.4,
+      "mean_value": 59.22069597069597,
+      "head_5": [
+        {
+          "date": "1979M01",
+          "value": 27.1,
+          "time_key": "1979M01"
+        },
+        {
+          "date": "1979M04",
+          "value": 182.4,
+          "time_key": "1979M04"
+        },
+        {
+          "date": "1979M05",
+          "value": 27.2,
+          "time_key": "1979M05"
+        },
+        {
+          "date": "1979M06",
+          "value": 0.4,
+          "time_key": "1979M06"
+        },
+        {
+          "date": "1979M08",
+          "value": 182.4,
+          "time_key": "1979M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 4.3,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 144.8,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 67.9,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -0.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 4.0,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "1979M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 546
+    },
+    {
+      "chart_id": "import-value-volume-sitc-chart",
+      "title": "Import Value Volume SITC",
+      "source": "SSB",
+      "dataset_id": "34640",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 37,
+      "valid_values": 37,
+      "null_percentage": 0.0,
+      "min_value": 239.0,
+      "max_value": 156876.0,
+      "mean_value": 34202.81081081081,
+      "head_5": [
+        {
+          "date": "1988",
+          "value": 29808.0,
+          "time_key": "1988"
+        },
+        {
+          "date": "1989",
+          "value": 279.0,
+          "time_key": "1989"
+        },
+        {
+          "date": "1990",
+          "value": 32992.0,
+          "time_key": "1990"
+        },
+        {
+          "date": "1991",
+          "value": 264.0,
+          "time_key": "1991"
+        },
+        {
+          "date": "1992",
+          "value": 26769.0,
+          "time_key": "1992"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 97257.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 698.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 113468.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 825.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 156876.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1988 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 37
+    },
+    {
+      "chart_id": "export-value-volume-sitc-chart",
+      "title": "Export Value Volume SITC",
+      "source": "SSB",
+      "dataset_id": "34642",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 37,
+      "valid_values": 37,
+      "null_percentage": 0.0,
+      "min_value": 79.0,
+      "max_value": 26464.0,
+      "mean_value": 7582.918918918919,
+      "head_5": [
+        {
+          "date": "1988",
+          "value": 12349.0,
+          "time_key": "1988"
+        },
+        {
+          "date": "1989",
+          "value": 150.0,
+          "time_key": "1989"
+        },
+        {
+          "date": "1990",
+          "value": 10654.0,
+          "time_key": "1990"
+        },
+        {
+          "date": "1991",
+          "value": 104.0,
+          "time_key": "1991"
+        },
+        {
+          "date": "1992",
+          "value": 10173.0,
+          "time_key": "1992"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 16233.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 166.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 15593.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 179.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 26464.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1988 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 37
+    },
+    {
+      "chart_id": "tax-returns-main-items-chart",
+      "title": "Tax Returns Main Items",
+      "source": "SSB",
+      "dataset_id": "49656",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 25,
+      "valid_values": 25,
+      "null_percentage": 0.0,
+      "min_value": 20600.0,
+      "max_value": 366500.0,
+      "mean_value": 152008.0,
+      "head_5": [
+        {
+          "date": "1999",
+          "value": 220000.0,
+          "time_key": "1999"
+        },
+        {
+          "date": "2000",
+          "value": 149800.0,
+          "time_key": "2000"
+        },
+        {
+          "date": "2001",
+          "value": 55400.0,
+          "time_key": "2001"
+        },
+        {
+          "date": "2002",
+          "value": 165700.0,
+          "time_key": "2002"
+        },
+        {
+          "date": "2003",
+          "value": 93600.0,
+          "time_key": "2003"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2019",
+          "value": 245000.0,
+          "time_key": "2019"
+        },
+        {
+          "date": "2020",
+          "value": 202200.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 128400.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 43700.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 140200.0,
+          "time_key": "2023"
+        }
+      ],
+      "period": "1999 to 2023",
+      "data_type": "Integer",
+      "time_span_months": 25
+    },
+    {
+      "chart_id": "public-administration-expenditures-chart",
+      "title": "Public Administration Expenditures",
+      "source": "SSB",
+      "dataset_id": "112175",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 29,
+      "valid_values": 29,
+      "null_percentage": 0.0,
+      "min_value": 493336.0,
+      "max_value": 2524615.0,
+      "mean_value": 1249325.2068965517,
+      "head_5": [
+        {
+          "date": "1996",
+          "value": 493336.0,
+          "time_key": "1996"
+        },
+        {
+          "date": "1997",
+          "value": 516380.0,
+          "time_key": "1997"
+        },
+        {
+          "date": "1998",
+          "value": 553427.0,
+          "time_key": "1998"
+        },
+        {
+          "date": "1999",
+          "value": 585945.0,
+          "time_key": "1999"
+        },
+        {
+          "date": "2000",
+          "value": 623664.0,
+          "time_key": "2000"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 1963064.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 2002671.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 2151437.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 2347156.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 2524615.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1996 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 29
+    },
+    {
+      "chart_id": "money-supply-m0-chart",
+      "title": "Money Supply M0",
+      "source": "SSB",
+      "dataset_id": "172771",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 168,
+      "valid_values": 168,
+      "null_percentage": 0.0,
+      "min_value": 30.0,
+      "max_value": 167428.0,
+      "mean_value": 53265.82738095238,
+      "head_5": [
+        {
+          "date": "2008M01",
+          "value": 69264.0,
+          "time_key": "2008M01"
+        },
+        {
+          "date": "2008M02",
+          "value": 50657.0,
+          "time_key": "2008M02"
+        },
+        {
+          "date": "2008M04",
+          "value": 18571.0,
+          "time_key": "2008M04"
+        },
+        {
+          "date": "2008M05",
+          "value": 35.0,
+          "time_key": "2008M05"
+        },
+        {
+          "date": "2008M06",
+          "value": 64676.0,
+          "time_key": "2008M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M01",
+          "value": 53.0,
+          "time_key": "2025M01"
+        },
+        {
+          "date": "2025M02",
+          "value": 95055.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 50739.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M05",
+          "value": 44263.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 53.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2008M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 168
+    },
+    {
+      "chart_id": "money-supply-m3-net-claims-chart",
+      "title": "Money Supply M3 Net Claims",
+      "source": "SSB",
+      "dataset_id": "172800",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 210,
+      "valid_values": 210,
+      "null_percentage": 0.0,
+      "min_value": -913873.0,
+      "max_value": -42626.0,
+      "mean_value": -481508.38095238095,
+      "head_5": [
+        {
+          "date": "2008M01",
+          "value": -607392.0,
+          "time_key": "2008M01"
+        },
+        {
+          "date": "2008M02",
+          "value": -120625.0,
+          "time_key": "2008M02"
+        },
+        {
+          "date": "2008M03",
+          "value": -645048.0,
+          "time_key": "2008M03"
+        },
+        {
+          "date": "2008M04",
+          "value": -107818.0,
+          "time_key": "2008M04"
+        },
+        {
+          "date": "2008M05",
+          "value": -676827.0,
+          "time_key": "2008M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": -120823.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": -843807.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": -125121.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": -854621.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -135982.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2008M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 210
+    },
+    {
+      "chart_id": "import-value-volume-sitc1-chart",
+      "title": "Import Value Volume SITC1",
+      "source": "SSB",
+      "dataset_id": "34254",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 37,
+      "valid_values": 37,
+      "null_percentage": 0.0,
+      "min_value": 22084460.0,
+      "max_value": 411755116.0,
+      "mean_value": 139824839.43243244,
+      "head_5": [
+        {
+          "date": "1988",
+          "value": 151100619.0,
+          "time_key": "1988"
+        },
+        {
+          "date": "1989",
+          "value": 22891470.0,
+          "time_key": "1989"
+        },
+        {
+          "date": "1990",
+          "value": 163380270.0,
+          "time_key": "1990"
+        },
+        {
+          "date": "1991",
+          "value": 22103499.0,
+          "time_key": "1991"
+        },
+        {
+          "date": "1992",
+          "value": 169998436.0,
+          "time_key": "1992"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 326101463.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 32884648.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 357656485.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 35052423.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 411755116.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1988 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 37
+    },
+    {
+      "chart_id": "export-value-volume-sitc1-chart",
+      "title": "Export Value Volume SITC1",
+      "source": "SSB",
+      "dataset_id": "34256",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 37,
+      "valid_values": 37,
+      "null_percentage": 0.0,
+      "min_value": 94321641.0,
+      "max_value": 782943173.0,
+      "mean_value": 283515763.6486486,
+      "head_5": [
+        {
+          "date": "1988",
+          "value": 146164553.0,
+          "time_key": "1988"
+        },
+        {
+          "date": "1989",
+          "value": 94321641.0,
+          "time_key": "1989"
+        },
+        {
+          "date": "1990",
+          "value": 187146380.0,
+          "time_key": "1990"
+        },
+        {
+          "date": "1991",
+          "value": 115424615.0,
+          "time_key": "1991"
+        },
+        {
+          "date": "1992",
+          "value": 211579395.0,
+          "time_key": "1992"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 554896214.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 241590617.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 668759548.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 233505860.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 782943173.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1988 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 37
+    },
+    {
+      "chart_id": "oil-gas-industry-turnover-chart",
+      "title": "Oil Gas Industry Turnover",
+      "source": "SSB",
+      "dataset_id": "124341",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 330,
+      "valid_values": 330,
+      "null_percentage": 0.0,
+      "min_value": 12940.0,
+      "max_value": 65376.0,
+      "mean_value": 31482.50909090909,
+      "head_5": [
+        {
+          "date": "1998M01",
+          "value": 13853.0,
+          "time_key": "1998M01"
+        },
+        {
+          "date": "1998M02",
+          "value": 14285.0,
+          "time_key": "1998M02"
+        },
+        {
+          "date": "1998M03",
+          "value": 16308.0,
+          "time_key": "1998M03"
+        },
+        {
+          "date": "1998M04",
+          "value": 15110.0,
+          "time_key": "1998M04"
+        },
+        {
+          "date": "1998M05",
+          "value": 15603.0,
+          "time_key": "1998M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 57323.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 65121.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 61144.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 64296.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 64758.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1998M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 330
+    },
+    {
+      "chart_id": "living-arrangements-national-chart",
+      "title": "Living Arrangements National",
+      "source": "SSB",
+      "dataset_id": "86813",
+      "chart_type": "bar",
+      "status": "Success",
+      "data_points": 20,
+      "valid_values": 20,
+      "null_percentage": 0.0,
+      "min_value": 39.6,
+      "max_value": 47.7,
+      "mean_value": 43.50499999999999,
+      "head_5": [
+        {
+          "date": "2005",
+          "value": 47.7,
+          "time_key": "2005"
+        },
+        {
+          "date": "2006",
+          "value": 47.3,
+          "time_key": "2006"
+        },
+        {
+          "date": "2007",
+          "value": 46.7,
+          "time_key": "2007"
+        },
+        {
+          "date": "2008",
+          "value": 46.2,
+          "time_key": "2008"
+        },
+        {
+          "date": "2009",
+          "value": 45.7,
+          "time_key": "2009"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 41.3,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 40.8,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 40.3,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 39.9,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 39.6,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2005 to 2024",
+      "data_type": "Float",
+      "time_span_months": 20
+    },
+    {
+      "chart_id": "cpi-seasonally-adjusted-chart",
+      "title": "CPI Seasonally Adjusted",
+      "source": "SSB",
+      "dataset_id": "45590",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 487,
+      "valid_values": 487,
+      "null_percentage": 0.0,
+      "min_value": 43.0,
+      "max_value": 138.0,
+      "mean_value": 84.7535934291581,
+      "head_5": [
+        {
+          "date": "1985M01",
+          "value": 43.0,
+          "time_key": "1985M01"
+        },
+        {
+          "date": "1985M02",
+          "value": 43.2,
+          "time_key": "1985M02"
+        },
+        {
+          "date": "1985M03",
+          "value": 43.5,
+          "time_key": "1985M03"
+        },
+        {
+          "date": "1985M04",
+          "value": 43.7,
+          "time_key": "1985M04"
+        },
+        {
+          "date": "1985M05",
+          "value": 44.0,
+          "time_key": "1985M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 136.4,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 136.6,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 137.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 137.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 138.0,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "1985M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 487
+    },
+    {
+      "chart_id": "credit-indicator-k2-detailed-chart",
+      "title": "Credit Indicator K2 Detailed",
+      "source": "SSB",
+      "dataset_id": "62264",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 451,
+      "valid_values": 451,
+      "null_percentage": 0.0,
+      "min_value": 778063.0,
+      "max_value": 7689035.0,
+      "mean_value": 3146806.024390244,
+      "head_5": [
+        {
+          "date": "1987M12",
+          "value": 778063.0,
+          "time_key": "1987M12"
+        },
+        {
+          "date": "1988M01",
+          "value": 781360.0,
+          "time_key": "1988M01"
+        },
+        {
+          "date": "1988M02",
+          "value": 785926.0,
+          "time_key": "1988M02"
+        },
+        {
+          "date": "1988M03",
+          "value": 794793.0,
+          "time_key": "1988M03"
+        },
+        {
+          "date": "1988M04",
+          "value": 796097.0,
+          "time_key": "1988M04"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 7556949.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 7578622.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 7616705.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 7639058.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 7689035.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1987M12 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 451
+    },
+    {
+      "chart_id": "first-hand-price-index-chart",
+      "title": "First Hand Price Index",
+      "source": "SSB",
+      "dataset_id": "82677",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 295,
+      "valid_values": 295,
+      "null_percentage": 0.0,
+      "min_value": -6.5,
+      "max_value": 1000.0,
+      "mean_value": 262.71830508474574,
+      "head_5": [
+        {
+          "date": "2001M01",
+          "value": 53.6,
+          "time_key": "2001M01"
+        },
+        {
+          "date": "2001M02",
+          "value": -1.1,
+          "time_key": "2001M02"
+        },
+        {
+          "date": "2001M03",
+          "value": 0.9,
+          "time_key": "2001M03"
+        },
+        {
+          "date": "2001M04",
+          "value": 1000.0,
+          "time_key": "2001M04"
+        },
+        {
+          "date": "2001M05",
+          "value": 54.7,
+          "time_key": "2001M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 1000.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 63.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.6,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.5,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2001M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 295
+    },
+    {
+      "chart_id": "first-hand-price-index-groups-chart",
+      "title": "First Hand Price Index Groups",
+      "source": "SSB",
+      "dataset_id": "82679",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 295,
+      "valid_values": 295,
+      "null_percentage": 0.0,
+      "min_value": -1.7,
+      "max_value": 239.5,
+      "mean_value": 65.0322033898306,
+      "head_5": [
+        {
+          "date": "2001M01",
+          "value": 56.0,
+          "time_key": "2001M01"
+        },
+        {
+          "date": "2001M02",
+          "value": 0.0,
+          "time_key": "2001M02"
+        },
+        {
+          "date": "2001M03",
+          "value": 1.8,
+          "time_key": "2001M03"
+        },
+        {
+          "date": "2001M04",
+          "value": 196.0,
+          "time_key": "2001M04"
+        },
+        {
+          "date": "2001M05",
+          "value": 56.1,
+          "time_key": "2001M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 4.8,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 155.8,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 63.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 4.8,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2001M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 295
+    },
+    {
+      "chart_id": "cpi-adjusted-delivery-sector-chart",
+      "title": "CPI Adjusted Delivery Sector",
+      "source": "SSB",
+      "dataset_id": "130297",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 114,
+      "valid_values": 114,
+      "null_percentage": 0.0,
+      "min_value": -1.2,
+      "max_value": 504.3,
+      "mean_value": 165.62105263157903,
+      "head_5": [
+        {
+          "date": "2015M01",
+          "value": 98.1,
+          "time_key": "2015M01"
+        },
+        {
+          "date": "2015M04",
+          "value": 504.3,
+          "time_key": "2015M04"
+        },
+        {
+          "date": "2015M05",
+          "value": 98.7,
+          "time_key": "2015M05"
+        },
+        {
+          "date": "2015M06",
+          "value": 0.6,
+          "time_key": "2015M06"
+        },
+        {
+          "date": "2015M08",
+          "value": 504.3,
+          "time_key": "2015M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 496.4,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 104.8,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -1.0,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.1,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2015M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 114
+    },
+    {
+      "chart_id": "interest-rate-chart",
+      "title": "Key Policy Rate",
+      "source": "Norges Bank",
+      "dataset_id": "IR/M.KPRA.SD.",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 307,
+      "valid_values": 307,
+      "null_percentage": 0.0,
+      "min_value": 0.0,
+      "max_value": 7.0,
+      "mean_value": 2.6135504885993495,
+      "head_5": [
+        {
+          "date": "Observation 0",
+          "value": 5.5,
+          "time_key": "0"
+        },
+        {
+          "date": "Observation 1",
+          "value": 5.5,
+          "time_key": "1"
+        },
+        {
+          "date": "Observation 2",
+          "value": 5.5,
+          "time_key": "2"
+        },
+        {
+          "date": "Observation 3",
+          "value": 5.63,
+          "time_key": "3"
+        },
+        {
+          "date": "Observation 4",
+          "value": 5.75,
+          "time_key": "4"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "Observation 302",
+          "value": 4.5,
+          "time_key": "302"
+        },
+        {
+          "date": "Observation 303",
+          "value": 4.5,
+          "time_key": "303"
+        },
+        {
+          "date": "Observation 304",
+          "value": 4.5,
+          "time_key": "304"
+        },
+        {
+          "date": "Observation 305",
+          "value": 4.41,
+          "time_key": "305"
+        },
+        {
+          "date": "Observation 306",
+          "value": 4.25,
+          "time_key": "306"
+        }
+      ],
+      "period": "Observation 0 to Observation 306",
+      "data_type": "Float",
+      "time_span_months": 307
+    },
+    {
+      "chart_id": "household-consumption-chart",
+      "title": "Household Consumption",
+      "source": "SSB",
+      "dataset_id": "166330",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 302,
+      "valid_values": 302,
+      "null_percentage": 0.0,
+      "min_value": -4.1,
+      "max_value": 129.8,
+      "mean_value": 46.85331125827814,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 77.2,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 8.1,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M03",
+          "value": 82.3,
+          "time_key": "2000M03"
+        },
+        {
+          "date": "2000M05",
+          "value": 76.0,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": 10.3,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024M11",
+          "value": 103.0,
+          "time_key": "2024M11"
+        },
+        {
+          "date": "2024M12",
+          "value": 1.6,
+          "time_key": "2024M12"
+        },
+        {
+          "date": "2025M01",
+          "value": 95.4,
+          "time_key": "2025M01"
+        },
+        {
+          "date": "2025M02",
+          "value": -1.2,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 103.7,
+          "time_key": "2025M03"
+        }
+      ],
+      "period": "2000M01 to 2025M03",
+      "data_type": "Float",
+      "time_span_months": 302
+    },
+    {
+      "chart_id": "immigrants-with-immigrant-parents-chart",
+      "title": "Immigrants with Immigrant Parents",
+      "source": "SSB",
+      "dataset_id": "96304",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 42,
+      "valid_values": 42,
+      "null_percentage": 0.0,
+      "min_value": 27053.0,
+      "max_value": 284417.0,
+      "mean_value": 112257.14285714286,
+      "head_5": [
+        {
+          "date": "1970",
+          "value": 27053.0,
+          "time_key": "1970"
+        },
+        {
+          "date": "1980",
+          "value": 33383.0,
+          "time_key": "1980"
+        },
+        {
+          "date": "1986",
+          "value": 38360.0,
+          "time_key": "1986"
+        },
+        {
+          "date": "1987",
+          "value": 39656.0,
+          "time_key": "1987"
+        },
+        {
+          "date": "1988",
+          "value": 41169.0,
+          "time_key": "1988"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2021",
+          "value": 217947.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 223983.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 250015.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 271983.0,
+          "time_key": "2024"
+        },
+        {
+          "date": "2025",
+          "value": 284417.0,
+          "time_key": "2025"
+        }
+      ],
+      "period": "1970 to 2025",
+      "data_type": "Integer",
+      "time_span_months": 42
+    },
+    {
+      "chart_id": "credit-indicator-k3-chart",
+      "title": "Credit Indicator K3",
+      "source": "SSB",
+      "dataset_id": "166327",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 32,
+      "valid_values": 32,
+      "null_percentage": 0.0,
+      "min_value": 3.9,
+      "max_value": 6504464.0,
+      "mean_value": 2359796.3374999994,
+      "head_5": [
+        {
+          "date": "2016K2",
+          "value": 5724933.0,
+          "time_key": "2016K2"
+        },
+        {
+          "date": "2017K1",
+          "value": 5753964.0,
+          "time_key": "2017K1"
+        },
+        {
+          "date": "2017K4",
+          "value": 5858798.0,
+          "time_key": "2017K4"
+        },
+        {
+          "date": "2018K1",
+          "value": 267982.0,
+          "time_key": "2018K1"
+        },
+        {
+          "date": "2018K2",
+          "value": 4.8,
+          "time_key": "2018K2"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 279605.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 4.6,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 6504464.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 337892.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 5.5,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2016K2 to 2025K1",
+      "data_type": "Float",
+      "time_span_months": 32
+    },
+    {
+      "chart_id": "first-hand-price-index-subgroups-chart",
+      "title": "First Hand Price Index Subgroups",
+      "source": "SSB",
+      "dataset_id": "82681",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 295,
+      "valid_values": 295,
+      "null_percentage": 0.0,
+      "min_value": -2.8,
+      "max_value": 67.8,
+      "mean_value": 28.33728813559326,
+      "head_5": [
+        {
+          "date": "2001M01",
+          "value": 60.9,
+          "time_key": "2001M01"
+        },
+        {
+          "date": "2001M02",
+          "value": -0.3,
+          "time_key": "2001M02"
+        },
+        {
+          "date": "2001M03",
+          "value": 5.2,
+          "time_key": "2001M03"
+        },
+        {
+          "date": "2001M04",
+          "value": 46.9,
+          "time_key": "2001M04"
+        },
+        {
+          "date": "2001M05",
+          "value": 61.6,
+          "time_key": "2001M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": -1.6,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 32.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 67.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 1.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.4,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2001M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 295
+    },
+    {
+      "chart_id": "credit-indicator-k2-seasonally-adjusted-chart",
+      "title": "Credit Indicator K2 Seasonally Adjusted",
+      "source": "SSB",
+      "dataset_id": "166329",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 475,
+      "valid_values": 475,
+      "null_percentage": 0.0,
+      "min_value": 543932.0,
+      "max_value": 7689035.0,
+      "mean_value": 3021037.1789473686,
+      "head_5": [
+        {
+          "date": "1985M12",
+          "value": 543932.0,
+          "time_key": "1985M12"
+        },
+        {
+          "date": "1986M01",
+          "value": 552791.0,
+          "time_key": "1986M01"
+        },
+        {
+          "date": "1986M02",
+          "value": 558223.0,
+          "time_key": "1986M02"
+        },
+        {
+          "date": "1986M03",
+          "value": 567365.0,
+          "time_key": "1986M03"
+        },
+        {
+          "date": "1986M04",
+          "value": 581168.0,
+          "time_key": "1986M04"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 7556949.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 7578622.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 7616705.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 7639058.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 7689035.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1985M12 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 475
+    },
+    {
+      "chart_id": "producer-price-index-subgroups-chart",
+      "title": "Producer Price Index Subgroups",
+      "source": "SSB",
+      "dataset_id": "26429",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -2.8,
+      "max_value": 67.2,
+      "mean_value": 25.966891891891922,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 56.7,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": -0.7,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 37.5,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 56.5,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": -0.4,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 4.1,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 30.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 66.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.2,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 3.4,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "import-value-sitc3-chart",
+      "title": "Import Value SITC3",
+      "source": "SSB",
+      "dataset_id": "34641",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 306,
+      "valid_values": 306,
+      "null_percentage": 0.0,
+      "min_value": 20410194.0,
+      "max_value": 104076818.0,
+      "mean_value": 48909238.20915033,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 20410194.0,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 24682223.0,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M03",
+          "value": 29115979.0,
+          "time_key": "2000M03"
+        },
+        {
+          "date": "2000M04",
+          "value": 24005414.0,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 25730273.0,
+          "time_key": "2000M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 87282355.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 96756951.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 91518232.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 92086048.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 91964397.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2000M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 306
+    },
+    {
+      "chart_id": "export-value-sitc3-chart",
+      "title": "Export Value SITC3",
+      "source": "SSB",
+      "dataset_id": "34643",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 208,
+      "valid_values": 208,
+      "null_percentage": 0.0,
+      "min_value": 51278161.0,
+      "max_value": 320341105.0,
+      "mean_value": 95640242.35576923,
+      "head_5": [
+        {
+          "date": "2008M03",
+          "value": 78533333.0,
+          "time_key": "2008M03"
+        },
+        {
+          "date": "2008M04",
+          "value": 85041413.0,
+          "time_key": "2008M04"
+        },
+        {
+          "date": "2008M05",
+          "value": 82806750.0,
+          "time_key": "2008M05"
+        },
+        {
+          "date": "2008M06",
+          "value": 81263392.0,
+          "time_key": "2008M06"
+        },
+        {
+          "date": "2008M07",
+          "value": 81114872.0,
+          "time_key": "2008M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 169353073.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 155617759.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 146075116.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 138175580.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 139379505.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2008M03 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 208
+    },
+    {
+      "chart_id": "trade-volume-price-bec-chart",
+      "title": "Trade Volume Price BEC",
+      "source": "SSB",
+      "dataset_id": "179415",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 146,
+      "valid_values": 146,
+      "null_percentage": 0.0,
+      "min_value": 26.5,
+      "max_value": 161.6,
+      "mean_value": 93.58287671232874,
+      "head_5": [
+        {
+          "date": "1989K1",
+          "value": 129.3,
+          "time_key": "1989K1"
+        },
+        {
+          "date": "1989K2",
+          "value": 26.5,
+          "time_key": "1989K2"
+        },
+        {
+          "date": "1989K3",
+          "value": 136.4,
+          "time_key": "1989K3"
+        },
+        {
+          "date": "1989K4",
+          "value": 32.7,
+          "time_key": "1989K4"
+        },
+        {
+          "date": "1990K1",
+          "value": 138.6,
+          "time_key": "1990K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 132.1,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 89.2,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 161.6,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 90.9,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 151.1,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1989K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 146
+    },
+    {
+      "chart_id": "producer-price-index-industries-chart",
+      "title": "Producer Price Index Industries",
+      "source": "SSB",
+      "dataset_id": "26430",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -38.2,
+      "max_value": 468.1,
+      "mean_value": 111.9949324324324,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 17.2,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 0.6,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 306.0,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 18.9,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": 9.9,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 31.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 468.1,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 32.3,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -5.6,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 30.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "trade-volume-price-product-groups-chart",
+      "title": "Trade Volume Price Product Groups",
+      "source": "SSB",
+      "dataset_id": "179417",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 146,
+      "valid_values": 146,
+      "null_percentage": 0.0,
+      "min_value": -11.8,
+      "max_value": 106.9,
+      "mean_value": 45.04657534246576,
+      "head_5": [
+        {
+          "date": "1989K1",
+          "value": 101.5,
+          "time_key": "1989K1"
+        },
+        {
+          "date": "1989K2",
+          "value": 45.1,
+          "time_key": "1989K2"
+        },
+        {
+          "date": "1989K3",
+          "value": 46.5,
+          "time_key": "1989K3"
+        },
+        {
+          "date": "1989K4",
+          "value": 8.0,
+          "time_key": "1989K4"
+        },
+        {
+          "date": "1990K1",
+          "value": -11.8,
+          "time_key": "1990K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 73.1,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 73.1,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": -0.5,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 9.7,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 104.2,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1989K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 146
+    },
+    {
+      "chart_id": "producer-price-index-products-chart",
+      "title": "Producer Price Index Products",
+      "source": "SSB",
+      "dataset_id": "26431",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -6.6,
+      "max_value": 308.4,
+      "mean_value": 79.68716216216202,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 54.5,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 0.7,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 308.4,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 55.3,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": 1.5,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 7.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 217.1,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 67.1,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 2.0,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 10.4,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "business-cycle-barometer-products-chart",
+      "title": "Business Cycle Barometer Products",
+      "source": "SSB",
+      "dataset_id": "166317",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 142,
+      "valid_values": 142,
+      "null_percentage": 0.0,
+      "min_value": -15.3,
+      "max_value": 87.8,
+      "mean_value": 30.419718309859157,
+      "head_5": [
+        {
+          "date": "1990K1",
+          "value": 0.7,
+          "time_key": "1990K1"
+        },
+        {
+          "date": "1990K2",
+          "value": 81.8,
+          "time_key": "1990K2"
+        },
+        {
+          "date": "1990K3",
+          "value": 2.6,
+          "time_key": "1990K3"
+        },
+        {
+          "date": "1990K4",
+          "value": 31.0,
+          "time_key": "1990K4"
+        },
+        {
+          "date": "1991K1",
+          "value": 10.3,
+          "time_key": "1991K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 81.8,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 2.8,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 33.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": -11.0,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 80.1,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1990K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 142
+    },
+    {
+      "chart_id": "business-cycle-barometer-chart",
+      "title": "Business Cycle Barometer",
+      "source": "SSB",
+      "dataset_id": "166318",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 142,
+      "valid_values": 142,
+      "null_percentage": 0.0,
+      "min_value": -9.7,
+      "max_value": 84.0,
+      "mean_value": 29.666901408450702,
+      "head_5": [
+        {
+          "date": "1990K1",
+          "value": 4.7,
+          "time_key": "1990K1"
+        },
+        {
+          "date": "1990K2",
+          "value": 81.7,
+          "time_key": "1990K2"
+        },
+        {
+          "date": "1990K3",
+          "value": 3.6,
+          "time_key": "1990K3"
+        },
+        {
+          "date": "1990K4",
+          "value": 24.0,
+          "time_key": "1990K4"
+        },
+        {
+          "date": "1991K1",
+          "value": 3.7,
+          "time_key": "1991K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 81.9,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 3.7,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 38.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": -8.0,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 81.1,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1990K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 142
+    },
+    {
+      "chart_id": "household-income-national-chart",
+      "title": "Household Income National",
+      "source": "SSB",
+      "dataset_id": "56957",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 18,
+      "valid_values": 18,
+      "null_percentage": 0.0,
+      "min_value": 2051473.0,
+      "max_value": 2583538.0,
+      "mean_value": 2309479.888888889,
+      "head_5": [
+        {
+          "date": "2006",
+          "value": 2051473.0,
+          "time_key": "2006"
+        },
+        {
+          "date": "2007",
+          "value": 2093483.0,
+          "time_key": "2007"
+        },
+        {
+          "date": "2008",
+          "value": 2127365.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2009",
+          "value": 2152031.0,
+          "time_key": "2009"
+        },
+        {
+          "date": "2010",
+          "value": 2172063.0,
+          "time_key": "2010"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2019",
+          "value": 2436001.0,
+          "time_key": "2019"
+        },
+        {
+          "date": "2020",
+          "value": 2467329.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 2499398.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 2544718.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 2583538.0,
+          "time_key": "2023"
+        }
+      ],
+      "period": "2006 to 2023",
+      "data_type": "Integer",
+      "time_span_months": 18
+    },
+    {
+      "chart_id": "oil-gas-industry-turnover-sn2007-chart",
+      "title": "Oil Gas Industry Turnover SN2007",
+      "source": "SSB",
+      "dataset_id": "124322",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 330,
+      "valid_values": 330,
+      "null_percentage": 0.0,
+      "min_value": 20.4,
+      "max_value": 29593.0,
+      "mean_value": 2796.4621212121197,
+      "head_5": [
+        {
+          "date": "1998M01",
+          "value": 12091.0,
+          "time_key": "1998M01"
+        },
+        {
+          "date": "1998M02",
+          "value": 36.7,
+          "time_key": "1998M02"
+        },
+        {
+          "date": "1998M03",
+          "value": 34.3,
+          "time_key": "1998M03"
+        },
+        {
+          "date": "1998M04",
+          "value": 34.7,
+          "time_key": "1998M04"
+        },
+        {
+          "date": "1998M05",
+          "value": 36.7,
+          "time_key": "1998M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 54.5,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 52.2,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 55.6,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 54.4,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 55.2,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1998M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 330
+    },
+    {
+      "chart_id": "producer-price-index-subgroups-detailed-chart",
+      "title": "Producer Price Index Subgroups Detailed",
+      "source": "SSB",
+      "dataset_id": "26432",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -2.8,
+      "max_value": 67.2,
+      "mean_value": 25.966891891891922,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 56.7,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": -0.7,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 37.5,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 56.5,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": -0.4,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 4.1,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 30.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 66.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.2,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 3.4,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "production-index-industry-recent-chart",
+      "title": "Production Index Industry Recent",
+      "source": "SSB",
+      "dataset_id": "26953",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 13,
+      "valid_values": 13,
+      "null_percentage": 0.0,
+      "min_value": 102.3,
+      "max_value": 1000.0,
+      "mean_value": 244.16153846153844,
+      "head_5": [
+        {
+          "date": "2024M06",
+          "value": 113.5,
+          "time_key": "2024M06"
+        },
+        {
+          "date": "2024M07",
+          "value": 102.7,
+          "time_key": "2024M07"
+        },
+        {
+          "date": "2024M08",
+          "value": 102.3,
+          "time_key": "2024M08"
+        },
+        {
+          "date": "2024M09",
+          "value": 106.0,
+          "time_key": "2024M09"
+        },
+        {
+          "date": "2024M10",
+          "value": 107.6,
+          "time_key": "2024M10"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 106.9,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 106.1,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 108.8,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 1000.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 105.9,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2024M06 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 13
+    },
+    {
+      "chart_id": "monetary-m3-chart",
+      "title": "Monetary Aggregate M3",
+      "source": "SSB",
+      "dataset_id": "172793",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 210,
+      "valid_values": 210,
+      "null_percentage": 0.0,
+      "min_value": 35330.0,
+      "max_value": 49132.0,
+      "mean_value": 41952.55714285714,
+      "head_5": [
+        {
+          "date": "2008M01",
+          "value": 45083.0,
+          "time_key": "2008M01"
+        },
+        {
+          "date": "2008M02",
+          "value": 44437.0,
+          "time_key": "2008M02"
+        },
+        {
+          "date": "2008M03",
+          "value": 44407.0,
+          "time_key": "2008M03"
+        },
+        {
+          "date": "2008M04",
+          "value": 44118.0,
+          "time_key": "2008M04"
+        },
+        {
+          "date": "2008M05",
+          "value": 44104.0,
+          "time_key": "2008M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 35369.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 35330.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 35610.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 35744.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 35896.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2008M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 210
+    },
+    {
+      "chart_id": "bankruptcies-total-chart",
+      "title": "Bankruptcies Total",
+      "source": "SSB",
+      "dataset_id": "924816",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 546,
+      "valid_values": 546,
+      "null_percentage": 0.0,
+      "min_value": 43.0,
+      "max_value": 595.0,
+      "mean_value": 303.6190476190476,
+      "head_5": [
+        {
+          "date": "1980M01",
+          "value": 75.0,
+          "time_key": "1980M01"
+        },
+        {
+          "date": "1980M02",
+          "value": 49.0,
+          "time_key": "1980M02"
+        },
+        {
+          "date": "1980M03",
+          "value": 65.0,
+          "time_key": "1980M03"
+        },
+        {
+          "date": "1980M04",
+          "value": 58.0,
+          "time_key": "1980M04"
+        },
+        {
+          "date": "1980M05",
+          "value": 56.0,
+          "time_key": "1980M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 359.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 416.0,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 408.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 369.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 367.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1980M01 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 546
+    },
+    {
+      "chart_id": "basic-salary-chart",
+      "title": "Basic Salary Index",
+      "source": "SSB",
+      "dataset_id": "1126",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 37,
+      "valid_values": 37,
+      "null_percentage": 0.0,
+      "min_value": 75.7,
+      "max_value": 105.2,
+      "mean_value": 87.05675675675676,
+      "head_5": [
+        {
+          "date": "2016K1",
+          "value": 76.2,
+          "time_key": "2016K1"
+        },
+        {
+          "date": "2016K2",
+          "value": 76.1,
+          "time_key": "2016K2"
+        },
+        {
+          "date": "2016K3",
+          "value": 75.7,
+          "time_key": "2016K3"
+        },
+        {
+          "date": "2016K4",
+          "value": 77.2,
+          "time_key": "2016K4"
+        },
+        {
+          "date": "2017K1",
+          "value": 77.6,
+          "time_key": "2017K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 100.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 100.4,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 101.4,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 104.4,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 105.2,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2016K1 to 2025K1",
+      "data_type": "Float",
+      "time_span_months": 37
+    },
+    {
+      "chart_id": "construction-cost-multi-chart",
+      "title": "Construction Cost Multi",
+      "source": "SSB",
+      "dataset_id": "1058",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 557,
+      "valid_values": 557,
+      "null_percentage": 0.0,
+      "min_value": -0.4,
+      "max_value": 47.8,
+      "mean_value": 13.800718132854584,
+      "head_5": [
+        {
+          "date": "1978M01",
+          "value": 20.4,
+          "time_key": "1978M01"
+        },
+        {
+          "date": "1978M04",
+          "value": 20.4,
+          "time_key": "1978M04"
+        },
+        {
+          "date": "1978M05",
+          "value": 0.0,
+          "time_key": "1978M05"
+        },
+        {
+          "date": "1978M07",
+          "value": 20.4,
+          "time_key": "1978M07"
+        },
+        {
+          "date": "1978M08",
+          "value": 0.0,
+          "time_key": "1978M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 0.0,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 0.8,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 47.8,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.6,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1978M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 557
+    },
+    {
+      "chart_id": "construction-cost-wood-chart",
+      "title": "Construction Cost Wood",
+      "source": "SSB",
+      "dataset_id": "1056",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 557,
+      "valid_values": 557,
+      "null_percentage": 0.0,
+      "min_value": -0.4,
+      "max_value": 47.1,
+      "mean_value": 13.795870736086169,
+      "head_5": [
+        {
+          "date": "1978M01",
+          "value": 20.7,
+          "time_key": "1978M01"
+        },
+        {
+          "date": "1978M04",
+          "value": 20.8,
+          "time_key": "1978M04"
+        },
+        {
+          "date": "1978M05",
+          "value": 0.5,
+          "time_key": "1978M05"
+        },
+        {
+          "date": "1978M07",
+          "value": 20.8,
+          "time_key": "1978M07"
+        },
+        {
+          "date": "1978M08",
+          "value": 0.0,
+          "time_key": "1978M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 0.2,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 0.2,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 47.1,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.2,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1978M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 557
+    },
+    {
+      "chart_id": "cpi-coicop-chart",
+      "title": "CPI Coicop Divisions",
+      "source": "SSB",
+      "dataset_id": "1084",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 546,
+      "valid_values": 546,
+      "null_percentage": 0.0,
+      "min_value": -1.0,
+      "max_value": 208.1,
+      "mean_value": 63.89523809523807,
+      "head_5": [
+        {
+          "date": "1979M01",
+          "value": 27.0,
+          "time_key": "1979M01"
+        },
+        {
+          "date": "1979M04",
+          "value": 204.5,
+          "time_key": "1979M04"
+        },
+        {
+          "date": "1979M05",
+          "value": 27.0,
+          "time_key": "1979M05"
+        },
+        {
+          "date": "1979M06",
+          "value": 0.0,
+          "time_key": "1979M06"
+        },
+        {
+          "date": "1979M08",
+          "value": 204.5,
+          "time_key": "1979M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 3.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 160.6,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 65.4,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -0.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 3.3,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "1979M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 546
+    },
+    {
+      "chart_id": "cpi-delivery-chart",
+      "title": "CPI Delivery Sectors",
+      "source": "SSB",
+      "dataset_id": "1100",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 114,
+      "valid_values": 114,
+      "null_percentage": 0.0,
+      "min_value": -0.9,
+      "max_value": 504.3,
+      "mean_value": 165.58859649122815,
+      "head_5": [
+        {
+          "date": "2015M01",
+          "value": 98.2,
+          "time_key": "2015M01"
+        },
+        {
+          "date": "2015M04",
+          "value": 504.3,
+          "time_key": "2015M04"
+        },
+        {
+          "date": "2015M05",
+          "value": 98.9,
+          "time_key": "2015M05"
+        },
+        {
+          "date": "2015M06",
+          "value": 0.7,
+          "time_key": "2015M06"
+        },
+        {
+          "date": "2015M08",
+          "value": 504.3,
+          "time_key": "2015M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.7,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 496.4,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 104.8,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": -0.9,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.3,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2015M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 114
+    },
+    {
+      "chart_id": "cpi-items-chart",
+      "title": "CPI Items",
+      "source": "SSB",
+      "dataset_id": "1096",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 240,
+      "valid_values": 240,
+      "null_percentage": 0.0,
+      "min_value": 81.7,
+      "max_value": 150.1,
+      "mean_value": 107.2066666666667,
+      "head_5": [
+        {
+          "date": "2005M08",
+          "value": 82.3,
+          "time_key": "2005M08"
+        },
+        {
+          "date": "2005M09",
+          "value": 82.0,
+          "time_key": "2005M09"
+        },
+        {
+          "date": "2005M10",
+          "value": 81.8,
+          "time_key": "2005M10"
+        },
+        {
+          "date": "2005M11",
+          "value": 81.9,
+          "time_key": "2005M11"
+        },
+        {
+          "date": "2005M12",
+          "value": 81.7,
+          "time_key": "2005M12"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 148.5,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 145.3,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 145.4,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 144.9,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 150.1,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2005M08 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 240
+    },
+    {
+      "chart_id": "cpi-subgroups-chart",
+      "title": "CPI Sub-Groups",
+      "source": "SSB",
+      "dataset_id": "1090",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 546,
+      "valid_values": 546,
+      "null_percentage": 0.0,
+      "min_value": -1.0,
+      "max_value": 69.1,
+      "mean_value": 20.037912087912087,
+      "head_5": [
+        {
+          "date": "1979M01",
+          "value": 21.6,
+          "time_key": "1979M01"
+        },
+        {
+          "date": "1979M04",
+          "value": 21.6,
+          "time_key": "1979M04"
+        },
+        {
+          "date": "1979M05",
+          "value": 0.0,
+          "time_key": "1979M05"
+        },
+        {
+          "date": "1979M07",
+          "value": 21.7,
+          "time_key": "1979M07"
+        },
+        {
+          "date": "1979M08",
+          "value": 0.5,
+          "time_key": "1979M08"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.9,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 68.9,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": -0.1,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 1.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 69.1,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "1979M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 546
+    },
+    {
+      "chart_id": "education-level-chart",
+      "title": "Education Level",
+      "source": "SSB",
+      "dataset_id": "85454",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 46,
+      "valid_values": 46,
+      "null_percentage": 0.0,
+      "min_value": 100.0,
+      "max_value": 3571191.0,
+      "mean_value": 1682156.3043478262,
+      "head_5": [
+        {
+          "date": "1970",
+          "value": 2872950.0,
+          "time_key": "1970"
+        },
+        {
+          "date": "1980",
+          "value": 100.0,
+          "time_key": "1980"
+        },
+        {
+          "date": "1981",
+          "value": 3136190.0,
+          "time_key": "1981"
+        },
+        {
+          "date": "1982",
+          "value": 100.0,
+          "time_key": "1982"
+        },
+        {
+          "date": "1983",
+          "value": 3156003.0,
+          "time_key": "1983"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 100.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 3558436.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 100.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 3571191.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 100.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "1970 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 46
+    },
+    {
+      "chart_id": "household-types-chart",
+      "title": "Household Types",
+      "source": "SSB",
+      "dataset_id": "1068",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 20,
+      "valid_values": 20,
+      "null_percentage": 0.0,
+      "min_value": 766930.0,
+      "max_value": 1067725.0,
+      "mean_value": 904664.6,
+      "head_5": [
+        {
+          "date": "2005",
+          "value": 766930.0,
+          "time_key": "2005"
+        },
+        {
+          "date": "2006",
+          "value": 784230.0,
+          "time_key": "2006"
+        },
+        {
+          "date": "2007",
+          "value": 802282.0,
+          "time_key": "2007"
+        },
+        {
+          "date": "2008",
+          "value": 827904.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2009",
+          "value": 852474.0,
+          "time_key": "2009"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 974168.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 1005637.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 1027942.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 1047741.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 1067725.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2005 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 20
+    },
+    {
+      "chart_id": "producer-price-industry-chart",
+      "title": "Producer Price Industry",
+      "source": "SSB",
+      "dataset_id": "741023",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 296,
+      "valid_values": 296,
+      "null_percentage": 0.0,
+      "min_value": -3.5,
+      "max_value": 52.7,
+      "mean_value": 15.629054054054066,
+      "head_5": [
+        {
+          "date": "2000M01",
+          "value": 43.9,
+          "time_key": "2000M01"
+        },
+        {
+          "date": "2000M02",
+          "value": 1.6,
+          "time_key": "2000M02"
+        },
+        {
+          "date": "2000M04",
+          "value": 11.9,
+          "time_key": "2000M04"
+        },
+        {
+          "date": "2000M05",
+          "value": 43.9,
+          "time_key": "2000M05"
+        },
+        {
+          "date": "2000M06",
+          "value": 0.0,
+          "time_key": "2000M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": -2.9,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 8.0,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 52.7,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 3.1,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2000M01 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 296
+    },
+    {
+      "chart_id": "utility-floor-space-chart",
+      "title": "Utility Floor Space",
+      "source": "SSB",
+      "dataset_id": "95177",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 162,
+      "valid_values": 162,
+      "null_percentage": 0.0,
+      "min_value": 8.3,
+      "max_value": 1594.1,
+      "mean_value": 429.67160493827146,
+      "head_5": [
+        {
+          "date": "2012M01",
+          "value": 38.3,
+          "time_key": "2012M01"
+        },
+        {
+          "date": "2012M02",
+          "value": 1032.8,
+          "time_key": "2012M02"
+        },
+        {
+          "date": "2012M03",
+          "value": 21.7,
+          "time_key": "2012M03"
+        },
+        {
+          "date": "2012M04",
+          "value": 48.7,
+          "time_key": "2012M04"
+        },
+        {
+          "date": "2012M05",
+          "value": 1042.4,
+          "time_key": "2012M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 1553.3,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 22.1,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 90.2,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 1594.1,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 38.4,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2012M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 162
+    }
+  ],
+  "removed_charts": [
+    {
+      "chart_id": "producer-prices-chart",
+      "title": "Producer Prices",
+      "source": "SSB",
+      "dataset_id": "26426",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "oil-price-chart",
+      "title": "Oil Price (Brent)",
+      "source": "SSB",
+      "dataset_id": "26426",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "business-tendency-chart",
+      "title": "Business Tendency Survey",
+      "source": "SSB",
+      "dataset_id": "166316",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "credit-indicator-c2-chart",
+      "title": "Credit Indicator C2",
+      "source": "SSB",
+      "dataset_id": "166326",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "cpi-seasonally-adjusted-recent-chart",
+      "title": "CPI Seasonally Adjusted Recent",
+      "source": "SSB",
+      "dataset_id": "1118",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": 137.4,
+      "max_value": 138.0,
+      "mean_value": 137.7,
+      "head_5": [
+        {
+          "date": "2025M06",
+          "value": 137.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 138.0,
+          "time_key": "2025M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M06",
+          "value": 137.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 138.0,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2025M06 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "cpi-ate-chart",
+      "title": "CPI-ATE Index",
+      "source": "SSB",
+      "dataset_id": "1118",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 69,
+      "valid_values": 69,
+      "null_percentage": 0.0,
+      "min_value": -2.3,
+      "max_value": 83.4,
+      "mean_value": 33.28115942028986,
+      "head_5": [
+        {
+          "date": "2018M10",
+          "value": 81.4,
+          "time_key": "2018M10"
+        },
+        {
+          "date": "2019M01",
+          "value": 83.3,
+          "time_key": "2019M01"
+        },
+        {
+          "date": "2019M02",
+          "value": 2.3,
+          "time_key": "2019M02"
+        },
+        {
+          "date": "2019M04",
+          "value": 83.4,
+          "time_key": "2019M04"
+        },
+        {
+          "date": "2019M05",
+          "value": 0.1,
+          "time_key": "2019M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M03",
+          "value": 0.4,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 81.9,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 0.2,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 0.5,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 82.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2018M10 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 69
+    },
+    {
+      "chart_id": "cpi-delivery-sector-annual-chart",
+      "title": "CPI Delivery Sector Annual",
+      "source": "SSB",
+      "dataset_id": "1100",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 9,
+      "valid_values": 9,
+      "null_percentage": 0.0,
+      "min_value": 1.4,
+      "max_value": 110.5,
+      "mean_value": 59.900000000000006,
+      "head_5": [
+        {
+          "date": "2015",
+          "value": 100.0,
+          "time_key": "2015"
+        },
+        {
+          "date": "2017",
+          "value": 104.1,
+          "time_key": "2017"
+        },
+        {
+          "date": "2018",
+          "value": 4.1,
+          "time_key": "2018"
+        },
+        {
+          "date": "2019",
+          "value": 105.6,
+          "time_key": "2019"
+        },
+        {
+          "date": "2020",
+          "value": 1.4,
+          "time_key": "2020"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 1.4,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 108.8,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 3.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 110.5,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 1.6,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2015 to 2024",
+      "data_type": "Float",
+      "time_span_months": 9
+    },
+    {
+      "chart_id": "trade-volume-price-chart",
+      "title": "Trade Volume Price",
+      "source": "SSB",
+      "dataset_id": "179415",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 146,
+      "valid_values": 146,
+      "null_percentage": 0.0,
+      "min_value": -11.8,
+      "max_value": 106.9,
+      "mean_value": 45.04657534246576,
+      "head_5": [
+        {
+          "date": "1989K1",
+          "value": 101.5,
+          "time_key": "1989K1"
+        },
+        {
+          "date": "1989K2",
+          "value": 45.1,
+          "time_key": "1989K2"
+        },
+        {
+          "date": "1989K3",
+          "value": 46.5,
+          "time_key": "1989K3"
+        },
+        {
+          "date": "1989K4",
+          "value": 8.0,
+          "time_key": "1989K4"
+        },
+        {
+          "date": "1990K1",
+          "value": -11.8,
+          "time_key": "1990K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 73.1,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 73.1,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": -0.5,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 9.7,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 104.2,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "1989K1 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 146
+    },
+    {
+      "chart_id": "household-income-size-chart",
+      "title": "Household Income Size",
+      "source": "SSB",
+      "dataset_id": "56957",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 4,
+      "valid_values": 4,
+      "null_percentage": 0.0,
+      "min_value": 14681.0,
+      "max_value": 15321.0,
+      "mean_value": 14993.0,
+      "head_5": [
+        {
+          "date": "2020",
+          "value": 14681.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 14876.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 15094.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 15321.0,
+          "time_key": "2023"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 14681.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 14876.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 15094.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 15321.0,
+          "time_key": "2023"
+        }
+      ],
+      "period": "2020 to 2023",
+      "data_type": "Integer",
+      "time_span_months": 4
+    },
+    {
+      "chart_id": "oil-gas-turnover-chart",
+      "title": "Oil Gas Turnover",
+      "source": "SSB",
+      "dataset_id": "124322",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 330,
+      "valid_values": 330,
+      "null_percentage": 0.0,
+      "min_value": 24.4,
+      "max_value": 91921.0,
+      "mean_value": 11373.472121212128,
+      "head_5": [
+        {
+          "date": "1998M01",
+          "value": 54979.0,
+          "time_key": "1998M01"
+        },
+        {
+          "date": "1998M02",
+          "value": 29.0,
+          "time_key": "1998M02"
+        },
+        {
+          "date": "1998M03",
+          "value": 29.9,
+          "time_key": "1998M03"
+        },
+        {
+          "date": "1998M04",
+          "value": 30.3,
+          "time_key": "1998M04"
+        },
+        {
+          "date": "1998M05",
+          "value": 28.8,
+          "time_key": "1998M05"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M02",
+          "value": 35.2,
+          "time_key": "2025M02"
+        },
+        {
+          "date": "2025M03",
+          "value": 39.1,
+          "time_key": "2025M03"
+        },
+        {
+          "date": "2025M04",
+          "value": 40.3,
+          "time_key": "2025M04"
+        },
+        {
+          "date": "2025M05",
+          "value": 34.8,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 39.8,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "1998M01 to 2025M06",
+      "data_type": "Float",
+      "time_span_months": 330
+    },
+    {
+      "chart_id": "retail-sales-chart",
+      "title": "Retail Sales",
+      "source": "SSB",
+      "dataset_id": "1064",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 0,
+      "valid_values": 0,
+      "null_percentage": 0,
+      "min_value": null,
+      "max_value": null,
+      "mean_value": null,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown",
+      "time_span_months": 0
+    },
+    {
+      "chart_id": "import-volume-chart",
+      "title": "Import Volume",
+      "source": "SSB",
+      "dataset_id": "179422",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "new-dwellings-price-chart",
+      "title": "New Dwellings Price",
+      "source": "SSB",
+      "dataset_id": "26158",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 0,
+      "valid_values": 0,
+      "null_percentage": 0,
+      "min_value": null,
+      "max_value": null,
+      "mean_value": null,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown",
+      "time_span_months": 0
+    },
+    {
+      "chart_id": "population-development-quarterly-chart",
+      "title": "Population Development Quarterly",
+      "source": "SSB",
+      "dataset_id": "1104",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 1,
+      "valid_values": 1,
+      "null_percentage": 0.0,
+      "min_value": 5594340.0,
+      "max_value": 5594340.0,
+      "mean_value": 5594340.0,
+      "head_5": [
+        {
+          "date": "2025K1",
+          "value": 5594340.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025K1",
+          "value": 5594340.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2025K1 to 2025K1",
+      "data_type": "Integer",
+      "time_span_months": 1
+    },
+    {
+      "chart_id": "cpi-subgroup-level2-chart",
+      "title": "CPI Subgroup Level 2",
+      "source": "SSB",
+      "dataset_id": "1094",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 0,
+      "valid_values": 0,
+      "null_percentage": 0,
+      "min_value": null,
+      "max_value": null,
+      "mean_value": null,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown",
+      "time_span_months": 0
+    },
+    {
+      "chart_id": "new-detached-house-prices-national-chart",
+      "title": "New Detached House Prices National",
+      "source": "SSB",
+      "dataset_id": "25151",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 4,
+      "valid_values": 4,
+      "null_percentage": 0.0,
+      "min_value": 38693.0,
+      "max_value": 47788.0,
+      "mean_value": 43818.75,
+      "head_5": [
+        {
+          "date": "2021",
+          "value": 38693.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 42474.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 46320.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 47788.0,
+          "time_key": "2024"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2021",
+          "value": 38693.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 42474.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 46320.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 47788.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2021 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 4
+    },
+    {
+      "chart_id": "oil-fund-chart",
+      "title": "Oil Fund Value",
+      "source": "Cached",
+      "dataset_id": "oil-fund",
+      "chart_type": "line",
+      "status": "Error: 'data_points'",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "exchange-chart",
+      "title": "USD/NOK",
+      "source": "Norges Bank",
+      "dataset_id": "EXR/M.USD.NOK.SP",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "govt-debt-chart",
+      "title": "Government Debt",
+      "source": "Norges Bank",
+      "dataset_id": "GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "eur-exchange-chart",
+      "title": "EUR/NOK",
+      "source": "Norges Bank",
+      "dataset_id": "EXR/M.EUR.NOK.SP",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "employment-rate-chart",
+      "title": "Employment Rate",
+      "source": "SSB",
+      "dataset_id": "1054",
+      "chart_type": "line",
+      "status": "No cache file found",
+      "data_points": 0,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown"
+    },
+    {
+      "chart_id": "cpi-adjusted-delivery-sector-recent-chart",
+      "title": "CPI Adjusted Delivery Sector Recent",
+      "source": "SSB",
+      "dataset_id": "130299",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": -0.8,
+      "max_value": 142.7,
+      "mean_value": 70.94999999999999,
+      "head_5": [
+        {
+          "date": "2025M06",
+          "value": 142.7,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": -0.8,
+          "time_key": "2025M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M06",
+          "value": 142.7,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": -0.8,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2025M06 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "producer-price-index-recent-chart",
+      "title": "Producer Price Index Recent",
+      "source": "SSB",
+      "dataset_id": "26428",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": 2.9,
+      "max_value": 101.6,
+      "mean_value": 52.25,
+      "head_5": [
+        {
+          "date": "2025M06",
+          "value": 101.6,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 2.9,
+          "time_key": "2025M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M06",
+          "value": 101.6,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 2.9,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2025M06 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "cpi-delivery-sector-recent-chart",
+      "title": "CPI Delivery Sector Recent",
+      "source": "SSB",
+      "dataset_id": "1101",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": -0.5,
+      "max_value": 138.2,
+      "mean_value": 68.85,
+      "head_5": [
+        {
+          "date": "2025M06",
+          "value": 138.2,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": -0.5,
+          "time_key": "2025M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M06",
+          "value": 138.2,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": -0.5,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2025M06 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "trade-volume-price-sitc2-chart",
+      "title": "Trade Volume Price SITC2",
+      "source": "SSB",
+      "dataset_id": "179418",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 0,
+      "valid_values": 0,
+      "null_percentage": 0,
+      "min_value": null,
+      "max_value": null,
+      "mean_value": null,
+      "head_5": [],
+      "tail_5": [],
+      "period": "Unknown",
+      "data_type": "Unknown",
+      "time_span_months": 0
+    },
+    {
+      "chart_id": "house-price-index-recent-chart",
+      "title": "House Price Index Recent",
+      "source": "SSB",
+      "dataset_id": "1061",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 5,
+      "valid_values": 5,
+      "null_percentage": 0.0,
+      "min_value": 143.0,
+      "max_value": 147.7,
+      "mean_value": 145.14,
+      "head_5": [
+        {
+          "date": "2024K2",
+          "value": 147.7,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 143.7,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 145.9,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 145.4,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 143.0,
+          "time_key": "2025K2"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K2",
+          "value": 147.7,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 143.7,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 145.9,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 145.4,
+          "time_key": "2025K1"
+        },
+        {
+          "date": "2025K2",
+          "value": 143.0,
+          "time_key": "2025K2"
+        }
+      ],
+      "period": "2024K2 to 2025K2",
+      "data_type": "Float",
+      "time_span_months": 5
+    },
+    {
+      "chart_id": "national-accounts-recent-chart",
+      "title": "National Accounts Recent",
+      "source": "SSB",
+      "dataset_id": "59013",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": 513486.0,
+      "max_value": 541575.0,
+      "mean_value": 527530.5,
+      "head_5": [
+        {
+          "date": "2024K4",
+          "value": 541575.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 513486.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K4",
+          "value": 541575.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 513486.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2024K4 to 2025K1",
+      "data_type": "Integer",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "cpi-total-index-recent-chart",
+      "title": "CPI Total Index Recent",
+      "source": "SSB",
+      "dataset_id": "1087",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": 0.2,
+      "max_value": 137.8,
+      "mean_value": 69.0,
+      "head_5": [
+        {
+          "date": "2025M06",
+          "value": 137.8,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M06",
+          "value": 137.8,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": 0.2,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2025M06 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "trade-main-figures-recent-chart",
+      "title": "Trade Main Figures Recent",
+      "source": "SSB",
+      "dataset_id": "179419",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": 91964.0,
+      "max_value": 92086.0,
+      "mean_value": 92025.0,
+      "head_5": [
+        {
+          "date": "2025M05",
+          "value": 92086.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 91964.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M05",
+          "value": 92086.0,
+          "time_key": "2025M05"
+        },
+        {
+          "date": "2025M06",
+          "value": 91964.0,
+          "time_key": "2025M06"
+        }
+      ],
+      "period": "2025M05 to 2025M06",
+      "data_type": "Integer",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "producer-price-index-totals-recent-chart",
+      "title": "Producer Price Index Totals Recent",
+      "source": "SSB",
+      "dataset_id": "26433",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": -0.3,
+      "max_value": 114.4,
+      "mean_value": 57.050000000000004,
+      "head_5": [
+        {
+          "date": "2025M06",
+          "value": 114.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": -0.3,
+          "time_key": "2025M07"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025M06",
+          "value": 114.4,
+          "time_key": "2025M06"
+        },
+        {
+          "date": "2025M07",
+          "value": -0.3,
+          "time_key": "2025M07"
+        }
+      ],
+      "period": "2025M06 to 2025M07",
+      "data_type": "Float",
+      "time_span_months": 2
+    },
+    {
+      "chart_id": "economic-forecasts-selected-chart",
+      "title": "Economic Forecasts Selected",
+      "source": "SSB",
+      "dataset_id": "934514",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 4,
+      "valid_values": 4,
+      "null_percentage": 0.0,
+      "min_value": -0.2,
+      "max_value": 4.1,
+      "mean_value": 1.5499999999999998,
+      "head_5": [
+        {
+          "date": "2025",
+          "value": -0.2,
+          "time_key": "2025"
+        },
+        {
+          "date": "2026",
+          "value": 1.7,
+          "time_key": "2026"
+        },
+        {
+          "date": "2027",
+          "value": 0.6,
+          "time_key": "2027"
+        },
+        {
+          "date": "2028",
+          "value": 4.1,
+          "time_key": "2028"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025",
+          "value": -0.2,
+          "time_key": "2025"
+        },
+        {
+          "date": "2026",
+          "value": 1.7,
+          "time_key": "2026"
+        },
+        {
+          "date": "2027",
+          "value": 0.6,
+          "time_key": "2027"
+        },
+        {
+          "date": "2028",
+          "value": 4.1,
+          "time_key": "2028"
+        }
+      ],
+      "period": "2025 to 2028",
+      "data_type": "Float",
+      "time_span_months": 4
+    },
+    {
+      "chart_id": "births-deaths-chart",
+      "title": "Births and Deaths",
+      "source": "SSB",
+      "dataset_id": "1106",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 9,
+      "valid_values": 9,
+      "null_percentage": 0.0,
+      "min_value": 0.0,
+      "max_value": 0.0,
+      "mean_value": 0.0,
+      "head_5": [
+        {
+          "date": "2023K1",
+          "value": 0.0,
+          "time_key": "2023K1"
+        },
+        {
+          "date": "2023K2",
+          "value": 0.0,
+          "time_key": "2023K2"
+        },
+        {
+          "date": "2023K3",
+          "value": 0.0,
+          "time_key": "2023K3"
+        },
+        {
+          "date": "2023K4",
+          "value": 0.0,
+          "time_key": "2023K4"
+        },
+        {
+          "date": "2024K1",
+          "value": 0.0,
+          "time_key": "2024K1"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2024K1",
+          "value": 0.0,
+          "time_key": "2024K1"
+        },
+        {
+          "date": "2024K2",
+          "value": 0.0,
+          "time_key": "2024K2"
+        },
+        {
+          "date": "2024K3",
+          "value": 0.0,
+          "time_key": "2024K3"
+        },
+        {
+          "date": "2024K4",
+          "value": 0.0,
+          "time_key": "2024K4"
+        },
+        {
+          "date": "2025K1",
+          "value": 0.0,
+          "time_key": "2025K1"
+        }
+      ],
+      "period": "2023K1 to 2025K1",
+      "data_type": "Integer",
+      "time_span_months": 9
+    },
+    {
+      "chart_id": "cohabiting-arrangements-chart",
+      "title": "Cohabiting Arrangements",
+      "source": "SSB",
+      "dataset_id": "85440",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 5,
+      "valid_values": 5,
+      "null_percentage": 0.0,
+      "min_value": 0.0,
+      "max_value": 42.2,
+      "mean_value": 33.160000000000004,
+      "head_5": [
+        {
+          "date": "2020",
+          "value": 42.2,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 41.8,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 41.1,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 40.7,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 0.0,
+          "time_key": "2024"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 42.2,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 41.8,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 41.1,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 40.7,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 0.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2020 to 2024",
+      "data_type": "Float",
+      "time_span_months": 5
+    },
+    {
+      "chart_id": "holiday-property-sales-chart",
+      "title": "Holiday Property Sales",
+      "source": "SSB",
+      "dataset_id": "65962",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 5,
+      "valid_values": 5,
+      "null_percentage": 0.0,
+      "min_value": 26.0,
+      "max_value": 120153.0,
+      "mean_value": 40197.4,
+      "head_5": [
+        {
+          "date": "2020",
+          "value": 53.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 120153.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 27.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 80728.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 26.0,
+          "time_key": "2024"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2020",
+          "value": 53.0,
+          "time_key": "2020"
+        },
+        {
+          "date": "2021",
+          "value": 120153.0,
+          "time_key": "2021"
+        },
+        {
+          "date": "2022",
+          "value": 27.0,
+          "time_key": "2022"
+        },
+        {
+          "date": "2023",
+          "value": 80728.0,
+          "time_key": "2023"
+        },
+        {
+          "date": "2024",
+          "value": 26.0,
+          "time_key": "2024"
+        }
+      ],
+      "period": "2020 to 2024",
+      "data_type": "Integer",
+      "time_span_months": 5
+    },
+    {
+      "chart_id": "lifestyle-habits-chart",
+      "title": "Lifestyle Habits",
+      "source": "SSB",
+      "dataset_id": "832683",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 5,
+      "valid_values": 5,
+      "null_percentage": 0.0,
+      "min_value": 11.0,
+      "max_value": 19.0,
+      "mean_value": 16.8,
+      "head_5": [
+        {
+          "date": "1998",
+          "value": 11.0,
+          "time_key": "1998"
+        },
+        {
+          "date": "2002",
+          "value": 19.0,
+          "time_key": "2002"
+        },
+        {
+          "date": "2005",
+          "value": 17.0,
+          "time_key": "2005"
+        },
+        {
+          "date": "2008",
+          "value": 18.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2012",
+          "value": 19.0,
+          "time_key": "2012"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "1998",
+          "value": 11.0,
+          "time_key": "1998"
+        },
+        {
+          "date": "2002",
+          "value": 19.0,
+          "time_key": "2002"
+        },
+        {
+          "date": "2005",
+          "value": 17.0,
+          "time_key": "2005"
+        },
+        {
+          "date": "2008",
+          "value": 18.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2012",
+          "value": 19.0,
+          "time_key": "2012"
+        }
+      ],
+      "period": "1998 to 2012",
+      "data_type": "Integer",
+      "time_span_months": 5
+    },
+    {
+      "chart_id": "long-term-illness-chart",
+      "title": "Long-term Illness",
+      "source": "SSB",
+      "dataset_id": "832685",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 7,
+      "valid_values": 7,
+      "null_percentage": 0.0,
+      "min_value": 76.0,
+      "max_value": 81.0,
+      "mean_value": 79.71428571428571,
+      "head_5": [
+        {
+          "date": "1998",
+          "value": 81.0,
+          "time_key": "1998"
+        },
+        {
+          "date": "2002",
+          "value": 81.0,
+          "time_key": "2002"
+        },
+        {
+          "date": "2005",
+          "value": 81.0,
+          "time_key": "2005"
+        },
+        {
+          "date": "2008",
+          "value": 81.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2012",
+          "value": 76.0,
+          "time_key": "2012"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2005",
+          "value": 81.0,
+          "time_key": "2005"
+        },
+        {
+          "date": "2008",
+          "value": 81.0,
+          "time_key": "2008"
+        },
+        {
+          "date": "2012",
+          "value": 76.0,
+          "time_key": "2012"
+        },
+        {
+          "date": "2015",
+          "value": 79.0,
+          "time_key": "2015"
+        },
+        {
+          "date": "2019",
+          "value": 79.0,
+          "time_key": "2019"
+        }
+      ],
+      "period": "1998 to 2019",
+      "data_type": "Integer",
+      "time_span_months": 7
+    },
+    {
+      "chart_id": "salmon-export-volume-chart",
+      "title": "Salmon Export Volume",
+      "source": "SSB",
+      "dataset_id": "1120",
+      "chart_type": "line",
+      "status": "Success",
+      "data_points": 2,
+      "valid_values": 2,
+      "null_percentage": 0.0,
+      "min_value": 60.58,
+      "max_value": 25317.0,
+      "mean_value": 12688.79,
+      "head_5": [
+        {
+          "date": "2025U31",
+          "value": 25317.0,
+          "time_key": "2025U31"
+        },
+        {
+          "date": "2025U32",
+          "value": 60.58,
+          "time_key": "2025U32"
+        }
+      ],
+      "tail_5": [
+        {
+          "date": "2025U31",
+          "value": 25317.0,
+          "time_key": "2025U31"
+        },
+        {
+          "date": "2025U32",
+          "value": 60.58,
+          "time_key": "2025U32"
+        }
+      ],
+      "period": "2025U31 to 2025U32",
+      "data_type": "Float",
+      "time_span_months": 2
+    }
+  ]
+}

@@ -146,6 +146,10 @@ export const CHART_CONFIG = {
         line: {
             tension: 0.1,
             borderWidth: 2
+        },
+        bar: {
+            borderWidth: 1,
+            borderSkipped: false
         }
     }
 };

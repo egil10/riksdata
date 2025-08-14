@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Balance Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 20px;
+            background: #f8fafc;
+        }
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        canvas {
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trade Balance Chart Test</h1>
+    
+    <div class="chart-container">
+        <h3>Trade Balance</h3>
+        <canvas id="trade-balance-test"></canvas>
+    </div>
+
+    <script type="module">
+        import { loadChartData } from './src/js/charts.js';
+        
+        // Test the trade balance chart
+        document.addEventListener('DOMContentLoaded', async () => {
+            console.log('Testing trade balance chart...');
+            
+            try {
+                const result = await loadChartData(
+                    'trade-balance-test',
+                    'https://data.ssb.no/api/v0/dataset/58962.json?lang=en',
+                    'Trade Balance',
+                    'bar'
+                );
+                
+                if (result) {
+                    console.log('Trade balance chart loaded successfully');
+                } else {
+                    console.error('Failed to load trade balance chart');
+                }
+            } catch (error) {
+                console.error('Error testing trade balance chart:', error);
+            }
+        });
+    </script>
+</body>
+</html>

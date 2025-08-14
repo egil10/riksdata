@@ -313,6 +313,20 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
             if (!dim?.category?.index) return 0;
             const labels = dim.category.label || {};
             const indices = dim.category.index || {};
+            
+            // Special handling for trade balance - select the main trade balance category
+            if (dimName === 'HovedVareStrommer' && chartTitle.toLowerCase().includes('trade balance')) {
+                // Look for "Hbtot" which is the main trade balance category
+                const tradeBalanceKey = Object.keys(labels).find(k => {
+                    const lbl = (labels[k] + '').toLowerCase();
+                    return lbl.includes('trade balance') && lbl.includes('total exports - total imports') || k === 'Hbtot';
+                });
+                if (tradeBalanceKey && typeof indices[tradeBalanceKey] === 'number') {
+                    console.log(`Selected trade balance category: ${labels[tradeBalanceKey]} (index: ${indices[tradeBalanceKey]})`);
+                    return indices[tradeBalanceKey];
+                }
+            }
+            
             // Prefer labels implying totals/national
             const preferredKey = Object.keys(labels).find(k => {
                 const lbl = (labels[k] + '').toLowerCase();
@@ -367,6 +381,16 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
         });
 
         dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        
+        // Debug logging for trade balance
+        if (chartTitle.toLowerCase().includes('trade balance')) {
+            console.log(`Trade balance data parsing: Found ${dataPoints.length} data points`);
+            if (dataPoints.length > 0) {
+                console.log(`Date range: ${dataPoints[0].date} to ${dataPoints[dataPoints.length - 1].date}`);
+                console.log(`Sample values: ${dataPoints.slice(0, 5).map(d => d.value).join(', ')}`);
+            }
+        }
+        
         return dataPoints;
     } catch (error) {
         console.error('Error parsing SSB data:', error);
@@ -945,7 +969,21 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     color: gridColor
                 }
             }
-        }
+        },
+        // Add specific bar chart options
+        ...(chartType === 'bar' && {
+            plugins: {
+                ...CHART_CONFIG.plugins,
+                tooltip: {
+                    ...CHART_CONFIG.plugins?.tooltip,
+                    callbacks: {
+                        label: function(context) {
+                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()}`;
+                        }
+                    }
+                }
+            }
+        })
     };
     
     // Create the chart

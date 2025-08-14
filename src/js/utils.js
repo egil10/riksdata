@@ -301,6 +301,12 @@ export function parseTimeLabel(timeLabel) {
             return new Date(parseInt(timeLabel), 0, 1);
         }
         
+        // Handle year interval format: "2007-2008" (use the first year)
+        if (/^\d{4}-\d{4}$/.test(timeLabel)) {
+            const [startYear] = timeLabel.split('-');
+            return new Date(parseInt(startYear), 0, 1);
+        }
+        
         // Handle weekly format: "2025U30", "2025U31", etc.
         if (timeLabel.includes('U')) {
             const [year, week] = timeLabel.split('U');

@@ -741,6 +741,46 @@ export function parseSSBData(ssbData, chartTitle) {
     if (chartTitle.toLowerCase().includes('oil fund')) {
         return parseStaticOilFundData(ssbData);
     }
+    
+    // Special handling for Crime Rate - filter for total crimes only
+    if (chartTitle.toLowerCase().includes('crime rate')) {
+        return parseCrimeRateData(ssbData);
+    }
+    
+    // Special handling for Life Expectancy - filter for both sexes, age 0
+    if (chartTitle.toLowerCase().includes('life expectancy')) {
+        return parseLifeExpectancyData(ssbData);
+    }
+    
+    // Special handling for Living Arrangements National - filter for total
+    if (chartTitle.toLowerCase().includes('living arrangements national')) {
+        return parseLivingArrangementsData(ssbData);
+    }
+    
+    // Special handling for Trade Balance - use generic parsing with automatic content selection
+    if (chartTitle.toLowerCase().includes('trade balance')) {
+        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return generic;
+    }
+    
+    // Special handling for GDP Growth - use generic parsing with automatic content selection
+    if (chartTitle.toLowerCase().includes('gdp growth')) {
+        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return generic;
+    }
+    
+    // Special handling for Housing Starts - use generic parsing with automatic content selection
+    if (chartTitle.toLowerCase().includes('housing starts')) {
+        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return generic;
+    }
+    
+    // Special handling for Job Vacancies - use generic parsing with automatic content selection
+    if (chartTitle.toLowerCase().includes('job vacancies')) {
+        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return generic;
+    }
+    
         return generic;
     }
     
@@ -1636,6 +1676,185 @@ export function parseStaticData(data, chartTitle) {
         return [];
     } catch (error) {
         console.error('Error parsing static data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse crime rate data - filter for total crimes only
+ */
+function parseCrimeRateData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.LovbruddKrim) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const crimeTypeLabels = dimension.LovbruddKrim.category.label;
+        const crimeTypeIndex = dimension.LovbruddKrim.category.index;
+        
+        // Find the index for "All groups of offences"
+        let totalCrimeIndex = null;
+        Object.keys(crimeTypeLabels).forEach(key => {
+            if (crimeTypeLabels[key].includes('All groups of offences')) {
+                totalCrimeIndex = crimeTypeIndex[key];
+            }
+        });
+        
+        if (totalCrimeIndex === null) {
+            console.warn('Could not find "All groups of offences" in crime rate data');
+            return [];
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            const valueIndex = timeIndexValue * Object.keys(crimeTypeIndex).length + totalCrimeIndex;
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null) {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing crime rate data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse life expectancy data - filter for both sexes, age 0
+ */
+function parseLifeExpectancyData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.Kjonn || !dimension.AlderX) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const sexLabels = dimension.Kjonn.category.label;
+        const sexIndex = dimension.Kjonn.category.index;
+        const ageLabels = dimension.AlderX.category.label;
+        const ageIndex = dimension.AlderX.category.index;
+        
+        // Find the index for "Both sexes" and age "000" (0 years)
+        let bothSexesIndex = null;
+        let ageZeroIndex = null;
+        
+        Object.keys(sexLabels).forEach(key => {
+            if (sexLabels[key].includes('Both sexes')) {
+                bothSexesIndex = sexIndex[key];
+            }
+        });
+        
+        Object.keys(ageLabels).forEach(key => {
+            if (ageLabels[key] === '000') {
+                ageZeroIndex = ageIndex[key];
+            }
+        });
+        
+        if (bothSexesIndex === null || ageZeroIndex === null) {
+            console.warn('Could not find "Both sexes" or age "000" in life expectancy data');
+            return [];
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Calculate the value index based on the dimensions
+            const numSexes = Object.keys(sexIndex).length;
+            const numAges = Object.keys(ageIndex).length;
+            const valueIndex = timeIndexValue * numSexes * numAges + bothSexesIndex * numAges + ageZeroIndex;
+            
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null) {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing life expectancy data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse living arrangements national data - filter for total
+ */
+function parseLivingArrangementsData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.Samlivsform) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const arrangementLabels = dimension.Samlivsform.category.label;
+        const arrangementIndex = dimension.Samlivsform.category.index;
+        
+        // Find the index for "In couples, married" (most common arrangement)
+        let marriedIndex = null;
+        Object.keys(arrangementLabels).forEach(key => {
+            if (arrangementLabels[key].includes('married')) {
+                marriedIndex = arrangementIndex[key];
+            }
+        });
+        
+        if (marriedIndex === null) {
+            console.warn('Could not find "married" arrangement in living arrangements data');
+            return [];
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            const valueIndex = timeIndexValue * Object.keys(arrangementIndex).length + marriedIndex;
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null) {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing living arrangements data:', error);
         return [];
     }
 }

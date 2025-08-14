@@ -195,7 +195,7 @@ export async function initializeApp() {
             ,
             ,
             loadChartData('credit-indicator-k2-seasonally-adjusted-chart', 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', 'Credit Indicator K2 Seasonally Adjusted'),
-            loadChartData('producer-price-index-subgroups-chart', 'https://data.ssb.no/api/v0/dataset/26429.json?lang=en', 'Producer Price Index Subgroups'),
+
             // Removed: retail-sales-seasonally-adjusted-chart (dataset 1065 failed to fetch)
             loadChartData('import-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/34641.json?lang=en', 'Import Value SITC3'),
             loadChartData('export-value-sitc3-chart', 'https://data.ssb.no/api/v0/dataset/34643.json?lang=en', 'Export Value SITC3'),
@@ -205,7 +205,7 @@ export async function initializeApp() {
             ,
             loadChartData('producer-price-index-products-chart', 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', 'Producer Price Index Products'),
             loadChartData('business-cycle-barometer-products-chart', 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', 'Business Cycle Barometer Products'),
-            loadChartData('business-cycle-barometer-chart', 'https://data.ssb.no/api/v0/dataset/166318.json?lang=en', 'Business Cycle Barometer'),
+
             loadChartData('household-income-national-chart', 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', 'Household Income National'),
             loadChartData('oil-gas-industry-turnover-sn2007-chart', 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', 'Oil Gas Industry Turnover SN2007'),
             ,

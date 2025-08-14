@@ -319,8 +319,7 @@ export const DATASET_MAPPINGS = {
         '1060': 'house-prices',
         '26426': 'ppi',
         '1124': 'wage',
-        '59012': 'gdp-growth',
-        '58962': 'trade-balance',
+
         // Removed: '95265': 'bankruptcies-total', // Keeping only bankruptcies-total chart
         '49626': 'population-growth',
         '26944': 'construction-costs',
@@ -329,9 +328,9 @@ export const DATASET_MAPPINGS = {
         '179421': 'export-volume',
         '179422': 'import-value-volume-sitc',
         '166316': 'business-confidence',
-        '95146': 'housing-starts',
+
         '172769': 'monetary-aggregates',
-        '166328': 'job-vacancies',
+
         '166330': 'household-consumption',
         '26427': 'producer-price-index-recent',
         '924808': 'construction-production',
@@ -345,7 +344,7 @@ export const DATASET_MAPPINGS = {
         '166334': 'oil-gas-investment',
         '48651': 'immigration-rate',
         '56900': 'household-income',
-        '102811': 'life-expectancy',
+
         '97445': 'crime-rate',
         '85454': 'education-level',
         '65962': 'holiday-property-sales',

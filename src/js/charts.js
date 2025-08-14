@@ -732,11 +732,6 @@ export function parseSSBData(ssbData, chartTitle) {
         return parseProducerPricesData(ssbData);
     }
     
-    // Special handling for GDP Growth - use generic parsing with automatic content selection
-    if (chartTitle.toLowerCase().includes('gdp growth')) {
-        // Let the generic parser handle it with automatic content selection
-        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
-        
     // Special handling for Oil Fund - parse static data
     if (chartTitle.toLowerCase().includes('oil fund')) {
         return parseStaticOilFundData(ssbData);
@@ -759,26 +754,26 @@ export function parseSSBData(ssbData, chartTitle) {
     
     // Special handling for Trade Balance - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('trade balance')) {
-        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
-        return generic;
+        const tradeBalanceData = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return tradeBalanceData;
     }
     
     // Special handling for GDP Growth - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('gdp growth')) {
-        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
-        return generic;
+        const gdpData = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return gdpData;
     }
     
     // Special handling for Housing Starts - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('housing starts')) {
-        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
-        return generic;
+        const housingData = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return housingData;
     }
     
     // Special handling for Job Vacancies - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('job vacancies')) {
-        const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
-        return generic;
+        const jobVacancyData = parseSSBDataGeneric(ssbData, chartTitle) || [];
+        return jobVacancyData;
     }
     
     // Default: try generic parsing first, then legacy if needed

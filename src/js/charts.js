@@ -220,18 +220,23 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         const isMobile = window.innerWidth < 768;
         const optimizedData = optimizeDataForMobile(finalData, isMobile);
 
-        // Optional subtitle from SSB content label (e.g., "(2015=100)")
-        if (ssbSelectedContentLabel) {
-            if (ssbSelectedContentLabel.includes('(')) {
-                const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
-                if (paren && paren[0]) {
-                    setChartSubtitle(canvas, paren[0]);
-                }
-            } else if (ssbSelectedContentLabel.toLowerCase().includes('confidence indicator')) {
-                // For Business Tendency Survey, show that it's a balance indicator
-                setChartSubtitle(canvas, '(Balance indicator)');
+            // Optional subtitle from SSB content label (e.g., "(2015=100)")
+    if (ssbSelectedContentLabel) {
+        if (ssbSelectedContentLabel.includes('(')) {
+            const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
+            if (paren && paren[0]) {
+                setChartSubtitle(canvas, paren[0]);
             }
+        } else if (ssbSelectedContentLabel.toLowerCase().includes('confidence indicator')) {
+            // For Business Tendency Survey, show that it's a balance indicator
+            setChartSubtitle(canvas, '(Balance indicator)');
         }
+    }
+    
+    // Special subtitle for bankruptcies
+    if (title.toLowerCase().includes('bankruptcies') && !title.toLowerCase().includes('total')) {
+        setChartSubtitle(canvas, '(Total of all types)');
+    }
 
         // Render the chart
         renderChart(canvas, optimizedData, chartTitle, chartType);
@@ -434,11 +439,133 @@ function parseSSBDataLegacy(ssbData, chartTitle) {
 }
 
 export function parseSSBData(ssbData, chartTitle) {
+    // Special handling for bankruptcies - sum all bankruptcy types
+    if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
+        return parseBankruptciesData(ssbData);
+    }
+    
+    // Special handling for Credit Indicator C2 - filter for LTOT (Total loan debt) only
+    if (chartTitle.toLowerCase().includes('credit indicator c2')) {
+        return parseCreditIndicatorC2Data(ssbData);
+    }
+    
     const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
     const sufficient = generic.length >= 3 && new Set(generic.map(p => p.value)).size > 1;
     if (sufficient) return generic;
     const legacy = parseSSBDataLegacy(ssbData, chartTitle) || [];
     return legacy.length ? legacy : generic;
+}
+
+/**
+ * Parse bankruptcies data by summing all bankruptcy types
+ */
+function parseBankruptciesData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.ContentsCode) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const contentIndices = dimension.ContentsCode.category.index;
+        const numContentTypes = Object.keys(contentIndices).length;
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Sum all bankruptcy types for this time period
+            let totalBankruptcies = 0;
+            let hasValidData = false;
+            
+            for (let i = 0; i < numContentTypes; i++) {
+                const valueIndex = timeIndexValue * numContentTypes + i;
+                if (valueIndex < value.length) {
+                    const v = value[valueIndex];
+                    if (v !== undefined && v !== null) {
+                        totalBankruptcies += Number(v);
+                        hasValidData = true;
+                    }
+                }
+            }
+            
+            if (hasValidData) {
+                dataPoints.push({ date, value: totalBankruptcies });
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing bankruptcies data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse Credit Indicator C2 data by filtering for LTOT (Total loan debt) only
+ */
+function parseCreditIndicatorC2Data(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+        
+        if (!dimension || !dimension.Tid || !dimension.Kredittkilde || !dimension.ContentsCode) {
+            return [];
+        }
+        
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const creditSourceIndices = dimension.Kredittkilde.category.index;
+        const contentIndices = dimension.ContentsCode.category.index;
+        const numCreditSources = Object.keys(creditSourceIndices).length;
+        const numContentTypes = Object.keys(contentIndices).length;
+        
+        // Find the index for LTOT (Total loan debt) and Bruttogjeld (stock value)
+        const ltotIndex = creditSourceIndices['LTOT'];
+        const bruttogjeldIndex = contentIndices['Bruttogjeld'];
+        
+        if (ltotIndex === undefined) {
+            console.error('LTOT category not found in Credit Indicator data');
+            return [];
+        }
+        
+        if (bruttogjeldIndex === undefined) {
+            console.error('Bruttogjeld category not found in Credit Indicator data');
+            return [];
+        }
+        
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+            
+            // Get the value for LTOT category and Bruttogjeld content type only
+            const valueIndex = (timeIndexValue * numCreditSources + ltotIndex) * numContentTypes + bruttogjeldIndex;
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null) {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+        
+        dataPoints.sort((a, b) => a.date - b.date);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing Credit Indicator C2 data:', error);
+        return [];
+    }
 }
 
 /**

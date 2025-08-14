@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bankruptcies Chart Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin: 20px 0;
+        }
+        canvas {
+            max-width: 100%;
+            height: 400px;
+        }
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        .info { background-color: #d1ecf1; color: #0c5460; }
+        .data-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bankruptcies Chart Test</h1>
+    
+    <div id="status" class="status info">Loading...</div>
+    <div id="data-info" class="data-info"></div>
+    
+    <div class="chart-container">
+        <h2>Bankruptcies</h2>
+        <canvas id="bankruptcies-chart"></canvas>
+    </div>
+
+    <script type="module">
+        import { loadChartData } from './src/js/charts.js';
+        
+        const statusDiv = document.getElementById('status');
+        const dataInfoDiv = document.getElementById('data-info');
+        
+        async function testChart() {
+            try {
+                statusDiv.textContent = 'Loading chart data...';
+                statusDiv.className = 'status info';
+                
+                // First, let's examine the raw data structure
+                const response = await fetch('https://data.ssb.no/api/v0/dataset/95265.json?lang=en');
+                const rawData = await response.json();
+                
+                // Display data structure info
+                const dimension = rawData.dataset.dimension;
+                const contentsCode = dimension.ContentsCode;
+                const contentLabels = contentsCode.category.label;
+                
+                let infoText = 'Available bankruptcy types:\n';
+                Object.entries(contentLabels).forEach(([key, label]) => {
+                    infoText += `- ${key}: ${label}\n`;
+                });
+                infoText += `\nTotal time periods: ${Object.keys(dimension.Tid.category.index).length}`;
+                
+                dataInfoDiv.textContent = infoText;
+                
+                // Test the chart loading
+                const result = await loadChartData(
+                    'bankruptcies-chart', 
+                    'https://data.ssb.no/api/v0/dataset/95265.json?lang=en', 
+                    'Bankruptcies'
+                );
+                
+                if (result) {
+                    statusDiv.textContent = '✅ Chart loaded successfully! The Bankruptcies chart should now display as a line chart with the total of all bankruptcy types and political period coloring.';
+                    statusDiv.className = 'status success';
+                } else {
+                    statusDiv.textContent = '❌ Chart failed to load. Check console for errors.';
+                    statusDiv.className = 'status error';
+                }
+            } catch (error) {
+                statusDiv.textContent = `❌ Error: ${error.message}`;
+                statusDiv.className = 'status error';
+                console.error('Chart test error:', error);
+            }
+        }
+        
+        // Start the test
+        testChart();
+    </script>
+</body>
+</html>

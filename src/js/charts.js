@@ -563,9 +563,98 @@ function parseOilPriceData(ssbData) {
         
         dataPoints.sort((a, b) => a.date - b.date);
         console.log(`Oil price data: Extracted ${dataPoints.length} data points`);
+        console.log(`Sample oil price data:`, dataPoints.slice(0, 5));
+        
+        // Validate data quality
+        if (dataPoints.length > 0) {
+            const values = dataPoints.map(p => p.value);
+            const min = Math.min(...values);
+            const max = Math.max(...values);
+            const avg = values.reduce((a, b) => a + b, 0) / values.length;
+            console.log(`Oil price data validation: min=${min}, max=${max}, avg=${avg.toFixed(2)}`);
+        }
+        
         return dataPoints;
     } catch (error) {
         console.error('Error parsing oil price data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse producer prices data by extracting total PPI data from PPI dataset
+ */
+function parseProducerPricesData(ssbData) {
+    try {
+        const dataset = ssbData.dataset;
+        const dimension = dataset.dimension;
+        const value = dataset.value;
+
+        if (!dimension || !dimension.Tid || !dimension.NaringUtenriks) {
+            console.warn('Producer prices data: Missing required dimensions');
+            return [];
+        }
+
+        const timeLabels = dimension.Tid.category.label;
+        const timeIndex = dimension.Tid.category.index;
+        const industryLabels = dimension.NaringUtenriks.category.label;
+        const industryIndices = dimension.NaringUtenriks.category.index;
+
+        // Find the total PPI category (SNN0)
+        const totalPPIKey = Object.keys(industryLabels).find(key =>
+            industryLabels[key].toLowerCase().includes('ppi total') ||
+            key === 'SNN0'
+        );
+
+        if (!totalPPIKey) {
+            console.warn('Producer prices data: Could not find total PPI category');
+            return [];
+        }
+
+        const totalPPIIndex = industryIndices[totalPPIKey];
+        console.log(`Producer prices data: Using category "${industryLabels[totalPPIKey]}" (index: ${totalPPIIndex})`);
+
+        // Calculate the number of industries and markets
+        const numIndustries = Object.keys(industryIndices).length;
+        const numMarkets = dimension.Marked ? Object.keys(dimension.Marked.category.index).length : 1;
+
+        // Use total market (00) if available, otherwise use first market
+        let marketIndex = 0;
+        if (dimension.Marked) {
+            const marketLabels = dimension.Marked.category.label;
+            const marketIndices = dimension.Marked.category.index;
+            const totalMarketKey = Object.keys(marketLabels).find(key =>
+                marketLabels[key].toLowerCase().includes('total') ||
+                key === '00'
+            );
+            if (totalMarketKey) {
+                marketIndex = marketIndices[totalMarketKey];
+            }
+        }
+
+        const dataPoints = [];
+        Object.keys(timeLabels).forEach(timeKey => {
+            const timeLabel = timeLabels[timeKey];
+            const timeIndexValue = timeIndex[timeKey];
+            const date = parseTimeLabel(timeLabel);
+            if (!date) return;
+
+            // Calculate the value index: time * (industries * markets) + market * industries + industry
+            const valueIndex = timeIndexValue * (numIndustries * numMarkets) + marketIndex * numIndustries + totalPPIIndex;
+
+            if (valueIndex < value.length) {
+                const v = value[valueIndex];
+                if (v !== undefined && v !== null && v !== '..') {
+                    dataPoints.push({ date, value: Number(v) });
+                }
+            }
+        });
+
+        dataPoints.sort((a, b) => a.date - b.date);
+        console.log(`Producer prices data: Extracted ${dataPoints.length} data points`);
+        return dataPoints;
+    } catch (error) {
+        console.error('Error parsing producer prices data:', error);
         return [];
     }
 }
@@ -594,6 +683,11 @@ export function parseSSBData(ssbData, chartTitle) {
     // Special handling for Oil Price - extract oil and gas extraction data from PPI
     if (chartTitle.toLowerCase().includes('oil price')) {
         return parseOilPriceData(ssbData);
+    }
+    
+    // Special handling for Producer Prices - extract total PPI data from PPI dataset
+    if (chartTitle.toLowerCase().includes('producer prices')) {
+        return parseProducerPricesData(ssbData);
     }
     
     // Special handling for GDP Growth - use generic parsing with automatic content selection
@@ -1040,23 +1134,33 @@ export function parseGovernmentDebtData(data) {
         const points = [];
         
         // Extract time periods from the series keys
+        // Filter for main government debt figures (large numbers, not small percentages)
         Object.keys(series).forEach(seriesKey => {
             const observations = series[seriesKey].observations;
             Object.keys(observations).forEach(timeIndex => {
                 const value = observations[timeIndex][0];
                 if (value !== null && value !== undefined) {
-                    // Calculate the actual date based on the time index
-                    // The time index corresponds to the position in the time series
-                    const date = new Date(2000, 0, 1); // Start from 2000-01-01
-                    date.setMonth(date.getMonth() + parseInt(timeIndex));
+                    const numValue = Number(value);
                     
-                    points.push({ 
-                        date: date, 
-                        value: Number(value) 
-                    });
+                    // Filter out small values (likely percentages or other metrics)
+                    // Government debt should be in billions of NOK, so values should be large
+                    if (numValue > 1000) {
+                        // Calculate the actual date based on the time index
+                        // The time index corresponds to the position in the time series
+                        const date = new Date(2000, 0, 1); // Start from 2000-01-01
+                        date.setMonth(date.getMonth() + parseInt(timeIndex));
+                        
+                        points.push({ 
+                            date: date, 
+                            value: numValue 
+                        });
+                    }
                 }
             });
         });
+        
+        console.log(`Government debt data: Extracted ${points.length} data points`);
+        console.log(`Sample government debt data:`, points.slice(0, 3));
         
         return points.sort((a, b) => a.date - b.date);
 

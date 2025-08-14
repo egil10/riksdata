@@ -163,14 +163,14 @@ export async function initializeApp() {
             loadChartData('oil-fund-chart', './data/cached/oil-fund.json', 'Oil Fund Value'),
             loadChartData('exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.USD.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'USD/NOK'),
             loadChartData('interest-rate-chart', 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=2000-01-01&endPeriod=2025-08-01&locale=en', 'Key Policy Rate'),
-            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt'),
+            loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=2000-01-01', 'Government Debt', 'line'),
             loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
             
             // Additional charts that exist in HTML
             loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
-            // Removed: producer-prices-chart (dataset 26427 failed to fetch)
+            loadChartData('producer-prices-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Producer Prices'),
             loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
-            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Oil Price (Brent)'),
+            loadChartData('oil-price-chart', 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', 'Oil Price (Brent)', 'line'),
             loadChartData('immigrants-with-immigrant-parents-chart', 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', 'Immigrants with Immigrant Parents'),
             loadChartData('credit-indicator-k3-chart', 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', 'Credit Indicator K3'),
             loadChartData('cpi-delivery-sector-annual-chart', 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', 'CPI Delivery Sector Annual'),

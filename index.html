@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="./src/css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <script>
+        // Test if Chart.js loaded properly
+        window.addEventListener('load', function() {
+            if (typeof Chart === 'undefined') {
+                console.error('Chart.js failed to load!');
+                document.body.innerHTML = '<div style="padding: 20px; text-align: center; color: red;">Error: Chart.js library failed to load. Please refresh the page.</div>';
+            } else {
+                console.log('Chart.js loaded successfully');
+            }
+        });
+    </script>
 </head>
 <body class="lang-en">
             <!-- Loading Progress Bar -->

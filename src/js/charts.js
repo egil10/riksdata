@@ -71,12 +71,16 @@ function optimizeDataForMobile(data, isMobile = false) {
  */
 export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
     try {
+        console.log(`Loading chart: ${canvasId} - ${chartTitle}`);
         // Proceed with all charts; filtering handled elsewhere if needed
         const canvas = document.getElementById(canvasId);
         if (!canvas) {
             console.warn(`Canvas with id '${canvasId}' not found - skipping chart`);
             return null;
         }
+        console.log(`Found canvas for ${canvasId}:`, canvas);
+        console.log(`Canvas display style:`, canvas.style.display);
+        console.log(`Canvas parent display style:`, canvas.parentElement.style.display);
 
         // Determine cache file path based on API URL
         let cachePath;
@@ -151,6 +155,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         try {
             data = await response.json();
             console.log(`Successfully loaded data for ${chartTitle}:`, data.dataset ? 'Dataset found' : 'No dataset');
+            if (!data.dataset) {
+                console.warn(`No dataset found in data for ${chartTitle}:`, data);
+            }
         } catch (error) {
             console.error(`Failed to parse JSON for ${chartTitle}:`, error);
             // Don't throw here, just return null to allow other charts to continue loading
@@ -200,6 +207,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         }
         
         console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
+        console.log(`Sample data for ${chartTitle}:`, parsedData.slice(0, 3));
         
         // Filter data from 2000 onwards, but be more lenient for charts with limited data
         const filteredData = parsedData.filter(item => {
@@ -234,7 +242,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
     }
     
     // Special subtitle for bankruptcies
-    if (title.toLowerCase().includes('bankruptcies') && !title.toLowerCase().includes('total')) {
+    if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
         setChartSubtitle(canvas, '(Total of all types)');
     }
 
@@ -327,6 +335,19 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                 }
             }
             
+            // Special handling for household consumption - select the total consumption category
+            if (dimName === 'Varer' && chartTitle.toLowerCase().includes('household consumption')) {
+                // Look for "VAREKONSUM" which is the total household consumption
+                const totalConsumptionKey = Object.keys(labels).find(k => {
+                    const lbl = (labels[k] + '').toLowerCase();
+                    return lbl.includes('household consumption of all goods') || k === 'VAREKONSUM';
+                });
+                if (totalConsumptionKey && typeof indices[totalConsumptionKey] === 'number') {
+                    console.log(`Selected household consumption category: ${labels[totalConsumptionKey]} (index: ${indices[totalConsumptionKey]})`);
+                    return indices[totalConsumptionKey];
+                }
+            }
+            
             // Prefer labels implying totals/national
             const preferredKey = Object.keys(labels).find(k => {
                 const lbl = (labels[k] + '').toLowerCase();
@@ -385,6 +406,15 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
         // Debug logging for trade balance
         if (chartTitle.toLowerCase().includes('trade balance')) {
             console.log(`Trade balance data parsing: Found ${dataPoints.length} data points`);
+            if (dataPoints.length > 0) {
+                console.log(`Date range: ${dataPoints[0].date} to ${dataPoints[dataPoints.length - 1].date}`);
+                console.log(`Sample values: ${dataPoints.slice(0, 5).map(d => d.value).join(', ')}`);
+            }
+        }
+        
+        // Debug logging for household consumption
+        if (chartTitle.toLowerCase().includes('household consumption')) {
+            console.log(`Household consumption data parsing: Found ${dataPoints.length} data points`);
             if (dataPoints.length > 0) {
                 console.log(`Date range: ${dataPoints[0].date} to ${dataPoints[dataPoints.length - 1].date}`);
                 console.log(`Sample values: ${dataPoints.slice(0, 5).map(d => d.value).join(', ')}`);
@@ -882,6 +912,7 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
  * @param {string} chartType - Chart type
  */
 export function renderChart(canvas, data, title, chartType = 'line') {
+    console.log(`Rendering chart: ${title} with ${data.length} data points`);
     // Check if Chart.js is available
     if (typeof Chart === 'undefined') {
         console.error('Chart.js is not loaded');
@@ -916,6 +947,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                             }
                         ]
                     };
+                    console.log(`Chart data for ${title}:`, {
+                        labels: chartData.labels.length,
+                        dataPoints: chartData.datasets[0].data.length,
+                        sampleData: chartData.datasets[0].data.slice(0, 3)
+                    });
     } else {
         // Bar charts: color each bar individually by political party
         chartData = {
@@ -936,6 +972,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 }
             ]
         };
+        console.log(`Bar chart data for ${title}:`, {
+            labels: chartData.labels.length,
+            dataPoints: chartData.datasets[0].data.length,
+            sampleData: chartData.datasets[0].data.slice(0, 3)
+        });
     }
 
     // Get current theme colors from CSS variables
@@ -987,11 +1028,51 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     };
     
     // Create the chart
-    canvas.chart = new Chart(canvas, {
-        type: chartType,
-        data: chartData,
-        options: chartOptions
-    });
+    console.log(`Creating Chart.js instance for ${title}...`);
+    try {
+        canvas.chart = new Chart(canvas, {
+            type: chartType,
+            data: chartData,
+            options: chartOptions
+        });
+        console.log(`Chart created successfully for ${title}`);
+    } catch (error) {
+        console.error(`Error creating chart for ${title}:`, error);
+        throw error;
+    }
+
+    // Make sure the chart container is visible
+    const chartContainer = canvas.closest('.chart-container');
+    if (chartContainer) {
+        chartContainer.style.display = 'block';
+        chartContainer.style.visibility = 'visible';
+        console.log(`Chart container display set to block for ${title}`);
+    }
+
+    // Hide the skeleton for this specific chart
+    const skeletonId = canvasId.replace('-chart', '-skeleton');
+    const skeleton = document.getElementById(skeletonId);
+    if (skeleton) {
+        skeleton.style.display = 'none';
+        console.log(`Skeleton hidden for ${title}`);
+    }
+
+    // Force a chart update to ensure it's visible
+    setTimeout(() => {
+        if (canvas.chart) {
+            canvas.chart.update();
+            console.log(`Chart updated for ${title}`);
+            
+            // Add a visual indicator that the chart loaded successfully
+            const chartCard = canvas.closest('.chart-card');
+            if (chartCard) {
+                chartCard.style.border = '2px solid #10b981'; // Green border to indicate success
+                setTimeout(() => {
+                    chartCard.style.border = ''; // Remove the border after 2 seconds
+                }, 2000);
+            }
+        }
+    }, 100);
 
     // Add static tooltip functionality
     const tooltipId = canvas.id.replace('-chart', '-tooltip');

@@ -381,22 +381,28 @@ export function showError(message, canvas = null) {
  * Show skeleton loading for all charts
  */
 export function showSkeletonLoading() {
+    console.log('Showing skeleton loading...');
     // Find all skeleton elements dynamically instead of hardcoding IDs
     const skeletonElements = document.querySelectorAll('.skeleton-chart');
+    console.log(`Found ${skeletonElements.length} skeleton elements`);
     skeletonElements.forEach(skeleton => {
         skeleton.style.display = 'block';
     });
+    console.log('Skeleton loading shown');
 }
 
 /**
  * Hide skeleton loading
  */
 export function hideSkeletonLoading() {
+    console.log('Hiding skeleton loading...');
     // Find all skeleton elements dynamically instead of hardcoding IDs
     const skeletonElements = document.querySelectorAll('.skeleton-chart');
+    console.log(`Found ${skeletonElements.length} skeleton elements`);
     skeletonElements.forEach(skeleton => {
         skeleton.style.display = 'none';
     });
+    console.log('Skeleton loading hidden');
 }
 
 /**

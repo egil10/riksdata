@@ -369,6 +369,7 @@ body, .chart-card, .header-content, .slim-header {
     animation: skeleton-loading 1.5s infinite;
     border-radius: 4px;
     height: 100%;
+    display: none; /* Hidden by default */
 }
 
 @keyframes skeleton-loading {
@@ -663,6 +664,8 @@ main {
     flex: 1;
     position: relative;
     min-height: 150px;
+    display: block;
+    visibility: visible;
 }
 
 /* Improve canvas rendering quality for better text clarity */

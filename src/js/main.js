@@ -2,8 +2,12 @@
 // RIKSDATA MAIN APPLICATION
 // ============================================================================
 
+console.log('Main.js module loading...');
+
 import { loadChartData } from './charts.js';
 import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout } from './utils.js';
+
+console.log('All modules imported successfully');
 
 // Top-level error guards
 window.addEventListener('error', e => {
@@ -89,6 +93,7 @@ export async function initializeApp() {
         
         // Load all charts in parallel with progress tracking
         console.log('Loading charts...');
+        console.log('Chart.js available:', typeof Chart !== 'undefined');
         const chartPromises = [
             // Core economic indicators
             loadChartData('cpi-chart', 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 'Consumer Price Index'),
@@ -162,7 +167,7 @@ export async function initializeApp() {
             loadChartData('eur-exchange-chart', 'https://data.norges-bank.no/api/data/EXR/M.EUR.NOK.SP?format=sdmx-json&startPeriod=2015-08-01&endPeriod=2025-08-01&locale=no', 'EUR/NOK'),
             
             // Additional charts that exist in HTML
-            // Removed: household-consumption-chart (dataset 166331 failed to fetch)
+            loadChartData('household-consumption-chart', 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', 'Household Consumption'),
             // Removed: producer-prices-chart (dataset 26427 failed to fetch)
             loadChartData('employment-rate-chart', 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', 'Employment Rate'),
             loadChartData('oil-price-chart', './data/cached/exchange-rates.json', 'Oil Price'),
@@ -226,6 +231,8 @@ export async function initializeApp() {
 
             // Removed: energy-accounts-chart (dataset 928197 failed to fetch)
         ];
+        
+        console.log('Total charts to load:', chartPromises.length);
         
         // Wait for all charts to load with progress tracking and timeouts
         console.log('Waiting for charts to load...');

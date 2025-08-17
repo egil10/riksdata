@@ -350,6 +350,31 @@
                 </div>
             </div>
 
+            <div class="chart-card" data-chart-id="oseax-chart">
+                <div class="chart-header">
+                    <h3>OSEAX - Oslo Stock Exchange All Share Index</h3>
+                    <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                        <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                        <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <a href="https://finance.yahoo.com/quote/%5EOSEAX" target="_blank" class="source-link">Yahoo Finance</a>
+                    <div class="chart-subtitle">Index Value</div>
+                </div>
+                <div class="skeleton-chart" id="oseax-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="oseax-chart"></canvas>
+                    <div class="static-tooltip" id="oseax-tooltip"></div>
+                </div>
+            </div>
+
             <div class="chart-card" data-chart-id="producer-price-index-chart">
                 <div class="chart-header">
                     <h3>Producer Price Index</h3>

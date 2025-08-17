@@ -1,6 +1,6 @@
 {
-  "cache_created_at": "2025-08-12T23:19:06.475452",
-  "total_datasets": 67,
+  "cache_created_at": "2025-08-17T14:54:26.955243",
+  "total_datasets": 68,
   "datasets": {
     "norges-bank\\exchange-rates.json": {
       "size_bytes": 46523,
@@ -269,6 +269,10 @@
     "ssb\\wage.json": {
       "size_bytes": 37299,
       "modified_at": "2025-08-12T23:16:14.290521"
+    },
+    "oslo-indices/oseax.json": {
+      "size_bytes": 20092,
+      "modified_at": "2025-08-17T14:53:47.134224"
     }
   },
   "last_update": "2025-08-12T23:19:06.475452"

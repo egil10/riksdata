@@ -460,6 +460,10 @@ export const DATASET_MAPPINGS = {
         // Government Debt - Key Indicators (IRS - Interest Rate Swaps)
         'GOVT_KEYFIGURES/V_IRS..B.IRS': 'government-debt-irs-volume',
         'GOVT_KEYFIGURES/ATRI..B.IRS': 'government-debt-irs-atri',
+    },
+    oslo_indices: {
+        'OSEAX': 'oseax',
+        'OSEBX': 'osebx'
     }
 };
 
@@ -474,5 +478,6 @@ export const CHART_TYPES = {
 export const DATA_SOURCES = {
     SSB: 'ssb',
     NORGES_BANK: 'norges-bank',
-    STATIC: 'static'
+    STATIC: 'static',
+    OSLO_INDICES: 'oslo-indices'
 };

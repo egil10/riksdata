@@ -175,6 +175,7 @@ body.sidebar-expanded .toggle-icon {
     padding-top: calc(var(--header-height) + 0.75rem);
     height: calc(100vh - var(--header-height));
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 /* Table Wrapper */
@@ -182,25 +183,28 @@ body.sidebar-expanded .toggle-icon {
     position: relative;
 }
 
-/* Political Table Layout - NEW 2-LINE DESIGN */
+/* Political Table Layout - OPTIMIZED 2-LINE DESIGN */
 .political-table {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.7rem;
-    line-height: 1.2;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    line-height: 1.1;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .political-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
-    gap: 0.25rem;
-    padding: 0.5rem;
-    border-radius: 4px;
+    gap: 0.2rem 0.4rem;
+    padding: 0.4rem;
+    border-radius: 3px;
     border: 1px solid var(--border);
     background: var(--card);
     transition: background var(--t) var(--ease);
+    min-height: 2.2rem;
 }
 
 .political-row:hover {
@@ -211,11 +215,12 @@ body.sidebar-expanded .toggle-icon {
 .political-row .party-color {
     grid-row: 1 / 3;
     grid-column: 1;
-    width: 12px;
+    width: 10px;
     height: 100%;
-    border-radius: 3px;
-    display: inline-block;
-    margin-right: 0.5rem;
+    border-radius: 2px;
+    display: block;
+    margin-right: 0.3rem;
+    align-self: stretch;
 }
 
 .political-row .party-short {
@@ -225,9 +230,10 @@ body.sidebar-expanded .toggle-icon {
     color: var(--text);
     text-decoration: none;
     transition: color var(--t) var(--ease);
-    font-size: 0.7rem;
-    margin-left: 1.5rem;
+    font-size: 0.65rem;
+    margin-left: 1.3rem;
     align-self: center;
+    white-space: nowrap;
 }
 
 .political-row .party-short:hover {
@@ -241,11 +247,12 @@ body.sidebar-expanded .toggle-icon {
     color: var(--text);
     text-decoration: none;
     transition: color var(--t) var(--ease);
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 100%;
 }
 
 .political-row .regjering-name:hover {
@@ -256,33 +263,41 @@ body.sidebar-expanded .toggle-icon {
 .political-row .years {
     grid-row: 2;
     grid-column: 2;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: var(--text-muted);
     font-weight: 500;
+    white-space: nowrap;
 }
 
-/* Coalition parties (right side, bottom row, next to years) */
+/* Coalition parties (right side, bottom row) */
 .political-row .coalition-parties {
     grid-row: 2;
     grid-column: 2;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     color: var(--text-muted);
     display: flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: 0.2rem;
     flex-wrap: wrap;
     margin-left: auto;
     justify-self: end;
+    max-width: 60%;
 }
 
-/* Party Colors */
-.party-color.ap { background: var(--ap-red); }
-.party-color.h { background: var(--h-blue); }
-.party-color.sp { background: #00ff00; }
-.party-color.v { background: #ff6600; }
-.party-color.krf { background: var(--krf-yellow); }
-.party-color.sv { background: #ff0000; }
-.party-color.frp { background: #0000ff; }
+.political-row .coalition-parties .party-short {
+    font-size: 0.6rem;
+    margin: 0;
+    padding: 0;
+}
+
+/* Party Colors - Consistent with chart colors */
+.party-color.ap { background: #E11926; } /* Arbeiderpartiet red */
+.party-color.h { background: #87add7; } /* Høyre light blue */
+.party-color.sp { background: #4CAF50; } /* Senterpartiet green */
+.party-color.v { background: #006666; } /* Venstre teal */
+.party-color.krf { background: #FDED34; } /* Kristelig Folkeparti yellow */
+.party-color.sv { background: #B5317C; } /* Sosialistisk Venstreparti pink */
+.party-color.frp { background: #004F80; } /* Fremskrittspartiet dark blue */
 
 /* Main Content */
 .main-content {
@@ -1278,7 +1293,7 @@ footer {
 .party-square.ap { background-color: #E11926; }
 .party-square.krf { background-color: #FDED34; }
 .party-square.h { background-color: #87add7; }
-.party-square.sp { background-color: #00843D; }
+.party-square.sp { background-color: #4CAF50; }
 .party-square.v { background-color: #006666; }
 .party-square.frp { background-color: #004F80; }
 .party-square.sv { background-color: #B5317C; }
@@ -1293,7 +1308,7 @@ footer {
 .party-name.ap { color: #E11926; }
 .party-name.krf { color: #B8860B; }
 .party-name.h { color: #2E5A88; }
-.party-name.sp { color: #00843D; }
+.party-name.sp { color: #4CAF50; }
 .party-name.v { color: #006666; }
 .party-name.frp { color: #004F80; }
 .party-name.sv { color: #B5317C; }
@@ -1882,30 +1897,35 @@ footer {
     
     /* Political table adjustments for mobile */
     .political-row {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
-        gap: 0.2rem;
-        padding: 0.4rem;
-        font-size: 0.65rem;
+        gap: 0.15rem 0.3rem;
+        padding: 0.35rem;
+        font-size: 0.6rem;
+        min-height: 2rem;
     }
     
     .political-row .party-color {
-        width: 10px;
-        margin-right: 0.3rem;
+        width: 8px;
+        margin-right: 0.25rem;
     }
     
     .political-row .party-short {
-        font-size: 0.65rem;
-        margin-left: 1.2rem;
+        font-size: 0.6rem;
+        margin-left: 1.1rem;
     }
     
     .political-row .regjering-name {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
     
     .political-row .years,
     .political-row .coalition-parties {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+    }
+    
+    .political-row .coalition-parties {
+        max-width: 55%;
     }
     
 
@@ -1914,26 +1934,31 @@ footer {
 @media (max-width: 480px) {
     /* Very small screens */
     .political-row {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         padding: 0.3rem;
+        min-height: 1.8rem;
     }
     
     .political-row .party-color {
-        width: 8px;
+        width: 7px;
         margin-right: 0.2rem;
     }
     
     .political-row .party-short {
-        font-size: 0.6rem;
-        margin-left: 1rem;
+        font-size: 0.55rem;
+        margin-left: 0.9rem;
     }
     
     .political-row .regjering-name,
     .political-row .years,
     .political-row .coalition-parties {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
+    }
+    
+    .political-row .coalition-parties {
+        max-width: 50%;
     }
     
 

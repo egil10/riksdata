@@ -109,257 +109,188 @@
     <!-- Political History Sidebar -->
     <aside id="sidebar" class="sidebar collapsed">
         <div class="sidebar-content">
-                    <div class="table-wrapper">
-            <style>
-                .political-table {
-                    width: 100%;
-                    border-collapse: collapse;
-                    font-family: Arial, sans-serif;
-                    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-                    border-radius: 8px;
-                    overflow: hidden;
-                }
-                .political-table th, .political-table td {
-                    padding: 12px 15px;
-                    text-align: left;
-                    border-bottom: 1px solid #ddd;
-                }
-                .political-table th {
-                    background-color: #f4f4f4;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                }
-                .political-table tr:hover {
-                    background-color: #f9f9f9;
-                }
-                .party-color {
-                    display: inline-block;
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 50%;
-                    margin-right: 10px;
-                    vertical-align: middle;
-                }
-                .party-color.ap { background-color: #d00; } /* Red for Ap */
-                .party-color.h { background-color: #006; } /* Blue for H */
-                .party-color.sp { background-color: #060; } /* Green for Sp */
-                .party-color.krf { background-color: #fc0; } /* Yellow for KrF */
-                .party-color.v { background-color: #0cf; } /* Cyan for V */
-                .party-color.frp { background-color: #003; } /* Dark blue for FrP */
-                .party-color.sv { background-color: #900; } /* Dark red for SV */
-                .party-short {
-                    text-decoration: none;
-                    color: #333;
-                    font-weight: bold;
-                    margin-right: 5px;
-                }
-                .party-short:hover {
-                    text-decoration: underline;
-                }
-                .regjering-name {
-                    text-decoration: none;
-                    color: #06c;
-                    font-weight: bold;
-                }
-                .regjering-name:hover {
-                    text-decoration: underline;
-                }
-                .years {
-                    color: #666;
-                }
-                .coalition-parties .party-short {
-                    margin-right: 5px;
-                }
-                @media (max-width: 768px) {
-                    .political-table {
-                        border: 0;
-                    }
-                    .political-table thead {
-                        display: none;
-                    }
-                    .political-table tr {
-                        margin-bottom: 10px;
-                        display: block;
-                        border: 1px solid #ddd;
-                        border-radius: 4px;
-                    }
-                    .political-table td {
-                        display: block;
-                        text-align: right;
-                        border-bottom: none;
-                        position: relative;
-                        padding-left: 50%;
-                    }
-                    .political-table td::before {
-                        content: attr(data-label);
-                        position: absolute;
-                        left: 15px;
-                        font-weight: bold;
-                        text-transform: uppercase;
-                    }
-                }
-            </style>
-            <table class="political-table" id="political-history-table">
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Leading Party</th>
-                        <th>Government</th>
-                        <th>Years</th>
-                        <th>Coalition</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-label="Color"><span class="party-color sp"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.senterpartiet.no/" class="party-short">Sp</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Per_Bortens_regjering" class="regjering-name">Borten</a></td>
-                        <td data-label="Years"><span class="years">1965-1971</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://hoyre.no/" class="party-short">H</a>
-                            <a href="https://www.krf.no/" class="party-short">KrF</a>
-                            <a href="https://www.venstre.no/" class="party-short">V</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Trygve_Brattelis_f%C3%B8rste_regjering" class="regjering-name">Bratteli I</a></td>
-                        <td data-label="Years"><span class="years">1971-1972</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color krf"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.krf.no/" class="party-short">KrF</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Lars_Korvalds_regjering" class="regjering-name">Korvald</a></td>
-                        <td data-label="Years"><span class="years">1972-1973</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                            <a href="https://www.venstre.no/" class="party-short">V</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Trygve_Brattelis_andre_regjering" class="regjering-name">Bratteli II</a></td>
-                        <td data-label="Years"><span class="years">1973-1976</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Odvar_Nordlis_regjering" class="regjering-name">Nordli</a></td>
-                        <td data-label="Years"><span class="years">1976-1981</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_f%C3%B8rste_regjering" class="regjering-name">Brundtland I</a></td>
-                        <td data-label="Years"><span class="years">1981</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color h"></span></td>
-                        <td data-label="Leading Party"><a href="https://hoyre.no/" class="party-short">H</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/K%C3%A5re_Willochs_regjering" class="regjering-name">Willoch</a></td>
-                        <td data-label="Years"><span class="years">1981-1986</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.krf.no/" class="party-short">KrF</a>
-                            <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_andre_regjering" class="regjering-name">Brundtland II</a></td>
-                        <td data-label="Years"><span class="years">1986-1989</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color h"></span></td>
-                        <td data-label="Leading Party"><a href="https://hoyre.no/" class="party-short">H</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Jan_P._Syses_regjering" class="regjering-name">Syse</a></td>
-                        <td data-label="Years"><span class="years">1989-1990</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.krf.no/" class="party-short">KrF</a>
-                            <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_tredje_regjering" class="regjering-name">Brundtland III</a></td>
-                        <td data-label="Years"><span class="years">1990-1996</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Thorbj%C3%B8rn_Jaglands_regjering" class="regjering-name">Jagland</a></td>
-                        <td data-label="Years"><span class="years">1996-1997</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color krf"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.krf.no/" class="party-short">KrF</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_f%C3%B8rste_regjering" class="regjering-name">Bondevik I</a></td>
-                        <td data-label="Years"><span class="years">1997-2000</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                            <a href="https://www.venstre.no/" class="party-short">V</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Jens_Stoltenbergs_f%C3%B8rste_regjering" class="regjering-name">Stoltenberg I</a></td>
-                        <td data-label="Years"><span class="years">2000-2001</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">Single-party minority</span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color krf"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.krf.no/" class="party-short">KrF</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_andre_regjering" class="regjering-name">Bondevik II</a></td>
-                        <td data-label="Years"><span class="years">2001-2005</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://hoyre.no/" class="party-short">H</a>
-                            <a href="https://www.venstre.no/" class="party-short">V</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Jens_Stoltenbergs_andre_regjering" class="regjering-name">Stoltenberg II</a></td>
-                        <td data-label="Years"><span class="years">2005-2013</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.sv.no/" class="party-short">SV</a>
-                            <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color h"></span></td>
-                        <td data-label="Leading Party"><a href="https://hoyre.no/" class="party-short">H</a></td>
-                        <td data-label="Government"><a href="https://no.wikipedia.org/wiki/Erna_Solbergs_regjering" class="regjering-name">Solberg</a></td>
-                        <td data-label="Years"><span class="years">2013-2021</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.frp.no/" class="party-short">FrP</a>
-                            <a href="https://www.venstre.no/" class="party-short">V</a>
-                            <a href="https://www.krf.no/" class="party-short">KrF</a>
-                        </span></td>
-                    </tr>
-                    <tr>
-                        <td data-label="Color"><span class="party-color ap"></span></td>
-                        <td data-label="Leading Party"><a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a></td>
-                        <td data-label="Government"><a href="https://no.arbeiderpartiet.no/" class="regjering-name">Støre</a></td>
-                        <td data-label="Years"><span class="years">2021-Present</span></td>
-                        <td data-label="Coalition"><span class="coalition-parties">
-                            <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                        </span></td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="political-table">
+                <!-- Borten (Sp) -->
+                <div class="political-row">
+                    <span class="party-color sp"></span>
+                    <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                    <a href="https://no.wikipedia.org/wiki/Per_Bortens_regjering" class="regjering-name">Borten</a>
+                    <span class="years">1965-1971</span>
+                    <span class="coalition-parties">
+                        <a href="https://hoyre.no/" class="party-short">H</a>
+                        <a href="https://www.krf.no/" class="party-short">KrF</a>
+                        <a href="https://www.venstre.no/" class="party-short">V</a>
+                    </span>
+                </div>
+
+                <!-- Bratteli I (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Trygve_Brattelis_f%C3%B8rste_regjering" class="regjering-name">Bratteli I</a>
+                    <span class="years">1971-1972</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Korvald (KrF) -->
+                <div class="political-row">
+                    <span class="party-color krf"></span>
+                    <a href="https://www.krf.no/" class="party-short">KrF</a>
+                    <a href="https://no.wikipedia.org/wiki/Lars_Korvalds_regjering" class="regjering-name">Korvald</a>
+                    <span class="years">1972-1973</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                        <a href="https://www.venstre.no/" class="party-short">V</a>
+                    </span>
+                </div>
+
+                <!-- Bratteli II (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Trygve_Brattelis_andre_regjering" class="regjering-name">Bratteli II</a>
+                    <span class="years">1973-1976</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Nordli (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Odvar_Nordlis_regjering" class="regjering-name">Nordli</a>
+                    <span class="years">1976-1981</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Brundtland I (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_f%C3%B8rste_regjering" class="regjering-name">Brundtland I</a>
+                    <span class="years">1981</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Willoch (H) -->
+                <div class="political-row">
+                    <span class="party-color h"></span>
+                    <a href="https://hoyre.no/" class="party-short">H</a>
+                    <a href="https://no.wikipedia.org/wiki/K%C3%A5re_Willochs_regjering" class="regjering-name">Willoch</a>
+                    <span class="years">1981-1986</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.krf.no/" class="party-short">KrF</a>
+                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                    </span>
+                </div>
+
+                <!-- Brundtland II (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_andre_regjering" class="regjering-name">Brundtland II</a>
+                    <span class="years">1986-1989</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Syse (H) -->
+                <div class="political-row">
+                    <span class="party-color h"></span>
+                    <a href="https://hoyre.no/" class="party-short">H</a>
+                    <a href="https://no.wikipedia.org/wiki/Jan_P._Syses_regjering" class="regjering-name">Syse</a>
+                    <span class="years">1989-1990</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.krf.no/" class="party-short">KrF</a>
+                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                    </span>
+                </div>
+
+                <!-- Brundtland III (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_tredje_regjering" class="regjering-name">Brundtland III</a>
+                    <span class="years">1990-1996</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Jagland (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Thorbj%C3%B8rn_Jaglands_regjering" class="regjering-name">Jagland</a>
+                    <span class="years">1996-1997</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Bondevik I (KrF) -->
+                <div class="political-row">
+                    <span class="party-color krf"></span>
+                    <a href="https://www.krf.no/" class="party-short">KrF</a>
+                    <a href="https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_f%C3%B8rste_regjering" class="regjering-name">Bondevik I</a>
+                    <span class="years">1997-2000</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                        <a href="https://www.venstre.no/" class="party-short">V</a>
+                    </span>
+                </div>
+
+                <!-- Stoltenberg I (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Jens_Stoltenbergs_f%C3%B8rste_regjering" class="regjering-name">Stoltenberg I</a>
+                    <span class="years">2000-2001</span>
+                    <span class="coalition-parties">Single-party minority</span>
+                </div>
+
+                <!-- Bondevik II (KrF) -->
+                <div class="political-row">
+                    <span class="party-color krf"></span>
+                    <a href="https://www.krf.no/" class="party-short">KrF</a>
+                    <a href="https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_andre_regjering" class="regjering-name">Bondevik II</a>
+                    <span class="years">2001-2005</span>
+                    <span class="coalition-parties">
+                        <a href="https://hoyre.no/" class="party-short">H</a>
+                        <a href="https://www.venstre.no/" class="party-short">V</a>
+                    </span>
+                </div>
+
+                <!-- Stoltenberg II (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.wikipedia.org/wiki/Jens_Stoltenbergs_andre_regjering" class="regjering-name">Stoltenberg II</a>
+                    <span class="years">2005-2013</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.sv.no/" class="party-short">SV</a>
+                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                    </span>
+                </div>
+
+                <!-- Solberg (H) -->
+                <div class="political-row">
+                    <span class="party-color h"></span>
+                    <a href="https://hoyre.no/" class="party-short">H</a>
+                    <a href="https://no.wikipedia.org/wiki/Erna_Solbergs_regjering" class="regjering-name">Solberg</a>
+                    <span class="years">2013-2021</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.frp.no/" class="party-short">FrP</a>
+                        <a href="https://www.venstre.no/" class="party-short">V</a>
+                        <a href="https://www.krf.no/" class="party-short">KrF</a>
+                    </span>
+                </div>
+
+                <!-- Støre (Ap) -->
+                <div class="political-row">
+                    <span class="party-color ap"></span>
+                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
+                    <a href="https://no.arbeiderpartiet.no/" class="regjering-name">Støre</a>
+                    <span class="years">2021-Present</span>
+                    <span class="coalition-parties">
+                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
+                    </span>
+                </div>
+            </div>
         </div>
     </aside>
 

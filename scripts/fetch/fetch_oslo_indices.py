@@ -28,19 +28,20 @@ class OsloIndicesFetcher:
         
         # Oslo indices tickers
         self.indices = {
-            "OSEAX": "OSEAX.OL",  # Oslo Stock Exchange All Share Index
+            "OSEAX": "^OSEAX",  # Oslo Stock Exchange All Share Index
             "OSEBX": "OSEBX.OL"   # Oslo Stock Exchange Benchmark Index
         }
         
         # Alternative tickers to try for OSEBX
         self.alternative_tickers = {
-            "OSEBX": ["OSEBX.OL", "OSEBX.HE", "OSEBX.ST", "OSEBX.IC"]
+            "OSEAX": ["^OSEAX", "OSEAX.OL"],
+            "OSEBX": ["OSEBX.OL", "^OSEBX", "OSEBX.HE", "OSEBX.ST", "OSEBX.IC"]
         }
         
         # Rate limiting settings
-        self.delay_between_requests = 5  # seconds
-        self.max_retries = 3
-        self.retry_delay = 30  # seconds after rate limit hit
+        self.delay_between_requests = 10  # seconds
+        self.max_retries = 5
+        self.retry_delay = 60  # seconds after rate limit hit
     
     def load_existing_data(self, index_name):
         """Load existing data if available"""

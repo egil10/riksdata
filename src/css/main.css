@@ -194,6 +194,48 @@ body.sidebar-expanded .toggle-icon {
     overflow: hidden;
 }
 
+/* Header Row */
+.political-header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.2rem 0.4rem;
+    padding: 0.4rem;
+    border-radius: 3px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    min-height: 2.2rem;
+}
+
+.political-header .header-party {
+    grid-row: 1 / 3;
+    grid-column: 1;
+    margin-left: 1.3rem;
+    align-self: center;
+}
+
+.political-header .header-pm {
+    grid-row: 1;
+    grid-column: 2;
+}
+
+.political-header .header-year {
+    grid-row: 2;
+    grid-column: 2;
+}
+
+.political-header .header-coalition {
+    grid-row: 2;
+    grid-column: 2;
+    margin-left: auto;
+    justify-self: end;
+}
+
 .political-row {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -1896,6 +1938,13 @@ footer {
     }
     
     /* Political table adjustments for mobile */
+    .political-header {
+        gap: 0.15rem 0.3rem;
+        padding: 0.35rem;
+        font-size: 0.55rem;
+        min-height: 2rem;
+    }
+    
     .political-row {
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
@@ -1933,6 +1982,13 @@ footer {
 
 @media (max-width: 480px) {
     /* Very small screens */
+    .political-header {
+        gap: 0.15rem 0.25rem;
+        padding: 0.3rem;
+        font-size: 0.5rem;
+        min-height: 1.8rem;
+    }
+    
     .political-row {
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;

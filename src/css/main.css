@@ -42,6 +42,7 @@ body {
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
+    overflow-y: auto;
     font-size: var(--step-0);
     line-height: 1.5;
     transition: background-color var(--t) var(--ease), color var(--t) var(--ease);

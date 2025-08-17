@@ -23,19 +23,12 @@ riksdata/
 │   │   ├── norges-bank/  # Norges Bank datasets
 │   │   └── metadata.json # Cache metadata
 │   └── static/           # Static data files
-├── tools/                # Python tools and scripts
+├── scripts/              # Python scripts
 │   ├── fetch/            # Data fetching scripts
-│   │   ├── __init__.py
-│   │   ├── ssb.py        # SSB data fetcher
-│   │   ├── norges_bank.py # Norges Bank data fetcher
-│   │   └── base.py       # Base fetcher class
-│   ├── validate/         # Data validation scripts
-│   │   ├── __init__.py
-│   │   └── validator.py  # Data validator
-│   ├── expand.py         # Chart expansion tool
-│   ├── master.py         # Master data processing script
-│   ├── main.py           # Main script runner
-│   └── README.md         # Tools documentation
+│   │   ├── fetch_oslo_indices.py # Oslo indices fetcher
+│   │   └── README.md     # Scripts documentation
+│   ├── requirements.txt  # Python dependencies
+│   └── README.md         # Scripts documentation
 ├── tests/                # Test files
 │   ├── test_cache.html   # Cache testing
 │   ├── debug.html        # Debug utilities
@@ -65,18 +58,15 @@ pip install -r requirements.txt
 ### 2. Fetch Data
 
 ```bash
-# Fetch all data (SSB + Norges Bank)
-python tools/main.py
+# Fetch Oslo indices data
+cd scripts
+python fetch/fetch_oslo_indices.py
 
-# Fetch only SSB data
-python tools/main.py --sources ssb
-
-# Fetch only Norges Bank data
-python tools/main.py --sources norges-bank
-
-# Fetch with verbose logging
-python tools/main.py --verbose
+# Install dependencies (if needed)
+pip install -r requirements.txt
 ```
+
+**Note**: The original SSB and Norges Bank data fetching scripts are not included in this repository. The Oslo indices fetcher is available in the `scripts/` directory.
 
 ### 3. Run the Website
 
@@ -117,6 +107,7 @@ This page will test all cache files and show which ones are missing or causing e
 ### Data Sources
 - **Statistics Norway (SSB)**: 67+ economic indicators
 - **Norges Bank**: Exchange rates, interest rates, government debt
+- **Oslo Stock Exchange**: OSEAX (All Share Index)
 - **Static Data**: Oil fund data, etc.
 
 ### Chart Features
@@ -164,29 +155,24 @@ open http://localhost:8000/test-theme.html
 
 1. **Create a new fetcher** in `scripts/fetch/`:
 ```python
-from .base import BaseFetcher
+# Example: fetch_new_data.py
+import yfinance as yf
+import json
+import os
+from datetime import datetime
 
-class NewSourceFetcher(BaseFetcher):
-    def __init__(self, cache_dir):
-        super().__init__(cache_dir / "new-source")
-        # Add your datasets here
+class NewDataFetcher:
+    def __init__(self, cache_dir="data/cached"):
+        self.cache_dir = cache_dir
+        self.data_dir = os.path.join(cache_dir, "new-source")
+        os.makedirs(self.data_dir, exist_ok=True)
     
-    def fetch_all(self):
-        # Implement fetching logic
+    def fetch_data(self):
+        # Implement your fetching logic here
         pass
 ```
 
-2. **Add to main.py**:
-```python
-from fetch import NewSourceFetcher
-
-# In fetch_data function:
-if 'new-source' in sources:
-    new_fetcher = NewSourceFetcher(cache_path)
-    successful, failed = new_fetcher.fetch_all()
-```
-
-3. **Update configuration** in `src/js/config.js`:
+2. **Update configuration** in `src/js/config.js`:
 ```javascript
 export const DATASET_MAPPINGS = {
     // ... existing mappings
@@ -194,6 +180,11 @@ export const DATASET_MAPPINGS = {
         'dataset_id': 'cache_filename'
     }
 };
+```
+
+3. **Add chart loading** in `src/js/main.js`:
+```javascript
+loadChartData('new-chart', './data/cached/new-source/data.json', 'New Chart Title')
 ```
 
 ### Adding New Charts
@@ -235,6 +226,7 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - Government Debt
 - Oil Fund Value
 - Monetary Aggregates
+- Oslo Stock Exchange Indices (OSEAX)
 
 ### Trade & Industry
 - Trade Balance
@@ -257,20 +249,12 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 ### Data Management
 
 ```bash
-# Fetch and validate all data
-python scripts/main.py
+# Fetch Oslo indices data
+cd scripts
+python fetch/fetch_oslo_indices.py
 
-# Only fetch data
-python scripts/main.py --fetch-only
-
-# Only validate data
-python scripts/main.py --validate-only
-
-# Fetch specific sources
-python scripts/main.py --sources ssb norges-bank
-
-# Verbose output
-python scripts/main.py --verbose
+# Install dependencies
+pip install -r requirements.txt
 ```
 
 ### Testing

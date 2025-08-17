@@ -42,7 +42,6 @@ body {
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
-    overflow-y: hidden;
     font-size: var(--step-0);
     line-height: 1.5;
     transition: background-color var(--t) var(--ease), color var(--t) var(--ease);
@@ -888,6 +887,11 @@ main {
     color: var(--text);
     margin: 0;
     letter-spacing: -0.025em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex: 1;
+    min-width: 0;
 }
 
 .chart-header-top {
@@ -895,14 +899,16 @@ main {
     align-items: center;
     gap: 0.5rem;
     width: 100%;
+    flex-wrap: nowrap;
 }
 
 .chart-actions {
     margin-left: auto;
     display: inline-flex;
     gap: 4px;
-    transform: scale(0.85);
+    transform: scale(0.75);
     transform-origin: right center;
+    margin-right: 0.5rem;
 }
 
 .icon-btn {
@@ -954,9 +960,6 @@ main {
 
 /* Source Links */
 .source-link {
-    position: absolute;
-    top: 0;
-    right: 0;
     font-size: 0.75rem;
     color: var(--text);
     text-decoration: none;
@@ -966,7 +969,8 @@ main {
     transition: all var(--t) var(--ease);
     opacity: 0.6;
     font-weight: 500;
-    z-index: 10;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .source-link:hover {
@@ -986,14 +990,18 @@ main {
     font-size: var(--step-0);
     font-weight: 600;
     color: var(--text);
-    margin-bottom: 0.25rem;
+    margin: 0;
     letter-spacing: -0.025em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .chart-subtitle {
     font-size: var(--step--1);
     color: var(--text-muted);
     font-weight: 400;
+    margin-top: 0.05rem;
 }
 
 .chart-container {

@@ -53,14 +53,8 @@ export function initChartWhenVisible(chartId, createChartFn) {
  * @returns {Array} Optimized data
  */
 function optimizeDataForMobile(data, isMobile = false) {
-    if (!isMobile || !data || data.length <= 12) {
-        return data;
-    }
-    
-    // On mobile, limit to recent 12 months for better performance
-    const recentData = data.slice(-12);
-    console.log(`Mobile optimization: reduced ${data.length} data points to ${recentData.length}`);
-    return recentData;
+    // Return full data for both mobile and desktop to show complete historical data
+    return data;
 }
 
 /**

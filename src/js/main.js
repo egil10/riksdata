@@ -226,6 +226,7 @@ export async function initializeApp() {
             
             // Oslo Stock Exchange data
             loadChartData('oseax-chart', './data/cached/oslo-indices/oseax.json', 'OSEAX - Oslo Stock Exchange All Share Index'),
+            loadChartData('osebx-chart', './data/cached/oslo-indices/osebx.json', 'OSEBX - Oslo Stock Exchange Benchmark Index'),
             
             
             

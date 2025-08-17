@@ -196,7 +196,12 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 }
             } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
                 // Handle static data files
-                parsedData = parseStaticData(data, chartTitle);
+                if (apiUrl.includes('oseax-osebx.json')) {
+                    // Handle Oslo indices data with new format
+                    parsedData = parseOsloIndicesData(data, chartTitle);
+                } else {
+                    parsedData = parseStaticData(data, chartTitle);
+                }
             } else {
                 console.warn(`Unknown data source: ${apiUrl}`);
                 return null;
@@ -1731,6 +1736,48 @@ export function parseStaticData(data, chartTitle) {
         return [];
     } catch (error) {
         console.error('Error parsing static data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse Oslo indices data from the new combined format
+ * @param {Object} data - Oslo indices data object
+ * @param {string} chartTitle - Chart title to determine which index to extract
+ * @returns {Array} Parsed data points
+ */
+export function parseOsloIndicesData(data, chartTitle) {
+    try {
+        if (!data.indices) {
+            console.error('No indices found in Oslo indices data');
+            return [];
+        }
+
+        // Determine which index to extract based on chart title
+        let indexKey = null;
+        if (chartTitle.includes('OSEAX')) {
+            indexKey = 'OSEAX';
+        } else if (chartTitle.includes('OSEBX')) {
+            indexKey = 'OSEBX';
+        } else {
+            console.error('Could not determine index type from chart title:', chartTitle);
+            return [];
+        }
+
+        const indexData = data.indices[indexKey];
+        if (!indexData || !indexData.data) {
+            console.error(`No data found for index: ${indexKey}`);
+            return [];
+        }
+
+        // Parse the data points
+        return indexData.data.map(item => ({
+            date: new Date(item.date),
+            value: Number(item.value)
+        })).sort((a, b) => a.date - b.date);
+
+    } catch (error) {
+        console.error('Error parsing Oslo indices data:', error);
         return [];
     }
 }

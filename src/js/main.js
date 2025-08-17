@@ -6,6 +6,7 @@ console.log('Main.js module loading...');
 
 import { loadChartData } from './charts.js';
 import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout, downloadChartForCard, copyChartDataTSV } from './utils.js';
+import { getDataById } from './registry.js';
 
 console.log('All modules imported successfully');
 
@@ -983,15 +984,7 @@ setTimeout(() => {
 }, 15000);
 
 // ---- Chart Data Registry and Actions ----
-const chartDataRegistry = new Map();
-
-export function registerChartData(id, dataArray) {
-    chartDataRegistry.set(id, dataArray);
-}
-
-function getDataById(id) {
-    return chartDataRegistry.get(id) || [];
-}
+// Registry moved to registry.js to avoid circular imports
 
 // ---- Chart Actions: Download / Copy ----
 document.addEventListener('click', (e) => {

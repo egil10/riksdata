@@ -11,7 +11,7 @@ import {
     updateStaticTooltip,
     hideStaticTooltip
 } from './utils.js';
-import { registerChartData } from './main.js';
+import { registerChartData } from './registry.js';
 
 // Helper function to normalize relative paths for GitHub Pages
 function rel(p) {

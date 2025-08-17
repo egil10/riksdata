@@ -353,6 +353,15 @@ html {
         -webkit-backdrop-filter: blur(10px);
     }
     
+    /* Responsive tweaks for tight viewports */
+    .source-link {
+        max-width: 18ch;          /* a bit tighter on phones */
+    }
+    .chart-actions {
+        transform: scale(0.7);
+        margin-right: 0.25rem;
+    }
+    
     header h1 {
         font-size: 1.125rem;
         font-weight: 600;
@@ -875,6 +884,7 @@ main {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
+    overflow: hidden;           /* keep children from spilling out */
 }
 
 .chart-card:hover {
@@ -899,11 +909,12 @@ main {
     color: var(--text);
     margin: 0;
     letter-spacing: -0.025em;
-    white-space: nowrap;
+    /* make it the flexible child */
+    flex: 1 1 auto;
+    min-width: 0;               /* CRUCIAL for ellipsis in flex */
     overflow: hidden;
     text-overflow: ellipsis;
-    flex: 1;
-    min-width: 0;
+    white-space: nowrap;
 }
 
 .chart-header-top {
@@ -912,15 +923,19 @@ main {
     gap: 0.5rem;
     width: 100%;
     flex-wrap: nowrap;
+    /* IMPORTANT to allow children to actually shrink */
+    min-width: 0;
+    overflow: hidden; /* guardrail to avoid horizontal bleed */
 }
 
 .chart-actions {
-    margin-left: auto;
+    margin-left: auto;          /* keep it on the right */
     display: inline-flex;
     gap: 4px;
     transform: scale(0.75);
     transform-origin: right center;
     margin-right: 0.5rem;
+    flex: 0 0 auto;             /* don't grow, don't shrink too small */
 }
 
 .icon-btn {
@@ -981,8 +996,11 @@ main {
     transition: all var(--t) var(--ease);
     opacity: 0.6;
     font-weight: 500;
-    white-space: nowrap;
-    flex-shrink: 0;
+    flex: 0 0 auto;             /* don't grab title space */
+    white-space: nowrap;        /* stays a single run */
+    max-width: 30ch;            /* keep it reasonable */
+    overflow: hidden;           /* allow truncation */
+    text-overflow: ellipsis;
 }
 
 .source-link:hover {
@@ -1014,6 +1032,9 @@ main {
     color: var(--text-muted);
     font-weight: 400;
     margin-top: 0.05rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .chart-container {
@@ -1022,6 +1043,8 @@ main {
     min-height: 150px;
     display: block;
     visibility: visible;
+    max-width: 100%;
+    overflow: hidden;           /* keep children from spilling out */
 }
 
 /* Improve canvas rendering quality for better text clarity */
@@ -1030,6 +1053,10 @@ main {
     image-rendering: crisp-edges;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: block;
+    max-width: 100%;
+    width: 100% !important;     /* Chart.js respects this */
+    height: auto;               /* let Chart.js calculate height */
 }
 
 /* Static Tooltip Area */

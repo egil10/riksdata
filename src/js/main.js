@@ -9,6 +9,31 @@ import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTime
 
 console.log('All modules imported successfully');
 
+/**
+ * Set up ellipsis tooltips for truncated chart titles
+ */
+function setupEllipsisTooltips() {
+    document.querySelectorAll('.chart-header h3').forEach(setEllipsisTitle);
+}
+
+/**
+ * Set ellipsis title for a single element
+ */
+function setEllipsisTitle(el) {
+    if (!el) return;
+    // Wait for layout to settle (fonts, sidebar toggle, etc.)
+    requestAnimationFrame(() => {
+        const truncated = el.scrollWidth > el.clientWidth;
+        if (truncated) {
+            // Preserve any existing tooltip text if you have one
+            if (!el.getAttribute('title')) el.setAttribute('title', el.textContent.trim());
+        } else {
+            // If not truncated, remove title to avoid redundant browser tooltips
+            if (el.getAttribute('title')) el.removeAttribute('title');
+        }
+    });
+}
+
 // Top-level error guards
 window.addEventListener('error', e => {
     console.error('Global error:', e.error || e.message);
@@ -346,6 +371,9 @@ export async function initializeApp() {
         
         // Sort charts alphabetically by default
         sortChartsAlphabetically();
+        
+        // Set up ellipsis tooltips for truncated chart titles
+        setupEllipsisTooltips();
         
         console.log('Application initialization complete!');
         
@@ -1075,4 +1103,31 @@ document.addEventListener("DOMContentLoaded", () => {
             if (action === "download") downloadPoliticalTable(tableId);
         });
     });
+});
+
+// Re-run ellipsis tooltips on resize and when layout changes
+window.addEventListener('resize', () => {
+    document.querySelectorAll('.chart-header h3').forEach(setEllipsisTitle);
+});
+
+// Resize Chart.js instances when sidebar toggles or layout changes
+function resizeCharts() {
+    if (window.Chart) {
+        Chart.helpers.each(Chart.instances, (chart) => {
+            if (chart && typeof chart.resize === 'function') chart.resize();
+        });
+    }
+}
+
+// Call resizeCharts after sidebar toggle
+document.addEventListener('DOMContentLoaded', () => {
+    const sidebarToggle = document.querySelector('[data-action="toggle-sidebar"]');
+    if (sidebarToggle) {
+        sidebarToggle.addEventListener('click', () => {
+            setTimeout(() => {
+                resizeCharts();
+                setupEllipsisTooltips();
+            }, 200); // Wait for sidebar animation to complete
+        });
+    }
 });

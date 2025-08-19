@@ -698,49 +698,41 @@ export async function copyChartDataTSV(cardEl, getDataById) {
     const tsv = [header, ...rows].join('\n');
     const blob = new Blob([tsv], { type: 'text/tab-separated-values;charset=utf-8' });
 
-    // Try modern clipboard path first with a typed payload
-    if (navigator?.clipboard && window?.ClipboardItem) {
-      const item = new ClipboardItem({ 'text/plain': blob });
-      await navigator.clipboard.write([item]);
-      announce?.('Data copied to clipboard.');
-      const btn = cardEl?.querySelector?.('[data-action="copy"]');
-      updateActionButtonState?.(btn, 'success', 'copy');
-    } else {
-      // Fallback: best-effort text copy
-      const ok = await (async () => {
-        try {
-          if (navigator?.clipboard?.writeText) {
-            await navigator.clipboard.writeText(tsv);
-            return true;
-          }
-        } catch (_e) {}
-        return false;
-      })();
+         // Try modern clipboard path first with a typed payload
+     if (navigator?.clipboard && window?.ClipboardItem) {
+       const item = new ClipboardItem({ 'text/plain': blob });
+       await navigator.clipboard.write([item]);
+       announce?.('Data copied to clipboard.');
+     } else {
+       // Fallback: best-effort text copy
+       const ok = await (async () => {
+         try {
+           if (navigator?.clipboard?.writeText) {
+             await navigator.clipboard.writeText(tsv);
+             return true;
+           }
+         } catch (_e) {}
+         return false;
+       })();
 
-      if (ok) {
-        announce?.('Data copied to clipboard.');
-        const btn = cardEl?.querySelector?.('[data-action="copy"]');
-        updateActionButtonState?.(btn, 'success', 'copy');
-      } else {
-        // Last resort: auto-download data.tsv
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(blob);
-        a.download = 'data.tsv';
-        document.body.appendChild(a);
-        a.click();
-        URL.revokeObjectURL(a.href);
-        a.remove();
-        announce?.('Clipboard blocked. Downloaded data.tsv instead.');
-        const btn = cardEl?.querySelector?.('[data-action="copy"]');
-        updateActionButtonState?.(btn, 'downloaded', 'copy');
-      }
-    }
-  } catch (err) {
-    console.error('[copyChartDataTSV] Unexpected error:', err);
-    announce?.('Could not copy data.');
-    const btn = cardEl?.querySelector?.('[data-action="copy"]');
-    updateActionButtonState?.(btn, 'error', 'copy');
-  }
+       if (ok) {
+         announce?.('Data copied to clipboard.');
+       } else {
+         // Last resort: auto-download data.tsv
+         const a = document.createElement('a');
+         a.href = URL.createObjectURL(blob);
+         a.download = 'data.tsv';
+         document.body.appendChild(a);
+         a.click();
+         URL.revokeObjectURL(a.href);
+         a.remove();
+         announce?.('Clipboard blocked. Downloaded data.tsv instead.');
+       }
+     }
+   } catch (err) {
+     console.error('[copyChartDataTSV] Unexpected error:', err);
+     announce?.('Could not copy data.');
+   }
 }
 
 function announce(msg) {

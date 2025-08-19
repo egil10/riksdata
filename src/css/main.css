@@ -599,8 +599,7 @@ html {
 .search-input:focus-visible {
     border-color: var(--accent);
     box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline: none;
 }
     
     .source-filters {
@@ -1044,8 +1043,7 @@ main {
 
 .chart-actions .icon-btn:focus-visible,
 .subtitle-actions .icon-btn:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
+    outline: none;
 }
 
 .chart-actions .icon-btn svg,
@@ -1368,17 +1366,9 @@ footer {
     text-decoration: underline;
 }
 
-/* Button Success Feedback Animation */
+/* Button Success Feedback Animation - No background color change */
 .icon-btn.success-feedback {
-    background-color: var(--success-color, #10b981);
-    color: white;
-    transition: background-color 0.3s ease;
-    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
-}
-
-.icon-btn.success-feedback:hover {
-    background-color: var(--success-color, #10b981);
-    color: white;
+    transition: all 0.3s ease;
 }
 
 /* Success color for dark theme */
@@ -2076,8 +2066,7 @@ footer {
   background: var(--border, rgba(0,0,0,0.04)); 
 }
 .icon-btn:focus { 
-  outline: 2px solid var(--accent, #7aa2ff); 
-  outline-offset: 2px; 
+  outline: none; 
 }
 .icon-btn .icon svg { 
   display: block; 

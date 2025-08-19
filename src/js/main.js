@@ -1006,6 +1006,7 @@ document.addEventListener('click', (e) => {
         updateActionButtonState(btn, 'success', 'download');
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
+        updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
     } else if (action === 'fullscreen') {
         openChartFullscreen(card);
     }

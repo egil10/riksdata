@@ -673,10 +673,17 @@ import { updateActionButtonState } from './icons.js';
 // --- Copy Data (TSV) ---
 export async function copyChartDataTSV(cardEl, getDataById) {
   try {
+    console.log('[copyChartDataTSV] Starting copy process...');
     const chartId = cardEl?.getAttribute?.('data-chart-id') || cardEl?.dataset?.chartId;
+    console.log('[copyChartDataTSV] Chart ID:', chartId);
+    console.log('[copyChartDataTSV] Card element:', cardEl);
+    
     const data = typeof getDataById === 'function' ? getDataById(chartId) : null;
+    console.log('[copyChartDataTSV] Retrieved data:', data);
+    
     if (!Array.isArray(data) || data.length === 0) {
       console.warn('[copyChartDataTSV] No data found for chart:', chartId);
+      announce?.('No data available for this chart.');
       return;
     }
 

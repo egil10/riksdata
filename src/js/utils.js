@@ -673,7 +673,7 @@ import { updateActionButtonState } from './icons.js';
 // --- Copy Data (TSV) ---
 export async function copyChartDataTSV(cardEl, getDataById) {
   try {
-    const chartId = cardEl?.getAttribute?.('id') || cardEl?.dataset?.id;
+    const chartId = cardEl?.getAttribute?.('data-chart-id') || cardEl?.dataset?.chartId;
     const data = typeof getDataById === 'function' ? getDataById(chartId) : null;
     if (!Array.isArray(data) || data.length === 0) {
       console.warn('[copyChartDataTSV] No data found for chart:', chartId);

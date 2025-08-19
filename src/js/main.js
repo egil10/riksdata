@@ -1125,28 +1125,36 @@ function resizeCharts() {
 }
 
 function showDownloadFormatSelector(btn, card) {
+    console.log('[showDownloadFormatSelector] Starting...');
+    
     // Remove any existing format selector
     const existingSelector = document.querySelector('.download-format-selector');
     if (existingSelector) {
         existingSelector.remove();
     }
     
+    // Get button position for proper positioning
+    const btnRect = btn.getBoundingClientRect();
+    console.log('[showDownloadFormatSelector] Button rect:', btnRect);
+    
     // Create format selector dropdown
     const selector = document.createElement('div');
     selector.className = 'download-format-selector';
     selector.style.cssText = `
-        position: absolute;
-        top: 100%;
-        right: 0;
+        position: fixed;
+        top: ${btnRect.bottom + 8}px;
+        left: ${btnRect.right - 160}px;
         background: white;
         border: 1px solid #e5e7eb;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
-        min-width: 140px;
-        padding: 4px;
-        margin-top: 4px;
+        z-index: 10000;
+        width: 160px;
+        padding: 8px;
         font-family: Inter, sans-serif;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     `;
     
     const formats = [
@@ -1172,6 +1180,7 @@ function showDownloadFormatSelector(btn, card) {
             border-radius: 4px;
             transition: background-color 0.2s ease;
             font-family: inherit;
+            margin-bottom: 2px;
         `;
         
         option.innerHTML = `
@@ -1206,9 +1215,10 @@ function showDownloadFormatSelector(btn, card) {
         selector.appendChild(option);
     });
     
-    // Position the selector relative to the button
-    btn.style.position = 'relative';
-    btn.appendChild(selector);
+    // Add to body instead of button to avoid positioning issues
+    document.body.appendChild(selector);
+    console.log('[showDownloadFormatSelector] Selector added to body:', selector);
+    console.log('[showDownloadFormatSelector] Selector style:', selector.style.cssText);
     
     // Close selector when clicking outside
     const closeSelector = (e) => {

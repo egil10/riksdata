@@ -69,6 +69,11 @@ function updateChartActions(headerTop) {
     actionsContainer.appendChild(copyBtn);
     actionsContainer.appendChild(downloadBtn);
     actionsContainer.appendChild(fullscreenBtn);
+    
+    // Render the Lucide icons for the new buttons
+    if (window.lucide) {
+        lucide.createIcons({ attrs: { width: 18, height: 18 } });
+    }
 }
 
 function createActionButton(action, title, iconName) {

@@ -2515,7 +2515,7 @@
           }
           function sync() {
             const open = document.body.classList.contains('is-sidebar-open');
-            setLucideIcon(btn, open ? 'panel-left-close' : 'panel-left-open');
+            setLucideIcon(btn, open ? 'panel-left-open' : 'panel-left-close');
             btn.setAttribute('aria-pressed', String(open));
             btn.title = open ? 'Close sidebar' : 'Open sidebar';
             btn.setAttribute('aria-label', btn.title);
@@ -2526,7 +2526,7 @@
           });
           // Ensure there is a placeholder for Lucide
           if (!btn.querySelector('i[data-lucide], svg')) {
-            const i = document.createElement('i'); i.setAttribute('data-lucide','panel-left-close');
+            const i = document.createElement('i'); i.setAttribute('data-lucide','panel-left-open');
             btn.appendChild(i);
           }
           sync();
@@ -2540,7 +2540,7 @@
           Theme.set(Theme.get());
           function sync() {
             const mode = Theme.get();
-            setLucideIcon(btn, mode === 'dark' ? 'moon-star' : 'sun-medium');
+            setLucideIcon(btn, mode === 'dark' ? 'sun-medium' : 'moon-star');
             btn.title = mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode';
             btn.setAttribute('aria-label', btn.title);
           }
@@ -2549,7 +2549,7 @@
             sync();
           });
           if (!btn.querySelector('i[data-lucide], svg')) {
-            const i = document.createElement('i'); i.setAttribute('data-lucide','sun-medium');
+            const i = document.createElement('i'); i.setAttribute('data-lucide','moon-star');
             btn.appendChild(i);
           }
           sync();

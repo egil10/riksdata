@@ -927,19 +927,19 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             <p>Generated on ${new Date().toLocaleDateString()} from Riksdata</p>
             <p>Data source: ${cardEl.querySelector('.source-link')?.textContent || 'Unknown'}</p>
         </div>
-        ${politicalPeriods.length > 0 ? `
-        <div class="political-legend">
-            <h4>Political Periods</h4>
-            <div class="political-periods">
-                ${politicalPeriods.map(period => `
-                    <div class="political-period">
-                        <div class="political-color" style="background-color: ${period.color}"></div>
-                        <span>${period.name} (${period.start} - ${period.end})</span>
-                    </div>
-                `).join('')}
-            </div>
-        </div>
-        ` : ''}
+        ${politicalPeriods.length > 0 ? 
+            '<div class="political-legend">' +
+                '<h4>Political Periods</h4>' +
+                '<div class="political-periods">' +
+                    politicalPeriods.map(period => 
+                        '<div class="political-period">' +
+                            '<div class="political-color" style="background-color: ' + period.color + '"></div>' +
+                            '<span>' + period.name + ' (' + period.start + ' - ' + period.end + ')</span>' +
+                        '</div>'
+                    ).join('') +
+                '</div>' +
+            '</div>'
+        : ''}
     </div>
     
     <script>

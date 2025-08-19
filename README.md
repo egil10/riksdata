@@ -218,6 +218,7 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - GDP Growth
 - Producer Price Index
 - Wage Index
+- House Price Index
 
 ### Financial Data
 - Exchange Rates (USD/NOK, EUR/NOK)

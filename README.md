@@ -234,7 +234,6 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - Export/Import Volume
 - Industrial Production
 - Retail Sales
-- Business Confidence
 
 ### Social Indicators
 - Population Growth

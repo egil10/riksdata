@@ -733,47 +733,12 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         `;
     }
     
-    // Create a new canvas for the export
-    const exportCanvas = document.createElement('canvas');
-    exportCanvas.width = 900;
-    exportCanvas.height = 500;
-    exportCanvas.style.cssText = `
-        width: 100%;
-        height: 100%;
-        display: block;
-    `;
-    
-    // Replace the original canvas with our export canvas
-    const originalCanvasInClone = cardClone.querySelector('canvas');
-    if (originalCanvasInClone) {
-        originalCanvasInClone.parentNode.replaceChild(exportCanvas, originalCanvasInClone);
-    }
-    
     // Add the enhanced card to the temporary container
     tempContainer.appendChild(cardClone);
     document.body.appendChild(tempContainer);
     
-    // Create a new chart instance for export
-    const exportChart = new Chart(exportCanvas.getContext('2d'), {
-        type: originalChart.config.type,
-        data: originalChart.data,
-        options: {
-            ...originalChart.options,
-            responsive: false,
-            maintainAspectRatio: false,
-            animation: false,
-            plugins: {
-                ...originalChart.options.plugins,
-                legend: {
-                    ...originalChart.options.plugins?.legend,
-                    display: true
-                }
-            }
-        }
-    });
-    
-    // Wait for the chart to render
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Wait a moment for the layout to settle
+    await new Promise(resolve => setTimeout(resolve, 100));
     
     // Use html2canvas to capture the entire card
     if (window.html2canvas) {
@@ -784,7 +749,23 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
             backgroundColor: '#ffffff',
             width: 900,
             height: tempContainer.scrollHeight,
-            logging: false
+            logging: false,
+            onclone: (clonedDoc) => {
+                // Ensure the cloned chart renders properly
+                const clonedCanvas = clonedDoc.querySelector('canvas');
+                if (clonedCanvas && clonedCanvas.chart) {
+                    // Force the chart to render at the correct size
+                    clonedCanvas.chart.resize();
+                    clonedCanvas.chart.render();
+                }
+                
+                // Also ensure the chart container has proper dimensions
+                const clonedChartContainer = clonedDoc.querySelector('.chart-container');
+                if (clonedChartContainer) {
+                    clonedChartContainer.style.height = '500px';
+                    clonedChartContainer.style.width = '100%';
+                }
+            }
         });
         
         // Convert to blob and download
@@ -796,11 +777,15 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     } else {
         // Fallback to original method if html2canvas is not available
         console.warn('html2canvas not available, falling back to canvas-only download');
-        downloadPNG(exportCanvas, filename);
+        const canvas = cardEl.querySelector('canvas');
+        if (canvas) {
+            downloadPNG(canvas, filename);
+        } else {
+            announce?.('Could not download chart.');
+        }
     }
     
     // Clean up
-    exportChart.destroy();
     document.body.removeChild(tempContainer);
 }
 
@@ -823,6 +808,9 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
     // Get chart data for recreation
     const chartId = cardEl.getAttribute('data-chart-id');
     const chartData = window.getDataById?.(chartId);
+    
+    // Get political periods data if available
+    const politicalPeriods = window.POLITICAL_PERIODS || [];
     
     // Serialize chart data
     const chartConfig = {
@@ -896,6 +884,34 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             border-top: 1px solid #e5e7eb;
             padding-top: 16px;
         }
+        .political-legend {
+            margin-top: 16px;
+            padding: 12px;
+            background: #f9fafb;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        .political-legend h4 {
+            margin: 0 0 8px 0;
+            font-size: 14px;
+            color: #374151;
+        }
+        .political-periods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .political-period {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+        }
+        .political-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+        }
     </style>
 </head>
 <body>
@@ -911,15 +927,88 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             <p>Generated on ${new Date().toLocaleDateString()} from Riksdata</p>
             <p>Data source: ${cardEl.querySelector('.source-link')?.textContent || 'Unknown'}</p>
         </div>
+        ${politicalPeriods.length > 0 ? `
+        <div class="political-legend">
+            <h4>Political Periods</h4>
+            <div class="political-periods">
+                ${politicalPeriods.map(period => `
+                    <div class="political-period">
+                        <div class="political-color" style="background-color: ${period.color}"></div>
+                        <span>${period.name} (${period.start} - ${period.end})</span>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+        ` : ''}
     </div>
     
     <script>
+        // Political periods data
+        const politicalPeriods = ${JSON.stringify(politicalPeriods, null, 2)};
+        
+        // Function to get political period for a date
+        function getPoliticalPeriod(date) {
+            const targetDate = new Date(date);
+            for (const period of politicalPeriods) {
+                const startDate = new Date(period.start);
+                const endDate = new Date(period.end);
+                if (targetDate >= startDate && targetDate <= endDate) {
+                    return period;
+                }
+            }
+            return null;
+        }
+        
         // Wait for Chart.js to load
         document.addEventListener('DOMContentLoaded', function() {
             const ctx = document.getElementById('chart').getContext('2d');
             
             // Chart configuration
             const chartConfig = ${JSON.stringify(chartConfig, null, 2)};
+            
+            // Add political period annotations if available
+            if (politicalPeriods.length > 0 && chartConfig.data.labels) {
+                chartConfig.options.plugins = chartConfig.options.plugins || {};
+                chartConfig.options.plugins.annotation = {
+                    annotations: {}
+                };
+                
+                // Add annotations for political periods
+                politicalPeriods.forEach((period, index) => {
+                    const startDate = new Date(period.start);
+                    const endDate = new Date(period.end);
+                    
+                    // Find the closest data points to the political period
+                    const startIndex = chartConfig.data.labels.findIndex(label => {
+                        const labelDate = new Date(label);
+                        return labelDate >= startDate;
+                    });
+                    
+                    const endIndex = chartConfig.data.labels.findIndex(label => {
+                        const labelDate = new Date(label);
+                        return labelDate > endDate;
+                    });
+                    
+                    if (startIndex !== -1) {
+                        chartConfig.options.plugins.annotation.annotations[`period-${index}`] = {
+                            type: 'box',
+                            xMin: startIndex,
+                            xMax: endIndex !== -1 ? endIndex : chartConfig.data.labels.length - 1,
+                            backgroundColor: period.color + '20',
+                            borderColor: period.color,
+                            borderWidth: 1,
+                            label: {
+                                content: period.name,
+                                position: 'start',
+                                color: period.color,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        };
+                    }
+                });
+            }
             
             // Create the chart
             new Chart(ctx, chartConfig);
@@ -1022,45 +1111,11 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
         `;
     }
     
-    // Create a new canvas for the export
-    const exportCanvas = document.createElement('canvas');
-    exportCanvas.width = 800;
-    exportCanvas.height = 400;
-    exportCanvas.style.cssText = `
-        width: 100%;
-        height: 100%;
-        display: block;
-    `;
-    
-    // Replace the original canvas with our export canvas
-    const originalCanvasInClone = cardClone.querySelector('canvas');
-    if (originalCanvasInClone) {
-        originalCanvasInClone.parentNode.replaceChild(exportCanvas, originalCanvasInClone);
-    }
-    
     tempContainer.appendChild(cardClone);
     document.body.appendChild(tempContainer);
     
-    // Create a new chart instance for export
-    const exportChart = new Chart(exportCanvas.getContext('2d'), {
-        type: originalChart.config.type,
-        data: originalChart.data,
-        options: {
-            ...originalChart.options,
-            responsive: false,
-            maintainAspectRatio: false,
-            animation: false,
-            plugins: {
-                ...originalChart.options.plugins,
-                legend: {
-                    ...originalChart.options.plugins?.legend,
-                    display: true
-                }
-            }
-        }
-    });
-    
-    await new Promise(resolve => setTimeout(resolve, 500));
+    // Wait a moment for the layout to settle
+    await new Promise(resolve => setTimeout(resolve, 100));
     
     if (window.html2canvas) {
         const canvas = await html2canvas(tempContainer, {
@@ -1070,7 +1125,15 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
             backgroundColor: '#ffffff',
             width: 800,
             height: tempContainer.scrollHeight,
-            logging: false
+            logging: false,
+            onclone: (clonedDoc) => {
+                // Ensure the cloned chart renders properly
+                const clonedCanvas = clonedDoc.querySelector('canvas');
+                if (clonedCanvas && clonedCanvas.chart) {
+                    clonedCanvas.chart.resize();
+                    clonedCanvas.chart.render();
+                }
+            }
         });
         
         // Convert canvas to PDF
@@ -1097,6 +1160,7 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
         announce?.(`Chart "${chartTitle}" downloaded as PDF!`);
     }
     
+    // Clean up
     document.body.removeChild(tempContainer);
 }
 
@@ -1111,14 +1175,110 @@ async function downloadAsSVG(cardEl, filename) {
         return;
     }
     
-    // For Chart.js, we need to convert to SVG
-    // Since Chart.js doesn't natively support SVG export, we'll create a high-quality PNG
-    // and provide a note about SVG limitations
-    console.warn('Chart.js doesn\'t support direct SVG export. Creating high-quality PNG instead.');
-    announce?.('SVG export not available for Chart.js. Creating high-quality PNG instead.');
+    // For Chart.js, we'll create an SVG wrapper with the chart data
+    // Since Chart.js doesn't natively support SVG export, we'll create a data-driven SVG
+    const chartTitle = cardEl?.querySelector?.('h3')?.textContent?.trim() || 'Chart';
     
-    // Use the same enhanced PNG export process
-    await downloadAsPNG(cardEl, filename.replace('.svg', '.png'), 'Chart');
+    // Get chart data
+    const chartData = originalChart.data;
+    const chartOptions = originalChart.options;
+    
+    // Create SVG content with chart data
+    const svgContent = createChartSVG(chartData, chartOptions, chartTitle);
+    
+    // Create and download the SVG file
+    const blob = new Blob([svgContent], { type: 'image/svg+xml;charset=utf-8' });
+    download(blob, filename);
+    announce?.(`Chart "${chartTitle}" downloaded as SVG!`);
+}
+
+function createChartSVG(chartData, chartOptions, title) {
+    const width = 800;
+    const height = 400;
+    const margin = { top: 40, right: 40, bottom: 60, left: 60 };
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
+    
+    // Get data points
+    const labels = chartData.labels || [];
+    const datasets = chartData.datasets || [];
+    
+    if (datasets.length === 0 || labels.length === 0) {
+        return `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+            <text x="${width/2}" y="${height/2}" text-anchor="middle" fill="#666">No data available</text>
+        </svg>`;
+    }
+    
+    // Calculate scales
+    const allValues = datasets.flatMap(dataset => dataset.data || []);
+    const minValue = Math.min(...allValues.filter(v => v !== null && v !== undefined));
+    const maxValue = Math.max(...allValues.filter(v => v !== null && v !== undefined));
+    const valueRange = maxValue - minValue;
+    
+    const xScale = (i) => margin.left + (i / (labels.length - 1)) * chartWidth;
+    const yScale = (value) => margin.top + chartHeight - ((value - minValue) / valueRange) * chartHeight;
+    
+    // Create SVG content
+    let svg = `<svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <style>
+                .chart-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #333; }
+                .axis-label { font-family: Arial, sans-serif; font-size: 12px; fill: #666; }
+                .grid-line { stroke: #eee; stroke-width: 1; }
+                .data-line { fill: none; stroke-width: 2; }
+                .data-point { fill: white; stroke-width: 2; }
+            </style>
+        </defs>
+        
+        <!-- Title -->
+        <text x="${width/2}" y="20" text-anchor="middle" class="chart-title">${title}</text>
+        
+        <!-- Grid lines -->
+        ${Array.from({length: 5}, (_, i) => {
+            const y = margin.top + (i / 4) * chartHeight;
+            return `<line x1="${margin.left}" y1="${y}" x2="${width - margin.right}" y2="${y}" class="grid-line"/>`;
+        }).join('')}
+        
+        <!-- Chart data -->
+        ${datasets.map((dataset, datasetIndex) => {
+            const color = dataset.borderColor || `hsl(${datasetIndex * 60}, 70%, 50%)`;
+            const data = dataset.data || [];
+            
+            // Create path for line
+            const points = data.map((value, i) => {
+                if (value === null || value === undefined) return null;
+                return `${xScale(i)},${yScale(value)}`;
+            }).filter(p => p !== null);
+            
+            if (points.length < 2) return '';
+            
+            const pathData = `M ${points.join(' L ')}`;
+            
+            return `
+                <path d="${pathData}" class="data-line" stroke="${color}"/>
+                ${points.map(point => {
+                    const [x, y] = point.split(',');
+                    return `<circle cx="${x}" cy="${y}" r="3" class="data-point" stroke="${color}"/>`;
+                }).join('')}
+            `;
+        }).join('')}
+        
+        <!-- X-axis labels -->
+        ${labels.map((label, i) => {
+            const x = xScale(i);
+            const y = height - margin.bottom + 15;
+            return `<text x="${x}" y="${y}" text-anchor="middle" class="axis-label">${label}</text>`;
+        }).join('')}
+        
+        <!-- Y-axis labels -->
+        ${Array.from({length: 5}, (_, i) => {
+            const value = minValue + (i / 4) * valueRange;
+            const y = margin.top + (i / 4) * chartHeight;
+            return `<text x="${margin.left - 10}" y="${y + 4}" text-anchor="end" class="axis-label">${value.toFixed(1)}</text>`;
+        }).join('')}
+    </svg>`;
+    
+    return svg;
 }
 
 function getSuggestedFilename(cardEl, ext) {

@@ -595,12 +595,23 @@ export function showUserError(message, element = null) {
 export async function downloadChartForCard(cardEl, format = 'png') {
     try {
         console.log('[downloadChartForCard] Starting download process...', format);
+        console.log('[downloadChartForCard] Card element:', cardEl);
         
         // Get chart title for filename
         const chartTitle = cardEl?.querySelector?.('h3')?.textContent?.trim() || 'chart';
+        console.log('[downloadChartForCard] Chart title:', chartTitle);
+        
         const sanitizedTitle = chartTitle.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-').toLowerCase();
         const date = new Date().toISOString().slice(0, 10);
         const filename = `${sanitizedTitle}-${date}.${format}`;
+        console.log('[downloadChartForCard] Filename:', filename);
+        
+        // Check if html2canvas is available
+        if (!window.html2canvas) {
+            console.error('[downloadChartForCard] html2canvas not available');
+            announce?.('Download library not loaded. Please refresh the page.');
+            return;
+        }
         
         // Handle different formats
         switch (format) {
@@ -632,6 +643,9 @@ export async function downloadChartForCard(cardEl, format = 'png') {
 }
 
 async function downloadAsPNG(cardEl, filename, chartTitle) {
+    console.log('[downloadAsPNG] Starting PNG download...');
+    console.log('[downloadAsPNG] Card element:', cardEl);
+    
     // Create a temporary container for the card with enhanced styling
     const tempContainer = document.createElement('div');
     tempContainer.style.cssText = `

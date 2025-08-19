@@ -1002,8 +1002,16 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        // Show format selection dropdown
-        showDownloadFormatSelector(btn, card);
+        // Show loading state
+        updateActionButtonState(btn, 'loading', 'download');
+        
+        // For now, use PNG as default - we can enhance this later
+        downloadChartForCard(card, 'png').then(() => {
+            updateActionButtonState(btn, 'success', 'download');
+        }).catch((error) => {
+            console.error('Download failed:', error);
+            updateActionButtonState(btn, 'error', 'download');
+        });
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
@@ -1138,14 +1146,15 @@ function showDownloadFormatSelector(btn, card) {
         position: absolute;
         top: 100%;
         right: 0;
-        background: var(--card);
-        border: 1px solid var(--border);
+        background: white;
+        border: 1px solid #e5e7eb;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         z-index: 1000;
-        min-width: 120px;
+        min-width: 140px;
         padding: 4px;
         margin-top: 4px;
+        font-family: Inter, sans-serif;
     `;
     
     const formats = [
@@ -1165,16 +1174,17 @@ function showDownloadFormatSelector(btn, card) {
             padding: 8px 12px;
             border: none;
             background: transparent;
-            color: var(--text);
+            color: #374151;
             font-size: 14px;
             cursor: pointer;
             border-radius: 4px;
             transition: background-color 0.2s ease;
+            font-family: inherit;
         `;
         
         option.innerHTML = `
-            <div style="font-weight: 500;">${format.label}</div>
-            <div style="font-size: 12px; color: var(--text-muted);">${format.description}</div>
+            <div style="font-weight: 500; margin-bottom: 2px;">${format.label}</div>
+            <div style="font-size: 12px; color: #6b7280;">${format.description}</div>
         `;
         
         option.addEventListener('click', async () => {
@@ -1194,7 +1204,7 @@ function showDownloadFormatSelector(btn, card) {
         });
         
         option.addEventListener('mouseenter', () => {
-            option.style.backgroundColor = 'var(--border)';
+            option.style.backgroundColor = '#f3f4f6';
         });
         
         option.addEventListener('mouseleave', () => {

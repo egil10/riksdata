@@ -64,27 +64,18 @@
     <!-- New Header Structure -->
     <header class="app-header">
         <div class="left-section">
-            <button id="sidebar-toggle" class="icon-btn" title="Toggle Political History">
-                <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="toggle-icon">
-                    <path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+            <button id="sidebar-toggle" class="icon-btn" aria-label="Toggle sidebar" title="Toggle sidebar">
+                <span class="icon"></span>
             </button>
             <span class="app-title" onclick="window.location.reload()">Riksdata</span>
         </div>
         <div class="right-section">
             <button id="langToggle" class="btn">NO</button>
-            <button id="theme-toggle" class="btn" aria-label="Toggle dark mode" title="Toggle theme">
-                <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
-                </svg>
-                <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
-                    <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-3.03 0-5.5-2.47-5.5-5.5 0-1.82.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
-                </svg>
+            <button id="theme-toggle" class="icon-btn" aria-label="Toggle theme" title="Toggle theme">
+                <span class="icon"></span>
             </button>
-            <button id="filterToggle" class="btn" title="Toggle Filters">
-                <svg class="filter-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
-                </svg>
+            <button id="filterToggle" class="icon-btn" aria-label="Toggle filters" title="Toggle Filters">
+                <span class="icon"></span>
             </button>
         </div>
     </header>
@@ -2485,5 +2476,87 @@
     </script>
 
     <script type="module" src="./src/js/main.js"></script>
+    
+    <!-- Lucide Icons CDN and Helpers -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script>
+      // Helper to render/replace an icon into a button or span
+      function renderIcon(target, name, size=20) {
+        if (!window.lucide || !lucide.icons[name]) return;
+        target.innerHTML = lucide.icons[name].toSvg({ width: size, height: size });
+      }
+      // Utility: read/write theme
+      const Theme = {
+        get() {
+          const saved = localStorage.getItem('theme');
+          if (saved) return saved;
+          const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+          return prefersDark ? 'dark' : 'light';
+        },
+        set(mode) {
+          document.documentElement.setAttribute('data-theme', mode);
+          localStorage.setItem('theme', mode);
+        },
+        toggle() {
+          const next = Theme.get() === 'dark' ? 'light' : 'dark';
+          Theme.set(next);
+          return next;
+        }
+      };
+      
+      // Initialize sidebar toggle
+      (function initSidebarToggle(){
+        const btn = document.getElementById('sidebar-toggle');
+        if (!btn) return;
+        const iconSpan = btn.querySelector('.icon');
+
+        function sync() {
+          const open = document.body.classList.contains('is-sidebar-open');
+          renderIcon(iconSpan, open ? 'panel-left-close' : 'panel-left-open');
+          btn.setAttribute('aria-pressed', String(open));
+          btn.setAttribute('title', open ? 'Close sidebar' : 'Open sidebar');
+        }
+
+        // initial state (assume closed unless your app sets it)
+        sync();
+
+        btn.addEventListener('click', () => {
+          document.body.classList.toggle('is-sidebar-open');
+          sync();
+        });
+      })();
+      
+      // Initialize theme toggle
+      (function initThemeToggle(){
+        const btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+        const iconSpan = btn.querySelector('.icon');
+
+        // initialize theme from storage or media
+        Theme.set(Theme.get());
+        function sync() {
+          const mode = Theme.get();
+          renderIcon(iconSpan, mode === 'dark' ? 'moon-star' : 'sun-medium');
+          btn.setAttribute('aria-label', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+          btn.setAttribute('title', mode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+        }
+        sync();
+
+        btn.addEventListener('click', () => {
+          Theme.toggle();
+          sync();
+        });
+      })();
+      
+      // Initialize filter toggle
+      (function setFilterIcon(){
+        const btn = document.getElementById('filterToggle');
+        if (!btn) return;
+        const iconSpan = btn.querySelector('.icon') || btn.appendChild(document.createElement('span'));
+        iconSpan.className = 'icon';
+        renderIcon(iconSpan, 'align-justify');
+        // Keep existing click handler if you already have one wired up elsewhere
+      })();
+    </script>
 </body>
 </html>

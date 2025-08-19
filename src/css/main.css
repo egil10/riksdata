@@ -989,9 +989,9 @@ main {
 }
 
 .chart-subtitle {
-    font-size: var(--step--1);
+    font-size: 0.75rem;
     color: var(--text-muted);
-    font-weight: 400;
+    font-weight: 500;
     margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -2103,4 +2103,54 @@ footer {
     height: auto !important;
     border-radius: 8px;
     box-shadow: var(--shadow-md);
+}
+
+/* Typography Fix - Match subtitle and source-link styling */
+.chart-header .chart-subtitle,
+.chart-header .source-link {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: 0.01em;
+  font-family: inherit;
+  color: var(--text-muted);
+}
+
+/* Optional: make link style match text (no heavy underline) */
+.chart-header .source-link {
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  opacity: 0.6;
+}
+.chart-header .source-link:hover,
+.chart-header .source-link:focus {
+  text-decoration: none;
+  border-bottom-style: solid;
+  opacity: 1;
+}
+
+/* Icon button styling (shared) */
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--border, transparent);
+  border-radius: 8px;
+  background: var(--card, transparent);
+  cursor: pointer;
+  transition: all var(--t) var(--ease);
+}
+.icon-btn:hover { 
+  background: var(--border, rgba(0,0,0,0.04)); 
+  transform: translateY(-1px);
+}
+.icon-btn:focus { 
+  outline: 2px solid var(--accent, #7aa2ff); 
+  outline-offset: 2px; 
+}
+.icon-btn .icon svg { 
+  display: block; 
 }

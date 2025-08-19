@@ -5,7 +5,7 @@
 console.log('Main.js module loading...');
 
 import { loadChartData } from './charts.js';
-import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout, downloadChartForCard, copyChartDataTSV } from './utils.js';
+import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout, downloadChartForCard } from './utils.js';
 import { getDataById } from './registry.js';
 
 console.log('All modules imported successfully');
@@ -987,6 +987,9 @@ setTimeout(() => {
 }, 15000);
 
 // ---- Chart Data Registry and Actions ----
+import { updateActionButtonState } from './icons.js';
+import { copyChartDataTSV } from './utils.js';
+
 // Registry moved to registry.js to avoid circular imports
 
 // ---- Chart Actions: Download / Copy ----
@@ -999,86 +1002,16 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        // Show success feedback
-        showButtonFeedback(btn, 'check-line', 'Download successful!');
         downloadChartForCard(card);
+        updateActionButtonState(btn, 'success', 'download');
     } else if (action === 'copy') {
-        // Show success feedback
-        showButtonFeedback(btn, 'copy-check', 'Data copied!');
         copyChartDataTSV(card, getDataById);
     } else if (action === 'fullscreen') {
         openChartFullscreen(card);
     }
 });
 
-/**
- * Update copy button state for feedback
- * @param {HTMLElement} cardEl - The chart card element
- * @param {string} state - The state ('success', 'error', 'downloaded', 'idle')
- */
-function updateCopyButtonState(cardEl, state) {
-    const copyBtn = cardEl?.querySelector('[data-action="copy"]');
-    if (!copyBtn) return;
-    
-    switch (state) {
-        case 'success':
-            showButtonFeedback(copyBtn, 'copy-check', 'Data copied!');
-            break;
-        case 'error':
-            showButtonFeedback(copyBtn, 'x', 'Copy failed!');
-            break;
-        case 'downloaded':
-            showButtonFeedback(copyBtn, 'download', 'Downloaded instead!');
-            break;
-        case 'idle':
-            // Reset to original state
-            const iconElement = copyBtn.querySelector('i[data-lucide]');
-            if (iconElement) {
-                iconElement.setAttribute('data-lucide', 'copy');
-                if (window.lucide) {
-                    lucide.createIcons({ attrs: { width: 18, height: 18 } });
-                }
-            }
-            copyBtn.setAttribute('title', 'Copy data');
-            copyBtn.classList.remove('success-feedback');
-            break;
-    }
-}
 
-/**
- * Show visual feedback for button actions
- * @param {HTMLElement} button - The button element
- * @param {string} successIcon - The Lucide icon name to show
- * @param {string} successTitle - The tooltip text to show
- */
-function showButtonFeedback(button, successIcon, successTitle) {
-    const originalTitle = button.getAttribute('title');
-    
-    // Find the icon element and update it
-    const iconElement = button.querySelector('i[data-lucide]');
-    if (iconElement) {
-        const originalIcon = iconElement.getAttribute('data-lucide');
-        
-        // Change to success icon
-        iconElement.setAttribute('data-lucide', successIcon);
-        if (window.lucide) {
-            lucide.createIcons({ attrs: { width: 18, height: 18 } });
-        }
-        
-        button.setAttribute('title', successTitle);
-        button.classList.add('success-feedback');
-        
-        // Revert after 2 seconds
-        setTimeout(() => {
-            iconElement.setAttribute('data-lucide', originalIcon);
-            if (window.lucide) {
-                lucide.createIcons({ attrs: { width: 18, height: 18 } });
-            }
-            button.setAttribute('title', originalTitle);
-            button.classList.remove('success-feedback');
-        }, 2000);
-    }
-}
 
 // ---- Table Actions: Copy / Download ----
 /**
@@ -1300,4 +1233,4 @@ function openChartFullscreen(card) {
 
 
 // Export functions for use in other scripts
-window.updateCopyButtonState = updateCopyButtonState;
+

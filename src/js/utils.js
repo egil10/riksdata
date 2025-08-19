@@ -668,6 +668,8 @@ export function downloadPNG(canvasEl, filename = 'chart.png') {
     }
 }
 
+import { updateActionButtonState } from './icons.js';
+
 // --- Copy Data (TSV) ---
 export async function copyChartDataTSV(cardEl, getDataById) {
   try {
@@ -701,7 +703,8 @@ export async function copyChartDataTSV(cardEl, getDataById) {
       const item = new ClipboardItem({ 'text/plain': blob });
       await navigator.clipboard.write([item]);
       announce?.('Data copied to clipboard.');
-      updateCopyButtonState?.(cardEl, 'success');
+      const btn = cardEl?.querySelector?.('[data-action="copy"]');
+      updateActionButtonState?.(btn, 'success', 'copy');
     } else {
       // Fallback: best-effort text copy
       const ok = await (async () => {
@@ -716,7 +719,8 @@ export async function copyChartDataTSV(cardEl, getDataById) {
 
       if (ok) {
         announce?.('Data copied to clipboard.');
-        updateCopyButtonState?.(cardEl, 'success');
+        const btn = cardEl?.querySelector?.('[data-action="copy"]');
+        updateActionButtonState?.(btn, 'success', 'copy');
       } else {
         // Last resort: auto-download data.tsv
         const a = document.createElement('a');
@@ -727,16 +731,15 @@ export async function copyChartDataTSV(cardEl, getDataById) {
         URL.revokeObjectURL(a.href);
         a.remove();
         announce?.('Clipboard blocked. Downloaded data.tsv instead.');
-        updateCopyButtonState?.(cardEl, 'downloaded');
+        const btn = cardEl?.querySelector?.('[data-action="copy"]');
+        updateActionButtonState?.(btn, 'downloaded', 'copy');
       }
     }
   } catch (err) {
     console.error('[copyChartDataTSV] Unexpected error:', err);
     announce?.('Could not copy data.');
-    updateCopyButtonState?.(cardEl, 'error');
-  } finally {
-    // Return icon to idle after brief success/fail feedback
-    setTimeout(() => updateCopyButtonState?.(cardEl, 'idle'), 1500);
+    const btn = cardEl?.querySelector?.('[data-action="copy"]');
+    updateActionButtonState?.(btn, 'error', 'copy');
   }
 }
 

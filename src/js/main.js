@@ -999,6 +999,8 @@ document.addEventListener('click', (e) => {
         downloadChartForCard(card);
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
+    } else if (action === 'fullscreen') {
+        openChartFullscreen(card);
     }
 });
 
@@ -1124,3 +1126,97 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+/**
+ * Open chart in fullscreen mode
+ */
+function openChartFullscreen(card) {
+    const chartId = card.getAttribute('data-chart-id');
+    const chartTitle = card.querySelector('.chart-header h3')?.textContent || 'Chart';
+    const chartCanvas = card.querySelector('canvas');
+    
+    if (!chartCanvas) {
+        console.warn('No chart canvas found for fullscreen');
+        return;
+    }
+    
+    // Create fullscreen modal
+    const modal = document.createElement('div');
+    modal.className = 'fullscreen-modal';
+    
+    // Create header
+    const header = document.createElement('div');
+    header.style.cssText = `
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0 1rem 0;
+        border-bottom: 1px solid var(--border);
+        margin-bottom: 1rem;
+    `;
+    
+    const title = document.createElement('h2');
+    title.textContent = chartTitle;
+    title.style.cssText = `
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--text);
+    `;
+    
+    const closeBtn = document.createElement('button');
+    closeBtn.innerHTML = `
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 6L6 18"/>
+            <path d="M6 6l12 12"/>
+        </svg>
+    `;
+    closeBtn.style.cssText = `
+        background: none;
+        border: none;
+        color: var(--text);
+        cursor: pointer;
+        padding: 0.5rem;
+        border-radius: 4px;
+        transition: background-color 0.2s ease;
+    `;
+    closeBtn.onmouseover = () => closeBtn.style.background = 'var(--border)';
+    closeBtn.onmouseout = () => closeBtn.style.background = 'none';
+    closeBtn.onclick = () => document.body.removeChild(modal);
+    
+    header.appendChild(title);
+    header.appendChild(closeBtn);
+    
+    // Create chart container
+    const chartContainer = document.createElement('div');
+    chartContainer.className = 'chart-container';
+    
+    // Clone the canvas for fullscreen
+    const fullscreenCanvas = chartCanvas.cloneNode(true);
+    
+    chartContainer.appendChild(fullscreenCanvas);
+    
+    // Add to modal
+    modal.appendChild(header);
+    modal.appendChild(chartContainer);
+    
+    // Add to body
+    document.body.appendChild(modal);
+    
+    // Handle escape key
+    const handleEscape = (e) => {
+        if (e.key === 'Escape') {
+            document.body.removeChild(modal);
+            document.removeEventListener('keydown', handleEscape);
+        }
+    };
+    document.addEventListener('keydown', handleEscape);
+    
+    // Clean up on modal close
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            document.body.removeChild(modal);
+            document.removeEventListener('keydown', handleEscape);
+        }
+    });
+}

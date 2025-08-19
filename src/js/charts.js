@@ -1621,7 +1621,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             const chartId = chartCard.getAttribute('data-chart-id');
             if (chartId) {
                 // Convert chart data to the format expected by the export functions
-                const exportData = optimizedData.map((item, index) => ({
+                const exportData = data.map((item, index) => ({
                     date: item.date.toISOString().split('T')[0], // Format as YYYY-MM-DD
                     value: item.value,
                     index: index + 1

@@ -1010,6 +1010,40 @@ document.addEventListener('click', (e) => {
 });
 
 /**
+ * Update copy button state for feedback
+ * @param {HTMLElement} cardEl - The chart card element
+ * @param {string} state - The state ('success', 'error', 'downloaded', 'idle')
+ */
+function updateCopyButtonState(cardEl, state) {
+    const copyBtn = cardEl?.querySelector('[data-action="copy"]');
+    if (!copyBtn) return;
+    
+    switch (state) {
+        case 'success':
+            showButtonFeedback(copyBtn, 'copy-check', 'Data copied!');
+            break;
+        case 'error':
+            showButtonFeedback(copyBtn, 'x', 'Copy failed!');
+            break;
+        case 'downloaded':
+            showButtonFeedback(copyBtn, 'download', 'Downloaded instead!');
+            break;
+        case 'idle':
+            // Reset to original state
+            const iconElement = copyBtn.querySelector('i[data-lucide]');
+            if (iconElement) {
+                iconElement.setAttribute('data-lucide', 'copy');
+                if (window.lucide) {
+                    lucide.createIcons({ attrs: { width: 18, height: 18 } });
+                }
+            }
+            copyBtn.setAttribute('title', 'Copy data');
+            copyBtn.classList.remove('success-feedback');
+            break;
+    }
+}
+
+/**
  * Show visual feedback for button actions
  * @param {HTMLElement} button - The button element
  * @param {string} successIcon - The Lucide icon name to show
@@ -1260,3 +1294,6 @@ function openChartFullscreen(card) {
         }
     });
 }
+
+// Export functions for use in other scripts
+window.updateCopyButtonState = updateCopyButtonState;

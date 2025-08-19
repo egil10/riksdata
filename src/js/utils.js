@@ -687,6 +687,18 @@ export async function copyChartDataTSV(cardEl, getDataById) {
       return;
     }
 
+    // Validate data structure
+    const firstItem = data[0];
+    if (!firstItem || typeof firstItem !== 'object') {
+      console.warn('[copyChartDataTSV] Invalid data structure for chart:', chartId);
+      announce?.('Invalid data structure for this chart.');
+      return;
+    }
+
+    // Get chart title for better filename
+    const chartTitle = cardEl?.querySelector?.('h3')?.textContent?.trim() || 'chart-data';
+    const sanitizedTitle = chartTitle.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-').toLowerCase();
+
     // Stable column order and exact header wording
     const header = 'time\tvalue\tindex';
     const toDateStr = (d) => {
@@ -696,8 +708,15 @@ export async function copyChartDataTSV(cardEl, getDataById) {
     };
 
     const rows = data.map((r) => {
-      const time = toDateStr(r.date);     // "date" field in export data is our "time"
-      const value = r.value == null ? '' : String(r.value);
+      // Handle different possible date field names
+      const dateField = r.date || r.time || r.timestamp || r.period;
+      const time = toDateStr(dateField);
+      
+      // Handle different possible value field names
+      const valueField = r.value || r.amount || r.rate || r.index_value;
+      const value = valueField == null ? '' : String(valueField);
+      
+      // Use index if available, otherwise use array position
       const index = r.index == null ? '' : String(r.index);
       return [time, value, index].join('\t');
     });
@@ -705,41 +724,45 @@ export async function copyChartDataTSV(cardEl, getDataById) {
     const tsv = [header, ...rows].join('\n');
     const blob = new Blob([tsv], { type: 'text/tab-separated-values;charset=utf-8' });
 
-         // Try modern clipboard path first with a typed payload
-     if (navigator?.clipboard && window?.ClipboardItem) {
-       const item = new ClipboardItem({ 'text/plain': blob });
-       await navigator.clipboard.write([item]);
-       announce?.('Data copied to clipboard.');
-     } else {
-       // Fallback: best-effort text copy
-       const ok = await (async () => {
-         try {
-           if (navigator?.clipboard?.writeText) {
-             await navigator.clipboard.writeText(tsv);
-             return true;
-           }
-         } catch (_e) {}
-         return false;
-       })();
+    console.log(`[copyChartDataTSV] Prepared ${data.length} data points for copying`);
 
-       if (ok) {
-         announce?.('Data copied to clipboard.');
-       } else {
-         // Last resort: auto-download data.tsv
-         const a = document.createElement('a');
-         a.href = URL.createObjectURL(blob);
-         a.download = 'data.tsv';
-         document.body.appendChild(a);
-         a.click();
-         URL.revokeObjectURL(a.href);
-         a.remove();
-         announce?.('Clipboard blocked. Downloaded data.tsv instead.');
-       }
-     }
-   } catch (err) {
-     console.error('[copyChartDataTSV] Unexpected error:', err);
-     announce?.('Could not copy data.');
-   }
+    // Try modern clipboard path first with a typed payload
+    if (navigator?.clipboard && window?.ClipboardItem) {
+      try {
+        const item = new ClipboardItem({ 'text/plain': blob });
+        await navigator.clipboard.write([item]);
+        announce?.(`${data.length} data points copied to clipboard!`);
+        return;
+      } catch (clipboardError) {
+        console.warn('[copyChartDataTSV] ClipboardItem failed, trying fallback:', clipboardError);
+      }
+    }
+    
+    // Fallback: best-effort text copy
+    if (navigator?.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(tsv);
+        announce?.(`${data.length} data points copied to clipboard!`);
+        return;
+      } catch (textError) {
+        console.warn('[copyChartDataTSV] writeText failed:', textError);
+      }
+    }
+    
+    // Last resort: auto-download data.tsv
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `${sanitizedTitle}-data.tsv`;
+    document.body.appendChild(a);
+    a.click();
+    URL.revokeObjectURL(a.href);
+    a.remove();
+    announce?.('Clipboard blocked. Downloaded data file instead.');
+    
+  } catch (err) {
+    console.error('[copyChartDataTSV] Unexpected error:', err);
+    announce?.('Could not copy data.');
+  }
 }
 
 function announce(msg) {

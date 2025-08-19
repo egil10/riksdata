@@ -824,198 +824,107 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
         }
     };
     
-    // Create HTML content
-    const htmlContent = `
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${chartTitle}</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
-    <style>
-        body {
-            font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f8fafc;
-            min-height: 100vh;
+    // Build political periods HTML
+    let politicalPeriodsHTML = '';
+    if (politicalPeriods.length > 0) {
+        politicalPeriodsHTML = '<div class="political-legend">' +
+            '<h4>Political Periods</h4>' +
+            '<div class="political-periods">';
+        
+        for (let i = 0; i < politicalPeriods.length; i++) {
+            const period = politicalPeriods[i];
+            politicalPeriodsHTML += '<div class="political-period">' +
+                '<div class="political-color" style="background-color: ' + period.color + '"></div>' +
+                '<span>' + period.name + ' (' + period.start + ' - ' + period.end + ')</span>' +
+                '</div>';
         }
-        .chart-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            padding: 24px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            min-height: 600px;
-        }
-        .chart-header {
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid #e5e7eb;
-        }
-        .chart-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #111827;
-            margin: 0 0 8px 0;
-        }
-        .chart-subtitle {
-            font-size: 16px;
-            color: #6b7280;
-            font-weight: 500;
-            margin: 0;
-        }
-        .chart-wrapper {
-            position: relative;
-            height: 400px;
-            width: 100%;
-        }
-        .chart-canvas {
-            width: 100% !important;
-            height: 100% !important;
-        }
-        .chart-meta {
-            margin-top: 16px;
-            font-size: 14px;
-            color: #6b7280;
-            border-top: 1px solid #e5e7eb;
-            padding-top: 16px;
-        }
-        .political-legend {
-            margin-top: 16px;
-            padding: 12px;
-            background: #f9fafb;
-            border-radius: 8px;
-            border-left: 4px solid #3b82f6;
-        }
-        .political-legend h4 {
-            margin: 0 0 8px 0;
-            font-size: 14px;
-            color: #374151;
-        }
-        .political-periods {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-        .political-period {
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            font-size: 12px;
-        }
-        .political-color {
-            width: 12px;
-            height: 12px;
-            border-radius: 2px;
-        }
-    </style>
-</head>
-<body>
-    <div class="chart-container">
-        <div class="chart-header">
-            <h1 class="chart-title">${chartTitle}</h1>
-            <p class="chart-subtitle">${cardEl.querySelector('.chart-subtitle')?.textContent || 'Data visualization'}</p>
-        </div>
-        <div class="chart-wrapper">
-            <canvas id="chart" class="chart-canvas"></canvas>
-        </div>
-        <div class="chart-meta">
-            <p>Generated on ${new Date().toLocaleDateString()} from Riksdata</p>
-            <p>Data source: ${cardEl.querySelector('.source-link')?.textContent || 'Unknown'}</p>
-        </div>
-        ${politicalPeriods.length > 0 ? 
-            '<div class="political-legend">' +
-                '<h4>Political Periods</h4>' +
-                '<div class="political-periods">' +
-                    politicalPeriods.map(function(period) { 
-                        return '<div class="political-period">' +
-                            '<div class="political-color" style="background-color: ' + period.color + '"></div>' +
-                            '<span>' + period.name + ' (' + period.start + ' - ' + period.end + ')</span>' +
-                        '</div>';
-                    }).join('') +
-                '</div>' +
-            '</div>'
-        : ''}
-    </div>
+        
+        politicalPeriodsHTML += '</div></div>';
+    }
     
-    <script>
-        // Political periods data
-        const politicalPeriods = ${JSON.stringify(politicalPeriods, null, 2)};
-        
-        // Function to get political period for a date
-        function getPoliticalPeriod(date) {
-            const targetDate = new Date(date);
-            for (const period of politicalPeriods) {
-                const startDate = new Date(period.start);
-                const endDate = new Date(period.end);
-                if (targetDate >= startDate && targetDate <= endDate) {
-                    return period;
-                }
-            }
-            return null;
-        }
-        
-        // Wait for Chart.js to load
-        document.addEventListener('DOMContentLoaded', function() {
-            const ctx = document.getElementById('chart').getContext('2d');
-            
-            // Chart configuration
-            const chartConfig = ${JSON.stringify(chartConfig, null, 2)};
-            
-            // Add political period annotations if available
-            if (politicalPeriods.length > 0 && chartConfig.data.labels) {
-                chartConfig.options.plugins = chartConfig.options.plugins || {};
-                chartConfig.options.plugins.annotation = {
-                    annotations: {}
-                };
-                
-                // Add annotations for political periods
-                politicalPeriods.forEach((period, index) => {
-                    const startDate = new Date(period.start);
-                    const endDate = new Date(period.end);
-                    
-                    // Find the closest data points to the political period
-                    const startIndex = chartConfig.data.labels.findIndex(label => {
-                        const labelDate = new Date(label);
-                        return labelDate >= startDate;
-                    });
-                    
-                    const endIndex = chartConfig.data.labels.findIndex(label => {
-                        const labelDate = new Date(label);
-                        return labelDate > endDate;
-                    });
-                    
-                    if (startIndex !== -1) {
-                        chartConfig.options.plugins.annotation.annotations[`period-${index}`] = {
-                            type: 'box',
-                            xMin: startIndex,
-                            xMax: endIndex !== -1 ? endIndex : chartConfig.data.labels.length - 1,
-                            backgroundColor: period.color + '20',
-                            borderColor: period.color,
-                            borderWidth: 1,
-                            label: {
-                                content: period.name,
-                                position: 'start',
-                                color: period.color,
-                                font: {
-                                    size: 10
-                                }
-                            }
-                        };
-                    }
-                });
-            }
-            
-            // Create the chart
-            new Chart(ctx, chartConfig);
-        });
-    </script>
-</body>
-</html>`;
+    // Create HTML content
+    const htmlContent = '<!DOCTYPE html>' +
+        '<html lang="en">' +
+        '<head>' +
+            '<meta charset="UTF-8">' +
+            '<meta name="viewport" content="width=device-width, initial-scale=1.0">' +
+            '<title>' + chartTitle + '</title>' +
+            '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>' +
+            '<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>' +
+            '<style>' +
+                'body { font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif; margin: 0; padding: 20px; background: #f8fafc; min-height: 100vh; }' +
+                '.chart-container { max-width: 1000px; margin: 0 auto; background: white; border-radius: 12px; padding: 24px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); min-height: 600px; }' +
+                '.chart-header { margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid #e5e7eb; }' +
+                '.chart-title { font-size: 24px; font-weight: 700; color: #111827; margin: 0 0 8px 0; }' +
+                '.chart-subtitle { font-size: 16px; color: #6b7280; font-weight: 500; margin: 0; }' +
+                '.chart-wrapper { position: relative; height: 400px; width: 100%; }' +
+                '.chart-canvas { width: 100% !important; height: 100% !important; }' +
+                '.chart-meta { margin-top: 16px; font-size: 14px; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 16px; }' +
+                '.political-legend { margin-top: 16px; padding: 12px; background: #f9fafb; border-radius: 8px; border-left: 4px solid #3b82f6; }' +
+                '.political-legend h4 { margin: 0 0 8px 0; font-size: 14px; color: #374151; }' +
+                '.political-periods { display: flex; flex-wrap: wrap; gap: 8px; }' +
+                '.political-period { display: flex; align-items: center; gap: 4px; font-size: 12px; }' +
+                '.political-color { width: 12px; height: 12px; border-radius: 2px; }' +
+            '</style>' +
+        '</head>' +
+        '<body>' +
+            '<div class="chart-container">' +
+                '<div class="chart-header">' +
+                    '<h1 class="chart-title">' + chartTitle + '</h1>' +
+                    '<p class="chart-subtitle">' + (cardEl.querySelector('.chart-subtitle')?.textContent || 'Data visualization') + '</p>' +
+                '</div>' +
+                '<div class="chart-wrapper">' +
+                    '<canvas id="chart" class="chart-canvas"></canvas>' +
+                '</div>' +
+                '<div class="chart-meta">' +
+                    '<p>Generated on ' + new Date().toLocaleDateString() + ' from Riksdata</p>' +
+                    '<p>Data source: ' + (cardEl.querySelector('.source-link')?.textContent || 'Unknown') + '</p>' +
+                '</div>' +
+                politicalPeriodsHTML +
+            '</div>' +
+            '<script>' +
+                'const politicalPeriods = ' + JSON.stringify(politicalPeriods, null, 2) + ';' +
+                'const chartConfig = ' + JSON.stringify(chartConfig, null, 2) + ';' +
+                'document.addEventListener("DOMContentLoaded", function() {' +
+                    'const ctx = document.getElementById("chart").getContext("2d");' +
+                    'if (politicalPeriods.length > 0 && chartConfig.data.labels) {' +
+                        'chartConfig.options.plugins = chartConfig.options.plugins || {};' +
+                        'chartConfig.options.plugins.annotation = { annotations: {} };' +
+                        'for (let i = 0; i < politicalPeriods.length; i++) {' +
+                            'const period = politicalPeriods[i];' +
+                            'const startDate = new Date(period.start);' +
+                            'const endDate = new Date(period.end);' +
+                            'const startIndex = chartConfig.data.labels.findIndex(function(label) {' +
+                                'const labelDate = new Date(label);' +
+                                'return labelDate >= startDate;' +
+                            '});' +
+                            'const endIndex = chartConfig.data.labels.findIndex(function(label) {' +
+                                'const labelDate = new Date(label);' +
+                                'return labelDate > endDate;' +
+                            '});' +
+                            'if (startIndex !== -1) {' +
+                                'chartConfig.options.plugins.annotation.annotations["period-" + i] = {' +
+                                    'type: "box",' +
+                                    'xMin: startIndex,' +
+                                    'xMax: endIndex !== -1 ? endIndex : chartConfig.data.labels.length - 1,' +
+                                    'backgroundColor: period.color + "20",' +
+                                    'borderColor: period.color,' +
+                                    'borderWidth: 1,' +
+                                    'label: {' +
+                                        'content: period.name,' +
+                                        'position: "start",' +
+                                        'color: period.color,' +
+                                        'font: { size: 10 }' +
+                                    '}' +
+                                '};' +
+                            '}' +
+                        '}' +
+                    '}' +
+                    'new Chart(ctx, chartConfig);' +
+                '});' +
+            '</script>' +
+        '</body>' +
+        '</html>';
     
     // Create and download the HTML file
     const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });

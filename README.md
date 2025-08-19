@@ -227,6 +227,7 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - Oil Fund Value
 - Monetary Aggregates
 - Oslo Stock Exchange Indices (OSEAX)
+- Oslo Stock Exchange Indices (OSEBX)
 
 ### Trade & Industry
 - Trade Balance

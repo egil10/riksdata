@@ -339,7 +339,8 @@ export async function initializeApp() {
                 console.log(`Chart ${index} loaded successfully`);
             } else {
                 failureCount++;
-                console.error(`Chart ${index} failed:`, result.reason);
+                const errorMessage = result.reason || result.value || 'Unknown error';
+                console.error(`Chart ${index} failed:`, errorMessage);
             }
         });
         

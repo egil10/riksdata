@@ -646,6 +646,17 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     console.log('[downloadAsPNG] Starting PNG download...');
     console.log('[downloadAsPNG] Card element:', cardEl);
     
+    // Get the original chart instance
+    const chartId = cardEl.getAttribute('data-chart-id');
+    const originalCanvas = cardEl.querySelector('canvas');
+    const originalChart = originalCanvas?.chart;
+    
+    if (!originalChart) {
+        console.error('[downloadAsPNG] No chart instance found');
+        announce?.('Chart not ready for download. Please wait a moment and try again.');
+        return;
+    }
+    
     // Create a temporary container for the card with enhanced styling
     const tempContainer = document.createElement('div');
     tempContainer.style.cssText = `
@@ -722,12 +733,47 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         `;
     }
     
+    // Create a new canvas for the export
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width = 900;
+    exportCanvas.height = 500;
+    exportCanvas.style.cssText = `
+        width: 100%;
+        height: 100%;
+        display: block;
+    `;
+    
+    // Replace the original canvas with our export canvas
+    const originalCanvasInClone = cardClone.querySelector('canvas');
+    if (originalCanvasInClone) {
+        originalCanvasInClone.parentNode.replaceChild(exportCanvas, originalCanvasInClone);
+    }
+    
     // Add the enhanced card to the temporary container
     tempContainer.appendChild(cardClone);
     document.body.appendChild(tempContainer);
     
-    // Wait a moment for the chart to render properly
-    await new Promise(resolve => setTimeout(resolve, 200));
+    // Create a new chart instance for export
+    const exportChart = new Chart(exportCanvas.getContext('2d'), {
+        type: originalChart.config.type,
+        data: originalChart.data,
+        options: {
+            ...originalChart.options,
+            responsive: false,
+            maintainAspectRatio: false,
+            animation: false,
+            plugins: {
+                ...originalChart.options.plugins,
+                legend: {
+                    ...originalChart.options.plugins?.legend,
+                    display: true
+                }
+            }
+        }
+    });
+    
+    // Wait for the chart to render
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     // Use html2canvas to capture the entire card
     if (window.html2canvas) {
@@ -738,22 +784,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
             backgroundColor: '#ffffff',
             width: 900,
             height: tempContainer.scrollHeight,
-            logging: false,
-            onclone: (clonedDoc) => {
-                // Ensure the cloned chart renders properly
-                const clonedCanvas = clonedDoc.querySelector('canvas');
-                if (clonedCanvas && clonedCanvas.chart) {
-                    clonedCanvas.chart.resize();
-                    clonedCanvas.chart.render();
-                }
-                
-                // Also ensure the chart container has proper dimensions
-                const clonedChartContainer = clonedDoc.querySelector('.chart-container');
-                if (clonedChartContainer) {
-                    clonedChartContainer.style.height = '500px';
-                    clonedChartContainer.style.width = '100%';
-                }
-            }
+            logging: false
         });
         
         // Convert to blob and download
@@ -765,23 +796,11 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     } else {
         // Fallback to original method if html2canvas is not available
         console.warn('html2canvas not available, falling back to canvas-only download');
-        const canvas = cardEl.querySelector('canvas');
-        if (canvas) {
-            downloadPNG(canvas, filename);
-        } else {
-            announce?.('Could not download chart.');
-        }
+        downloadPNG(exportCanvas, filename);
     }
     
-    // Add some debugging to see what we're capturing
-    console.log('[downloadAsPNG] Temp container content:', tempContainer.innerHTML);
-    console.log('[downloadAsPNG] Temp container dimensions:', {
-        width: tempContainer.offsetWidth,
-        height: tempContainer.offsetHeight,
-        scrollHeight: tempContainer.scrollHeight
-    });
-    
     // Clean up
+    exportChart.destroy();
     document.body.removeChild(tempContainer);
 }
 
@@ -793,9 +812,29 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
         return;
     }
     
+    // Get the original chart instance
+    const originalChart = chartCanvas.chart;
+    if (!originalChart) {
+        console.error('[downloadAsHTML] No chart instance found');
+        announce?.('Chart not ready for download. Please wait a moment and try again.');
+        return;
+    }
+    
     // Get chart data for recreation
     const chartId = cardEl.getAttribute('data-chart-id');
     const chartData = window.getDataById?.(chartId);
+    
+    // Serialize chart data
+    const chartConfig = {
+        type: originalChart.config.type,
+        data: originalChart.data,
+        options: {
+            ...originalChart.options,
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: false
+        }
+    };
     
     // Create HTML content
     const htmlContent = `
@@ -813,6 +852,7 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             margin: 0;
             padding: 20px;
             background: #f8fafc;
+            min-height: 100vh;
         }
         .chart-container {
             max-width: 1000px;
@@ -821,6 +861,7 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             border-radius: 12px;
             padding: 24px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            min-height: 600px;
         }
         .chart-header {
             margin-bottom: 20px;
@@ -839,14 +880,21 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             font-weight: 500;
             margin: 0;
         }
-        .chart-canvas {
-            width: 100%;
+        .chart-wrapper {
+            position: relative;
             height: 400px;
+            width: 100%;
+        }
+        .chart-canvas {
+            width: 100% !important;
+            height: 100% !important;
         }
         .chart-meta {
             margin-top: 16px;
             font-size: 14px;
             color: #6b7280;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 16px;
         }
     </style>
 </head>
@@ -856,31 +904,25 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             <h1 class="chart-title">${chartTitle}</h1>
             <p class="chart-subtitle">${cardEl.querySelector('.chart-subtitle')?.textContent || 'Data visualization'}</p>
         </div>
-        <canvas id="chart" class="chart-canvas"></canvas>
+        <div class="chart-wrapper">
+            <canvas id="chart" class="chart-canvas"></canvas>
+        </div>
         <div class="chart-meta">
             <p>Generated on ${new Date().toLocaleDateString()} from Riksdata</p>
+            <p>Data source: ${cardEl.querySelector('.source-link')?.textContent || 'Unknown'}</p>
         </div>
     </div>
     
     <script>
-        // Chart configuration would go here
-        // For now, we'll create a simple placeholder
-        const ctx = document.getElementById('chart').getContext('2d');
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [{
-                    label: 'Sample Data',
-                    data: [12, 19, 3, 5, 2, 3],
-                    borderColor: 'rgb(75, 192, 192)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false
-            }
+        // Wait for Chart.js to load
+        document.addEventListener('DOMContentLoaded', function() {
+            const ctx = document.getElementById('chart').getContext('2d');
+            
+            // Chart configuration
+            const chartConfig = ${JSON.stringify(chartConfig, null, 2)};
+            
+            // Create the chart
+            new Chart(ctx, chartConfig);
         });
     </script>
 </body>
@@ -895,10 +937,20 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
 async function downloadAsPDF(cardEl, filename, chartTitle) {
     // For PDF generation, we'll use html2canvas to create an image first
     // then convert it to PDF using jsPDF
-    if (!window.jspdf) {
+    if (typeof window.jspdf === 'undefined') {
         // If jsPDF is not available, fallback to PNG
         console.warn('jsPDF not available, falling back to PNG');
         await downloadAsPNG(cardEl, filename.replace('.pdf', '.png'), chartTitle);
+        return;
+    }
+    
+    // Get the original chart instance
+    const originalCanvas = cardEl.querySelector('canvas');
+    const originalChart = originalCanvas?.chart;
+    
+    if (!originalChart) {
+        console.error('[downloadAsPDF] No chart instance found');
+        announce?.('Chart not ready for download. Please wait a moment and try again.');
         return;
     }
     
@@ -970,10 +1022,45 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
         `;
     }
     
+    // Create a new canvas for the export
+    const exportCanvas = document.createElement('canvas');
+    exportCanvas.width = 800;
+    exportCanvas.height = 400;
+    exportCanvas.style.cssText = `
+        width: 100%;
+        height: 100%;
+        display: block;
+    `;
+    
+    // Replace the original canvas with our export canvas
+    const originalCanvasInClone = cardClone.querySelector('canvas');
+    if (originalCanvasInClone) {
+        originalCanvasInClone.parentNode.replaceChild(exportCanvas, originalCanvasInClone);
+    }
+    
     tempContainer.appendChild(cardClone);
     document.body.appendChild(tempContainer);
     
-    await new Promise(resolve => setTimeout(resolve, 200));
+    // Create a new chart instance for export
+    const exportChart = new Chart(exportCanvas.getContext('2d'), {
+        type: originalChart.config.type,
+        data: originalChart.data,
+        options: {
+            ...originalChart.options,
+            responsive: false,
+            maintainAspectRatio: false,
+            animation: false,
+            plugins: {
+                ...originalChart.options.plugins,
+                legend: {
+                    ...originalChart.options.plugins?.legend,
+                    display: true
+                }
+            }
+        }
+    });
+    
+    await new Promise(resolve => setTimeout(resolve, 500));
     
     if (window.html2canvas) {
         const canvas = await html2canvas(tempContainer, {
@@ -1014,16 +1101,24 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
 }
 
 async function downloadAsSVG(cardEl, filename) {
-    // For SVG, we'll try to get the chart's SVG if available
-    const svg = cardEl.querySelector('svg');
-    if (svg) {
-        downloadSVG(svg, filename);
-        announce?.('Chart downloaded as SVG!');
-    } else {
-        // Fallback to PNG if no SVG available
-        console.warn('No SVG found, falling back to PNG');
-        await downloadAsPNG(cardEl, filename.replace('.svg', '.png'), 'Chart');
+    // Get the original chart instance
+    const originalCanvas = cardEl.querySelector('canvas');
+    const originalChart = originalCanvas?.chart;
+    
+    if (!originalChart) {
+        console.error('[downloadAsSVG] No chart instance found');
+        announce?.('Chart not ready for download. Please wait a moment and try again.');
+        return;
     }
+    
+    // For Chart.js, we need to convert to SVG
+    // Since Chart.js doesn't natively support SVG export, we'll create a high-quality PNG
+    // and provide a note about SVG limitations
+    console.warn('Chart.js doesn\'t support direct SVG export. Creating high-quality PNG instead.');
+    announce?.('SVG export not available for Chart.js. Creating high-quality PNG instead.');
+    
+    // Use the same enhanced PNG export process
+    await downloadAsPNG(cardEl, filename.replace('.svg', '.png'), 'Chart');
 }
 
 function getSuggestedFilename(cardEl, ext) {

@@ -105,6 +105,18 @@ body.loaded {
     border-color: var(--accent);
 }
 
+/* Lucide icon styling within icon buttons */
+.icon-btn svg {
+    display: block;
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
 /* Toggle icon animation */
 .toggle-icon {
     transition: transform 0.2s ease;
@@ -1191,6 +1203,7 @@ main {
     --footer-border: var(--border);
     --icon-size: 1.2rem;
     --external-icon-size: 0.8rem;
+    --success-color: #10b981;
 }
 
 footer {
@@ -1326,6 +1339,26 @@ footer {
 .back-to-top:hover {
     color: var(--footer-text);
     text-decoration: underline;
+}
+
+/* Button Success Feedback Animation */
+.icon-btn.success-feedback {
+    background-color: var(--success-color, #10b981);
+    color: white;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.icon-btn.success-feedback:hover {
+    background-color: var(--success-color, #10b981);
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Success color for dark theme */
+[data-theme="dark"] {
+    --success-color: #34d399;
 }
 
 .footer-text {

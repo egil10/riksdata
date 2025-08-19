@@ -996,13 +996,52 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
+        // Show success feedback
+        showButtonFeedback(btn, 'check-line', 'Download successful!');
         downloadChartForCard(card);
     } else if (action === 'copy') {
+        // Show success feedback
+        showButtonFeedback(btn, 'copy-check', 'Data copied!');
         copyChartDataTSV(card, getDataById);
     } else if (action === 'fullscreen') {
         openChartFullscreen(card);
     }
 });
+
+/**
+ * Show visual feedback for button actions
+ * @param {HTMLElement} button - The button element
+ * @param {string} successIcon - The Lucide icon name to show
+ * @param {string} successTitle - The tooltip text to show
+ */
+function showButtonFeedback(button, successIcon, successTitle) {
+    const originalTitle = button.getAttribute('title');
+    
+    // Find the icon element and update it
+    const iconElement = button.querySelector('i[data-lucide]');
+    if (iconElement) {
+        const originalIcon = iconElement.getAttribute('data-lucide');
+        
+        // Change to success icon
+        iconElement.setAttribute('data-lucide', successIcon);
+        if (window.lucide) {
+            lucide.createIcons({ attrs: { width: 18, height: 18 } });
+        }
+        
+        button.setAttribute('title', successTitle);
+        button.classList.add('success-feedback');
+        
+        // Revert after 2 seconds
+        setTimeout(() => {
+            iconElement.setAttribute('data-lucide', originalIcon);
+            if (window.lucide) {
+                lucide.createIcons({ attrs: { width: 18, height: 18 } });
+            }
+            button.setAttribute('title', originalTitle);
+            button.classList.remove('success-feedback');
+        }, 2000);
+    }
+}
 
 // ---- Table Actions: Copy / Download ----
 /**

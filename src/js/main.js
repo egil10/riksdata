@@ -1002,8 +1002,15 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        downloadChartForCard(card);
-        updateActionButtonState(btn, 'success', 'download');
+        // Show loading state
+        updateActionButtonState(btn, 'loading', 'download');
+        
+        downloadChartForCard(card).then(() => {
+            updateActionButtonState(btn, 'success', 'download');
+        }).catch((error) => {
+            console.error('Download failed:', error);
+            updateActionButtonState(btn, 'error', 'download');
+        });
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly

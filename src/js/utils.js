@@ -931,12 +931,12 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
             '<div class="political-legend">' +
                 '<h4>Political Periods</h4>' +
                 '<div class="political-periods">' +
-                    politicalPeriods.map(period => 
-                        '<div class="political-period">' +
+                    politicalPeriods.map(function(period) { 
+                        return '<div class="political-period">' +
                             '<div class="political-color" style="background-color: ' + period.color + '"></div>' +
                             '<span>' + period.name + ' (' + period.start + ' - ' + period.end + ')</span>' +
-                        '</div>'
-                    ).join('') +
+                        '</div>';
+                    }).join('') +
                 '</div>' +
             '</div>'
         : ''}

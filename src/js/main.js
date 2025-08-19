@@ -1002,15 +1002,8 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        // Show loading state
-        updateActionButtonState(btn, 'loading', 'download');
-        
-        downloadChartForCard(card).then(() => {
-            updateActionButtonState(btn, 'success', 'download');
-        }).catch((error) => {
-            console.error('Download failed:', error);
-            updateActionButtonState(btn, 'error', 'download');
-        });
+        // Show format selection dropdown
+        showDownloadFormatSelector(btn, card);
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
@@ -1129,6 +1122,104 @@ function resizeCharts() {
             if (chart && typeof chart.resize === 'function') chart.resize();
         });
     }
+}
+
+function showDownloadFormatSelector(btn, card) {
+    // Remove any existing format selector
+    const existingSelector = document.querySelector('.download-format-selector');
+    if (existingSelector) {
+        existingSelector.remove();
+    }
+    
+    // Create format selector dropdown
+    const selector = document.createElement('div');
+    selector.className = 'download-format-selector';
+    selector.style.cssText = `
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 1000;
+        min-width: 120px;
+        padding: 4px;
+        margin-top: 4px;
+    `;
+    
+    const formats = [
+        { value: 'png', label: 'PNG Image', description: 'High-quality image' },
+        { value: 'pdf', label: 'PDF Document', description: 'For reports & printing' },
+        { value: 'html', label: 'HTML File', description: 'Interactive chart' },
+        { value: 'svg', label: 'SVG Vector', description: 'Scalable vector' }
+    ];
+    
+    formats.forEach(format => {
+        const option = document.createElement('button');
+        option.className = 'format-option';
+        option.style.cssText = `
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 8px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text);
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        `;
+        
+        option.innerHTML = `
+            <div style="font-weight: 500;">${format.label}</div>
+            <div style="font-size: 12px; color: var(--text-muted);">${format.description}</div>
+        `;
+        
+        option.addEventListener('click', async () => {
+            // Show loading state
+            updateActionButtonState(btn, 'loading', 'download');
+            
+            try {
+                await downloadChartForCard(card, format.value);
+                updateActionButtonState(btn, 'success', 'download');
+            } catch (error) {
+                console.error('Download failed:', error);
+                updateActionButtonState(btn, 'error', 'download');
+            }
+            
+            // Remove the selector
+            selector.remove();
+        });
+        
+        option.addEventListener('mouseenter', () => {
+            option.style.backgroundColor = 'var(--border)';
+        });
+        
+        option.addEventListener('mouseleave', () => {
+            option.style.backgroundColor = 'transparent';
+        });
+        
+        selector.appendChild(option);
+    });
+    
+    // Position the selector relative to the button
+    btn.style.position = 'relative';
+    btn.appendChild(selector);
+    
+    // Close selector when clicking outside
+    const closeSelector = (e) => {
+        if (!selector.contains(e.target) && !btn.contains(e.target)) {
+            selector.remove();
+            document.removeEventListener('click', closeSelector);
+        }
+    };
+    
+    // Delay adding the event listener to avoid immediate closure
+    setTimeout(() => {
+        document.addEventListener('click', closeSelector);
+    }, 100);
 }
 
 // Call resizeCharts after sidebar toggle

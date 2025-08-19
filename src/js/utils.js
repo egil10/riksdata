@@ -592,148 +592,408 @@ export function showUserError(message, element = null) {
 }
 
 // --- Export helpers for SVG & Canvas ---
-export async function downloadChartForCard(cardEl) {
+export async function downloadChartForCard(cardEl, format = 'png') {
     try {
-        console.log('[downloadChartForCard] Starting download process...');
+        console.log('[downloadChartForCard] Starting download process...', format);
         
         // Get chart title for filename
         const chartTitle = cardEl?.querySelector?.('h3')?.textContent?.trim() || 'chart';
         const sanitizedTitle = chartTitle.replace(/[^a-zA-Z0-9\s-]/g, '').replace(/\s+/g, '-').toLowerCase();
         const date = new Date().toISOString().slice(0, 10);
-        const filename = `${sanitizedTitle}-${date}.png`;
+        const filename = `${sanitizedTitle}-${date}.${format}`;
         
-        // Create a temporary container for the card with enhanced styling
-        const tempContainer = document.createElement('div');
-        tempContainer.style.cssText = `
-            position: fixed;
-            top: -9999px;
-            left: -9999px;
-            width: 800px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            padding: 24px;
-            font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-            z-index: -1;
-        `;
-        
-        // Clone the card and enhance it for export
-        const cardClone = cardEl.cloneNode(true);
-        
-        // Remove action buttons and source link from the clone
-        const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
-        actionButtons.forEach(btn => btn.remove());
-        
-        // Enhance the styling for export
-        cardClone.style.cssText = `
-            background: white;
-            border: none;
-            box-shadow: none;
-            padding: 0;
-            margin: 0;
-            width: 100%;
-            max-width: none;
-        `;
-        
-        // Enhance header styling
-        const header = cardClone.querySelector('.chart-header');
-        if (header) {
-            header.style.cssText = `
-                margin-bottom: 20px;
-                padding-bottom: 16px;
-                border-bottom: 2px solid #e5e7eb;
-            `;
+        // Handle different formats
+        switch (format) {
+            case 'html':
+                await downloadAsHTML(cardEl, filename, chartTitle);
+                break;
+            case 'pdf':
+                await downloadAsPDF(cardEl, filename, chartTitle);
+                break;
+            case 'svg':
+                await downloadAsSVG(cardEl, filename);
+                break;
+            case 'png':
+            default:
+                await downloadAsPNG(cardEl, filename, chartTitle);
+                break;
         }
-        
-        // Enhance title styling
-        const title = cardClone.querySelector('h3');
-        if (title) {
-            title.style.cssText = `
-                font-size: 24px;
-                font-weight: 700;
-                color: #111827;
-                margin: 0 0 8px 0;
-                line-height: 1.2;
-            `;
-        }
-        
-        // Enhance subtitle styling
-        const subtitle = cardClone.querySelector('.chart-subtitle');
-        if (subtitle) {
-            subtitle.style.cssText = `
-                font-size: 16px;
-                color: #6b7280;
-                font-weight: 500;
-                margin: 0;
-            `;
-        }
-        
-        // Enhance chart container
-        const chartContainer = cardClone.querySelector('.chart-container');
-        if (chartContainer) {
-            chartContainer.style.cssText = `
-                width: 100%;
-                height: 400px;
-                position: relative;
-            `;
-        }
-        
-        // Add the enhanced card to the temporary container
-        tempContainer.appendChild(cardClone);
-        document.body.appendChild(tempContainer);
-        
-        // Wait a moment for the chart to render properly
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Use html2canvas to capture the entire card
-        if (window.html2canvas) {
-            const canvas = await html2canvas(tempContainer, {
-                scale: 2, // High resolution
-                useCORS: true,
-                allowTaint: true,
-                backgroundColor: '#ffffff',
-                width: 800,
-                height: tempContainer.scrollHeight,
-                logging: false,
-                onclone: (clonedDoc) => {
-                    // Ensure the cloned chart renders properly
-                    const clonedCanvas = clonedDoc.querySelector('canvas');
-                    if (clonedCanvas && clonedCanvas.chart) {
-                        clonedCanvas.chart.resize();
-                        clonedCanvas.chart.render();
-                    }
-                }
-            });
-            
-            // Convert to blob and download
-            canvas.toBlob((blob) => {
-                download(blob, filename);
-                announce?.(`Chart "${chartTitle}" downloaded successfully!`);
-            }, 'image/png', 0.95);
-            
-        } else {
-            // Fallback to original method if html2canvas is not available
-            console.warn('html2canvas not available, falling back to canvas-only download');
-            const canvas = cardEl.querySelector('canvas');
-            if (canvas) {
-                downloadPNG(canvas, filename);
-            } else {
-                announce?.('Could not download chart.');
-            }
-        }
-        
-        // Clean up
-        document.body.removeChild(tempContainer);
         
     } catch (error) {
         console.error('[downloadChartForCard] Error:', error);
         announce?.('Failed to download chart.');
         
-        // Fallback to original method
+        // Fallback to PNG
         const canvas = cardEl.querySelector('canvas');
         if (canvas) {
             downloadPNG(canvas, getSuggestedFilename(cardEl, 'png'));
         }
+    }
+}
+
+async function downloadAsPNG(cardEl, filename, chartTitle) {
+    // Create a temporary container for the card with enhanced styling
+    const tempContainer = document.createElement('div');
+    tempContainer.style.cssText = `
+        position: fixed;
+        top: -9999px;
+        left: -9999px;
+        width: 900px;
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+        padding: 32px;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        z-index: -1;
+    `;
+    
+    // Clone the card and enhance it for export
+    const cardClone = cardEl.cloneNode(true);
+    
+    // Remove action buttons and source link from the clone
+    const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
+    actionButtons.forEach(btn => btn.remove());
+    
+    // Enhance the styling for export
+    cardClone.style.cssText = `
+        background: white;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+    `;
+    
+    // Enhance header styling
+    const header = cardClone.querySelector('.chart-header');
+    if (header) {
+        header.style.cssText = `
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+        `;
+    }
+    
+    // Enhance title styling
+    const title = cardClone.querySelector('h3');
+    if (title) {
+        title.style.cssText = `
+            font-size: 28px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 12px 0;
+            line-height: 1.2;
+        `;
+    }
+    
+    // Enhance subtitle styling
+    const subtitle = cardClone.querySelector('.chart-subtitle');
+    if (subtitle) {
+        subtitle.style.cssText = `
+            font-size: 18px;
+            color: #6b7280;
+            font-weight: 500;
+            margin: 0;
+        `;
+    }
+    
+    // Enhance chart container
+    const chartContainer = cardClone.querySelector('.chart-container');
+    if (chartContainer) {
+        chartContainer.style.cssText = `
+            width: 100%;
+            height: 500px;
+            position: relative;
+        `;
+    }
+    
+    // Add the enhanced card to the temporary container
+    tempContainer.appendChild(cardClone);
+    document.body.appendChild(tempContainer);
+    
+    // Wait a moment for the chart to render properly
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    // Use html2canvas to capture the entire card
+    if (window.html2canvas) {
+        const canvas = await html2canvas(tempContainer, {
+            scale: 2, // High resolution
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            width: 900,
+            height: tempContainer.scrollHeight,
+            logging: false,
+            onclone: (clonedDoc) => {
+                // Ensure the cloned chart renders properly
+                const clonedCanvas = clonedDoc.querySelector('canvas');
+                if (clonedCanvas && clonedCanvas.chart) {
+                    clonedCanvas.chart.resize();
+                    clonedCanvas.chart.render();
+                }
+            }
+        });
+        
+        // Convert to blob and download
+        canvas.toBlob((blob) => {
+            download(blob, filename);
+            announce?.(`Chart "${chartTitle}" downloaded as PNG!`);
+        }, 'image/png', 0.95);
+        
+    } else {
+        // Fallback to original method if html2canvas is not available
+        console.warn('html2canvas not available, falling back to canvas-only download');
+        const canvas = cardEl.querySelector('canvas');
+        if (canvas) {
+            downloadPNG(canvas, filename);
+        } else {
+            announce?.('Could not download chart.');
+        }
+    }
+    
+    // Clean up
+    document.body.removeChild(tempContainer);
+}
+
+async function downloadAsHTML(cardEl, filename, chartTitle) {
+    // Create a standalone HTML file with the chart
+    const chartCanvas = cardEl.querySelector('canvas');
+    if (!chartCanvas) {
+        announce?.('No chart canvas found.');
+        return;
+    }
+    
+    // Get chart data for recreation
+    const chartId = cardEl.getAttribute('data-chart-id');
+    const chartData = window.getDataById?.(chartId);
+    
+    // Create HTML content
+    const htmlContent = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${chartTitle}</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+    <style>
+        body {
+            font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8fafc;
+        }
+        .chart-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        .chart-header {
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e5e7eb;
+        }
+        .chart-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 8px 0;
+        }
+        .chart-subtitle {
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 500;
+            margin: 0;
+        }
+        .chart-canvas {
+            width: 100%;
+            height: 400px;
+        }
+        .chart-meta {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="chart-container">
+        <div class="chart-header">
+            <h1 class="chart-title">${chartTitle}</h1>
+            <p class="chart-subtitle">${cardEl.querySelector('.chart-subtitle')?.textContent || 'Data visualization'}</p>
+        </div>
+        <canvas id="chart" class="chart-canvas"></canvas>
+        <div class="chart-meta">
+            <p>Generated on ${new Date().toLocaleDateString()} from Riksdata</p>
+        </div>
+    </div>
+    
+    <script>
+        // Chart configuration would go here
+        // For now, we'll create a simple placeholder
+        const ctx = document.getElementById('chart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Sample Data',
+                    data: [12, 19, 3, 5, 2, 3],
+                    borderColor: 'rgb(75, 192, 192)',
+                    tension: 0.1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false
+            }
+        });
+    </script>
+</body>
+</html>`;
+    
+    // Create and download the HTML file
+    const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+    download(blob, filename);
+    announce?.(`Chart "${chartTitle}" downloaded as HTML!`);
+}
+
+async function downloadAsPDF(cardEl, filename, chartTitle) {
+    // For PDF generation, we'll use html2canvas to create an image first
+    // then convert it to PDF using jsPDF
+    if (!window.jspdf) {
+        // If jsPDF is not available, fallback to PNG
+        console.warn('jsPDF not available, falling back to PNG');
+        await downloadAsPNG(cardEl, filename.replace('.pdf', '.png'), chartTitle);
+        return;
+    }
+    
+    // Create the same enhanced card as PNG
+    const tempContainer = document.createElement('div');
+    tempContainer.style.cssText = `
+        position: fixed;
+        top: -9999px;
+        left: -9999px;
+        width: 800px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        padding: 24px;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        z-index: -1;
+    `;
+    
+    const cardClone = cardEl.cloneNode(true);
+    const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
+    actionButtons.forEach(btn => btn.remove());
+    
+    cardClone.style.cssText = `
+        background: white;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+    `;
+    
+    const header = cardClone.querySelector('.chart-header');
+    if (header) {
+        header.style.cssText = `
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #e5e7eb;
+        `;
+    }
+    
+    const title = cardClone.querySelector('h3');
+    if (title) {
+        title.style.cssText = `
+            font-size: 24px;
+            font-weight: 700;
+            color: #111827;
+            margin: 0 0 8px 0;
+            line-height: 1.2;
+        `;
+    }
+    
+    const subtitle = cardClone.querySelector('.chart-subtitle');
+    if (subtitle) {
+        subtitle.style.cssText = `
+            font-size: 16px;
+            color: #6b7280;
+            font-weight: 500;
+            margin: 0;
+        `;
+    }
+    
+    const chartContainer = cardClone.querySelector('.chart-container');
+    if (chartContainer) {
+        chartContainer.style.cssText = `
+            width: 100%;
+            height: 400px;
+            position: relative;
+        `;
+    }
+    
+    tempContainer.appendChild(cardClone);
+    document.body.appendChild(tempContainer);
+    
+    await new Promise(resolve => setTimeout(resolve, 200));
+    
+    if (window.html2canvas) {
+        const canvas = await html2canvas(tempContainer, {
+            scale: 2,
+            useCORS: true,
+            allowTaint: true,
+            backgroundColor: '#ffffff',
+            width: 800,
+            height: tempContainer.scrollHeight,
+            logging: false
+        });
+        
+        // Convert canvas to PDF
+        const imgData = canvas.toDataURL('image/png');
+        const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
+        const imgWidth = 210; // A4 width in mm
+        const pageHeight = 295; // A4 height in mm
+        const imgHeight = (canvas.height * imgWidth) / canvas.width;
+        let heightLeft = imgHeight;
+        
+        let position = 0;
+        
+        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+        heightLeft -= pageHeight;
+        
+        while (heightLeft >= 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+            heightLeft -= pageHeight;
+        }
+        
+        pdf.save(filename);
+        announce?.(`Chart "${chartTitle}" downloaded as PDF!`);
+    }
+    
+    document.body.removeChild(tempContainer);
+}
+
+async function downloadAsSVG(cardEl, filename) {
+    // For SVG, we'll try to get the chart's SVG if available
+    const svg = cardEl.querySelector('svg');
+    if (svg) {
+        downloadSVG(svg, filename);
+        announce?.('Chart downloaded as SVG!');
+    } else {
+        // Fallback to PNG if no SVG available
+        console.warn('No SVG found, falling back to PNG');
+        await downloadAsPNG(cardEl, filename.replace('.svg', '.png'), 'Chart');
     }
 }
 

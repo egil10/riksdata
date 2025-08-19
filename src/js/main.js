@@ -377,6 +377,8 @@ export async function initializeApp() {
         // Set up ellipsis tooltips for truncated chart titles
         setupEllipsisTooltips();
         
+
+        
         console.log('Application initialization complete!');
         
     } catch (error) {
@@ -1294,6 +1296,8 @@ function openChartFullscreen(card) {
         }
     });
 }
+
+
 
 // Export functions for use in other scripts
 window.updateCopyButtonState = updateCopyButtonState;

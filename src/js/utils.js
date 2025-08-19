@@ -746,6 +746,13 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                     clonedCanvas.chart.resize();
                     clonedCanvas.chart.render();
                 }
+                
+                // Also ensure the chart container has proper dimensions
+                const clonedChartContainer = clonedDoc.querySelector('.chart-container');
+                if (clonedChartContainer) {
+                    clonedChartContainer.style.height = '500px';
+                    clonedChartContainer.style.width = '100%';
+                }
             }
         });
         
@@ -765,6 +772,14 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
             announce?.('Could not download chart.');
         }
     }
+    
+    // Add some debugging to see what we're capturing
+    console.log('[downloadAsPNG] Temp container content:', tempContainer.innerHTML);
+    console.log('[downloadAsPNG] Temp container dimensions:', {
+        width: tempContainer.offsetWidth,
+        height: tempContainer.offsetHeight,
+        scrollHeight: tempContainer.scrollHeight
+    });
     
     // Clean up
     document.body.removeChild(tempContainer);

@@ -1002,16 +1002,8 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        // Show loading state
-        updateActionButtonState(btn, 'loading', 'download');
-        
-        // For now, use PNG as default - we can enhance this later
-        downloadChartForCard(card, 'png').then(() => {
-            updateActionButtonState(btn, 'success', 'download');
-        }).catch((error) => {
-            console.error('Download failed:', error);
-            updateActionButtonState(btn, 'error', 'download');
-        });
+        // Show format selection dropdown
+        showDownloadFormatSelector(btn, card);
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly

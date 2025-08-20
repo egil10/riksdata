@@ -103,7 +103,7 @@ export async function renderWomenCountChart(canvasId) {
       },
       scales: {
         x: {
-          type: 'linear',
+          type: 'category',
           display: true,
           title: {
             display: true,
@@ -113,7 +113,6 @@ export async function renderWomenCountChart(canvasId) {
             }
           },
           ticks: {
-            stepSize: 4,
             maxTicksLimit: 10
           }
         },
@@ -235,7 +234,7 @@ export async function renderWomenPercentageChart(canvasId) {
       },
       scales: {
         x: {
-          type: 'linear',
+          type: 'category',
           display: true,
           title: {
             display: true,
@@ -245,7 +244,6 @@ export async function renderWomenPercentageChart(canvasId) {
             }
           },
           ticks: {
-            stepSize: 4,
             maxTicksLimit: 10
           }
         },

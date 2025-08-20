@@ -762,8 +762,8 @@ function toggleHeaderSort() {
     const chartGrid = document.querySelector('.chart-grid');
     const chartCards = Array.from(document.querySelectorAll('.chart-card'));
     
-    // Check current state by looking at the icon
-    const isAscending = sortIcon.innerHTML.includes('m3 8 4-4 4 4');
+    // Check current state by looking at the icon (using a unique path segment)
+    const isAscending = sortIcon.innerHTML.includes('M20 8h-5');
     
     if (isAscending) {
         // Sort reverse alphabetically (Z-A)
@@ -776,9 +776,10 @@ function toggleHeaderSort() {
         // Update icon to Z-A (arrow-down-z-a)
         sortIcon.innerHTML = `
             <path d="m3 16 4 4 4-4"/>
-            <path d="M7 20V4"/>
-            <path d="m21 8-4-4-4 4"/>
-            <path d="M17 4v16"/>
+            <path d="M7 4v16"/>
+            <path d="M15 4h5l-5 6h5"/>
+            <path d="M15 20v-3.5a2.5 2.5 0 0 1 5 0V20"/>
+            <path d="M20 18h-5"/>
         `;
         headerSortToggle.setAttribute('aria-label', 'Sort reverse alphabetically');
         headerSortToggle.setAttribute('title', 'Sort reverse alphabetically');
@@ -794,8 +795,9 @@ function toggleHeaderSort() {
         sortIcon.innerHTML = `
             <path d="m3 8 4-4 4 4"/>
             <path d="M7 4v16"/>
-            <path d="m21 16-4 4-4-4"/>
-            <path d="M17 20V4"/>
+            <path d="M20 8h-5"/>
+            <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/>
+            <path d="M15 14h5l-5 6h5"/>
         `;
         headerSortToggle.setAttribute('aria-label', 'Sort alphabetically');
         headerSortToggle.setAttribute('title', 'Sort alphabetically');

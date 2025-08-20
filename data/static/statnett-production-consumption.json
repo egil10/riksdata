@@ -1,0 +1,99 @@
+{
+  "title": "Norway Electricity Production and Consumption",
+  "description": "Annual electricity production and consumption in Norway from 2012 onwards",
+  "source": "Statnett",
+  "source_url": "https://driftsdata.statnett.no/restapi/ProductionConsumption/GetData?From=2012-01-01",
+  "unit": "MWh",
+  "data": [
+    {
+      "year": 2011,
+      "consumption": 376541,
+      "production": 331722,
+      "net": -44819
+    },
+    {
+      "year": 2012,
+      "consumption": 128349582,
+      "production": 146339400,
+      "net": 17989818
+    },
+    {
+      "year": 2013,
+      "consumption": 128087621,
+      "production": 133402543,
+      "net": 5314922
+    },
+    {
+      "year": 2014,
+      "consumption": 126102496,
+      "production": 141620273,
+      "net": 15517777
+    },
+    {
+      "year": 2015,
+      "consumption": 128626703,
+      "production": 143508773,
+      "net": 14882070
+    },
+    {
+      "year": 2016,
+      "consumption": 132324750,
+      "production": 148768107,
+      "net": 16443357
+    },
+    {
+      "year": 2017,
+      "consumption": 132917773,
+      "production": 148152389,
+      "net": 15234616
+    },
+    {
+      "year": 2018,
+      "consumption": 135426788,
+      "production": 145640792,
+      "net": 10214004
+    },
+    {
+      "year": 2019,
+      "consumption": 133460153,
+      "production": 133434244,
+      "net": -25909
+    },
+    {
+      "year": 2020,
+      "consumption": 132894205,
+      "production": 153522220,
+      "net": 20628015
+    },
+    {
+      "year": 2021,
+      "consumption": 138905561,
+      "production": 156253097,
+      "net": 17347536
+    },
+    {
+      "year": 2022,
+      "consumption": 131567516,
+      "production": 144036051,
+      "net": 12468535
+    },
+    {
+      "year": 2023,
+      "consumption": 134533414,
+      "production": 152333133,
+      "net": 17799719
+    },
+    {
+      "year": 2024,
+      "consumption": 136833278,
+      "production": 155312945,
+      "net": 18479667
+    },
+    {
+      "year": 2025,
+      "consumption": 85461089,
+      "production": 100786181,
+      "net": 15325092
+    }
+  ]
+}

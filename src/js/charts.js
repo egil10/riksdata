@@ -1680,18 +1680,24 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     const tooltipElement = document.getElementById(tooltipId);
     
     if (tooltipElement) {
-        // Add mouse move event listener to canvas
+        // Add throttled mouse move event listener to canvas for better performance
+        let tooltipTimeout;
         canvas.addEventListener('mousemove', function(event) {
-            const points = canvas.chart.getElementsAtEventForMode(event, 'index', { intersect: false });
-            if (points.length > 0) {
-                const firstPoint = points[0];
-                const context = canvas.chart.getDatasetMeta(firstPoint.datasetIndex).data[firstPoint.index];
-                updateStaticTooltip(canvas.chart, tooltipId, context);
-            }
+            // Throttle tooltip updates to improve performance
+            clearTimeout(tooltipTimeout);
+            tooltipTimeout = setTimeout(() => {
+                const points = canvas.chart.getElementsAtEventForMode(event, 'index', { intersect: false });
+                if (points.length > 0) {
+                    const firstPoint = points[0];
+                    const context = canvas.chart.getDatasetMeta(firstPoint.datasetIndex).data[firstPoint.index];
+                    updateStaticTooltip(canvas.chart, tooltipId, context);
+                }
+            }, 16); // ~60fps throttling
         });
         
         // Hide tooltip when mouse leaves canvas
         canvas.addEventListener('mouseleave', function() {
+            clearTimeout(tooltipTimeout);
             hideStaticTooltip(tooltipId);
         });
     }

@@ -236,7 +236,7 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - Retail Sales
 
 ### Social Indicators
-- Population Growth
+- Population Growth 
 - Life Expectancy
 - Education Level
 - Crime Rate

@@ -1753,33 +1753,41 @@ export function parseStaticData(data, chartTitle) {
  */
 export function parseOsloIndicesData(data, chartTitle) {
     try {
-        if (!data.indices) {
-            console.error('No indices found in Oslo indices data');
-            return [];
-        }
+        // Check if data has the new format with metadata and data properties
+        if (data.metadata && data.data) {
+            // New format: { metadata: {...}, data: [...] }
+            return data.data.map(item => ({
+                date: new Date(item.date),
+                value: Number(item.value)
+            })).sort((a, b) => a.date - b.date);
+        } else if (data.indices) {
+            // Old format: { indices: { OSEAX: {...}, OSEBX: {...} } }
+            // Determine which index to extract based on chart title
+            let indexKey = null;
+            if (chartTitle.includes('OSEAX')) {
+                indexKey = 'OSEAX';
+            } else if (chartTitle.includes('OSEBX')) {
+                indexKey = 'OSEBX';
+            } else {
+                console.error('Could not determine index type from chart title:', chartTitle);
+                return [];
+            }
 
-        // Determine which index to extract based on chart title
-        let indexKey = null;
-        if (chartTitle.includes('OSEAX')) {
-            indexKey = 'OSEAX';
-        } else if (chartTitle.includes('OSEBX')) {
-            indexKey = 'OSEBX';
+            const indexData = data.indices[indexKey];
+            if (!indexData || !indexData.data) {
+                console.error(`No data found for index: ${indexKey}`);
+                return [];
+            }
+
+            // Parse the data points
+            return indexData.data.map(item => ({
+                date: new Date(item.date),
+                value: Number(item.value)
+            })).sort((a, b) => a.date - b.date);
         } else {
-            console.error('Could not determine index type from chart title:', chartTitle);
+            console.error('No valid data structure found in Oslo indices data');
             return [];
         }
-
-        const indexData = data.indices[indexKey];
-        if (!indexData || !indexData.data) {
-            console.error(`No data found for index: ${indexKey}`);
-            return [];
-        }
-
-        // Parse the data points
-        return indexData.data.map(item => ({
-            date: new Date(item.date),
-            value: Number(item.value)
-        })).sort((a, b) => a.date - b.date);
 
     } catch (error) {
         console.error('Error parsing Oslo indices data:', error);

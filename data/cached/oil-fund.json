@@ -1,115 +1,35 @@
 {
-  "title": "Oil Fund",
-  "description": "Total value of the Norwegian Oil Fund (Government Pension Fund Global)",
+  "title": "Oil Fund Total Market Value",
+  "description": "Total market value of the Norwegian Oil Fund (Government Pension Fund Global)",
   "source": "Norges Bank",
   "data": [
-    {
-      "year": 1998,
-      "total": 172
-    },
-    {
-      "year": 1999,
-      "total": 222
-    },
-    {
-      "year": 2000,
-      "total": 386
-    },
-    {
-      "year": 2001,
-      "total": 614
-    },
-    {
-      "year": 2002,
-      "total": 609
-    },
-    {
-      "year": 2003,
-      "total": 845
-    },
-    {
-      "year": 2004,
-      "total": 1016
-    },
-    {
-      "year": 2005,
-      "total": 1399
-    },
-    {
-      "year": 2006,
-      "total": 1784
-    },
-    {
-      "year": 2007,
-      "total": 2019
-    },
-    {
-      "year": 2008,
-      "total": 2275
-    },
-    {
-      "year": 2009,
-      "total": 2640
-    },
-    {
-      "year": 2010,
-      "total": 3077
-    },
-    {
-      "year": 2011,
-      "total": 3312
-    },
-    {
-      "year": 2012,
-      "total": 3816
-    },
-    {
-      "year": 2013,
-      "total": 5038
-    },
-    {
-      "year": 2014,
-      "total": 6431
-    },
-    {
-      "year": 2015,
-      "total": 7475
-    },
-    {
-      "year": 2016,
-      "total": 7510
-    },
-    {
-      "year": 2017,
-      "total": 8488
-    },
-    {
-      "year": 2018,
-      "total": 8256
-    },
-    {
-      "year": 2019,
-      "total": 10088
-    },
-    {
-      "year": 2020,
-      "total": 10914
-    },
-    {
-      "year": 2021,
-      "total": 12340
-    },
-    {
-      "year": 2022,
-      "total": 12429
-    },
-    {
-      "year": 2023,
-      "total": 15765
-    },
-    {
-      "year": 2024,
-      "total": 19742
-    }
+    {"year": 1998, "total": 172},
+    {"year": 1999, "total": 222},
+    {"year": 2000, "total": 386},
+    {"year": 2001, "total": 614},
+    {"year": 2002, "total": 609},
+    {"year": 2003, "total": 845},
+    {"year": 2004, "total": 1016},
+    {"year": 2005, "total": 1399},
+    {"year": 2006, "total": 1784},
+    {"year": 2007, "total": 2019},
+    {"year": 2008, "total": 2275},
+    {"year": 2009, "total": 2640},
+    {"year": 2010, "total": 3077},
+    {"year": 2011, "total": 3312},
+    {"year": 2012, "total": 3816},
+    {"year": 2013, "total": 5038},
+    {"year": 2014, "total": 6431},
+    {"year": 2015, "total": 7475},
+    {"year": 2016, "total": 7510},
+    {"year": 2017, "total": 8488},
+    {"year": 2018, "total": 8256},
+    {"year": 2019, "total": 10088},
+    {"year": 2020, "total": 10914},
+    {"year": 2021, "total": 12340},
+    {"year": 2022, "total": 12429},
+    {"year": 2023, "total": 15765},
+    {"year": 2024, "total": 19755},
+    {"year": 2025, "total": 19602}
   ]
 }

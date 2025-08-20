@@ -309,6 +309,7 @@ export const CHART_FILTER_CONFIG = {
 export const API_CONFIG = {
     SSB_BASE_URL: 'https://data.ssb.no/api/v0/dataset',
     NORGES_BANK_BASE_URL: 'https://data.norges-bank.no/api/data',
+    NVE_BASE_URL: 'https://biapi.nve.no/magasinstatistikk',
     CACHE_BASE_PATH: './data/cached'
 };
 
@@ -482,6 +483,7 @@ export const CHART_TYPES = {
 export const DATA_SOURCES = {
     SSB: 'ssb',
     NORGES_BANK: 'norges-bank',
+    NVE: 'nve',
     STATIC: 'static',
     OSLO_INDICES: 'oslo-indices'
 };

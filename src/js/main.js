@@ -283,7 +283,15 @@ const chartConfigs = [
     { id: 'cpi-subgroups-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Sub-Groups' },
     { id: 'household-types-chart', url: 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', title: 'Household Types' },
     { id: 'producer-price-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', title: 'Producer Price Industry' },
-    { id: 'utility-floor-space-chart', url: 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', title: 'Utility Floor Space' }
+    { id: 'utility-floor-space-chart', url: 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', title: 'Utility Floor Space' },
+    
+    // NVE Magasinstatistikk charts
+    { id: 'nve-magasins-norge', url: 'nve://magasins/norge', title: 'Vannmagasin fyllingsgrad – Norge', type: 'nve-magasin' },
+    { id: 'nve-magasins-no1', url: 'nve://magasins/no1', title: 'Vannmagasin fyllingsgrad – Østlandet (NO1)', type: 'nve-magasin' },
+    { id: 'nve-magasins-no2', url: 'nve://magasins/no2', title: 'Vannmagasin fyllingsgrad – Sørlandet (NO2)', type: 'nve-magasin' },
+    { id: 'nve-magasins-no3', url: 'nve://magasins/no3', title: 'Vannmagasin fyllingsgrad – Vestlandet (NO3)', type: 'nve-magasin' },
+    { id: 'nve-magasins-no4', url: 'nve://magasins/no4', title: 'Vannmagasin fyllingsgrad – Trøndelag (NO4)', type: 'nve-magasin' },
+    { id: 'nve-magasins-no5', url: 'nve://magasins/no5', title: 'Vannmagasin fyllingsgrad – Nord-Norge (NO5)', type: 'nve-magasin' }
 ];
 
 /**
@@ -796,7 +804,8 @@ function handleSourceFilter(event) {
     chartCards.forEach(card => {
         const sourceLink = card.querySelector('.source-link');
         const cardSource = sourceLink.textContent.includes('SSB') ? 'ssb' : 
-                          sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' : 'static';
+                          sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' :
+                          sourceLink.textContent.includes('NVE') ? 'nve' : 'static';
         
         if (source === 'all' || cardSource === source) {
             card.style.display = 'block';

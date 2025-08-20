@@ -111,6 +111,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 console.warn(`Could not extract endpoint from Norges Bank URL: ${apiUrl}`);
                 return null;
             }
+        } else if (apiUrl.startsWith('nve://')) {
+            // Handle NVE charts - these are rendered directly from API
+            return await loadNVEChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2052,5 +2055,50 @@ function showNoDataState(chartId) {
         // Clear the container and add the message
         chartContainer.innerHTML = '';
         chartContainer.appendChild(noDataDiv);
+    }
+}
+
+/**
+ * Load and render NVE reservoir charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - NVE API URL (e.g., nve://magasins/norge)
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading NVE chart: ${canvasId} - ${chartTitle}`);
+        
+        // Extract area from URL (e.g., nve://magasins/norge -> norge)
+        const areaMatch = apiUrl.match(/nve:\/\/magasins\/(.+)/);
+        if (!areaMatch) {
+            console.warn(`Invalid NVE URL format: ${apiUrl}`);
+            return null;
+        }
+        
+        let area = areaMatch[1].toUpperCase();
+        if (area === 'NORGE') {
+            area = 'Norge'; // Special case for Norway
+        }
+        
+        // Import and render the NVE chart
+        const { renderMagasinChart } = await import('./charts/nve-magasins.js');
+        const chart = await renderMagasinChart(canvasId, area);
+        
+        if (chart) {
+            console.log(`Successfully rendered NVE chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render NVE chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load NVE chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
     }
 }

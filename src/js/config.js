@@ -163,12 +163,11 @@ export const POLITICAL_PERIODS = [
 // Chart configuration with compressed x-axis format and mobile optimization
 export const CHART_CONFIG = {
     responsive: true,
-    maintainAspectRatio: false,
+    maintainAspectRatio: false, // keep, since we now control container height in CSS
     spanGaps: true,
-    animation: {
-        duration: 750,
-        easing: 'easeInOutQuart'
-    },
+    animation: false,           // huge win on initial load
+    parsing: false,             // use if data is already numbers with x/y; skip deep parsing
+    normalized: true,           // improves perf for large timeseries
     plugins: {
         tooltip: {
             enabled: false, // Disable default tooltips
@@ -182,6 +181,11 @@ export const CHART_CONFIG = {
         },
         legend: {
             display: false
+        },
+        decimation: {
+            enabled: true,
+            algorithm: 'lttb',   // visually faithful downsampling
+            samples: 600         // ~600 points per dataset is plenty for a card
         }
     },
     scales: {
@@ -246,9 +250,9 @@ export const CHART_CONFIG = {
             }
         }
     },
-    interaction: {
-        intersect: false,
-        mode: 'index'
+    interaction: { 
+        mode: 'nearest', 
+        intersect: false 
     },
     elements: {
         point: {

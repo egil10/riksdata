@@ -1619,6 +1619,14 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         };
     }
     
+    // Skip work when a dataset is missing
+    if (!data || data.length === 0) {
+        console.warn(`No data available for chart: ${title}`);
+        hideSkeleton(canvas.id);
+        showNoDataState(canvas.id);
+        return;
+    }
+    
     // Create the chart
     console.log(`Creating Chart.js instance for ${title}...`);
     try {
@@ -2001,5 +2009,48 @@ function parseLivingArrangementsData(ssbData) {
     } catch (error) {
         console.error('Error parsing living arrangements data:', error);
         return [];
+    }
+}
+
+/**
+ * Hide skeleton loading for a chart
+ * @param {string} chartId - Chart ID
+ */
+function hideSkeleton(chartId) {
+    const skeletonId = chartId.replace('-chart', '-skeleton');
+    const skeleton = document.getElementById(skeletonId);
+    if (skeleton) {
+        skeleton.style.display = 'none';
+        console.log(`Skeleton hidden for ${chartId}`);
+    }
+}
+
+/**
+ * Show no data state for a chart
+ * @param {string} chartId - Chart ID
+ */
+function showNoDataState(chartId) {
+    const canvas = document.getElementById(chartId);
+    if (!canvas) return;
+    
+    const chartContainer = canvas.closest('.chart-container');
+    if (chartContainer) {
+        // Create a no data message
+        const noDataDiv = document.createElement('div');
+        noDataDiv.style.cssText = `
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            text-align: center;
+            padding: 1rem;
+        `;
+        noDataDiv.textContent = 'No data available';
+        
+        // Clear the container and add the message
+        chartContainer.innerHTML = '';
+        chartContainer.appendChild(noDataDiv);
     }
 }

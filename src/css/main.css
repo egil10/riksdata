@@ -459,13 +459,36 @@ html {
     padding-bottom: 2rem;
 }
 
-.chart-container {
-    width: 100%;
+/* Chart card layout: give containers a sane height and a fixed aspect on mobile */
+.chart-card .chart-container {
+    position: relative;
+    /* Prefer aspect ratio for mobile; browsers that support it will ignore height */
+    aspect-ratio: 16 / 9;
+    /* Fallback height for older browsers + clamp for larger screens */
+    height: clamp(220px, 38vh, 460px);
     max-width: 100%;
-    height: 200px;
-    min-height: 200px;
-    max-height: 200px;
     overflow: hidden;
+}
+
+/* Let the canvas fill the container WITHOUT imposing its own height */
+.chart-card .chart-container canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important; /* important ONLY because Chart.js may inline a height */
+}
+
+/* On wider screens, relax the aspect a bit and lower the max height */
+@media (min-width: 900px) {
+    .chart-card .chart-container {
+        aspect-ratio: 2 / 1;
+        height: clamp(260px, 32vh, 420px);
+    }
+}
+
+/* If you use CSS Grid with equal-height rows, prevent "1fr" rows from stretching cards */
+.chart-grid {
+    grid-auto-rows: auto; /* not 1fr */
+    align-items: start;   /* avoid children stretching grid tracks vertically */
 }
 
 /* Mobile optimizations - COMPLETELY OVERHAULED */
@@ -584,20 +607,17 @@ html {
         margin-bottom: 0;
         border-radius: var(--radius);
         padding: 0.875rem;
-        box-shadow: var(--shadow-sm);
+        box-shadow: none; /* Turn off shadows on mobile for performance */
         transition: all var(--t) var(--ease);
     }
     
     .chart-card:hover {
-        box-shadow: var(--shadow-md);
+        box-shadow: none; /* Keep shadows off on mobile */
     }
 
 
     
     .chart-container {
-        height: 140px;
-        min-height: 140px;
-        max-height: 140px;
         border-radius: 8px;
         overflow: hidden;
     }

@@ -2169,7 +2169,7 @@ footer {
     z-index: 10000;
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0;
     box-sizing: border-box;
     animation: fadeIn 0.3s ease-out;
 }
@@ -2183,13 +2183,53 @@ footer {
     }
 }
 
-.fullscreen-modal .chart-container {
+.fullscreen-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: var(--shadow-sm);
+    flex-shrink: 0;
+}
+
+.fullscreen-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.fullscreen-close-btn {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.fullscreen-close-btn:hover {
+    background: var(--border);
+}
+
+.fullscreen-close-btn svg {
+    display: block;
+}
+
+.fullscreen-chart-container {
     flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 0;
-    padding: 1rem;
+    padding: 2rem;
+    background: var(--bg);
 }
 
 .fullscreen-modal canvas {

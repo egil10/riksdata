@@ -1121,6 +1121,7 @@ document.addEventListener('click', (e) => {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
     } else if (action === 'fullscreen') {
+        console.log('Fullscreen button clicked for card:', card);
         openChartFullscreen(card);
     }
 });
@@ -1375,8 +1376,20 @@ function openChartFullscreen(card) {
     const chartTitle = card.querySelector('.chart-header h3')?.textContent || 'Chart';
     const chartCanvas = card.querySelector('canvas');
     
+    console.log('Opening fullscreen for card:', card);
+    console.log('Chart canvas:', chartCanvas);
+    console.log('Chart title:', chartTitle);
+    
     if (!chartCanvas) {
         console.warn('No chart canvas found for fullscreen');
+        return;
+    }
+    
+    // Get the Chart.js instance
+    const chartInstance = chartCanvas.chart;
+    console.log('Chart instance:', chartInstance);
+    if (!chartInstance) {
+        console.warn('No Chart.js instance found for fullscreen');
         return;
     }
     
@@ -1386,55 +1399,34 @@ function openChartFullscreen(card) {
     
     // Create header
     const header = document.createElement('div');
-    header.style.cssText = `
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 0 1rem 0;
-        border-bottom: 1px solid var(--border);
-        margin-bottom: 1rem;
-    `;
+    header.className = 'fullscreen-header';
     
     const title = document.createElement('h2');
     title.textContent = chartTitle;
-    title.style.cssText = `
-        margin: 0;
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--text);
-    `;
+    title.className = 'fullscreen-title';
     
     const closeBtn = document.createElement('button');
+    closeBtn.className = 'fullscreen-close-btn';
+    closeBtn.setAttribute('aria-label', 'Minimize');
+    closeBtn.setAttribute('title', 'Minimize');
     closeBtn.innerHTML = `
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6L6 18"/>
-            <path d="M6 6l12 12"/>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8 3v3a2 2 0 0 1-2 2H3"/>
+            <path d="M21 8h-3a2 2 0 0 1-2-2V3"/>
+            <path d="M3 16h3a2 2 0 0 1 2 2v3"/>
+            <path d="M16 21v-3a2 2 0 0 1 2-2h3"/>
         </svg>
     `;
-    closeBtn.style.cssText = `
-        background: none;
-        border: none;
-        color: var(--text);
-        cursor: pointer;
-        padding: 0.5rem;
-        border-radius: 4px;
-        transition: background-color 0.2s ease;
-    `;
-    closeBtn.onmouseover = () => closeBtn.style.background = 'var(--border)';
-    closeBtn.onmouseout = () => closeBtn.style.background = 'none';
-    closeBtn.onclick = () => document.body.removeChild(modal);
     
     header.appendChild(title);
     header.appendChild(closeBtn);
     
     // Create chart container
     const chartContainer = document.createElement('div');
-    chartContainer.className = 'chart-container';
+    chartContainer.className = 'fullscreen-chart-container';
     
-    // Clone the canvas for fullscreen
-    const fullscreenCanvas = chartCanvas.cloneNode(true);
-    
-    chartContainer.appendChild(fullscreenCanvas);
+    // Move the original canvas to fullscreen
+    chartContainer.appendChild(chartCanvas);
     
     // Add to modal
     modal.appendChild(header);
@@ -1443,20 +1435,50 @@ function openChartFullscreen(card) {
     // Add to body
     document.body.appendChild(modal);
     
+    // Resize the chart to fit the fullscreen container
+    setTimeout(() => {
+        if (chartInstance && typeof chartInstance.resize === 'function') {
+            chartInstance.resize();
+        }
+    }, 100);
+    
+    // Handle close button click
+    const closeFullscreen = () => {
+        // Move the canvas back to its original container
+        const originalContainer = card.querySelector('.chart-container');
+        console.log('Original container:', originalContainer);
+        if (originalContainer && chartCanvas) {
+            originalContainer.appendChild(chartCanvas);
+        }
+        
+        // Remove modal
+        document.body.removeChild(modal);
+        
+        // Resize chart back to original size
+        setTimeout(() => {
+            if (chartInstance && typeof chartInstance.resize === 'function') {
+                chartInstance.resize();
+            }
+        }, 100);
+        
+        // Clean up event listeners
+        document.removeEventListener('keydown', handleEscape);
+    };
+    
+    closeBtn.addEventListener('click', closeFullscreen);
+    
     // Handle escape key
     const handleEscape = (e) => {
         if (e.key === 'Escape') {
-            document.body.removeChild(modal);
-            document.removeEventListener('keydown', handleEscape);
+            closeFullscreen();
         }
     };
     document.addEventListener('keydown', handleEscape);
     
-    // Clean up on modal close
+    // Clean up on modal background click
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
-            document.body.removeChild(modal);
-            document.removeEventListener('keydown', handleEscape);
+            closeFullscreen();
         }
     });
 }

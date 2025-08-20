@@ -1,195 +1,114 @@
 {
-  "title": "Norwegian Oil Fund (Government Pension Fund Global)",
-  "description": "Annual data showing the fund's total value in billions of NOK",
+  "title": "Oil Fund",
+  "description": "Total value of the Norwegian Oil Fund (Government Pension Fund Global)",
   "source": "Norges Bank",
   "data": [
     {
       "year": 1998,
-      "kronekurs": 18.33,
-      "avkastning": 12.2,
-      "tilforsel": 141.31,
       "total": 172
     },
     {
       "year": 1999,
-      "kronekurs": 21.24,
-      "avkastning": 35.44,
-      "tilforsel": 165.73,
       "total": 222
     },
     {
       "year": 2000,
-      "kronekurs": 29.52,
-      "avkastning": 41.33,
-      "tilforsel": 315.6,
       "total": 386
     },
     {
       "year": 2001,
-      "kronekurs": 14.09,
-      "avkastning": 32.74,
-      "tilforsel": 566.86,
       "total": 614
     },
     {
       "year": 2002,
-      "kronekurs": -86.56,
-      "avkastning": 3.32,
-      "tilforsel": 692.24,
       "total": 609
     },
     {
       "year": 2003,
-      "kronekurs": -45.74,
-      "avkastning": 94.9,
-      "tilforsel": 796.15,
       "total": 845
     },
     {
       "year": 2004,
-      "kronekurs": -94.9,
-      "avkastning": 176.98,
-      "tilforsel": 934.32,
       "total": 1016
     },
     {
       "year": 2005,
-      "kronekurs": -59.23,
-      "avkastning": 303.67,
-      "tilforsel": 1154.61,
       "total": 1399
     },
     {
       "year": 2006,
-      "kronekurs": -87.05,
-      "avkastning": 427.83,
-      "tilforsel": 1442.91,
       "total": 1784
     },
     {
       "year": 2007,
-      "kronekurs": -240.55,
-      "avkastning": 502.64,
-      "tilforsel": 1756.56,
       "total": 2019
     },
     {
       "year": 2008,
-      "kronekurs": 265.61,
-      "avkastning": -130.5,
-      "tilforsel": 2140.32,
       "total": 2275
     },
     {
       "year": 2009,
-      "kronekurs": -152,
-      "avkastning": 482.31,
-      "tilforsel": 2309.73,
       "total": 2640
     },
     {
       "year": 2010,
-      "kronekurs": -160.5,
-      "avkastning": 746.18,
-      "tilforsel": 2491.73,
       "total": 3077
     },
     {
       "year": 2011,
-      "kronekurs": -111.29,
-      "avkastning": 659.94,
-      "tilforsel": 2762.93,
       "total": 3312
     },
     {
       "year": 2012,
-      "kronekurs": -330.86,
-      "avkastning": 1107.36,
-      "tilforsel": 3039.26,
       "total": 3816
     },
     {
       "year": 2013,
-      "kronekurs": -39.43,
-      "avkastning": 1798.89,
-      "tilforsel": 3278.27,
       "total": 5038
     },
     {
       "year": 2014,
-      "kronekurs": 662.83,
-      "avkastning": 2342.53,
-      "tilforsel": 3425.38,
       "total": 6431
     },
     {
       "year": 2015,
-      "kronekurs": 1330.97,
-      "avkastning": 2676.31,
-      "tilforsel": 3467.88,
       "total": 7475
     },
     {
       "year": 2016,
-      "kronekurs": 1024.87,
-      "avkastning": 3122.98,
-      "tilforsel": 3362.65,
       "total": 7510
     },
     {
       "year": 2017,
-      "kronekurs": 1039.6,
-      "avkastning": 4150.74,
-      "tilforsel": 3298.11,
       "total": 8488
     },
     {
       "year": 2018,
-      "kronekurs": 1263.21,
-      "avkastning": 3665.55,
-      "tilforsel": 3327.19,
       "total": 8256
     },
     {
       "year": 2019,
-      "kronekurs": 1389.86,
-      "avkastning": 5357.68,
-      "tilforsel": 3340.54,
       "total": 10088
     },
     {
       "year": 2020,
-      "kronekurs": 1447.81,
-      "avkastning": 6427.39,
-      "tilforsel": 3038.56,
       "total": 10914
     },
     {
       "year": 2021,
-      "kronekurs": 1423.22,
-      "avkastning": 8007.25,
-      "tilforsel": 2909.08,
       "total": 12340
     },
     {
       "year": 2022,
-      "kronekurs": 2065.07,
-      "avkastning": 6370.07,
-      "tilforsel": 3993.92,
       "total": 12429
     },
     {
       "year": 2023,
-      "kronekurs": 2474.31,
-      "avkastning": 8592.1,
-      "tilforsel": 4698.39,
       "total": 15765
     },
     {
       "year": 2024,
-      "kronekurs": 3547.55,
-      "avkastning": 11094,
-      "tilforsel": 5100.36,
       "total": 19742
     }
   ]

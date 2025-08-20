@@ -870,6 +870,33 @@
                 </div>
             </div>
 
+            <div class="chart-card" data-chart-id="oil-fund-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>Oil Fund</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://www.nbim.no/en/investments/the-funds-value/" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Billion NOK</div>
+                </div>
+                <div class="skeleton-chart" id="oil-fund-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="oil-fund-chart"></canvas>
+                    <div class="static-tooltip" id="oil-fund-tooltip"></div>
+                </div>
+            </div>
+
             <!-- Government Debt - Key Indicators (TBIL - Treasury Bills) -->
             <div class="chart-card" data-chart-id="population-growth-chart">
                                 <div class="chart-header">

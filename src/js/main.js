@@ -251,8 +251,9 @@ export async function initializeApp() {
             loadChartData('govt-debt-chart', 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', 'Government Debt', 'line'),
             
             // Oslo Stock Exchange data
-            loadChartData('oseax-chart', './data/cached/oslo-indices/oseax-osebx.json', 'OSEAX - Oslo Stock Exchange All Share Index'),
-            loadChartData('osebx-chart', './data/cached/oslo-indices/oseax-osebx.json', 'OSEBX - Oslo Stock Exchange Benchmark Index'),
+            loadChartData('oseax-chart', './data/cached/oslo-indices/oseax.json', 'OSEAX - Oslo Stock Exchange All Share Index'),
+            loadChartData('osebx-chart', './data/cached/oslo-indices/osebx.json', 'OSEBX - Oslo Stock Exchange Benchmark Index'),
+            loadChartData('obx-chart', './data/cached/oslo-indices/obx.json', 'OBX - Oslo Børs Total Return Index'),
             
             
             

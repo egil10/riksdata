@@ -37,94 +37,100 @@ export async function createStatnettProductionConsumptionChart(canvasId, dataUrl
             throw new Error(`Canvas element not found: ${canvasId}`);
         }
         
-        // Create chart options
-        const chartOptions = {
-        type: 'line',
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: {
-                intersect: false,
-                mode: 'index'
-            },
-            plugins: {
-                legend: {
-                    display: true,
-                    position: 'top',
-                    labels: {
-                        usePointStyle: true,
-                        padding: 20,
-                        font: {
-                            size: 12
+        // Check if Chart.js is available
+        if (typeof Chart === 'undefined') {
+            console.error('Chart.js is not loaded');
+            return null;
+        }
+        
+        // Clear any existing chart
+        if (canvas.chart) {
+            canvas.chart.destroy();
+        }
+        
+        // Create the chart directly with Chart.js
+        canvas.chart = new Chart(canvas, {
+            type: 'line',
+            data: chartData,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                interaction: {
+                    intersect: false,
+                    mode: 'index'
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        position: 'top',
+                        labels: {
+                            usePointStyle: true,
+                            padding: 20,
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        borderColor: '#ffffff',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        displayColors: true,
+                        callbacks: {
+                            title: function(context) {
+                                const date = new Date(context[0].parsed.x);
+                                return date.getFullYear().toString();
+                            },
+                            label: function(context) {
+                                const value = context.parsed.y;
+                                const label = context.dataset.label;
+                                return `${label}: ${value.toLocaleString('no-NO')} MWh`;
+                            }
                         }
                     }
                 },
-                tooltip: {
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: '#ffffff',
-                    bodyColor: '#ffffff',
-                    borderColor: '#ffffff',
-                    borderWidth: 1,
-                    cornerRadius: 8,
-                    displayColors: true,
-                    callbacks: {
-                        title: function(context) {
-                            const date = new Date(context[0].parsed.x);
-                            return date.getFullYear().toString();
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'year',
+                            displayFormats: {
+                                year: 'yyyy'
+                            }
                         },
-                        label: function(context) {
-                            const value = context.parsed.y;
-                            const label = context.dataset.label;
-                            return `${label}: ${value.toLocaleString('no-NO')} MWh`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'year',
-                        displayFormats: {
-                            year: 'yyyy'
-                        }
-                    },
-                    grid: {
-                        display: false
-                    },
-                    ticks: {
-                        maxTicksLimit: 15,
-                        font: {
-                            size: 11
-                        }
-                    }
-                },
-                y: {
-                    beginAtZero: false,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)'
-                    },
-                    ticks: {
-                        callback: function(value) {
-                            return value.toLocaleString('no-NO') + ' MWh';
+                        grid: {
+                            display: false
                         },
-                        font: {
-                            size: 11
+                        ticks: {
+                            maxTicksLimit: 15,
+                            font: {
+                                size: 11
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: false,
+                        grid: {
+                            color: 'rgba(0, 0, 0, 0.1)'
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value.toLocaleString('no-NO') + ' MWh';
+                            },
+                            font: {
+                                size: 11
+                            }
                         }
                     }
                 }
             }
-        };
+        });
         
-        // Render the chart
-        const chart = renderChart(canvas, chartData, title, 'line');
-        
-        if (chart) {
-            console.log(`Successfully rendered Statnett chart: ${canvasId}`);
-            return chart;
-        } else {
-            throw new Error('Failed to render Statnett chart');
-        }
+        console.log(`Successfully rendered Statnett chart: ${canvasId}`);
+        return canvas.chart;
         
     } catch (error) {
         console.error(`Failed to create Statnett chart ${canvasId}:`, error);

@@ -1413,6 +1413,9 @@ function openChartFullscreen(card) {
         return;
     }
     
+    // Store reference to original container
+    const originalContainer = card.querySelector('.chart-container');
+    
     // Create fullscreen modal
     const modal = document.createElement('div');
     modal.className = 'fullscreen-modal';
@@ -1443,7 +1446,7 @@ function openChartFullscreen(card) {
         `;
     }
     
-    // Move the original canvas to the cloned card
+    // Remove the cloned canvas and move the original canvas
     const clonedCanvas = cardClone.querySelector('canvas');
     if (clonedCanvas) {
         clonedCanvas.remove();
@@ -1461,38 +1464,55 @@ function openChartFullscreen(card) {
     
     // Resize the chart to fit the fullscreen container
     setTimeout(() => {
-        if (chartInstance && typeof chartInstance.resize === 'function') {
-            chartInstance.resize();
+        try {
+            if (chartInstance && typeof chartInstance.resize === 'function') {
+                chartInstance.resize();
+            }
+        } catch (error) {
+            console.warn('Error resizing chart in fullscreen:', error);
         }
     }, 100);
+    
+    // Handle close button click
+    const closeFullscreen = () => {
+        try {
+            // Move the canvas back to its original container
+            if (originalContainer && chartCanvas) {
+                originalContainer.appendChild(chartCanvas);
+            }
+            
+            // Remove modal
+            if (document.body.contains(modal)) {
+                document.body.removeChild(modal);
+            }
+            
+            // Resize chart back to original size
+            setTimeout(() => {
+                try {
+                    if (chartInstance && typeof chartInstance.resize === 'function') {
+                        chartInstance.resize();
+                    }
+                } catch (error) {
+                    console.warn('Error resizing chart after fullscreen:', error);
+                }
+            }, 100);
+        } catch (error) {
+            console.error('Error closing fullscreen:', error);
+            // Fallback: just remove the modal
+            if (document.body.contains(modal)) {
+                document.body.removeChild(modal);
+            }
+        }
+        
+        // Clean up event listeners
+        document.removeEventListener('keydown', handleEscape);
+    };
     
     // Handle minimize button click
     const minimizeBtn = cardClone.querySelector('[data-action="minimize"]');
     if (minimizeBtn) {
         minimizeBtn.addEventListener('click', closeFullscreen);
     }
-    
-    // Handle close button click
-    const closeFullscreen = () => {
-        // Move the canvas back to its original container
-        const originalContainer = card.querySelector('.chart-container');
-        if (originalContainer && chartCanvas) {
-            originalContainer.appendChild(chartCanvas);
-        }
-        
-        // Remove modal
-        document.body.removeChild(modal);
-        
-        // Resize chart back to original size
-        setTimeout(() => {
-            if (chartInstance && typeof chartInstance.resize === 'function') {
-                chartInstance.resize();
-            }
-        }, 100);
-        
-        // Clean up event listeners
-        document.removeEventListener('keydown', handleEscape);
-    };
     
     // Handle escape key
     const handleEscape = (e) => {

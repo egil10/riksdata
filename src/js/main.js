@@ -311,6 +311,15 @@ export async function initializeApp() {
             loadChartData('osebx-chart', './data/cached/oslo-indices/osebx.json', 'OSEBX - Oslo Stock Exchange Benchmark Index'),
             loadChartData('obx-chart', './data/cached/oslo-indices/obx.json', 'OBX - Oslo Børs Total Return Index'),
             
+            // Exchange Rate data
+            loadChartData('usd-nok-chart', './data/cached/norges-bank/exchange-rates/usd.json', 'USD/NOK Exchange Rate'),
+            loadChartData('eur-nok-chart', './data/cached/norges-bank/exchange-rates/eur.json', 'EUR/NOK Exchange Rate'),
+            loadChartData('gbp-nok-chart', './data/cached/norges-bank/exchange-rates/gbp.json', 'GBP/NOK Exchange Rate'),
+            loadChartData('chf-nok-chart', './data/cached/norges-bank/exchange-rates/chf.json', 'CHF/NOK Exchange Rate'),
+            loadChartData('sek-nok-chart', './data/cached/norges-bank/exchange-rates/sek.json', 'SEK/NOK Exchange Rate'),
+            loadChartData('cny-nok-chart', './data/cached/norges-bank/exchange-rates/cny.json', 'CNY/NOK Exchange Rate'),
+            loadChartData('i44-nok-chart', './data/cached/norges-bank/exchange-rates/i44.json', 'I44/NOK Exchange Rate'),
+            
             
             
             // Additional charts that exist in HTML

@@ -1,10 +1,34 @@
 {
   "cache_created_at": "2025-08-17T14:54:26.955243",
-  "total_datasets": 68,
+  "total_datasets": 74,
   "datasets": {
-    "norges-bank\\exchange-rates.json": {
-      "size_bytes": 46523,
-      "modified_at": "2025-08-12T23:19:05.374972"
+    "norges-bank\\exchange-rates\\usd.json": {
+      "size_bytes": 2726297,
+      "modified_at": "2025-08-20T20:11:00.000000"
+    },
+    "norges-bank\\exchange-rates\\eur.json": {
+      "size_bytes": 1572864,
+      "modified_at": "2025-08-20T20:11:00.000000"
+    },
+    "norges-bank\\exchange-rates\\gbp.json": {
+      "size_bytes": 2726297,
+      "modified_at": "2025-08-20T20:11:00.000000"
+    },
+    "norges-bank\\exchange-rates\\chf.json": {
+      "size_bytes": 2726297,
+      "modified_at": "2025-08-20T20:11:00.000000"
+    },
+    "norges-bank\\exchange-rates\\sek.json": {
+      "size_bytes": 2726297,
+      "modified_at": "2025-08-20T20:11:00.000000"
+    },
+    "norges-bank\\exchange-rates\\cny.json": {
+      "size_bytes": 1258291,
+      "modified_at": "2025-08-20T20:11:00.000000"
+    },
+    "norges-bank\\exchange-rates\\i44.json": {
+      "size_bytes": 2202009,
+      "modified_at": "2025-08-20T20:11:00.000000"
     },
     "norges-bank\\government-debt.json": {
       "size_bytes": 106992,

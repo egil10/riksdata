@@ -516,6 +516,252 @@
                 </div>
             </div>
 
+            <!-- Exchange Rate Charts -->
+            <div class="chart-card" data-chart-id="usd-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>USD/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.USD.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per US Dollar</div>
+                </div>
+                <div class="skeleton-chart" id="usd-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="usd-nok-chart"></canvas>
+                    <div class="static-tooltip" id="usd-nok-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card" data-chart-id="eur-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>EUR/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.EUR.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per Euro</div>
+                </div>
+                <div class="skeleton-chart" id="eur-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="eur-nok-chart"></canvas>
+                    <div class="static-tooltip" id="eur-nok-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card" data-chart-id="gbp-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>GBP/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.GBP.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per British Pound</div>
+                </div>
+                <div class="skeleton-chart" id="gbp-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="gbp-nok-chart"></canvas>
+                    <div class="static-tooltip" id="gbp-nok-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card" data-chart-id="chf-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>CHF/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.CHF.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per Swiss Franc</div>
+                </div>
+                <div class="skeleton-chart" id="chf-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="chf-nok-chart"></canvas>
+                    <div class="static-tooltip" id="chf-nok-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card" data-chart-id="sek-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>SEK/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.SEK.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per Swedish Krona</div>
+                </div>
+                <div class="skeleton-chart" id="sek-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="sek-nok-chart"></canvas>
+                    <div class="static-tooltip" id="sek-nok-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card" data-chart-id="cny-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>CNY/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.CNY.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per Chinese Yuan</div>
+                </div>
+                <div class="skeleton-chart" id="cny-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="cny-nok-chart"></canvas>
+                    <div class="static-tooltip" id="cny-nok-tooltip"></div>
+                </div>
+            </div>
+
+            <div class="chart-card" data-chart-id="i44-nok-chart">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>I44/NOK Exchange Rate</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://data.norges-bank.no/api/data/EXR/B.I44.NOK.SP" target="_blank" class="source-link">Norges Bank</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian Krone per I44 Index</div>
+                </div>
+                <div class="skeleton-chart" id="i44-nok-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="i44-nok-chart"></canvas>
+                    <div class="static-tooltip" id="i44-nok-tooltip"></div>
+                </div>
+            </div>
+
             <div class="chart-card" data-chart-id="producer-price-index-chart">
                                 <div class="chart-header">
                     <div class="chart-header-top">

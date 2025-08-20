@@ -1121,7 +1121,6 @@ document.addEventListener('click', (e) => {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
     } else if (action === 'fullscreen') {
-        console.log('Fullscreen button clicked for card:', card);
         openChartFullscreen(card);
     }
 });
@@ -1376,10 +1375,6 @@ function openChartFullscreen(card) {
     const chartTitle = card.querySelector('.chart-header h3')?.textContent || 'Chart';
     const chartCanvas = card.querySelector('canvas');
     
-    console.log('Opening fullscreen for card:', card);
-    console.log('Chart canvas:', chartCanvas);
-    console.log('Chart title:', chartTitle);
-    
     if (!chartCanvas) {
         console.warn('No chart canvas found for fullscreen');
         return;
@@ -1387,7 +1382,6 @@ function openChartFullscreen(card) {
     
     // Get the Chart.js instance
     const chartInstance = chartCanvas.chart;
-    console.log('Chart instance:', chartInstance);
     if (!chartInstance) {
         console.warn('No Chart.js instance found for fullscreen');
         return;
@@ -1446,7 +1440,6 @@ function openChartFullscreen(card) {
     const closeFullscreen = () => {
         // Move the canvas back to its original container
         const originalContainer = card.querySelector('.chart-container');
-        console.log('Original container:', originalContainer);
         if (originalContainer && chartCanvas) {
             originalContainer.appendChild(chartCanvas);
         }

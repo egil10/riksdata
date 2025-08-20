@@ -964,7 +964,7 @@ main {
 .chart-header {
     display: flex;
     flex-direction: column;
-    gap: 0.125rem; /* Reduced gap between header and subtitle */
+    gap: 0.0625rem; /* Further reduced gap between header and subtitle */
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
@@ -2045,16 +2045,17 @@ footer {
   color: var(--text-muted);
 }
 
-/* Optional: make link style match text (no heavy underline) */
+/* Source link styling - matches subtitle exactly with subtle underline */
 .chart-header .source-link {
   text-decoration: none;
   border-bottom: 1px solid currentColor;
-  opacity: 0.6;
+  opacity: 0.7;
+  transition: opacity var(--t) var(--ease);
 }
 .chart-header .source-link:hover,
 .chart-header .source-link:focus {
   text-decoration: none;
-  border-bottom-style: solid;
+  border-bottom: 1px solid currentColor;
   opacity: 1;
 }
 

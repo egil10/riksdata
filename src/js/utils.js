@@ -663,11 +663,11 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         position: fixed;
         top: -9999px;
         left: -9999px;
-        width: 900px;
+        width: 1200px;
         background: white;
         border-radius: 16px;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-        padding: 32px;
+        padding: 40px;
         font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
         z-index: -1;
     `;
@@ -694,8 +694,8 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     const header = cardClone.querySelector('.chart-header');
     if (header) {
         header.style.cssText = `
-            margin-bottom: 24px;
-            padding-bottom: 20px;
+            margin-bottom: 32px;
+            padding-bottom: 24px;
             border-bottom: 2px solid #e5e7eb;
         `;
     }
@@ -704,11 +704,12 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     const title = cardClone.querySelector('h3');
     if (title) {
         title.style.cssText = `
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
             color: #111827;
-            margin: 0 0 12px 0;
+            margin: 0 0 16px 0;
             line-height: 1.2;
+            letter-spacing: -0.025em;
         `;
     }
     
@@ -716,10 +717,11 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     const subtitle = cardClone.querySelector('.chart-subtitle');
     if (subtitle) {
         subtitle.style.cssText = `
-            font-size: 18px;
+            font-size: 20px;
             color: #6b7280;
             font-weight: 500;
             margin: 0;
+            line-height: 1.4;
         `;
     }
     
@@ -743,26 +745,34 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     // Use html2canvas to capture the entire card
     if (window.html2canvas) {
         const canvas = await html2canvas(tempContainer, {
-            scale: 2, // High resolution
+            scale: 3, // Ultra high resolution for better quality
             useCORS: true,
             allowTaint: true,
             backgroundColor: '#ffffff',
-            width: 900,
+            width: 1200, // Increased width for better quality
             height: tempContainer.scrollHeight,
             logging: false,
+            imageTimeout: 15000, // Longer timeout for high-res rendering
             onclone: (clonedDoc) => {
                 // Ensure the cloned chart renders properly
                 const clonedCanvas = clonedDoc.querySelector('canvas');
                 if (clonedCanvas && clonedCanvas.chart) {
-                    // Force the chart to render at the correct size
+                    // Force the chart to render at the correct size with high DPI
                     clonedCanvas.chart.resize();
                     clonedCanvas.chart.render();
+                    
+                    // Set canvas dimensions for high quality
+                    const ctx = clonedCanvas.getContext('2d');
+                    if (ctx) {
+                        ctx.imageSmoothingEnabled = true;
+                        ctx.imageSmoothingQuality = 'high';
+                    }
                 }
                 
                 // Also ensure the chart container has proper dimensions
                 const clonedChartContainer = clonedDoc.querySelector('.chart-container');
                 if (clonedChartContainer) {
-                    clonedChartContainer.style.height = '500px';
+                    clonedChartContainer.style.height = '600px'; // Increased height
                     clonedChartContainer.style.width = '100%';
                 }
             }
@@ -772,7 +782,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         canvas.toBlob((blob) => {
             download(blob, filename);
             announce?.(`Chart "${chartTitle}" downloaded as PNG!`);
-        }, 'image/png', 0.95);
+        }, 'image/png', 1.0); // Maximum quality
         
     } else {
         // Fallback to original method if html2canvas is not available

@@ -38,6 +38,18 @@ function setEllipsisTitle(el) {
 // Top-level error guards
 window.addEventListener('error', e => {
     console.error('Global error:', e.error || e.message);
+    
+    // Don't show global error for Chart.js resize operations during fullscreen
+    if (e.message && (
+        e.message.includes('resize') || 
+        e.message.includes('canvas') || 
+        e.message.includes('Chart') ||
+        e.message.includes('getContext')
+    )) {
+        console.warn('Suppressing Chart.js error from global handler:', e.message);
+        return;
+    }
+    
     // Hide loading screen on critical errors
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
@@ -54,6 +66,20 @@ window.addEventListener('error', e => {
 
 window.addEventListener('unhandledrejection', e => {
     console.error('Unhandled promise rejection:', e.reason);
+    
+    // Don't show global error for Chart.js related promise rejections
+    if (e.reason && (
+        e.reason.message && (
+            e.reason.message.includes('resize') || 
+            e.reason.message.includes('canvas') || 
+            e.reason.message.includes('Chart') ||
+            e.reason.message.includes('getContext')
+        )
+    )) {
+        console.warn('Suppressing Chart.js promise rejection from global handler:', e.reason);
+        return;
+    }
+    
     // Hide loading screen on unhandled rejections
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {

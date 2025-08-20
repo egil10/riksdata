@@ -1192,6 +1192,7 @@ main {
     flex: 1;
     position: relative;
     min-height: 150px;
+    height: 200px; /* Fixed height to maintain consistent aspect ratio */
     display: block;
     visibility: visible;
     max-width: 100%;
@@ -1207,7 +1208,7 @@ main {
     display: block;
     max-width: 100%;
     width: 100% !important;     /* Chart.js respects this */
-    height: auto;               /* let Chart.js calculate height */
+    height: 100% !important;    /* Fixed height to maintain aspect ratio */
 }
 
 /* Static Tooltip Area */
@@ -1493,6 +1494,7 @@ footer {
     
     .chart-container {
         min-height: 120px;
+        height: 150px; /* Fixed height for mobile to maintain aspect ratio */
     }
     
     /* COMPLETELY REDESIGNED MOBILE FOOTER */

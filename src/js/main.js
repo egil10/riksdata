@@ -697,6 +697,22 @@ function handleSourceFilter(event) {
             card.style.display = 'none';
         }
     });
+    
+    // Resize visible charts after filtering to maintain consistent aspect ratio
+    setTimeout(() => {
+        if (window.Chart) {
+            Chart.helpers.each(Chart.instances, (chart) => {
+                if (chart && typeof chart.resize === 'function') {
+                    // Force chart to maintain aspect ratio
+                    const canvas = chart.canvas;
+                    const container = canvas.parentElement;
+                    if (container && container.style.display !== 'none') {
+                        chart.resize();
+                    }
+                }
+            });
+        }
+    }, 100); // Small delay to ensure DOM updates are complete
 }
 
 /**
@@ -1174,7 +1190,14 @@ window.addEventListener('resize', () => {
 function resizeCharts() {
     if (window.Chart) {
         Chart.helpers.each(Chart.instances, (chart) => {
-            if (chart && typeof chart.resize === 'function') chart.resize();
+            if (chart && typeof chart.resize === 'function') {
+                // Only resize charts that are visible and have proper containers
+                const canvas = chart.canvas;
+                const container = canvas.parentElement;
+                if (container && container.style.display !== 'none' && container.offsetHeight > 0) {
+                    chart.resize();
+                }
+            }
         });
     }
 }

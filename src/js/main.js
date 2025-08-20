@@ -769,6 +769,36 @@ function handleSearch(event) {
             card.style.display = 'none';
         }
     });
+    
+    // Ensure charts maintain proper height constraints after search
+    setTimeout(() => {
+        if (window.Chart) {
+            Chart.helpers.each(Chart.instances, (chart) => {
+                if (chart && typeof chart.resize === 'function') {
+                    const canvas = chart.canvas;
+                    const container = canvas.parentElement;
+                    const chartContainer = container.closest('.chart-container');
+                    if (chartContainer) {
+                        // Force container to maintain its intended height
+                        if (window.innerWidth <= 768) {
+                            chartContainer.style.height = '180px';
+                            chartContainer.style.minHeight = '180px';
+                            chartContainer.style.maxHeight = '180px';
+                        } else if (window.innerWidth <= 480) {
+                            chartContainer.style.height = '150px';
+                            chartContainer.style.minHeight = '150px';
+                            chartContainer.style.maxHeight = '150px';
+                        } else {
+                            chartContainer.style.height = '300px';
+                            chartContainer.style.minHeight = '300px';
+                            chartContainer.style.maxHeight = '300px';
+                        }
+                    }
+                    chart.resize();
+                }
+            });
+        }
+    }, 100);
 }
 
 /**
@@ -808,6 +838,24 @@ function handleSourceFilter(event) {
                     const canvas = chart.canvas;
                     const container = canvas.parentElement;
                     if (container && container.style.display !== 'none') {
+                        // Ensure container maintains proper height constraints
+                        const chartContainer = container.closest('.chart-container');
+                        if (chartContainer) {
+                            // Force container to maintain its intended height
+                            if (window.innerWidth <= 768) {
+                                chartContainer.style.height = '180px';
+                                chartContainer.style.minHeight = '180px';
+                                chartContainer.style.maxHeight = '180px';
+                            } else if (window.innerWidth <= 480) {
+                                chartContainer.style.height = '150px';
+                                chartContainer.style.minHeight = '150px';
+                                chartContainer.style.maxHeight = '150px';
+                            } else {
+                                chartContainer.style.height = '300px';
+                                chartContainer.style.minHeight = '300px';
+                                chartContainer.style.maxHeight = '300px';
+                            }
+                        }
                         chart.resize();
                     }
                 }
@@ -834,6 +882,36 @@ function sortChartsAlphabetically() {
     chartCards.forEach(card => {
         chartGrid.appendChild(card);
     });
+    
+    // Ensure charts maintain proper height constraints after sorting
+    setTimeout(() => {
+        if (window.Chart) {
+            Chart.helpers.each(Chart.instances, (chart) => {
+                if (chart && typeof chart.resize === 'function') {
+                    const canvas = chart.canvas;
+                    const container = canvas.parentElement;
+                    const chartContainer = container.closest('.chart-container');
+                    if (chartContainer) {
+                        // Force container to maintain its intended height
+                        if (window.innerWidth <= 768) {
+                            chartContainer.style.height = '180px';
+                            chartContainer.style.minHeight = '180px';
+                            chartContainer.style.maxHeight = '180px';
+                        } else if (window.innerWidth <= 480) {
+                            chartContainer.style.height = '150px';
+                            chartContainer.style.minHeight = '150px';
+                            chartContainer.style.maxHeight = '150px';
+                        } else {
+                            chartContainer.style.height = '300px';
+                            chartContainer.style.minHeight = '300px';
+                            chartContainer.style.maxHeight = '300px';
+                        }
+                    }
+                    chart.resize();
+                }
+            });
+        }
+    }, 100);
 }
 
 /**
@@ -868,6 +946,36 @@ function toggleSort() {
     chartCards.forEach(card => {
         chartGrid.appendChild(card);
     });
+    
+    // Ensure charts maintain proper height constraints after sorting
+    setTimeout(() => {
+        if (window.Chart) {
+            Chart.helpers.each(Chart.instances, (chart) => {
+                if (chart && typeof chart.resize === 'function') {
+                    const canvas = chart.canvas;
+                    const container = canvas.parentElement;
+                    const chartContainer = container.closest('.chart-container');
+                    if (chartContainer) {
+                        // Force container to maintain its intended height
+                        if (window.innerWidth <= 768) {
+                            chartContainer.style.height = '180px';
+                            chartContainer.style.minHeight = '180px';
+                            chartContainer.style.maxHeight = '180px';
+                        } else if (window.innerWidth <= 480) {
+                            chartContainer.style.height = '150px';
+                            chartContainer.style.minHeight = '150px';
+                            chartContainer.style.maxHeight = '150px';
+                        } else {
+                            chartContainer.style.height = '300px';
+                            chartContainer.style.minHeight = '300px';
+                            chartContainer.style.maxHeight = '300px';
+                        }
+                    }
+                    chart.resize();
+                }
+            });
+        }
+    }, 100);
 }
 
 /**
@@ -924,6 +1032,36 @@ function toggleHeaderSort() {
     chartCards.forEach(card => {
         chartGrid.appendChild(card);
     });
+    
+    // Ensure charts maintain proper height constraints after sorting
+    setTimeout(() => {
+        if (window.Chart) {
+            Chart.helpers.each(Chart.instances, (chart) => {
+                if (chart && typeof chart.resize === 'function') {
+                    const canvas = chart.canvas;
+                    const container = canvas.parentElement;
+                    const chartContainer = container.closest('.chart-container');
+                    if (chartContainer) {
+                        // Force container to maintain its intended height
+                        if (window.innerWidth <= 768) {
+                            chartContainer.style.height = '180px';
+                            chartContainer.style.minHeight = '180px';
+                            chartContainer.style.maxHeight = '180px';
+                        } else if (window.innerWidth <= 480) {
+                            chartContainer.style.height = '150px';
+                            chartContainer.style.minHeight = '150px';
+                            chartContainer.style.maxHeight = '150px';
+                        } else {
+                            chartContainer.style.height = '300px';
+                            chartContainer.style.minHeight = '300px';
+                            chartContainer.style.maxHeight = '300px';
+                        }
+                    }
+                    chart.resize();
+                }
+            });
+        }
+    }, 100);
 }
 
 /**

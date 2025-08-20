@@ -291,7 +291,10 @@ const chartConfigs = [
     { id: 'nve-magasins-no2', url: 'nve://magasins/no2', title: 'Vannmagasin fyllingsgrad – Sørlandet (NO2)', type: 'nve-magasin' },
     { id: 'nve-magasins-no3', url: 'nve://magasins/no3', title: 'Vannmagasin fyllingsgrad – Vestlandet (NO3)', type: 'nve-magasin' },
     { id: 'nve-magasins-no4', url: 'nve://magasins/no4', title: 'Vannmagasin fyllingsgrad – Trøndelag (NO4)', type: 'nve-magasin' },
-    { id: 'nve-magasins-no5', url: 'nve://magasins/no5', title: 'Vannmagasin fyllingsgrad – Nord-Norge (NO5)', type: 'nve-magasin' }
+    { id: 'nve-magasins-no5', url: 'nve://magasins/no5', title: 'Vannmagasin fyllingsgrad – Nord-Norge (NO5)', type: 'nve-magasin' },
+    
+    // Statnett Production and Consumption charts
+    { id: 'statnett-production-consumption', url: './data/cached/statnett/production-consumption-complete.json', title: 'Statnett Production and Consumption', type: 'statnett-production-consumption' }
 ];
 
 /**

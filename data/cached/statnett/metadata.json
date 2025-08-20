@@ -1,0 +1,18 @@
+{
+  "source": "Statnett",
+  "description": "Norwegian electricity production and consumption data",
+  "api_base_url": "https://driftsdata.statnett.no/restapi",
+  "last_updated": "2025-08-20T22:20:15.352129",
+  "datasets": {
+    "production-consumption": {
+      "description": "Daily production and consumption data from 2012",
+      "file": "production-consumption.json",
+      "data_points": 4981
+    },
+    "latest-detailed-overview": {
+      "description": "Latest detailed overview data",
+      "file": "latest-detailed-overview.json",
+      "data_points": 1
+    }
+  }
+}

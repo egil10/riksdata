@@ -1,0 +1,507 @@
+{
+  "MeasuredAt": 1755721140000.0,
+  "Headers": [
+    {
+      "value": "",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "SE",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "DK",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "NO",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "FI",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "EE",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "LT",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "LV",
+      "textTranslationId": "",
+      "titleTranslationId": null,
+      "style": null
+    },
+    {
+      "value": "",
+      "textTranslationId": "General.Total",
+      "titleTranslationId": null,
+      "style": null
+    }
+  ],
+  "ProductionData": [
+    {
+      "value": "",
+      "textTranslationId": "General.Production",
+      "titleTranslationId": null,
+      "style": ""
+    },
+    {
+      "value": "15 895",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionSEDesc",
+      "style": null
+    },
+    {
+      "value": "1 517",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionDKDesc",
+      "style": null
+    },
+    {
+      "value": "18 843",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionNODesc",
+      "style": null
+    },
+    {
+      "value": "7 518",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionFIDesc",
+      "style": null
+    },
+    {
+      "value": "160",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionEEDesc",
+      "style": null
+    },
+    {
+      "value": "671",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionLTDesc",
+      "style": null
+    },
+    {
+      "value": "542",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionLVDesc",
+      "style": null
+    },
+    {
+      "value": "45 146",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ProductionTotalDesc",
+      "style": null
+    }
+  ],
+  "NuclearData": [
+    {
+      "value": "",
+      "textTranslationId": "General.Nuclear",
+      "titleTranslationId": null,
+      "style": "nuclear"
+    },
+    {
+      "value": "3 226",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearSEDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearDKDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearNODesc",
+      "style": null
+    },
+    {
+      "value": "3 524",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearFIDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearEEDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearLTDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearLVDesc",
+      "style": null
+    },
+    {
+      "value": "6 750",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NuclearTotalDesc",
+      "style": null
+    }
+  ],
+  "HydroData": [
+    {
+      "value": "",
+      "textTranslationId": "General.Hydro",
+      "titleTranslationId": null,
+      "style": "hydro"
+    },
+    {
+      "value": "8 583",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroSEDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroDKDesc",
+      "style": null
+    },
+    {
+      "value": "17 445",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroNODesc",
+      "style": null
+    },
+    {
+      "value": "1 086",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroFIDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroEEDesc",
+      "style": null
+    },
+    {
+      "value": "188",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroLTDesc",
+      "style": null
+    },
+    {
+      "value": "351",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroLVDesc",
+      "style": null
+    },
+    {
+      "value": "27 653",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.HydroTotalDesc",
+      "style": null
+    }
+  ],
+  "ThermalData": [
+    {
+      "value": "",
+      "textTranslationId": "General.Thermal",
+      "titleTranslationId": null,
+      "style": "thermal"
+    },
+    {
+      "value": "230",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalSEDesc",
+      "style": null
+    },
+    {
+      "value": "621",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalDKDesc",
+      "style": null
+    },
+    {
+      "value": "157",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalNODesc",
+      "style": null
+    },
+    {
+      "value": "811",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalFIDesc",
+      "style": null
+    },
+    {
+      "value": "127",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalEEDesc",
+      "style": null
+    },
+    {
+      "value": "65",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalLTDesc",
+      "style": null
+    },
+    {
+      "value": "161",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalLVDesc",
+      "style": null
+    },
+    {
+      "value": "2 173",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ThermalTotalDesc",
+      "style": null
+    }
+  ],
+  "WindData": [
+    {
+      "value": "",
+      "textTranslationId": "General.Wind",
+      "titleTranslationId": null,
+      "style": "wind"
+    },
+    {
+      "value": "3 374",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindSEDesc",
+      "style": null
+    },
+    {
+      "value": "896",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindDKDesc",
+      "style": null
+    },
+    {
+      "value": "1 241",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindNODesc",
+      "style": null
+    },
+    {
+      "value": "2 046",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindFIDesc",
+      "style": null
+    },
+    {
+      "value": "33",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindEEDesc",
+      "style": null
+    },
+    {
+      "value": "326",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindLTDesc",
+      "style": null
+    },
+    {
+      "value": "5",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindLVDesc",
+      "style": null
+    },
+    {
+      "value": "7 920",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.WindTotalDesc",
+      "style": null
+    }
+  ],
+  "NotSpecifiedData": [
+    {
+      "value": "",
+      "textTranslationId": "ProductionConsumption.NotSpecified",
+      "titleTranslationId": null,
+      "style": "other"
+    },
+    {
+      "value": "483",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedSEDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedDKDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedNODesc",
+      "style": null
+    },
+    {
+      "value": "51",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedFIDesc",
+      "style": null
+    },
+    {
+      "value": "-",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedEEDesc",
+      "style": null
+    },
+    {
+      "value": "92",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedLTDesc",
+      "style": null
+    },
+    {
+      "value": "25",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedLVDesc",
+      "style": null
+    },
+    {
+      "value": "650",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NotSpecifiedTotalDesc",
+      "style": null
+    }
+  ],
+  "ConsumptionData": [
+    {
+      "value": "",
+      "textTranslationId": "General.Consumption",
+      "titleTranslationId": null,
+      "style": ""
+    },
+    {
+      "value": "12 601",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionSEDesc",
+      "style": null
+    },
+    {
+      "value": "3 895",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionDKDesc",
+      "style": null
+    },
+    {
+      "value": "13 449",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionNODesc",
+      "style": null
+    },
+    {
+      "value": "8 797",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionFIDesc",
+      "style": null
+    },
+    {
+      "value": "727",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionEEDesc",
+      "style": null
+    },
+    {
+      "value": "1 185",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionLTDesc",
+      "style": null
+    },
+    {
+      "value": "685",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionLVDesc",
+      "style": null
+    },
+    {
+      "value": "41 338",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.ConsumptionTotalDesc",
+      "style": null
+    }
+  ],
+  "NetExchangeData": [
+    {
+      "value": "",
+      "textTranslationId": "ProductionConsumption.NetExchange",
+      "titleTranslationId": null,
+      "style": ""
+    },
+    {
+      "value": "-3 295",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeSEDesc",
+      "style": null
+    },
+    {
+      "value": "2 379",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeDKDesc",
+      "style": null
+    },
+    {
+      "value": "-5 395",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeNODesc",
+      "style": null
+    },
+    {
+      "value": "1 279",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeFIDesc",
+      "style": null
+    },
+    {
+      "value": "567",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeEEDesc",
+      "style": null
+    },
+    {
+      "value": "514",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeLTDesc",
+      "style": null
+    },
+    {
+      "value": "143",
+      "textTranslationId": null,
+      "titleTranslationId": "ProductionConsumption.NetExchangeLVDesc",
+      "style": null
+    },
+    {
+      "value": "-3 807",
+      "textTranslationId": null,
+      "titleTranslationId": null,
+      "style": null
+    }
+  ]
+}

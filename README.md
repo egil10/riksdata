@@ -108,6 +108,8 @@ This page will test all cache files and show which ones are missing or causing e
 ### Data Sources
 - **Statistics Norway (SSB)**: 67+ economic indicators
 - **Norges Bank**: Exchange rates, interest rates, government debt
+- **Statnett**: Electricity production and consumption data
+- **NVE**: Reservoir fill levels and hydropower statistics
 - **Oslo Stock Exchange**: OSEAX (All Share Index)
 - **Static Data**: Oil fund data, etc.
 
@@ -245,6 +247,30 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 
 ### And 50+ more indicators...
 
+## ⚡ Statnett Production and Consumption Data
+
+The dashboard now includes **Statnett** electricity production and consumption data, providing comprehensive information about Norway's electricity system:
+
+### Production and Consumption Charts
+- **Production**: Daily electricity production in MWh
+- **Consumption**: Daily electricity consumption in MWh  
+- **Net**: Net production (Production - Consumption) showing surplus/deficit
+- **Historical Data**: Complete dataset from 2012 onwards
+- **Interactive Tooltips**: Hover for detailed information with Norwegian date formatting
+
+### Chart Features
+- **Three-Line Display**: Production (blue), Consumption (red), and Net (green dashed)
+- **Daily Resolution**: High-frequency data showing daily patterns
+- **Long Historical Series**: Over 10 years of data for trend analysis
+- **Responsive Design**: Optimized for all devices
+- **Theme Integration**: Automatically adapts to light/dark mode
+
+### Data Source
+- **API**: [Statnett Driftsdata REST API](https://driftsdata.statnett.no/restapi)
+- **Coverage**: Norwegian electricity system
+- **Update Frequency**: Daily
+- **Units**: Megawatt-hours (MWh)
+
 ## 🌊 NVE Reservoir Data
 
 The dashboard now includes **NVE Magasinstatistikk** (reservoir statistics) data, providing real-time information about Norway's hydropower reservoir levels:
@@ -278,6 +304,10 @@ The dashboard now includes **NVE Magasinstatistikk** (reservoir statistics) data
 # Fetch Oslo indices data
 cd scripts
 python fetch/fetch_oslo_indices.py
+
+# Fetch Statnett production and consumption data
+cd scripts
+python fetch/statnett-production-consumption.py
 
 # Install dependencies
 pip install -r requirements.txt

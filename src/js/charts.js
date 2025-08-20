@@ -114,6 +114,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (apiUrl.startsWith('nve://')) {
             // Handle NVE charts - these are rendered directly from API
             return await loadNVEChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'statnett-production-consumption') {
+            // Handle Statnett production and consumption charts
+            return await loadStatnettChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2098,6 +2101,39 @@ async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load NVE chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Statnett production and consumption charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Statnett data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadStatnettChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading Statnett chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the Statnett chart
+        const { createStatnettProductionConsumptionChart } = await import('./charts/statnett-production-consumption.js');
+        const chart = await createStatnettProductionConsumptionChart(canvasId, apiUrl, chartTitle);
+        
+        if (chart) {
+            console.log(`Successfully rendered Statnett chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render Statnett chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load Statnett chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

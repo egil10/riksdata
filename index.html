@@ -3001,6 +3001,42 @@
                 </div>
             </div>
 
+            <!-- Statnett Production and Consumption Chart -->
+            <div class="chart-card" data-chart-id="statnett-production-consumption" data-source="statnett">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3>Statnett Production and Consumption</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M12 3v10m0 0l4-4m-4 4l-4-4M4 17v3h16v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+                                    <path d="M9 9h9v12H9zM6 3h9v3M6 6v12h3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="maximize" aria-hidden="true" class="lucide lucide-maximize">
+                                    <path d="M8 3H5a2 2 0 0 0-2 2v3"></path>
+                                    <path d="M21 8V5a2 2 0 0 0-2-2h-3"></path>
+                                    <path d="M3 16v3a2 2 0 0 0 2 2h3"></path>
+                                    <path d="M16 21h3a2 2 0 0 0 2-2v-3"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://driftsdata.statnett.no/restapi" target="_blank" class="source-link">Statnett</a>
+                    </div>
+                    <div class="chart-subtitle">Norwegian electricity production and consumption data</div>
+                </div>
+                <div class="skeleton-chart" id="statnett-production-consumption-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="statnett-production-consumption"></canvas>
+                    <div class="static-tooltip" id="statnett-production-consumption-tooltip"></div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -3023,6 +3059,11 @@
                     <a href="https://www.nve.no/" target="_blank" class="source-link" aria-label="Visit NVE (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         NVE
+                        <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://driftsdata.statnett.no/restapi" target="_blank" class="source-link" aria-label="Visit Statnett (opens in new tab)">
+                        <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
+                        Statnett
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
                     <a href="https://finance.yahoo.com/" target="_blank" class="source-link" aria-label="Visit Yahoo Finance (opens in new tab)">

@@ -1469,37 +1469,24 @@ footer {
     opacity: 0.7;
 }
 
-.mood-btn:hover {
-    opacity: 1;
-    transform: scale(1.1);
-    background: var(--card-hover);
-}
-
-.mood-btn:active {
-    transform: scale(0.95);
-}
-
-.mood-btn.success-feedback {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.mood-btn.success-feedback[data-mood="happy"] {
-    color: #10b981;
-    background: rgba(16, 185, 129, 0.1);
-    transform: scale(1.15);
-}
-
-.mood-btn.success-feedback[data-mood="neutral"] {
-    color: #f59e0b;
-    background: rgba(245, 158, 11, 0.1);
-    transform: scale(1.15);
-}
-
-.mood-btn.success-feedback[data-mood="sad"] {
-    color: #ef4444;
-    background: rgba(239, 68, 68, 0.1);
-    transform: scale(1.15);
-}
+        .mood-btn:hover {
+            opacity: 1;
+        }
+        
+        .mood-btn.success-feedback[data-mood="happy"] {
+            color: #10b981;
+            background: rgba(16, 185, 129, 0.1);
+        }
+        
+        .mood-btn.success-feedback[data-mood="neutral"] {
+            color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+        
+        .mood-btn.success-feedback[data-mood="sad"] {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+        }
 
 /* Dark theme adjustments for mood buttons */
 [data-theme="dark"] .mood-btn {

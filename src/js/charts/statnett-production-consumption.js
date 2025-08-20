@@ -5,11 +5,40 @@
  * Data includes daily values from 2012 onwards with production, consumption, and net values.
  */
 
-import { createChart, applyThemeColors } from '../charts.js';
+import { renderChart } from '../charts.js';
 import { getPoliticalPartyColors } from '../config.js';
 
-export function createStatnettProductionConsumptionChart(canvasId, dataUrl, title) {
-    return createChart(canvasId, dataUrl, title, processStatnettData, {
+export async function createStatnettProductionConsumptionChart(canvasId, dataUrl, title) {
+    try {
+        // Fetch the data
+        const response = await fetch(dataUrl, { 
+            cache: 'no-store',
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+        
+        if (!response.ok) {
+            throw new Error(`Failed to load Statnett data: ${response.status} ${response.statusText}`);
+        }
+        
+        const rawData = await response.json();
+        console.log(`Successfully loaded Statnett data:`, rawData);
+        
+        // Process the data
+        const chartData = processStatnettData(rawData);
+        if (!chartData) {
+            throw new Error('Failed to process Statnett data');
+        }
+        
+        // Get the canvas element
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            throw new Error(`Canvas element not found: ${canvasId}`);
+        }
+        
+        // Create chart options
+        const chartOptions = {
         type: 'line',
         options: {
             responsive: true,
@@ -85,8 +114,22 @@ export function createStatnettProductionConsumptionChart(canvasId, dataUrl, titl
                     }
                 }
             }
+        };
+        
+        // Render the chart
+        const chart = renderChart(canvas, chartData, title, 'line');
+        
+        if (chart) {
+            console.log(`Successfully rendered Statnett chart: ${canvasId}`);
+            return chart;
+        } else {
+            throw new Error('Failed to render Statnett chart');
         }
-    });
+        
+    } catch (error) {
+        console.error(`Failed to create Statnett chart ${canvasId}:`, error);
+        return null;
+    }
 }
 
 function processStatnettData(rawData) {

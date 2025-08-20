@@ -81,26 +81,20 @@ export async function createStatnettProductionConsumptionChart(canvasId, dataUrl
                         displayColors: true,
                         callbacks: {
                             title: function(context) {
-                                const date = new Date(context[0].parsed.x);
-                                return date.getFullYear().toString();
+                                return context[0].label;
                             },
                             label: function(context) {
                                 const value = context.parsed.y;
                                 const label = context.dataset.label;
-                                return `${label}: ${value.toLocaleString('no-NO')} MWh`;
+                                return `${label}: ${(value / 1000000).toFixed(1)}M MWh`;
                             }
                         }
                     }
                 },
                 scales: {
                     x: {
-                        type: 'time',
-                        time: {
-                            unit: 'year',
-                            displayFormats: {
-                                year: 'yyyy'
-                            }
-                        },
+                        type: 'category',
+                        labels: dates.map(date => date.getFullYear().toString()),
                         grid: {
                             display: false
                         },
@@ -118,7 +112,7 @@ export async function createStatnettProductionConsumptionChart(canvasId, dataUrl
                         },
                         ticks: {
                             callback: function(value) {
-                                return value.toLocaleString('no-NO') + ' MWh';
+                                return (value / 1000000).toFixed(1) + 'M MWh';
                             },
                             font: {
                                 size: 11
@@ -183,7 +177,7 @@ function processStatnettData(rawData) {
     const partyColors = getPoliticalPartyColors();
     
     return {
-        labels: dates,
+        labels: dates.map(date => date.getFullYear().toString()),
         datasets: [
             {
                 label: 'Production',

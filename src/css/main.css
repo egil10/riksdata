@@ -1534,14 +1534,12 @@ footer {
 }
 
 /* Mood Rating Buttons */
-.mood-rating-bottom {
-    position: absolute;
-    bottom: 1rem;
-    right: 2rem;
+.mood-section {
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
     padding: 0;
+    margin-top: 1rem;
 }
 
 .mood-container {
@@ -1594,12 +1592,9 @@ footer {
         gap: 2rem;
     }
     
-    .mood-rating-bottom {
-        position: static;
+    .mood-section {
         justify-content: center;
-        margin-top: 2rem;
-        padding-top: 1rem;
-        border-top: 1px solid var(--border);
+        margin-top: 1.5rem;
     }
 }
 

@@ -2,65 +2,44 @@
 // NVE MAGASINSTATISTIKK DATA SOURCE
 // ============================================================================
 
-const BASE = 'https://biapi.nve.no/magasinstatistikk';
-
 /**
- * Fetch JSON data from NVE API with error handling
- * @param {string} path - API endpoint path
- * @param {Object} opts - Fetch options
+ * Fetch JSON data from cached NVE files
+ * @param {string} filename - Cache file name
  * @returns {Promise<Object>} JSON response
  */
-async function getJSON(path, opts = {}) {
-  const url = `${BASE}${path}`;
-  const res = await fetch(url, { cache: 'no-store', ...opts });
-  if (!res.ok) throw new Error(`NVE ${path} ${res.status}`);
-  return res.json();
+async function getCachedJSON(filename) {
+  const url = `data/cached/nve/${filename}`;
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`NVE cache ${filename} ${res.status}`);
+  const data = await res.json();
+  return data.data; // Return the data array from the cached structure
 }
 
 /**
- * Fetch available areas from NVE API
- * @returns {Promise<Array>} Array of area objects with areaId and areaName
+ * Fetch available areas from cached NVE data
+ * @returns {Promise<Array>} Array of area objects
  */
 export async function fetchAreas() {
-  // Returns [{ areaId, areaName }] e.g. Norge, NO1..NO5
-  return getJSON('/api/Magasinstatistikk/HentOmråder');
+  return getCachedJSON('areas.json');
 }
 
 /**
- * Fetch all reservoir data series from NVE API
+ * Fetch all reservoir data series from cached NVE data
  * @returns {Promise<Array>} Array of normalized reservoir data
  */
 export async function fetchAllSeries() {
   // Returns weekly % for many years per area
-  // Model typically includes: { aar, uke, omrade, fyllingsgrad }
-  const rows = await getJSON('/api/Magasinstatistikk/HentOffentligData');
-  
-  // Normalize data
-  return rows.map(r => ({
-    year: Number(r.iso_aar),
-    week: Number(r.iso_uke),
-    area: r.omrade,            // "Norge", "NO1", ...
-    fillPct: Number(r.fyllingsgrad) * 100, // Convert to percentage
-    capacityTWh: Number(r.kapasitet_TWh),
-    fillingTWh: Number(r.fylling_TWh),
-    changePct: Number(r.endring_fyllingsgrad) * 100
-  }));
+  // Data is already normalized in the cache
+  return getCachedJSON('all-series.json');
 }
 
 /**
- * Fetch min/max/median statistics for the last 20 years
+ * Fetch min/max/median statistics from cached NVE data
  * @returns {Promise<Array>} Array of statistical data
  */
 export async function fetchMinMaxMedian() {
-  // { omrade, uke, min, max, median } for last 20 years
-  const rows = await getJSON('/api/Magasinstatistikk/HentOffentligDataMinMaxMedian');
-  return rows.map(r => ({
-    area: r.omrade,
-    week: Number(r.uke),
-    min: Number(r.min) * 100, // Convert to percentage
-    max: Number(r.max) * 100, // Convert to percentage
-    median: Number(r.median) * 100 // Convert to percentage
-  }));
+  // Data is already normalized in the cache
+  return getCachedJSON('min-max-median.json');
 }
 
 /**

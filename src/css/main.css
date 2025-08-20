@@ -1147,66 +1147,64 @@ main {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: var(--bg);
     z-index: 10000;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    padding: 0;
     overflow: hidden;
     animation: fadeIn 0.3s ease-out;
 }
 
 .fullscreen-card {
     background: var(--card);
-    border-radius: 12px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    max-width: 95vw;
-    max-height: 95vh;
-    width: 100%;
-    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    width: 100vw;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
 }
 
 .fullscreen-card .chart-header {
-    padding: 1.5rem 2rem;
+    padding: 2rem 3rem;
     border-bottom: 1px solid var(--border);
     background: var(--card);
     flex-shrink: 0;
 }
 
 .fullscreen-card .chart-header h3 {
-    font-size: 1.5rem;
-    margin: 0 0 0.5rem 0;
+    font-size: 2rem;
+    margin: 0 0 0.75rem 0;
     color: var(--text);
 }
 
 .fullscreen-card .chart-subtitle {
-    font-size: 1rem;
+    font-size: 1.25rem;
     color: var(--text-muted);
     margin: 0;
 }
 
 .fullscreen-card .chart-actions {
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 .fullscreen-card .chart-actions .icon-btn {
-    width: 2.5rem;
-    height: 2.5rem;
-    padding: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    padding: 0.75rem;
 }
 
 .fullscreen-card .chart-actions .icon-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
 }
 
 .fullscreen-card .chart-container {
     flex: 1;
-    padding: 2rem;
+    padding: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;

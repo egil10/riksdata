@@ -1476,17 +1476,17 @@ function openChartFullscreen(card) {
     // Handle close button click
     const closeFullscreen = () => {
         try {
-            // Move the canvas back to its original container
-            if (originalContainer && chartCanvas) {
-                originalContainer.appendChild(chartCanvas);
-            }
-            
-            // Remove modal
+            // First, remove the modal to avoid DOM conflicts
             if (document.body.contains(modal)) {
                 document.body.removeChild(modal);
             }
             
-            // Resize chart back to original size
+            // Then move the canvas back to its original container
+            if (originalContainer && chartCanvas && !originalContainer.contains(chartCanvas)) {
+                originalContainer.appendChild(chartCanvas);
+            }
+            
+            // Resize chart back to original size with a longer delay
             setTimeout(() => {
                 try {
                     if (chartInstance && typeof chartInstance.resize === 'function') {
@@ -1495,7 +1495,7 @@ function openChartFullscreen(card) {
                 } catch (error) {
                     console.warn('Error resizing chart after fullscreen:', error);
                 }
-            }, 100);
+            }, 200);
         } catch (error) {
             console.error('Error closing fullscreen:', error);
             // Fallback: just remove the modal
@@ -1533,4 +1533,5 @@ function openChartFullscreen(card) {
 
 
 // Export functions for use in other scripts
+
 

@@ -625,8 +625,9 @@ html {
     
     /* Enhanced filter panel for mobile */
     .slim-header {
+        width: 280px;
         padding: 0.5rem 0.75rem;
-        border-bottom: 1px solid var(--border);
+        border-left: 1px solid var(--border);
     }
     
     .filter-container {
@@ -661,8 +662,8 @@ html {
 }
     
     .source-filters {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-direction: column;
         gap: 0.5rem;
         width: 100%;
     }
@@ -848,27 +849,34 @@ body, .chart-card, .header-content, .slim-header {
 /* Slim Header with Filters */
 .slim-header {
     background: var(--card);
-    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);
     padding: 0.5rem 1rem;
     box-shadow: var(--shadow-sm);
-    position: sticky;
-    top: 60px;
-    z-index: 99;
+    position: fixed;
+    top: var(--header-height);
+    right: 0;
+    width: 300px;
+    height: calc(100vh - var(--header-height));
+    z-index: 95;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.slim-header.show {
+    transform: translateX(0);
 }
 
 .filter-container {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
     gap: 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    height: 100%;
 }
 
 .search-box {
     position: relative;
-    flex: 1;
-    max-width: 300px;
+    width: 100%;
 }
 
 .search-input {
@@ -902,6 +910,7 @@ body, .chart-card, .header-content, .slim-header {
 
 .source-filters {
     display: flex;
+    flex-direction: column;
     gap: 0.5rem;
 }
 
@@ -1881,6 +1890,22 @@ footer {
 }
 
 .sidebar-backdrop.show {
+    opacity: 1;
+}
+
+/* Mobile backdrop for filter panel overlay */
+.filter-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: saturate(120%) blur(2px);
+    z-index: 90;
+    opacity: 0;
+    transition: opacity 150ms ease;
+    display: none;
+}
+
+.filter-backdrop.show {
     opacity: 1;
 }
 

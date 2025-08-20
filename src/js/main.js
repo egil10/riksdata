@@ -445,6 +445,16 @@ export function initializeUI() {
         filterToggle.addEventListener('click', toggleFilterPanel);
     }
 
+    // Filter backdrop click to close filter panel
+    const filterBackdrop = document.getElementById('filter-backdrop');
+    if (filterBackdrop) {
+        filterBackdrop.addEventListener('click', () => {
+            if (isFilterPanelVisible) {
+                toggleFilterPanel();
+            }
+        });
+    }
+
     // Mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
     if (mobileMenuToggle) {
@@ -604,9 +614,34 @@ function updateChartColorsForTheme() {
  */
 function toggleFilterPanel() {
     const filterPanel = document.getElementById('filterPanel');
+    const filterBackdrop = document.getElementById('filter-backdrop');
+    const isMobile = window.innerWidth < 768;
+    
     if (filterPanel) {
         isFilterPanelVisible = !isFilterPanelVisible;
-        filterPanel.style.display = isFilterPanelVisible ? 'block' : 'none';
+        if (isFilterPanelVisible) {
+            filterPanel.style.display = 'block';
+            // Show backdrop on mobile
+            if (isMobile && filterBackdrop) {
+                filterBackdrop.style.display = 'block';
+                setTimeout(() => filterBackdrop.classList.add('show'), 10);
+            }
+            // Small delay to ensure display is set before adding class
+            setTimeout(() => {
+                filterPanel.classList.add('show');
+            }, 10);
+        } else {
+            filterPanel.classList.remove('show');
+            // Hide backdrop on mobile
+            if (isMobile && filterBackdrop) {
+                filterBackdrop.classList.remove('show');
+                setTimeout(() => filterBackdrop.style.display = 'none', 150);
+            }
+            // Wait for transition to complete before hiding
+            setTimeout(() => {
+                filterPanel.style.display = 'none';
+            }, 300);
+        }
     }
 }
 
@@ -964,6 +999,13 @@ function scrollToTop() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && sidebar.classList.contains('expanded')) {
             collapseSidebar();
+        }
+    });
+
+    // Close filter panel on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isFilterPanelVisible) {
+            toggleFilterPanel();
         }
     });
     

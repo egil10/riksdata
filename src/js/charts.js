@@ -193,6 +193,17 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 if (apiUrl.includes('oseax-osebx.json')) {
                     // Handle Oslo indices data with new format
                     parsedData = parseOsloIndicesData(data, chartTitle);
+                } else if (apiUrl.includes('exchange-rates/')) {
+                    // Handle cached exchange rate data from Norges Bank
+                    let preferredBaseCur = null;
+                    if (/USD/i.test(chartTitle)) preferredBaseCur = 'USD';
+                    if (/EUR/i.test(chartTitle)) preferredBaseCur = 'EUR';
+                    if (/GBP/i.test(chartTitle)) preferredBaseCur = 'GBP';
+                    if (/CHF/i.test(chartTitle)) preferredBaseCur = 'CHF';
+                    if (/SEK/i.test(chartTitle)) preferredBaseCur = 'SEK';
+                    if (/CNY/i.test(chartTitle)) preferredBaseCur = 'CNY';
+                    if (/I44/i.test(chartTitle)) preferredBaseCur = 'I44';
+                    parsedData = parseExchangeRateData(data, preferredBaseCur);
                 } else {
                     parsedData = parseStaticData(data, chartTitle);
                 }

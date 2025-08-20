@@ -451,10 +451,11 @@ export function initializeUI() {
         mobileMenuToggle.addEventListener('click', toggleMobileMenu);
     }
 
-    // Search functionality
-    const searchInput = document.getElementById('chartSearch');
-    if (searchInput) {
-        searchInput.addEventListener('input', debounce(handleSearch, 300));
+    // Search functionality - header search
+    const headerSearchInput = document.getElementById('headerSearch');
+    
+    if (headerSearchInput) {
+        headerSearchInput.addEventListener('input', debounce(handleSearch, 300));
     }
 
     // Source filters
@@ -463,10 +464,11 @@ export function initializeUI() {
         button.addEventListener('click', handleSourceFilter);
     });
 
-    // Sort toggle
-    const sortToggle = document.getElementById('sortToggle');
-    if (sortToggle) {
-        sortToggle.addEventListener('click', toggleSort);
+    // Sort toggle - header sort
+    const headerSortToggle = document.getElementById('headerSortToggle');
+    
+    if (headerSortToggle) {
+        headerSortToggle.addEventListener('click', toggleHeaderSort);
     }
 
     // Back to top button
@@ -509,11 +511,7 @@ function toggleLanguage() {
     currentLanguage = currentLanguage === 'en' ? 'no' : 'en';
     document.body.className = `lang-${currentLanguage}`;
     
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.textContent = currentLanguage === 'en' ? 'NO' : 'EN';
-    }
-    
+    // Update language texts
     updateLanguageTexts();
 }
 
@@ -756,6 +754,60 @@ function toggleSort() {
 }
 
 /**
+ * Toggle alphabetical sorting for header sort button
+ */
+function toggleHeaderSort() {
+    const headerSortToggle = document.getElementById('headerSortToggle');
+    const sortIcon = document.getElementById('sortIcon');
+    const chartGrid = document.querySelector('.chart-grid');
+    const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+    
+    // Check current state by looking at the icon
+    const isAscending = sortIcon.innerHTML.includes('m3 8 4-4 4 4');
+    
+    if (isAscending) {
+        // Sort reverse alphabetically (Z-A)
+        chartCards.sort((a, b) => {
+            const titleA = a.querySelector('h3').textContent;
+            const titleB = b.querySelector('h3').textContent;
+            return titleB.localeCompare(titleA);
+        });
+        
+        // Update icon to Z-A (arrow-down-z-a)
+        sortIcon.innerHTML = `
+            <path d="m3 16 4 4 4-4"/>
+            <path d="M7 20V4"/>
+            <path d="m21 8-4-4-4 4"/>
+            <path d="M17 4v16"/>
+        `;
+        headerSortToggle.setAttribute('aria-label', 'Sort reverse alphabetically');
+        headerSortToggle.setAttribute('title', 'Sort reverse alphabetically');
+    } else {
+        // Sort alphabetically (A-Z)
+        chartCards.sort((a, b) => {
+            const titleA = a.querySelector('h3').textContent;
+            const titleB = b.querySelector('h3').textContent;
+            return titleA.localeCompare(titleB);
+        });
+        
+        // Update icon to A-Z (arrow-up-a-z)
+        sortIcon.innerHTML = `
+            <path d="m3 8 4-4 4 4"/>
+            <path d="M7 4v16"/>
+            <path d="m21 16-4 4-4-4"/>
+            <path d="M17 20V4"/>
+        `;
+        headerSortToggle.setAttribute('aria-label', 'Sort alphabetically');
+        headerSortToggle.setAttribute('title', 'Sort alphabetically');
+    }
+    
+    // Re-append cards in new order
+    chartCards.forEach(card => {
+        chartGrid.appendChild(card);
+    });
+}
+
+/**
  * Update language-specific texts
  */
 function updateLanguageTexts() {
@@ -768,9 +820,10 @@ function updateLanguageTexts() {
     }
     
     // Update search placeholder
-    const searchInput = document.getElementById('chartSearch');
-    if (searchInput) {
-        searchInput.placeholder = lang === 'no' ? 'Søk i diagrammer...' : 'Search charts...';
+    const headerSearchInput = document.getElementById('headerSearch');
+    
+    if (headerSearchInput) {
+        headerSearchInput.placeholder = lang === 'no' ? 'Søk i diagrammer...' : 'Search charts...';
     }
 }
 

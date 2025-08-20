@@ -269,7 +269,10 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
     } catch (error) {
         console.error(`Error loading data for ${canvasId} (${chartTitle}):`, error);
         // Show error and hide the chart card when chart fails to load
-        showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
+        const canvas = document.getElementById(canvasId);
+        if (canvas) {
+            showError(`Failed to load ${chartTitle} data: ${error.message}`, canvas);
+        }
         return null; // Return null to indicate failure
     }
 }
@@ -1655,7 +1658,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     }
 
     // Hide the skeleton for this specific chart
-    const skeletonId = canvasId.replace('-chart', '-skeleton');
+    const skeletonId = canvas.id.replace('-chart', '-skeleton');
     const skeleton = document.getElementById(skeletonId);
     if (skeleton) {
         skeleton.style.display = 'none';

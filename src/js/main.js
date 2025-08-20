@@ -1123,6 +1123,32 @@ document.addEventListener('click', (e) => {
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
     } else if (action === 'fullscreen') {
         openChartFullscreen(card);
+    } else if (action === 'minimize') {
+        // Handle minimize button in fullscreen mode
+        const fullscreenModal = card.closest('.fullscreen-modal');
+        if (fullscreenModal) {
+            // Find the original card and move canvas back
+            const chartId = card.getAttribute('data-chart-id');
+            const originalCard = document.querySelector(`[data-chart-id="${chartId}"]:not(.fullscreen-card)`);
+            if (originalCard) {
+                const canvas = card.querySelector('canvas');
+                const originalContainer = originalCard.querySelector('.chart-container');
+                if (canvas && originalContainer) {
+                    originalContainer.appendChild(canvas);
+                    
+                    // Resize chart back to original size
+                    const chartInstance = canvas.chart;
+                    if (chartInstance && typeof chartInstance.resize === 'function') {
+                        setTimeout(() => {
+                            chartInstance.resize();
+                        }, 100);
+                    }
+                }
+            }
+            
+            // Remove modal
+            document.body.removeChild(fullscreenModal);
+        }
     }
 });
 
@@ -1373,7 +1399,6 @@ document.addEventListener('DOMContentLoaded', () => {
  */
 function openChartFullscreen(card) {
     const chartId = card.getAttribute('data-chart-id');
-    const chartTitle = card.querySelector('.chart-header h3')?.textContent || 'Chart';
     const chartCanvas = card.querySelector('canvas');
     
     if (!chartCanvas) {
@@ -1392,40 +1417,44 @@ function openChartFullscreen(card) {
     const modal = document.createElement('div');
     modal.className = 'fullscreen-modal';
     
-    // Create header
-    const header = document.createElement('div');
-    header.className = 'fullscreen-header';
+    // Clone the entire chart card structure
+    const cardClone = card.cloneNode(true);
+    cardClone.classList.add('fullscreen-card');
     
-    const title = document.createElement('h2');
-    title.textContent = chartTitle;
-    title.className = 'fullscreen-title';
+    // Remove the skeleton chart from the clone
+    const skeletonChart = cardClone.querySelector('.skeleton-chart');
+    if (skeletonChart) {
+        skeletonChart.remove();
+    }
     
-    const closeBtn = document.createElement('button');
-    closeBtn.className = 'fullscreen-close-btn';
-    closeBtn.setAttribute('aria-label', 'Minimize');
-    closeBtn.setAttribute('title', 'Minimize');
-    closeBtn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M8 3v3a2 2 0 0 1-2 2H3"/>
-            <path d="M21 8h-3a2 2 0 0 1-2-2V3"/>
-            <path d="M3 16h3a2 2 0 0 1 2 2v3"/>
-            <path d="M16 21v-3a2 2 0 0 1 2-2h3"/>
-        </svg>
-    `;
+    // Replace the fullscreen button with a minimize button
+    const fullscreenBtn = cardClone.querySelector('[data-action="fullscreen"]');
+    if (fullscreenBtn) {
+        fullscreenBtn.setAttribute('data-action', 'minimize');
+        fullscreenBtn.setAttribute('aria-label', 'Minimize');
+        fullscreenBtn.setAttribute('title', 'Minimize');
+        fullscreenBtn.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 3v3a2 2 0 0 1-2 2H3"/>
+                <path d="M21 8h-3a2 2 0 0 1-2-2V3"/>
+                <path d="M3 16h3a2 2 0 0 1 2 2v3"/>
+                <path d="M16 21v-3a2 2 0 0 1 2-2h3"/>
+            </svg>
+        `;
+    }
     
-    header.appendChild(title);
-    header.appendChild(closeBtn);
+    // Move the original canvas to the cloned card
+    const clonedCanvas = cardClone.querySelector('canvas');
+    if (clonedCanvas) {
+        clonedCanvas.remove();
+    }
+    const chartContainer = cardClone.querySelector('.chart-container');
+    if (chartContainer) {
+        chartContainer.appendChild(chartCanvas);
+    }
     
-    // Create chart container
-    const chartContainer = document.createElement('div');
-    chartContainer.className = 'fullscreen-chart-container';
-    
-    // Move the original canvas to fullscreen
-    chartContainer.appendChild(chartCanvas);
-    
-    // Add to modal
-    modal.appendChild(header);
-    modal.appendChild(chartContainer);
+    // Add the cloned card to modal
+    modal.appendChild(cardClone);
     
     // Add to body
     document.body.appendChild(modal);
@@ -1436,6 +1465,12 @@ function openChartFullscreen(card) {
             chartInstance.resize();
         }
     }, 100);
+    
+    // Handle minimize button click
+    const minimizeBtn = cardClone.querySelector('[data-action="minimize"]');
+    if (minimizeBtn) {
+        minimizeBtn.addEventListener('click', closeFullscreen);
+    }
     
     // Handle close button click
     const closeFullscreen = () => {
@@ -1458,8 +1493,6 @@ function openChartFullscreen(card) {
         // Clean up event listeners
         document.removeEventListener('keydown', handleEscape);
     };
-    
-    closeBtn.addEventListener('click', closeFullscreen);
     
     // Handle escape key
     const handleEscape = (e) => {

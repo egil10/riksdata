@@ -431,9 +431,12 @@ export function updateStaticTooltip(chart, tooltipId, context) {
     const tooltipElement = document.getElementById(tooltipId);
     if (!tooltipElement) return;
     
+    // Safety checks for context data
+    if (!context || !context.parsed || !context.dataset) return;
+    
     const value = context.parsed.y;
     const date = new Date(context.parsed.x);
-    const label = context.dataset.label;
+    const label = context.dataset.label || 'Unknown';
     
     // Get political period information
     const politicalPeriod = getPoliticalPeriod(date);

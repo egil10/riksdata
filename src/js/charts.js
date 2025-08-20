@@ -1671,14 +1671,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             canvas.chart.update();
             console.log(`Chart updated for ${title}`);
             
-            // Add a visual indicator that the chart loaded successfully
-            const chartCard = canvas.closest('.chart-card');
-            if (chartCard) {
-                chartCard.style.border = '2px solid #10b981'; // Green border to indicate success
-                setTimeout(() => {
-                    chartCard.style.border = ''; // Remove the border after 2 seconds
-                }, 2000);
-            }
+
         }
     }, 100);
 

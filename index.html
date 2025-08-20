@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script src="./src/js/theme.js" defer></script>
     <script type="module" src="./src/js/chart-theme.js" defer></script>
+    <script src="./src/js/mood-rating.js" defer></script>
 
     <script>
         // Enhanced Chart.js loading with fallback
@@ -2407,6 +2408,21 @@
                 
                 <div class="footer-copyright">
                     <p>&copy; <span id="copyright-year">2025</span> Riksdata. All rights reserved. <a href="#top" class="back-to-top" aria-label="Back to top">↑ Back to Top</a></p>
+                </div>
+            </div>
+            
+            <!-- Mood Rating Section -->
+            <div class="footer-section mood-section">
+                <div class="mood-container">
+                    <button class="mood-btn" data-mood="happy" aria-label="Rate as happy">
+                        <i data-lucide="smile" aria-hidden="true"></i>
+                    </button>
+                    <button class="mood-btn" data-mood="neutral" aria-label="Rate as neutral">
+                        <i data-lucide="meh" aria-hidden="true"></i>
+                    </button>
+                    <button class="mood-btn" data-mood="sad" aria-label="Rate as sad">
+                        <i data-lucide="frown" aria-hidden="true"></i>
+                    </button>
                 </div>
             </div>
         </div>

@@ -1439,6 +1439,89 @@ footer {
     transition: all 0.3s ease;
 }
 
+/* Mood Rating Buttons */
+.mood-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+.mood-container {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.mood-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+.mood-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    background: var(--card-hover);
+}
+
+.mood-btn:active {
+    transform: scale(0.95);
+}
+
+.mood-btn.success-feedback {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mood-btn.success-feedback[data-mood="happy"] {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+    transform: scale(1.15);
+}
+
+.mood-btn.success-feedback[data-mood="neutral"] {
+    color: #f59e0b;
+    background: rgba(245, 158, 11, 0.1);
+    transform: scale(1.15);
+}
+
+.mood-btn.success-feedback[data-mood="sad"] {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    transform: scale(1.15);
+}
+
+/* Dark theme adjustments for mood buttons */
+[data-theme="dark"] .mood-btn {
+    color: var(--text-muted);
+}
+
+[data-theme="dark"] .mood-btn:hover {
+    background: var(--card-hover);
+}
+
+[data-theme="dark"] .mood-btn.success-feedback[data-mood="happy"] {
+    background: rgba(16, 185, 129, 0.15);
+}
+
+[data-theme="dark"] .mood-btn.success-feedback[data-mood="neutral"] {
+    background: rgba(245, 158, 11, 0.15);
+}
+
+[data-theme="dark"] .mood-btn.success-feedback[data-mood="sad"] {
+    background: rgba(239, 68, 68, 0.15);
+}
+
 /* Success color for dark theme */
 [data-theme="dark"] {
     --success-color: #34d399;
@@ -1531,6 +1614,21 @@ footer {
     .disclaimer-text p {
         font-size: 0.6rem !important;
         text-align: left;
+    }
+    
+    /* Mobile mood buttons */
+    .mood-section {
+        padding: 0.5rem 0;
+    }
+    
+    .mood-container {
+        gap: 0.25rem;
+    }
+    
+    .mood-btn {
+        width: 2rem;
+        height: 2rem;
+        padding: 0.25rem;
     }
     
     /* Old footer-right styles removed - now using CSS Grid */

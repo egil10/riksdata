@@ -238,7 +238,7 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 ### Social Indicators
 - Population Growth 
 - Life Expectancy
-- Education Level
+- Education Level 
 - Crime Rate
 - Immigration Rate
 

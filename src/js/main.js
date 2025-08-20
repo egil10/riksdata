@@ -37,16 +37,32 @@ function setEllipsisTitle(el) {
 
 // Top-level error guards
 window.addEventListener('error', e => {
-    console.error('Global error:', e.error || e.message);
+    console.error('Global error:', e.error || e.message, 'Stack:', e.error?.stack);
     
     // Don't show global error for Chart.js resize operations during fullscreen
     if (e.message && (
         e.message.includes('resize') || 
         e.message.includes('canvas') || 
         e.message.includes('Chart') ||
-        e.message.includes('getContext')
+        e.message.includes('getContext') ||
+        e.message.includes('appendChild') ||
+        e.message.includes('removeChild') ||
+        e.message.includes('DOM') ||
+        e.message.includes('parentNode') ||
+        e.message.includes('childNodes')
     )) {
-        console.warn('Suppressing Chart.js error from global handler:', e.message);
+        console.warn('Suppressing Chart.js/DOM error from global handler:', e.message);
+        return;
+    }
+    
+    // Also check the stack trace for Chart.js related errors
+    if (e.error && e.error.stack && (
+        e.error.stack.includes('Chart') ||
+        e.error.stack.includes('resize') ||
+        e.error.stack.includes('canvas') ||
+        e.error.stack.includes('fullscreen')
+    )) {
+        console.warn('Suppressing Chart.js error from stack trace:', e.error.stack);
         return;
     }
     
@@ -73,10 +89,24 @@ window.addEventListener('unhandledrejection', e => {
             e.reason.message.includes('resize') || 
             e.reason.message.includes('canvas') || 
             e.reason.message.includes('Chart') ||
-            e.reason.message.includes('getContext')
+            e.reason.message.includes('getContext') ||
+            e.reason.message.includes('appendChild') ||
+            e.reason.message.includes('removeChild') ||
+            e.reason.message.includes('DOM')
         )
     )) {
         console.warn('Suppressing Chart.js promise rejection from global handler:', e.reason);
+        return;
+    }
+    
+    // Also check the stack trace for Chart.js related errors
+    if (e.reason && e.reason.stack && (
+        e.reason.stack.includes('Chart') ||
+        e.reason.stack.includes('resize') ||
+        e.reason.stack.includes('canvas') ||
+        e.reason.stack.includes('fullscreen')
+    )) {
+        console.warn('Suppressing Chart.js promise rejection from stack trace:', e.reason.stack);
         return;
     }
     
@@ -1509,7 +1539,11 @@ function openChartFullscreen(card) {
             
             // Then move the canvas back to its original container
             if (originalContainer && chartCanvas && !originalContainer.contains(chartCanvas)) {
-                originalContainer.appendChild(chartCanvas);
+                try {
+                    originalContainer.appendChild(chartCanvas);
+                } catch (appendError) {
+                    console.warn('Error appending canvas back to original container:', appendError);
+                }
             }
             
             // Resize chart back to original size with a longer delay
@@ -1521,17 +1555,25 @@ function openChartFullscreen(card) {
                 } catch (error) {
                     console.warn('Error resizing chart after fullscreen:', error);
                 }
-            }, 200);
+            }, 300); // Increased delay for better stability
         } catch (error) {
             console.error('Error closing fullscreen:', error);
             // Fallback: just remove the modal
-            if (document.body.contains(modal)) {
-                document.body.removeChild(modal);
+            try {
+                if (document.body.contains(modal)) {
+                    document.body.removeChild(modal);
+                }
+            } catch (removeError) {
+                console.warn('Error removing modal in fallback:', removeError);
             }
         }
         
         // Clean up event listeners
-        document.removeEventListener('keydown', handleEscape);
+        try {
+            document.removeEventListener('keydown', handleEscape);
+        } catch (listenerError) {
+            console.warn('Error removing event listener:', listenerError);
+        }
     };
     
     // Handle minimize button click

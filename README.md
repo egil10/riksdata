@@ -240,7 +240,7 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - Life Expectancy
 - Education Level 
 - Crime Rate
-- Immigration Rate
+- Immigration Rate 
 
 ### And 50+ more indicators...
 

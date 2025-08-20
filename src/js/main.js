@@ -1319,8 +1319,16 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        // Show format selection dropdown
-        showDownloadFormatSelector(btn, card);
+        // Directly download as HTML
+        updateActionButtonState(btn, 'loading', 'download');
+        downloadChartForCard(card, 'html')
+            .then(() => {
+                updateActionButtonState(btn, 'success', 'download');
+            })
+            .catch((error) => {
+                console.error('Download failed:', error);
+                updateActionButtonState(btn, 'error', 'download');
+            });
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly
@@ -1474,115 +1482,7 @@ function resizeCharts() {
     }
 }
 
-function showDownloadFormatSelector(btn, card) {
-    console.log('[showDownloadFormatSelector] Starting...');
-    
-    // Remove any existing format selector
-    const existingSelector = document.querySelector('.download-format-selector');
-    if (existingSelector) {
-        existingSelector.remove();
-    }
-    
-    // Get button position for proper positioning
-    const btnRect = btn.getBoundingClientRect();
-    console.log('[showDownloadFormatSelector] Button rect:', btnRect);
-    
-    // Create format selector dropdown
-    const selector = document.createElement('div');
-    selector.className = 'download-format-selector';
-    selector.style.cssText = `
-        position: fixed;
-        top: ${btnRect.bottom + 8}px;
-        left: ${btnRect.right - 160}px;
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        z-index: 10000;
-        width: 160px;
-        padding: 8px;
-        font-family: Inter, sans-serif;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    `;
-    
-    const formats = [
-        { value: 'png', label: 'PNG Image', description: 'High-quality image' },
-        { value: 'pdf', label: 'PDF Document', description: 'For reports & printing' },
-        { value: 'html', label: 'HTML File', description: 'Interactive chart' },
-        { value: 'svg', label: 'SVG Vector', description: 'Scalable vector' }
-    ];
-    
-    formats.forEach(format => {
-        const option = document.createElement('button');
-        option.className = 'format-option';
-        option.style.cssText = `
-            display: block;
-            width: 100%;
-            text-align: left;
-            padding: 8px 12px;
-            border: none;
-            background: transparent;
-            color: #374151;
-            font-size: 14px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.2s ease;
-            font-family: inherit;
-            margin-bottom: 2px;
-        `;
-        
-        option.innerHTML = `
-            <div style="font-weight: 500; margin-bottom: 2px;">${format.label}</div>
-            <div style="font-size: 12px; color: #6b7280;">${format.description}</div>
-        `;
-        
-        option.addEventListener('click', async () => {
-            // Show loading state
-            updateActionButtonState(btn, 'loading', 'download');
-            
-            try {
-                await downloadChartForCard(card, format.value);
-                updateActionButtonState(btn, 'success', 'download');
-            } catch (error) {
-                console.error('Download failed:', error);
-                updateActionButtonState(btn, 'error', 'download');
-            }
-            
-            // Remove the selector
-            selector.remove();
-        });
-        
-        option.addEventListener('mouseenter', () => {
-            option.style.backgroundColor = '#f3f4f6';
-        });
-        
-        option.addEventListener('mouseleave', () => {
-            option.style.backgroundColor = 'transparent';
-        });
-        
-        selector.appendChild(option);
-    });
-    
-    // Add to body instead of button to avoid positioning issues
-    document.body.appendChild(selector);
-    console.log('[showDownloadFormatSelector] Selector added to body:', selector);
-    console.log('[showDownloadFormatSelector] Selector style:', selector.style.cssText);
-    
-    // Close selector when clicking outside
-    const closeSelector = (e) => {
-        if (!selector.contains(e.target) && !btn.contains(e.target)) {
-            selector.remove();
-            document.removeEventListener('click', closeSelector);
-        }
-    };
-    
-    // Delay adding the event listener to avoid immediate closure
-    setTimeout(() => {
-        document.addEventListener('click', closeSelector);
-    }, 100);
-}
+
 
 // Call resizeCharts after sidebar toggle
 document.addEventListener('DOMContentLoaded', () => {

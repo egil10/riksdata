@@ -1,6 +1,6 @@
 # Riksdata
 
-A comprehensive Norwegian economic data dashboard with political party-colored charts, featuring data from Statistics Norway (SSB) and Norges Bank. Features an optimized light/dark mode toggle for instant theme switching.
+A comprehensive Norwegian economic data dashboard with political party-colored charts, featuring data from Statistics Norway (SSB), Norges Bank, and NVE (Norwegian Water Resources and Energy Directorate). Features an optimized light/dark mode toggle for instant theme switching.
 
 ## 🏗️ Project Structure
 
@@ -21,6 +21,7 @@ riksdata/
 │   ├── cached/           # Cached API data (git-ignored)
 │   │   ├── ssb/          # SSB datasets
 │   │   ├── norges-bank/  # Norges Bank datasets
+│   │   ├── nve/          # NVE datasets (reservoir data)
 │   │   └── metadata.json # Cache metadata
 │   └── static/           # Static data files
 ├── scripts/              # Python scripts
@@ -243,6 +244,31 @@ loadChartData('new-chart', 'API_URL', 'New Chart Title')
 - Immigration Rate 
 
 ### And 50+ more indicators...
+
+## 🌊 NVE Reservoir Data
+
+The dashboard now includes **NVE Magasinstatistikk** (reservoir statistics) data, providing real-time information about Norway's hydropower reservoir levels:
+
+### Reservoir Fill Charts
+- **Norge (Norway)**: Overall national reservoir fill percentage
+- **Østlandet (NO1)**: Eastern Norway reservoir levels
+- **Sørlandet (NO2)**: Southern Norway reservoir levels  
+- **Vestlandet (NO3)**: Western Norway reservoir levels
+- **Trøndelag (NO4)**: Central Norway reservoir levels
+- **Nord-Norge (NO5)**: Northern Norway reservoir levels
+
+### Chart Features
+- **Current Year**: Bold line showing current reservoir fill levels
+- **Previous Year**: Faint line for year-over-year comparison
+- **20-Year Statistics**: Min/max bands and median line showing historical patterns
+- **Weekly Updates**: Data updated weekly (typically Wed/Thu)
+- **Interactive Tooltips**: Hover for detailed information
+
+### Data Source
+- **API**: [NVE Magasinstatistikk API](https://biapi.nve.no/magasinstatistikk/swagger/index.html)
+- **Coverage**: 490 major reservoirs across Norway
+- **Capacity**: ~87 TWh total reservoir capacity
+- **Update Frequency**: Weekly
 
 ## 🛠️ Scripts
 

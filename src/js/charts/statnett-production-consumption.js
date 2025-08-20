@@ -41,11 +41,7 @@ export function createStatnettProductionConsumptionChart(canvasId, dataUrl, titl
                     callbacks: {
                         title: function(context) {
                             const date = new Date(context[0].parsed.x);
-                            return date.toLocaleDateString('no-NO', {
-                                year: 'numeric',
-                                month: 'long',
-                                day: 'numeric'
-                            });
+                            return date.getFullYear().toString();
                         },
                         label: function(context) {
                             const value = context.parsed.y;
@@ -59,16 +55,16 @@ export function createStatnettProductionConsumptionChart(canvasId, dataUrl, titl
                 x: {
                     type: 'time',
                     time: {
-                        unit: 'month',
+                        unit: 'year',
                         displayFormats: {
-                            month: 'MMM yyyy'
+                            year: 'yyyy'
                         }
                     },
                     grid: {
                         display: false
                     },
                     ticks: {
-                        maxTicksLimit: 12,
+                        maxTicksLimit: 15,
                         font: {
                             size: 11
                         }
@@ -94,7 +90,16 @@ export function createStatnettProductionConsumptionChart(canvasId, dataUrl, titl
 }
 
 function processStatnettData(rawData) {
-    if (!Array.isArray(rawData)) {
+    // Handle both the new JSON format and legacy format
+    let dataArray;
+    
+    if (rawData.data && Array.isArray(rawData.data)) {
+        // New format: { data: [...] }
+        dataArray = rawData.data;
+    } else if (Array.isArray(rawData)) {
+        // Legacy format: direct array
+        dataArray = rawData;
+    } else {
         console.error('Invalid Statnett data format:', rawData);
         return null;
     }
@@ -104,8 +109,15 @@ function processStatnettData(rawData) {
     const consumption = [];
     const net = [];
 
-    rawData.forEach(item => {
-        if (item.Date && item.Production !== undefined && item.Consumption !== undefined) {
+    dataArray.forEach(item => {
+        if (item.year && item.production !== undefined && item.consumption !== undefined) {
+            // New format: year-based data
+            dates.push(new Date(item.year, 0, 1)); // January 1st of the year
+            production.push(item.production);
+            consumption.push(item.consumption);
+            net.push(item.net || (item.production - item.consumption));
+        } else if (item.Date && item.Production !== undefined && item.Consumption !== undefined) {
+            // Legacy format: date-based data
             dates.push(new Date(item.Date));
             production.push(item.Production);
             consumption.push(item.Consumption);

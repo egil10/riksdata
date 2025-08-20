@@ -117,6 +117,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'statnett-production-consumption') {
             // Handle Statnett production and consumption charts
             return await loadStatnettChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'stortinget-women-count' || chartType === 'stortinget-women-percentage') {
+            // Handle Stortinget women representation charts
+            return await loadStortingetChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2134,6 +2137,48 @@ async function loadStatnettChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load Statnett chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Stortinget women representation charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Stortinget data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading Stortinget chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the appropriate Stortinget chart
+        const { renderWomenCountChart, renderWomenPercentageChart } = await import('./charts/stortinget-women-representation.js');
+        
+        let chart;
+        if (chartType === 'stortinget-women-count') {
+            chart = await renderWomenCountChart(canvasId);
+        } else if (chartType === 'stortinget-women-percentage') {
+            chart = await renderWomenPercentageChart(canvasId);
+        } else {
+            console.warn(`Unknown Stortinget chart type: ${chartType}`);
+            return null;
+        }
+        
+        if (chart) {
+            console.log(`Successfully rendered Stortinget chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render Stortinget chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load Stortinget chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

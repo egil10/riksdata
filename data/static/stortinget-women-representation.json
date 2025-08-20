@@ -1,0 +1,151 @@
+{
+  "metadata": {
+    "source": "Stortinget Statistics",
+    "url": "https://data.stortinget.no/statistikk/representanter/kjonn",
+    "description": "Women representation in Norwegian Parliament (Stortinget) by parliamentary period",
+    "last_updated": "2025-01-20T12:00:00.000000",
+    "data_points": 20
+  },
+  "data": [
+    {
+      "period": "2021–2025",
+      "year": 2023,
+      "total": 169,
+      "women_count": 76,
+      "women_percentage": 45.0
+    },
+    {
+      "period": "2017–2021",
+      "year": 2019,
+      "total": 169,
+      "women_count": 69,
+      "women_percentage": 40.8
+    },
+    {
+      "period": "2013–2017",
+      "year": 2015,
+      "total": 169,
+      "women_count": 67,
+      "women_percentage": 39.6
+    },
+    {
+      "period": "2009–2013",
+      "year": 2011,
+      "total": 169,
+      "women_count": 67,
+      "women_percentage": 39.6
+    },
+    {
+      "period": "2005–2009",
+      "year": 2007,
+      "total": 169,
+      "women_count": 64,
+      "women_percentage": 37.9
+    },
+    {
+      "period": "2001–2005",
+      "year": 2003,
+      "total": 165,
+      "women_count": 60,
+      "women_percentage": 36.4
+    },
+    {
+      "period": "1997–2001",
+      "year": 1999,
+      "total": 165,
+      "women_count": 60,
+      "women_percentage": 36.4
+    },
+    {
+      "period": "1993–97",
+      "year": 1995,
+      "total": 165,
+      "women_count": 65,
+      "women_percentage": 39.4
+    },
+    {
+      "period": "1989–93",
+      "year": 1991,
+      "total": 165,
+      "women_count": 59,
+      "women_percentage": 35.8
+    },
+    {
+      "period": "1985–89",
+      "year": 1987,
+      "total": 157,
+      "women_count": 54,
+      "women_percentage": 34.4
+    },
+    {
+      "period": "1981–85",
+      "year": 1983,
+      "total": 155,
+      "women_count": 40,
+      "women_percentage": 25.8
+    },
+    {
+      "period": "1977–81",
+      "year": 1979,
+      "total": 155,
+      "women_count": 37,
+      "women_percentage": 23.9
+    },
+    {
+      "period": "1973–77",
+      "year": 1975,
+      "total": 156,
+      "women_count": 24,
+      "women_percentage": 15.4
+    },
+    {
+      "period": "1969–73",
+      "year": 1971,
+      "total": 150,
+      "women_count": 14,
+      "women_percentage": 9.3
+    },
+    {
+      "period": "1965–69",
+      "year": 1967,
+      "total": 150,
+      "women_count": 12,
+      "women_percentage": 8.0
+    },
+    {
+      "period": "1961–65",
+      "year": 1963,
+      "total": 149,
+      "women_count": 13,
+      "women_percentage": 8.7
+    },
+    {
+      "period": "1958–61",
+      "year": 1959,
+      "total": 150,
+      "women_count": 10,
+      "women_percentage": 6.7
+    },
+    {
+      "period": "1954–57",
+      "year": 1955,
+      "total": 151,
+      "women_count": 7,
+      "women_percentage": 4.6
+    },
+    {
+      "period": "1950–53",
+      "year": 1951,
+      "total": 150,
+      "women_count": 7,
+      "women_percentage": 4.7
+    },
+    {
+      "period": "1945–49",
+      "year": 1947,
+      "total": 150,
+      "women_count": 7,
+      "women_percentage": 4.7
+    }
+  ]
+}

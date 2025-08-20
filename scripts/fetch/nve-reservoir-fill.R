@@ -51,6 +51,6 @@ json_data <- list(
 )
 
 # Write to JSON file
-write_json(json_data, "reservoir-fill.json", pretty = TRUE, auto_unbox = TRUE)
+write_json(json_data, "../data/static/nve-reservoir-fill.json", pretty = TRUE, auto_unbox = TRUE)
 
-cat("Data saved to reservoir-fill.json\n")
+cat("Data saved to data/static/nve-reservoir-fill.json\n")

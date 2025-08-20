@@ -294,7 +294,10 @@ const chartConfigs = [
     { id: 'nve-magasins-no5', url: 'nve://magasins/no5', title: 'Vannmagasin fyllingsgrad – Nord-Norge (NO5)', type: 'nve-magasin' },
     
     // Statnett Production and Consumption charts
-    { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Norway Electricity Production and Consumption', type: 'statnett-production-consumption' }];
+    { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Norway Electricity Production and Consumption', type: 'statnett-production-consumption' },
+    
+    // NVE Reservoir Fill charts
+    { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

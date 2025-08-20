@@ -294,8 +294,6 @@ const chartConfigs = [
     { id: 'nve-magasins-no5', url: 'nve://magasins/no5', title: 'Vannmagasin fyllingsgrad – Nord-Norge (NO5)', type: 'nve-magasin' },
     
     // Statnett Production and Consumption charts
-{ id: 'statnett-production-consumption', url: './data/cached/statnett/production-consumption-complete.json', title: 'Statnett Production and Consumption', type: 'statnett-production-consumption' },
-
     { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Norway Electricity Production and Consumption' }];
 
 /**

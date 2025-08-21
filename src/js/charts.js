@@ -321,8 +321,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             return null;
         }
         
-        if (!parsedData || parsedData.length < 2) {
-            console.warn(`No sufficient data points after parsing for ${chartTitle}`);
+        if (!parsedData || parsedData.length < 1) {
+            console.warn(`No data points after parsing for ${chartTitle}`);
             return null;
         }
         
@@ -337,8 +337,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // If we have very few data points, use all data regardless of year
         // This helps with charts that only have recent data (like weekly salmon exports)
-        const finalFiltered = filteredData.length >= 2 ? filteredData : 
-                             parsedData.length >= 2 ? parsedData : 
+        const finalFiltered = filteredData.length >= 1 ? filteredData : 
+                             parsedData.length >= 1 ? parsedData : 
                              filteredData;
 
         // Aggregate by month for bar charts

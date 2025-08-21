@@ -144,6 +144,24 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-vaccination-coverage') {
             // Handle Norway vaccination coverage charts
             return await loadVaccinationCoverageChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-child-mortality') {
+            // Handle Norway child mortality charts
+            return await loadChildMortalityChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-life-expectancy') {
+            // Handle Norway life expectancy charts
+            return await loadLifeExpectancyChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-employment-agriculture') {
+            // Handle Norway employment in agriculture charts
+            return await loadEmploymentAgricultureChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-daily-calories') {
+            // Handle Norway daily calories charts
+            return await loadDailyCaloriesChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-median-age') {
+            // Handle Norway median age charts
+            return await loadMedianAgeChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-fertility-rate') {
+            // Handle Norway fertility rate charts
+            return await loadFertilityRateChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2467,6 +2485,204 @@ async function loadVaccinationCoverageChart(canvasId, apiUrl, chartTitle, chartT
         
     } catch (error) {
         console.error(`Failed to load vaccination coverage chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway child mortality charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Child mortality data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadChildMortalityChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading child mortality chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the child mortality chart
+        const { renderChildMortalityChart } = await import('./charts/norway-child-mortality.js');
+        const chart = await renderChildMortalityChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered child mortality chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render child mortality chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load child mortality chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway life expectancy charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Life expectancy data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadLifeExpectancyChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading life expectancy chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the life expectancy chart
+        const { renderLifeExpectancyChart } = await import('./charts/norway-life-expectancy.js');
+        const chart = await renderLifeExpectancyChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered life expectancy chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render life expectancy chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load life expectancy chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway employment in agriculture charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Employment in agriculture data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadEmploymentAgricultureChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading employment in agriculture chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the employment in agriculture chart
+        const { renderEmploymentAgricultureChart } = await import('./charts/norway-employment-agriculture.js');
+        const chart = await renderEmploymentAgricultureChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered employment in agriculture chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render employment in agriculture chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load employment in agriculture chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway daily calories charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Daily calories data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadDailyCaloriesChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading daily calories chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the daily calories chart
+        const { renderDailyCaloriesChart } = await import('./charts/norway-daily-calories.js');
+        const chart = await renderDailyCaloriesChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered daily calories chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render daily calories chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load daily calories chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway median age charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Median age data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadMedianAgeChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading median age chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the median age chart
+        const { renderMedianAgeChart } = await import('./charts/norway-median-age.js');
+        const chart = await renderMedianAgeChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered median age chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render median age chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load median age chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway fertility rate charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Fertility rate data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadFertilityRateChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading fertility rate chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the fertility rate chart
+        const { renderFertilityRateChart } = await import('./charts/norway-fertility-rate.js');
+        const chart = await renderFertilityRateChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered fertility rate chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render fertility rate chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load fertility rate chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

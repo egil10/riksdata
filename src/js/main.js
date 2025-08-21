@@ -325,7 +325,25 @@ const chartConfigs = [
     { id: 'norway-co2-per-capita-chart', url: './data/static/norway_co2_per_capita.json', title: 'Norway CO₂ Emissions per Capita', type: 'norway-co2-per-capita' },
     
     // Norway Vaccination Coverage charts
-    { id: 'norway-vaccination-coverage-chart', url: './data/static/norway_vaccination_coverage.json', title: 'Norway Vaccination Coverage', type: 'norway-vaccination-coverage' }];
+    { id: 'norway-vaccination-coverage-chart', url: './data/static/norway_vaccination_coverage.json', title: 'Norway Vaccination Coverage', type: 'norway-vaccination-coverage' },
+    
+    // Norway Child Mortality charts
+    { id: 'norway-child-mortality-chart', url: './data/static/norway_child_mortality.json', title: 'Norway Child Mortality', type: 'norway-child-mortality' },
+    
+    // Norway Life Expectancy charts
+    { id: 'norway-life-expectancy-chart', url: './data/static/norway_life_expectancy.json', title: 'Norway Life Expectancy', type: 'norway-life-expectancy' },
+    
+    // Norway Employment in Agriculture Share charts
+    { id: 'norway-employment-agriculture-chart', url: './data/static/norway_employment_in_agriculture_share.json', title: 'Norway Employment in Agriculture Share', type: 'norway-employment-agriculture' },
+    
+    // Norway Daily Calories charts
+    { id: 'norway-daily-calories-chart', url: './data/static/norway_daily_calories.json', title: 'Norway Daily Calories', type: 'norway-daily-calories' },
+    
+    // Norway Median Age charts
+    { id: 'norway-median-age-chart', url: './data/static/norway_median_age.json', title: 'Norway Median Age', type: 'norway-median-age' },
+    
+    // Norway Fertility Rate Period charts
+    { id: 'norway-fertility-rate-chart', url: './data/static/norway_fertility_rate_period.json', title: 'Norway Fertility Rate', type: 'norway-fertility-rate' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

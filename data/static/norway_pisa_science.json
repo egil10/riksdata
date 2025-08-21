@@ -1,0 +1,61 @@
+{
+  "dataset": "average-performance-of-15-year-olds-on-the-science-scale (OECD; OWID processed)",
+  "country": "Norway",
+  "metadata": {
+    "title": "Average performance of 15-year-olds in sciences (PISA)",
+    "variable": "pisa_science_score",
+    "unit": "PISA score",
+    "description": {},
+    "owidTags": {},
+    "dataPublishedBy": {},
+    "dataPublisherSource": {},
+    "lastUpdated": {},
+    "retrieved": "2025-08-21",
+    "source_and_citation": "Source: OECD (2023) – with minor processing by Our World in Data. Indicator: average PISA science score for 15-year-olds (OECD scale; mean=500, SD=100 in base year).",
+    "notes": "Scores calibrated to maintain comparability across cycles; see OECD/OWID notes for details."
+  },
+  "data": [
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2006,
+      "pisa_science_score": 486.5279,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2009,
+      "pisa_science_score": 499.8757,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2012,
+      "pisa_science_score": 494.5239,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2015,
+      "pisa_science_score": 498.4811,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2018,
+      "pisa_science_score": 490.4131,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2022,
+      "pisa_science_score": 478.2265,
+      "is_missing": false
+    }
+  ]
+}

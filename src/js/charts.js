@@ -183,6 +183,33 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-marriage-rate') {
             // Handle Norway marriage rate charts
             return await loadMarriageRateChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-electric-car-sales-share') {
+            // Handle Norway electric car sales share charts
+            return await loadElectricCarSalesShareChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-weekly-covid-cases') {
+            // Handle Norway weekly COVID cases charts
+            return await loadWeeklyCovidCasesChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-tourist-trips') {
+            // Handle Norway tourist trips charts
+            return await loadTouristTripsChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-rnd-researchers') {
+            // Handle Norway R&D researchers charts
+            return await loadRndResearchersChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-pisa-math') {
+            // Handle Norway PISA math charts
+            return await loadPisaMathChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-no-education-share') {
+            // Handle Norway no education share charts
+            return await loadNoEducationShareChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-avg-years-schooling') {
+            // Handle Norway average years schooling charts
+            return await loadAvgYearsSchoolingChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-pisa-science') {
+            // Handle Norway PISA science charts
+            return await loadPisaScienceChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-pisa-reading') {
+            // Handle Norway PISA reading charts
+            return await loadPisaReadingChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2935,6 +2962,303 @@ async function loadMarriageRateChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load marriage rate chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway electric car sales share charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Electric car sales share data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadElectricCarSalesShareChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading electric car sales share chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the electric car sales share chart
+        const { renderElectricCarSalesShareChart } = await import('./charts/norway-electric-car-sales-share.js');
+        const chart = await renderElectricCarSalesShareChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered electric car sales share chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render electric car sales share chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load electric car sales share chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway weekly COVID cases charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Weekly COVID cases data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadWeeklyCovidCasesChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading weekly COVID cases chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the weekly COVID cases chart
+        const { renderWeeklyCovidCasesChart } = await import('./charts/norway-weekly-covid-cases.js');
+        const chart = await renderWeeklyCovidCasesChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered weekly COVID cases chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render weekly COVID cases chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load weekly COVID cases chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway tourist trips charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Tourist trips data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadTouristTripsChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading tourist trips chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the tourist trips chart
+        const { renderTouristTripsChart } = await import('./charts/norway-tourist-trips.js');
+        const chart = await renderTouristTripsChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered tourist trips chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render tourist trips chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load tourist trips chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway R&D researchers charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - R&D researchers data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadRndResearchersChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading R&D researchers chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the R&D researchers chart
+        const { renderRndResearchersChart } = await import('./charts/norway-rnd-researchers.js');
+        const chart = await renderRndResearchersChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered R&D researchers chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render R&D researchers chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load R&D researchers chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway PISA math charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - PISA math data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadPisaMathChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading PISA math chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the PISA math chart
+        const { renderPisaMathChart } = await import('./charts/norway-pisa-math.js');
+        const chart = await renderPisaMathChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered PISA math chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render PISA math chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load PISA math chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway no education share charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - No education share data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadNoEducationShareChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading no education share chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the no education share chart
+        const { renderNoEducationShareChart } = await import('./charts/norway-no-education-share.js');
+        const chart = await renderNoEducationShareChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered no education share chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render no education share chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load no education share chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway average years schooling charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Average years schooling data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadAvgYearsSchoolingChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading average years schooling chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the average years schooling chart
+        const { renderAvgYearsSchoolingChart } = await import('./charts/norway-avg-years-schooling.js');
+        const chart = await renderAvgYearsSchoolingChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered average years schooling chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render average years schooling chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load average years schooling chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway PISA science charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - PISA science data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadPisaScienceChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading PISA science chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the PISA science chart
+        const { renderPisaScienceChart } = await import('./charts/norway-pisa-science.js');
+        const chart = await renderPisaScienceChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered PISA science chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render PISA science chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load PISA science chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway PISA reading charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - PISA reading data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadPisaReadingChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading PISA reading chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the PISA reading chart
+        const { renderPisaReadingChart } = await import('./charts/norway-pisa-reading.js');
+        const chart = await renderPisaReadingChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered PISA reading chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render PISA reading chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load PISA reading chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

@@ -1,0 +1,90 @@
+{
+  "dataset": "share-of-population-15-years-and-older-with-no-education (Barro & Lee; Lee & Lee; OWID processed)",
+  "country": "Norway",
+  "metadata": {
+    "title": "Share of population with no formal education (ages 15-64)",
+    "variable": "no_education_share",
+    "unit": "%",
+    "description": null,
+    "owidTags": null,
+    "dataPublishedBy": null,
+    "dataPublisherSource": null,
+    "lastUpdated": null,
+    "retrieved": "2025-01-21",
+    "source_and_citation": "Sources: Barro and Lee (2015); Lee and Lee (2016) – with major processing by Our World in Data. Indicator: share of adults (15–64) with no formal education. Note: data before 2015 are estimates; data from 2015 onwards are projections (per OWID)."
+  },
+  "data": [
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1950,
+      "no_education_share": 5.2,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1960,
+      "no_education_share": 3.8,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1970,
+      "no_education_share": 2.1,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1980,
+      "no_education_share": 1.2,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1990,
+      "no_education_share": 0.8,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2000,
+      "no_education_share": 0.5,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2010,
+      "no_education_share": 0.3,
+      "period": "estimate",
+      "is_projection": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2020,
+      "no_education_share": 0.2,
+      "period": "projection",
+      "is_projection": true
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2030,
+      "no_education_share": 0.1,
+      "period": "projection",
+      "is_projection": true
+    }
+  ]
+}

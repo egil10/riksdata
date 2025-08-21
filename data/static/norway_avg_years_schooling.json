@@ -1,0 +1,257 @@
+{
+  "dataset": "average-years-of-schooling (UNDP; OWID processed)",
+  "country": "Norway",
+  "metadata": {
+    "title": "Average years of schooling (ages 25+)",
+    "variable": "avg_years_schooling",
+    "unit": "years",
+    "description": {},
+    "owidTags": {},
+    "dataPublishedBy": {},
+    "dataPublisherSource": {},
+    "lastUpdated": {},
+    "retrieved": "2025-08-21",
+    "source_and_citation": "Source: UNDP, Human Development Report (2025) – with minor processing by Our World in Data. Indicator: average years of schooling among adults aged 25+ (formal education only; repeats excluded).",
+    "notes": "Formal education is ISCED 1+; excludes years repeating grades; population ages 25+."
+  },
+  "data": [
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1990,
+      "avg_years_schooling": 11.71,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1991,
+      "avg_years_schooling": 11.7471,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1992,
+      "avg_years_schooling": 11.7843,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1993,
+      "avg_years_schooling": 11.8214,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1994,
+      "avg_years_schooling": 11.8586,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1995,
+      "avg_years_schooling": 11.8957,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1996,
+      "avg_years_schooling": 11.9329,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1997,
+      "avg_years_schooling": 11.97,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1998,
+      "avg_years_schooling": 12.0071,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 1999,
+      "avg_years_schooling": 12.0443,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2000,
+      "avg_years_schooling": 12.0814,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2001,
+      "avg_years_schooling": 12.1186,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2002,
+      "avg_years_schooling": 12.1557,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2003,
+      "avg_years_schooling": 12.1929,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2004,
+      "avg_years_schooling": 12.23,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2005,
+      "avg_years_schooling": 12.28,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2006,
+      "avg_years_schooling": 12.37,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2007,
+      "avg_years_schooling": 12.41,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2008,
+      "avg_years_schooling": 12.48,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2009,
+      "avg_years_schooling": 12.5,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2010,
+      "avg_years_schooling": 12.55,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2011,
+      "avg_years_schooling": 12.61,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2012,
+      "avg_years_schooling": 12.6433,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2013,
+      "avg_years_schooling": 12.6767,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2014,
+      "avg_years_schooling": 12.71,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2015,
+      "avg_years_schooling": 12.77,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2016,
+      "avg_years_schooling": 12.82,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2017,
+      "avg_years_schooling": 12.95,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2018,
+      "avg_years_schooling": 12.975,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2019,
+      "avg_years_schooling": 13,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2020,
+      "avg_years_schooling": 13.0588,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2021,
+      "avg_years_schooling": 13.118,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2022,
+      "avg_years_schooling": 13.118,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2023,
+      "avg_years_schooling": 13.118,
+      "is_missing": false
+    }
+  ]
+}

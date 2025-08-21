@@ -364,7 +364,34 @@ const chartConfigs = [
     { id: 'norway-energy-use-per-capita-chart', url: './data/static/norway_energy_use_per_capita.json', title: 'Norway Energy Use per Capita', type: 'norway-energy-use-per-capita' },
     
     // Norway Marriage Rate charts
-    { id: 'norway-marriage-rate-chart', url: './data/static/norway_marriage_rate.json', title: 'Norway Marriage Rate', type: 'norway-marriage-rate' }];
+    { id: 'norway-marriage-rate-chart', url: './data/static/norway_marriage_rate.json', title: 'Norway Marriage Rate', type: 'norway-marriage-rate' },
+    
+    // Norway Electric Car Sales Share charts
+    { id: 'norway-electric-car-sales-share-chart', url: './data/static/norway_electric_car_sales_share.json', title: 'Norway Electric Car Sales Share', type: 'norway-electric-car-sales-share' },
+    
+    // Norway Weekly COVID Cases charts
+    { id: 'norway-weekly-covid-cases-chart', url: './data/static/norway_weekly_covid_cases.json', title: 'Norway Weekly COVID Cases', type: 'norway-weekly-covid-cases' },
+    
+    // Norway Tourist Trips charts
+    { id: 'norway-tourist-trips-chart', url: './data/static/norway_tourist_trips.json', title: 'Norway Tourist Trips', type: 'norway-tourist-trips' },
+    
+    // Norway R&D Researchers charts
+    { id: 'norway-rnd-researchers-chart', url: './data/static/norway_rnd_researchers.json', title: 'Norway R&D Researchers', type: 'norway-rnd-researchers' },
+    
+    // Norway PISA Math charts
+    { id: 'norway-pisa-math-chart', url: './data/static/norway_pisa_math.json', title: 'Norway PISA Math', type: 'norway-pisa-math' },
+    
+    // Norway No Education Share charts
+    { id: 'norway-no-education-share-chart', url: './data/static/norway_no_education_share.json', title: 'Norway No Education Share', type: 'norway-no-education-share' },
+    
+    // Norway Average Years Schooling charts
+    { id: 'norway-avg-years-schooling-chart', url: './data/static/norway_avg_years_schooling.json', title: 'Norway Average Years Schooling', type: 'norway-avg-years-schooling' },
+    
+    // Norway PISA Science charts
+    { id: 'norway-pisa-science-chart', url: './data/static/norway_pisa_science.json', title: 'Norway PISA Science', type: 'norway-pisa-science' },
+    
+    // Norway PISA Reading charts
+    { id: 'norway-pisa-reading-chart', url: './data/static/norway_pisa_reading.json', title: 'Norway PISA Reading', type: 'norway-pisa-reading' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

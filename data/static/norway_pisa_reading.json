@@ -1,0 +1,75 @@
+{
+  "dataset": "pisa-test-score-mean-performance-on-the-reading-scale (OECD; OWID processed)",
+  "country": "Norway",
+  "metadata": {
+    "title": "Average performance of 15-year-olds in reading (PISA)",
+    "variable": "pisa_reading_score",
+    "unit": "PISA score",
+    "description": {},
+    "owidTags": {},
+    "dataPublishedBy": {},
+    "dataPublisherSource": {},
+    "lastUpdated": {},
+    "retrieved": "2025-08-21",
+    "source_and_citation": "Source: OECD (2023) – with minor processing by Our World in Data. Indicator: average PISA reading score for 15-year-olds (OECD scale; mean=500, SD=100 in base year).",
+    "notes": "Scores calibrated to maintain comparability across cycles; see OECD/OWID notes for details."
+  },
+  "data": [
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2000,
+      "pisa_reading_score": 505.281,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2003,
+      "pisa_reading_score": 499.7402,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2006,
+      "pisa_reading_score": 484.2926,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2009,
+      "pisa_reading_score": 503.23,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2012,
+      "pisa_reading_score": 503.9367,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2015,
+      "pisa_reading_score": 513.1912,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2018,
+      "pisa_reading_score": 499.451,
+      "is_missing": false
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "year": 2022,
+      "pisa_reading_score": 476.5239,
+      "is_missing": false
+    }
+  ]
+}

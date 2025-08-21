@@ -1,0 +1,57 @@
+{
+  "dataset": "pisa-test-score-mean-performance-on-the-mathematics-scale (OECD PISA, OWID processed)",
+  "country": "Norway",
+  "metadata": {
+    "title": "Average performance of 15-year-olds in mathematics (PISA)",
+    "variables": {
+      "mean": "math",
+      "lower": "math_lower",
+      "upper": "math_upper"
+    },
+    "unit": "PISA score",
+    "description": {},
+    "owidTags": {},
+    "dataPublishedBy": {},
+    "dataPublisherSource": {},
+    "lastUpdated": {},
+    "retrieved": "2025-08-21",
+    "source_and_citation": "Source: OECD (2023) – with minor processing by Our World in Data. Indicator: PISA mathematics (mean) with lower/upper uncertainty bounds. Note: OECD PISA scales are benchmarked to mean 500 and SD 100 for OECD at baseline; later cycles are calibrated for comparability."
+  },
+  "data": [
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2003
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2006
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2009
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2012
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2015
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2018
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "date": 2022
+    }
+  ]
+}

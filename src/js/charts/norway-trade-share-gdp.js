@@ -1,10 +1,12 @@
 // ============================================================================
-// NORWAY TRADE SHARE OF GDP CHART RENDERING
+// NORWAY TRADE SHARE GDP CHART RENDERING
 // ============================================================================
 
 import { registerChartData } from '../registry.js';
+import { parseStaticData } from '../charts.js';
+import { renderChart } from '../charts.js';
 
-async function fetchTradeShareGDPData() {
+async function fetchTradeShareGdpData() {
     try {
         const response = await fetch('./data/static/norway_trade_share_gdp.json');
         if (!response.ok) {
@@ -12,139 +14,43 @@ async function fetchTradeShareGDPData() {
         }
         return await response.json();
     } catch (error) {
-        console.error('Error fetching trade share GDP data:', error);
+        console.error('Error fetching trade share gdp data:', error);
         throw error;
     }
 }
 
-export async function renderTradeShareGDPChart(canvasId) {
-    const ctx = document.getElementById(canvasId)?.getContext('2d');
-    if (!ctx) { 
+export async function renderTradeShareGdpChart(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) { 
         console.warn(`Canvas with id '${canvasId}' not found`); 
         return null; 
     }
 
     try {
-        const data = await fetchTradeShareGDPData();
-        const sortedData = data.data.sort((a, b) => a.Year - b.Year);
+        const data = await fetchTradeShareGdpData();
         
-        const chartData = {
-            labels: sortedData.map(d => d.Year),
-            datasets: [{
-                label: 'Trade as Share of GDP (%)',
-                data: sortedData.map(d => d.value),
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5,
-                borderColor: 'rgba(255, 205, 86, 0.9)', // Yellow
-                backgroundColor: 'rgba(255, 205, 86, 0.1)',
-                fill: false,
-                tension: 0.1
-            }]
-        };
+        // Parse data using the standard static data parser
+        const parsedData = parseStaticData(data, 'Norway Trade Share Gdp');
+        
+        if (!parsedData || parsedData.length === 0) {
+            console.warn('No data available for trade share gdp chart');
+            return null;
+        }
 
-        const exportData = sortedData.map(d => ({
-            year: d.Year,
-            entity: d.Entity,
-            code: d.Code,
+        // Register data for export
+        const exportData = parsedData.map(d => ({
+            date: d.date,
             value: d.value,
-            series: 'Trade Share of GDP'
+            series: 'Trade Share Gdp'
         }));
         registerChartData(canvasId, exportData);
 
-        const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: 'white',
-                    bodyColor: 'white',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
-                    borderWidth: 1,
-                    callbacks: {
-                        title: function(context) {
-                            return `Year: ${context[0].label}`;
-                        },
-                        label: function(context) {
-                            return `Trade Share: ${context.parsed.y.toFixed(1)}% of GDP`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'linear',
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Year',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        },
-                        maxTicksLimit: 10
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Trade as % of GDP',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        },
-                        callback: function(value) {
-                            return value + '%';
-                        }
-                    },
-                    beginAtZero: true
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        };
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: options
-        });
-
+        // Use the standard renderChart function with political color overlays
+        const chart = renderChart(canvas, parsedData, 'Norway Trade Share Gdp', 'line');
+        
         return chart;
     } catch (error) {
-        console.error('Error rendering trade share GDP chart:', error);
+        console.error('Error rendering trade share gdp chart:', error);
         throw error;
     }
 }

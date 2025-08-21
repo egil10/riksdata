@@ -3,6 +3,8 @@
 // ============================================================================
 
 import { registerChartData } from '../registry.js';
+import { parseStaticData } from '../charts.js';
+import { renderChart } from '../charts.js';
 
 async function fetchWeeklyCovidCasesData() {
     try {
@@ -12,142 +14,43 @@ async function fetchWeeklyCovidCasesData() {
         }
         return await response.json();
     } catch (error) {
-        console.error('Error fetching weekly COVID cases data:', error);
+        console.error('Error fetching weekly covid cases data:', error);
         throw error;
     }
 }
 
 export async function renderWeeklyCovidCasesChart(canvasId) {
-    const ctx = document.getElementById(canvasId)?.getContext('2d');
-    if (!ctx) { 
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) { 
         console.warn(`Canvas with id '${canvasId}' not found`); 
         return null; 
     }
 
     try {
         const data = await fetchWeeklyCovidCasesData();
-        const sortedData = data.data.sort((a, b) => new Date(a.date) - new Date(b.date));
         
-        const chartData = {
-            labels: sortedData.map(d => d.date),
-            datasets: [{
-                label: 'Weekly COVID Cases',
-                data: sortedData.map(d => d.value),
-                borderWidth: 2,
-                pointRadius: 2,
-                pointHoverRadius: 4,
-                borderColor: 'rgba(255, 99, 132, 0.9)', // Red
-                backgroundColor: 'rgba(255, 99, 132, 0.1)',
-                fill: false,
-                tension: 0.1
-            }]
-        };
+        // Parse data using the standard static data parser
+        const parsedData = parseStaticData(data, 'Norway Weekly Covid Cases');
+        
+        if (!parsedData || parsedData.length === 0) {
+            console.warn('No data available for weekly covid cases chart');
+            return null;
+        }
 
-        const exportData = sortedData.map(d => ({
+        // Register data for export
+        const exportData = parsedData.map(d => ({
             date: d.date,
-            entity: d.Entity,
-            code: d.Code,
             value: d.value,
-            series: 'Weekly COVID Cases'
+            series: 'Weekly Covid Cases'
         }));
         registerChartData(canvasId, exportData);
 
-        const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: 'white',
-                    bodyColor: 'white',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
-                    borderWidth: 1,
-                    callbacks: {
-                        title: function(context) {
-                            return `Date: ${context[0].label}`;
-                        },
-                        label: function(context) {
-                            return `Weekly Cases: ${context.parsed.y.toLocaleString()}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'time',
-                    time: {
-                        unit: 'week',
-                        displayFormats: {
-                            week: 'MMM yyyy'
-                        }
-                    },
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Date',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        },
-                        maxTicksLimit: 10
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Weekly Confirmed Cases',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        }
-                    },
-                    beginAtZero: true
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        };
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: options
-        });
-
+        // Use the standard renderChart function with political color overlays
+        const chart = renderChart(canvas, parsedData, 'Norway Weekly Covid Cases', 'line');
+        
         return chart;
     } catch (error) {
-        console.error('Error rendering weekly COVID cases chart:', error);
+        console.error('Error rendering weekly covid cases chart:', error);
         throw error;
     }
 }

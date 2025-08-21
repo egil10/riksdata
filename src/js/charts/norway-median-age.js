@@ -3,6 +3,8 @@
 // ============================================================================
 
 import { registerChartData } from '../registry.js';
+import { parseStaticData } from '../charts.js';
+import { renderChart } from '../charts.js';
 
 async function fetchMedianAgeData() {
     try {
@@ -18,127 +20,34 @@ async function fetchMedianAgeData() {
 }
 
 export async function renderMedianAgeChart(canvasId) {
-    const ctx = document.getElementById(canvasId)?.getContext('2d');
-    if (!ctx) { 
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) { 
         console.warn(`Canvas with id '${canvasId}' not found`); 
         return null; 
     }
 
     try {
         const data = await fetchMedianAgeData();
-        const sortedData = data.data.sort((a, b) => a.Year - b.Year);
         
-        const chartData = {
-            labels: sortedData.map(d => d.Year),
-            datasets: [{
-                label: 'Median Age (years)',
-                data: sortedData.map(d => d.value),
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5,
-                borderColor: 'rgba(153, 102, 255, 0.9)', // Purple
-                backgroundColor: 'rgba(153, 102, 255, 0.1)',
-                fill: false,
-                tension: 0.1
-            }]
-        };
+        // Parse data using the standard static data parser
+        const parsedData = parseStaticData(data, 'Norway Median Age');
+        
+        if (!parsedData || parsedData.length === 0) {
+            console.warn('No data available for median age chart');
+            return null;
+        }
 
-        const exportData = sortedData.map(d => ({
-            year: d.Year,
-            entity: d.Entity,
-            code: d.Code,
+        // Register data for export
+        const exportData = parsedData.map(d => ({
+            date: d.date,
             value: d.value,
             series: 'Median Age'
         }));
         registerChartData(canvasId, exportData);
 
-        const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: 'white',
-                    bodyColor: 'white',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
-                    borderWidth: 1,
-                    callbacks: {
-                        title: function(context) {
-                            return `Year: ${context[0].label}`;
-                        },
-                        label: function(context) {
-                            return `Median Age: ${context.parsed.y.toFixed(1)} years`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'linear',
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Year',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        },
-                        maxTicksLimit: 10
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Years',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        }
-                    },
-                    beginAtZero: false
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        };
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: options
-        });
-
+        // Use the standard renderChart function with political color overlays
+        const chart = renderChart(canvas, parsedData, 'Norway Median Age', 'line');
+        
         return chart;
     } catch (error) {
         console.error('Error rendering median age chart:', error);

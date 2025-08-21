@@ -3,6 +3,8 @@
 // ============================================================================
 
 import { registerChartData } from '../registry.js';
+import { parseStaticData } from '../charts.js';
+import { renderChart } from '../charts.js';
 
 async function fetchPisaScienceData() {
     try {
@@ -12,138 +14,43 @@ async function fetchPisaScienceData() {
         }
         return await response.json();
     } catch (error) {
-        console.error('Error fetching PISA science data:', error);
+        console.error('Error fetching pisa science data:', error);
         throw error;
     }
 }
 
 export async function renderPisaScienceChart(canvasId) {
-    const ctx = document.getElementById(canvasId)?.getContext('2d');
-    if (!ctx) { 
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) { 
         console.warn(`Canvas with id '${canvasId}' not found`); 
         return null; 
     }
 
     try {
         const data = await fetchPisaScienceData();
-        const sortedData = data.data.sort((a, b) => a.year - b.year);
         
-        const chartData = {
-            labels: sortedData.map(d => d.year),
-            datasets: [{
-                label: 'PISA Science Score',
-                data: sortedData.map(d => d.pisa_science_score),
-                borderWidth: 2,
-                pointRadius: 4,
-                pointHoverRadius: 6,
-                borderColor: 'rgba(255, 205, 86, 0.9)', // Yellow
-                backgroundColor: 'rgba(255, 205, 86, 0.1)',
-                fill: false,
-                tension: 0.1
-            }]
-        };
+        // Parse data using the standard static data parser
+        const parsedData = parseStaticData(data, 'Norway Pisa Science');
+        
+        if (!parsedData || parsedData.length === 0) {
+            console.warn('No data available for pisa science chart');
+            return null;
+        }
 
-        const exportData = sortedData.map(d => ({
-            year: d.year,
-            entity: d.Entity,
-            code: d.Code,
-            pisa_science_score: d.pisa_science_score,
-            is_missing: d.is_missing,
-            series: 'PISA Science Score'
+        // Register data for export
+        const exportData = parsedData.map(d => ({
+            date: d.date,
+            value: d.value,
+            series: 'Pisa Science'
         }));
         registerChartData(canvasId, exportData);
 
-        const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: 'white',
-                    bodyColor: 'white',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
-                    borderWidth: 1,
-                    callbacks: {
-                        title: function(context) {
-                            return `Year: ${context[0].label}`;
-                        },
-                        label: function(context) {
-                            return `Science Score: ${context.parsed.y.toFixed(1)}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'linear',
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Year',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        },
-                        maxTicksLimit: 10
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'PISA Science Score',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        }
-                    },
-                    min: 400,
-                    max: 600
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        };
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: options
-        });
-
+        // Use the standard renderChart function with political color overlays
+        const chart = renderChart(canvas, parsedData, 'Norway Pisa Science', 'line');
+        
         return chart;
     } catch (error) {
-        console.error('Error rendering PISA science chart:', error);
+        console.error('Error rendering pisa science chart:', error);
         throw error;
     }
 }

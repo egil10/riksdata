@@ -1,10 +1,12 @@
 // ============================================================================
-// NORWAY HUMAN DEVELOPMENT INDEX CHART RENDERING
+// NORWAY HDI CHART RENDERING
 // ============================================================================
 
 import { registerChartData } from '../registry.js';
+import { parseStaticData } from '../charts.js';
+import { renderChart } from '../charts.js';
 
-async function fetchHDIData() {
+async function fetchHdiData() {
     try {
         const response = await fetch('./data/static/norway_hdi.json');
         if (!response.ok) {
@@ -12,137 +14,43 @@ async function fetchHDIData() {
         }
         return await response.json();
     } catch (error) {
-        console.error('Error fetching HDI data:', error);
+        console.error('Error fetching hdi data:', error);
         throw error;
     }
 }
 
-export async function renderHDIChart(canvasId) {
-    const ctx = document.getElementById(canvasId)?.getContext('2d');
-    if (!ctx) { 
+export async function renderHdiChart(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) { 
         console.warn(`Canvas with id '${canvasId}' not found`); 
         return null; 
     }
 
     try {
-        const data = await fetchHDIData();
-        const sortedData = data.data.sort((a, b) => a.Year - b.Year);
+        const data = await fetchHdiData();
         
-        const chartData = {
-            labels: sortedData.map(d => d.Year),
-            datasets: [{
-                label: 'Human Development Index (0-1)',
-                data: sortedData.map(d => d.value),
-                borderWidth: 2,
-                pointRadius: 3,
-                pointHoverRadius: 5,
-                borderColor: 'rgba(75, 192, 192, 0.9)', // Teal
-                backgroundColor: 'rgba(75, 192, 192, 0.1)',
-                fill: false,
-                tension: 0.1
-            }]
-        };
+        // Parse data using the standard static data parser
+        const parsedData = parseStaticData(data, 'Norway Hdi');
+        
+        if (!parsedData || parsedData.length === 0) {
+            console.warn('No data available for hdi chart');
+            return null;
+        }
 
-        const exportData = sortedData.map(d => ({
-            year: d.Year,
-            entity: d.Entity,
-            code: d.Code,
+        // Register data for export
+        const exportData = parsedData.map(d => ({
+            date: d.date,
             value: d.value,
-            series: 'Human Development Index'
+            series: 'Hdi'
         }));
         registerChartData(canvasId, exportData);
 
-        const options = {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    mode: 'index',
-                    intersect: false,
-                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
-                    titleColor: 'white',
-                    bodyColor: 'white',
-                    borderColor: 'rgba(255, 255, 255, 0.2)',
-                    borderWidth: 1,
-                    callbacks: {
-                        title: function(context) {
-                            return `Year: ${context[0].label}`;
-                        },
-                        label: function(context) {
-                            return `HDI: ${context.parsed.y.toFixed(3)}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                x: {
-                    type: 'linear',
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'Year',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        },
-                        maxTicksLimit: 10
-                    }
-                },
-                y: {
-                    display: true,
-                    title: {
-                        display: true,
-                        text: 'HDI Index (0-1)',
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 12,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)',
-                        drawBorder: false
-                    },
-                    ticks: {
-                        color: 'rgba(0, 0, 0, 0.7)',
-                        font: {
-                            size: 11
-                        }
-                    },
-                    min: 0,
-                    max: 1
-                }
-            },
-            interaction: {
-                mode: 'nearest',
-                axis: 'x',
-                intersect: false
-            }
-        };
-
-        const chart = new Chart(ctx, {
-            type: 'line',
-            data: chartData,
-            options: options
-        });
-
+        // Use the standard renderChart function with political color overlays
+        const chart = renderChart(canvas, parsedData, 'Norway Hdi', 'line');
+        
         return chart;
     } catch (error) {
-        console.error('Error rendering HDI chart:', error);
+        console.error('Error rendering hdi chart:', error);
         throw error;
     }
 }

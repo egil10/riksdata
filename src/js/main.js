@@ -749,19 +749,38 @@ function handleWindowResize() {
  * @param {Event} event - Search input event
  */
 function handleSearch(event) {
-    const searchTerm = event.target.value.toLowerCase();
-    const chartCards = document.querySelectorAll('.chart-card');
-    
-    chartCards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        const source = card.querySelector('.source-link').textContent.toLowerCase();
+    try {
+        const searchTerm = event.target.value.toLowerCase();
+        const chartCards = document.querySelectorAll('.chart-card');
         
-        if (title.includes(searchTerm) || source.includes(searchTerm)) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
+        chartCards.forEach(card => {
+            try {
+                const titleElement = card.querySelector('h3');
+                const sourceElement = card.querySelector('.source-link');
+                
+                // Skip cards that don't have required elements
+                if (!titleElement || !sourceElement) {
+                    console.warn('Chart card missing required elements for search:', card);
+                    return;
+                }
+                
+                const title = titleElement.textContent.toLowerCase();
+                const source = sourceElement.textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || source.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            } catch (cardError) {
+                console.warn('Error processing chart card during search:', cardError, card);
+                // Continue with other cards
+            }
+        });
+    } catch (searchError) {
+        console.error('Error in search function:', searchError);
+        // Don't show global error for search issues
+    }
     
     // Ensure charts maintain proper height constraints after search
     setTimeout(() => {
@@ -799,27 +818,40 @@ function handleSearch(event) {
  * @param {Event} event - Filter button click event
  */
 function handleSourceFilter(event) {
-    const source = event.target.dataset.source;
-    currentSourceFilter = source;
-    
-    // Update active button
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-        btn.classList.remove('active');
-    });
-    event.target.classList.add('active');
+    try {
+        const source = event.target.dataset.source;
+        currentSourceFilter = source;
+        
+        // Update active button
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
     
     // Filter charts
     const chartCards = document.querySelectorAll('.chart-card');
     chartCards.forEach(card => {
-        const sourceLink = card.querySelector('.source-link');
-        const cardSource = sourceLink.textContent.includes('SSB') ? 'ssb' : 
-                          sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' :
-                          sourceLink.textContent.includes('NVE') ? 'nve' : 'static';
-        
-        if (source === 'all' || cardSource === source) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
+        try {
+            const sourceLink = card.querySelector('.source-link');
+            
+            // Skip cards that don't have source link
+            if (!sourceLink) {
+                console.warn('Chart card missing source link for filtering:', card);
+                return;
+            }
+            
+            const cardSource = sourceLink.textContent.includes('SSB') ? 'ssb' : 
+                              sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' :
+                              sourceLink.textContent.includes('NVE') ? 'nve' : 'static';
+            
+            if (source === 'all' || cardSource === source) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        } catch (cardError) {
+            console.warn('Error processing chart card during filtering:', cardError, card);
+            // Continue with other cards
         }
     });
     
@@ -856,26 +888,36 @@ function handleSourceFilter(event) {
             });
         }
     }, 100); // Small delay to ensure DOM updates are complete
+    } catch (filterError) {
+        console.error('Error in source filter function:', filterError);
+        // Don't show global error for filter issues
+    }
 }
 
 /**
  * Sort charts alphabetically by default
  */
 function sortChartsAlphabetically() {
-    const chartGrid = document.querySelector('.chart-grid');
-    const chartCards = Array.from(document.querySelectorAll('.chart-card'));
-    
-    // Sort alphabetically
-    chartCards.sort((a, b) => {
-        const titleA = a.querySelector('h3').textContent;
-        const titleB = b.querySelector('h3').textContent;
-        return titleA.localeCompare(titleB);
-    });
-    
-    // Re-append cards in new order
-    chartCards.forEach(card => {
-        chartGrid.appendChild(card);
-    });
+    try {
+        const chartGrid = document.querySelector('.chart-grid');
+        const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+        
+        // Sort alphabetically
+        chartCards.sort((a, b) => {
+            try {
+                const titleA = a.querySelector('h3')?.textContent || '';
+                const titleB = b.querySelector('h3')?.textContent || '';
+                return titleA.localeCompare(titleB);
+            } catch (sortError) {
+                console.warn('Error sorting chart cards:', sortError);
+                return 0; // Keep original order if sorting fails
+            }
+        });
+        
+        // Re-append cards in new order
+        chartCards.forEach(card => {
+            chartGrid.appendChild(card);
+        });
     
     // Ensure charts maintain proper height constraints after sorting
     setTimeout(() => {
@@ -906,40 +948,55 @@ function sortChartsAlphabetically() {
             });
         }
     }, 100);
+    } catch (sortError) {
+        console.error('Error in sortChartsAlphabetically function:', sortError);
+        // Don't show global error for sorting issues
+    }
 }
 
 /**
  * Toggle alphabetical sorting
  */
 function toggleSort() {
-    const sortToggle = document.getElementById('sortToggle');
-    const chartGrid = document.querySelector('.chart-grid');
-    const chartCards = Array.from(document.querySelectorAll('.chart-card'));
-    
-    if (sortToggle.textContent === 'A-Z') {
-        // Sort reverse alphabetically
-        chartCards.sort((a, b) => {
-            const titleA = a.querySelector('h3').textContent;
-            const titleB = b.querySelector('h3').textContent;
-            return titleB.localeCompare(titleA);
+    try {
+        const sortToggle = document.getElementById('sortToggle');
+        const chartGrid = document.querySelector('.chart-grid');
+        const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+        
+        if (sortToggle.textContent === 'A-Z') {
+            // Sort reverse alphabetically
+            chartCards.sort((a, b) => {
+                try {
+                    const titleA = a.querySelector('h3')?.textContent || '';
+                    const titleB = b.querySelector('h3')?.textContent || '';
+                    return titleB.localeCompare(titleA);
+                } catch (sortError) {
+                    console.warn('Error sorting chart cards:', sortError);
+                    return 0; // Keep original order if sorting fails
+                }
+            });
+            sortToggle.textContent = 'Z-A';
+            sortToggle.classList.add('active');
+        } else {
+            // Sort alphabetically
+            chartCards.sort((a, b) => {
+                try {
+                    const titleA = a.querySelector('h3')?.textContent || '';
+                    const titleB = b.querySelector('h3')?.textContent || '';
+                    return titleA.localeCompare(titleB);
+                } catch (sortError) {
+                    console.warn('Error sorting chart cards:', sortError);
+                    return 0; // Keep original order if sorting fails
+                }
+            });
+            sortToggle.textContent = 'A-Z';
+            sortToggle.classList.remove('active');
+        }
+        
+        // Re-append cards in new order
+        chartCards.forEach(card => {
+            chartGrid.appendChild(card);
         });
-        sortToggle.textContent = 'Z-A';
-        sortToggle.classList.add('active');
-    } else {
-        // Sort alphabetically
-        chartCards.sort((a, b) => {
-            const titleA = a.querySelector('h3').textContent;
-            const titleB = b.querySelector('h3').textContent;
-            return titleA.localeCompare(titleB);
-        });
-        sortToggle.textContent = 'A-Z';
-        sortToggle.classList.remove('active');
-    }
-    
-    // Re-append cards in new order
-    chartCards.forEach(card => {
-        chartGrid.appendChild(card);
-    });
     
     // Ensure charts maintain proper height constraints after sorting
     setTimeout(() => {
@@ -970,62 +1027,77 @@ function toggleSort() {
             });
         }
     }, 100);
+    } catch (toggleError) {
+        console.error('Error in toggleSort function:', toggleError);
+        // Don't show global error for toggle issues
+    }
 }
 
 /**
  * Toggle alphabetical sorting for header sort button
  */
 function toggleHeaderSort() {
-    const headerSortToggle = document.getElementById('headerSortToggle');
-    const sortIcon = document.getElementById('sortIcon');
-    const chartGrid = document.querySelector('.chart-grid');
-    const chartCards = Array.from(document.querySelectorAll('.chart-card'));
-    
-    // Check current state by looking at the icon (using a unique path segment)
-    const isAscending = sortIcon.innerHTML.includes('M20 8h-5');
-    
-    if (isAscending) {
-        // Sort reverse alphabetically (Z-A)
-        chartCards.sort((a, b) => {
-            const titleA = a.querySelector('h3').textContent;
-            const titleB = b.querySelector('h3').textContent;
-            return titleB.localeCompare(titleA);
-        });
+    try {
+        const headerSortToggle = document.getElementById('headerSortToggle');
+        const sortIcon = document.getElementById('sortIcon');
+        const chartGrid = document.querySelector('.chart-grid');
+        const chartCards = Array.from(document.querySelectorAll('.chart-card'));
         
-        // Update icon to Z-A (arrow-down-z-a)
-        sortIcon.innerHTML = `
-            <path d="m3 16 4 4 4-4"/>
-            <path d="M7 4v16"/>
-            <path d="M15 4h5l-5 6h5"/>
-            <path d="M15 20v-3.5a2.5 2.5 0 0 1 5 0V20"/>
-            <path d="M20 18h-5"/>
-        `;
-        headerSortToggle.setAttribute('aria-label', 'Sort reverse alphabetically');
-        headerSortToggle.setAttribute('title', 'Sort reverse alphabetically');
-    } else {
-        // Sort alphabetically (A-Z)
-        chartCards.sort((a, b) => {
-            const titleA = a.querySelector('h3').textContent;
-            const titleB = b.querySelector('h3').textContent;
-            return titleA.localeCompare(titleB);
-        });
+        // Check current state by looking at the icon (using a unique path segment)
+        const isAscending = sortIcon.innerHTML.includes('M20 8h-5');
         
-        // Update icon to A-Z (arrow-up-a-z)
-        sortIcon.innerHTML = `
-            <path d="m3 8 4-4 4 4"/>
-            <path d="M7 4v16"/>
-            <path d="M20 8h-5"/>
-            <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/>
-            <path d="M15 14h5l-5 6h5"/>
-        `;
-        headerSortToggle.setAttribute('aria-label', 'Sort alphabetically');
-        headerSortToggle.setAttribute('title', 'Sort alphabetically');
-    }
-    
-    // Re-append cards in new order
-    chartCards.forEach(card => {
-        chartGrid.appendChild(card);
-    });
+        if (isAscending) {
+            // Sort reverse alphabetically (Z-A)
+            chartCards.sort((a, b) => {
+                try {
+                    const titleA = a.querySelector('h3')?.textContent || '';
+                    const titleB = b.querySelector('h3')?.textContent || '';
+                    return titleB.localeCompare(titleA);
+                } catch (sortError) {
+                    console.warn('Error sorting chart cards:', sortError);
+                    return 0; // Keep original order if sorting fails
+                }
+            });
+            
+            // Update icon to Z-A (arrow-down-z-a)
+            sortIcon.innerHTML = `
+                <path d="m3 16 4 4 4-4"/>
+                <path d="M7 4v16"/>
+                <path d="M15 4h5l-5 6h5"/>
+                <path d="M15 20v-3.5a2.5 2.5 0 0 1 5 0V20"/>
+                <path d="M20 18h-5"/>
+            `;
+            headerSortToggle.setAttribute('aria-label', 'Sort reverse alphabetically');
+            headerSortToggle.setAttribute('title', 'Sort reverse alphabetically');
+        } else {
+            // Sort alphabetically (A-Z)
+            chartCards.sort((a, b) => {
+                try {
+                    const titleA = a.querySelector('h3')?.textContent || '';
+                    const titleB = b.querySelector('h3')?.textContent || '';
+                    return titleA.localeCompare(titleB);
+                } catch (sortError) {
+                    console.warn('Error sorting chart cards:', sortError);
+                    return 0; // Keep original order if sorting fails
+                }
+            });
+            
+            // Update icon to A-Z (arrow-up-a-z)
+            sortIcon.innerHTML = `
+                <path d="m3 8 4-4 4 4"/>
+                <path d="M7 4v16"/>
+                <path d="M20 8h-5"/>
+                <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/>
+                <path d="M15 14h5l-5 6h5"/>
+            `;
+            headerSortToggle.setAttribute('aria-label', 'Sort alphabetically');
+            headerSortToggle.setAttribute('title', 'Sort alphabetically');
+        }
+        
+        // Re-append cards in new order
+        chartCards.forEach(card => {
+            chartGrid.appendChild(card);
+        });
     
     // Ensure charts maintain proper height constraints after sorting
     setTimeout(() => {
@@ -1056,6 +1128,10 @@ function toggleHeaderSort() {
             });
         }
     }, 100);
+    } catch (headerSortError) {
+        console.error('Error in toggleHeaderSort function:', headerSortError);
+        // Don't show global error for header sort issues
+    }
 }
 
 /**

@@ -525,6 +525,9 @@ export async function initializeApp() {
         // Add info buttons to all charts
         addInfoButtonsToCharts();
         
+        // Add source links to OWID charts
+        addSourceLinksToOWIDCharts();
+        
         console.log('Application initialization complete!');
         
     } catch (error) {
@@ -1805,5 +1808,52 @@ function openChartFullscreen(card) {
 
 
 // Export functions for use in other scripts
+
+/**
+ * Add source links to all OWID charts
+ */
+function addSourceLinksToOWIDCharts() {
+    const owidCharts = document.querySelectorAll('.chart-card[data-source="static"]');
+    
+    owidCharts.forEach(chartCard => {
+        const subtitleRow = chartCard.querySelector('.chart-subtitle-row');
+        if (!subtitleRow) return;
+        
+        let subtitleActions = subtitleRow.querySelector('.subtitle-actions');
+        
+        // Create subtitle-actions if it doesn't exist
+        if (!subtitleActions) {
+            subtitleActions = document.createElement('div');
+            subtitleActions.className = 'subtitle-actions';
+            subtitleRow.appendChild(subtitleActions);
+        }
+        
+        // Check if source link already exists
+        const existingSourceLink = subtitleActions.querySelector('.source-link');
+        if (existingSourceLink) {
+            // Update existing source link to point to main OWID homepage
+            existingSourceLink.href = 'https://ourworldindata.org/';
+            existingSourceLink.textContent = 'Our World in Data';
+        } else {
+            // Create new source link
+            const sourceLink = document.createElement('a');
+            sourceLink.href = 'https://ourworldindata.org/';
+            sourceLink.target = '_blank';
+            sourceLink.className = 'source-link';
+            sourceLink.textContent = 'Our World in Data';
+            subtitleActions.appendChild(sourceLink);
+        }
+    });
+}
+
+// Initialize source links when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    addSourceLinksToOWIDCharts();
+});
+
+// Also add source links after charts are loaded
+document.addEventListener('chartsLoaded', () => {
+    addSourceLinksToOWIDCharts();
+});
 
 

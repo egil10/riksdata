@@ -123,6 +123,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-oda-per-capita') {
             // Handle Norway ODA per capita charts
             return await loadOdaChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-internet-usage') {
+            // Handle Norway internet usage charts
+            return await loadInternetUsageChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2215,6 +2218,39 @@ async function loadOdaChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load ODA chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway internet usage charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Internet usage data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadInternetUsageChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading internet usage chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the internet usage chart
+        const { renderInternetUsageChart } = await import('./charts/norway-internet-usage.js');
+        const chart = await renderInternetUsageChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered internet usage chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render internet usage chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load internet usage chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

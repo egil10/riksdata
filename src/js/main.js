@@ -304,7 +304,10 @@ const chartConfigs = [
     { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill' },
     
     // Norway ODA (Official Development Assistance) charts
-    { id: 'norway-oda-per-capita-chart', url: './data/static/norway_oda_per_capita.json', title: 'Norway ODA per Capita', type: 'norway-oda-per-capita' }];
+    { id: 'norway-oda-per-capita-chart', url: './data/static/norway_oda_per_capita.json', title: 'Norway ODA per Capita', type: 'norway-oda-per-capita' },
+    
+    // Norway Internet Usage charts
+    { id: 'norway-internet-usage-chart', url: './data/static/norway_internet_use.json', title: 'Norway Internet Usage', type: 'norway-internet-usage' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

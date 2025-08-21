@@ -343,7 +343,28 @@ const chartConfigs = [
     { id: 'norway-median-age-chart', url: './data/static/norway_median_age.json', title: 'Norway Median Age', type: 'norway-median-age' },
     
     // Norway Fertility Rate Period charts
-    { id: 'norway-fertility-rate-chart', url: './data/static/norway_fertility_rate_period.json', title: 'Norway Fertility Rate', type: 'norway-fertility-rate' }];
+    { id: 'norway-fertility-rate-chart', url: './data/static/norway_fertility_rate_period.json', title: 'Norway Fertility Rate', type: 'norway-fertility-rate' },
+    
+    // Norway Mean Income per Day charts
+    { id: 'norway-mean-income-per-day-chart', url: './data/static/norway_mean_income_per_day.json', title: 'Norway Mean Income per Day', type: 'norway-mean-income-per-day' },
+    
+    // Norway Human Development Index charts
+    { id: 'norway-hdi-chart', url: './data/static/norway_hdi.json', title: 'Norway Human Development Index', type: 'norway-hdi' },
+    
+    // Norway Armed Forces Personnel charts
+    { id: 'norway-armed-forces-personnel-chart', url: './data/static/norway_armed_forces_personnel.json', title: 'Norway Armed Forces Personnel', type: 'norway-armed-forces-personnel' },
+    
+    // Norway Alcohol Consumption per Capita charts
+    { id: 'norway-alcohol-consumption-chart', url: './data/static/norway_alcohol_consumption_per_capita.json', title: 'Norway Alcohol Consumption per Capita', type: 'norway-alcohol-consumption' },
+    
+    // Norway Trade Share of GDP charts
+    { id: 'norway-trade-share-gdp-chart', url: './data/static/norway_trade_share_gdp.json', title: 'Norway Trade Share of GDP', type: 'norway-trade-share-gdp' },
+    
+    // Norway Energy Use per Capita charts
+    { id: 'norway-energy-use-per-capita-chart', url: './data/static/norway_energy_use_per_capita.json', title: 'Norway Energy Use per Capita', type: 'norway-energy-use-per-capita' },
+    
+    // Norway Marriage Rate charts
+    { id: 'norway-marriage-rate-chart', url: './data/static/norway_marriage_rate.json', title: 'Norway Marriage Rate', type: 'norway-marriage-rate' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

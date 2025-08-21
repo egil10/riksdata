@@ -162,6 +162,27 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-fertility-rate') {
             // Handle Norway fertility rate charts
             return await loadFertilityRateChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-mean-income-per-day') {
+            // Handle Norway mean income per day charts
+            return await loadMeanIncomePerDayChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-hdi') {
+            // Handle Norway human development index charts
+            return await loadHDIChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-armed-forces-personnel') {
+            // Handle Norway armed forces personnel charts
+            return await loadArmedForcesPersonnelChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-alcohol-consumption') {
+            // Handle Norway alcohol consumption charts
+            return await loadAlcoholConsumptionChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-trade-share-gdp') {
+            // Handle Norway trade share GDP charts
+            return await loadTradeShareGDPChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-energy-use-per-capita') {
+            // Handle Norway energy use per capita charts
+            return await loadEnergyUsePerCapitaChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-marriage-rate') {
+            // Handle Norway marriage rate charts
+            return await loadMarriageRateChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2683,6 +2704,237 @@ async function loadFertilityRateChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load fertility rate chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway mean income per day charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Mean income per day data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadMeanIncomePerDayChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading mean income per day chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the mean income per day chart
+        const { renderMeanIncomePerDayChart } = await import('./charts/norway-mean-income-per-day.js');
+        const chart = await renderMeanIncomePerDayChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered mean income per day chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render mean income per day chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load mean income per day chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway human development index charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - HDI data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadHDIChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading HDI chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the HDI chart
+        const { renderHDIChart } = await import('./charts/norway-hdi.js');
+        const chart = await renderHDIChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered HDI chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render HDI chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load HDI chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway armed forces personnel charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Armed forces personnel data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadArmedForcesPersonnelChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading armed forces personnel chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the armed forces personnel chart
+        const { renderArmedForcesPersonnelChart } = await import('./charts/norway-armed-forces-personnel.js');
+        const chart = await renderArmedForcesPersonnelChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered armed forces personnel chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render armed forces personnel chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load armed forces personnel chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway alcohol consumption charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Alcohol consumption data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadAlcoholConsumptionChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading alcohol consumption chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the alcohol consumption chart
+        const { renderAlcoholConsumptionChart } = await import('./charts/norway-alcohol-consumption.js');
+        const chart = await renderAlcoholConsumptionChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered alcohol consumption chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render alcohol consumption chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load alcohol consumption chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway trade share GDP charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Trade share GDP data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadTradeShareGDPChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading trade share GDP chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the trade share GDP chart
+        const { renderTradeShareGDPChart } = await import('./charts/norway-trade-share-gdp.js');
+        const chart = await renderTradeShareGDPChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered trade share GDP chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render trade share GDP chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load trade share GDP chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway energy use per capita charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Energy use per capita data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadEnergyUsePerCapitaChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading energy use per capita chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the energy use per capita chart
+        const { renderEnergyUsePerCapitaChart } = await import('./charts/norway-energy-use-per-capita.js');
+        const chart = await renderEnergyUsePerCapitaChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered energy use per capita chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render energy use per capita chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load energy use per capita chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway marriage rate charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Marriage rate data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadMarriageRateChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading marriage rate chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the marriage rate chart
+        const { renderMarriageRateChart } = await import('./charts/norway-marriage-rate.js');
+        const chart = await renderMarriageRateChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered marriage rate chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render marriage rate chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load marriage rate chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

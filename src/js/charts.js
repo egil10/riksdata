@@ -2819,8 +2819,8 @@ async function loadHDIChart(canvasId, apiUrl, chartTitle, chartType) {
         console.log(`Loading HDI chart: ${canvasId} - ${chartTitle}`);
         
         // Import and render the HDI chart
-        const { renderHDIChart } = await import('./charts/norway-hdi.js');
-        const chart = await renderHDIChart(canvasId);
+        const { renderHdiChart } = await import('./charts/norway-hdi.js');
+        const chart = await renderHdiChart(canvasId);
         
         if (chart) {
             console.log(`Successfully rendered HDI chart: ${canvasId}`);
@@ -2918,8 +2918,8 @@ async function loadTradeShareGDPChart(canvasId, apiUrl, chartTitle, chartType) {
         console.log(`Loading trade share GDP chart: ${canvasId} - ${chartTitle}`);
         
         // Import and render the trade share GDP chart
-        const { renderTradeShareGDPChart } = await import('./charts/norway-trade-share-gdp.js');
-        const chart = await renderTradeShareGDPChart(canvasId);
+        const { renderTradeShareGdpChart } = await import('./charts/norway-trade-share-gdp.js');
+        const chart = await renderTradeShareGdpChart(canvasId);
         
         if (chart) {
             console.log(`Successfully rendered trade share GDP chart: ${canvasId}`);

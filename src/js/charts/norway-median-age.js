@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchMedianAgeData() {
     try {
-        const response = await fetch('./data/static/norway_median_age.json');
+        const response = await fetch('/data/static/norway_median_age.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

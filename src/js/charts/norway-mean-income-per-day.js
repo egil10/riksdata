@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchMeanIncomePerDayData() {
     try {
-        const response = await fetch('./data/static/norway_mean_income_per_day.json');
+        const response = await fetch('/data/static/norway_mean_income_per_day.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

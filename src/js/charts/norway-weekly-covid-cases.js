@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchWeeklyCovidCasesData() {
     try {
-        const response = await fetch('./data/static/norway_weekly_covid_cases.json');
+        const response = await fetch('/data/static/norway_weekly_covid_cases.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

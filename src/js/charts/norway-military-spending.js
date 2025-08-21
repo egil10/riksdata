@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchMilitarySpendingData() {
     try {
-        const response = await fetch('./data/static/norway_military_spending.json');
+        const response = await fetch('/data/static/norway_military_spending.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

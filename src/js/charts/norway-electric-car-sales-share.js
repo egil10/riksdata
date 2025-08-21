@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchElectricCarSalesShareData() {
     try {
-        const response = await fetch('./data/static/norway_electric_car_sales_share.json');
+        const response = await fetch('/data/static/norway_electric_car_sales_share.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

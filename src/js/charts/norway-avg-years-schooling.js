@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchAvgYearsSchoolingData() {
     try {
-        const response = await fetch('./data/static/norway_avg_years_schooling.json');
+        const response = await fetch('/data/static/norway_avg_years_schooling.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

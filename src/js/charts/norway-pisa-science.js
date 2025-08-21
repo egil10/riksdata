@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchPisaScienceData() {
     try {
-        const response = await fetch('./data/static/norway_pisa_science.json');
+        const response = await fetch('/data/static/norway_pisa_science.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

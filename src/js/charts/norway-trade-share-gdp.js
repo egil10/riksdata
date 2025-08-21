@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchTradeShareGdpData() {
     try {
-        const response = await fetch('./data/static/norway_trade_share_gdp.json');
+        const response = await fetch('/data/static/norway_trade_share_gdp.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

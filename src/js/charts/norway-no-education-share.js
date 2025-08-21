@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchNoEducationShareData() {
     try {
-        const response = await fetch('./data/static/norway_no_education_share.json');
+        const response = await fetch('/data/static/norway_no_education_share.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

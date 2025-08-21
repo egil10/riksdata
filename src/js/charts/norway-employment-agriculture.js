@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchEmploymentAgricultureData() {
     try {
-        const response = await fetch('./data/static/norway_employment_in_agriculture_share.json');
+        const response = await fetch('/data/static/norway_employment_in_agriculture_share.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

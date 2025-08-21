@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchMaternalMortalityData() {
     try {
-        const response = await fetch('./data/static/norway_maternal_mortality.json');
+        const response = await fetch('/data/static/norway_maternal_mortality.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -1487,6 +1487,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                                 borderWidth: 2,
                                 borderColor: '#3b82f6',
                                 fill: false,
+                                spanGaps: false,
                                 segment: {
                                     borderColor: (ctx) => {
                                         const xVal = ctx.p0?.parsed?.x;

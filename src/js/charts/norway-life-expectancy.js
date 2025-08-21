@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchLifeExpectancyData() {
     try {
-        const response = await fetch('./data/static/norway_life_expectancy.json');
+        const response = await fetch('/data/static/norway_life_expectancy.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

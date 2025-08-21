@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchWomenParliamentData() {
     try {
-        const response = await fetch('./data/static/norway_women_in_parliament.json');
+        const response = await fetch('/data/static/norway_women_in_parliament.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

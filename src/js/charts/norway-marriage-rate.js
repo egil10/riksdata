@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchMarriageRateData() {
     try {
-        const response = await fetch('./data/static/norway_marriage_rate.json');
+        const response = await fetch('/data/static/norway_marriage_rate.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

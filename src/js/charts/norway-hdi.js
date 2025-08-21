@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchHdiData() {
     try {
-        const response = await fetch('./data/static/norway_hdi.json');
+        const response = await fetch('/data/static/norway_hdi.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

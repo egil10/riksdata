@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchDailyCaloriesData() {
     try {
-        const response = await fetch('./data/static/norway_daily_calories.json');
+        const response = await fetch('/data/static/norway_daily_calories.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

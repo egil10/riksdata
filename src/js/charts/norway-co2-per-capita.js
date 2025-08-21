@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchCo2PerCapitaData() {
     try {
-        const response = await fetch('./data/static/norway_co2_per_capita.json');
+        const response = await fetch('/data/static/norway_co2_per_capita.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

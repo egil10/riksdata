@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchHomicideRateData() {
     try {
-        const response = await fetch('./data/static/norway_homicide_rate.json');
+        const response = await fetch('/data/static/norway_homicide_rate.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

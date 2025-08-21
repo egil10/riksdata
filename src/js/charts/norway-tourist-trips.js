@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchTouristTripsData() {
     try {
-        const response = await fetch('./data/static/norway_tourist_trips.json');
+        const response = await fetch('/data/static/norway_tourist_trips.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

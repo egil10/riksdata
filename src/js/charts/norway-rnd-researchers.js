@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchRndResearchersData() {
     try {
-        const response = await fetch('./data/static/norway_rnd_researchers.json');
+        const response = await fetch('/data/static/norway_rnd_researchers.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

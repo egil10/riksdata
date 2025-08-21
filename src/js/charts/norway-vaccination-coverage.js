@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchVaccinationCoverageData() {
     try {
-        const response = await fetch('./data/static/norway_vaccination_coverage.json');
+        const response = await fetch('/data/static/norway_vaccination_coverage.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

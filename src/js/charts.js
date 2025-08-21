@@ -210,6 +210,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-pisa-reading') {
             // Handle Norway PISA reading charts
             return await loadPisaReadingChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
+            // Handle OWID static data files
+            cachePath = rel(apiUrl);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -287,6 +290,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                     console.warn(`Unknown Norges Bank endpoint in URL: ${apiUrl}`);
                     return null;
                 }
+            } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
+                // Handle OWID static data files
+                parsedData = parseStaticData(data, chartTitle);
             } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
                 // Handle static data files
                 if (apiUrl.includes('oseax-osebx.json')) {

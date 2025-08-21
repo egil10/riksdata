@@ -522,7 +522,8 @@ export async function initializeApp() {
         // Set up ellipsis tooltips for truncated chart titles
         setupEllipsisTooltips();
         
-
+        // Add info buttons to all charts
+        addInfoButtonsToCharts();
         
         console.log('Application initialization complete!');
         

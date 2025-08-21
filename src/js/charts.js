@@ -148,8 +148,16 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 return null;
             }
 
+            // Filter data from 1945 onwards for Norway charts
+            const filteredData = parsedData.filter(item => {
+                const year = new Date(item.date).getFullYear();
+                return year >= 1945;
+            });
+            
+            console.log(`Filtered data for ${chartTitle} (1945 onwards):`, filteredData.length, 'data points');
+
             // Register data for export
-            const exportData = parsedData.map(d => ({
+            const exportData = filteredData.map(d => ({
                 date: d.date,
                 value: d.value,
                 series: chartTitle
@@ -157,7 +165,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             registerChartData(canvasId, exportData);
 
             // Render the chart using the main renderChart function
-            renderChart(canvas, parsedData, chartTitle, 'line');
+            renderChart(canvas, filteredData, chartTitle, 'line');
             
             // Check if chart was created successfully by looking at the canvas.chart property
             if (canvas.chart) {
@@ -288,17 +296,14 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
         console.log(`Sample data for ${chartTitle}:`, parsedData.slice(0, 3));
         
-        // Filter data from 1945 onwards, but be more lenient for charts with limited data
+        // Filter data from 1945 onwards for all charts
         const filteredData = parsedData.filter(item => {
             const year = new Date(item.date).getFullYear();
             return year >= 1945;
         });
 
-        // If we have very few data points, use all data regardless of year
-        // This helps with charts that only have recent data (like weekly salmon exports)
-        const finalFiltered = filteredData.length >= 1 ? filteredData : 
-                             parsedData.length >= 1 ? parsedData : 
-                             filteredData;
+        // Use filtered data (1945 onwards) for all charts
+        const finalFiltered = filteredData;
 
         // Aggregate by month for bar charts
         const finalData = chartType === 'bar' ? aggregateDataByMonth(finalFiltered) : finalFiltered;

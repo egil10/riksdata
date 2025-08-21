@@ -138,6 +138,12 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-women-parliament') {
             // Handle Norway women in parliament charts
             return await loadWomenParliamentChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-co2-per-capita') {
+            // Handle Norway CO2 per capita charts
+            return await loadCo2PerCapitaChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-vaccination-coverage') {
+            // Handle Norway vaccination coverage charts
+            return await loadVaccinationCoverageChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2395,6 +2401,72 @@ async function loadWomenParliamentChart(canvasId, apiUrl, chartTitle, chartType)
         
     } catch (error) {
         console.error(`Failed to load women in parliament chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway CO2 per capita charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - CO2 per capita data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadCo2PerCapitaChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading CO2 per capita chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the CO2 per capita chart
+        const { renderCo2PerCapitaChart } = await import('./charts/norway-co2-per-capita.js');
+        const chart = await renderCo2PerCapitaChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered CO2 per capita chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render CO2 per capita chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load CO2 per capita chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway vaccination coverage charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Vaccination coverage data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadVaccinationCoverageChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading vaccination coverage chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the vaccination coverage chart
+        const { renderVaccinationCoverageChart } = await import('./charts/norway-vaccination-coverage.js');
+        const chart = await renderVaccinationCoverageChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered vaccination coverage chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render vaccination coverage chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load vaccination coverage chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

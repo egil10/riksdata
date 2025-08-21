@@ -319,7 +319,13 @@ const chartConfigs = [
     { id: 'norway-military-spending-chart', url: './data/static/norway_military_spending.json', title: 'Norway Military Spending', type: 'norway-military-spending' },
     
     // Norway Women in Parliament charts (V-Dem)
-    { id: 'norway-women-parliament-chart', url: './data/static/norway_women_in_parliament.json', title: 'Norway Women in Parliament', type: 'norway-women-parliament' }];
+    { id: 'norway-women-parliament-chart', url: './data/static/norway_women_in_parliament.json', title: 'Norway Women in Parliament', type: 'norway-women-parliament' },
+    
+    // Norway CO2 Emissions per Capita charts
+    { id: 'norway-co2-per-capita-chart', url: './data/static/norway_co2_per_capita.json', title: 'Norway CO₂ Emissions per Capita', type: 'norway-co2-per-capita' },
+    
+    // Norway Vaccination Coverage charts
+    { id: 'norway-vaccination-coverage-chart', url: './data/static/norway_vaccination_coverage.json', title: 'Norway Vaccination Coverage', type: 'norway-vaccination-coverage' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

@@ -304,94 +304,94 @@ const chartConfigs = [
     { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill' },
     
     // Norway ODA (Official Development Assistance) charts
-    { id: 'norway-oda-per-capita-chart', url: './data/static/norway_oda_per_capita.json', title: 'Norway ODA per Capita', type: 'norway-oda-per-capita' },
+    { id: 'norway-oda-per-capita-chart', url: '/data/static/norway_oda_per_capita.json', title: 'Norway ODA per Capita', type: 'norway-oda-per-capita' },
     
     // Norway Internet Usage charts
-    { id: 'norway-internet-usage-chart', url: './data/static/norway_internet_use.json', title: 'Norway Internet Usage', type: 'norway-internet-usage' },
+    { id: 'norway-internet-usage-chart', url: '/data/static/norway_internet_use.json', title: 'Norway Internet Usage', type: 'norway-internet-usage' },
     
     // Norway Homicide Rate charts
-    { id: 'norway-homicide-rate-chart', url: './data/static/norway_homicide_rate.json', title: 'Norway Homicide Rate', type: 'norway-homicide-rate' },
+    { id: 'norway-homicide-rate-chart', url: '/data/static/norway_homicide_rate.json', title: 'Norway Homicide Rate', type: 'norway-homicide-rate' },
     
     // Norway Maternal Mortality charts
-    { id: 'norway-maternal-mortality-chart', url: './data/static/norway_maternal_mortality.json', title: 'Norway Maternal Mortality', type: 'norway-maternal-mortality' },
+    { id: 'norway-maternal-mortality-chart', url: '/data/static/norway_maternal_mortality.json', title: 'Norway Maternal Mortality', type: 'norway-maternal-mortality' },
     
     // Norway Military Spending charts
-    { id: 'norway-military-spending-chart', url: './data/static/norway_military_spending.json', title: 'Norway Military Spending', type: 'norway-military-spending' },
+    { id: 'norway-military-spending-chart', url: '/data/static/norway_military_spending.json', title: 'Norway Military Spending', type: 'norway-military-spending' },
     
     // Norway Women in Parliament charts (V-Dem)
-    { id: 'norway-women-parliament-chart', url: './data/static/norway_women_in_parliament.json', title: 'Norway Women in Parliament', type: 'norway-women-parliament' },
+    { id: 'norway-women-parliament-chart', url: '/data/static/norway_women_in_parliament.json', title: 'Norway Women in Parliament', type: 'norway-women-parliament' },
     
     // Norway CO2 Emissions per Capita charts
-    { id: 'norway-co2-per-capita-chart', url: './data/static/norway_co2_per_capita.json', title: 'Norway CO₂ Emissions per Capita', type: 'norway-co2-per-capita' },
+    { id: 'norway-co2-per-capita-chart', url: '/data/static/norway_co2_per_capita.json', title: 'Norway CO₂ Emissions per Capita', type: 'norway-co2-per-capita' },
     
     // Norway Vaccination Coverage charts
-    { id: 'norway-vaccination-coverage-chart', url: './data/static/norway_vaccination_coverage.json', title: 'Norway Vaccination Coverage', type: 'norway-vaccination-coverage' },
+    { id: 'norway-vaccination-coverage-chart', url: '/data/static/norway_vaccination_coverage.json', title: 'Norway Vaccination Coverage', type: 'norway-vaccination-coverage' },
     
     // Norway Child Mortality charts
-    { id: 'norway-child-mortality-chart', url: './data/static/norway_child_mortality.json', title: 'Norway Child Mortality', type: 'norway-child-mortality' },
+    { id: 'norway-child-mortality-chart', url: '/data/static/norway_child_mortality.json', title: 'Norway Child Mortality', type: 'norway-child-mortality' },
     
     // Norway Life Expectancy charts
-    { id: 'norway-life-expectancy-chart', url: './data/static/norway_life_expectancy.json', title: 'Norway Life Expectancy', type: 'norway-life-expectancy' },
+    { id: 'norway-life-expectancy-chart', url: '/data/static/norway_life_expectancy.json', title: 'Norway Life Expectancy', type: 'norway-life-expectancy' },
     
     // Norway Employment in Agriculture Share charts
-    { id: 'norway-employment-agriculture-chart', url: './data/static/norway_employment_in_agriculture_share.json', title: 'Norway Employment in Agriculture Share', type: 'norway-employment-agriculture' },
+    { id: 'norway-employment-agriculture-chart', url: '/data/static/norway_employment_in_agriculture_share.json', title: 'Norway Employment in Agriculture Share', type: 'norway-employment-agriculture' },
     
     // Norway Daily Calories charts
-    { id: 'norway-daily-calories-chart', url: './data/static/norway_daily_calories.json', title: 'Norway Daily Calories', type: 'norway-daily-calories' },
+    { id: 'norway-daily-calories-chart', url: '/data/static/norway_daily_calories.json', title: 'Norway Daily Calories', type: 'norway-daily-calories' },
     
     // Norway Median Age charts
-    { id: 'norway-median-age-chart', url: './data/static/norway_median_age.json', title: 'Norway Median Age', type: 'norway-median-age' },
+    { id: 'norway-median-age-chart', url: '/data/static/norway_median_age.json', title: 'Norway Median Age', type: 'norway-median-age' },
     
     // Norway Fertility Rate Period charts
-    { id: 'norway-fertility-rate-chart', url: './data/static/norway_fertility_rate_period.json', title: 'Norway Fertility Rate', type: 'norway-fertility-rate' },
+    { id: 'norway-fertility-rate-chart', url: '/data/static/norway_fertility_rate_period.json', title: 'Norway Fertility Rate', type: 'norway-fertility-rate' },
     
     // Norway Mean Income per Day charts
-    { id: 'norway-mean-income-per-day-chart', url: './data/static/norway_mean_income_per_day.json', title: 'Norway Mean Income per Day', type: 'norway-mean-income-per-day' },
+    { id: 'norway-mean-income-per-day-chart', url: '/data/static/norway_mean_income_per_day.json', title: 'Norway Mean Income per Day', type: 'norway-mean-income-per-day' },
     
     // Norway Human Development Index charts
-    { id: 'norway-hdi-chart', url: './data/static/norway_hdi.json', title: 'Norway Human Development Index', type: 'norway-hdi' },
+    { id: 'norway-hdi-chart', url: '/data/static/norway_hdi.json', title: 'Norway Human Development Index', type: 'norway-hdi' },
     
     // Norway Armed Forces Personnel charts
-    { id: 'norway-armed-forces-personnel-chart', url: './data/static/norway_armed_forces_personnel.json', title: 'Norway Armed Forces Personnel', type: 'norway-armed-forces-personnel' },
+    { id: 'norway-armed-forces-personnel-chart', url: '/data/static/norway_armed_forces_personnel.json', title: 'Norway Armed Forces Personnel', type: 'norway-armed-forces-personnel' },
     
     // Norway Alcohol Consumption per Capita charts
-    { id: 'norway-alcohol-consumption-chart', url: './data/static/norway_alcohol_consumption_per_capita.json', title: 'Norway Alcohol Consumption per Capita', type: 'norway-alcohol-consumption' },
+    { id: 'norway-alcohol-consumption-chart', url: '/data/static/norway_alcohol_consumption_per_capita.json', title: 'Norway Alcohol Consumption per Capita', type: 'norway-alcohol-consumption' },
     
     // Norway Trade Share of GDP charts
-    { id: 'norway-trade-share-gdp-chart', url: './data/static/norway_trade_share_gdp.json', title: 'Norway Trade Share of GDP', type: 'norway-trade-share-gdp' },
+    { id: 'norway-trade-share-gdp-chart', url: '/data/static/norway_trade_share_gdp.json', title: 'Norway Trade Share of GDP', type: 'norway-trade-share-gdp' },
     
     // Norway Energy Use per Capita charts
-    { id: 'norway-energy-use-per-capita-chart', url: './data/static/norway_energy_use_per_capita.json', title: 'Norway Energy Use per Capita', type: 'norway-energy-use-per-capita' },
+    { id: 'norway-energy-use-per-capita-chart', url: '/data/static/norway_energy_use_per_capita.json', title: 'Norway Energy Use per Capita', type: 'norway-energy-use-per-capita' },
     
     // Norway Marriage Rate charts
-    { id: 'norway-marriage-rate-chart', url: './data/static/norway_marriage_rate.json', title: 'Norway Marriage Rate', type: 'norway-marriage-rate' },
+    { id: 'norway-marriage-rate-chart', url: '/data/static/norway_marriage_rate.json', title: 'Norway Marriage Rate', type: 'norway-marriage-rate' },
     
     // Norway Electric Car Sales Share charts
-    { id: 'norway-electric-car-sales-share-chart', url: './data/static/norway_electric_car_sales_share.json', title: 'Norway Electric Car Sales Share', type: 'norway-electric-car-sales-share' },
+    { id: 'norway-electric-car-sales-share-chart', url: '/data/static/norway_electric_car_sales_share.json', title: 'Norway Electric Car Sales Share', type: 'norway-electric-car-sales-share' },
     
     // Norway Weekly COVID Cases charts
-    { id: 'norway-weekly-covid-cases-chart', url: './data/static/norway_weekly_covid_cases.json', title: 'Norway Weekly COVID Cases', type: 'norway-weekly-covid-cases' },
+    { id: 'norway-weekly-covid-cases-chart', url: '/data/static/norway_weekly_covid_cases.json', title: 'Norway Weekly COVID Cases', type: 'norway-weekly-covid-cases' },
     
     // Norway Tourist Trips charts
-    { id: 'norway-tourist-trips-chart', url: './data/static/norway_tourist_trips.json', title: 'Norway Tourist Trips', type: 'norway-tourist-trips' },
+    { id: 'norway-tourist-trips-chart', url: '/data/static/norway_tourist_trips.json', title: 'Norway Tourist Trips', type: 'norway-tourist-trips' },
     
     // Norway R&D Researchers charts
-    { id: 'norway-rnd-researchers-chart', url: './data/static/norway_rnd_researchers.json', title: 'Norway R&D Researchers', type: 'norway-rnd-researchers' },
+    { id: 'norway-rnd-researchers-chart', url: '/data/static/norway_rnd_researchers.json', title: 'Norway R&D Researchers', type: 'norway-rnd-researchers' },
     
     // Norway PISA Math charts
-    { id: 'norway-pisa-math-chart', url: './data/static/norway_pisa_math.json', title: 'Norway PISA Math', type: 'norway-pisa-math' },
+    { id: 'norway-pisa-math-chart', url: '/data/static/norway_pisa_math.json', title: 'Norway PISA Math', type: 'norway-pisa-math' },
     
     // Norway No Education Share charts
-    { id: 'norway-no-education-share-chart', url: './data/static/norway_no_education_share.json', title: 'Norway No Education Share', type: 'norway-no-education-share' },
+    { id: 'norway-no-education-share-chart', url: '/data/static/norway_no_education_share.json', title: 'Norway No Education Share', type: 'norway-no-education-share' },
     
     // Norway Average Years Schooling charts
-    { id: 'norway-avg-years-schooling-chart', url: './data/static/norway_avg_years_schooling.json', title: 'Norway Average Years Schooling', type: 'norway-avg-years-schooling' },
+    { id: 'norway-avg-years-schooling-chart', url: '/data/static/norway_avg_years_schooling.json', title: 'Norway Average Years Schooling', type: 'norway-avg-years-schooling' },
     
     // Norway PISA Science charts
-    { id: 'norway-pisa-science-chart', url: './data/static/norway_pisa_science.json', title: 'Norway PISA Science', type: 'norway-pisa-science' },
+    { id: 'norway-pisa-science-chart', url: '/data/static/norway_pisa_science.json', title: 'Norway PISA Science', type: 'norway-pisa-science' },
     
     // Norway PISA Reading charts
-    { id: 'norway-pisa-reading-chart', url: './data/static/norway_pisa_reading.json', title: 'Norway PISA Reading', type: 'norway-pisa-reading' }];
+    { id: 'norway-pisa-reading-chart', url: '/data/static/norway_pisa_reading.json', title: 'Norway PISA Reading', type: 'norway-pisa-reading' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

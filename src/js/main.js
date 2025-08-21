@@ -1843,6 +1843,12 @@ function addSourceLinksToOWIDCharts() {
             sourceLink.textContent = 'Our World in Data';
             subtitleActions.appendChild(sourceLink);
         }
+        
+        // Remove any existing chart-source div (the long text block)
+        const existingChartSource = chartCard.querySelector('.chart-source');
+        if (existingChartSource) {
+            existingChartSource.remove();
+        }
     });
 }
 

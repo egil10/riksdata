@@ -166,7 +166,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             registerChartData(canvasId, exportData);
 
             // Render the chart using the main renderChart function
-            renderChart(canvas, filteredData, chartTitle, 'line', sourceInfo);
+            renderChart(canvas, filteredData, chartTitle, 'line');
             
             // Check if chart was created successfully by looking at the canvas.chart property
             if (canvas.chart) {
@@ -1427,7 +1427,7 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
  * @param {string} chartType - Chart type
  * @param {Object} sourceInfo - Source information object
  */
-export function renderChart(canvas, data, title, chartType = 'line', sourceInfo = null) {
+export function renderChart(canvas, data, title, chartType = 'line') {
     console.log(`Rendering chart: ${title} with ${data.length} data points`);
     // Check if Chart.js is available
     if (typeof Chart === 'undefined') {
@@ -1788,10 +1788,7 @@ export function renderChart(canvas, data, title, chartType = 'line', sourceInfo 
     }
     window.chartInstances[canvas.id] = canvas.chart;
 
-    // Add source information if available
-    if (sourceInfo) {
-        addSourceInfo(canvas, sourceInfo);
-    }
+
 }
 
 /**
@@ -2359,60 +2356,5 @@ async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
     }
 }
 
-/**
- * Add source information to chart card
- * @param {HTMLElement} canvas - Canvas element
- * @param {Object} sourceInfo - Source information object
- */
-function addSourceInfo(canvas, sourceInfo) {
-    try {
-        const chartCard = canvas.closest('.chart-card');
-        if (!chartCard) return;
 
-        // Check if source info already exists
-        const existingSource = chartCard.querySelector('.chart-source');
-        if (existingSource) return;
-
-        // Create source info element
-        const sourceDiv = document.createElement('div');
-        sourceDiv.className = 'chart-source';
-        sourceDiv.style.cssText = `
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            margin-top: 0.5rem;
-            padding: 0.5rem;
-            background: var(--bg-secondary);
-            border-radius: 0.25rem;
-            border-left: 3px solid var(--accent);
-        `;
-
-        // Extract source text (remove "Source:" prefix if present)
-        let sourceText = sourceInfo.text;
-        if (sourceText.startsWith('Source:')) {
-            sourceText = sourceText.substring(7).trim();
-        }
-
-        // For OWID charts, always use Our World in Data as the source
-        const sourceLink = document.createElement('a');
-        sourceLink.href = 'https://ourworldindata.org/';
-        sourceLink.target = '_blank';
-        sourceLink.rel = 'noopener noreferrer';
-        sourceLink.textContent = 'View Source';
-        sourceLink.style.cssText = `
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            margin-left: 0.5rem;
-        `;
-        
-        sourceDiv.innerHTML = `<span>${sourceText}</span>`;
-        sourceDiv.appendChild(sourceLink);
-
-        // Add to chart card
-        chartCard.appendChild(sourceDiv);
-        console.log(`Added source info for chart: ${canvas.id}`);
-    } catch (error) {
-        console.error('Error adding source info:', error);
-    }
-}
 

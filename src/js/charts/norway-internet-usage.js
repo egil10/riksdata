@@ -8,7 +8,7 @@ import { renderChart } from '../charts.js';
 
 async function fetchInternetUsageData() {
     try {
-        const response = await fetch('./data/static/norway_internet_usage.json');
+        const response = await fetch('./data/static/norway_internet_use.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }

@@ -1832,6 +1832,14 @@ export function parseStaticData(data, chartTitle) {
                     value: item.total
                 }));
             }
+        } else if (chartTitle.toLowerCase().includes('norway') && (chartTitle.toLowerCase().includes('hdi') || chartTitle.toLowerCase().includes('alcohol') || chartTitle.toLowerCase().includes('co2') || chartTitle.toLowerCase().includes('life expectancy') || chartTitle.toLowerCase().includes('child mortality') || chartTitle.toLowerCase().includes('maternal mortality') || chartTitle.toLowerCase().includes('military spending') || chartTitle.toLowerCase().includes('women parliament') || chartTitle.toLowerCase().includes('vaccination coverage') || chartTitle.toLowerCase().includes('internet usage') || chartTitle.toLowerCase().includes('homicide rate') || chartTitle.toLowerCase().includes('oda per capita') || chartTitle.toLowerCase().includes('fertility rate') || chartTitle.toLowerCase().includes('mean income') || chartTitle.toLowerCase().includes('median age') || chartTitle.toLowerCase().includes('daily calories') || chartTitle.toLowerCase().includes('employment agriculture') || chartTitle.toLowerCase().includes('energy use') || chartTitle.toLowerCase().includes('marriage rate') || chartTitle.toLowerCase().includes('electric car') || chartTitle.toLowerCase().includes('covid cases') || chartTitle.toLowerCase().includes('tourist trips') || chartTitle.toLowerCase().includes('rnd researchers') || chartTitle.toLowerCase().includes('pisa') || chartTitle.toLowerCase().includes('no education') || chartTitle.toLowerCase().includes('avg years schooling') || chartTitle.toLowerCase().includes('trade share') || chartTitle.toLowerCase().includes('armed forces'))) {
+            // Parse OWID data (Our World in Data format)
+            if (data.data && Array.isArray(data.data)) {
+                return data.data.map(item => ({
+                    date: new Date(item.Year || item.year, 0, 1), // January 1st of the year
+                    value: item.value || 0
+                })).sort((a, b) => a.date - b.date);
+            }
         } else {
             // Generic static data parser
             if (data.data && Array.isArray(data.data)) {

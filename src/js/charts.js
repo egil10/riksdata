@@ -210,6 +210,49 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-pisa-reading') {
             // Handle Norway PISA reading charts
             return await loadPisaReadingChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType.startsWith('norway-')) {
+            // Handle all Norway charts using the main data loading pipeline
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) {
+                console.warn(`Canvas with id '${canvasId}' not found`);
+                return null;
+            }
+
+            // Fetch data using the main pipeline
+            const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            const parsedData = parseStaticData(data, chartTitle);
+            
+            if (!parsedData || parsedData.length === 0) {
+                console.warn(`No data available for ${chartTitle}`);
+                showNoDataState(canvasId);
+                return null;
+            }
+
+            // Register data for export
+            const exportData = parsedData.map(d => ({
+                date: d.date,
+                value: d.value,
+                series: chartTitle
+            }));
+            registerChartData(canvasId, exportData);
+
+            // Render the chart using the main renderChart function
+            const chart = renderChart(canvas, parsedData, chartTitle, 'line');
+            
+            if (chart) {
+                console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
+                hideSkeleton(canvasId);
+            } else {
+                console.warn(`Failed to render ${chartTitle}: ${canvasId}`);
+                showNoDataState(canvasId);
+            }
+            
+            return chart;
         } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
             // Handle OWID static data files
             cachePath = rel(apiUrl);

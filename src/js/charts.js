@@ -2392,25 +2392,21 @@ function addSourceInfo(canvas, sourceInfo) {
             sourceText = sourceText.substring(7).trim();
         }
 
-        // Create source link if URL is available
-        if (sourceInfo.url) {
-            const sourceLink = document.createElement('a');
-            sourceLink.href = sourceInfo.url;
-            sourceLink.target = '_blank';
-            sourceLink.rel = 'noopener noreferrer';
-            sourceLink.textContent = 'View Source';
-            sourceLink.style.cssText = `
-                color: var(--accent);
-                text-decoration: none;
-                font-weight: 500;
-                margin-left: 0.5rem;
-            `;
-            
-            sourceDiv.innerHTML = `<span>${sourceText}</span>`;
-            sourceDiv.appendChild(sourceLink);
-        } else {
-            sourceDiv.textContent = sourceText;
-        }
+        // For OWID charts, always use Our World in Data as the source
+        const sourceLink = document.createElement('a');
+        sourceLink.href = 'https://ourworldindata.org/';
+        sourceLink.target = '_blank';
+        sourceLink.rel = 'noopener noreferrer';
+        sourceLink.textContent = 'View Source';
+        sourceLink.style.cssText = `
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            margin-left: 0.5rem;
+        `;
+        
+        sourceDiv.innerHTML = `<span>${sourceText}</span>`;
+        sourceDiv.appendChild(sourceLink);
 
         // Add to chart card
         chartCard.appendChild(sourceDiv);

@@ -290,14 +290,14 @@ const chartConfigs = [
         { id: 'nve-magasins-norge-capacity', url: 'nve://magasins/norge/capacityTWh', title: 'Reservoir Capacity – Norway', type: 'nve-magasin' },
     
     // Statnett Production and Consumption charts
-    { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Norway Electricity Production and Consumption', type: 'statnett-production-consumption' },
+            { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Electricity Production and Consumption', type: 'statnett-production-consumption' },
     
     // Stortinget Women Representation charts
     { id: 'stortinget-women-count-chart', url: './data/static/stortinget-women-representation.json', title: 'Women in Norwegian Parliament (Count)', type: 'stortinget-women-count' },
     { id: 'stortinget-women-percentage-chart', url: './data/static/stortinget-women-representation.json', title: 'Women in Norwegian Parliament (Percentage)', type: 'stortinget-women-percentage' },
     
     // NVE Reservoir Fill charts
-    { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill' },
+            { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Annual Reservoir Fill' },
     
     // Norway ODA (Official Development Assistance) charts
             { id: 'norway-oda-per-capita-chart', url: './data/cached/oda_per_capita.json', title: 'ODA per Capita', type: 'norway-oda-per-capita' },

@@ -285,13 +285,9 @@ const chartConfigs = [
     { id: 'producer-price-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', title: 'Producer Price Industry' },
     { id: 'utility-floor-space-chart', url: 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', title: 'Utility Floor Space' },
     
-    // NVE Magasinstatistikk charts
-    { id: 'nve-magasins-norge', url: 'nve://magasins/norge', title: 'Vannmagasin fyllingsgrad – Norge', type: 'nve-magasin' },
-    { id: 'nve-magasins-no1', url: 'nve://magasins/no1', title: 'Vannmagasin fyllingsgrad – Østlandet (NO1)', type: 'nve-magasin' },
-    { id: 'nve-magasins-no2', url: 'nve://magasins/no2', title: 'Vannmagasin fyllingsgrad – Sørlandet (NO2)', type: 'nve-magasin' },
-    { id: 'nve-magasins-no3', url: 'nve://magasins/no3', title: 'Vannmagasin fyllingsgrad – Vestlandet (NO3)', type: 'nve-magasin' },
-    { id: 'nve-magasins-no4', url: 'nve://magasins/no4', title: 'Vannmagasin fyllingsgrad – Trøndelag (NO4)', type: 'nve-magasin' },
-    { id: 'nve-magasins-no5', url: 'nve://magasins/no5', title: 'Vannmagasin fyllingsgrad – Nord-Norge (NO5)', type: 'nve-magasin' },
+            // NVE Magasinstatistikk charts - Norway only
+        { id: 'nve-magasins-norge-fill', url: 'nve://magasins/norge/fillPct', title: 'Reservoir Fill Percentage – Norway', type: 'nve-magasin' },
+        { id: 'nve-magasins-norge-capacity', url: 'nve://magasins/norge/capacityTWh', title: 'Reservoir Capacity – Norway', type: 'nve-magasin' },
     
     // Statnett Production and Consumption charts
     { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Norway Electricity Production and Consumption', type: 'statnett-production-consumption' },

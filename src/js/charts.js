@@ -2187,37 +2187,101 @@ async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
     try {
         console.log(`Loading NVE chart: ${canvasId} - ${chartTitle}`);
         
-        // Extract area from URL (e.g., nve://magasins/norge -> norge)
-        const areaMatch = apiUrl.match(/nve:\/\/magasins\/(.+)/);
-        if (!areaMatch) {
+        // Extract area and metric from URL (e.g., nve://magasins/norge/fillPct -> norge, fillPct)
+        const urlMatch = apiUrl.match(/nve:\/\/magasins\/([^\/]+)(?:\/(.+))?/);
+        if (!urlMatch) {
             console.warn(`Invalid NVE URL format: ${apiUrl}`);
             return null;
         }
         
-        let area = areaMatch[1].toUpperCase();
+        let area = urlMatch[1].toUpperCase();
         if (area === 'NORGE') {
             area = 'Norge'; // Special case for Norway
         }
         
-        // Import and render the NVE chart
-        const { renderMagasinChart } = await import('./charts/nve-magasins.js');
-        const chart = await renderMagasinChart(canvasId, area);
+        const metric = urlMatch[2] || 'fillPct'; // Default to fillPct if not specified
         
-        if (chart) {
+        // Load the cached NVE data
+        const response = await fetch('./data/cached/nve/all-series.json');
+        if (!response.ok) {
+            throw new Error(`Failed to load NVE data: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        console.log(`Loaded NVE data for ${area}:`, data.data ? data.data.length : 'No data');
+        
+        if (!data.data || !Array.isArray(data.data)) {
+            console.warn('Invalid NVE data format');
+            return null;
+        }
+        
+        // Filter data for the specified area and metric
+        const filteredData = data.data
+            .filter(item => item.area === area)
+            .map(item => {
+                // Convert ISO week to date
+                const date = isoWeekToDate(item.year, item.week);
+                const value = item[metric];
+                return { date, value };
+            })
+            .filter(item => item.value !== null && item.value !== undefined)
+            .sort((a, b) => a.date - b.date);
+        
+        console.log(`Filtered ${filteredData.length} data points for ${area} ${metric}`);
+        
+        if (filteredData.length === 0) {
+            console.warn(`No data available for ${area} ${metric}`);
+            showNoDataState(canvasId);
+            return null;
+        }
+        
+        // Register data for export
+        const exportData = filteredData.map(d => ({
+            date: d.date,
+            value: d.value,
+            series: `${area} ${metric}`
+        }));
+        registerChartData(canvasId, exportData);
+        
+        // Render the chart
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.warn(`Canvas with id '${canvasId}' not found`);
+            return null;
+        }
+        
+        renderChart(canvas, filteredData, chartTitle, 'line');
+        
+        if (canvas.chart) {
             console.log(`Successfully rendered NVE chart: ${canvasId}`);
             hideSkeleton(canvasId);
+            return canvas.chart;
         } else {
             console.warn(`Failed to render NVE chart: ${canvasId}`);
             showNoDataState(canvasId);
+            return null;
         }
-        
-        return chart;
         
     } catch (error) {
         console.error(`Failed to load NVE chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }
+}
+
+/**
+ * Convert ISO week to Date (Monday of that week)
+ * @param {number} year - Year
+ * @param {number} week - ISO week number
+ * @returns {Date} Monday of the specified week
+ */
+function isoWeekToDate(year, week) {
+    const simple = new Date(Date.UTC(year, 0, 1 + (week - 1) * 7));
+    const dow = simple.getUTCDay(); // 0..6
+    const ISOweekStart = dow <= 4 ? 
+        new Date(simple.setUTCDate(simple.getUTCDate() - (dow || 7) + 1)) :
+        new Date(simple.setUTCDate(simple.getUTCDate() + (8 - dow)));
+    return ISOweekStart; // Mon 00:00 UTC
 }
 
 /**

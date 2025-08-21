@@ -2265,10 +2265,3 @@ async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
     }
 }
 
-/**
- * Load and render Norway ODA per capita charts
- * @param {string} canvasId - Canvas element ID
- * @param {string} apiUrl - ODA data file URL
- * @param {string} chartTitle - Chart title
- * @param {string} chartType - Chart type
- * @returns {Promise<Chart|null>} Chart.js instance or null

@@ -310,7 +310,16 @@ const chartConfigs = [
     { id: 'norway-internet-usage-chart', url: './data/static/norway_internet_use.json', title: 'Norway Internet Usage', type: 'norway-internet-usage' },
     
     // Norway Homicide Rate charts
-    { id: 'norway-homicide-rate-chart', url: './data/static/norway_homicide_rate.json', title: 'Norway Homicide Rate', type: 'norway-homicide-rate' }];
+    { id: 'norway-homicide-rate-chart', url: './data/static/norway_homicide_rate.json', title: 'Norway Homicide Rate', type: 'norway-homicide-rate' },
+    
+    // Norway Maternal Mortality charts
+    { id: 'norway-maternal-mortality-chart', url: './data/static/norway_maternal_mortality.json', title: 'Norway Maternal Mortality', type: 'norway-maternal-mortality' },
+    
+    // Norway Military Spending charts
+    { id: 'norway-military-spending-chart', url: './data/static/norway_military_spending.json', title: 'Norway Military Spending', type: 'norway-military-spending' },
+    
+    // Norway Women in Parliament charts (V-Dem)
+    { id: 'norway-women-parliament-chart', url: './data/static/norway_women_in_parliament.json', title: 'Norway Women in Parliament', type: 'norway-women-parliament' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

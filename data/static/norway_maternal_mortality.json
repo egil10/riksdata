@@ -1,0 +1,437 @@
+{
+  "dataset": "maternal-mortality",
+  "country": "Norway",
+  "metadata": {
+    "title": "Maternal mortality ratio",
+    "variable": "mmr",
+    "unit": "deaths per 100,000 live births",
+    "description": {},
+    "owidTags": {},
+    "dataPublishedBy": {},
+    "dataPublisherSource": {},
+    "lastUpdated": {},
+    "retrieved": "2025-08-21",
+    "source_and_citation": "Data sources: UN MMEIG (2023); WHO Mortality Database (2025); UN, World Population Prospects (2024); Gapminder (2010) – with major processing by Our World in Data. Please credit all sources listed above. Data provided by third-party sources through Our World in Data remains subject to the original providers' license terms."
+  },
+  "data": [
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1951,
+      "value": 95.5645
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1952,
+      "value": 78.5017
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1953,
+      "value": 73.3746
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1954,
+      "value": 62.5973
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1955,
+      "value": 68.1318
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1956,
+      "value": 68.8878
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1957,
+      "value": 51.3149
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1958,
+      "value": 54.4436
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1959,
+      "value": 40.2304
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1960,
+      "value": 42.7393
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1961,
+      "value": 27.4495
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1962,
+      "value": 21.0261
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1963,
+      "value": 20.6921
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1964,
+      "value": 22.9839
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1965,
+      "value": 18.2017
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1966,
+      "value": 25.4042
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1967,
+      "value": 25.6864
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1968,
+      "value": 13.3799
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1969,
+      "value": 14.7676
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1970,
+      "value": 10.8043
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1971,
+      "value": 19.8002
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1972,
+      "value": 6.2182
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1973,
+      "value": 3.2627
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1974,
+      "value": 6.7113
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1975,
+      "value": 7.1006
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1976,
+      "value": 13.0797
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1977,
+      "value": 9.8137
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1978,
+      "value": 1.9323
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1979,
+      "value": 13.5759
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1980,
+      "value": 11.7668
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1981,
+      "value": 1.9752
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1983,
+      "value": 4.0053
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1984,
+      "value": 1.9922
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1985,
+      "value": 6.9836
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1986,
+      "value": 6.6566
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1987,
+      "value": 6.4568
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1988,
+      "value": 7.5833
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1989,
+      "value": 6.952
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1990,
+      "value": 6.8903
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1991,
+      "value": 6.6328
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1992,
+      "value": 6.3613
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1993,
+      "value": 6.093
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1994,
+      "value": 5.9681
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1995,
+      "value": 5.7328
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1996,
+      "value": 5.4964
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1997,
+      "value": 5.3781
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1998,
+      "value": 4.7904
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 1999,
+      "value": 5.6409
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2000,
+      "value": 5.7301
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2001,
+      "value": 5.2088
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2002,
+      "value": 5.1445
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2003,
+      "value": 5.3454
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2004,
+      "value": 5.5319
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2005,
+      "value": 5.5165
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2006,
+      "value": 5.1505
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2007,
+      "value": 4.9525
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2008,
+      "value": 4.5072
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2009,
+      "value": 4.2729
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2010,
+      "value": 4.0209
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2011,
+      "value": 3.8189
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2012,
+      "value": 3.1926
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2013,
+      "value": 3.1323
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2014,
+      "value": 2.5824
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2015,
+      "value": 2.4053
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2016,
+      "value": 2.2324
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2017,
+      "value": 2.1529
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2018,
+      "value": 1.9932
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2019,
+      "value": 1.9423
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2020,
+      "value": 1.6637
+    },
+    {
+      "Entity": "Norway",
+      "Code": "NOR",
+      "Year": 2023
+    }
+  ]
+}

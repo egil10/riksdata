@@ -1,0 +1,1751 @@
+[
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 90
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 80
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_pol3",
+    "value": 90
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 80
+  },
+  {
+    "Year": 1983,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 90
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 80
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_pol3",
+    "value": 90
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 80
+  },
+  {
+    "Year": 1984,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 85
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 90
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_pol3",
+    "value": 90
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 90
+  },
+  {
+    "Year": 1985,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 83
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 87
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_pol3",
+    "value": 84
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 87
+  },
+  {
+    "Year": 1986,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 80
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 87
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_pol3",
+    "value": 80
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 87
+  },
+  {
+    "Year": 1987,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 83
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 87
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_pol3",
+    "value": 84
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 87
+  },
+  {
+    "Year": 1988,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 83
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 84
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_pol3",
+    "value": 84
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 84
+  },
+  {
+    "Year": 1989,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 86
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 87
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_pol3",
+    "value": 84
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 87
+  },
+  {
+    "Year": 1990,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 96
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 94
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_pol3",
+    "value": 93
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 94
+  },
+  {
+    "Year": 1991,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 98
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_pol3",
+    "value": 98
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 1992,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 94
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_pol3",
+    "value": 92
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 1993,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 93
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 94
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_pol3",
+    "value": 93
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 94
+  },
+  {
+    "Year": 1994,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_hib3"
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 92
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_pol3",
+    "value": 92
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 92
+  },
+  {
+    "Year": 1995,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_hib3",
+    "value": 97
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 92
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_pol3",
+    "value": 92
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 92
+  },
+  {
+    "Year": 1996,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 95
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_hib3",
+    "value": 96
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_pol3",
+    "value": 91
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 1997,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 93
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 91
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_pol3",
+    "value": 91
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 91
+  },
+  {
+    "Year": 1998,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 92
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_hib3",
+    "value": 94
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 90
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_pol3",
+    "value": 91
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 90
+  },
+  {
+    "Year": 1999,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 90
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_hib3",
+    "value": 93
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 88
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_pol3",
+    "value": 91
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 88
+  },
+  {
+    "Year": 2000,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 91
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_hib3",
+    "value": 93
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 90
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_pol3",
+    "value": 91
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 90
+  },
+  {
+    "Year": 2001,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 93
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 87
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_pol3",
+    "value": 93
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 87
+  },
+  {
+    "Year": 2002,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 92
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_hib3",
+    "value": 94
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 86
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_pol3",
+    "value": 92
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 86
+  },
+  {
+    "Year": 2003,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 92
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_hib3",
+    "value": 94
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 89
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_pol3",
+    "value": 92
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 89
+  },
+  {
+    "Year": 2004,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 91
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_hib3",
+    "value": 93
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 90
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_pol3",
+    "value": 91
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 90
+  },
+  {
+    "Year": 2005,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 94
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 92
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_pol3",
+    "value": 94
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 92
+  },
+  {
+    "Year": 2006,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 93
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 92
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_pcv3"
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_pol3",
+    "value": 93
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 92
+  },
+  {
+    "Year": 2007,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 94
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_hib3",
+    "value": 94
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 86
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_pol3",
+    "value": 94
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 2008,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 94
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 91
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_pol3",
+    "value": 94
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 2009,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 93
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_hib3",
+    "value": 94
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 91
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_pol3",
+    "value": 93
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 2010,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 94
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 92
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_pol3",
+    "value": 94
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 2011,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 95
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 94
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 93
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_pol3",
+    "value": 95
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 94
+  },
+  {
+    "Year": 2012,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 94
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 93
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 93
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_pol3",
+    "value": 94
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 93
+  },
+  {
+    "Year": 2013,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 93
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_hib3",
+    "value": 94
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_ipv1"
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 94
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 91
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_pol3",
+    "value": 93
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 94
+  },
+  {
+    "Year": 2014,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 95
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_hib3",
+    "value": 95
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 95
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 93
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_pol3",
+    "value": 95
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 95
+  },
+  {
+    "Year": 2015,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 96
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_hib3",
+    "value": 96
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 94
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_pol3",
+    "value": 96
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 2016,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 96
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_hib3",
+    "value": 96
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 94
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_pol3",
+    "value": 96
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 2017,
+    "antigen": "coverage__antigen_rotac"
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 96
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_hepb3"
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_hib3",
+    "value": 96
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 94
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_pol3",
+    "value": 96
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 2018,
+    "antigen": "coverage__antigen_rotac",
+    "value": 93
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_hepb3",
+    "value": 96
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_hib3",
+    "value": 97
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 97
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 95
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_pol3",
+    "value": 97
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 97
+  },
+  {
+    "Year": 2019,
+    "antigen": "coverage__antigen_rotac",
+    "value": 95
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_hepb3",
+    "value": 97
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_hib3",
+    "value": 97
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 98
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 97
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 96
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_pol3",
+    "value": 97
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 97
+  },
+  {
+    "Year": 2020,
+    "antigen": "coverage__antigen_rotac",
+    "value": 95
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_hepb3",
+    "value": 96
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_hib3",
+    "value": 97
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 98
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 97
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 96
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_pol3",
+    "value": 97
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 97
+  },
+  {
+    "Year": 2021,
+    "antigen": "coverage__antigen_rotac",
+    "value": 96
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_hepb3",
+    "value": 96
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_hib3",
+    "value": 97
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 98
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 95
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_pol3",
+    "value": 97
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 2022,
+    "antigen": "coverage__antigen_rotac",
+    "value": 95
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 96
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_hepb3",
+    "value": 96
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_hib3",
+    "value": 96
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 95
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_pol3",
+    "value": 96
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 2023,
+    "antigen": "coverage__antigen_rotac",
+    "value": 95
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_dtpcv3",
+    "value": 97
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_hepb3",
+    "value": 96
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_hib3",
+    "value": 97
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_ipv1",
+    "value": 99
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_mcv1",
+    "value": 96
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_pcv3",
+    "value": 95
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_pol3",
+    "value": 97
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_rcv1",
+    "value": 96
+  },
+  {
+    "Year": 2024,
+    "antigen": "coverage__antigen_rotac",
+    "value": 95
+  }
+]

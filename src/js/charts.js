@@ -129,6 +129,15 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-homicide-rate') {
             // Handle Norway homicide rate charts
             return await loadHomicideRateChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-maternal-mortality') {
+            // Handle Norway maternal mortality charts
+            return await loadMaternalMortalityChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-military-spending') {
+            // Handle Norway military spending charts
+            return await loadMilitarySpendingChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-women-parliament') {
+            // Handle Norway women in parliament charts
+            return await loadWomenParliamentChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2287,6 +2296,105 @@ async function loadHomicideRateChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load homicide rate chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway maternal mortality charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Maternal mortality data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadMaternalMortalityChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading maternal mortality chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the maternal mortality chart
+        const { renderMaternalMortalityChart } = await import('./charts/norway-maternal-mortality.js');
+        const chart = await renderMaternalMortalityChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered maternal mortality chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render maternal mortality chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load maternal mortality chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway military spending charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Military spending data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadMilitarySpendingChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading military spending chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the military spending chart
+        const { renderMilitarySpendingChart } = await import('./charts/norway-military-spending.js');
+        const chart = await renderMilitarySpendingChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered military spending chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render military spending chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load military spending chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway women in parliament charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Women in parliament data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadWomenParliamentChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading women in parliament chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the women in parliament chart
+        const { renderWomenParliamentChart } = await import('./charts/norway-women-parliament.js');
+        const chart = await renderWomenParliamentChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered women in parliament chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render women in parliament chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load women in parliament chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

@@ -1,0 +1,728 @@
+[
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1900,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1901,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1902,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1903,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1904,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1905,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1906,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1907,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1908,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1909,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1910,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1911,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1912,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1913,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1914,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1915,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1916,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1917,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1918,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1919,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1920,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1921,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1922,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1923,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1924,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1925,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1926,
+    "value": 0
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1927,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1928,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1929,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1930,
+    "value": 1.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1931,
+    "value": 1.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1932,
+    "value": 1.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1933,
+    "value": 2
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1934,
+    "value": 2
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1935,
+    "value": 2
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1936,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1937,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1938,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1939,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1940,
+    "value": 0.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1945,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1946,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1947,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1948,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1949,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1950,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1951,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1952,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1953,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1954,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1955,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1956,
+    "value": 4.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1957,
+    "value": 6.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1958,
+    "value": 6.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1959,
+    "value": 6.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1960,
+    "value": 6.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1961,
+    "value": 8.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1962,
+    "value": 8.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1963,
+    "value": 8.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1964,
+    "value": 8.7
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1965,
+    "value": 8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1966,
+    "value": 8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1967,
+    "value": 8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1968,
+    "value": 8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1969,
+    "value": 9.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1970,
+    "value": 9.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1971,
+    "value": 9.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1972,
+    "value": 9.3
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1973,
+    "value": 15.5
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1974,
+    "value": 15.5
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1975,
+    "value": 15.5
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1976,
+    "value": 15.5
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1977,
+    "value": 23.9
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1978,
+    "value": 23.9
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1979,
+    "value": 23.9
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1980,
+    "value": 23.9
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1981,
+    "value": 25.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1982,
+    "value": 25.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1983,
+    "value": 25.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1984,
+    "value": 25.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1985,
+    "value": 34.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1986,
+    "value": 34.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1987,
+    "value": 34.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1988,
+    "value": 34.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1989,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1990,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1991,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1992,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1993,
+    "value": 39.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1994,
+    "value": 39.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1995,
+    "value": 39.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1996,
+    "value": 39.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1997,
+    "value": 36.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1998,
+    "value": 36.4
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 1999,
+    "value": 36.36
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2000,
+    "value": 36.36
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2001,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2002,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2003,
+    "value": 35.8
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2004,
+    "value": 36.36
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2005,
+    "value": 37.87
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2006,
+    "value": 37.87
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2007,
+    "value": 36.09
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2008,
+    "value": 37.87
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2009,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2010,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2011,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2012,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2013,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2014,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2015,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2016,
+    "value": 39.64
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2017,
+    "value": 41.42
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2018,
+    "value": 40.83
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2019,
+    "value": 41.42
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2020,
+    "value": 44.38
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2021,
+    "value": 44.97
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2022,
+    "value": 46.15
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2023,
+    "value": 46.15
+  },
+  {
+    "Entity": "Norway",
+    "Code": "NOR",
+    "Year": 2024,
+    "value": 44.4
+  }
+]

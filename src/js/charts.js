@@ -157,17 +157,18 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             registerChartData(canvasId, exportData);
 
             // Render the chart using the main renderChart function
-            const chart = renderChart(canvas, parsedData, chartTitle, 'line');
+            renderChart(canvas, parsedData, chartTitle, 'line');
             
-            if (chart) {
+            // Check if chart was created successfully by looking at the canvas.chart property
+            if (canvas.chart) {
                 console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
                 hideSkeleton(canvasId);
+                return canvas.chart;
             } else {
                 console.warn(`Failed to render ${chartTitle}: ${canvasId}`);
                 showNoDataState(canvasId);
+                return null;
             }
-            
-            return chart;
         } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
             // Handle OWID static data files
             cachePath = rel(apiUrl);

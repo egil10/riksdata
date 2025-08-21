@@ -1824,38 +1824,61 @@ export function renderChart(canvas, data, title, chartType = 'line') {
  */
 export function parseStaticData(data, chartTitle) {
     try {
+        // Normalize incoming shape: either {data: [...]} or just [...]
+        const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+        if (!rows.length) return [];
+
+        // Special case: Oil Fund cached shape (kept for compatibility)
         if (chartTitle.includes('Oil Fund')) {
-            // Parse oil fund data
-            if (data.data && Array.isArray(data.data)) {
-                return data.data.map(item => ({
-                    date: new Date(item.year, 0, 1), // January 1st of the year
-                    value: item.total
-                }));
-            }
-        } else if (chartTitle.toLowerCase().includes('norway') && (chartTitle.toLowerCase().includes('hdi') || chartTitle.toLowerCase().includes('alcohol') || chartTitle.toLowerCase().includes('co2') || chartTitle.toLowerCase().includes('life expectancy') || chartTitle.toLowerCase().includes('child mortality') || chartTitle.toLowerCase().includes('maternal mortality') || chartTitle.toLowerCase().includes('military spending') || chartTitle.toLowerCase().includes('women parliament') || chartTitle.toLowerCase().includes('vaccination coverage') || chartTitle.toLowerCase().includes('internet usage') || chartTitle.toLowerCase().includes('homicide rate') || chartTitle.toLowerCase().includes('oda per capita') || chartTitle.toLowerCase().includes('fertility rate') || chartTitle.toLowerCase().includes('mean income') || chartTitle.toLowerCase().includes('median age') || chartTitle.toLowerCase().includes('daily calories') || chartTitle.toLowerCase().includes('employment agriculture') || chartTitle.toLowerCase().includes('energy use') || chartTitle.toLowerCase().includes('marriage rate') || chartTitle.toLowerCase().includes('electric car') || chartTitle.toLowerCase().includes('covid cases') || chartTitle.toLowerCase().includes('tourist trips') || chartTitle.toLowerCase().includes('rnd researchers') || chartTitle.toLowerCase().includes('pisa') || chartTitle.toLowerCase().includes('no education') || chartTitle.toLowerCase().includes('avg years schooling') || chartTitle.toLowerCase().includes('trade share') || chartTitle.toLowerCase().includes('armed forces'))) {
-            // Parse OWID data (Our World in Data format)
-            if (data.data && Array.isArray(data.data)) {
-                return data.data.map(item => ({
-                    date: new Date(item.Year || item.year, 0, 1), // January 1st of the year
-                    value: item.value || 0
-                })).sort((a, b) => a.date - b.date);
-            }
-        } else {
-            // Generic static data parser
-            if (data.data && Array.isArray(data.data)) {
-                return data.data.map(item => {
-                    const date = item.date ? new Date(item.date) : 
-                               item.year ? new Date(item.year, 0, 1) : 
-                               new Date();
-                    return {
-                        date: date,
-                        value: item.value || item.total || item.amount || 0
-                    };
-                });
-            }
+            return rows
+                .map(item => {
+                    const k = Object.fromEntries(Object.entries(item).map(([kk, vv]) => [kk.toLowerCase(), vv]));
+                    const y = Number(k.year ?? k['år'] ?? k.date);
+                    const date = Number.isFinite(y) ? new Date(y, 0, 1) : (k.date ? new Date(k.date) : null);
+                    const value = Number(k.total ?? k.value ?? k.amount);
+                    return { date, value };
+                })
+                .filter(d => d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value));
         }
-        
-        return [];
+
+        // Generic static data parser (OWID etc.)
+        const preferredNumericKeys = new Set(['value', 'total', 'amount']);
+        const skipKeys = new Set(['year', 'date', 'entity', 'code', 'country', 'location', 'is_missing']);
+
+        return rows
+            .map(item => {
+                const k = Object.fromEntries(Object.entries(item).map(([kk, vv]) => [kk.toLowerCase(), vv]));
+
+                // Build date
+                let date = null;
+                if (k.date) {
+                    date = new Date(k.date);
+                } else if (k.year) {
+                    const y = Number(k.year);
+                    if (Number.isFinite(y)) date = new Date(y, 0, 1);
+                }
+
+                // Find value
+                let value = null;
+                for (const key of preferredNumericKeys) {
+                    if (k[key] != null && k[key] !== '') {
+                        value = Number(k[key]);
+                        break;
+                    }
+                }
+                if (value == null || !Number.isFinite(value)) {
+                    // Fallback: first numeric field that isn't a known meta key
+                    for (const [key, v] of Object.entries(k)) {
+                        if (skipKeys.has(key)) continue;
+                        const num = Number(v);
+                        if (Number.isFinite(num)) { value = num; break; }
+                    }
+                }
+
+                return { date, value };
+            })
+            .filter(d => d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
+            .sort((a, b) => a.date - b.date);
     } catch (error) {
         console.error('Error parsing static data:', error);
         return [];

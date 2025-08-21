@@ -301,7 +301,10 @@ const chartConfigs = [
     { id: 'stortinget-women-percentage-chart', url: './data/static/stortinget-women-representation.json', title: 'Women in Norwegian Parliament (Percentage)', type: 'stortinget-women-percentage' },
     
     // NVE Reservoir Fill charts
-    { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill' }];
+    { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill' },
+    
+    // Norway ODA (Official Development Assistance) charts
+    { id: 'norway-oda-per-capita-chart', url: './data/static/norway_oda_per_capita.json', title: 'Norway ODA per Capita', type: 'norway-oda-per-capita' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

@@ -120,6 +120,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'stortinget-women-count' || chartType === 'stortinget-women-percentage') {
             // Handle Stortinget women representation charts
             return await loadStortingetChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-oda-per-capita') {
+            // Handle Norway ODA per capita charts
+            return await loadOdaChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2179,6 +2182,39 @@ async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load Stortinget chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway ODA per capita charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - ODA data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadOdaChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading ODA chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the ODA chart
+        const { renderOdaPerCapitaChart } = await import('./charts/norway-oda-per-capita.js');
+        const chart = await renderOdaPerCapitaChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered ODA chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render ODA chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load ODA chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

@@ -307,7 +307,10 @@ const chartConfigs = [
     { id: 'norway-oda-per-capita-chart', url: './data/static/norway_oda_per_capita.json', title: 'Norway ODA per Capita', type: 'norway-oda-per-capita' },
     
     // Norway Internet Usage charts
-    { id: 'norway-internet-usage-chart', url: './data/static/norway_internet_use.json', title: 'Norway Internet Usage', type: 'norway-internet-usage' }];
+    { id: 'norway-internet-usage-chart', url: './data/static/norway_internet_use.json', title: 'Norway Internet Usage', type: 'norway-internet-usage' },
+    
+    // Norway Homicide Rate charts
+    { id: 'norway-homicide-rate-chart', url: './data/static/norway_homicide_rate.json', title: 'Norway Homicide Rate', type: 'norway-homicide-rate' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

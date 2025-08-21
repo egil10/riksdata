@@ -126,6 +126,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (chartType === 'norway-internet-usage') {
             // Handle Norway internet usage charts
             return await loadInternetUsageChart(canvasId, apiUrl, chartTitle, chartType);
+        } else if (chartType === 'norway-homicide-rate') {
+            // Handle Norway homicide rate charts
+            return await loadHomicideRateChart(canvasId, apiUrl, chartTitle, chartType);
         } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             // Handle static data files in cache directory
             cachePath = rel(apiUrl);
@@ -2251,6 +2254,39 @@ async function loadInternetUsageChart(canvasId, apiUrl, chartTitle, chartType) {
         
     } catch (error) {
         console.error(`Failed to load internet usage chart ${canvasId}:`, error);
+        showNoDataState(canvasId);
+        return null;
+    }
+}
+
+/**
+ * Load and render Norway homicide rate charts
+ * @param {string} canvasId - Canvas element ID
+ * @param {string} apiUrl - Homicide rate data file URL
+ * @param {string} chartTitle - Chart title
+ * @param {string} chartType - Chart type
+ * @returns {Promise<Chart|null>} Chart.js instance or null
+ */
+async function loadHomicideRateChart(canvasId, apiUrl, chartTitle, chartType) {
+    try {
+        console.log(`Loading homicide rate chart: ${canvasId} - ${chartTitle}`);
+        
+        // Import and render the homicide rate chart
+        const { renderHomicideRateChart } = await import('./charts/norway-homicide-rate.js');
+        const chart = await renderHomicideRateChart(canvasId);
+        
+        if (chart) {
+            console.log(`Successfully rendered homicide rate chart: ${canvasId}`);
+            hideSkeleton(canvasId);
+        } else {
+            console.warn(`Failed to render homicide rate chart: ${canvasId}`);
+            showNoDataState(canvasId);
+        }
+        
+        return chart;
+        
+    } catch (error) {
+        console.error(`Failed to load homicide rate chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
     }

@@ -128,6 +128,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 return null;
             }
 
+            console.log(`Loading Norway chart: ${chartTitle} from ${apiUrl}`);
+            
             // Fetch data using the main pipeline
             const response = await fetch(apiUrl);
             if (!response.ok) {
@@ -135,7 +137,10 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             }
             
             const data = await response.json();
+            console.log(`Raw data for ${chartTitle}:`, data);
+            
             const parsedData = parseStaticData(data, chartTitle);
+            console.log(`Parsed data for ${chartTitle}:`, parsedData);
             
             if (!parsedData || parsedData.length === 0) {
                 console.warn(`No data available for ${chartTitle}`);

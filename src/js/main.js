@@ -352,7 +352,7 @@ const chartConfigs = [
     { id: 'norway-hdi-chart', url: '/data/static/norway_hdi.json', title: 'Norway Human Development Index', type: 'norway-hdi' },
     
     // Norway Armed Forces Personnel charts
-    { id: 'norway-armed-forces-personnel-chart', url: '/data/static/norway_armed_forces_personnel.json', title: 'Norway Armed Forces Personnel', type: 'norway-armed-forces-personnel' },
+    { id: 'norway-armed-forces-personnel-chart', url: './data/static/norway_armed_forces_personnel.json', title: 'Norway Armed Forces Personnel', type: 'norway-armed-forces-personnel' },
     
     // Norway Alcohol Consumption per Capita charts
     { id: 'norway-alcohol-consumption-chart', url: '/data/static/norway_alcohol_consumption_per_capita.json', title: 'Norway Alcohol Consumption per Capita', type: 'norway-alcohol-consumption' },

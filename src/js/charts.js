@@ -2852,9 +2852,38 @@ async function loadArmedForcesPersonnelChart(canvasId, apiUrl, chartTitle, chart
     try {
         console.log(`Loading armed forces personnel chart: ${canvasId} - ${chartTitle}`);
         
-        // Import and render the armed forces personnel chart
-        const { renderArmedForcesPersonnelChart } = await import('./charts/norway-armed-forces-personnel.js');
-        const chart = await renderArmedForcesPersonnelChart(canvasId);
+        // Use the main data loading pipeline instead of individual module
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) {
+            console.warn(`Canvas with id '${canvasId}' not found`);
+            return null;
+        }
+
+        // Fetch data using the main pipeline
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        const parsedData = parseStaticData(data, chartTitle);
+        
+        if (!parsedData || parsedData.length === 0) {
+            console.warn('No data available for armed forces personnel chart');
+            showNoDataState(canvasId);
+            return null;
+        }
+
+        // Register data for export
+        const exportData = parsedData.map(d => ({
+            date: d.date,
+            value: d.value,
+            series: 'Armed Forces Personnel'
+        }));
+        registerChartData(canvasId, exportData);
+
+        // Render the chart using the main renderChart function
+        const chart = renderChart(canvas, parsedData, chartTitle, 'line');
         
         if (chart) {
             console.log(`Successfully rendered armed forces personnel chart: ${canvasId}`);

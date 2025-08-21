@@ -139,8 +139,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             const data = await response.json();
             console.log(`Raw data for ${chartTitle}:`, data);
             
-            const parsedData = parseStaticData(data, chartTitle);
+            const { parsedData, sourceInfo } = parseStaticData(data, chartTitle);
             console.log(`Parsed data for ${chartTitle}:`, parsedData);
+            console.log(`Source info for ${chartTitle}:`, sourceInfo);
             
             if (!parsedData || parsedData.length === 0) {
                 console.warn(`No data available for ${chartTitle}`);
@@ -165,7 +166,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             registerChartData(canvasId, exportData);
 
             // Render the chart using the main renderChart function
-            renderChart(canvas, filteredData, chartTitle, 'line');
+            renderChart(canvas, filteredData, chartTitle, 'line', sourceInfo);
             
             // Check if chart was created successfully by looking at the canvas.chart property
             if (canvas.chart) {
@@ -1424,8 +1425,9 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
  * @param {Array} data - Data points
  * @param {string} title - Chart title
  * @param {string} chartType - Chart type
+ * @param {Object} sourceInfo - Source information object
  */
-export function renderChart(canvas, data, title, chartType = 'line') {
+export function renderChart(canvas, data, title, chartType = 'line', sourceInfo = null) {
     console.log(`Rendering chart: ${title} with ${data.length} data points`);
     // Check if Chart.js is available
     if (typeof Chart === 'undefined') {
@@ -1785,23 +1787,37 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         window.chartInstances = {};
     }
     window.chartInstances[canvas.id] = canvas.chart;
+
+    // Add source information if available
+    if (sourceInfo) {
+        addSourceInfo(canvas, sourceInfo);
+    }
 }
 
 /**
  * Parse static data files (like oil fund data)
  * @param {Object} data - Static data object
  * @param {string} chartTitle - Chart title
- * @returns {Array} Parsed data points
+ * @returns {Object} Object containing parsedData array and sourceInfo
  */
 export function parseStaticData(data, chartTitle) {
     try {
         // Normalize incoming shape: either {data: [...]} or just [...]
         const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
-        if (!rows.length) return [];
+        if (!rows.length) return { parsedData: [], sourceInfo: null };
+
+        // Extract source information from OWID data
+        let sourceInfo = null;
+        if (data.metadata && data.metadata.source_and_citation) {
+            sourceInfo = {
+                text: data.metadata.source_and_citation,
+                url: data.metadata.dataPublishedBy?.url || null
+            };
+        }
 
         // Special case: Oil Fund cached shape (kept for compatibility)
         if (chartTitle.includes('Oil Fund')) {
-            return rows
+            const parsedData = rows
                 .map(item => {
                     const k = Object.fromEntries(Object.entries(item).map(([kk, vv]) => [kk.toLowerCase(), vv]));
                     const y = Number(k.year ?? k['år'] ?? k.date);
@@ -1810,13 +1826,14 @@ export function parseStaticData(data, chartTitle) {
                     return { date, value };
                 })
                 .filter(d => d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value));
+            return { parsedData, sourceInfo };
         }
 
         // Generic static data parser (OWID etc.)
         const preferredNumericKeys = new Set(['value', 'total', 'amount']);
         const skipKeys = new Set(['year', 'date', 'entity', 'code', 'country', 'location', 'is_missing']);
 
-        return rows
+        const parsedData = rows
             .map(item => {
                 const k = Object.fromEntries(Object.entries(item).map(([kk, vv]) => [kk.toLowerCase(), vv]));
 
@@ -1850,9 +1867,11 @@ export function parseStaticData(data, chartTitle) {
             })
             .filter(d => d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
             .sort((a, b) => a.date - b.date);
+
+        return { parsedData, sourceInfo };
     } catch (error) {
         console.error('Error parsing static data:', error);
-        return [];
+        return { parsedData: [], sourceInfo: null };
     }
 }
 
@@ -2273,6 +2292,67 @@ async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
         console.error(`Failed to load Stortinget chart ${canvasId}:`, error);
         showNoDataState(canvasId);
         return null;
+    }
+}
+
+/**
+ * Add source information to chart card
+ * @param {HTMLElement} canvas - Canvas element
+ * @param {Object} sourceInfo - Source information object
+ */
+function addSourceInfo(canvas, sourceInfo) {
+    try {
+        const chartCard = canvas.closest('.chart-card');
+        if (!chartCard) return;
+
+        // Check if source info already exists
+        const existingSource = chartCard.querySelector('.chart-source');
+        if (existingSource) return;
+
+        // Create source info element
+        const sourceDiv = document.createElement('div');
+        sourceDiv.className = 'chart-source';
+        sourceDiv.style.cssText = `
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: var(--bg-secondary);
+            border-radius: 0.25rem;
+            border-left: 3px solid var(--accent);
+        `;
+
+        // Extract source text (remove "Source:" prefix if present)
+        let sourceText = sourceInfo.text;
+        if (sourceText.startsWith('Source:')) {
+            sourceText = sourceText.substring(7).trim();
+        }
+
+        // Create source link if URL is available
+        if (sourceInfo.url) {
+            const sourceLink = document.createElement('a');
+            sourceLink.href = sourceInfo.url;
+            sourceLink.target = '_blank';
+            sourceLink.rel = 'noopener noreferrer';
+            sourceLink.textContent = 'View Source';
+            sourceLink.style.cssText = `
+                color: var(--accent);
+                text-decoration: none;
+                font-weight: 500;
+                margin-left: 0.5rem;
+            `;
+            
+            sourceDiv.innerHTML = `<span>${sourceText}</span>`;
+            sourceDiv.appendChild(sourceLink);
+        } else {
+            sourceDiv.textContent = sourceText;
+        }
+
+        // Add to chart card
+        chartCard.appendChild(sourceDiv);
+        console.log(`Added source info for chart: ${canvas.id}`);
+    } catch (error) {
+        console.error('Error adding source info:', error);
     }
 }
 

@@ -259,9 +259,9 @@ export async function generateQualityReport(chartList, cachedData) {
 import { POLITICAL_PERIODS } from './config.js';
 
 /**
- * Get political period for a given date
+ * Get political period for a given date based on Norwegian political history
  * @param {Date|string} date - The date to check
- * @returns {Object|null} Political period object or null if not found
+ * @returns {{name: string, start: string, end: string, color: string, backgroundColor: string}|null} Political period object with party colors, or null if not found
  */
 export function getPoliticalPeriod(date) {
     const targetDate = new Date(date);
@@ -277,8 +277,9 @@ export function getPoliticalPeriod(date) {
 
 /**
  * Parse SSB time labels (e.g., "2023M01" -> Date object)
+ * Supports formats: Monthly (2023M01), Quarterly (2023K1), Yearly (2023), Weekly (2025U30), Year ranges (2007-2008)
  * @param {string} timeLabel - The time label to parse
- * @returns {Date|null} Parsed date or null if invalid
+ * @returns {Date|null} Parsed date or null if invalid format
  */
 export function parseTimeLabel(timeLabel) {
     try {
@@ -334,9 +335,9 @@ export function parseTimeLabel(timeLabel) {
 }
 
 /**
- * Aggregate data by month for bar charts
- * @param {Array} data - Array of data points with date and value
- * @returns {Array} Aggregated data by month
+ * Aggregate data by month for bar charts (calculates monthly averages)
+ * @param {Array<{date: Date, value: number}>} data - Array of data points with date and value
+ * @returns {Array<{date: Date, value: number}>} Aggregated data by month with averaged values
  */
 export function aggregateDataByMonth(data) {
     const monthlyData = {};
@@ -484,10 +485,10 @@ export function formatNumber(value, decimals = 2) {
 }
 
 /**
- * Debounce function to limit function calls
+ * Debounce function to limit function calls (prevents excessive execution)
  * @param {Function} func - Function to debounce
- * @param {number} wait - Wait time in milliseconds
- * @returns {Function} Debounced function
+ * @param {number} wait - Wait time in milliseconds before execution
+ * @returns {Function} Debounced function that delays execution
  */
 export function debounce(func, wait) {
     let timeout;
@@ -517,10 +518,11 @@ export function hideRegionalCards() {
 }
 
 /**
- * Timeout wrapper for promises
- * @param {Promise} promise - Promise to wrap
- * @param {number} ms - Timeout in milliseconds
- * @returns {Promise} Promise with timeout
+ * Timeout wrapper for promises to prevent hanging operations
+ * @param {Promise} promise - Promise to wrap with timeout
+ * @param {number} [ms=15000] - Timeout in milliseconds (default 15 seconds)
+ * @returns {Promise} Promise that rejects with timeout error if not resolved in time
+ * @throws {Error} Throws 'timeout' error if promise doesn't resolve within specified time
  */
 export async function withTimeout(promise, ms = 15000) {
     let t;
@@ -594,7 +596,12 @@ export function showUserError(message, element = null) {
     });
 }
 
-// --- Export helpers for SVG & Canvas ---
+/**
+ * Download chart as image or HTML file
+ * @param {HTMLElement} cardEl - Chart card element to download
+ * @param {string} [format='png'] - Export format: 'png', 'html', 'pdf', or 'svg'
+ * @returns {Promise<void>} Promise that resolves when download is complete
+ */
 export async function downloadChartForCard(cardEl, format = 'png') {
     try {
         console.log('[downloadChartForCard] Starting download process...', format);
@@ -1272,7 +1279,12 @@ export function downloadPNG(canvasEl, filename = 'chart.png') {
 
 import { updateActionButtonState } from './icons.js';
 
-// --- Copy Data (TSV) ---
+/**
+ * Copy chart data to clipboard in TSV format
+ * @param {HTMLElement} cardEl - Chart card element containing the chart
+ * @param {Function} getDataById - Function to retrieve chart data by ID
+ * @returns {Promise<void>} Promise that resolves when data is copied
+ */
 export async function copyChartDataTSV(cardEl, getDataById) {
   try {
     console.log('[copyChartDataTSV] Starting copy process...');

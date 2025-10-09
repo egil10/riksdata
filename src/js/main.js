@@ -180,8 +180,6 @@ function showGlobalError(message) {
 
 // Global state
 let currentLanguage = 'en';
-let currentTheme = 'light';
-let isFilterPanelVisible = false;
 let currentSourceFilter = 'all';
 let initializationTimeout = null;
 
@@ -289,12 +287,8 @@ const chartConfigs = [
         { id: 'nve-magasins-norge-fill', url: 'nve://magasins/norge/fillPct', title: 'Reservoir Fill Percentage – Norway', type: 'nve-magasin' },
         { id: 'nve-magasins-norge-capacity', url: 'nve://magasins/norge/capacityTWh', title: 'Reservoir Capacity – Norway', type: 'nve-magasin' },
     
-    // Statnett Production and Consumption charts
-            { id: 'statnett-production-consumption-chart', url: './data/static/statnett-production-consumption.json', title: 'Electricity Production and Consumption', type: 'statnett-production-consumption' },
-    
-    // Stortinget Women Representation charts
-    { id: 'stortinget-women-count-chart', url: './data/static/stortinget-women-representation.json', title: 'Women in Norwegian Parliament (Count)', type: 'stortinget-women-count' },
-    { id: 'stortinget-women-percentage-chart', url: './data/static/stortinget-women-representation.json', title: 'Women in Norwegian Parliament (Percentage)', type: 'stortinget-women-percentage' },
+    // Statnett Production and Consumption charts - REMOVED (broken)
+    // Stortinget Women Representation charts - REMOVED (broken)
     
     // NVE Reservoir Fill charts
             { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Annual Reservoir Fill' },
@@ -344,8 +338,7 @@ const chartConfigs = [
     // Norway Mean Income per Day charts
     { id: 'norway-mean-income-per-day-chart', url: './data/cached/mean_income_per_day.json', title: 'Mean Income per Day', type: 'norway-mean-income-per-day' },
     
-    // Norway Human Development Index charts
-    { id: 'norway-hdi-chart', url: './data/cached/hdi.json', title: 'Human Development Index', type: 'norway-hdi' },
+    // Human Development Index - REMOVED (broken)
     
     // Norway Armed Forces Personnel charts
     { id: 'norway-armed-forces-personnel-chart', url: './data/cached/armed_forces_personnel.json', title: 'Armed Forces Personnel', type: 'norway-armed-forces-personnel' },
@@ -368,14 +361,7 @@ const chartConfigs = [
     // Norway Weekly COVID Cases charts
     { id: 'norway-weekly-covid-cases-chart', url: './data/cached/weekly_covid_cases.json', title: 'Weekly COVID Cases', type: 'norway-weekly-covid-cases' },
     
-    // Norway Tourist Trips charts
-    { id: 'norway-tourist-trips-chart', url: './data/cached/tourist_trips.json', title: 'Tourist Trips', type: 'norway-tourist-trips' },
-    
-    // Norway R&D Researchers charts
-    { id: 'norway-rnd-researchers-chart', url: './data/cached/rnd_researchers.json', title: 'R&D Researchers', type: 'norway-rnd-researchers' },
-    
-    // Norway PISA Math charts
-    { id: 'norway-pisa-math-chart', url: './data/cached/pisa_math.json', title: 'PISA Math', type: 'norway-pisa-math' },
+    // Tourist Trips, R&D Researchers, PISA Math - REMOVED (broken)
     
     // Norway No Education Share charts
     { id: 'norway-no-education-share-chart', url: './data/cached/no_education_share.json', title: 'No Education Share', type: 'norway-no-education-share' },
@@ -425,7 +411,7 @@ async function setupLazyChartLoading() {
             obs.unobserve(card); // render once
         }
     }, { 
-        rootMargin: '200px 0px 200px 0px', 
+        rootMargin: '800px 0px 800px 0px', // Increased to preload charts earlier
         threshold: 0 
     });
 
@@ -573,8 +559,7 @@ function hideLoadingScreen() {
 export function initializeUI() {
     console.log('Initializing UI...');
     
-    // Initialize theme from localStorage
-    initializeTheme();
+    // Theme initialization removed - only using light theme
     
     // Language toggle
     const langToggle = document.getElementById('langToggle');
@@ -582,27 +567,9 @@ export function initializeUI() {
         langToggle.addEventListener('click', toggleLanguage);
     }
 
-    // Theme toggle
-    const themeToggle = document.getElementById('themeToggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', toggleTheme);
-    }
+    // Theme toggle removed - only using light theme now
 
-    // Filter toggle
-    const filterToggle = document.getElementById('filterToggle');
-    if (filterToggle) {
-        filterToggle.addEventListener('click', toggleFilterPanel);
-    }
-
-    // Filter backdrop click to close filter panel
-    const filterBackdrop = document.getElementById('filter-backdrop');
-    if (filterBackdrop) {
-        filterBackdrop.addEventListener('click', () => {
-            if (isFilterPanelVisible) {
-                toggleFilterPanel();
-            }
-        });
-    }
+    // Filter toggle removed - no longer using right panel filter
 
     // Mobile menu toggle
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -674,125 +641,9 @@ function toggleLanguage() {
     updateLanguageTexts();
 }
 
-/**
- * Initialize theme from localStorage
- */
-function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-        currentTheme = savedTheme;
-        document.documentElement.classList.toggle('dark-mode', currentTheme === 'dark');
-        
-        // Update icon to match saved theme
-        const themeIcon = document.querySelector('#themeToggle .theme-icon');
-        if (themeIcon) {
-            themeIcon.innerHTML = currentTheme === 'dark' 
-                ? '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>'
-                : '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
-        }
-    }
-}
+// Theme toggle removed - only using light theme now
 
-/**
- * Toggle theme between light and dark (highly optimized for speed)
- */
-function toggleTheme() {
-    // Toggle theme state
-    currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-    
-    // Apply dark mode class to html element (fastest possible transition)
-    document.documentElement.classList.toggle('dark-mode', currentTheme === 'dark');
-    
-    // Update icon efficiently (pre-optimized SVG paths)
-    const themeIcon = document.querySelector('#themeToggle .theme-icon');
-    if (themeIcon) {
-        themeIcon.innerHTML = currentTheme === 'dark' 
-            ? '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>'
-            : '<path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>';
-    }
-    
-    // Store preference efficiently
-    localStorage.setItem('theme', currentTheme);
-    
-    // Update chart colors without re-rendering (CSS variables handle most changes)
-    updateChartColorsForTheme();
-}
-
-/**
- * Update chart colors for current theme (highly optimized)
- */
-function updateChartColorsForTheme() {
-    const isDark = currentTheme === 'dark';
-    const isMobile = window.innerWidth < 768;
-    
-    // Get CSS variables for consistent theming
-    const axisColor = getComputedStyle(document.documentElement).getPropertyValue('--axis-color').trim();
-    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid-color').trim();
-    
-    // Update chart instances efficiently
-    if (window.chartInstances) {
-        Object.values(window.chartInstances).forEach(chart => {
-            if (chart && chart.options) {
-                // Update axis colors using CSS variables
-                if (chart.options.scales?.x?.ticks) {
-                    chart.options.scales.x.ticks.color = axisColor;
-                    chart.options.scales.x.ticks.font.size = isMobile ? 8 : 12;
-                }
-                if (chart.options.scales?.y?.ticks) {
-                    chart.options.scales.y.ticks.color = axisColor;
-                    chart.options.scales.y.ticks.font.size = isMobile ? 8 : 12;
-                }
-                
-                // Update grid colors using CSS variables
-                if (chart.options.scales?.x?.grid) {
-                    chart.options.scales.x.grid.color = gridColor;
-                }
-                if (chart.options.scales?.y?.grid) {
-                    chart.options.scales.y.grid.color = gridColor;
-                }
-                
-                // Update without animation for maximum speed
-                chart.update('none');
-            }
-        });
-    }
-}
-
-/**
- * Toggle filter panel visibility
- */
-function toggleFilterPanel() {
-    const filterPanel = document.getElementById('filterPanel');
-    const filterBackdrop = document.getElementById('filter-backdrop');
-    const isMobile = window.innerWidth < 768;
-    
-    if (filterPanel) {
-        isFilterPanelVisible = !isFilterPanelVisible;
-        if (isFilterPanelVisible) {
-            filterPanel.style.display = 'block';
-            // Show backdrop on mobile
-            if (isMobile && filterBackdrop) {
-                filterBackdrop.style.display = 'block';
-                setTimeout(() => filterBackdrop.classList.add('show'), 10);
-            }
-            // Small delay to ensure display is set before adding class
-            setTimeout(() => {
-                filterPanel.classList.add('show');
-            }, 10);
-        } else {
-            filterPanel.classList.remove('show');
-            // Hide backdrop on mobile
-            if (isMobile && filterBackdrop) {
-                filterBackdrop.classList.remove('show');
-                setTimeout(() => filterBackdrop.style.display = 'none', 150);
-            }
-            // Wait for transition to complete before hiding
-            setTimeout(() => {
-                filterPanel.style.display = 'none';
-            }, 300);
-        }
-    }
-}
+// Filter panel removed - no longer needed
 
 /**
  * Toggle mobile menu visibility
@@ -816,8 +667,7 @@ function toggleMobileMenu() {
 function handleWindowResize() {
     const isMobile = window.innerWidth < 768;
     
-    // Update chart colors and fonts for new screen size
-    updateChartColorsForTheme();
+    // Chart colors update removed - only using light theme
     
     // Close mobile menu if switching to desktop
     if (!isMobile) {
@@ -872,33 +722,22 @@ function handleSearch(event) {
         // Don't show global error for search issues
     }
     
-    // Ensure charts maintain proper height constraints after search
+    // Resize visible charts after search (safe version)
     setTimeout(() => {
-        if (window.Chart) {
-            Chart.helpers.each(Chart.instances, (chart) => {
-                if (chart && typeof chart.resize === 'function') {
-                    const canvas = chart.canvas;
-                    const container = canvas.parentElement;
-                    const chartContainer = container.closest('.chart-container');
-                    if (chartContainer) {
-                        // Force container to maintain its intended height
-                        if (window.innerWidth <= 768) {
-                            chartContainer.style.height = '180px';
-                            chartContainer.style.minHeight = '180px';
-                            chartContainer.style.maxHeight = '180px';
-                        } else if (window.innerWidth <= 480) {
-                            chartContainer.style.height = '150px';
-                            chartContainer.style.minHeight = '150px';
-                            chartContainer.style.maxHeight = '150px';
-                        } else {
-                            chartContainer.style.height = '300px';
-                            chartContainer.style.minHeight = '300px';
-                            chartContainer.style.maxHeight = '300px';
+        try {
+            if (window.chartInstances) {
+                Object.values(window.chartInstances).forEach(chart => {
+                    if (chart && typeof chart.resize === 'function') {
+                        try {
+                            chart.resize();
+                        } catch (resizeError) {
+                            // Silently ignore resize errors
                         }
                     }
-                    chart.resize();
-                }
-            });
+                });
+            }
+        } catch (error) {
+            // Silently ignore any chart resize errors
         }
     }, 100);
 }
@@ -945,39 +784,24 @@ function handleSourceFilter(event) {
         }
     });
     
-    // Resize visible charts after filtering to maintain consistent aspect ratio
+    // Resize visible charts after filtering (safe version)
     setTimeout(() => {
-        if (window.Chart) {
-            Chart.helpers.each(Chart.instances, (chart) => {
-                if (chart && typeof chart.resize === 'function') {
-                    // Force chart to maintain aspect ratio
-                    const canvas = chart.canvas;
-                    const container = canvas.parentElement;
-                    if (container && container.style.display !== 'none') {
-                        // Ensure container maintains proper height constraints
-                        const chartContainer = container.closest('.chart-container');
-                        if (chartContainer) {
-                            // Force container to maintain its intended height
-                            if (window.innerWidth <= 768) {
-                                chartContainer.style.height = '180px';
-                                chartContainer.style.minHeight = '180px';
-                                chartContainer.style.maxHeight = '180px';
-                            } else if (window.innerWidth <= 480) {
-                                chartContainer.style.height = '150px';
-                                chartContainer.style.minHeight = '150px';
-                                chartContainer.style.maxHeight = '150px';
-                            } else {
-                                chartContainer.style.height = '300px';
-                                chartContainer.style.minHeight = '300px';
-                                chartContainer.style.maxHeight = '300px';
-                            }
+        try {
+            if (window.chartInstances) {
+                Object.values(window.chartInstances).forEach(chart => {
+                    if (chart && typeof chart.resize === 'function') {
+                        try {
+                            chart.resize();
+                        } catch (resizeError) {
+                            // Silently ignore resize errors
                         }
-                        chart.resize();
                     }
-                }
-            });
+                });
+            }
+        } catch (error) {
+            // Silently ignore any chart resize errors
         }
-    }, 100); // Small delay to ensure DOM updates are complete
+    }, 100);
     } catch (filterError) {
         console.error('Error in source filter function:', filterError);
         // Don't show global error for filter issues
@@ -1009,33 +833,22 @@ function sortChartsAlphabetically() {
             chartGrid.appendChild(card);
         });
     
-    // Ensure charts maintain proper height constraints after sorting
+    // Resize charts after sorting (safe version)
     setTimeout(() => {
-        if (window.Chart) {
-            Chart.helpers.each(Chart.instances, (chart) => {
-                if (chart && typeof chart.resize === 'function') {
-                    const canvas = chart.canvas;
-                    const container = canvas.parentElement;
-                    const chartContainer = container.closest('.chart-container');
-                    if (chartContainer) {
-                        // Force container to maintain its intended height
-                        if (window.innerWidth <= 768) {
-                            chartContainer.style.height = '180px';
-                            chartContainer.style.minHeight = '180px';
-                            chartContainer.style.maxHeight = '180px';
-                        } else if (window.innerWidth <= 480) {
-                            chartContainer.style.height = '150px';
-                            chartContainer.style.minHeight = '150px';
-                            chartContainer.style.maxHeight = '150px';
-                        } else {
-                            chartContainer.style.height = '300px';
-                            chartContainer.style.minHeight = '300px';
-                            chartContainer.style.maxHeight = '300px';
+        try {
+            if (window.chartInstances) {
+                Object.values(window.chartInstances).forEach(chart => {
+                    if (chart && typeof chart.resize === 'function') {
+                        try {
+                            chart.resize();
+                        } catch (resizeError) {
+                            // Silently ignore resize errors
                         }
                     }
-                    chart.resize();
-                }
-            });
+                });
+            }
+        } catch (error) {
+            // Silently ignore any chart resize errors
         }
     }, 100);
     } catch (sortError) {
@@ -1088,33 +901,22 @@ function toggleSort() {
             chartGrid.appendChild(card);
         });
     
-    // Ensure charts maintain proper height constraints after sorting
+    // Resize charts after sorting (safe version)
     setTimeout(() => {
-        if (window.Chart) {
-            Chart.helpers.each(Chart.instances, (chart) => {
-                if (chart && typeof chart.resize === 'function') {
-                    const canvas = chart.canvas;
-                    const container = canvas.parentElement;
-                    const chartContainer = container.closest('.chart-container');
-                    if (chartContainer) {
-                        // Force container to maintain its intended height
-                        if (window.innerWidth <= 768) {
-                            chartContainer.style.height = '180px';
-                            chartContainer.style.minHeight = '180px';
-                            chartContainer.style.maxHeight = '180px';
-                        } else if (window.innerWidth <= 480) {
-                            chartContainer.style.height = '150px';
-                            chartContainer.style.minHeight = '150px';
-                            chartContainer.style.maxHeight = '150px';
-                        } else {
-                            chartContainer.style.height = '300px';
-                            chartContainer.style.minHeight = '300px';
-                            chartContainer.style.maxHeight = '300px';
+        try {
+            if (window.chartInstances) {
+                Object.values(window.chartInstances).forEach(chart => {
+                    if (chart && typeof chart.resize === 'function') {
+                        try {
+                            chart.resize();
+                        } catch (resizeError) {
+                            // Silently ignore resize errors
                         }
                     }
-                    chart.resize();
-                }
-            });
+                });
+            }
+        } catch (error) {
+            // Silently ignore any chart resize errors
         }
     }, 100);
     } catch (toggleError) {
@@ -1189,33 +991,22 @@ function toggleHeaderSort() {
             chartGrid.appendChild(card);
         });
     
-    // Ensure charts maintain proper height constraints after sorting
+    // Resize charts after sorting (safe version)
     setTimeout(() => {
-        if (window.Chart) {
-            Chart.helpers.each(Chart.instances, (chart) => {
-                if (chart && typeof chart.resize === 'function') {
-                    const canvas = chart.canvas;
-                    const container = canvas.parentElement;
-                    const chartContainer = container.closest('.chart-container');
-                    if (chartContainer) {
-                        // Force container to maintain its intended height
-                        if (window.innerWidth <= 768) {
-                            chartContainer.style.height = '180px';
-                            chartContainer.style.minHeight = '180px';
-                            chartContainer.style.maxHeight = '180px';
-                        } else if (window.innerWidth <= 480) {
-                            chartContainer.style.height = '150px';
-                            chartContainer.style.minHeight = '150px';
-                            chartContainer.style.maxHeight = '150px';
-                        } else {
-                            chartContainer.style.height = '300px';
-                            chartContainer.style.minHeight = '300px';
-                            chartContainer.style.maxHeight = '300px';
+        try {
+            if (window.chartInstances) {
+                Object.values(window.chartInstances).forEach(chart => {
+                    if (chart && typeof chart.resize === 'function') {
+                        try {
+                            chart.resize();
+                        } catch (resizeError) {
+                            // Silently ignore resize errors
                         }
                     }
-                    chart.resize();
-                }
-            });
+                });
+            }
+        } catch (error) {
+            // Silently ignore any chart resize errors
         }
     }, 100);
     } catch (headerSortError) {
@@ -1366,12 +1157,7 @@ function scrollToTop() {
         }
     });
 
-    // Close filter panel on escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && isFilterPanelVisible) {
-            toggleFilterPanel();
-        }
-    });
+    // Filter panel removed - escape key handler no longer needed
     
     // Restore state on load
     if (wasExpanded) {
@@ -1415,22 +1201,7 @@ function boot() {
         console.log('Chart.js is loaded, proceeding with initialization...');
         updateLoadingStatus('Chart.js loaded, initializing...');
         
-        // Load saved theme preference
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            currentTheme = 'dark';
-            document.body.classList.add('dark-mode');
-            // Set moon icon for dark mode
-            const themeIcon = document.querySelector('#themeToggle .theme-icon');
-            if (themeIcon) {
-                themeIcon.innerHTML = '<path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z"/>';
-            }
-        } else {
-            // Default to light theme
-            currentTheme = 'light';
-            document.body.classList.remove('dark-mode');
-            // Moon icon is already set in HTML for light mode
-        }
+        // Using light theme only - no theme switching needed
         
         console.log('Initializing UI...');
         initializeUI();

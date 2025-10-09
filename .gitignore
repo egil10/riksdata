@@ -1,6 +1,8 @@
-# Cached API data (exclude from git, but allow for GitHub Pages)
-# data/cached/
-# data/cache/
+# Cached API data
+# Note: We include cached data in the repo for GitHub Pages deployment
+# If you want to exclude cached data from git, uncomment the lines below:
+# data/cached/**/*.json
+# !data/cached/.gitkeep
 *.cache
 
 # Python cache

@@ -1502,7 +1502,6 @@ footer {
     color: var(--text-muted);
     margin: 0;
 }
-}
 
 .social-links {
     display: flex;
@@ -1950,6 +1949,18 @@ footer {
     .chart-grid {
         grid-template-columns: repeat(3, 1fr);
     }
+}
+
+/* Hide broken charts */
+[data-chart-id="living-arrangements-national-chart"],
+[data-chart-id="statnett-production-consumption-chart"],
+[data-chart-id="stortinget-women-count-chart"],
+[data-chart-id="stortinget-women-percentage-chart"],
+[data-chart-id="norway-hdi-chart"],
+[data-chart-id="norway-tourist-trips-chart"],
+[data-chart-id="norway-rnd-researchers-chart"],
+[data-chart-id="norway-pisa-math-chart"] {
+    display: none !important;
 }
 
 /* Loading & Error States */

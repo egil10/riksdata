@@ -60,9 +60,10 @@ function optimizeDataForMobile(data, isMobile = false) {
 /**
  * Load and render chart data from cached files
  * @param {string} canvasId - Canvas element ID
- * @param {string} apiUrl - Original API URL
- * @param {string} chartTitle - Chart title
- * @param {string} chartType - Chart type (line, bar, etc.)
+ * @param {string} apiUrl - Original API URL or cache path
+ * @param {string} chartTitle - Chart title for display
+ * @param {string} [chartType='line'] - Chart type: 'line', 'bar', 'nve-magasin', 'statnett-production-consumption', etc.
+ * @returns {Promise<Chart|boolean|null>} Chart.js instance, boolean success indicator, or null on failure
  */
 export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'line') {
     try {
@@ -350,9 +351,10 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
 /**
  * Parse SSB PXWeb JSON format into usable data
- * @param {Object} ssbData - SSB data object
+ * @param {Object} ssbData - SSB data object with dataset structure
  * @param {string} chartTitle - Chart title for content code selection
- * @returns {Array} Parsed data points
+ * @returns {Array<{date: Date, value: number}>} Parsed data points with date and value
+ * @throws {Error} If SSB dataset structure is invalid
  */
 function parseSSBDataGeneric(ssbData, chartTitle) {
     try {
@@ -1191,9 +1193,11 @@ function setChartSubtitle(canvas, text) {
 }
 
 /**
- * Parse Norges Bank exchange rate data
- * @param {Object} data - Norges Bank data object
- * @returns {Array} Parsed data points
+ * Parse Norges Bank exchange rate data (SDMX-JSON format)
+ * @param {Object} data - Norges Bank data object in SDMX-JSON format
+ * @param {string|null} [preferredBaseCurrency=null] - Preferred base currency (e.g., 'USD', 'EUR')
+ * @returns {Array<{date: Date, value: number}>} Parsed data points with date and value
+ * @throws {Error} If exchange rate data format is invalid
  */
 export function parseExchangeRateData(data, preferredBaseCurrency = null) {
     try {
@@ -1377,11 +1381,11 @@ export function parseGovernmentDebtData(data) {
 }
 
 /**
- * Create political datasets for chart coloring
- * @param {Array} data - Data points
- * @param {string} title - Chart title
- * @param {string} chartType - Chart type
- * @returns {Array} Chart datasets
+ * Create political datasets for chart coloring based on Norwegian political periods
+ * @param {Array<{date: Date, value: number}>} data - Data points with date and value
+ * @param {string} title - Chart title for display
+ * @param {string} [chartType='line'] - Chart type: 'line' or 'bar'
+ * @returns {Array<Object>} Chart.js datasets array with political period colors
  */
 export function createPoliticalDatasets(data, title, chartType = 'line') {
     const datasets = [];
@@ -1421,11 +1425,11 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
 
 /**
  * Render Chart.js chart with political party colored lines
- * @param {HTMLElement} canvas - Canvas element
- * @param {Array} data - Data points
- * @param {string} title - Chart title
- * @param {string} chartType - Chart type
- * @param {Object} sourceInfo - Source information object
+ * @param {HTMLCanvasElement} canvas - Canvas element to render chart on
+ * @param {Array<{date: Date, value: number}>} data - Data points with date and value
+ * @param {string} title - Chart title for display
+ * @param {string} [chartType='line'] - Chart type: 'line' or 'bar'
+ * @returns {void}
  */
 export function renderChart(canvas, data, title, chartType = 'line') {
     console.log(`Rendering chart: ${title} with ${data.length} data points`);
@@ -1792,10 +1796,10 @@ export function renderChart(canvas, data, title, chartType = 'line') {
 }
 
 /**
- * Parse static data files (like oil fund data)
- * @param {Object} data - Static data object
- * @param {string} chartTitle - Chart title
- * @returns {Object} Object containing parsedData array and sourceInfo
+ * Parse static data files (like oil fund data, OWID data, etc.)
+ * @param {Object|Array} data - Static data object or array
+ * @param {string} chartTitle - Chart title for context
+ * @returns {{parsedData: Array<{date: Date, value: number}>, sourceInfo: Object|null}} Object containing parsed data array and source information
  */
 export function parseStaticData(data, chartTitle) {
     try {

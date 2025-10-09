@@ -51,22 +51,7 @@
   --space-5: 2rem;
 }
 
-html[data-theme="dark"] {
-  color-scheme: dark;
-  --bg: oklch(17% 0.02 95);
-  --bg-elev: oklch(22% 0.02 95);
-  --card: oklch(20% 0.02 95);
-  --border: oklch(28% 0.02 95);
-  --text: oklch(95% 0.01 95);
-  --text-muted: oklch(78% 0.02 95);
-  --accent: oklch(65% 0.14 235);
-  --accent-2: oklch(75% 0.13 150);
-  --accent-3: oklch(72% 0.11 30);
-  --accent-4: oklch(67% 0.11 280);
-  --grid: oklch(35% 0.01 95);
-  --shadow-sm: 0 1px 2px rgba(0,0,0,.4);
-  --shadow-md: 0 10px 24px rgba(0,0,0,.45);
-}
+/* Dark theme removed - light theme only */
 
 /* Base usage */
 html, body {

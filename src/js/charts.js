@@ -179,6 +179,51 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 showNoDataState(canvasId);
                 return null;
             }
+        } else if (chartType === 'norway-vaccination-coverage') {
+            // Handle Norway Vaccination Coverage charts
+            console.log(`🎯 NORWAY VACCINATION COVERAGE CHART DETECTED: ${chartTitle} (${canvasId})`);
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) {
+                console.warn(`Canvas with id '${canvasId}' not found`);
+                return null;
+            }
+
+            try {
+                // Load and parse the vaccination coverage data
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const rawData = await response.json();
+                console.log(`Raw vaccination data for ${chartTitle}:`, rawData);
+
+                // Parse the vaccination coverage data
+                const parsedData = parseVaccinationCoverageData(rawData);
+                console.log(`Parsed vaccination data for ${chartTitle}:`, parsedData);
+                console.log(`Number of data points: ${parsedData.length}`);
+
+                // Register the data
+                registerChartData(canvasId, parsedData);
+
+                // Render the chart using line chart type
+                console.log(`🎯 About to render vaccination chart: ${chartTitle} with ${parsedData.length} data points`);
+                renderChart(canvas, parsedData, chartTitle, 'line');
+                
+                // Check if chart was created successfully
+                if (canvas.chart) {
+                    console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
+                    hideSkeleton(canvasId);
+                    return canvas.chart;
+                } else {
+                    console.warn(`Failed to render ${chartTitle}: ${canvasId}`);
+                    showNoDataState(canvasId);
+                    return null;
+                }
+            } catch (error) {
+                console.error(`Error loading vaccination chart ${chartTitle}:`, error);
+                showNoDataState(canvasId);
+                return null;
+            }
         } else if (chartType === 'dfo-budget') {
             // Handle DFO budget charts (Norwegian government department budgets)
             console.log(`🎯 DFO BUDGET CHART DETECTED: ${chartTitle} (${canvasId})`);
@@ -327,6 +372,27 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                     parsedData = parseGovernmentDebtData(data);
                 } else {
                     console.warn(`Unknown Norges Bank endpoint in URL: ${apiUrl}`);
+                    return null;
+                }
+            } else if (apiUrl.includes('norges-bank/') || apiUrl.includes('norges-bank.no')) {
+                // Handle cached Norges Bank data files
+                if (apiUrl.includes('interest-rate.json')) {
+                    parsedData = parseInterestRateData(data);
+                } else if (apiUrl.includes('exchange-rates/')) {
+                    // Handle cached exchange rate data from Norges Bank
+                    let preferredBaseCur = null;
+                    if (/USD/i.test(chartTitle)) preferredBaseCur = 'USD';
+                    if (/EUR/i.test(chartTitle)) preferredBaseCur = 'EUR';
+                    if (/GBP/i.test(chartTitle)) preferredBaseCur = 'GBP';
+                    if (/CHF/i.test(chartTitle)) preferredBaseCur = 'CHF';
+                    if (/SEK/i.test(chartTitle)) preferredBaseCur = 'SEK';
+                    if (/CNY/i.test(chartTitle)) preferredBaseCur = 'CNY';
+                    if (/I44/i.test(chartTitle)) preferredBaseCur = 'I44';
+                    parsedData = parseExchangeRateData(data, preferredBaseCur);
+                } else if (apiUrl.includes('government-debt')) {
+                    parsedData = parseGovernmentDebtData(data);
+                } else {
+                    console.warn(`Unknown cached Norges Bank file: ${apiUrl}`);
                     return null;
                 }
             } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
@@ -2061,6 +2127,75 @@ export function parseOsloIndicesData(data, chartTitle) {
 
     } catch (error) {
         console.error('Error parsing Oslo indices data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse Norway vaccination coverage data
+ * @param {Object} data - Vaccination coverage data object
+ * @returns {Array<{date: Date, value: number}>} Parsed data points with date and value
+ */
+export function parseVaccinationCoverageData(data) {
+    try {
+        console.log('Parsing vaccination coverage data:', data);
+        
+        if (!data.data || !Array.isArray(data.data)) {
+            console.error('Invalid vaccination data structure - missing data array');
+            return [];
+        }
+
+        // Group data by antigen (vaccine type) and filter out missing values
+        const antigenData = {};
+        
+        data.data.forEach(item => {
+            if (item.value !== null && item.value !== undefined && item.Year && item.antigen) {
+                if (!antigenData[item.antigen]) {
+                    antigenData[item.antigen] = [];
+                }
+                antigenData[item.antigen].push({
+                    year: item.Year,
+                    value: Number(item.value)
+                });
+            }
+        });
+
+        console.log('Antigen data groups:', Object.keys(antigenData));
+
+        // Choose the most complete antigen dataset (the one with the most data points)
+        let bestAntigen = null;
+        let maxDataPoints = 0;
+        
+        Object.keys(antigenData).forEach(antigen => {
+            const dataPoints = antigenData[antigen].length;
+            if (dataPoints > maxDataPoints) {
+                maxDataPoints = dataPoints;
+                bestAntigen = antigen;
+            }
+        });
+
+        if (!bestAntigen) {
+            console.error('No valid antigen data found');
+            return [];
+        }
+
+        console.log(`Using antigen: ${bestAntigen} with ${maxDataPoints} data points`);
+
+        // Convert to the expected format
+        const parsedData = antigenData[bestAntigen]
+            .map(item => ({
+                date: new Date(item.year, 0, 1), // January 1st of the year
+                value: item.value
+            }))
+            .sort((a, b) => a.date - b.date);
+
+        console.log(`Parsed ${parsedData.length} vaccination data points`);
+        console.log('Sample vaccination data:', parsedData.slice(0, 3));
+
+        return parsedData;
+
+    } catch (error) {
+        console.error('Error parsing vaccination coverage data:', error);
         return [];
     }
 }

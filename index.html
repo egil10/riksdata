@@ -3,11 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <link rel="icon" type="image/x-icon" href="./src/assets/favicon2.ico">
-    <title>Riksdata</title>
-    <!-- Cache bust: Debugging DFO chart detection! -->
+    <title>Riksdata - Debounce Fix v5</title>
+    <!-- Cache bust: Fixed debounce duplicate declaration - v5! -->
     <link rel="stylesheet" href="./src/css/theme.css">
-    <link rel="stylesheet" href="./src/css/main.css?v=2025-01-09">
+    <link rel="stylesheet" href="./src/css/main.css?v=2025-01-10-v3">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
@@ -16,6 +19,20 @@
     <script src="./src/js/mood-rating.js" defer></script>
 
     <script>
+        // Force cache refresh - v5
+        console.log('🚀 Cache refresh v5 - Debounce duplicate fix applied!');
+        
+        // Diagnostic: Check if canvas elements exist
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🔍 DIAGNOSTIC: Checking canvas elements...');
+            const greenhouseCanvas = document.getElementById('greenhouse-gas-emissions-chart');
+            console.log('Greenhouse Gas Emissions canvas found:', greenhouseCanvas ? 'YES' : 'NO');
+            if (greenhouseCanvas) {
+                console.log('Canvas ID:', greenhouseCanvas.id);
+                console.log('Canvas parent:', greenhouseCanvas.parentElement);
+            }
+        });
+        
         // Enhanced Chart.js loading with fallback
         let chartJsLoaded = false;
         
@@ -712,10 +729,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="ppi-skeleton"></div>
+                <div class="skeleton-chart" id="producer-price-index-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="ppi-chart"></canvas>
-                    <div class="static-tooltip" id="ppi-tooltip"></div>
+                    <canvas id="producer-price-index-chart"></canvas>
+                    <div class="static-tooltip" id="producer-price-index-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -742,10 +759,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="wage-skeleton"></div>
+                <div class="skeleton-chart" id="wage-index-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="wage-chart"></canvas>
-                    <div class="static-tooltip" id="wage-tooltip"></div>
+                    <canvas id="wage-index-chart"></canvas>
+                    <div class="static-tooltip" id="wage-index-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -772,10 +789,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="interest-rate-skeleton"></div>
+                <div class="skeleton-chart" id="key-policy-rate-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="interest-rate-chart"></canvas>
-                    <div class="static-tooltip" id="interest-rate-tooltip"></div>
+                    <canvas id="key-policy-rate-chart"></canvas>
+                    <div class="static-tooltip" id="key-policy-rate-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -802,10 +819,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="govt-debt-skeleton"></div>
+                <div class="skeleton-chart" id="government-debt-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="govt-debt-chart"></canvas>
-                    <div class="static-tooltip" id="govt-debt-tooltip"></div>
+                    <canvas id="government-debt-chart"></canvas>
+                    <div class="static-tooltip" id="government-debt-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1195,10 +1212,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="construction-production-skeleton"></div>
+                <div class="skeleton-chart" id="construction-production-index-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="construction-production-chart"></canvas>
-                    <div class="static-tooltip" id="construction-production-tooltip"></div>
+                    <canvas id="construction-production-index-chart"></canvas>
+                    <div class="static-tooltip" id="construction-production-index-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1376,10 +1393,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="rd-expenditure-skeleton"></div>
+                <div class="skeleton-chart" id="r-d-expenditure-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="rd-expenditure-chart"></canvas>
-                    <div class="static-tooltip" id="rd-expenditure-tooltip"></div>
+                    <canvas id="r-d-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="r-d-expenditure-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1406,10 +1423,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="salmon-export-skeleton"></div>
+                <div class="skeleton-chart" id="salmon-export-value-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="salmon-export-chart"></canvas>
-                    <div class="static-tooltip" id="salmon-export-tooltip"></div>
+                    <canvas id="salmon-export-value-chart"></canvas>
+                    <div class="static-tooltip" id="salmon-export-value-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1586,10 +1603,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="greenhouse-gas-skeleton"></div>
+                <div class="skeleton-chart" id="greenhouse-gas-emissions-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="greenhouse-gas-chart"></canvas>
-                    <div class="static-tooltip" id="greenhouse-gas-tooltip"></div>
+                    <canvas id="greenhouse-gas-emissions-chart"></canvas>
+                    <div class="static-tooltip" id="greenhouse-gas-emissions-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1649,10 +1666,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="basic-salary-skeleton"></div>
+                <div class="skeleton-chart" id="basic-salary-index-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="basic-salary-chart"></canvas>
-                    <div class="static-tooltip" id="basic-salary-tooltip"></div>
+                    <canvas id="basic-salary-index-chart"></canvas>
+                    <div class="static-tooltip" id="basic-salary-index-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1771,10 +1788,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="cpi-coicop-skeleton"></div>
+                <div class="skeleton-chart" id="cpi-coicop-divisions-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="cpi-coicop-chart"></canvas>
-                    <div class="static-tooltip" id="cpi-coicop-tooltip"></div>
+                    <canvas id="cpi-coicop-divisions-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-coicop-divisions-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1801,10 +1818,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="cpi-subgroups-skeleton"></div>
+                <div class="skeleton-chart" id="cpi-sub-groups-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="cpi-subgroups-chart"></canvas>
-                    <div class="static-tooltip" id="cpi-subgroups-tooltip"></div>
+                    <canvas id="cpi-sub-groups-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-sub-groups-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1861,10 +1878,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="cpi-delivery-skeleton"></div>
+                <div class="skeleton-chart" id="cpi-delivery-sectors-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="cpi-delivery-chart"></canvas>
-                    <div class="static-tooltip" id="cpi-delivery-tooltip"></div>
+                    <canvas id="cpi-delivery-sectors-chart"></canvas>
+                    <div class="static-tooltip" id="cpi-delivery-sectors-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -1985,10 +2002,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="skeleton-chart" id="monetary-m3-skeleton"></div>
+                <div class="skeleton-chart" id="monetary-aggregate-m3-chart-skeleton"></div>
                 <div class="chart-container">
-                    <canvas id="monetary-m3-chart"></canvas>
-                    <div class="static-tooltip" id="monetary-m3-tooltip"></div>
+                    <canvas id="monetary-aggregate-m3-chart"></canvas>
+                    <div class="static-tooltip" id="monetary-aggregate-m3-chart-tooltip"></div>
                 </div>
             </div>
 
@@ -4603,7 +4620,7 @@
         })();
     </script>
 
-    <script type="module" src="./src/js/main.js?v=2025-01-10" defer></script>
+    <script type="module" src="./src/js/main.js?v=2025-01-10-debounce-fix" defer></script>
     
     <!-- Lucide Icons CDN and Helpers -->
     <script src="https://unpkg.com/lucide@latest"></script>

@@ -40,7 +40,7 @@ function setEllipsisTitle(el) {
 window.addEventListener('error', e => {
     console.error('Global error:', e.error || e.message, 'Stack:', e.error?.stack);
     
-    // Don't show global error for Chart.js resize operations during fullscreen
+    // Don't show global error for Chart.js resize operations during fullscreen or zoom
     if (e.message && (
         e.message.includes('resize') || 
         e.message.includes('canvas') || 
@@ -50,9 +50,16 @@ window.addEventListener('error', e => {
         e.message.includes('removeChild') ||
         e.message.includes('DOM') ||
         e.message.includes('parentNode') ||
-        e.message.includes('childNodes')
+        e.message.includes('childNodes') ||
+        e.message.includes('zoom') ||
+        e.message.includes('scale') ||
+        e.message.includes('transform') ||
+        e.message.includes('viewport') ||
+        e.message.includes('devicePixelRatio') ||
+        e.message.includes('innerWidth') ||
+        e.message.includes('innerHeight')
     )) {
-        console.warn('Suppressing Chart.js/DOM error from global handler:', e.message);
+        console.warn('Suppressing Chart.js/DOM/zoom error from global handler:', e.message);
         return;
     }
     
@@ -61,9 +68,14 @@ window.addEventListener('error', e => {
         e.error.stack.includes('Chart') ||
         e.error.stack.includes('resize') ||
         e.error.stack.includes('canvas') ||
-        e.error.stack.includes('fullscreen')
+        e.error.stack.includes('fullscreen') ||
+        e.error.stack.includes('zoom') ||
+        e.error.stack.includes('scale') ||
+        e.error.stack.includes('transform') ||
+        e.error.stack.includes('viewport') ||
+        e.error.stack.includes('devicePixelRatio')
     )) {
-        console.warn('Suppressing Chart.js error from stack trace:', e.error.stack);
+        console.warn('Suppressing Chart.js/zoom error from stack trace:', e.error.stack);
         return;
     }
     
@@ -93,10 +105,17 @@ window.addEventListener('unhandledrejection', e => {
             e.reason.message.includes('getContext') ||
             e.reason.message.includes('appendChild') ||
             e.reason.message.includes('removeChild') ||
-            e.reason.message.includes('DOM')
+            e.reason.message.includes('DOM') ||
+            e.reason.message.includes('zoom') ||
+            e.reason.message.includes('scale') ||
+            e.reason.message.includes('transform') ||
+            e.reason.message.includes('viewport') ||
+            e.reason.message.includes('devicePixelRatio') ||
+            e.reason.message.includes('innerWidth') ||
+            e.reason.message.includes('innerHeight')
         )
     )) {
-        console.warn('Suppressing Chart.js promise rejection from global handler:', e.reason);
+        console.warn('Suppressing Chart.js/zoom promise rejection from global handler:', e.reason);
         return;
     }
     
@@ -105,7 +124,12 @@ window.addEventListener('unhandledrejection', e => {
         e.reason.stack.includes('Chart') ||
         e.reason.stack.includes('resize') ||
         e.reason.stack.includes('canvas') ||
-        e.reason.stack.includes('fullscreen')
+        e.reason.stack.includes('fullscreen') ||
+        e.reason.stack.includes('zoom') ||
+        e.reason.stack.includes('scale') ||
+        e.reason.stack.includes('transform') ||
+        e.reason.stack.includes('viewport') ||
+        e.reason.stack.includes('devicePixelRatio')
     )) {
         console.warn('Suppressing Chart.js promise rejection from stack trace:', e.reason.stack);
         return;
@@ -214,7 +238,7 @@ const chartConfigs = [
     { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator' },
     { id: 'energy-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', title: 'Energy Consumption' },
     { id: 'government-revenue-chart', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', title: 'Government Revenue' },
-    { id: 'government-debt-chart', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', title: 'Government Debt' },
+    { id: 'government-debt-chart', url: './data/cached/norges-bank/government-debt.json', title: 'Government Debt', type: 'line' },
     { id: 'international-accounts-chart', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', title: 'International Accounts' },
     { id: 'labour-cost-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Labour Cost Index' },
     { id: 'basic-salary-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Basic Salary Index' },
@@ -249,8 +273,8 @@ const chartConfigs = [
     { id: 'first-hand-price-index-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/82679.json?lang=en', title: 'First Hand Price Index Groups' },
     { id: 'cpi-adjusted-delivery-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/130297.json?lang=en', title: 'CPI Adjusted Delivery Sector' },
     { id: 'interest-rate-chart', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', title: 'Key Policy Rate' },
-    { id: 'key-policy-rate-chart', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', title: 'Key Policy Rate' },
-    { id: 'govt-debt-chart', url: 'https://data.norges-bank.no/api/data/GOVT_KEYFIGURES/V_O+N_V+V_I+ATRI+V_IRS..B.GBON?endPeriod=2025-08-01&format=sdmx-json&locale=no&startPeriod=1945-01-01', title: 'Government Debt', type: 'line' },
+    { id: 'key-policy-rate-chart', url: './data/cached/norges-bank/interest-rate.json', title: 'Key Policy Rate', type: 'line' },
+    { id: 'govt-debt-chart', url: './data/cached/norges-bank/government-debt.json', title: 'Government Debt', type: 'line' },
     { id: 'oil-fund-chart', url: './data/cached/oil-fund.json', title: 'Oil Fund Total Market Value' },
     { id: 'oil-fund-fixed-income-chart', url: './data/cached/oil-fund-fixed-income.json', title: 'Oil Fund Fixed Income' },
     { id: 'oil-fund-equities-chart', url: './data/cached/oil-fund-equities.json', title: 'Oil Fund Equities' },
@@ -1454,6 +1478,34 @@ document.addEventListener("DOMContentLoaded", () => {
 window.addEventListener('resize', () => {
     document.querySelectorAll('.chart-header h3').forEach(setEllipsisTitle);
 });
+
+// Handle zoom events safely to prevent errors
+window.addEventListener('resize', debounce(() => {
+    try {
+        // Safely resize charts with error handling
+        if (window.Chart && Chart.instances) {
+            Chart.instances.forEach(chart => {
+                try {
+                    if (chart && typeof chart.resize === 'function') {
+                        const canvas = chart.canvas;
+                        const container = canvas?.parentElement;
+                        if (container && container.style.display !== 'none' && container.offsetHeight > 0) {
+                            chart.resize();
+                        }
+                    }
+                } catch (chartError) {
+                    // Silently ignore individual chart resize errors
+                    console.warn('Chart resize error during zoom (ignored):', chartError.message);
+                }
+            });
+        }
+    } catch (error) {
+        // Silently ignore zoom-related errors
+        console.warn('Zoom resize error (ignored):', error.message);
+    }
+}, 100));
+
+// Using debounce function from utils.js (already imported)
 
 // Resize Chart.js instances when sidebar toggles or layout changes
 function resizeCharts() {

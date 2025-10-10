@@ -220,27 +220,28 @@ window.addEventListener('beforeunload', () => {
 
 // Chart configuration mapping for lazy loading
 const chartConfigs = [
-    { id: 'cpi-chart', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', title: 'Consumer Price Index' },
+    { id: 'cpi-chart', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', title: 'Konsumprisindeks' },
     { id: 'unemployment-chart', url: 'https://data.ssb.no/api/v0/dataset/1052.json?lang=en', title: 'Unemployment Rate' },
     { id: 'house-prices-chart', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Price Index' },
     { id: 'ppi-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index' },
     { id: 'producer-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index' },
-    { id: 'wage-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
-    { id: 'population-growth-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Growth' },
-    { id: 'construction-costs-chart', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', title: 'Construction Costs' },
-    { id: 'industrial-production-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Industrial Production' },
+    { id: 'wage-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Lønnsindeks' },
+    { id: 'population-growth-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Befolkningsvekst' },
+    { id: 'construction-costs-chart', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', title: 'Byggekostnader' },
+    { id: 'industrial-production-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Industriproduksjon' },
     { id: 'export-volume-chart', url: 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', title: 'Export Volume' },
-    { id: 'business-confidence-chart', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', title: 'Business Confidence' },
+    { id: 'business-confidence-chart', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', title: 'Forretningstillit' },
     { id: 'monetary-aggregates-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Monetary Aggregates' },
     { id: 'monetary-aggregate-m3-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Monetary Aggregate M3' },
     { id: 'construction-production-chart', url: 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', title: 'Construction Production Index' },
     { id: 'construction-production-index-chart', url: 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', title: 'Construction Production Index' },
-    { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator' },
+    { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Kredittindikator' },
     { id: 'energy-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', title: 'Energy Consumption' },
     { id: 'government-revenue-chart', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', title: 'Government Revenue' },
-    { id: 'government-debt-chart', url: './data/cached/norges-bank/government-debt.json', title: 'Government Debt', type: 'line' },
-    { id: 'international-accounts-chart', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', title: 'International Accounts' },
-    { id: 'labour-cost-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Labour Cost Index' },
+    // Government Debt chart - DISABLED: Mixed debt instruments with different scales (bonds vs treasury bills)
+    // { id: 'government-debt-chart', url: './data/cached/norges-bank/government-debt.json', title: 'Government Debt', type: 'line' },
+    { id: 'international-accounts-chart', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', title: 'Utenriksregnskap' },
+    { id: 'labour-cost-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Arbeidskostnadsindeks' },
     { id: 'basic-salary-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Basic Salary Index' },
     { id: 'r-d-expenditure-chart', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', title: 'R&D Expenditure' },
     { id: 'salmon-export-value-chart', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', title: 'Salmon Export Value' },
@@ -249,14 +250,14 @@ const chartConfigs = [
     { id: 'household-income-chart', url: 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en', title: 'Household Income' },
     { id: 'crime-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en', title: 'Crime Rate' },
     { id: 'education-level-chart', url: 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', title: 'Education Level' },
-    { id: 'greenhouse-gas-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Greenhouse Gas Emissions' },
-    { id: 'greenhouse-gas-emissions-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Greenhouse Gas Emissions' },
+    { id: 'greenhouse-gas-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Klimagassutslipp' },
+    { id: 'greenhouse-gas-emissions-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Klimagassutslipp' },
     { id: 'economic-forecasts-chart', url: 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', title: 'Economic Forecasts' },
     { id: 'cpi-adjusted-indices-chart', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', title: 'CPI Adjusted Indices' },
     { id: 'cpi-group-level-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Group Level' },
     { id: 'cpi-coicop-divisions-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Coicop Divisions' },
     { id: 'cpi-delivery-sectors-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Delivery Sectors' },
-    { id: 'cpi-sub-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Sub-groups' },
+    { id: 'cpi-sub-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'KPI undergrupper' },
     { id: 'import-value-volume-sitc-chart', url: 'https://data.ssb.no/api/v0/dataset/34640.json?lang=en', title: 'Import Value Volume SITC' },
     { id: 'export-value-volume-sitc-chart', url: 'https://data.ssb.no/api/v0/dataset/34642.json?lang=en', title: 'Export Value Volume SITC' },
     { id: 'tax-returns-main-items-chart', url: 'https://data.ssb.no/api/v0/dataset/49656.json?lang=en', title: 'Tax Returns Main Items' },
@@ -272,24 +273,24 @@ const chartConfigs = [
     { id: 'first-hand-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/82677.json?lang=en', title: 'First Hand Price Index' },
     { id: 'first-hand-price-index-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/82679.json?lang=en', title: 'First Hand Price Index Groups' },
     { id: 'cpi-adjusted-delivery-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/130297.json?lang=en', title: 'CPI Adjusted Delivery Sector' },
-    { id: 'interest-rate-chart', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', title: 'Key Policy Rate' },
-    { id: 'key-policy-rate-chart', url: './data/cached/norges-bank/interest-rate.json', title: 'Key Policy Rate', type: 'line' },
+    { id: 'interest-rate-chart', url: 'https://data.norges-bank.no/api/data/IR/M.KPRA.SD.?format=sdmx-json&startPeriod=1945-01-01&endPeriod=2025-08-01&locale=en', title: 'Styringsrente' },
+    { id: 'key-policy-rate-chart', url: './data/cached/norges-bank/interest-rate.json', title: 'Styringsrente', type: 'line' },
     { id: 'govt-debt-chart', url: './data/cached/norges-bank/government-debt.json', title: 'Government Debt', type: 'line' },
-    { id: 'oil-fund-chart', url: './data/cached/oil-fund.json', title: 'Oil Fund Total Market Value' },
-    { id: 'oil-fund-fixed-income-chart', url: './data/cached/oil-fund-fixed-income.json', title: 'Oil Fund Fixed Income' },
-    { id: 'oil-fund-equities-chart', url: './data/cached/oil-fund-equities.json', title: 'Oil Fund Equities' },
-    { id: 'oil-fund-real-estate-chart', url: './data/cached/oil-fund-real-estate.json', title: 'Oil Fund Real Estate' },
-    { id: 'oil-fund-renewable-infrastructure-chart', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Oil Fund Renewable Infrastructure' },
+    { id: 'oil-fund-chart', url: './data/cached/oil-fund.json', title: 'Oljefondet total markedsverdi' },
+    { id: 'oil-fund-fixed-income-chart', url: './data/cached/oil-fund-fixed-income.json', title: 'Oljefondet obligasjoner' },
+    { id: 'oil-fund-equities-chart', url: './data/cached/oil-fund-equities.json', title: 'Oljefondet aksjer' },
+    { id: 'oil-fund-real-estate-chart', url: './data/cached/oil-fund-real-estate.json', title: 'Oljefondet eiendom' },
+    { id: 'oil-fund-renewable-infrastructure-chart', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Oljefondet fornybar infrastruktur' },
     { id: 'oseax-chart', url: './data/cached/oslo-indices/oseax.json', title: 'OSEAX - Oslo Stock Exchange All Share Index' },
-    { id: 'osebx-chart', url: './data/cached/oslo-indices/osebx.json', title: 'OSEBX - Oslo Stock Exchange Benchmark Index' },
+    { id: 'osebx-chart', url: './data/cached/oslo-indices/osebx.json', title: 'OSEBX - Oslo Bors hovedindeks' },
     { id: 'obx-chart', url: './data/cached/oslo-indices/obx.json', title: 'OBX - Oslo Børs Total Return Index' },
-    { id: 'usd-nok-chart', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK Exchange Rate' },
-    { id: 'eur-nok-chart', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK Exchange Rate' },
-    { id: 'gbp-nok-chart', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK Exchange Rate' },
-    { id: 'chf-nok-chart', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK Exchange Rate' },
-    { id: 'sek-nok-chart', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK Exchange Rate' },
-    { id: 'cny-nok-chart', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK Exchange Rate' },
-    { id: 'i44-nok-chart', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK Exchange Rate' },
+    { id: 'usd-nok-chart', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK Valutakurs' },
+    { id: 'eur-nok-chart', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK Valutakurs' },
+    { id: 'gbp-nok-chart', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK Valutakurs' },
+    { id: 'chf-nok-chart', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK Valutakurs' },
+    { id: 'sek-nok-chart', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK Valutakurs' },
+    { id: 'cny-nok-chart', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK Valutakurs' },
+    { id: 'i44-nok-chart', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK Valutakurs' },
     { id: 'household-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', title: 'Household Consumption' },
     { id: 'immigrants-with-immigrant-parents-chart', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents' },
     { id: 'credit-indicator-k3-chart', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator K3' },
@@ -301,15 +302,15 @@ const chartConfigs = [
     { id: 'producer-price-index-industries-chart', url: 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', title: 'Producer Price Index Industries' },
     { id: 'trade-volume-price-product-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/179417.json?lang=en', title: 'Trade Volume Price Product Groups' },
     { id: 'producer-price-index-products-chart', url: 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', title: 'Producer Price Index Products' },
-    { id: 'business-cycle-barometer-products-chart', url: 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', title: 'Business Cycle Barometer Products' },
+    { id: 'business-cycle-barometer-products-chart', url: 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', title: 'Konjunkturbarometer produkter' },
     { id: 'household-income-national-chart', url: 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', title: 'Household Income National' },
     { id: 'oil-gas-industry-turnover-sn2007-chart', url: 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', title: 'Oil Gas Industry Turnover SN2007' },
     { id: 'producer-price-index-subgroups-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', title: 'Producer Price Index Subgroups Detailed' },
     { id: 'monetary-m3-chart', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', title: 'Monetary Aggregate M3' },
-    { id: 'bankruptcies-total-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Bankruptcies Total' },
+    { id: 'bankruptcies-total-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Konkurser totalt' },
     { id: 'basic-salary-chart', url: 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', title: 'Basic Salary Index' },
-    { id: 'construction-cost-multi-chart', url: 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', title: 'Construction Cost Multi' },
-    { id: 'construction-cost-wood-chart', url: 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', title: 'Construction Cost Wood' },
+    { id: 'construction-cost-multi-chart', url: 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', title: 'Byggekostnad flerbolig' },
+    { id: 'construction-cost-wood-chart', url: 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', title: 'Byggekostnad tre' },
     { id: 'cpi-coicop-chart', url: 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', title: 'CPI Coicop Divisions' },
     { id: 'cpi-delivery-chart', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', title: 'CPI Delivery Sectors' },
     { id: 'cpi-items-chart', url: 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', title: 'CPI Items' },
@@ -440,7 +441,134 @@ const chartConfigs = [
     { id: 'norway-pisa-science-chart', url: './data/cached/pisa_science.json', title: 'PISA Science', type: 'norway-pisa-science' },
     
     // Norway PISA Reading charts
-    { id: 'norway-pisa-reading-chart', url: './data/cached/pisa_reading.json', title: 'PISA Reading', type: 'norway-pisa-reading' }];
+    { id: 'norway-pisa-reading-chart', url: './data/cached/pisa_reading.json', title: 'PISA Reading', type: 'norway-pisa-reading' },
+    
+    // Norway PISA Math charts - DISABLED: Data file missing values
+    // { id: 'norway-pisa-math-chart', url: './data/cached/pisa_math.json', title: 'PISA Math', type: 'norway-pisa-math' },
+    
+    // Norway R&D Researchers charts
+    { id: 'norway-rnd-researchers-chart', url: './data/cached/rnd_researchers.json', title: 'R&D Researchers', type: 'norway-rnd-researchers' },
+    
+    // Norway Tourist Trips charts
+    { id: 'norway-tourist-trips-chart', url: './data/cached/tourist_trips.json', title: 'Tourist Trips', type: 'norway-tourist-trips' },
+    
+    // === NORGES BANK EXCHANGE RATES ===
+    
+    // USD/NOK Exchange Rate
+    { id: 'usd-nok-chart', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK Valutakurs', type: 'line' },
+    
+    // EUR/NOK Exchange Rate
+    { id: 'eur-nok-chart', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK Valutakurs', type: 'line' },
+    
+    // GBP/NOK Exchange Rate
+    { id: 'gbp-nok-chart', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK Valutakurs', type: 'line' },
+    
+    // I44/NOK Exchange Rate
+    { id: 'i44-nok-chart', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK Valutakurs', type: 'line' },
+    
+    // CHF/NOK Exchange Rate
+    { id: 'chf-nok-chart', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK Valutakurs', type: 'line' },
+    
+    // CNY/NOK Exchange Rate
+    { id: 'cny-nok-chart', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK Valutakurs', type: 'line' },
+    
+    // SEK/NOK Exchange Rate
+    { id: 'sek-nok-chart', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK Valutakurs', type: 'line' },
+    
+    // === HIGH-VALUE ENERGY & ELECTRICITY CHARTS ===
+    
+    // NVE Reservoir Statistics
+    { id: 'nve-all-series-chart', url: './data/cached/nve/all-series.json', title: 'NVE Magasinstatistikk - Alle serier', type: 'nve-reservoir' },
+    { id: 'nve-areas-chart', url: './data/cached/nve/areas.json', title: 'NVE Magasinstatistikk - Områder', type: 'nve-reservoir' },
+    { id: 'nve-min-max-median-chart', url: './data/cached/nve/min-max-median.json', title: 'NVE Magasinstatistikk - Min/Maks/Median', type: 'nve-reservoir' },
+    
+    // Statnett Electricity Data
+    { id: 'statnett-latest-detailed-overview-chart', url: './data/cached/statnett/latest-detailed-overview.json', title: 'Statnett Siste Detaljerte Oversikt', type: 'statnett-production-consumption' },
+    { id: 'statnett-production-consumption-complete-chart', url: './data/cached/statnett/production-consumption-complete.json', title: 'Statnett Produksjon og Forbruk Fullstendig', type: 'statnett-production-consumption' },
+    
+    // === MISSING CHARTS - AUTO-GENERATED ===
+    
+    // Norway HDI
+    { id: 'norway-hdi-chart', url: './data/cached/hdi.json', title: 'Menneskelig utviklingsindeks', type: 'norway-hdi' },
+    
+    // Norges Bank - Government Debt Details (10 charts)
+    { id: 'government-debt-gbon-atre-chart', url: './data/cached/norges-bank/government-debt-gbon-atre.json', title: 'Government Bonds - Real Exchange Rate', type: 'line' },
+    { id: 'government-debt-gbon-atri-chart', url: './data/cached/norges-bank/government-debt-gbon-atri.json', title: 'Government Bonds - Real Interest', type: 'line' },
+    { id: 'government-debt-gbon-holdings-chart', url: './data/cached/norges-bank/government-debt-gbon-holdings.json', title: 'Government Bonds - Holdings', type: 'line' },
+    { id: 'government-debt-gbon-issued-chart', url: './data/cached/norges-bank/government-debt-gbon-issued.json', title: 'Government Bonds - Issued', type: 'line' },
+    { id: 'government-debt-gbon-nominal-chart', url: './data/cached/norges-bank/government-debt-gbon-nominal.json', title: 'Government Bonds - Nominal', type: 'line' },
+    { id: 'government-debt-irs-atri-chart', url: './data/cached/norges-bank/government-debt-irs-atri.json', title: 'Interest Rate Swaps - Real Interest', type: 'line' },
+    { id: 'government-debt-irs-volume-chart', url: './data/cached/norges-bank/government-debt-irs-volume.json', title: 'Interest Rate Swaps - Volume', type: 'line' },
+    { id: 'government-debt-tbil-holdings-chart', url: './data/cached/norges-bank/government-debt-tbil-holdings.json', title: 'Treasury Bills - Holdings', type: 'line' },
+    { id: 'government-debt-tbil-issued-chart', url: './data/cached/norges-bank/government-debt-tbil-issued.json', title: 'Treasury Bills - Issued', type: 'line' },
+    { id: 'government-debt-tbil-nominal-chart', url: './data/cached/norges-bank/government-debt-tbil-nominal.json', title: 'Treasury Bills - Nominal', type: 'line' },
+    
+    // SSB - All 128 datasets
+    { id: 'bankruptcies-by-industry-chart', url: './data/cached/ssb/bankruptcies-by-industry.json', title: 'Konkurser etter bransje', type: 'line' },
+    { id: 'basic-salary-chart', url: './data/cached/ssb/basic-salary.json', title: 'Grunnlønn', type: 'line' },
+    { id: 'births-deaths-chart', url: './data/cached/ssb/births-deaths.json', title: 'Fødsler og dødsfall', type: 'line' },
+    { id: 'business-cycle-barometer-chart', url: './data/cached/ssb/business-cycle-barometer.json', title: 'Konjunkturbarometer', type: 'line' },
+    { id: 'cohabiting-arrangements-chart', url: './data/cached/ssb/cohabiting-arrangements.json', title: 'Samboerskap', type: 'line' },
+    { id: 'construction-production-chart', url: './data/cached/ssb/construction-production.json', title: 'Bygge produksjon', type: 'line' },
+    { id: 'consumer-confidence-chart', url: './data/cached/ssb/consumer-confidence.json', title: 'Forbrukertillit', type: 'line' },
+    { id: 'cpi-adjusted-delivery-sector-recent-chart', url: './data/cached/ssb/cpi-adjusted-delivery-sector-recent.json', title: 'KPI Justert leveringssektor (Nylig)', type: 'line' },
+    { id: 'cpi-ate-chart', url: './data/cached/ssb/cpi-ate.json', title: 'KPI - Justert for skatt og energi', type: 'line' },
+    { id: 'cpi-coicop-chart', url: './data/cached/ssb/cpi-coicop.json', title: 'KPI - COICOP-klassifisering', type: 'line' },
+    { id: 'cpi-delivery-sector-annual-chart', url: './data/cached/ssb/cpi-delivery-sector-annual.json', title: 'KPI Leveringssektor (Årlig)', type: 'line' },
+    { id: 'cpi-delivery-sector-recent-chart', url: './data/cached/ssb/cpi-delivery-sector-recent.json', title: 'KPI Leveringssektor (Nylig)', type: 'line' },
+    { id: 'cpi-delivery-chart', url: './data/cached/ssb/cpi-delivery.json', title: 'KPI Levering', type: 'line' },
+    { id: 'cpi-subgroup-level2-chart', url: './data/cached/ssb/cpi-subgroup-level2.json', title: 'KPI Undergruppe Nivå 2', type: 'line' },
+    { id: 'cpi-total-index-recent-chart', url: './data/cached/ssb/cpi-total-index-recent.json', title: 'KPI Total Indeks (Nylig)', type: 'line' },
+    { id: 'cpi-weights-subgroup-chart', url: './data/cached/ssb/cpi-weights-subgroup.json', title: 'KPI Vekter etter undergruppe', type: 'line' },
+    { id: 'deaths-age-chart', url: './data/cached/ssb/deaths-age.json', title: 'Dødsfall etter alder', type: 'line' },
+    { id: 'deaths-by-week-age-chart', url: './data/cached/ssb/deaths-by-week-age.json', title: 'Dødsfall etter uke og alder', type: 'line' },
+    { id: 'economic-forecasts-selected-chart', url: './data/cached/ssb/economic-forecasts-selected.json', title: 'Økonomiske prognoser (Valgte)', type: 'line' },
+    { id: 'employed-by-residence-workplace-chart', url: './data/cached/ssb/employed-by-residence-workplace.json', title: 'Sysselsatte etter bosted og arbeidsplass', type: 'line' },
+    { id: 'export-by-country-monthly-chart', url: './data/cached/ssb/export-by-country-monthly.json', title: 'Eksport etter land (Månedlig)', type: 'line' },
+    { id: 'export-commodity-chart', url: './data/cached/ssb/export-commodity.json', title: 'Eksport etter vare', type: 'line' },
+    { id: 'export-country-chart', url: './data/cached/ssb/export-country.json', title: 'Eksport etter land', type: 'line' },
+    { id: 'holiday-property-sales-chart', url: './data/cached/ssb/holiday-property-sales.json', title: 'Fritidsboligsalg', type: 'line' },
+    { id: 'house-price-index-recent-chart', url: './data/cached/ssb/house-price-index-recent.json', title: 'Boligprisindeks (Nylig)', type: 'line' },
+    { id: 'household-income-size-chart', url: './data/cached/ssb/household-income-size.json', title: 'Husholdningsinntekt etter størrelse', type: 'line' },
+    { id: 'import-by-country-monthly-chart', url: './data/cached/ssb/import-by-country-monthly.json', title: 'Import etter land (Månedlig)', type: 'line' },
+    { id: 'import-commodity-chart', url: './data/cached/ssb/import-commodity.json', title: 'Import etter vare', type: 'line' },
+    { id: 'import-country-chart', url: './data/cached/ssb/import-country.json', title: 'Import etter land', type: 'line' },
+    { id: 'lifestyle-habits-chart', url: './data/cached/ssb/lifestyle-habits.json', title: 'Livsstilsvaner', type: 'line' },
+    { id: 'long-term-illness-chart', url: './data/cached/ssb/long-term-illness.json', title: 'Langvarig sykdom', type: 'line' },
+    { id: 'monetary-m3-chart', url: './data/cached/ssb/monetary-m3.json', title: 'Monetær M3', type: 'line' },
+    { id: 'money-supply-by-sector-chart', url: './data/cached/ssb/money-supply-by-sector.json', title: 'Pengemengde etter sektor', type: 'line' },
+    { id: 'money-supply-m3-by-sector-chart', url: './data/cached/ssb/money-supply-m3-by-sector.json', title: 'Pengemengde M3 etter sektor', type: 'line' },
+    { id: 'national-accounts-recent-chart', url: './data/cached/ssb/national-accounts-recent.json', title: 'Nasjonalregnskap (Nylig)', type: 'line' },
+    { id: 'new-detached-house-prices-national-chart', url: './data/cached/ssb/new-detached-house-prices-national.json', title: 'Nye eneboligpriser', type: 'line' },
+    { id: 'new-dwellings-price-chart', url: './data/cached/ssb/new-dwellings-price.json', title: 'Nye boliger pris', type: 'line' },
+    { id: 'oil-gas-turnover-chart', url: './data/cached/ssb/oil-gas-turnover.json', title: 'Olje- og gassomsetning', type: 'line' },
+    { id: 'population-age-chart', url: './data/cached/ssb/population-age.json', title: 'Befolkning etter alder', type: 'line' },
+    { id: 'population-basic-districts-national-chart', url: './data/cached/ssb/population-basic-districts-national.json', title: 'Befolkning etter distrikt', type: 'line' },
+    { id: 'population-by-gender-age-5year-chart', url: './data/cached/ssb/population-by-gender-age-5year.json', title: 'Befolkning etter kjønn og alder (5-årig)', type: 'line' },
+    { id: 'population-by-gender-age-historical-chart', url: './data/cached/ssb/population-by-gender-age-historical.json', title: 'Befolkning etter kjønn og alder (Historisk)', type: 'line' },
+    { id: 'population-by-gender-age-timeline-chart', url: './data/cached/ssb/population-by-gender-age-timeline.json', title: 'Befolkning etter kjønn og alder (Tidslinje)', type: 'line' },
+    { id: 'population-development-quarterly-chart', url: './data/cached/ssb/population-development-quarterly.json', title: 'Befolkningsutvikling (Kvartalsvis)', type: 'line' },
+    { id: 'population-growth-alt-chart', url: './data/cached/ssb/population-growth-alt.json', title: 'Befolkningsvekst (Alternativ)', type: 'line' },
+    { id: 'ppi-chart', url: './data/cached/ssb/ppi.json', title: 'Produsentprisindeks (PPI)', type: 'line' },
+    { id: 'producer-price-index-recent-chart', url: './data/cached/ssb/producer-price-index-recent.json', title: 'Produsentprisindeks (Nylig)', type: 'line' },
+    { id: 'producer-price-index-subgroups-chart', url: './data/cached/ssb/producer-price-index-subgroups.json', title: 'PPI Undergrupper', type: 'line' },
+    { id: 'producer-price-index-totals-recent-chart', url: './data/cached/ssb/producer-price-index-totals-recent.json', title: 'PPI Totaler (Nylig)', type: 'line' },
+    { id: 'production-index-by-industry-chart', url: './data/cached/ssb/production-index-by-industry.json', title: 'Produksjonsindeks etter bransje', type: 'line' },
+    { id: 'production-index-by-product-chart', url: './data/cached/ssb/production-index-by-product.json', title: 'Produksjonsindeks etter produkt', type: 'line' },
+    { id: 'production-index-industry-recent-chart', url: './data/cached/ssb/production-index-industry-recent.json', title: 'Produksjonsindeks Industri (Nylig)', type: 'line' },
+    { id: 'rd-expenditure-auto-chart', url: './data/cached/ssb/rd-expenditure.json', title: 'FoU-utgifter (SSB)', type: 'line' },
+    { id: 'retail-sales-seasonally-adjusted-chart', url: './data/cached/ssb/retail-sales-seasonally-adjusted.json', title: 'Detaljhandel (Sesongjustert)', type: 'line' },
+    { id: 'retail-sales-chart', url: './data/cached/ssb/retail-sales.json', title: 'Detaljhandel', type: 'line' },
+    { id: 'salmon-export-volume-chart', url: './data/cached/ssb/salmon-export-volume.json', title: 'Lakseksport volum', type: 'line' },
+    { id: 'salmon-export-auto-chart', url: './data/cached/ssb/salmon-export.json', title: 'Lakseksport', type: 'line' },
+    { id: 'trade-main-figures-by-country-chart', url: './data/cached/ssb/trade-main-figures-by-country.json', title: 'Handel etter land', type: 'line' },
+    { id: 'trade-main-figures-recent-chart', url: './data/cached/ssb/trade-main-figures-recent.json', title: 'Handel hovedtall (Nylig)', type: 'line' },
+    { id: 'trade-volume-price-sitc2-chart', url: './data/cached/ssb/trade-volume-price-sitc2.json', title: 'Handelsvolum og pris (SITC2)', type: 'line' },
+    { id: 'trade-volume-price-auto-chart', url: './data/cached/ssb/trade-volume-price.json', title: 'Handelsvolum og pris', type: 'line' },
+    { id: 'wage-indices-by-industry-sn88-chart', url: './data/cached/ssb/wage-indices-by-industry-sn88.json', title: 'Lønnsindekser etter bransje (SN88)', type: 'line' },
+    { id: 'wage-indices-by-industry-chart', url: './data/cached/ssb/wage-indices-by-industry.json', title: 'Lønnsindekser etter bransje', type: 'line' },
+    { id: 'wage-auto-chart', url: './data/cached/ssb/wage.json', title: 'Lønnsindeks', type: 'line' },
+    { id: 'wages-by-occupation-chart', url: './data/cached/ssb/wages-by-occupation.json', title: 'Lønn etter yrke', type: 'line' }];
 
 /**
  * Setup lazy loading for charts using IntersectionObserver

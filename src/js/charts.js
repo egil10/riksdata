@@ -397,10 +397,11 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 }
             } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
                 // Handle OWID static data files
-                parsedData = parseStaticData(data, chartTitle);
+                const result = parseStaticData(data, chartTitle);
+                parsedData = result.parsedData;
             } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
                 // Handle static data files
-                if (apiUrl.includes('oseax-osebx.json')) {
+                if (apiUrl.includes('oseax-osebx.json') || apiUrl.includes('oslo-indices/')) {
                     // Handle Oslo indices data with new format
                     parsedData = parseOsloIndicesData(data, chartTitle);
                 } else if (apiUrl.includes('exchange-rates/')) {
@@ -414,8 +415,14 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                     if (/CNY/i.test(chartTitle)) preferredBaseCur = 'CNY';
                     if (/I44/i.test(chartTitle)) preferredBaseCur = 'I44';
                     parsedData = parseExchangeRateData(data, preferredBaseCur);
+                } else if (apiUrl.includes('oil-fund')) {
+                    // Handle Oil Fund data files specifically
+                    const result = parseStaticData(data, chartTitle);
+                    parsedData = result.parsedData;
                 } else {
-                    parsedData = parseStaticData(data, chartTitle);
+                    // Generic static data - need to destructure the result
+                    const result = parseStaticData(data, chartTitle);
+                    parsedData = result.parsedData;
                 }
             } else {
                 console.warn(`Unknown data source: ${apiUrl}`);
@@ -440,10 +447,11 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             return year >= 1945;
         });
 
-        // Limit data for exchange rate charts (they have too much data)
+        // Limit data for charts with too many data points
         let finalFiltered = filteredData;
-        if (chartTitle.includes('Exchange Rate') && filteredData.length > 5000) {
-            console.log(`🎯 Limiting exchange rate data from ${filteredData.length} to 5000 points`);
+        const shouldLimit = (chartTitle.includes('Exchange Rate') || chartTitle.includes('COVID')) && filteredData.length > 5000;
+        if (shouldLimit) {
+            console.log(`🎯 Limiting ${chartTitle} data from ${filteredData.length} to 5000 points`);
             // Take every Nth point to reduce data
             const step = Math.ceil(filteredData.length / 5000);
             finalFiltered = filteredData.filter((_, index) => index % step === 0);

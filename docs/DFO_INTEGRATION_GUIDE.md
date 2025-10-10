@@ -445,4 +445,4 @@ Verify chart data is not undefined:
 **Status**: ✅ Working
 **Total Charts**: 30 DFO budget charts
 **Data Period**: 2014-2024
-**Chart Type**: Bar charts with negative value support
+**Chart Type**: Line charts with absolute values (positive)

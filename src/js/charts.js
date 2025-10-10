@@ -219,18 +219,25 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
             // DFO data is from 2014-2024, no need to filter by 1945
             
+            // Convert all values to absolute values (positive) for DFO charts
+            const absoluteData = parsedData.map(d => ({
+                ...d,
+                value: Math.abs(d.value)
+            }));
+            console.log(`🎯 Converted to absolute values for ${chartTitle}:`, absoluteData.slice(0, 3));
+
             // Register data for export
-            const exportData = parsedData.map(d => ({
+            const exportData = absoluteData.map(d => ({
                 date: d.date,
                 value: d.value,
                 series: chartTitle
             }));
             registerChartData(canvasId, exportData);
 
-            // Render the chart using bar chart type for budget data
-            console.log(`🎯 About to render DFO chart: ${chartTitle} with ${parsedData.length} data points`);
-            console.log(`🎯 Sample DFO data:`, parsedData.slice(0, 3));
-            renderChart(canvas, parsedData, chartTitle, 'bar');
+            // Render the chart using line chart type (like other charts)
+            console.log(`🎯 About to render DFO chart: ${chartTitle} with ${absoluteData.length} data points`);
+            console.log(`🎯 Sample DFO data:`, absoluteData.slice(0, 3));
+            renderChart(canvas, absoluteData, chartTitle, 'line');
             
             // Check if chart was created successfully
             if (canvas.chart) {
@@ -1731,7 +1738,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             }
         };
     } else if (title.includes('–') && (title.includes('Expenditure') || title.includes('Revenue'))) {
-        // Special options for DFO Budget charts
+        // Special options for DFO Budget charts (now line charts)
         console.log(`🎯 DFO CHART OPTIONS APPLIED for: ${title}`);
         chartOptions = {
             ...chartOptions,
@@ -1742,7 +1749,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     enabled: true,
                     callbacks: {
                         label: function(context) {
-                            const valueInBillions = Math.abs(context.parsed.y) / 1000000000;
+                            const valueInBillions = context.parsed.y / 1000000000;
                             return `${valueInBillions.toFixed(2)} billion NOK`;
                         }
                     }
@@ -1770,31 +1777,20 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 },
                 y: {
                     ...chartOptions.scales.y,
-                    beginAtZero: false,  // Changed: don't force zero, let Chart.js auto-scale
+                    beginAtZero: false,  // Let Chart.js auto-scale for better visualization
                     ticks: {
                         ...chartOptions.scales.y.ticks,
                         callback: function(value) {
-                            const absValue = Math.abs(value);
-                            if (absValue >= 1000000000) {
+                            if (value >= 1000000000) {
                                 return (value / 1000000000).toFixed(0) + 'B';
-                            } else if (absValue >= 1000000) {
+                            } else if (value >= 1000000) {
                                 return (value / 1000000).toFixed(0) + 'M';
-                            } else if (absValue >= 1000) {
+                            } else if (value >= 1000) {
                                 return (value / 1000).toFixed(0) + 'K';
                             }
                             return value.toLocaleString();
                         }
                     }
-                }
-            },
-            elements: {
-                ...CHART_CONFIG.elements,
-                bar: {
-                    borderWidth: 2,
-                    borderRadius: 4,
-                    borderSkipped: false,
-                    backgroundColor: `${accentColor}cc`,
-                    borderColor: accentColor
                 }
             }
         };

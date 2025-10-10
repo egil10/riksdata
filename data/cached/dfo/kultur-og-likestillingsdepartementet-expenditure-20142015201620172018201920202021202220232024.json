@@ -1,0 +1,53 @@
+{
+  "title": "Kultur- og likestillingsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Kultur- og likestillingsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 12317441121.89
+    },
+    {
+      "year": 2015,
+      "value": 12774044009.08
+    },
+    {
+      "year": 2016,
+      "value": 13100852579.51
+    },
+    {
+      "year": 2017,
+      "value": 13648321818.8
+    },
+    {
+      "year": 2018,
+      "value": 14043696347.62
+    },
+    {
+      "year": 2019,
+      "value": 12875583188.19
+    },
+    {
+      "year": 2020,
+      "value": 23116259884.08
+    },
+    {
+      "year": 2021,
+      "value": 25780242314.56
+    },
+    {
+      "year": 2022,
+      "value": 23450616031.98
+    },
+    {
+      "year": 2023,
+      "value": 23902852003.34
+    },
+    {
+      "year": 2024,
+      "value": 25158947356.77
+    }
+  ]
+}

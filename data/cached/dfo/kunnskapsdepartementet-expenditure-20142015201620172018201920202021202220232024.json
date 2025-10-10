@@ -1,0 +1,53 @@
+{
+  "title": "Kunnskapsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Kunnskapsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 64180808249.57
+    },
+    {
+      "year": 2015,
+      "value": 62452753900.58
+    },
+    {
+      "year": 2016,
+      "value": 72749773035.89
+    },
+    {
+      "year": 2017,
+      "value": 76377492114.49
+    },
+    {
+      "year": 2018,
+      "value": 98675282027.27
+    },
+    {
+      "year": 2019,
+      "value": 99183392408.25
+    },
+    {
+      "year": 2020,
+      "value": 102210520485.86
+    },
+    {
+      "year": 2021,
+      "value": 105984070536.53
+    },
+    {
+      "year": 2022,
+      "value": 99972413933.12
+    },
+    {
+      "year": 2023,
+      "value": 101433962726.63
+    },
+    {
+      "year": 2024,
+      "value": 106264206307.66
+    }
+  ]
+}

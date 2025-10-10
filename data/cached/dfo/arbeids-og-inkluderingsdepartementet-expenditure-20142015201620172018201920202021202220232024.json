@@ -1,0 +1,53 @@
+{
+  "title": "Arbeids- og inkluderingsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Arbeids- og inkluderingsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 388917256698.71
+    },
+    {
+      "year": 2015,
+      "value": 380785743253.85
+    },
+    {
+      "year": 2016,
+      "value": 404697705492.45
+    },
+    {
+      "year": 2017,
+      "value": 418295314536.67
+    },
+    {
+      "year": 2018,
+      "value": 431268134956.59
+    },
+    {
+      "year": 2019,
+      "value": 455249909017.65
+    },
+    {
+      "year": 2020,
+      "value": 501390259925.77
+    },
+    {
+      "year": 2021,
+      "value": 523963255251.17
+    },
+    {
+      "year": 2022,
+      "value": 552675261920.51
+    },
+    {
+      "year": 2023,
+      "value": 604323797520.77
+    },
+    {
+      "year": 2024,
+      "value": 656117741716.79
+    }
+  ]
+}

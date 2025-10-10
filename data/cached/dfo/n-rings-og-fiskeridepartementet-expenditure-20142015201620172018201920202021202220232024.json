@@ -1,0 +1,53 @@
+{
+  "title": "Nærings- og fiskeridepartementet - Utgifter",
+  "description": "Aggregert utgift for Nærings- og fiskeridepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -389204926.84
+    },
+    {
+      "year": 2015,
+      "value": -683345563.17
+    },
+    {
+      "year": 2016,
+      "value": -4001131117.63
+    },
+    {
+      "year": 2017,
+      "value": -9236148182.3
+    },
+    {
+      "year": 2018,
+      "value": -24768455088.33
+    },
+    {
+      "year": 2019,
+      "value": -17822384998.49
+    },
+    {
+      "year": 2020,
+      "value": -1229390453.25
+    },
+    {
+      "year": 2021,
+      "value": -6827182040.83
+    },
+    {
+      "year": 2022,
+      "value": 50173240917.57
+    },
+    {
+      "year": 2023,
+      "value": -75685224019.66
+    },
+    {
+      "year": 2024,
+      "value": -45139895173.27
+    }
+  ]
+}

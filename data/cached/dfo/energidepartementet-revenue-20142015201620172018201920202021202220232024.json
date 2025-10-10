@@ -1,0 +1,53 @@
+{
+  "title": "Energidepartementet - Inntekter",
+  "description": "Aggregert inntekt for Energidepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -194535816173.25
+    },
+    {
+      "year": 2015,
+      "value": -168582477032.15
+    },
+    {
+      "year": 2016,
+      "value": -128706314415.73
+    },
+    {
+      "year": 2017,
+      "value": -152797326204.76
+    },
+    {
+      "year": 2018,
+      "value": -184065974704.68
+    },
+    {
+      "year": 2019,
+      "value": -155494073423.45
+    },
+    {
+      "year": 2020,
+      "value": -117932667096.19
+    },
+    {
+      "year": 2021,
+      "value": -285633869975.56
+    },
+    {
+      "year": 2022,
+      "value": -225598355.88
+    },
+    {
+      "year": 2023,
+      "value": -345884389.03
+    },
+    {
+      "year": 2024,
+      "value": -325931304.45
+    }
+  ]
+}

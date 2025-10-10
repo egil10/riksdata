@@ -1,0 +1,53 @@
+{
+  "title": "Utenriksdepartementet - Utgifter",
+  "description": "Aggregert utgift for Utenriksdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 35837779873.52
+    },
+    {
+      "year": 2015,
+      "value": 40013820490.69
+    },
+    {
+      "year": 2016,
+      "value": 41349911999.89
+    },
+    {
+      "year": 2017,
+      "value": 37348657878.04
+    },
+    {
+      "year": 2018,
+      "value": 37086829617.12
+    },
+    {
+      "year": 2019,
+      "value": 40727266879.25
+    },
+    {
+      "year": 2020,
+      "value": 44098453485.95
+    },
+    {
+      "year": 2021,
+      "value": 44638992139.9
+    },
+    {
+      "year": 2022,
+      "value": 56160596477.94
+    },
+    {
+      "year": 2023,
+      "value": 67429818169.1
+    },
+    {
+      "year": 2024,
+      "value": 60245893409.68
+    }
+  ]
+}

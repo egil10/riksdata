@@ -1,0 +1,53 @@
+{
+  "title": "Forsvarsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Forsvarsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 44464765063.69
+    },
+    {
+      "year": 2015,
+      "value": 43545202036.84
+    },
+    {
+      "year": 2016,
+      "value": 49305829260.2
+    },
+    {
+      "year": 2017,
+      "value": 52648127900.68
+    },
+    {
+      "year": 2018,
+      "value": 57124559856.86
+    },
+    {
+      "year": 2019,
+      "value": 60296810264.66
+    },
+    {
+      "year": 2020,
+      "value": 61955105333.11
+    },
+    {
+      "year": 2021,
+      "value": 67662451130.84
+    },
+    {
+      "year": 2022,
+      "value": 78579468662
+    },
+    {
+      "year": 2023,
+      "value": 85377975019.38
+    },
+    {
+      "year": 2024,
+      "value": 109572099068.27
+    }
+  ]
+}

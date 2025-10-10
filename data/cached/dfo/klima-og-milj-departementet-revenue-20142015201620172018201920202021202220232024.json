@@ -1,0 +1,53 @@
+{
+  "title": "Klima- og miljødepartementet - Inntekter",
+  "description": "Aggregert inntekt for Klima- og miljødepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -254338968.86
+    },
+    {
+      "year": 2015,
+      "value": -244258423.89
+    },
+    {
+      "year": 2016,
+      "value": -244034606.16
+    },
+    {
+      "year": 2017,
+      "value": -304923662.94
+    },
+    {
+      "year": 2018,
+      "value": -284954204.01
+    },
+    {
+      "year": 2019,
+      "value": -5194825034.69
+    },
+    {
+      "year": 2020,
+      "value": -8304795702.33
+    },
+    {
+      "year": 2021,
+      "value": -2157589277.11
+    },
+    {
+      "year": 2022,
+      "value": -2612429146.63
+    },
+    {
+      "year": 2023,
+      "value": -3415581271.45
+    },
+    {
+      "year": 2024,
+      "value": -2713569189.76
+    }
+  ]
+}

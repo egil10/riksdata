@@ -1,0 +1,53 @@
+{
+  "title": "Helse- og omsorgsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Helse- og omsorgsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 156698885780.4
+    },
+    {
+      "year": 2015,
+      "value": 169332859777.58
+    },
+    {
+      "year": 2016,
+      "value": 178201513240.8
+    },
+    {
+      "year": 2017,
+      "value": 181448485564.65
+    },
+    {
+      "year": 2018,
+      "value": 195223297957.28
+    },
+    {
+      "year": 2019,
+      "value": 207147875858.73
+    },
+    {
+      "year": 2020,
+      "value": 222993219514.29
+    },
+    {
+      "year": 2021,
+      "value": 249569985551.21
+    },
+    {
+      "year": 2022,
+      "value": 251568166032.79
+    },
+    {
+      "year": 2023,
+      "value": 270475303874.78
+    },
+    {
+      "year": 2024,
+      "value": 279110468126.09
+    }
+  ]
+}

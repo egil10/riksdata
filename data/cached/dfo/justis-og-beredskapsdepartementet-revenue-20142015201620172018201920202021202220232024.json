@@ -1,0 +1,53 @@
+{
+  "title": "Justis- og beredskapsdepartementet - Inntekter",
+  "description": "Aggregert inntekt for Justis- og beredskapsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -3305847181.83
+    },
+    {
+      "year": 2015,
+      "value": -5010924356.03
+    },
+    {
+      "year": 2016,
+      "value": -7751537527.16
+    },
+    {
+      "year": 2017,
+      "value": -3411577311.08
+    },
+    {
+      "year": 2018,
+      "value": -2735455398.48
+    },
+    {
+      "year": 2019,
+      "value": -2764146382.87
+    },
+    {
+      "year": 2020,
+      "value": -2637173164.84
+    },
+    {
+      "year": 2021,
+      "value": -2800404378.89
+    },
+    {
+      "year": 2022,
+      "value": -7680983894.05
+    },
+    {
+      "year": 2023,
+      "value": -7211684745.7
+    },
+    {
+      "year": 2024,
+      "value": -6938422878.27
+    }
+  ]
+}

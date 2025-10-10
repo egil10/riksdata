@@ -1,0 +1,53 @@
+{
+  "title": "Finansdepartementet - Inntekter",
+  "description": "Aggregert inntekt for Finansdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -557210316.8
+    },
+    {
+      "year": 2015,
+      "value": -452281040.41
+    },
+    {
+      "year": 2016,
+      "value": -475526708.25
+    },
+    {
+      "year": 2017,
+      "value": -513037512.25
+    },
+    {
+      "year": 2018,
+      "value": -747585283
+    },
+    {
+      "year": 2019,
+      "value": -539485215.17
+    },
+    {
+      "year": 2020,
+      "value": -664046684.46
+    },
+    {
+      "year": 2021,
+      "value": -686072576.04
+    },
+    {
+      "year": 2022,
+      "value": -781355081.07
+    },
+    {
+      "year": 2023,
+      "value": -824868692.54
+    },
+    {
+      "year": 2024,
+      "value": -838604132
+    }
+  ]
+}

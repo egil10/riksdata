@@ -1,0 +1,53 @@
+{
+  "title": "Klima- og miljødepartementet - Utgifter",
+  "description": "Aggregert utgift for Klima- og miljødepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 8504309398.9
+    },
+    {
+      "year": 2015,
+      "value": 8222880398.68
+    },
+    {
+      "year": 2016,
+      "value": 8408439791.76
+    },
+    {
+      "year": 2017,
+      "value": 9751892801.71
+    },
+    {
+      "year": 2018,
+      "value": 12481778687.5
+    },
+    {
+      "year": 2019,
+      "value": 13448848227.05
+    },
+    {
+      "year": 2020,
+      "value": 16796986562.82
+    },
+    {
+      "year": 2021,
+      "value": 15733855456.07
+    },
+    {
+      "year": 2022,
+      "value": 19124233035.53
+    },
+    {
+      "year": 2023,
+      "value": 21941580407.26
+    },
+    {
+      "year": 2024,
+      "value": 25823930628.61
+    }
+  ]
+}

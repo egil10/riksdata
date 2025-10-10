@@ -1,0 +1,53 @@
+{
+  "title": "Finansdepartementet - Utgifter",
+  "description": "Aggregert utgift for Finansdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -917971197570.89
+    },
+    {
+      "year": 2015,
+      "value": -979940246779.35
+    },
+    {
+      "year": 2016,
+      "value": -1064170380893.25
+    },
+    {
+      "year": 2017,
+      "value": -1039056983292.49
+    },
+    {
+      "year": 2018,
+      "value": -961550145298.63
+    },
+    {
+      "year": 2019,
+      "value": -1114011184208.3601
+    },
+    {
+      "year": 2020,
+      "value": -1290600157580.3999
+    },
+    {
+      "year": 2021,
+      "value": -1244737973061.3301
+    },
+    {
+      "year": 2022,
+      "value": -921716920689.99
+    },
+    {
+      "year": 2023,
+      "value": -1148726577100
+    },
+    {
+      "year": 2024,
+      "value": -1423918926255.6799
+    }
+  ]
+}

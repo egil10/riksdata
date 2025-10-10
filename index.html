@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="icon" type="image/x-icon" href="./src/assets/favicon2.ico">
     <title>Riksdata</title>
-    <!-- Cache bust: All charts now have fullscreen buttons! -->
+    <!-- Cache bust: Debugging DFO chart detection! -->
     <link rel="stylesheet" href="./src/css/theme.css">
     <link rel="stylesheet" href="./src/css/main.css?v=2025-01-09">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -4025,6 +4025,411 @@
                 </div>
             </div>
 
+            <!-- DFO Budget Charts - Norwegian Government Department Budgets (2014-2024) -->
+            
+            <!-- Labour & Social Inclusion - Expenditure -->
+            <div class="chart-card" data-chart-id="dfo-arbeids-inkludering-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Arbeids- og inkluderingsdepartementet - Utgifter">Arbeids- og inkluderingsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-arbeids-inkludering-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-arbeids-inkludering-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-arbeids-inkludering-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Labour & Social Inclusion - Revenue -->
+            <div class="chart-card" data-chart-id="dfo-arbeids-inkludering-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Arbeids- og inkluderingsdepartementet - Inntekter">Arbeids- og inkluderingsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-arbeids-inkludering-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-arbeids-inkludering-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-arbeids-inkludering-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Barne- og familiedepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-barne-familie-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Barne- og familiedepartementet - Utgifter">Barne- og familiedepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-barne-familie-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-barne-familie-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-barne-familie-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Barne- og familiedepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-barne-familie-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Barne- og familiedepartementet - Inntekter">Barne- og familiedepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-barne-familie-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-barne-familie-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-barne-familie-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Energidepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-energi-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Energidepartementet - Utgifter">Energidepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-energi-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-energi-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-energi-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Energidepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-energi-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Energidepartementet - Inntekter">Energidepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-energi-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-energi-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-energi-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Finansdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-finans-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Finansdepartementet - Utgifter">Finansdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-finans-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-finans-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-finans-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Finansdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-finans-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Finansdepartementet - Inntekter">Finansdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-finans-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-finans-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-finans-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Forsvarsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-forsvar-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Forsvarsdepartementet - Utgifter">Forsvarsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-forsvar-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-forsvar-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-forsvar-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Forsvarsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-forsvar-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Forsvarsdepartementet - Inntekter">Forsvarsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-forsvar-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-forsvar-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-forsvar-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Helse- og omsorgsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-helse-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Helse- og omsorgsdepartementet - Utgifter">Helse- og omsorgsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-helse-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-helse-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-helse-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Helse- og omsorgsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-helse-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Helse- og omsorgsdepartementet - Inntekter">Helse- og omsorgsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-helse-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-helse-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-helse-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+
+            <!-- Justis- og beredskapsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-justis-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Justis- og beredskapsdepartementet - Utgifter">Justis- og beredskapsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-justis-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-justis-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-justis-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -4067,6 +4472,11 @@
                     <a href="https://ourworldindata.org/" target="_blank" class="source-link" aria-label="Visit Our World in Data (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Our World in Data
+                        <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
+                    </a>
+                    <a href="https://www.dfo.no/" target="_blank" class="source-link" aria-label="Visit DFO (opens in new tab)">
+                        <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
+                        DFO (Norwegian Budget)
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
                 </div>
@@ -4193,7 +4603,7 @@
         })();
     </script>
 
-    <script type="module" src="./src/js/main.js" defer></script>
+    <script type="module" src="./src/js/main.js?v=2025-01-10" defer></script>
     
     <!-- Lucide Icons CDN and Helpers -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -4261,3 +4671,603 @@
 
 </body>
 </html>
+            <!-- Helse- og omsorgsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-helse-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Helse- og omsorgsdepartementet - Utgifter">Helse- og omsorgsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-helse-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-helse-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-helse-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Helse- og omsorgsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-helse-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Helse- og omsorgsdepartementet - Inntekter">Helse- og omsorgsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-helse-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-helse-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-helse-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Justis- og beredskapsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-justis-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Justis- og beredskapsdepartementet - Utgifter">Justis- og beredskapsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-justis-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-justis-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-justis-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Justis- og beredskapsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-justis-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Justis- og beredskapsdepartementet - Inntekter">Justis- og beredskapsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-justis-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-justis-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-justis-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Klima- og milj�departementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-klima-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Klima- og milj�departementet - Utgifter">Klima- og milj�departementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-klima-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-klima-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-klima-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Klima- og milj�departementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-klima-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Klima- og milj�departementet - Inntekter">Klima- og milj�departementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-klima-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-klima-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-klima-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Kommunal- og distriktsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-kommunal-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Kommunal- og distriktsdepartementet - Utgifter">Kommunal- og distriktsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-kommunal-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-kommunal-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-kommunal-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Kommunal- og distriktsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-kommunal-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Kommunal- og distriktsdepartementet - Inntekter">Kommunal- og distriktsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-kommunal-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-kommunal-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-kommunal-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Kultur- og likestillingsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-kultur-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Kultur- og likestillingsdepartementet - Utgifter">Kultur- og likestillingsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-kultur-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-kultur-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-kultur-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Kultur- og likestillingsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-kultur-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Kultur- og likestillingsdepartementet - Inntekter">Kultur- og likestillingsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-kultur-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-kultur-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-kultur-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Kunnskapsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-kunnskap-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Kunnskapsdepartementet - Utgifter">Kunnskapsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-kunnskap-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-kunnskap-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-kunnskap-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Kunnskapsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-kunnskap-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Kunnskapsdepartementet - Inntekter">Kunnskapsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-kunnskap-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-kunnskap-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-kunnskap-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Landbruks- og matdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-landbruk-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Landbruks- og matdepartementet - Utgifter">Landbruks- og matdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-landbruk-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-landbruk-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-landbruk-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Landbruks- og matdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-landbruk-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Landbruks- og matdepartementet - Inntekter">Landbruks- og matdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-landbruk-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-landbruk-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-landbruk-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- N�rings- og fiskeridepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-naring-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="N�rings- og fiskeridepartementet - Utgifter">N�rings- og fiskeridepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-naring-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-naring-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-naring-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- N�rings- og fiskeridepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-naring-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="N�rings- og fiskeridepartementet - Inntekter">N�rings- og fiskeridepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-naring-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-naring-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-naring-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Samferdselsdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-samferdsel-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Samferdselsdepartementet - Utgifter">Samferdselsdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-samferdsel-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-samferdsel-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-samferdsel-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Samferdselsdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-samferdsel-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Samferdselsdepartementet - Inntekter">Samferdselsdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-samferdsel-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-samferdsel-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-samferdsel-revenue-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Utenriksdepartementet - Utgifter -->
+            <div class="chart-card" data-chart-id="dfo-utenriks-expenditure-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Utenriksdepartementet - Utgifter">Utenriksdepartementet - Utgifter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-utenriks-expenditure-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-utenriks-expenditure-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-utenriks-expenditure-chart-tooltip"></div>
+                </div>
+            </div>
+            <!-- Utenriksdepartementet - Inntekter -->
+            <div class="chart-card" data-chart-id="dfo-utenriks-revenue-chart" data-source="dfo">
+                <div class="chart-header">
+                    <div class="chart-header-top">
+                        <h3 title="Utenriksdepartementet - Inntekter">Utenriksdepartementet - Inntekter</h3>
+                        <div class="chart-actions" role="toolbar" aria-label="Chart actions">
+                            <button class="icon-btn" data-action="copy" aria-label="Copy data" title="Copy data">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="download" aria-label="Download chart" title="Download chart">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17V3"></path><path d="m6 11 6 6 6-6"></path><path d="M19 21H5"></path></svg>
+                            </button>
+                            <button class="icon-btn" data-action="fullscreen" aria-label="Fullscreen" title="Fullscreen">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3"></path><path d="M21 8V5a2 2 0 0 0-2-2h-3"></path><path d="M3 16v3a2 2 0 0 0 2 2h3"></path><path d="M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="chart-subtitle-row">
+                        <div class="chart-subtitle">NOK (billions)</div>
+                        <div class="subtitle-actions">
+                            <a href="https://www.dfo.no/" target="_blank" class="source-link">DFO</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="skeleton-chart" id="dfo-utenriks-revenue-chart-skeleton"></div>
+                <div class="chart-container">
+                    <canvas id="dfo-utenriks-revenue-chart"></canvas>
+                    <div class="static-tooltip" id="dfo-utenriks-revenue-chart-tooltip"></div>
+                </div>
+            </div>

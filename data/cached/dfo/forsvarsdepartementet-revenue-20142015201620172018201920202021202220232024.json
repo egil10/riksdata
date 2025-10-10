@@ -1,0 +1,53 @@
+{
+  "title": "Forsvarsdepartementet - Inntekter",
+  "description": "Aggregert inntekt for Forsvarsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -4565119887.73
+    },
+    {
+      "year": 2015,
+      "value": -4634903807.82
+    },
+    {
+      "year": 2016,
+      "value": -6862730991.43
+    },
+    {
+      "year": 2017,
+      "value": -6451303445.98
+    },
+    {
+      "year": 2018,
+      "value": -7893083850.24
+    },
+    {
+      "year": 2019,
+      "value": -7533258258.28
+    },
+    {
+      "year": 2020,
+      "value": -6670698892.11
+    },
+    {
+      "year": 2021,
+      "value": -7891404823.34
+    },
+    {
+      "year": 2022,
+      "value": -9615855311.95
+    },
+    {
+      "year": 2023,
+      "value": -9880777925.87
+    },
+    {
+      "year": 2024,
+      "value": -12188469343.03
+    }
+  ]
+}

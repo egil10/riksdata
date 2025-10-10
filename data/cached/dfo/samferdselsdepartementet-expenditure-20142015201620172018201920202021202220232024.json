@@ -1,0 +1,53 @@
+{
+  "title": "Samferdselsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Samferdselsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 77703447683.29
+    },
+    {
+      "year": 2015,
+      "value": 99218485687.49
+    },
+    {
+      "year": 2016,
+      "value": 95977058733.66
+    },
+    {
+      "year": 2017,
+      "value": 69681696056.59
+    },
+    {
+      "year": 2018,
+      "value": 72094300851.5
+    },
+    {
+      "year": 2019,
+      "value": 73978162998.13
+    },
+    {
+      "year": 2020,
+      "value": 82718200993.06
+    },
+    {
+      "year": 2021,
+      "value": 86146666212.63
+    },
+    {
+      "year": 2022,
+      "value": 83740937962.1
+    },
+    {
+      "year": 2023,
+      "value": -7804080366.79
+    },
+    {
+      "year": 2024,
+      "value": 97154185921.9
+    }
+  ]
+}

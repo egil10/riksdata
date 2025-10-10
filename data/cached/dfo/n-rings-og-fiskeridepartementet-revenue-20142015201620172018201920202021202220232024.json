@@ -1,0 +1,53 @@
+{
+  "title": "Nærings- og fiskeridepartementet - Inntekter",
+  "description": "Aggregert inntekt for Nærings- og fiskeridepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -1855538761.93
+    },
+    {
+      "year": 2015,
+      "value": -1810764501.19
+    },
+    {
+      "year": 2016,
+      "value": -1816200164.4
+    },
+    {
+      "year": 2017,
+      "value": -1827389337.23
+    },
+    {
+      "year": 2018,
+      "value": -1862757719.16
+    },
+    {
+      "year": 2019,
+      "value": -1989602996.62
+    },
+    {
+      "year": 2020,
+      "value": -1865757180.74
+    },
+    {
+      "year": 2021,
+      "value": -1914459685.61
+    },
+    {
+      "year": 2022,
+      "value": -660498241860.9399
+    },
+    {
+      "year": 2023,
+      "value": -348562927856.43
+    },
+    {
+      "year": 2024,
+      "value": -312586097646.33
+    }
+  ]
+}

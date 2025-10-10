@@ -1,0 +1,53 @@
+{
+  "title": "Landbruks- og matdepartementet - Utgifter",
+  "description": "Aggregert utgift for Landbruks- og matdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 17188318075.02
+    },
+    {
+      "year": 2015,
+      "value": 17227331638.93
+    },
+    {
+      "year": 2016,
+      "value": 17554960304.48
+    },
+    {
+      "year": 2017,
+      "value": 17825011914.99
+    },
+    {
+      "year": 2018,
+      "value": 19824208711.43
+    },
+    {
+      "year": 2019,
+      "value": 19413700119.05
+    },
+    {
+      "year": 2020,
+      "value": 20285468073.33
+    },
+    {
+      "year": 2021,
+      "value": 20563530622.37
+    },
+    {
+      "year": 2022,
+      "value": 27788896930.05
+    },
+    {
+      "year": 2023,
+      "value": 28903924889.46
+    },
+    {
+      "year": 2024,
+      "value": 31458593979.39
+    }
+  ]
+}

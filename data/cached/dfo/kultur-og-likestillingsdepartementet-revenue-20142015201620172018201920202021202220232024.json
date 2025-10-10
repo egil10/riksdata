@@ -1,0 +1,53 @@
+{
+  "title": "Kultur- og likestillingsdepartementet - Inntekter",
+  "description": "Aggregert inntekt for Kultur- og likestillingsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -623321313.8
+    },
+    {
+      "year": 2015,
+      "value": -335219956.64
+    },
+    {
+      "year": 2016,
+      "value": -344863769.24
+    },
+    {
+      "year": 2017,
+      "value": -270955437.28
+    },
+    {
+      "year": 2018,
+      "value": -231153104.13
+    },
+    {
+      "year": 2019,
+      "value": -236824903.79
+    },
+    {
+      "year": 2020,
+      "value": -161129489.56
+    },
+    {
+      "year": 2021,
+      "value": -142402304.49
+    },
+    {
+      "year": 2022,
+      "value": -167345117.83
+    },
+    {
+      "year": 2023,
+      "value": -217381369.44
+    },
+    {
+      "year": 2024,
+      "value": -284585562.54
+    }
+  ]
+}

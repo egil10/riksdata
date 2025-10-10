@@ -1,0 +1,53 @@
+{
+  "title": "Kunnskapsdepartementet - Inntekter",
+  "description": "Aggregert inntekt for Kunnskapsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -188169214.78
+    },
+    {
+      "year": 2015,
+      "value": -218086225.62
+    },
+    {
+      "year": 2016,
+      "value": -418105710.89
+    },
+    {
+      "year": 2017,
+      "value": -232227700.64
+    },
+    {
+      "year": 2018,
+      "value": -461778570.01
+    },
+    {
+      "year": 2019,
+      "value": -195182063.93
+    },
+    {
+      "year": 2020,
+      "value": -171017090.67
+    },
+    {
+      "year": 2021,
+      "value": -132505377.94
+    },
+    {
+      "year": 2022,
+      "value": -240528280.02
+    },
+    {
+      "year": 2023,
+      "value": -363907008.38
+    },
+    {
+      "year": 2024,
+      "value": -385035113.06
+    }
+  ]
+}

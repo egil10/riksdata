@@ -1,0 +1,53 @@
+{
+  "title": "Kommunal- og distriktsdepartementet - Utgifter",
+  "description": "Aggregert utgift for Kommunal- og distriktsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 176692023976.27
+    },
+    {
+      "year": 2015,
+      "value": 185858177157.65
+    },
+    {
+      "year": 2016,
+      "value": 187105679815.46
+    },
+    {
+      "year": 2017,
+      "value": 195215212887.83
+    },
+    {
+      "year": 2018,
+      "value": 197087321371.46
+    },
+    {
+      "year": 2019,
+      "value": 207686881748.35
+    },
+    {
+      "year": 2020,
+      "value": 238207750247.6
+    },
+    {
+      "year": 2021,
+      "value": 235105193833.3
+    },
+    {
+      "year": 2022,
+      "value": 239237595936.59
+    },
+    {
+      "year": 2023,
+      "value": 283785176264.45
+    },
+    {
+      "year": 2024,
+      "value": 258042575442.79
+    }
+  ]
+}

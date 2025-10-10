@@ -1,0 +1,53 @@
+{
+  "title": "Kommunal- og distriktsdepartementet - Inntekter",
+  "description": "Aggregert inntekt for Kommunal- og distriktsdepartementet. Annual totals.",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": -1582440377.7
+    },
+    {
+      "year": 2015,
+      "value": -5994891958.65
+    },
+    {
+      "year": 2016,
+      "value": -6027813177.47
+    },
+    {
+      "year": 2017,
+      "value": -6180334760.03
+    },
+    {
+      "year": 2018,
+      "value": -6224370867.79
+    },
+    {
+      "year": 2019,
+      "value": -6850731484.48
+    },
+    {
+      "year": 2020,
+      "value": -8964457930.73
+    },
+    {
+      "year": 2021,
+      "value": -9093579934.71
+    },
+    {
+      "year": 2022,
+      "value": -9184827992.01
+    },
+    {
+      "year": 2023,
+      "value": -8026328410.5
+    },
+    {
+      "year": 2024,
+      "value": -885104727.01
+    }
+  ]
+}

@@ -179,6 +179,69 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 showNoDataState(canvasId);
                 return null;
             }
+        } else if (chartType === 'dfo-budget') {
+            // Handle DFO budget charts (Norwegian government department budgets)
+            console.log(`🎯 DFO BUDGET CHART DETECTED: ${chartTitle} (${canvasId})`);
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) {
+                console.warn(`Canvas with id '${canvasId}' not found`);
+                return null;
+            }
+
+            console.log(`Loading DFO budget chart: ${chartTitle} from ${apiUrl}`);
+            
+            // Fetch data using the main pipeline
+            const response = await fetch(rel(apiUrl));
+            if (!response.ok) {
+                throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
+            }
+            
+            const data = await response.json();
+            console.log(`Raw DFO data for ${chartTitle}:`, data);
+            
+            const result = parseStaticData(data, chartTitle);
+            console.log(`Parse result for ${chartTitle}:`, result);
+            const { parsedData, sourceInfo } = result;
+            console.log(`Parsed DFO data for ${chartTitle}:`, parsedData);
+            console.log(`Number of data points:`, parsedData ? parsedData.length : 0);
+            
+            if (parsedData && parsedData.length > 0) {
+                console.log(`Sample data point:`, parsedData[0]);
+                console.log(`Date check:`, parsedData[0].date instanceof Date, parsedData[0].date);
+                console.log(`Value check:`, typeof parsedData[0].value, parsedData[0].value);
+            }
+            
+            if (!parsedData || parsedData.length === 0) {
+                console.warn(`No data available for ${chartTitle}`);
+                showNoDataState(canvasId);
+                return null;
+            }
+
+            // DFO data is from 2014-2024, no need to filter by 1945
+            
+            // Register data for export
+            const exportData = parsedData.map(d => ({
+                date: d.date,
+                value: d.value,
+                series: chartTitle
+            }));
+            registerChartData(canvasId, exportData);
+
+            // Render the chart using bar chart type for budget data
+            console.log(`🎯 About to render DFO chart: ${chartTitle} with ${parsedData.length} data points`);
+            console.log(`🎯 Sample DFO data:`, parsedData.slice(0, 3));
+            renderChart(canvas, parsedData, chartTitle, 'bar');
+            
+            // Check if chart was created successfully
+            if (canvas.chart) {
+                console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
+                hideSkeleton(canvasId);
+                return canvas.chart;
+            } else {
+                console.warn(`Failed to render ${chartTitle}: ${canvasId}`);
+                showNoDataState(canvasId);
+                return null;
+            }
         } else if (apiUrl.startsWith('./data/static/') || apiUrl.startsWith('data/static/')) {
             // Handle OWID static data files
             cachePath = rel(apiUrl);
@@ -1445,6 +1508,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         canvas.chart.destroy();
     }
 
+    // Get current theme colors from CSS variables (moved up so they're available for chart data)
+    const textMuted = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim();
+    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid').trim();
+    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+
                     let chartData;
                 if (chartType === 'line') {
                     // Single dataset with segment coloring for seamless line without gaps
@@ -1475,7 +1543,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     });
     } else {
         // Bar charts: color each bar individually by political party
-        let chartData;
+        // chartData already declared above
         
         // Special styling for Housing Starts chart
         if (title === 'Housing Starts') {
@@ -1552,11 +1620,6 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         });
     }
 
-    // Get current theme colors from CSS variables
-    const textMuted = getComputedStyle(document.documentElement).getPropertyValue('--text-muted').trim();
-    const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid').trim();
-    const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-    
     // Create chart options with theme-aware colors
     let chartOptions = {
         ...CHART_CONFIG,
@@ -1667,6 +1730,74 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 }
             }
         };
+    } else if (title.includes('–') && (title.includes('Expenditure') || title.includes('Revenue'))) {
+        // Special options for DFO Budget charts
+        console.log(`🎯 DFO CHART OPTIONS APPLIED for: ${title}`);
+        chartOptions = {
+            ...chartOptions,
+            plugins: {
+                ...CHART_CONFIG.plugins,
+                tooltip: {
+                    ...CHART_CONFIG.plugins?.tooltip,
+                    enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            const valueInBillions = Math.abs(context.parsed.y) / 1000000000;
+                            return `${valueInBillions.toFixed(2)} billion NOK`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                ...chartOptions.scales,
+                x: {
+                    ...chartOptions.scales.x,
+                    type: 'time',
+                    time: {
+                        unit: 'year',
+                        displayFormats: {
+                            year: 'yyyy'
+                        }
+                    },
+                    ticks: {
+                        ...chartOptions.scales.x.ticks,
+                        maxTicksLimit: 12,
+                        callback: function(value, index, values) {
+                            const date = new Date(value);
+                            return date.getFullYear().toString();
+                        }
+                    }
+                },
+                y: {
+                    ...chartOptions.scales.y,
+                    beginAtZero: false,  // Changed: don't force zero, let Chart.js auto-scale
+                    ticks: {
+                        ...chartOptions.scales.y.ticks,
+                        callback: function(value) {
+                            const absValue = Math.abs(value);
+                            if (absValue >= 1000000000) {
+                                return (value / 1000000000).toFixed(0) + 'B';
+                            } else if (absValue >= 1000000) {
+                                return (value / 1000000).toFixed(0) + 'M';
+                            } else if (absValue >= 1000) {
+                                return (value / 1000).toFixed(0) + 'K';
+                            }
+                            return value.toLocaleString();
+                        }
+                    }
+                }
+            },
+            elements: {
+                ...CHART_CONFIG.elements,
+                bar: {
+                    borderWidth: 2,
+                    borderRadius: 4,
+                    borderSkipped: false,
+                    backgroundColor: `${accentColor}cc`,
+                    borderColor: accentColor
+                }
+            }
+        };
     } else if (chartType === 'bar') {
         // Default bar chart options - improved styling
         chartOptions = {
@@ -1705,6 +1836,9 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     
     // Create the chart
     console.log(`Creating Chart.js instance for ${title}...`);
+    console.log(`Chart type: ${chartType}`);
+    console.log(`Chart data:`, chartData);
+    console.log(`Chart options scales:`, chartOptions.scales);
     try {
         canvas.chart = new Chart(canvas, {
             type: chartType,
@@ -1712,6 +1846,8 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             options: chartOptions
         });
         console.log(`Chart created successfully for ${title}`);
+        console.log(`Canvas dimensions: ${canvas.width} x ${canvas.height}`);
+        console.log(`Chart instance:`, canvas.chart);
         
         // Register chart data for download/copy functionality
         const chartCard = canvas.closest('.chart-card');

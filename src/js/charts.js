@@ -374,8 +374,15 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             return year >= 1945;
         });
 
-        // Use filtered data (1945 onwards) for all charts
-        const finalFiltered = filteredData;
+        // Limit data for exchange rate charts (they have too much data)
+        let finalFiltered = filteredData;
+        if (chartTitle.includes('Exchange Rate') && filteredData.length > 5000) {
+            console.log(`🎯 Limiting exchange rate data from ${filteredData.length} to 5000 points`);
+            // Take every Nth point to reduce data
+            const step = Math.ceil(filteredData.length / 5000);
+            finalFiltered = filteredData.filter((_, index) => index % step === 0);
+            console.log(`🎯 Reduced to ${finalFiltered.length} data points`);
+        }
 
         // Aggregate by month for bar charts
         const finalData = chartType === 'bar' ? aggregateDataByMonth(finalFiltered) : finalFiltered;

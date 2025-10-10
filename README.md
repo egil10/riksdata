@@ -24,9 +24,12 @@ riksdata/
 │   │   ├── nve/          # NVE datasets (reservoir data)
 │   │   └── metadata.json # Cache metadata
 │   └── static/           # Static data files
-├── scripts/              # Python scripts
+├── scripts/              # Python and R scripts
 │   ├── fetch/            # Data fetching scripts
-│   │   ├── fetch_oslo_indices.py # Oslo indices fetcher
+│   │   ├── owid/         # Our World in Data R scripts
+│   │   ├── exchange-rates/ # Exchange rate R scripts
+│   │   ├── *.py          # Python data fetchers
+│   │   ├── *.R           # R data fetchers
 │   │   └── README.md     # Scripts documentation
 │   ├── requirements.txt  # Python dependencies
 │   └── README.md         # Scripts documentation

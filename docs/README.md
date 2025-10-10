@@ -8,10 +8,8 @@ This directory contains comprehensive documentation for the Riksdata project.
 - **[README.md](../README.md)** - Main project documentation and setup guide
 - **[REPOSITORY_ORGANIZATION.md](REPOSITORY_ORGANIZATION.md)** - Project structure and organization
 
-### 📊 Data Integration Guides
-- **[DATA_FORMAT_GUIDE.md](DATA_FORMAT_GUIDE.md)** - Comprehensive guide for creating JSON data files
-- **[JSON_TEMPLATES.md](JSON_TEMPLATES.md)** - Quick copy-paste templates for different data types
-- **[STATIC_DATA_GUIDE.md](STATIC_DATA_GUIDE.md)** - Guide for adding static data tables
+### 📊 Data Integration Guide
+- **[DATA_FORMAT_GUIDE.md](DATA_FORMAT_GUIDE.md)** - Comprehensive guide for creating JSON data files with templates and examples
 
 ### 🔧 Development Tools
 - **[scripts/add-dataset.py](../scripts/add-dataset.py)** - Automated script for adding new datasets
@@ -19,14 +17,14 @@ This directory contains comprehensive documentation for the Riksdata project.
 ## 🎯 Quick Start for Adding Data
 
 ### Option 1: Manual Integration
-1. Create your JSON file using templates from `JSON_TEMPLATES.md`
+1. Create your JSON file using templates from `DATA_FORMAT_GUIDE.md`
 2. Follow the format specifications in `DATA_FORMAT_GUIDE.md`
 3. Add chart configuration to `src/js/main.js`
 4. Add HTML canvas to `index.html`
 5. Test locally
 
 ### Option 2: Automated Integration (Recommended)
-1. Create your JSON file using templates from `JSON_TEMPLATES.md`
+1. Create your JSON file using templates from `DATA_FORMAT_GUIDE.md`
 2. Run the integration script:
    ```bash
    python scripts/add-dataset.py --json-file data/static/your-dataset.json --chart-id your-chart-id
@@ -79,10 +77,9 @@ Before submitting your data:
 
 ## 📞 Need Help?
 
-1. Check the comprehensive guide in `DATA_FORMAT_GUIDE.md`
-2. Use templates from `JSON_TEMPLATES.md`
-3. Look at existing examples in `data/cached/` and `data/static/`
-4. Run the automated integration script for error-free setup
+1. Check the comprehensive guide in `DATA_FORMAT_GUIDE.md` (includes templates and examples)
+2. Look at existing examples in `data/cached/` and `data/static/`
+3. Run the automated integration script for error-free setup
 
 ## 🎨 Chart Features
 

@@ -17,10 +17,21 @@ riksdata/
 │   ├── js/                   # JavaScript modules
 │   │   ├── main.js           # Main application logic
 │   │   ├── charts.js         # Chart rendering and data parsing
+│   │   ├── charts/           # Specialized chart modules
+│   │   │   ├── nve-magasins.js
+│   │   │   ├── statnett-production-consumption.js
+│   │   │   └── stortinget-women-representation.js
 │   │   ├── utils.js          # Utility functions
-│   │   └── config.js         # Configuration and constants
-│   └── css/                  # Stylesheets
-│       └── main.css          # Main stylesheet
+│   │   ├── config.js         # Configuration and constants
+│   │   ├── registry.js       # Chart data registry
+│   │   ├── icons.js          # Icon utilities
+│   │   ├── mood-rating.js    # Mood rating component
+│   │   └── chart-theme.js    # Chart theme configuration
+│   ├── css/                  # Stylesheets
+│   │   ├── main.css          # Main stylesheet
+│   │   └── theme.css         # Theme definitions
+│   └── assets/               # Static assets
+│       └── favicon.ico       # Site favicon
 │
 ├── data/                      # Data files
 │   ├── cached/               # Cached API data
@@ -42,40 +53,20 @@ riksdata/
 │   ├── exchange-rates.json   # Exchange rates data
 │   └── oil-fund.json         # Oil fund data
 │
-├── scripts/                   # Python scripts
-│   ├── tools/                # Diagnostic and cleanup tools
-│   │   ├── diagnostics.py    # Chart diagnostics
-│   │   ├── repair.py         # Chart repair
-│   │   ├── final_fixes.py    # Final fixes
-│   │   └── comprehensive_cleanup.py # Comprehensive cleanup
+├── scripts/                   # Python and R scripts
 │   ├── fetch/                # Data fetching scripts
-│   │   ├── __init__.py
-│   │   ├── ssb.py            # SSB data fetcher
-│   │   ├── norges_bank.py    # Norges Bank data fetcher
-│   │   └── base.py           # Base fetcher class
-│   ├── validate/             # Data validation scripts
-│   │   ├── __init__.py
-│   │   └── validator.py      # Data validator
-│   ├── utils/                # Utility scripts
-│   ├── main.py               # Main script runner
-│   ├── master.py             # Master script
-│   ├── expand.py             # Expansion script
-│   ├── generate_filtered_charts.py # Chart generation
-│   ├── repository_cleanup.py # Repository cleanup
+│   │   ├── owid/             # Our World in Data R scripts (30+ files)
+│   │   ├── exchange-rates/   # Exchange rate R scripts
+│   │   ├── *.py              # Python data fetchers
+│   │   └── *.R               # Other R data fetchers
+│   ├── add-dataset.py        # Add new datasets
+│   ├── requirements.txt      # Python dependencies
 │   └── README.md             # Scripts documentation
 │
 ├── docs/                      # Documentation
-│   ├── reports/              # Generated reports
-│   │   ├── repository_cleanup_report.json
-│   │   ├── diagnostics_report.md
-│   │   ├── diagnostics_results.json
-│   │   ├── comprehensive_cleanup_report.json
-│   │   ├── final_fixes_report.json
-│   │   └── chart_quality_report.json
-│   ├── CHART_DIAGNOSTICS_SUMMARY.md
-│   ├── REORGANIZATION_SUMMARY.md
-│   ├── CACHE_STATUS.md
-│   └── REPOSITORY_ORGANIZATION.md
+│   ├── README.md             # Documentation index
+│   ├── DATA_FORMAT_GUIDE.md  # Comprehensive data guide with templates
+│   └── REPOSITORY_ORGANIZATION.md # This file
 │
 ├── tests/                     # Test files
 │   ├── test_cache.html       # Cache testing

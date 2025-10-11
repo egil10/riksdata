@@ -1020,6 +1020,31 @@ main {
 }
 
 /* Chart Cards */
+/* Section headers */
+.data-source-section {
+    margin: 40px 0 30px 0;
+    padding: 0;
+}
+
+.data-source-header {
+    font-family: var(--font-sans);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0 0 12px 0;
+    padding: 0;
+    letter-spacing: -0.025em;
+}
+
+.data-source-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    border: none;
+    margin: 0;
+    border-radius: 1px;
+    opacity: 0.8;
+}
+
 .chart-card {
     background: var(--card);
     border-radius: var(--radius);

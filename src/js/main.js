@@ -454,27 +454,6 @@ const chartConfigs = [
     
     // === NORGES BANK EXCHANGE RATES ===
     
-    // USD/NOK Exchange Rate
-    { id: 'usd-nok-chart', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK Valutakurs', type: 'line' },
-    
-    // EUR/NOK Exchange Rate
-    { id: 'eur-nok-chart', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK Valutakurs', type: 'line' },
-    
-    // GBP/NOK Exchange Rate
-    { id: 'gbp-nok-chart', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK Valutakurs', type: 'line' },
-    
-    // I44/NOK Exchange Rate
-    { id: 'i44-nok-chart', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK Valutakurs', type: 'line' },
-    
-    // CHF/NOK Exchange Rate
-    { id: 'chf-nok-chart', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK Valutakurs', type: 'line' },
-    
-    // CNY/NOK Exchange Rate
-    { id: 'cny-nok-chart', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK Valutakurs', type: 'line' },
-    
-    // SEK/NOK Exchange Rate
-    { id: 'sek-nok-chart', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK Valutakurs', type: 'line' },
-    
     // === HIGH-VALUE ENERGY & ELECTRICITY CHARTS ===
     
     // NVE Reservoir Statistics
@@ -598,6 +577,9 @@ async function setupLazyChartLoading() {
                 continue;
             }
 
+            // Unobserve immediately to prevent duplicate loading
+            obs.unobserve(card);
+            
             // Load the chart data
             const isDfoChart = chartId && chartId.startsWith('dfo-');
             console.log(`🚀 LAZY LOADING CHART: ${chartId} (${config.title}) - Type: ${config.type || 'line'}${isDfoChart ? ' (DFO CHART!)' : ''}`);
@@ -605,8 +587,6 @@ async function setupLazyChartLoading() {
                 .catch(error => {
                     console.error(`Failed to load chart ${chartId}:`, error);
                 });
-
-            obs.unobserve(card); // render once
         }
     }, { 
         rootMargin: '800px 0px 800px 0px', // Increased to preload charts earlier

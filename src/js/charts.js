@@ -449,13 +449,33 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // Limit data for charts with too many data points
         let finalFiltered = filteredData;
-        const shouldLimit = (chartTitle.includes('Exchange Rate') || chartTitle.includes('COVID')) && filteredData.length > 5000;
+        
+        // Determine if we should limit and what the target should be
+        const isHighVolumeChart = (
+            chartTitle.includes('Exchange Rate') || 
+            chartTitle.includes('Valutakurs') || 
+            chartTitle.includes('COVID') ||
+            chartTitle.includes('Statnett') ||
+            chartTitle.includes('NVE') ||
+            chartTitle.includes('Magasin') ||
+            chartTitle.includes('Reservoir')
+        );
+        
+        // More aggressive limiting for very large datasets
+        let targetPoints = 5000;
+        if (filteredData.length > 10000) {
+            targetPoints = 2000; // Very aggressive for huge datasets
+        } else if (filteredData.length > 5000) {
+            targetPoints = 3000;
+        }
+        
+        const shouldLimit = isHighVolumeChart && filteredData.length > targetPoints;
         if (shouldLimit) {
-            console.log(`🎯 Limiting ${chartTitle} data from ${filteredData.length} to 5000 points`);
+            console.log(`🎯 Limiting ${chartTitle} data from ${filteredData.length} to ${targetPoints} points`);
             // Take every Nth point to reduce data
-            const step = Math.ceil(filteredData.length / 5000);
+            const step = Math.ceil(filteredData.length / targetPoints);
             finalFiltered = filteredData.filter((_, index) => index % step === 0);
-            console.log(`🎯 Reduced to ${finalFiltered.length} data points`);
+            console.log(`🎯 Reduced to ${finalFiltered.length} data points (step: ${step})`);
         }
 
         // Aggregate by month for bar charts
@@ -1352,10 +1372,18 @@ function setChartSubtitle(canvas, text) {
  */
 export function parseExchangeRateData(data, preferredBaseCurrency = null) {
     try {
-        const structure = data.data.structure;
+        // Handle both cached files (structure at root) and API responses (structure in data.data)
+        const structure = data.structure || data.data?.structure;
+        const dataSets = data.data?.dataSets || data.dataSets;
+        
+        if (!structure || !dataSets || !dataSets[0]) {
+            console.error('Missing structure or dataSets in exchange rate data');
+            return [];
+        }
+        
         const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
         const timeValues = timeDim?.values || [];
-        const seriesMap = data.data.dataSets[0].series;
+        const seriesMap = dataSets[0].series;
 
         // Determine series keys and optionally filter by base currency if requested
         const seriesKeys = Object.keys(seriesMap).filter(sk => {
@@ -1368,6 +1396,8 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
         });
 
         const allPoints = [];
+        const monthlyData = new Map(); // Group by year-month to get last value of each month
+        
         seriesKeys.forEach(sk => {
             const observations = seriesMap[sk].observations;
             Object.keys(observations).forEach(obsIdxStr => {
@@ -1376,14 +1406,22 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
                 const timeId = (typeof timeObj === 'string') ? timeObj : timeObj?.id; // NB sometimes uses plain strings
                 const val = observations[obsIdxStr][0];
                 if (timeId && val !== null && val !== undefined) {
-                    const [y, m] = timeId.split('-');
-                    const date = new Date(parseInt(y, 10), parseInt(m, 10) - 1, 1);
-                    allPoints.push({ date, value: parseFloat(val) });
+                    const [y, m, d] = timeId.split('-');
+                    const yearMonth = `${y}-${m}`;
+                    const date = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d || 1, 10));
+                    
+                    // Keep only the last value for each month (latest date wins)
+                    if (!monthlyData.has(yearMonth) || date > monthlyData.get(yearMonth).date) {
+                        monthlyData.set(yearMonth, { date, value: parseFloat(val) });
+                    }
                 }
             });
         });
+        
+        // Convert to array
+        monthlyData.forEach(point => allPoints.push(point));
 
-        return allPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
+        return allPoints.sort((a, b) => a.date - b.date);
 
     } catch (error) {
         console.error('Error parsing exchange rate data:', error);
@@ -1591,9 +1629,21 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         return;
     }
     
-    // Clear any existing chart
+    // Clear any existing chart - use Chart.js built-in method
+    const existingChart = Chart.getChart(canvas);
+    if (existingChart) {
+        console.log(`Destroying existing chart for ${title}`);
+        existingChart.destroy();
+    }
+    
+    // Also clear the canvas.chart reference if it exists
     if (canvas.chart) {
-        canvas.chart.destroy();
+        try {
+            canvas.chart.destroy();
+        } catch (e) {
+            console.warn(`Failed to destroy canvas.chart reference:`, e);
+        }
+        delete canvas.chart;
     }
 
     // Get current theme colors from CSS variables (moved up so they're available for chart data)

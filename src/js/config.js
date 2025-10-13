@@ -268,43 +268,6 @@ export const CHART_CONFIG = {
     }
 };
 
-// Chart Quality Filter Configuration
-export const CHART_FILTER_CONFIG = {
-    // Minimum data points required for a chart to be considered valid
-    minDataPoints: 10,
-    
-    // Maximum percentage of null/undefined values allowed
-    maxNullPercentage: 20,
-    
-    // Minimum time span required (in months)
-    minTimeSpan: 12,
-    
-    nationalOnly: true,
-    
-    // Keywords that indicate national-level data
-    nationalKeywords: [
-        'hele landet', 'national', 'total', 'alt', 'i alt', 'samlet',
-        'nasjonal', 'landsomfattende', 'hele landet', 'landsdekkende'
-    ],
-    
-    // Keywords that indicate regional-level data (to exclude)
-    regionalKeywords: [
-        'municipal', 'counties', 'county', 'district', 'regions', 'by county', 'by region',
-        'kommune', 'fylker', 'fylke', 'distrikt', 'regioner', 'etter fylke', 'etter region'
-    ],
-    
-    // Datasets that should always be included regardless of filters
-    alwaysInclude: [
-        'cpi', 'unemployment', 'house-prices', 'gdp-growth', 'trade-balance',
-        'interest-rate', 'exchange', 'oil-fund', 'government-debt'
-    ],
-    
-    // Datasets that should be excluded (low quality or irrelevant)
-    excludeList: [
-        'test', 'lite_datasett', 'foreløpige', 'preliminary'
-    ]
-};
-
 // API Configuration
 export const API_CONFIG = {
     SSB_BASE_URL: 'https://data.ssb.no/api/v0/dataset',

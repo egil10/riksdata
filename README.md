@@ -1,355 +1,221 @@
-# Riksdata
+# Riksdata 🇳🇴
 
-A comprehensive Norwegian economic data dashboard with political party-colored charts, featuring data from Statistics Norway (SSB), Norges Bank, and NVE (Norwegian Water Resources and Energy Directorate). Features an optimized light/dark mode toggle for instant theme switching.
+A **super lean** Norwegian economic data dashboard featuring ~120 working charts from Statistics Norway (SSB), Norges Bank, NVE, Statnett, DFO, and Our World in Data.
+
+## ⚡ Ultra-Lean Architecture
+
+**Drastically simplified for maximum efficiency:**
+- 📉 **70% fewer files** (115 vs 384)
+- 📄 **94% smaller HTML** (280 lines vs 4,800)
+- 🎯 **Only working charts** (~120 vs ~300)
+- 🚀 **Modular design** - Charts generated dynamically
+- 🧹 **Clean pipeline** - No bloat, just what's needed
 
 ## 🏗️ Project Structure
 
 ```
 riksdata/
-├── index.html             # Main application (GitHub Pages entry point)
+├── index.html             # Main application (280 lines - modular!)
 ├── src/                   # Source files
 │   ├── js/               # JavaScript modules
-│   │   ├── main.js       # Main application logic
+│   │   ├── main.js       # Main app logic & dynamic chart generation
 │   │   ├── charts.js     # Chart rendering and data parsing
 │   │   ├── utils.js      # Utility functions
-│   │   └── config.js     # Configuration and constants
+│   │   ├── config.js     # Configuration and constants
+│   │   ├── registry.js   # Chart registry
+│   │   ├── chart-theme.js # Theme management
+│   │   ├── mood-rating.js # Mood rating widget
+│   │   ├── icons.js      # Icon definitions
+│   │   └── charts/       # Specialized chart modules
 │   ├── css/              # Stylesheets
-│   │   └── main.css      # Main stylesheet
-│   └── html/             # HTML files (development version)
-│       └── index.html    # Development version
+│   │   ├── main.css      # Main stylesheet
+│   │   └── theme.css     # Theme variables
+│   └── assets/           # Assets
+│       └── favicon2.ico  # Site favicon
 ├── data/                 # Data files
-│   ├── cached/           # Cached API data (git-ignored)
-│   │   ├── ssb/          # SSB datasets
-│   │   ├── norges-bank/  # Norges Bank datasets
-│   │   ├── nve/          # NVE datasets (reservoir data)
+│   ├── cached/           # Cached data (83 files)
+│   │   ├── dfo/          # Norwegian government budgets (30 files)
+│   │   ├── norges-bank/  # Exchange rates & interest rate
+│   │   ├── oslo-indices/ # Stock market indices
+│   │   ├── nve/          # Reservoir statistics
+│   │   ├── statnett/     # Electricity data
+│   │   ├── *.json        # OWID Norway statistics (26 files)
 │   │   └── metadata.json # Cache metadata
 │   └── static/           # Static data files
-├── scripts/              # Python and R scripts
-│   ├── fetch/            # Data fetching scripts
-│   │   ├── owid/         # Our World in Data R scripts
-│   │   ├── exchange-rates/ # Exchange rate R scripts
-│   │   ├── *.py          # Python data fetchers
-│   │   ├── *.R           # R data fetchers
-│   │   └── README.md     # Scripts documentation
-│   ├── requirements.txt  # Python dependencies
-│   └── README.md         # Scripts documentation
-├── tests/                # Test files
-│   ├── test_cache.html   # Cache testing
-│   ├── debug.html        # Debug utilities
-│   └── test-modules.html # Module loading test
+│       └── nve-reservoir-fill.json
 ├── docs/                 # Documentation
-│   ├── README.md         # Main documentation
-│   ├── API.md            # API documentation
-│   └── CACHE_STATUS.md   # Cache status
+│   ├── README.md
+│   ├── DATA_FORMAT_GUIDE.md
+│   ├── DFO_INTEGRATION_GUIDE.md
+│   └── REPOSITORY_ORGANIZATION.md
 ├── .gitignore
-├── requirements.txt
-└── setup.py              # Setup script
+├── CNAME
+└── package.json
 ```
 
 ## 🚀 Quick Start
 
-### 1. Setup
+### 1. Clone & Run
 
 ```bash
 # Clone the repository
 git clone https://github.com/yourusername/riksdata.git
 cd riksdata
 
-# Install Python dependencies
-pip install -r requirements.txt
-```
-
-### 2. Fetch Data
-
-```bash
-# Fetch Oslo indices data
-cd scripts
-python fetch/fetch_oslo_indices.py
-
-# Install dependencies (if needed)
-pip install -r requirements.txt
-```
-
-**Note**: The original SSB and Norges Bank data fetching scripts are not included in this repository. The Oslo indices fetcher is available in the `scripts/` directory.
-
-### 3. Run the Website
-
-#### Local Development
-```bash
 # Start local server
 python -m http.server 8000
 
-# Open in browser (root version - recommended)
+# Open in browser
 open http://localhost:8000/
-
-# Or open development version
-open http://localhost:8000/src/html/
 ```
 
-#### GitHub Pages Deployment
-The website is automatically deployed to GitHub Pages from the `main` branch. The `index.html` in the root directory serves as the entry point.
+### 2. GitHub Pages Deployment
 
-**Important**: 
-- The root `index.html` is configured for GitHub Pages deployment
-- The `src/html/index.html` is for local development testing
+The website is automatically deployed to GitHub Pages from the `main` branch.
+- **Live Site**: `https://your-username.github.io/riksdata/`
+- **Entry Point**: `index.html` (280 lines - modular!)
 
-#### Debug Cache Issues
-If you encounter loading problems, visit the diagnostics page:
-```bash
-# Local development
-open http://localhost:8000/tests/debug-cache.html
+### 3. Data Pipeline
 
-# GitHub Pages
-open https://egil10.github.io/riksdata/tests/debug-cache.html
-```
+**Note**: The project uses cached data files in `data/cached/`. SSB charts fetch live data from the SSB API. You'll need to implement your own data fetching scripts for:
+- SSB datasets (70 charts via live API calls)
+- OWID data updates (26 cached files)
+- Other cached data sources
 
-This page will test all cache files and show which ones are missing or causing errors.
-- Both versions use the same JavaScript modules and CSS files
+All chart configurations are in `src/js/main.js` in the `chartConfigs` array
 
-## 📊 Features
+## 📊 Features & Data Sources
 
-### Data Sources
-- **Statistics Norway (SSB)**: 67+ economic indicators
-- **Norges Bank**: Exchange rates, interest rates, government debt
-- **Statnett**: Electricity production and consumption data
-- **NVE**: Reservoir fill levels and hydropower statistics
-- **Oslo Stock Exchange**: OSEAX (All Share Index)
-- **Static Data**: Oil fund data, etc.
+### ~120 Working Charts
 
-### Chart Features
-- **Political Party Coloring**: Charts colored by ruling political parties
-- **Interactive Tooltips**: Hover for detailed information
+**SSB (Statistics Norway)** - 70 charts via live API
+- Economic indicators (CPI, unemployment, GDP, etc.)
+- Trade data (exports, imports, volumes)
+- Producer & consumer prices
+- Money supply, credit indicators
+- Population, immigration, crime statistics
+- Energy, construction, industrial production
+
+**DFO (Norwegian Government)** - 30 charts (cached)
+- All department budgets 2014-2024
+- Expenditures & revenues for 15 departments
+
+**Our World in Data** - 26 charts (cached)
+- Life expectancy, child mortality, fertility
+- Education (PISA scores, years of schooling)
+- CO₂ emissions, energy use per capita
+- Economic indicators (income, trade share)
+- Social data (marriage rate, alcohol consumption, etc.)
+
+**Norges Bank** - 8 charts (cached)
+- Exchange rates (USD, EUR, GBP, CHF, SEK, CNY, I44)
+- Key policy rate
+
+**Oslo Børs** - 3 charts (cached)
+- OSEAX, OSEBX, OBX indices
+
+**Oil Fund** - 5 charts (cached)
+- Total market value, equities, fixed income, real estate, renewable infrastructure
+
+**NVE** - 4 charts (cached + static)
+- Reservoir statistics by area
+- Annual reservoir fill
+
+**Statnett** - 2 charts (cached)
+- Electricity production & consumption
+
+### Key Features
+- **Modular HTML**: Charts generated dynamically via JavaScript
+- **Political Party Timeline**: Sidebar showing Norwegian government history
+- **Search & Filter**: Find charts instantly
 - **Responsive Design**: Works on all devices
-- **Search & Filter**: Find specific charts quickly
-- **Optimized Dark/Light Theme**: Instant theme switching with CSS variables
-- **Bilingual**: English and Norwegian support
-
-### Technical Features
-- **Modular Architecture**: Clean, maintainable code structure
-- **Cached Data**: 100% reliable data loading
-- **Error Handling**: Robust error handling and recovery
-- **Rate Limiting**: Respectful API usage
-- **Data Validation**: Ensures data integrity
-- **Optimized Theme System**: CSS variables for instant theme switching
-
-## 🌙 Theme System
-
-The dashboard features an optimized light/dark mode toggle that switches themes instantly:
-
-### How It Works
-- **CSS Variables**: All theme colors are defined as CSS custom properties
-- **Single Class Toggle**: Theme switching requires only one class change on the `<html>` element
-- **Chart Integration**: Charts automatically adapt to theme changes using CSS variables
-- **Persistent Storage**: Theme preference is saved in localStorage
-
-### Performance Benefits
-- **Instant Switching**: Theme changes happen in under 100ms
-- **No Re-rendering**: Charts update colors without full re-rendering
-- **Smooth Transitions**: 0.2s transitions for visual polish
-- **Mobile Optimized**: Efficient on all devices
-
-### Testing
-Test the theme toggle functionality:
-```bash
-# Open the test page
-open http://localhost:8000/test-theme.html
-```
+- **Light Theme**: Clean, professional interface
+- **Interactive Tooltips**: Detailed hover information
+- **Lazy Loading**: Charts load as you scroll
 
 ## 🔧 Development
 
-### Adding New Data Sources
+### Architecture
 
-1. **Create a new fetcher** in `scripts/fetch/`:
-```python
-# Example: fetch_new_data.py
-import yfinance as yf
-import json
-import os
-from datetime import datetime
+**Modular Design**: Charts are dynamically generated from the `chartConfigs` array in `src/js/main.js`
 
-class NewDataFetcher:
-    def __init__(self, cache_dir="data/cached"):
-        self.cache_dir = cache_dir
-        self.data_dir = os.path.join(cache_dir, "new-source")
-        os.makedirs(self.data_dir, exist_ok=True)
-    
-    def fetch_data(self):
-        # Implement your fetching logic here
-        pass
-```
-
-2. **Update configuration** in `src/js/config.js`:
 ```javascript
-export const DATASET_MAPPINGS = {
-    // ... existing mappings
-    new_source: {
-        'dataset_id': 'cache_filename'
-    }
-};
-```
-
-3. **Add chart loading** in `src/js/main.js`:
-```javascript
-loadChartData('new-chart', './data/cached/new-source/data.json', 'New Chart Title')
+// Chart configuration example
+const chartConfigs = [
+    { 
+        id: 'cpi-chart', 
+        url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', 
+        title: 'Consumer Price Index' 
+    },
+    // ... ~120 total configs
+];
 ```
 
 ### Adding New Charts
 
-1. **Add HTML** in `src/html/index.html`:
-```html
-<div class="chart-card">
-    <div class="chart-header">
-        <h3>New Chart Title</h3>
-        <a href="API_URL" target="_blank" class="source-link">Source</a>
-        <div class="chart-subtitle">Description</div>
-    </div>
-    <div class="skeleton-chart" id="new-chart-skeleton"></div>
-    <div class="chart-container">
-        <canvas id="new-chart"></canvas>
-        <div class="static-tooltip" id="new-chart-tooltip"></div>
-    </div>
-</div>
-```
-
-2. **Add to main.js**:
+1. **Add to chartConfigs** in `src/js/main.js`:
 ```javascript
-loadChartData('new-chart', 'API_URL', 'New Chart Title')
+{ 
+    id: 'my-new-chart', 
+    url: './data/cached/my-data.json', 
+    title: 'My New Chart',
+    subtitle: 'Optional subtitle',
+    type: 'line'  // or 'bar', 'dfo-budget', etc.
+}
 ```
 
-## 📈 Available Charts
-
-### Economic Indicators
-- Consumer Price Index (CPI)
-- Unemployment Rate
-- GDP Growth
-- Producer Price Index
-- Wage Index
-- House Price Index
-
-### Financial Data
-- Exchange Rates (USD/NOK, EUR/NOK)
-- Key Policy Rate
-- Government Debt
-- Oil Fund Value
-- Monetary Aggregates
-- Oslo Stock Exchange Indices (OSEAX)
-- Oslo Stock Exchange Indices (OSEBX)
-
-### Trade & Industry
-- Trade Balance
-- Export/Import Volume
-- Industrial Production
-- Retail Sales
-
-### Social Indicators
-- Population Growth 
-- Life Expectancy
-- Education Level 
-- Crime Rate
-- Immigration Rate 
-
-### And 50+ more indicators...
-
-## ⚡ Statnett Production and Consumption Data
-
-The dashboard now includes **Statnett** electricity production and consumption data, providing comprehensive information about Norway's electricity system:
-
-### Production and Consumption Charts
-- **Production**: Daily electricity production in MWh
-- **Consumption**: Daily electricity consumption in MWh  
-- **Net**: Net production (Production - Consumption) showing surplus/deficit
-- **Historical Data**: Complete dataset from 2012 onwards
-- **Interactive Tooltips**: Hover for detailed information with Norwegian date formatting
-
-### Chart Features
-- **Three-Line Display**: Production (blue), Consumption (red), and Net (green dashed)
-- **Daily Resolution**: High-frequency data showing daily patterns
-- **Long Historical Series**: Over 10 years of data for trend analysis
-- **Responsive Design**: Optimized for all devices
-- **Theme Integration**: Automatically adapts to light/dark mode
-
-### Data Source
-- **API**: [Statnett Driftsdata REST API](https://driftsdata.statnett.no/restapi)
-- **Coverage**: Norwegian electricity system
-- **Update Frequency**: Daily
-- **Units**: Megawatt-hours (MWh)
-
-## 🌊 NVE Reservoir Data
-
-The dashboard now includes **NVE Magasinstatistikk** (reservoir statistics) data, providing real-time information about Norway's hydropower reservoir levels:
-
-### Reservoir Fill Charts
-- **Norge (Norway)**: Overall national reservoir fill percentage
-- **Østlandet (NO1)**: Eastern Norway reservoir levels
-- **Sørlandet (NO2)**: Southern Norway reservoir levels  
-- **Vestlandet (NO3)**: Western Norway reservoir levels
-- **Trøndelag (NO4)**: Central Norway reservoir levels
-- **Nord-Norge (NO5)**: Northern Norway reservoir levels
-
-### Chart Features
-- **Current Year**: Bold line showing current reservoir fill levels
-- **Previous Year**: Faint line for year-over-year comparison
-- **20-Year Statistics**: Min/max bands and median line showing historical patterns
-- **Weekly Updates**: Data updated weekly (typically Wed/Thu)
-- **Interactive Tooltips**: Hover for detailed information
-
-### Data Source
-- **API**: [NVE Magasinstatistikk API](https://biapi.nve.no/magasinstatistikk/swagger/index.html)
-- **Coverage**: 490 major reservoirs across Norway
-- **Capacity**: ~87 TWh total reservoir capacity
-- **Update Frequency**: Weekly
-
-## 🛠️ Scripts
-
-### Data Management
-
-```bash
-# Fetch Oslo indices data
-cd scripts
-python fetch/fetch_oslo_indices.py
-
-# Fetch Statnett production and consumption data
-cd scripts
-python fetch/statnett-production-consumption.py
-
-# Install dependencies
-pip install -r requirements.txt
+2. **Add data file** to `data/cached/`:
+```json
+{
+    "labels": ["2020", "2021", "2022"],
+    "datasets": [{
+        "label": "My Data",
+        "data": [100, 110, 120]
+    }]
+}
 ```
 
-### Testing
+3. **Charts auto-generate** on page load via `renderChartCards()` function
 
-```bash
-# Test cache loading
-open tests/test_cache.html
+### Metadata Inference
 
-# Debug utilities
-open tests/debug.html
-```
+Chart metadata (subtitle, source URL, source name) is automatically inferred from the URL:
+- SSB URLs → SSB metadata
+- Norges Bank URLs → Norges Bank metadata
+- DFO files → DFO metadata
+- OWID files → OWID metadata
 
-## 🔍 Data Validation
+See `inferChartMetadata()` in `src/js/main.js` for details
 
-The system includes comprehensive data validation:
-
-- **Structure Validation**: Ensures data follows expected format
-- **Metadata Validation**: Checks for required metadata fields
-- **Freshness Check**: Warns about stale data
-- **Source-specific Validation**: Validates SSB and Norges Bank formats
-
-## 📝 Configuration
+## 🎨 Customization
 
 ### Chart Configuration
-Edit `src/js/config.js` to modify:
-- Political party periods and colors
-- Chart appearance settings
-- API endpoints
-- Dataset mappings
+All charts are configured in `src/js/main.js` in the `chartConfigs` array:
+```javascript
+const chartConfigs = [
+    { id: 'chart-id', url: 'data-url', title: 'Chart Title', subtitle: 'Optional', type: 'line' },
+    // ... add your charts here
+];
+```
+
+### Political Party Colors
+Political party periods and colors are defined in `src/js/config.js`:
+- Party colors for chart background shading
+- Government periods with start/end dates
+- Coalition information
 
 ### Styling
-Edit `src/css/main.css` to customize:
-- Color schemes
-- Layout and spacing
-- Responsive breakpoints
-- Theme variations
+Customize appearance in:
+- `src/css/main.css` - Layout, components, responsive design
+- `src/css/theme.css` - Theme variables and colors
+
+## 🏆 Project Stats
+
+- **Total Files**: 115 (down from 384!)
+- **Working Charts**: ~120 (down from ~300)
+- **index.html**: 280 lines (down from 4,800!)
+- **Data Files**: 83 cached files (all active)
+- **Architecture**: Super lean & modular
 
 ## 🤝 Contributing
 
@@ -361,18 +227,20 @@ Edit `src/css/main.css` to customize:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License.
 
 ## 🙏 Acknowledgments
 
-- **Statistics Norway (SSB)** for providing comprehensive economic data
-- **Norges Bank** for financial data
-- **Chart.js** for the excellent charting library
-- **Norwegian Political Parties** for the color inspiration
+- **Statistics Norway (SSB)** - Comprehensive economic data
+- **Norges Bank** - Exchange rates & financial data
+- **NVE** - Hydropower reservoir statistics
+- **Statnett** - Electricity production/consumption data
+- **DFO** - Norwegian government budget data
+- **Our World in Data** - Global development statistics
+- **Chart.js** - Excellent charting library
 
 ## 📞 Support
 
 For questions or issues:
 - Open an issue on GitHub
 - Check the documentation in `docs/`
-- Review the cache status in `docs/CACHE_STATUS.md`

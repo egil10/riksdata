@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Pitcairn",
+    "country_code": "PN",
+    "country_name": "Pitcairn",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 14700
+    },
+    {
+      "year": 1993,
+      "value": 68005
+    },
+    {
+      "year": 2000,
+      "value": 11950
+    },
+    {
+      "year": 2001,
+      "value": 721188
+    },
+    {
+      "year": 2004,
+      "value": 2619140
+    },
+    {
+      "year": 2009,
+      "value": 18371
+    },
+    {
+      "year": 2013,
+      "value": 9592
+    },
+    {
+      "year": 2016,
+      "value": 134475
+    },
+    {
+      "year": 2019,
+      "value": 55561
+    }
+  ]
+}

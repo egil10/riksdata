@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Peru",
+    "country_code": "PE",
+    "country_name": "Peru",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 12661525
+    },
+    {
+      "year": 1989,
+      "value": 35935853
+    },
+    {
+      "year": 1990,
+      "value": 33310574
+    },
+    {
+      "year": 1991,
+      "value": 38532365
+    },
+    {
+      "year": 1992,
+      "value": 24861707
+    },
+    {
+      "year": 1993,
+      "value": 28174089
+    },
+    {
+      "year": 1994,
+      "value": 83477587
+    },
+    {
+      "year": 1995,
+      "value": 61054369
+    },
+    {
+      "year": 1996,
+      "value": 56904687
+    },
+    {
+      "year": 1997,
+      "value": 56061909
+    },
+    {
+      "year": 1998,
+      "value": 90743617
+    },
+    {
+      "year": 1999,
+      "value": 56434606
+    },
+    {
+      "year": 2000,
+      "value": 55278978
+    },
+    {
+      "year": 2001,
+      "value": 26721609
+    },
+    {
+      "year": 2002,
+      "value": 31549647
+    },
+    {
+      "year": 2003,
+      "value": 66907682
+    },
+    {
+      "year": 2004,
+      "value": 31237706
+    },
+    {
+      "year": 2005,
+      "value": 210742780
+    },
+    {
+      "year": 2006,
+      "value": 38673439
+    },
+    {
+      "year": 2007,
+      "value": 87836418
+    },
+    {
+      "year": 2008,
+      "value": 52994045
+    },
+    {
+      "year": 2009,
+      "value": 79658224
+    },
+    {
+      "year": 2010,
+      "value": 150102676
+    },
+    {
+      "year": 2011,
+      "value": 81199154
+    },
+    {
+      "year": 2012,
+      "value": 90255917
+    },
+    {
+      "year": 2013,
+      "value": 107545734
+    },
+    {
+      "year": 2014,
+      "value": 134615602
+    },
+    {
+      "year": 2015,
+      "value": 326640840
+    },
+    {
+      "year": 2016,
+      "value": 104823208
+    },
+    {
+      "year": 2017,
+      "value": 109293836
+    },
+    {
+      "year": 2018,
+      "value": 141938373
+    },
+    {
+      "year": 2019,
+      "value": 87205269
+    },
+    {
+      "year": 2020,
+      "value": 129277032
+    },
+    {
+      "year": 2021,
+      "value": 175623603
+    },
+    {
+      "year": 2022,
+      "value": 230176560
+    },
+    {
+      "year": 2023,
+      "value": 226898695
+    },
+    {
+      "year": 2024,
+      "value": 208300396
+    }
+  ]
+}

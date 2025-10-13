@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Comoros",
+    "country_code": "KM",
+    "country_name": "Comoros",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 31370
+    },
+    {
+      "year": 1989,
+      "value": 184255
+    },
+    {
+      "year": 1990,
+      "value": 7532
+    },
+    {
+      "year": 1991,
+      "value": 1092167
+    },
+    {
+      "year": 1992,
+      "value": 20670
+    },
+    {
+      "year": 1993,
+      "value": 105999
+    },
+    {
+      "year": 1994,
+      "value": 85666
+    },
+    {
+      "year": 1995,
+      "value": 715362
+    },
+    {
+      "year": 1996,
+      "value": 35529
+    },
+    {
+      "year": 1997,
+      "value": 340498
+    },
+    {
+      "year": 1998,
+      "value": 665988
+    },
+    {
+      "year": 1999,
+      "value": 214000
+    },
+    {
+      "year": 2000,
+      "value": 26196
+    },
+    {
+      "year": 2001,
+      "value": 93055
+    },
+    {
+      "year": 2002,
+      "value": 1616590
+    },
+    {
+      "year": 2005,
+      "value": 657409
+    },
+    {
+      "year": 2006,
+      "value": 131919
+    },
+    {
+      "year": 2007,
+      "value": 27308
+    },
+    {
+      "year": 2008,
+      "value": 74984
+    },
+    {
+      "year": 2009,
+      "value": 37912
+    },
+    {
+      "year": 2010,
+      "value": 11779
+    },
+    {
+      "year": 2012,
+      "value": 21220
+    },
+    {
+      "year": 2013,
+      "value": 106467
+    },
+    {
+      "year": 2014,
+      "value": 5244
+    },
+    {
+      "year": 2015,
+      "value": 132166
+    },
+    {
+      "year": 2016,
+      "value": 4885644
+    },
+    {
+      "year": 2017,
+      "value": 74204
+    },
+    {
+      "year": 2019,
+      "value": 123324
+    },
+    {
+      "year": 2022,
+      "value": 27700
+    }
+  ]
+}

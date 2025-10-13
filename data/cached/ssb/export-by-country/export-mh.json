@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Marshall Islands",
+    "country_code": "MH",
+    "country_name": "Marshall Islands",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1992,
+      "value": 111200
+    },
+    {
+      "year": 1994,
+      "value": 58719
+    },
+    {
+      "year": 1996,
+      "value": 269822
+    },
+    {
+      "year": 1997,
+      "value": 141514
+    },
+    {
+      "year": 1998,
+      "value": 207780
+    },
+    {
+      "year": 1999,
+      "value": 970303
+    },
+    {
+      "year": 2000,
+      "value": 907569
+    },
+    {
+      "year": 2001,
+      "value": 380060338
+    },
+    {
+      "year": 2002,
+      "value": 391782065
+    },
+    {
+      "year": 2003,
+      "value": 1206565860
+    },
+    {
+      "year": 2004,
+      "value": 240791509
+    },
+    {
+      "year": 2005,
+      "value": 213828905
+    },
+    {
+      "year": 2006,
+      "value": 287807321
+    },
+    {
+      "year": 2007,
+      "value": 301292369
+    },
+    {
+      "year": 2008,
+      "value": 261572465
+    },
+    {
+      "year": 2009,
+      "value": 48761
+    },
+    {
+      "year": 2010,
+      "value": 26627827
+    },
+    {
+      "year": 2011,
+      "value": 30173199
+    },
+    {
+      "year": 2012,
+      "value": 463916537
+    },
+    {
+      "year": 2013,
+      "value": 582128644
+    },
+    {
+      "year": 2014,
+      "value": 1137393044
+    },
+    {
+      "year": 2015,
+      "value": 311824265
+    },
+    {
+      "year": 2016,
+      "value": 752237493
+    },
+    {
+      "year": 2017,
+      "value": 96111725
+    },
+    {
+      "year": 2018,
+      "value": 200334557
+    },
+    {
+      "year": 2019,
+      "value": 71243273
+    },
+    {
+      "year": 2020,
+      "value": 32755665
+    },
+    {
+      "year": 2021,
+      "value": 659962645
+    },
+    {
+      "year": 2022,
+      "value": 93705978
+    },
+    {
+      "year": 2023,
+      "value": 32012855
+    },
+    {
+      "year": 2024,
+      "value": 810542758
+    }
+  ]
+}

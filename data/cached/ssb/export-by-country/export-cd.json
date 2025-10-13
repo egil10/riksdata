@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Congo (the Democratic Republic of the)",
+    "country_code": "CD",
+    "country_name": "Congo (the Democratic Republic of the)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 33912011
+    },
+    {
+      "year": 1999,
+      "value": 19516715
+    },
+    {
+      "year": 2000,
+      "value": 5695645
+    },
+    {
+      "year": 2001,
+      "value": 17084402
+    },
+    {
+      "year": 2002,
+      "value": 28329091
+    },
+    {
+      "year": 2003,
+      "value": 25814007
+    },
+    {
+      "year": 2004,
+      "value": 37702438
+    },
+    {
+      "year": 2005,
+      "value": 55680320
+    },
+    {
+      "year": 2006,
+      "value": 93843337
+    },
+    {
+      "year": 2007,
+      "value": 143829414
+    },
+    {
+      "year": 2008,
+      "value": 137317518
+    },
+    {
+      "year": 2009,
+      "value": 126449282
+    },
+    {
+      "year": 2010,
+      "value": 121087184
+    },
+    {
+      "year": 2011,
+      "value": 152633699
+    },
+    {
+      "year": 2012,
+      "value": 104361048
+    },
+    {
+      "year": 2013,
+      "value": 153748040
+    },
+    {
+      "year": 2014,
+      "value": 186063753
+    },
+    {
+      "year": 2015,
+      "value": 161131245
+    },
+    {
+      "year": 2016,
+      "value": 78684391
+    },
+    {
+      "year": 2017,
+      "value": 102740058
+    },
+    {
+      "year": 2018,
+      "value": 133852105
+    },
+    {
+      "year": 2019,
+      "value": 112456363
+    },
+    {
+      "year": 2020,
+      "value": 92810310
+    },
+    {
+      "year": 2021,
+      "value": 103513235
+    },
+    {
+      "year": 2022,
+      "value": 71750703
+    },
+    {
+      "year": 2023,
+      "value": 101254303
+    },
+    {
+      "year": 2024,
+      "value": 82541348
+    }
+  ]
+}

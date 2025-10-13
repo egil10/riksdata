@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Moldova",
+    "country_code": "MD",
+    "country_name": "Moldova",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1994,
+      "value": 33901
+    },
+    {
+      "year": 1995,
+      "value": 6710
+    },
+    {
+      "year": 1996,
+      "value": 367029
+    },
+    {
+      "year": 1997,
+      "value": 819958
+    },
+    {
+      "year": 1998,
+      "value": 2124775
+    },
+    {
+      "year": 1999,
+      "value": 6246366
+    },
+    {
+      "year": 2000,
+      "value": 19601162
+    },
+    {
+      "year": 2001,
+      "value": 11832816
+    },
+    {
+      "year": 2002,
+      "value": 10097749
+    },
+    {
+      "year": 2003,
+      "value": 6987744
+    },
+    {
+      "year": 2004,
+      "value": 13874380
+    },
+    {
+      "year": 2005,
+      "value": 19221230
+    },
+    {
+      "year": 2006,
+      "value": 19140742
+    },
+    {
+      "year": 2007,
+      "value": 26463460
+    },
+    {
+      "year": 2008,
+      "value": 35140042
+    },
+    {
+      "year": 2009,
+      "value": 29230936
+    },
+    {
+      "year": 2010,
+      "value": 24759603
+    },
+    {
+      "year": 2011,
+      "value": 34920566
+    },
+    {
+      "year": 2012,
+      "value": 23394012
+    },
+    {
+      "year": 2013,
+      "value": 17184371
+    },
+    {
+      "year": 2014,
+      "value": 13670862
+    },
+    {
+      "year": 2015,
+      "value": 15700297
+    },
+    {
+      "year": 2016,
+      "value": 12239681
+    },
+    {
+      "year": 2017,
+      "value": 21386992
+    },
+    {
+      "year": 2018,
+      "value": 27374178
+    },
+    {
+      "year": 2019,
+      "value": 24805354
+    },
+    {
+      "year": 2020,
+      "value": 23973511
+    },
+    {
+      "year": 2021,
+      "value": 32226941
+    },
+    {
+      "year": 2022,
+      "value": 54696817
+    },
+    {
+      "year": 2023,
+      "value": 145018270
+    },
+    {
+      "year": 2024,
+      "value": 93470081
+    }
+  ]
+}

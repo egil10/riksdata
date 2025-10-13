@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Venezuela",
+    "country_code": "VE",
+    "country_name": "Venezuela",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 184537911
+    },
+    {
+      "year": 1989,
+      "value": 178923194
+    },
+    {
+      "year": 1990,
+      "value": 175742673
+    },
+    {
+      "year": 1991,
+      "value": 95852720
+    },
+    {
+      "year": 1992,
+      "value": 97204228
+    },
+    {
+      "year": 1993,
+      "value": 119468444
+    },
+    {
+      "year": 1994,
+      "value": 67226571
+    },
+    {
+      "year": 1995,
+      "value": 137218051
+    },
+    {
+      "year": 1996,
+      "value": 142132381
+    },
+    {
+      "year": 1997,
+      "value": 276096037
+    },
+    {
+      "year": 1998,
+      "value": 191661203
+    },
+    {
+      "year": 1999,
+      "value": 157083443
+    },
+    {
+      "year": 2000,
+      "value": 272594595
+    },
+    {
+      "year": 2001,
+      "value": 290956862
+    },
+    {
+      "year": 2002,
+      "value": 241145502
+    },
+    {
+      "year": 2003,
+      "value": 100222690
+    },
+    {
+      "year": 2004,
+      "value": 138532373
+    },
+    {
+      "year": 2005,
+      "value": 126062851
+    },
+    {
+      "year": 2006,
+      "value": 256908416
+    },
+    {
+      "year": 2007,
+      "value": 114724883
+    },
+    {
+      "year": 2008,
+      "value": 345347635
+    },
+    {
+      "year": 2009,
+      "value": 292977865
+    },
+    {
+      "year": 2010,
+      "value": 167601948
+    },
+    {
+      "year": 2011,
+      "value": 135218509
+    },
+    {
+      "year": 2012,
+      "value": 240097198
+    },
+    {
+      "year": 2013,
+      "value": 282972206
+    },
+    {
+      "year": 2014,
+      "value": 59790008
+    },
+    {
+      "year": 2015,
+      "value": 24179582
+    },
+    {
+      "year": 2016,
+      "value": 22873338
+    },
+    {
+      "year": 2017,
+      "value": 9230266
+    },
+    {
+      "year": 2018,
+      "value": 2508620
+    },
+    {
+      "year": 2019,
+      "value": 907752
+    },
+    {
+      "year": 2020,
+      "value": 2819267
+    },
+    {
+      "year": 2021,
+      "value": 7655089
+    },
+    {
+      "year": 2022,
+      "value": 39429185
+    },
+    {
+      "year": 2023,
+      "value": 10409728
+    },
+    {
+      "year": 2024,
+      "value": 10009967
+    }
+  ]
+}

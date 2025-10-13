@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Saint Martin (2008-)",
+    "country_code": "MF",
+    "country_name": "Saint Martin (2008-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2010,
+      "value": 179662
+    },
+    {
+      "year": 2011,
+      "value": 77848
+    },
+    {
+      "year": 2012,
+      "value": 26088
+    },
+    {
+      "year": 2013,
+      "value": 16000
+    },
+    {
+      "year": 2014,
+      "value": 744775
+    },
+    {
+      "year": 2015,
+      "value": 63854
+    },
+    {
+      "year": 2017,
+      "value": 9008
+    },
+    {
+      "year": 2021,
+      "value": 89286
+    },
+    {
+      "year": 2022,
+      "value": 254882
+    },
+    {
+      "year": 2023,
+      "value": 52567
+    },
+    {
+      "year": 2024,
+      "value": 90029
+    }
+  ]
+}

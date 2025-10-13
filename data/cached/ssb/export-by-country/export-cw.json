@@ -1,0 +1,69 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Curacao (2011-)",
+    "country_code": "CW",
+    "country_name": "Curacao (2011-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2011,
+      "value": 8444100
+    },
+    {
+      "year": 2012,
+      "value": 70530188
+    },
+    {
+      "year": 2013,
+      "value": 32829414
+    },
+    {
+      "year": 2014,
+      "value": 11526199
+    },
+    {
+      "year": 2015,
+      "value": 13134089
+    },
+    {
+      "year": 2016,
+      "value": 5956698
+    },
+    {
+      "year": 2017,
+      "value": 13078731
+    },
+    {
+      "year": 2018,
+      "value": 19795901
+    },
+    {
+      "year": 2019,
+      "value": 9398054
+    },
+    {
+      "year": 2020,
+      "value": 4086152
+    },
+    {
+      "year": 2021,
+      "value": 11329846
+    },
+    {
+      "year": 2022,
+      "value": 9348595
+    },
+    {
+      "year": 2023,
+      "value": 36264312
+    },
+    {
+      "year": 2024,
+      "value": 52854366
+    }
+  ]
+}

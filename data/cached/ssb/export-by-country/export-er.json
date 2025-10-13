@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Eritrea",
+    "country_code": "ER",
+    "country_name": "Eritrea",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1994,
+      "value": 8631363
+    },
+    {
+      "year": 1995,
+      "value": 4108517
+    },
+    {
+      "year": 1996,
+      "value": 13432642
+    },
+    {
+      "year": 1997,
+      "value": 10585484
+    },
+    {
+      "year": 1998,
+      "value": 5751327
+    },
+    {
+      "year": 1999,
+      "value": 2130783
+    },
+    {
+      "year": 2000,
+      "value": 2847838
+    },
+    {
+      "year": 2001,
+      "value": 3132165
+    },
+    {
+      "year": 2002,
+      "value": 6456984
+    },
+    {
+      "year": 2003,
+      "value": 8234397
+    },
+    {
+      "year": 2004,
+      "value": 5966336
+    },
+    {
+      "year": 2005,
+      "value": 3922144
+    },
+    {
+      "year": 2006,
+      "value": 2047854
+    },
+    {
+      "year": 2007,
+      "value": 2121726
+    },
+    {
+      "year": 2008,
+      "value": 2731048
+    },
+    {
+      "year": 2009,
+      "value": 1979138
+    },
+    {
+      "year": 2010,
+      "value": 6437475
+    },
+    {
+      "year": 2011,
+      "value": 15158335
+    },
+    {
+      "year": 2012,
+      "value": 8184490
+    },
+    {
+      "year": 2013,
+      "value": 7074152
+    },
+    {
+      "year": 2014,
+      "value": 124397
+    },
+    {
+      "year": 2015,
+      "value": 27050
+    },
+    {
+      "year": 2016,
+      "value": 1158003
+    },
+    {
+      "year": 2017,
+      "value": 179750
+    },
+    {
+      "year": 2018,
+      "value": 1110117
+    },
+    {
+      "year": 2019,
+      "value": 145263
+    },
+    {
+      "year": 2020,
+      "value": 165920
+    },
+    {
+      "year": 2021,
+      "value": 652191
+    },
+    {
+      "year": 2022,
+      "value": 828629
+    },
+    {
+      "year": 2023,
+      "value": 817005
+    },
+    {
+      "year": 2024,
+      "value": 1971951
+    }
+  ]
+}

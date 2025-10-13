@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Mayotte",
+    "country_code": "YT",
+    "country_name": "Mayotte",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2003,
+      "value": 44582
+    },
+    {
+      "year": 2009,
+      "value": 45232
+    },
+    {
+      "year": 2011,
+      "value": 74256
+    },
+    {
+      "year": 2013,
+      "value": 33682
+    },
+    {
+      "year": 2014,
+      "value": 82159
+    },
+    {
+      "year": 2016,
+      "value": 67119
+    },
+    {
+      "year": 2017,
+      "value": 2502810
+    },
+    {
+      "year": 2018,
+      "value": 2415647
+    },
+    {
+      "year": 2019,
+      "value": 84335
+    },
+    {
+      "year": 2022,
+      "value": 9477
+    }
+  ]
+}

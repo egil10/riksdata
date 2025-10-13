@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Turks and Caicos Islands",
+    "country_code": "TC",
+    "country_name": "Turks and Caicos Islands",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 94000
+    },
+    {
+      "year": 1989,
+      "value": 2379988
+    },
+    {
+      "year": 1994,
+      "value": 207328
+    },
+    {
+      "year": 1999,
+      "value": 54454
+    },
+    {
+      "year": 2001,
+      "value": 24969
+    },
+    {
+      "year": 2002,
+      "value": 409132
+    },
+    {
+      "year": 2003,
+      "value": 296544
+    },
+    {
+      "year": 2005,
+      "value": 35178
+    },
+    {
+      "year": 2006,
+      "value": 108997
+    },
+    {
+      "year": 2007,
+      "value": 282112
+    },
+    {
+      "year": 2008,
+      "value": 112371
+    },
+    {
+      "year": 2009,
+      "value": 21375
+    },
+    {
+      "year": 2010,
+      "value": 237122
+    },
+    {
+      "year": 2011,
+      "value": 94895
+    },
+    {
+      "year": 2012,
+      "value": 59800
+    },
+    {
+      "year": 2013,
+      "value": 69430
+    },
+    {
+      "year": 2014,
+      "value": 141896
+    },
+    {
+      "year": 2015,
+      "value": 140850
+    },
+    {
+      "year": 2019,
+      "value": 64989
+    },
+    {
+      "year": 2020,
+      "value": 70284
+    },
+    {
+      "year": 2021,
+      "value": 202815
+    },
+    {
+      "year": 2024,
+      "value": 573062
+    }
+  ]
+}

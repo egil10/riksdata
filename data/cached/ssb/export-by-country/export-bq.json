@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Bonaire, Sint Eustatius and Saba",
+    "country_code": "BQ",
+    "country_name": "Bonaire, Sint Eustatius and Saba",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2012,
+      "value": 28787
+    },
+    {
+      "year": 2013,
+      "value": 11308
+    },
+    {
+      "year": 2016,
+      "value": 34139
+    },
+    {
+      "year": 2019,
+      "value": 1000
+    },
+    {
+      "year": 2021,
+      "value": 139915
+    },
+    {
+      "year": 2022,
+      "value": 81964
+    },
+    {
+      "year": 2023,
+      "value": 94312
+    },
+    {
+      "year": 2024,
+      "value": 10502338
+    }
+  ]
+}

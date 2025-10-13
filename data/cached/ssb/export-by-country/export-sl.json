@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Sierra Leone",
+    "country_code": "SL",
+    "country_name": "Sierra Leone",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 284723
+    },
+    {
+      "year": 1989,
+      "value": 1029679
+    },
+    {
+      "year": 1990,
+      "value": 6010985
+    },
+    {
+      "year": 1991,
+      "value": 3997329
+    },
+    {
+      "year": 1992,
+      "value": 1678889
+    },
+    {
+      "year": 1993,
+      "value": 1084498
+    },
+    {
+      "year": 1994,
+      "value": 2996967
+    },
+    {
+      "year": 1995,
+      "value": 1088302
+    },
+    {
+      "year": 1996,
+      "value": 3669074
+    },
+    {
+      "year": 1997,
+      "value": 3417768
+    },
+    {
+      "year": 1998,
+      "value": 1921666
+    },
+    {
+      "year": 1999,
+      "value": 6196171
+    },
+    {
+      "year": 2000,
+      "value": 1266670
+    },
+    {
+      "year": 2001,
+      "value": 3391720
+    },
+    {
+      "year": 2002,
+      "value": 2571576
+    },
+    {
+      "year": 2003,
+      "value": 3707920
+    },
+    {
+      "year": 2004,
+      "value": 2751123
+    },
+    {
+      "year": 2005,
+      "value": 2656183
+    },
+    {
+      "year": 2006,
+      "value": 1765151
+    },
+    {
+      "year": 2007,
+      "value": 1772492
+    },
+    {
+      "year": 2008,
+      "value": 2631796
+    },
+    {
+      "year": 2009,
+      "value": 11324439
+    },
+    {
+      "year": 2010,
+      "value": 3349850
+    },
+    {
+      "year": 2011,
+      "value": 8691785
+    },
+    {
+      "year": 2012,
+      "value": 6173474
+    },
+    {
+      "year": 2013,
+      "value": 11765250
+    },
+    {
+      "year": 2014,
+      "value": 35300778
+    },
+    {
+      "year": 2015,
+      "value": 5908048
+    },
+    {
+      "year": 2016,
+      "value": 2282292
+    },
+    {
+      "year": 2017,
+      "value": 3357461
+    },
+    {
+      "year": 2018,
+      "value": 2797666
+    },
+    {
+      "year": 2019,
+      "value": 1672543
+    },
+    {
+      "year": 2020,
+      "value": 1820261
+    },
+    {
+      "year": 2021,
+      "value": 4360344
+    },
+    {
+      "year": 2022,
+      "value": 11261653
+    },
+    {
+      "year": 2023,
+      "value": 6348066
+    },
+    {
+      "year": 2024,
+      "value": 9242455
+    }
+  ]
+}

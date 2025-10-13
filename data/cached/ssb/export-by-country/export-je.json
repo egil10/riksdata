@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Jersey (2007-)",
+    "country_code": "JE",
+    "country_name": "Jersey (2007-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2010,
+      "value": 53650
+    },
+    {
+      "year": 2011,
+      "value": 4400
+    },
+    {
+      "year": 2012,
+      "value": 23670
+    },
+    {
+      "year": 2013,
+      "value": 164499
+    },
+    {
+      "year": 2014,
+      "value": 23996
+    },
+    {
+      "year": 2015,
+      "value": 23577
+    },
+    {
+      "year": 2016,
+      "value": 1396341
+    },
+    {
+      "year": 2017,
+      "value": 114823
+    },
+    {
+      "year": 2018,
+      "value": 281169
+    },
+    {
+      "year": 2019,
+      "value": 24883
+    },
+    {
+      "year": 2020,
+      "value": 605143
+    },
+    {
+      "year": 2021,
+      "value": 277425
+    },
+    {
+      "year": 2022,
+      "value": 605609
+    },
+    {
+      "year": 2023,
+      "value": 232314
+    },
+    {
+      "year": 2024,
+      "value": 1052005
+    }
+  ]
+}

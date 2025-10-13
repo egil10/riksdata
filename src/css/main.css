@@ -2404,3 +2404,46 @@ footer {
 .icon-btn .icon svg { 
   display: block; 
 }
+
+/* ============================================================================
+   DRILL-DOWN VIEW STYLING
+   ============================================================================ */
+
+/* Drill-down view uses same styling as main-content */
+#drilldown-view {
+    display: none;
+}
+
+/* Clickable chart title with drill-down */
+.chart-header h3[data-drilldown-enabled] {
+    transition: color var(--t) var(--ease);
+}
+
+.chart-header h3[data-drilldown-enabled]:hover {
+    color: var(--accent);
+}
+
+/* Drill-down icon button highlight */
+.icon-btn[data-action="drilldown"] {
+    color: var(--accent);
+}
+
+.icon-btn[data-action="drilldown"]:hover {
+    background: color-mix(in oklab, var(--accent), transparent 90%);
+}
+
+/* Breadcrumb styling in header */
+.app-title {
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.app-title span {
+    transition: color var(--t) var(--ease);
+}
+
+.app-title span:hover {
+    color: var(--accent);
+}

@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Western Sahara",
+    "country_code": "EH",
+    "country_name": "Western Sahara",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 11424
+    },
+    {
+      "year": 1989,
+      "value": 19584
+    },
+    {
+      "year": 1991,
+      "value": 3751000
+    },
+    {
+      "year": 1998,
+      "value": 42600
+    },
+    {
+      "year": 2013,
+      "value": 100088
+    },
+    {
+      "year": 2020,
+      "value": 2637168
+    }
+  ]
+}

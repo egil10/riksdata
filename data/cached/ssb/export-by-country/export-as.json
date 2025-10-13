@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to American Samoa",
+    "country_code": "AS",
+    "country_name": "American Samoa",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 17623
+    },
+    {
+      "year": 1990,
+      "value": 36620
+    },
+    {
+      "year": 1991,
+      "value": 68952
+    },
+    {
+      "year": 1992,
+      "value": 14520
+    },
+    {
+      "year": 1993,
+      "value": 11147
+    },
+    {
+      "year": 1994,
+      "value": 23164
+    },
+    {
+      "year": 1995,
+      "value": 431891
+    },
+    {
+      "year": 1996,
+      "value": 1181361
+    },
+    {
+      "year": 1998,
+      "value": 39591
+    },
+    {
+      "year": 2001,
+      "value": 18160
+    },
+    {
+      "year": 2002,
+      "value": 17919
+    },
+    {
+      "year": 2003,
+      "value": 11716
+    },
+    {
+      "year": 2007,
+      "value": 22126
+    },
+    {
+      "year": 2008,
+      "value": 93686
+    },
+    {
+      "year": 2009,
+      "value": 481072
+    },
+    {
+      "year": 2010,
+      "value": 374756
+    },
+    {
+      "year": 2011,
+      "value": 150248
+    },
+    {
+      "year": 2013,
+      "value": 1473178
+    },
+    {
+      "year": 2019,
+      "value": 44904
+    }
+  ]
+}

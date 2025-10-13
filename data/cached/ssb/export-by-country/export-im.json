@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Isle of Man (2007-)",
+    "country_code": "IM",
+    "country_name": "Isle of Man (2007-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2008,
+      "value": 22300
+    },
+    {
+      "year": 2011,
+      "value": 320584044
+    },
+    {
+      "year": 2012,
+      "value": 1330608
+    },
+    {
+      "year": 2013,
+      "value": 244596
+    },
+    {
+      "year": 2014,
+      "value": 586811856
+    },
+    {
+      "year": 2015,
+      "value": 2314573
+    },
+    {
+      "year": 2016,
+      "value": 47084
+    },
+    {
+      "year": 2017,
+      "value": 478890
+    },
+    {
+      "year": 2018,
+      "value": 687642
+    },
+    {
+      "year": 2019,
+      "value": 56605
+    },
+    {
+      "year": 2020,
+      "value": 231038
+    },
+    {
+      "year": 2021,
+      "value": 532704
+    },
+    {
+      "year": 2022,
+      "value": 513193
+    },
+    {
+      "year": 2023,
+      "value": 594971
+    },
+    {
+      "year": 2024,
+      "value": 648566
+    }
+  ]
+}

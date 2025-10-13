@@ -1,0 +1,137 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Central African Republic",
+    "country_code": "CF",
+    "country_name": "Central African Republic",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 931264
+    },
+    {
+      "year": 1989,
+      "value": 7700
+    },
+    {
+      "year": 1990,
+      "value": 6063599
+    },
+    {
+      "year": 1991,
+      "value": 1548098
+    },
+    {
+      "year": 1992,
+      "value": 1125100
+    },
+    {
+      "year": 1993,
+      "value": 1120274
+    },
+    {
+      "year": 1995,
+      "value": 309226
+    },
+    {
+      "year": 1996,
+      "value": 758919
+    },
+    {
+      "year": 1998,
+      "value": 4371418
+    },
+    {
+      "year": 1999,
+      "value": 540025
+    },
+    {
+      "year": 2000,
+      "value": 343032
+    },
+    {
+      "year": 2001,
+      "value": 463183
+    },
+    {
+      "year": 2002,
+      "value": 480500
+    },
+    {
+      "year": 2003,
+      "value": 305770
+    },
+    {
+      "year": 2004,
+      "value": 421397
+    },
+    {
+      "year": 2005,
+      "value": 308197
+    },
+    {
+      "year": 2006,
+      "value": 293337
+    },
+    {
+      "year": 2007,
+      "value": 944480
+    },
+    {
+      "year": 2008,
+      "value": 18088
+    },
+    {
+      "year": 2010,
+      "value": 136490
+    },
+    {
+      "year": 2011,
+      "value": 258905
+    },
+    {
+      "year": 2012,
+      "value": 205363
+    },
+    {
+      "year": 2013,
+      "value": 125018
+    },
+    {
+      "year": 2014,
+      "value": 1123821
+    },
+    {
+      "year": 2015,
+      "value": 664127
+    },
+    {
+      "year": 2016,
+      "value": 829188
+    },
+    {
+      "year": 2017,
+      "value": 156528
+    },
+    {
+      "year": 2018,
+      "value": 223567
+    },
+    {
+      "year": 2019,
+      "value": 811982
+    },
+    {
+      "year": 2021,
+      "value": 2982065
+    },
+    {
+      "year": 2022,
+      "value": 1349686
+    }
+  ]
+}

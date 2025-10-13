@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Faroe Islands",
+    "country_code": "FO",
+    "country_name": "Faroe Islands",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 561456367
+    },
+    {
+      "year": 1989,
+      "value": 407991441
+    },
+    {
+      "year": 1990,
+      "value": 431710277
+    },
+    {
+      "year": 1991,
+      "value": 351764724
+    },
+    {
+      "year": 1992,
+      "value": 371428772
+    },
+    {
+      "year": 1993,
+      "value": 265715590
+    },
+    {
+      "year": 1994,
+      "value": 305776416
+    },
+    {
+      "year": 1995,
+      "value": 282486231
+    },
+    {
+      "year": 1996,
+      "value": 394376127
+    },
+    {
+      "year": 1997,
+      "value": 465098462
+    },
+    {
+      "year": 1998,
+      "value": 465332054
+    },
+    {
+      "year": 1999,
+      "value": 923273265
+    },
+    {
+      "year": 2000,
+      "value": 1215794395
+    },
+    {
+      "year": 2001,
+      "value": 890376764
+    },
+    {
+      "year": 2002,
+      "value": 704041311
+    },
+    {
+      "year": 2003,
+      "value": 839987298
+    },
+    {
+      "year": 2004,
+      "value": 713390635
+    },
+    {
+      "year": 2005,
+      "value": 843593728
+    },
+    {
+      "year": 2006,
+      "value": 909547788
+    },
+    {
+      "year": 2007,
+      "value": 1141998302
+    },
+    {
+      "year": 2008,
+      "value": 1028426101
+    },
+    {
+      "year": 2009,
+      "value": 833693566
+    },
+    {
+      "year": 2010,
+      "value": 901834721
+    },
+    {
+      "year": 2011,
+      "value": 1353169093
+    },
+    {
+      "year": 2012,
+      "value": 1903070233
+    },
+    {
+      "year": 2013,
+      "value": 1650812055
+    },
+    {
+      "year": 2014,
+      "value": 1842149622
+    },
+    {
+      "year": 2015,
+      "value": 796969563
+    },
+    {
+      "year": 2016,
+      "value": 704121678
+    },
+    {
+      "year": 2017,
+      "value": 945139429
+    },
+    {
+      "year": 2018,
+      "value": 739627156
+    },
+    {
+      "year": 2019,
+      "value": 787268779
+    },
+    {
+      "year": 2020,
+      "value": 791070089
+    },
+    {
+      "year": 2021,
+      "value": 1273017233
+    },
+    {
+      "year": 2022,
+      "value": 1860844962
+    },
+    {
+      "year": 2023,
+      "value": 1735424077
+    },
+    {
+      "year": 2024,
+      "value": 3314993563
+    }
+  ]
+}

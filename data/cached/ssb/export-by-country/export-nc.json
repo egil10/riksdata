@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to New Caledonia",
+    "country_code": "NC",
+    "country_name": "New Caledonia",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 16528640
+    },
+    {
+      "year": 1989,
+      "value": 3364608
+    },
+    {
+      "year": 1990,
+      "value": 2440485
+    },
+    {
+      "year": 1991,
+      "value": 17644017
+    },
+    {
+      "year": 1992,
+      "value": 4536098
+    },
+    {
+      "year": 1993,
+      "value": 2382274
+    },
+    {
+      "year": 1994,
+      "value": 3237733
+    },
+    {
+      "year": 1995,
+      "value": 3126317
+    },
+    {
+      "year": 1996,
+      "value": 4444589
+    },
+    {
+      "year": 1997,
+      "value": 4418533
+    },
+    {
+      "year": 1998,
+      "value": 4472191
+    },
+    {
+      "year": 1999,
+      "value": 3947893
+    },
+    {
+      "year": 2000,
+      "value": 12338682
+    },
+    {
+      "year": 2001,
+      "value": 9231443
+    },
+    {
+      "year": 2002,
+      "value": 19625027
+    },
+    {
+      "year": 2003,
+      "value": 8041504
+    },
+    {
+      "year": 2004,
+      "value": 9326906
+    },
+    {
+      "year": 2005,
+      "value": 19747769
+    },
+    {
+      "year": 2006,
+      "value": 21601683
+    },
+    {
+      "year": 2007,
+      "value": 31234462
+    },
+    {
+      "year": 2008,
+      "value": 39671896
+    },
+    {
+      "year": 2009,
+      "value": 22993321
+    },
+    {
+      "year": 2010,
+      "value": 34298961
+    },
+    {
+      "year": 2011,
+      "value": 37851262
+    },
+    {
+      "year": 2012,
+      "value": 30086011
+    },
+    {
+      "year": 2013,
+      "value": 16247340
+    },
+    {
+      "year": 2014,
+      "value": 47958635
+    },
+    {
+      "year": 2015,
+      "value": 19532451
+    },
+    {
+      "year": 2016,
+      "value": 10315497
+    },
+    {
+      "year": 2017,
+      "value": 4121594
+    },
+    {
+      "year": 2018,
+      "value": 16999840
+    },
+    {
+      "year": 2019,
+      "value": 33793362
+    },
+    {
+      "year": 2020,
+      "value": 23134796
+    },
+    {
+      "year": 2021,
+      "value": 18453014
+    },
+    {
+      "year": 2022,
+      "value": 43981112
+    },
+    {
+      "year": 2023,
+      "value": 49771621
+    },
+    {
+      "year": 2024,
+      "value": 34537918
+    }
+  ]
+}

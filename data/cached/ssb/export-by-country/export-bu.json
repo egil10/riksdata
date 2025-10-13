@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Burma (-1991)",
+    "country_code": "BU",
+    "country_name": "Burma (-1991)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 4359926
+    },
+    {
+      "year": 1989,
+      "value": 2600062
+    },
+    {
+      "year": 1990,
+      "value": 10020347
+    },
+    {
+      "year": 1991,
+      "value": 4060246
+    }
+  ]
+}

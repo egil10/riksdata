@@ -1,0 +1,33 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to USSR (-1992)",
+    "country_code": "SU",
+    "country_name": "USSR (-1992)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 877741170
+    },
+    {
+      "year": 1989,
+      "value": 1161918453
+    },
+    {
+      "year": 1990,
+      "value": 1068880503
+    },
+    {
+      "year": 1991,
+      "value": 616732234
+    },
+    {
+      "year": 1992,
+      "value": 479790119
+    }
+  ]
+}

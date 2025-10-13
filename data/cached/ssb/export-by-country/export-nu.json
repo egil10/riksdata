@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Niue",
+    "country_code": "NU",
+    "country_name": "Niue",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1994,
+      "value": 3500
+    }
+  ]
+}

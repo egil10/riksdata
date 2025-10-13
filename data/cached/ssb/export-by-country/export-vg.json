@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Virgin Islands (British)",
+    "country_code": "VG",
+    "country_name": "Virgin Islands (British)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 163060
+    },
+    {
+      "year": 1989,
+      "value": 591440
+    },
+    {
+      "year": 1990,
+      "value": 4603450
+    },
+    {
+      "year": 1991,
+      "value": 672350
+    },
+    {
+      "year": 1992,
+      "value": 4675455
+    },
+    {
+      "year": 1993,
+      "value": 173626857
+    },
+    {
+      "year": 1994,
+      "value": 1919107
+    },
+    {
+      "year": 1995,
+      "value": 291008699
+    },
+    {
+      "year": 1996,
+      "value": 68776560
+    },
+    {
+      "year": 1997,
+      "value": 5468687
+    },
+    {
+      "year": 1998,
+      "value": 9926167
+    },
+    {
+      "year": 1999,
+      "value": 135923053
+    },
+    {
+      "year": 2000,
+      "value": 162565050
+    },
+    {
+      "year": 2001,
+      "value": 452768536
+    },
+    {
+      "year": 2002,
+      "value": 78245754
+    },
+    {
+      "year": 2003,
+      "value": 763261582
+    },
+    {
+      "year": 2004,
+      "value": 73599247
+    },
+    {
+      "year": 2005,
+      "value": 61618464
+    },
+    {
+      "year": 2006,
+      "value": 222445558
+    },
+    {
+      "year": 2007,
+      "value": 59764903
+    },
+    {
+      "year": 2008,
+      "value": 78662638
+    },
+    {
+      "year": 2009,
+      "value": 389384500
+    },
+    {
+      "year": 2010,
+      "value": 186853833
+    },
+    {
+      "year": 2011,
+      "value": 61558636
+    },
+    {
+      "year": 2012,
+      "value": 71204462
+    },
+    {
+      "year": 2013,
+      "value": 41522808
+    },
+    {
+      "year": 2014,
+      "value": 13548225
+    },
+    {
+      "year": 2015,
+      "value": 10334225
+    },
+    {
+      "year": 2016,
+      "value": 3768156
+    },
+    {
+      "year": 2017,
+      "value": 2155063
+    },
+    {
+      "year": 2018,
+      "value": 298628420
+    },
+    {
+      "year": 2019,
+      "value": 794157
+    },
+    {
+      "year": 2020,
+      "value": 1091858
+    },
+    {
+      "year": 2021,
+      "value": 1899957
+    },
+    {
+      "year": 2022,
+      "value": 16942640
+    },
+    {
+      "year": 2023,
+      "value": 34084503
+    },
+    {
+      "year": 2024,
+      "value": 9230925
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Saint Barthélemy",
+    "country_code": "BL",
+    "country_name": "Saint Barthélemy",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2008,
+      "value": 16500
+    },
+    {
+      "year": 2022,
+      "value": 14881
+    },
+    {
+      "year": 2023,
+      "value": 19582
+    },
+    {
+      "year": 2024,
+      "value": 240665
+    }
+  ]
+}

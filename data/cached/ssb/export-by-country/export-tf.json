@@ -1,0 +1,45 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to French Southern Territories",
+    "country_code": "TF",
+    "country_name": "French Southern Territories",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 305270
+    },
+    {
+      "year": 1989,
+      "value": 208246
+    },
+    {
+      "year": 1991,
+      "value": 20570
+    },
+    {
+      "year": 1994,
+      "value": 64673
+    },
+    {
+      "year": 1996,
+      "value": 5764
+    },
+    {
+      "year": 2000,
+      "value": 20000
+    },
+    {
+      "year": 2003,
+      "value": 244880
+    },
+    {
+      "year": 2015,
+      "value": 5460
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Malta",
+    "country_code": "MT",
+    "country_name": "Malta",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 13563308
+    },
+    {
+      "year": 1989,
+      "value": 120814760
+    },
+    {
+      "year": 1990,
+      "value": 365947241
+    },
+    {
+      "year": 1991,
+      "value": 732045066
+    },
+    {
+      "year": 1992,
+      "value": 520971727
+    },
+    {
+      "year": 1993,
+      "value": 736301456
+    },
+    {
+      "year": 1994,
+      "value": 296257988
+    },
+    {
+      "year": 1995,
+      "value": 191312977
+    },
+    {
+      "year": 1996,
+      "value": 210730870
+    },
+    {
+      "year": 1997,
+      "value": 235491608
+    },
+    {
+      "year": 1998,
+      "value": 236270907
+    },
+    {
+      "year": 1999,
+      "value": 783034699
+    },
+    {
+      "year": 2000,
+      "value": 245188854
+    },
+    {
+      "year": 2001,
+      "value": 1109896905
+    },
+    {
+      "year": 2002,
+      "value": 202041325
+    },
+    {
+      "year": 2003,
+      "value": 103081332
+    },
+    {
+      "year": 2004,
+      "value": 103357806
+    },
+    {
+      "year": 2005,
+      "value": 466239010
+    },
+    {
+      "year": 2006,
+      "value": 966474759
+    },
+    {
+      "year": 2007,
+      "value": 345585059
+    },
+    {
+      "year": 2008,
+      "value": 179440767
+    },
+    {
+      "year": 2009,
+      "value": 246438905
+    },
+    {
+      "year": 2010,
+      "value": 105396230
+    },
+    {
+      "year": 2011,
+      "value": 35553675
+    },
+    {
+      "year": 2012,
+      "value": 244205129
+    },
+    {
+      "year": 2013,
+      "value": 941892852
+    },
+    {
+      "year": 2014,
+      "value": 447408775
+    },
+    {
+      "year": 2015,
+      "value": 77905136
+    },
+    {
+      "year": 2016,
+      "value": 100043868
+    },
+    {
+      "year": 2017,
+      "value": 333136397
+    },
+    {
+      "year": 2018,
+      "value": 502927500
+    },
+    {
+      "year": 2019,
+      "value": 98395416
+    },
+    {
+      "year": 2020,
+      "value": 282241921
+    },
+    {
+      "year": 2021,
+      "value": 144548890
+    },
+    {
+      "year": 2022,
+      "value": 77981817
+    },
+    {
+      "year": 2023,
+      "value": 217982439
+    },
+    {
+      "year": 2024,
+      "value": 162541126
+    }
+  ]
+}

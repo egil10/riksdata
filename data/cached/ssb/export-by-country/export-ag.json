@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Antigua and Barbuda",
+    "country_code": "AG",
+    "country_name": "Antigua and Barbuda",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 11055672
+    },
+    {
+      "year": 1989,
+      "value": 3775011
+    },
+    {
+      "year": 1990,
+      "value": 5778162
+    },
+    {
+      "year": 1991,
+      "value": 4125638
+    },
+    {
+      "year": 1992,
+      "value": 11140659
+    },
+    {
+      "year": 1993,
+      "value": 6122234
+    },
+    {
+      "year": 1994,
+      "value": 7286502
+    },
+    {
+      "year": 1995,
+      "value": 7536476
+    },
+    {
+      "year": 1996,
+      "value": 8449619
+    },
+    {
+      "year": 1997,
+      "value": 7778557
+    },
+    {
+      "year": 1998,
+      "value": 11000606
+    },
+    {
+      "year": 1999,
+      "value": 47137665
+    },
+    {
+      "year": 2000,
+      "value": 7554411
+    },
+    {
+      "year": 2001,
+      "value": 6847505
+    },
+    {
+      "year": 2002,
+      "value": 11474367
+    },
+    {
+      "year": 2003,
+      "value": 88293679
+    },
+    {
+      "year": 2004,
+      "value": 8469749
+    },
+    {
+      "year": 2005,
+      "value": 9915669
+    },
+    {
+      "year": 2006,
+      "value": 109631754
+    },
+    {
+      "year": 2007,
+      "value": 390971032
+    },
+    {
+      "year": 2008,
+      "value": 136825123
+    },
+    {
+      "year": 2009,
+      "value": 121169818
+    },
+    {
+      "year": 2010,
+      "value": 5104142
+    },
+    {
+      "year": 2011,
+      "value": 3989830
+    },
+    {
+      "year": 2012,
+      "value": 10823331
+    },
+    {
+      "year": 2013,
+      "value": 5291009
+    },
+    {
+      "year": 2014,
+      "value": 2496874
+    },
+    {
+      "year": 2015,
+      "value": 2647623
+    },
+    {
+      "year": 2016,
+      "value": 2010649
+    },
+    {
+      "year": 2017,
+      "value": 629135
+    },
+    {
+      "year": 2018,
+      "value": 262514
+    },
+    {
+      "year": 2019,
+      "value": 2220856
+    },
+    {
+      "year": 2020,
+      "value": 12587242
+    },
+    {
+      "year": 2021,
+      "value": 1886994
+    },
+    {
+      "year": 2022,
+      "value": 6214651
+    },
+    {
+      "year": 2023,
+      "value": 4874926
+    },
+    {
+      "year": 2024,
+      "value": 982334
+    }
+  ]
+}

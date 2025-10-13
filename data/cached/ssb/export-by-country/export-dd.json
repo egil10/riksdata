@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to German Democratic Republic (-1990)",
+    "country_code": "DD",
+    "country_name": "German Democratic Republic (-1990)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 146767184
+    },
+    {
+      "year": 1989,
+      "value": 200486747
+    },
+    {
+      "year": 1990,
+      "value": 130696968
+    }
+  ]
+}

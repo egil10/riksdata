@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Cook Islands",
+    "country_code": "CK",
+    "country_name": "Cook Islands",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 884876
+    },
+    {
+      "year": 1989,
+      "value": 5000
+    },
+    {
+      "year": 1994,
+      "value": 97437
+    },
+    {
+      "year": 1995,
+      "value": 72054
+    },
+    {
+      "year": 1996,
+      "value": 1300000
+    },
+    {
+      "year": 1997,
+      "value": 5412
+    },
+    {
+      "year": 1998,
+      "value": 40886
+    },
+    {
+      "year": 1999,
+      "value": 13091
+    },
+    {
+      "year": 2000,
+      "value": 1306042
+    },
+    {
+      "year": 2001,
+      "value": 251335
+    },
+    {
+      "year": 2006,
+      "value": 1420716
+    },
+    {
+      "year": 2007,
+      "value": 11555535
+    },
+    {
+      "year": 2008,
+      "value": 42611
+    },
+    {
+      "year": 2009,
+      "value": 139048
+    },
+    {
+      "year": 2010,
+      "value": 26000
+    },
+    {
+      "year": 2011,
+      "value": 1251600
+    },
+    {
+      "year": 2012,
+      "value": 4009438
+    },
+    {
+      "year": 2015,
+      "value": 815141
+    },
+    {
+      "year": 2016,
+      "value": 4204506
+    },
+    {
+      "year": 2017,
+      "value": 1179144
+    },
+    {
+      "year": 2018,
+      "value": 4884011
+    },
+    {
+      "year": 2019,
+      "value": 11783
+    },
+    {
+      "year": 2020,
+      "value": 256989
+    },
+    {
+      "year": 2021,
+      "value": 91628
+    },
+    {
+      "year": 2022,
+      "value": 18079
+    },
+    {
+      "year": 2023,
+      "value": 91454
+    },
+    {
+      "year": 2024,
+      "value": 194538
+    }
+  ]
+}

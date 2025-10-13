@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to San Marino",
+    "country_code": "SM",
+    "country_name": "San Marino",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 23322
+    },
+    {
+      "year": 1989,
+      "value": 403310
+    },
+    {
+      "year": 1991,
+      "value": 398695
+    },
+    {
+      "year": 1992,
+      "value": 1423648
+    },
+    {
+      "year": 1993,
+      "value": 224151
+    },
+    {
+      "year": 1994,
+      "value": 4739774
+    },
+    {
+      "year": 1995,
+      "value": 2210444
+    },
+    {
+      "year": 1997,
+      "value": 516080
+    },
+    {
+      "year": 1998,
+      "value": 2674791
+    },
+    {
+      "year": 1999,
+      "value": 1266244
+    },
+    {
+      "year": 2000,
+      "value": 68675
+    },
+    {
+      "year": 2001,
+      "value": 404626
+    },
+    {
+      "year": 2002,
+      "value": 10466140
+    },
+    {
+      "year": 2003,
+      "value": 16769398
+    },
+    {
+      "year": 2004,
+      "value": 23160703
+    },
+    {
+      "year": 2005,
+      "value": 1140048
+    },
+    {
+      "year": 2006,
+      "value": 1674345
+    },
+    {
+      "year": 2007,
+      "value": 67946848
+    },
+    {
+      "year": 2008,
+      "value": 47617095
+    },
+    {
+      "year": 2009,
+      "value": 38421361
+    },
+    {
+      "year": 2010,
+      "value": 48354354
+    },
+    {
+      "year": 2011,
+      "value": 35922913
+    },
+    {
+      "year": 2012,
+      "value": 25657379
+    },
+    {
+      "year": 2013,
+      "value": 26526095
+    },
+    {
+      "year": 2014,
+      "value": 44050262
+    },
+    {
+      "year": 2015,
+      "value": 42677667
+    },
+    {
+      "year": 2016,
+      "value": 30726165
+    },
+    {
+      "year": 2017,
+      "value": 28144790
+    },
+    {
+      "year": 2018,
+      "value": 31581820
+    },
+    {
+      "year": 2019,
+      "value": 29753269
+    },
+    {
+      "year": 2020,
+      "value": 24571203
+    },
+    {
+      "year": 2021,
+      "value": 56851545
+    },
+    {
+      "year": 2022,
+      "value": 64984277
+    },
+    {
+      "year": 2023,
+      "value": 117004552
+    },
+    {
+      "year": 2024,
+      "value": 79265076
+    }
+  ]
+}

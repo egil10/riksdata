@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Guernsey (2007-)",
+    "country_code": "GG",
+    "country_name": "Guernsey (2007-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2010,
+      "value": 124556
+    },
+    {
+      "year": 2011,
+      "value": 56421
+    },
+    {
+      "year": 2013,
+      "value": 38692
+    },
+    {
+      "year": 2014,
+      "value": 11093
+    },
+    {
+      "year": 2015,
+      "value": 14314
+    },
+    {
+      "year": 2016,
+      "value": 5314
+    },
+    {
+      "year": 2017,
+      "value": 12369
+    },
+    {
+      "year": 2018,
+      "value": 27546
+    },
+    {
+      "year": 2020,
+      "value": 1837845
+    },
+    {
+      "year": 2021,
+      "value": 359965
+    },
+    {
+      "year": 2022,
+      "value": 3022935
+    },
+    {
+      "year": 2023,
+      "value": 462727
+    },
+    {
+      "year": 2024,
+      "value": 338004
+    }
+  ]
+}

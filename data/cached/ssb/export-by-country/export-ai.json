@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Anguilla",
+    "country_code": "AI",
+    "country_name": "Anguilla",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 146419
+    },
+    {
+      "year": 1990,
+      "value": 69700
+    },
+    {
+      "year": 1997,
+      "value": 29881
+    },
+    {
+      "year": 1998,
+      "value": 13480
+    },
+    {
+      "year": 1999,
+      "value": 7758
+    },
+    {
+      "year": 2003,
+      "value": 183962
+    },
+    {
+      "year": 2004,
+      "value": 8578
+    },
+    {
+      "year": 2006,
+      "value": 2848495
+    },
+    {
+      "year": 2011,
+      "value": 33594
+    },
+    {
+      "year": 2012,
+      "value": 6489
+    },
+    {
+      "year": 2013,
+      "value": 42047
+    },
+    {
+      "year": 2016,
+      "value": 262915
+    },
+    {
+      "year": 2018,
+      "value": 171585
+    },
+    {
+      "year": 2019,
+      "value": 1052663
+    },
+    {
+      "year": 2021,
+      "value": 167651
+    },
+    {
+      "year": 2022,
+      "value": 55753
+    },
+    {
+      "year": 2023,
+      "value": 4581790
+    },
+    {
+      "year": 2024,
+      "value": 194931
+    }
+  ]
+}

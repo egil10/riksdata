@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Saint Lucia",
+    "country_code": "LC",
+    "country_name": "Saint Lucia",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 3733486
+    },
+    {
+      "year": 1989,
+      "value": 3218288
+    },
+    {
+      "year": 1990,
+      "value": 3732426
+    },
+    {
+      "year": 1991,
+      "value": 2477969
+    },
+    {
+      "year": 1992,
+      "value": 797810
+    },
+    {
+      "year": 1993,
+      "value": 469760
+    },
+    {
+      "year": 1994,
+      "value": 818371
+    },
+    {
+      "year": 1995,
+      "value": 471565
+    },
+    {
+      "year": 1996,
+      "value": 765663
+    },
+    {
+      "year": 1997,
+      "value": 821912
+    },
+    {
+      "year": 1998,
+      "value": 3380516
+    },
+    {
+      "year": 1999,
+      "value": 6115449
+    },
+    {
+      "year": 2000,
+      "value": 4736353
+    },
+    {
+      "year": 2001,
+      "value": 3850406
+    },
+    {
+      "year": 2002,
+      "value": 3764528
+    },
+    {
+      "year": 2003,
+      "value": 2866338
+    },
+    {
+      "year": 2004,
+      "value": 2895509
+    },
+    {
+      "year": 2005,
+      "value": 1162087
+    },
+    {
+      "year": 2006,
+      "value": 3064166
+    },
+    {
+      "year": 2007,
+      "value": 884850
+    },
+    {
+      "year": 2008,
+      "value": 1392017
+    },
+    {
+      "year": 2009,
+      "value": 849103
+    },
+    {
+      "year": 2010,
+      "value": 253516
+    },
+    {
+      "year": 2011,
+      "value": 66489
+    },
+    {
+      "year": 2012,
+      "value": 321033
+    },
+    {
+      "year": 2013,
+      "value": 865269
+    },
+    {
+      "year": 2014,
+      "value": 2236607
+    },
+    {
+      "year": 2015,
+      "value": 255535
+    },
+    {
+      "year": 2016,
+      "value": 7859
+    },
+    {
+      "year": 2017,
+      "value": 265327
+    },
+    {
+      "year": 2018,
+      "value": 1022604
+    },
+    {
+      "year": 2019,
+      "value": 1952634
+    },
+    {
+      "year": 2020,
+      "value": 2916074
+    },
+    {
+      "year": 2021,
+      "value": 2509717
+    },
+    {
+      "year": 2022,
+      "value": 3776323
+    },
+    {
+      "year": 2023,
+      "value": 5044941
+    },
+    {
+      "year": 2024,
+      "value": 4097344
+    }
+  ]
+}

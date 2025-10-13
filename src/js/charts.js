@@ -404,6 +404,12 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 if (apiUrl.includes('nve/') && apiUrl.includes('-reservoir.json')) {
                     // Handle NVE reservoir data files (split by area)
                     parsedData = parseNVEReservoirData(data);
+                } else if (apiUrl.includes('ssb/export-by-country/export-')) {
+                    // Handle SSB export-by-country data files
+                    parsedData = parseSSBExportCountryData(data);
+                } else if (apiUrl.includes('ssb/bankruptcies-by-industry/bankruptcies-')) {
+                    // Handle SSB bankruptcies-by-industry data files
+                    parsedData = parseSSBBankruptciesData(data);
                 } else if (apiUrl.includes('oseax-osebx.json') || apiUrl.includes('oslo-indices/')) {
                     // Handle Oslo indices data with new format
                     parsedData = parseOsloIndicesData(data, chartTitle);
@@ -1657,12 +1663,30 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     let chartData;
                 if (chartType === 'line') {
                     // Single dataset with segment coloring for seamless line without gaps
+                    // Filter out any invalid data points
+                    const validData = data
+                        .filter(item => {
+                            if (!item || !item.date || item.value === undefined || item.value === null) {
+                                return false;
+                            }
+                            // Check if date is a valid Date object
+                            if (!(item.date instanceof Date) || isNaN(item.date.getTime())) {
+                                return false;
+                            }
+                            // Check if value is a valid number
+                            if (!Number.isFinite(item.value)) {
+                                return false;
+                            }
+                            return true;
+                        })
+                        .map(item => ({ x: item.date, y: item.value }));
+                    
                     chartData = {
-                        labels: data.map(item => item.date),
+                        labels: validData.map(item => item.x),
                         datasets: [
                             {
                                 label: title,
-                                data: data.map(item => ({ x: item.date, y: item.value })),
+                                data: validData,
                                 borderWidth: 2,
                                 borderColor: '#3b82f6',
                                 fill: false,
@@ -1680,7 +1704,10 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     console.log(`Chart data for ${title}:`, {
                         labels: chartData.labels.length,
                         dataPoints: chartData.datasets[0].data.length,
-                        sampleData: chartData.datasets[0].data.slice(0, 3)
+                        sampleData: chartData.datasets[0].data.slice(0, 3),
+                        validationInfo: `Filtered ${data.length - validData.length} invalid points`,
+                        firstDate: chartData.datasets[0].data[0]?.x,
+                        isDateObject: chartData.datasets[0].data[0]?.x instanceof Date
                     });
     } else {
         // Bar charts: color each bar individually by political party
@@ -1790,6 +1817,54 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             }
         }
     };
+    
+    // Special options for NVE Reservoir charts
+    if (title.includes('NVE') && title.includes('Reservoir')) {
+        console.log(`🎯 NVE RESERVOIR CHART OPTIONS APPLIED for: ${title}`);
+        chartOptions = {
+            ...chartOptions,
+            plugins: {
+                ...CHART_CONFIG.plugins,
+                tooltip: {
+                    ...CHART_CONFIG.plugins?.tooltip,
+                    enabled: true,
+                    callbacks: {
+                        label: function(context) {
+                            return `Fill: ${context.parsed.y.toFixed(2)}%`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                ...chartOptions.scales,
+                x: {
+                    ...chartOptions.scales.x,
+                    type: 'time',
+                    time: {
+                        unit: 'year',
+                        displayFormats: {
+                            year: 'yyyy'
+                        }
+                    },
+                    ticks: {
+                        ...chartOptions.scales.x.ticks,
+                        maxTicksLimit: 15
+                    }
+                },
+                y: {
+                    ...chartOptions.scales.y,
+                    beginAtZero: true,
+                    max: 100,
+                    ticks: {
+                        ...chartOptions.scales.y.ticks,
+                        callback: function(value) {
+                            return value + '%';
+                        }
+                    }
+                }
+            }
+        };
+    }
     
     // Special options for Government Debt chart
     if (title === 'Government Debt' && chartType === 'line') {
@@ -2069,7 +2144,13 @@ export function renderChart(canvas, data, title, chartType = 'line') {
 export function parseNVEReservoirData(data) {
     try {
         const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
-        if (!rows.length) return [];
+        if (!rows.length) {
+            console.warn('⚠️ parseNVEReservoirData: No rows found');
+            return [];
+        }
+
+        console.log(`📊 parseNVEReservoirData: Processing ${rows.length} rows`);
+        console.log('Sample input:', rows.slice(0, 2));
 
         // Convert ISO week to date and extract fillPct
         const parsedData = rows
@@ -2085,9 +2166,96 @@ export function parseNVEReservoirData(data) {
             .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
             .sort((a, b) => a.date - b.date);
 
+        console.log(`✅ parseNVEReservoirData: Parsed ${parsedData.length} valid points`);
+        console.log('Sample output:', parsedData.slice(0, 2));
+
         return parsedData;
     } catch (error) {
-        console.error('Error parsing NVE reservoir data:', error);
+        console.error('❌ Error parsing NVE reservoir data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse SSB export-by-country data
+ * @param {Object} data - SSB export-by-country data object with year and value
+ * @returns {Array<{date: Date, value: number}>} Parsed data points
+ */
+export function parseSSBExportCountryData(data) {
+    try {
+        const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+        if (!rows.length) {
+            console.warn('⚠️ parseSSBExportCountryData: No rows found');
+            return [];
+        }
+
+        console.log(`📊 parseSSBExportCountryData: Processing ${rows.length} rows`);
+
+        // Convert year and value to date and value objects
+        const parsedData = rows
+            .map(item => {
+                if (!item.year || item.value === undefined || item.value === null) return null;
+                
+                // Convert year to Date (January 1st of that year)
+                const date = new Date(item.year, 0, 1);
+                const value = Number(item.value);
+                
+                return { date, value };
+            })
+            .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value) && d.value > 0)
+            .sort((a, b) => a.date - b.date);
+
+        console.log(`✅ parseSSBExportCountryData: Parsed ${parsedData.length} valid points`);
+
+        return parsedData;
+    } catch (error) {
+        console.error('❌ Error parsing SSB export-by-country data:', error);
+        return [];
+    }
+}
+
+/**
+ * Parse SSB bankruptcies-by-industry data with quarterly periods
+ * @param {Object} data - SSB bankruptcies data object with period (e.g., "2006K1") and value
+ * @returns {Array<{date: Date, value: number}>} Parsed data points
+ */
+export function parseSSBBankruptciesData(data) {
+    try {
+        const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+        if (!rows.length) {
+            console.warn('⚠️ parseSSBBankruptciesData: No rows found');
+            return [];
+        }
+
+        console.log(`📊 parseSSBBankruptciesData: Processing ${rows.length} rows`);
+
+        // Convert quarterly period (e.g., "2006K1") to date and value objects
+        const parsedData = rows
+            .map(item => {
+                if (!item.period || item.value === undefined || item.value === null) return null;
+                
+                // Parse period format: "YYYYKQ" where K is "Kvartal" and Q is quarter number (1-4)
+                const match = item.period.match(/^(\d{4})K(\d)$/);
+                if (!match) return null;
+                
+                const year = parseInt(match[1]);
+                const quarter = parseInt(match[2]);
+                
+                // Convert quarter to month (Q1=Jan, Q2=Apr, Q3=Jul, Q4=Oct)
+                const month = (quarter - 1) * 3;
+                const date = new Date(year, month, 1);
+                const value = Number(item.value);
+                
+                return { date, value };
+            })
+            .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
+            .sort((a, b) => a.date - b.date);
+
+        console.log(`✅ parseSSBBankruptciesData: Parsed ${parsedData.length} valid points`);
+
+        return parsedData;
+    } catch (error) {
+        console.error('❌ Error parsing SSB bankruptcies data:', error);
         return [];
     }
 }

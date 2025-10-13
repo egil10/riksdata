@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Chad",
+    "country_code": "TD",
+    "country_name": "Chad",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 7262001
+    },
+    {
+      "year": 1989,
+      "value": 2070
+    },
+    {
+      "year": 1990,
+      "value": 899962
+    },
+    {
+      "year": 1991,
+      "value": 1119367
+    },
+    {
+      "year": 1992,
+      "value": 3294257
+    },
+    {
+      "year": 1993,
+      "value": 1832839
+    },
+    {
+      "year": 1994,
+      "value": 2051901
+    },
+    {
+      "year": 1995,
+      "value": 394886
+    },
+    {
+      "year": 1996,
+      "value": 9313342
+    },
+    {
+      "year": 1997,
+      "value": 6472392
+    },
+    {
+      "year": 2002,
+      "value": 703004
+    },
+    {
+      "year": 2003,
+      "value": 710807
+    },
+    {
+      "year": 2004,
+      "value": 6889527
+    },
+    {
+      "year": 2005,
+      "value": 1075812
+    },
+    {
+      "year": 2006,
+      "value": 4635573
+    },
+    {
+      "year": 2007,
+      "value": 1292160
+    },
+    {
+      "year": 2008,
+      "value": 2370961
+    },
+    {
+      "year": 2009,
+      "value": 42157693
+    },
+    {
+      "year": 2010,
+      "value": 1523148
+    },
+    {
+      "year": 2011,
+      "value": 977252
+    },
+    {
+      "year": 2012,
+      "value": 116560
+    },
+    {
+      "year": 2013,
+      "value": 362329
+    },
+    {
+      "year": 2014,
+      "value": 139147
+    },
+    {
+      "year": 2015,
+      "value": 738899
+    },
+    {
+      "year": 2016,
+      "value": 571696
+    },
+    {
+      "year": 2017,
+      "value": 511053
+    },
+    {
+      "year": 2018,
+      "value": 4984769
+    },
+    {
+      "year": 2019,
+      "value": 1401861
+    },
+    {
+      "year": 2020,
+      "value": 1446450
+    },
+    {
+      "year": 2021,
+      "value": 1095000
+    },
+    {
+      "year": 2022,
+      "value": 1304705
+    },
+    {
+      "year": 2023,
+      "value": 569640
+    },
+    {
+      "year": 2024,
+      "value": 3289461
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Georgia",
+    "country_code": "GE",
+    "country_name": "Georgia",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1993,
+      "value": 899412
+    },
+    {
+      "year": 1994,
+      "value": 1560501
+    },
+    {
+      "year": 1995,
+      "value": 573220
+    },
+    {
+      "year": 1996,
+      "value": 670368
+    },
+    {
+      "year": 1997,
+      "value": 7204109
+    },
+    {
+      "year": 1998,
+      "value": 4955208
+    },
+    {
+      "year": 1999,
+      "value": 6064872
+    },
+    {
+      "year": 2000,
+      "value": 1162009
+    },
+    {
+      "year": 2001,
+      "value": 4618787
+    },
+    {
+      "year": 2002,
+      "value": 4144979
+    },
+    {
+      "year": 2003,
+      "value": 50619393
+    },
+    {
+      "year": 2004,
+      "value": 1985624
+    },
+    {
+      "year": 2005,
+      "value": 13484091
+    },
+    {
+      "year": 2006,
+      "value": 16214465
+    },
+    {
+      "year": 2007,
+      "value": 9758208
+    },
+    {
+      "year": 2008,
+      "value": 26838243
+    },
+    {
+      "year": 2009,
+      "value": 15600103
+    },
+    {
+      "year": 2010,
+      "value": 21051551
+    },
+    {
+      "year": 2011,
+      "value": 43240981
+    },
+    {
+      "year": 2012,
+      "value": 58220332
+    },
+    {
+      "year": 2013,
+      "value": 68421126
+    },
+    {
+      "year": 2014,
+      "value": 49967942
+    },
+    {
+      "year": 2015,
+      "value": 77292022
+    },
+    {
+      "year": 2016,
+      "value": 94956620
+    },
+    {
+      "year": 2017,
+      "value": 95010227
+    },
+    {
+      "year": 2018,
+      "value": 56623181
+    },
+    {
+      "year": 2019,
+      "value": 61580567
+    },
+    {
+      "year": 2020,
+      "value": 70247186
+    },
+    {
+      "year": 2021,
+      "value": 83290188
+    },
+    {
+      "year": 2022,
+      "value": 169473234
+    },
+    {
+      "year": 2023,
+      "value": 156560522
+    },
+    {
+      "year": 2024,
+      "value": 170533552
+    }
+  ]
+}

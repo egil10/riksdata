@@ -1,0 +1,121 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Kyrgyzstan",
+    "country_code": "KG",
+    "country_name": "Kyrgyzstan",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1995,
+      "value": 2363055
+    },
+    {
+      "year": 1998,
+      "value": 445839
+    },
+    {
+      "year": 1999,
+      "value": 6338360
+    },
+    {
+      "year": 2000,
+      "value": 12596730
+    },
+    {
+      "year": 2001,
+      "value": 90811
+    },
+    {
+      "year": 2003,
+      "value": 8668579
+    },
+    {
+      "year": 2004,
+      "value": 898927
+    },
+    {
+      "year": 2005,
+      "value": 499224
+    },
+    {
+      "year": 2006,
+      "value": 2732478
+    },
+    {
+      "year": 2007,
+      "value": 7355555
+    },
+    {
+      "year": 2008,
+      "value": 11527859
+    },
+    {
+      "year": 2009,
+      "value": 12452742
+    },
+    {
+      "year": 2010,
+      "value": 11568938
+    },
+    {
+      "year": 2011,
+      "value": 3131967
+    },
+    {
+      "year": 2012,
+      "value": 4437830
+    },
+    {
+      "year": 2013,
+      "value": 4533751
+    },
+    {
+      "year": 2014,
+      "value": 3043692
+    },
+    {
+      "year": 2015,
+      "value": 10409917
+    },
+    {
+      "year": 2016,
+      "value": 17382212
+    },
+    {
+      "year": 2017,
+      "value": 20173930
+    },
+    {
+      "year": 2018,
+      "value": 22381996
+    },
+    {
+      "year": 2019,
+      "value": 9414469
+    },
+    {
+      "year": 2020,
+      "value": 8386128
+    },
+    {
+      "year": 2021,
+      "value": 23608113
+    },
+    {
+      "year": 2022,
+      "value": 55577968
+    },
+    {
+      "year": 2023,
+      "value": 52744447
+    },
+    {
+      "year": 2024,
+      "value": 54532569
+    }
+  ]
+}

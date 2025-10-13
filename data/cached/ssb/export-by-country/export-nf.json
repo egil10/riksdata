@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Norfolk Island",
+    "country_code": "NF",
+    "country_name": "Norfolk Island",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 28548
+    },
+    {
+      "year": 1989,
+      "value": 29000
+    },
+    {
+      "year": 1993,
+      "value": 209252
+    },
+    {
+      "year": 1996,
+      "value": 11865
+    },
+    {
+      "year": 1997,
+      "value": 18699
+    },
+    {
+      "year": 2012,
+      "value": 564546
+    },
+    {
+      "year": 2015,
+      "value": 3594236
+    }
+  ]
+}

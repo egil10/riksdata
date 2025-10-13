@@ -1,0 +1,117 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to São Tomé and Príncipe",
+    "country_code": "ST",
+    "country_name": "São Tomé and Príncipe",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 5296500
+    },
+    {
+      "year": 1989,
+      "value": 393490
+    },
+    {
+      "year": 1990,
+      "value": 8087640
+    },
+    {
+      "year": 1991,
+      "value": 4669633
+    },
+    {
+      "year": 1992,
+      "value": 10235914
+    },
+    {
+      "year": 1993,
+      "value": 2708452
+    },
+    {
+      "year": 1994,
+      "value": 2773053
+    },
+    {
+      "year": 1996,
+      "value": 1200656
+    },
+    {
+      "year": 1997,
+      "value": 1188096
+    },
+    {
+      "year": 1999,
+      "value": 369864
+    },
+    {
+      "year": 2000,
+      "value": 175093
+    },
+    {
+      "year": 2001,
+      "value": 216966
+    },
+    {
+      "year": 2002,
+      "value": 36483
+    },
+    {
+      "year": 2004,
+      "value": 77366
+    },
+    {
+      "year": 2005,
+      "value": 244281
+    },
+    {
+      "year": 2007,
+      "value": 394272
+    },
+    {
+      "year": 2008,
+      "value": 8451
+    },
+    {
+      "year": 2012,
+      "value": 24464
+    },
+    {
+      "year": 2013,
+      "value": 196371
+    },
+    {
+      "year": 2014,
+      "value": 20186
+    },
+    {
+      "year": 2015,
+      "value": 13440
+    },
+    {
+      "year": 2016,
+      "value": 85352
+    },
+    {
+      "year": 2017,
+      "value": 98179
+    },
+    {
+      "year": 2019,
+      "value": 3402589
+    },
+    {
+      "year": 2021,
+      "value": 188374
+    },
+    {
+      "year": 2022,
+      "value": 3243705
+    }
+  ]
+}

@@ -1,0 +1,325 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "Bankruptcies, by region, industry (SIC2007), contents and quarter",
+    "description": "Number of bankruptcies in Total",
+    "industry_code": "01-99",
+    "industry_name": "Total",
+    "unit": "Number",
+    "last_updated": "Unknown"
+  },
+  "data": [
+    {
+      "period": "2006K1",
+      "value": 845
+    },
+    {
+      "period": "2006K2",
+      "value": 689
+    },
+    {
+      "period": "2006K3",
+      "value": 710
+    },
+    {
+      "period": "2006K4",
+      "value": 788
+    },
+    {
+      "period": "2007K1",
+      "value": 881
+    },
+    {
+      "period": "2007K2",
+      "value": 691
+    },
+    {
+      "period": "2007K3",
+      "value": 583
+    },
+    {
+      "period": "2007K4",
+      "value": 690
+    },
+    {
+      "period": "2008K1",
+      "value": 753
+    },
+    {
+      "period": "2008K2",
+      "value": 875
+    },
+    {
+      "period": "2008K3",
+      "value": 834
+    },
+    {
+      "period": "2008K4",
+      "value": 1175
+    },
+    {
+      "period": "2009K1",
+      "value": 1418
+    },
+    {
+      "period": "2009K2",
+      "value": 1384
+    },
+    {
+      "period": "2009K3",
+      "value": 1028
+    },
+    {
+      "period": "2009K4",
+      "value": 1183
+    },
+    {
+      "period": "2010K1",
+      "value": 1211
+    },
+    {
+      "period": "2010K2",
+      "value": 1240
+    },
+    {
+      "period": "2010K3",
+      "value": 949
+    },
+    {
+      "period": "2010K4",
+      "value": 1035
+    },
+    {
+      "period": "2011K1",
+      "value": 1179
+    },
+    {
+      "period": "2011K2",
+      "value": 1158
+    },
+    {
+      "period": "2011K3",
+      "value": 934
+    },
+    {
+      "period": "2011K4",
+      "value": 1084
+    },
+    {
+      "period": "2012K1",
+      "value": 1075
+    },
+    {
+      "period": "2012K2",
+      "value": 900
+    },
+    {
+      "period": "2012K3",
+      "value": 840
+    },
+    {
+      "period": "2012K4",
+      "value": 999
+    },
+    {
+      "period": "2013K1",
+      "value": 1184
+    },
+    {
+      "period": "2013K2",
+      "value": 1316
+    },
+    {
+      "period": "2013K3",
+      "value": 908
+    },
+    {
+      "period": "2013K4",
+      "value": 1156
+    },
+    {
+      "period": "2014K1",
+      "value": 1299
+    },
+    {
+      "period": "2014K2",
+      "value": 1268
+    },
+    {
+      "period": "2014K3",
+      "value": 1035
+    },
+    {
+      "period": "2014K4",
+      "value": 1201
+    },
+    {
+      "period": "2015K1",
+      "value": 1294
+    },
+    {
+      "period": "2015K2",
+      "value": 1165
+    },
+    {
+      "period": "2015K3",
+      "value": 879
+    },
+    {
+      "period": "2015K4",
+      "value": 1124
+    },
+    {
+      "period": "2016K1",
+      "value": 1163
+    },
+    {
+      "period": "2016K2",
+      "value": 1352
+    },
+    {
+      "period": "2016K3",
+      "value": 998
+    },
+    {
+      "period": "2016K4",
+      "value": 1031
+    },
+    {
+      "period": "2017K1",
+      "value": 1254
+    },
+    {
+      "period": "2017K2",
+      "value": 1124
+    },
+    {
+      "period": "2017K3",
+      "value": 953
+    },
+    {
+      "period": "2017K4",
+      "value": 1226
+    },
+    {
+      "period": "2018K1",
+      "value": 1301
+    },
+    {
+      "period": "2018K2",
+      "value": 1361
+    },
+    {
+      "period": "2018K3",
+      "value": 1076
+    },
+    {
+      "period": "2018K4",
+      "value": 1272
+    },
+    {
+      "period": "2019K1",
+      "value": 1333
+    },
+    {
+      "period": "2019K2",
+      "value": 1294
+    },
+    {
+      "period": "2019K3",
+      "value": 1116
+    },
+    {
+      "period": "2019K4",
+      "value": 1270
+    },
+    {
+      "period": "2020K1",
+      "value": 1245
+    },
+    {
+      "period": "2020K2",
+      "value": 937
+    },
+    {
+      "period": "2020K3",
+      "value": 800
+    },
+    {
+      "period": "2020K4",
+      "value": 1119
+    },
+    {
+      "period": "2021K1",
+      "value": 839
+    },
+    {
+      "period": "2021K2",
+      "value": 937
+    },
+    {
+      "period": "2021K3",
+      "value": 660
+    },
+    {
+      "period": "2021K4",
+      "value": 889
+    },
+    {
+      "period": "2022K1",
+      "value": 938
+    },
+    {
+      "period": "2022K2",
+      "value": 934
+    },
+    {
+      "period": "2022K3",
+      "value": 835
+    },
+    {
+      "period": "2022K4",
+      "value": 1006
+    },
+    {
+      "period": "2023K1",
+      "value": 1317
+    },
+    {
+      "period": "2023K2",
+      "value": 1068
+    },
+    {
+      "period": "2023K3",
+      "value": 946
+    },
+    {
+      "period": "2023K4",
+      "value": 1186
+    },
+    {
+      "period": "2024K1",
+      "value": 1133
+    },
+    {
+      "period": "2024K2",
+      "value": 1272
+    },
+    {
+      "period": "2024K3",
+      "value": 939
+    },
+    {
+      "period": "2024K4",
+      "value": 1199
+    },
+    {
+      "period": "2025K1",
+      "value": 1178
+    },
+    {
+      "period": "2025K2",
+      "value": 1144
+    }
+  ]
+}

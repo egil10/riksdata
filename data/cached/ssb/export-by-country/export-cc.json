@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Cocos (Keeling) Islands",
+    "country_code": "CC",
+    "country_name": "Cocos (Keeling) Islands",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 7919
+    },
+    {
+      "year": 2001,
+      "value": 322206
+    },
+    {
+      "year": 2003,
+      "value": 3992000
+    },
+    {
+      "year": 2021,
+      "value": 36392
+    }
+  ]
+}

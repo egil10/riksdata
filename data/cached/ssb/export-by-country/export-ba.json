@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Bosnia and Herzegovina",
+    "country_code": "BA",
+    "country_name": "Bosnia and Herzegovina",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1993,
+      "value": 1650342
+    },
+    {
+      "year": 1994,
+      "value": 7253560
+    },
+    {
+      "year": 1995,
+      "value": 6792890
+    },
+    {
+      "year": 1996,
+      "value": 26834692
+    },
+    {
+      "year": 1997,
+      "value": 60632290
+    },
+    {
+      "year": 1998,
+      "value": 31009531
+    },
+    {
+      "year": 1999,
+      "value": 44302302
+    },
+    {
+      "year": 2000,
+      "value": 28962922
+    },
+    {
+      "year": 2001,
+      "value": 20353479
+    },
+    {
+      "year": 2002,
+      "value": 13385439
+    },
+    {
+      "year": 2003,
+      "value": 7300245
+    },
+    {
+      "year": 2004,
+      "value": 23175651
+    },
+    {
+      "year": 2005,
+      "value": 24275926
+    },
+    {
+      "year": 2006,
+      "value": 21032811
+    },
+    {
+      "year": 2007,
+      "value": 16418357
+    },
+    {
+      "year": 2008,
+      "value": 17434858
+    },
+    {
+      "year": 2009,
+      "value": 17774368
+    },
+    {
+      "year": 2010,
+      "value": 11531293
+    },
+    {
+      "year": 2011,
+      "value": 18038089
+    },
+    {
+      "year": 2012,
+      "value": 10430934
+    },
+    {
+      "year": 2013,
+      "value": 11267655
+    },
+    {
+      "year": 2014,
+      "value": 14874433
+    },
+    {
+      "year": 2015,
+      "value": 13642982
+    },
+    {
+      "year": 2016,
+      "value": 19602465
+    },
+    {
+      "year": 2017,
+      "value": 16191875
+    },
+    {
+      "year": 2018,
+      "value": 32645397
+    },
+    {
+      "year": 2019,
+      "value": 22724701
+    },
+    {
+      "year": 2020,
+      "value": 32459016
+    },
+    {
+      "year": 2021,
+      "value": 32381976
+    },
+    {
+      "year": 2022,
+      "value": 111153566
+    },
+    {
+      "year": 2023,
+      "value": 252717166
+    },
+    {
+      "year": 2024,
+      "value": 284880389
+    }
+  ]
+}

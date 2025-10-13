@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Jamaica",
+    "country_code": "JM",
+    "country_name": "Jamaica",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 30251600
+    },
+    {
+      "year": 1989,
+      "value": 56410311
+    },
+    {
+      "year": 1990,
+      "value": 53240145
+    },
+    {
+      "year": 1991,
+      "value": 27335395
+    },
+    {
+      "year": 1992,
+      "value": 31009136
+    },
+    {
+      "year": 1993,
+      "value": 49442218
+    },
+    {
+      "year": 1994,
+      "value": 36553121
+    },
+    {
+      "year": 1995,
+      "value": 111521046
+    },
+    {
+      "year": 1996,
+      "value": 30039870
+    },
+    {
+      "year": 1997,
+      "value": 39331577
+    },
+    {
+      "year": 1998,
+      "value": 42540239
+    },
+    {
+      "year": 1999,
+      "value": 50005334
+    },
+    {
+      "year": 2000,
+      "value": 46623806
+    },
+    {
+      "year": 2001,
+      "value": 74991940
+    },
+    {
+      "year": 2002,
+      "value": 99200300
+    },
+    {
+      "year": 2003,
+      "value": 107878472
+    },
+    {
+      "year": 2004,
+      "value": 87822278
+    },
+    {
+      "year": 2005,
+      "value": 121074094
+    },
+    {
+      "year": 2006,
+      "value": 123889527
+    },
+    {
+      "year": 2007,
+      "value": 87285111
+    },
+    {
+      "year": 2008,
+      "value": 112877806
+    },
+    {
+      "year": 2009,
+      "value": 129914485
+    },
+    {
+      "year": 2010,
+      "value": 141842076
+    },
+    {
+      "year": 2011,
+      "value": 131402624
+    },
+    {
+      "year": 2012,
+      "value": 128791179
+    },
+    {
+      "year": 2013,
+      "value": 127668308
+    },
+    {
+      "year": 2014,
+      "value": 133140767
+    },
+    {
+      "year": 2015,
+      "value": 140984274
+    },
+    {
+      "year": 2016,
+      "value": 162257021
+    },
+    {
+      "year": 2017,
+      "value": 158295266
+    },
+    {
+      "year": 2018,
+      "value": 156710792
+    },
+    {
+      "year": 2019,
+      "value": 193781786
+    },
+    {
+      "year": 2020,
+      "value": 203421206
+    },
+    {
+      "year": 2021,
+      "value": 207700810
+    },
+    {
+      "year": 2022,
+      "value": 251616471
+    },
+    {
+      "year": 2023,
+      "value": 815943085
+    },
+    {
+      "year": 2024,
+      "value": 246723406
+    }
+  ]
+}

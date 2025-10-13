@@ -1,0 +1,141 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Tajikistan",
+    "country_code": "TJ",
+    "country_name": "Tajikistan",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1993,
+      "value": 44462
+    },
+    {
+      "year": 1994,
+      "value": 150147
+    },
+    {
+      "year": 1995,
+      "value": 2363465
+    },
+    {
+      "year": 1996,
+      "value": 5950962
+    },
+    {
+      "year": 1997,
+      "value": 2264126
+    },
+    {
+      "year": 1998,
+      "value": 185387
+    },
+    {
+      "year": 1999,
+      "value": 7860
+    },
+    {
+      "year": 2000,
+      "value": 117550
+    },
+    {
+      "year": 2001,
+      "value": 2618710
+    },
+    {
+      "year": 2002,
+      "value": 97162
+    },
+    {
+      "year": 2003,
+      "value": 329176
+    },
+    {
+      "year": 2004,
+      "value": 353769
+    },
+    {
+      "year": 2005,
+      "value": 6723800
+    },
+    {
+      "year": 2006,
+      "value": 2592398
+    },
+    {
+      "year": 2007,
+      "value": 2518800
+    },
+    {
+      "year": 2008,
+      "value": 527849
+    },
+    {
+      "year": 2009,
+      "value": 739204
+    },
+    {
+      "year": 2010,
+      "value": 927087
+    },
+    {
+      "year": 2011,
+      "value": 293243
+    },
+    {
+      "year": 2012,
+      "value": 507066
+    },
+    {
+      "year": 2013,
+      "value": 470340
+    },
+    {
+      "year": 2014,
+      "value": 621535
+    },
+    {
+      "year": 2015,
+      "value": 281985
+    },
+    {
+      "year": 2016,
+      "value": 3097267
+    },
+    {
+      "year": 2017,
+      "value": 1115605
+    },
+    {
+      "year": 2018,
+      "value": 3204768
+    },
+    {
+      "year": 2019,
+      "value": 757493
+    },
+    {
+      "year": 2020,
+      "value": 388397
+    },
+    {
+      "year": 2021,
+      "value": 954054
+    },
+    {
+      "year": 2022,
+      "value": 5723847
+    },
+    {
+      "year": 2023,
+      "value": 1891787
+    },
+    {
+      "year": 2024,
+      "value": 208061
+    }
+  ]
+}

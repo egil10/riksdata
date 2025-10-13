@@ -1,0 +1,85 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Serbia (2007-)",
+    "country_code": "RS",
+    "country_name": "Serbia (2007-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2007,
+      "value": 94146935
+    },
+    {
+      "year": 2008,
+      "value": 121588900
+    },
+    {
+      "year": 2009,
+      "value": 58563775
+    },
+    {
+      "year": 2010,
+      "value": 83330072
+    },
+    {
+      "year": 2011,
+      "value": 74520043
+    },
+    {
+      "year": 2012,
+      "value": 54383125
+    },
+    {
+      "year": 2013,
+      "value": 64851048
+    },
+    {
+      "year": 2014,
+      "value": 78206797
+    },
+    {
+      "year": 2015,
+      "value": 165463783
+    },
+    {
+      "year": 2016,
+      "value": 219934075
+    },
+    {
+      "year": 2017,
+      "value": 289007008
+    },
+    {
+      "year": 2018,
+      "value": 328244922
+    },
+    {
+      "year": 2019,
+      "value": 425520962
+    },
+    {
+      "year": 2020,
+      "value": 422758481
+    },
+    {
+      "year": 2021,
+      "value": 488221546
+    },
+    {
+      "year": 2022,
+      "value": 693111215
+    },
+    {
+      "year": 2023,
+      "value": 1011829466
+    },
+    {
+      "year": 2024,
+      "value": 782695269
+    }
+  ]
+}

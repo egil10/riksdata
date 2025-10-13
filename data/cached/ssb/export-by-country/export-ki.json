@@ -1,0 +1,57 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Kiribati",
+    "country_code": "KI",
+    "country_name": "Kiribati",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1991,
+      "value": 33858
+    },
+    {
+      "year": 1992,
+      "value": 38935
+    },
+    {
+      "year": 1994,
+      "value": 84308
+    },
+    {
+      "year": 1995,
+      "value": 539840
+    },
+    {
+      "year": 1997,
+      "value": 42631
+    },
+    {
+      "year": 1998,
+      "value": 11000
+    },
+    {
+      "year": 2013,
+      "value": 53527
+    },
+    {
+      "year": 2014,
+      "value": 41477
+    },
+    {
+      "year": 2018,
+      "value": 8050
+    },
+    {
+      "year": 2023,
+      "value": 90018820
+    },
+    {
+      "year": 2024,
+      "value": 136237
+    }
+  ]
+}

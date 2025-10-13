@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Zambia",
+    "country_code": "ZM",
+    "country_name": "Zambia",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 31470648
+    },
+    {
+      "year": 1989,
+      "value": 42577341
+    },
+    {
+      "year": 1990,
+      "value": 48028495
+    },
+    {
+      "year": 1991,
+      "value": 33609996
+    },
+    {
+      "year": 1992,
+      "value": 20693589
+    },
+    {
+      "year": 1993,
+      "value": 10389036
+    },
+    {
+      "year": 1994,
+      "value": 18896988
+    },
+    {
+      "year": 1995,
+      "value": 9905906
+    },
+    {
+      "year": 1996,
+      "value": 8998079
+    },
+    {
+      "year": 1997,
+      "value": 8784007
+    },
+    {
+      "year": 1998,
+      "value": 4129158
+    },
+    {
+      "year": 1999,
+      "value": 24833254
+    },
+    {
+      "year": 2000,
+      "value": 11020560
+    },
+    {
+      "year": 2001,
+      "value": 2868129
+    },
+    {
+      "year": 2002,
+      "value": 7486022
+    },
+    {
+      "year": 2003,
+      "value": 6150454
+    },
+    {
+      "year": 2004,
+      "value": 4912348
+    },
+    {
+      "year": 2005,
+      "value": 7827141
+    },
+    {
+      "year": 2006,
+      "value": 9536806
+    },
+    {
+      "year": 2007,
+      "value": 25934901
+    },
+    {
+      "year": 2008,
+      "value": 5600232
+    },
+    {
+      "year": 2009,
+      "value": 6949971
+    },
+    {
+      "year": 2010,
+      "value": 8850089
+    },
+    {
+      "year": 2011,
+      "value": 2952092
+    },
+    {
+      "year": 2012,
+      "value": 8924375
+    },
+    {
+      "year": 2013,
+      "value": 16587154
+    },
+    {
+      "year": 2014,
+      "value": 8788940
+    },
+    {
+      "year": 2015,
+      "value": 6660002
+    },
+    {
+      "year": 2016,
+      "value": 18326629
+    },
+    {
+      "year": 2017,
+      "value": 49293566
+    },
+    {
+      "year": 2018,
+      "value": 11823490
+    },
+    {
+      "year": 2019,
+      "value": 10132559
+    },
+    {
+      "year": 2020,
+      "value": 16926804
+    },
+    {
+      "year": 2021,
+      "value": 3817737
+    },
+    {
+      "year": 2022,
+      "value": 39178708
+    },
+    {
+      "year": 2023,
+      "value": 24607569
+    },
+    {
+      "year": 2024,
+      "value": 19919720
+    }
+  ]
+}

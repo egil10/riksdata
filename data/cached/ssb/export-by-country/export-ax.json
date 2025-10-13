@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Åland (2005-)",
+    "country_code": "AX",
+    "country_name": "Åland (2005-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2006,
+      "value": 972645
+    },
+    {
+      "year": 2007,
+      "value": 12000
+    },
+    {
+      "year": 2008,
+      "value": 9280
+    },
+    {
+      "year": 2009,
+      "value": 8200
+    },
+    {
+      "year": 2010,
+      "value": 1203
+    },
+    {
+      "year": 2011,
+      "value": 68815
+    },
+    {
+      "year": 2012,
+      "value": 91300
+    },
+    {
+      "year": 2013,
+      "value": 1633124
+    },
+    {
+      "year": 2014,
+      "value": 3310110
+    },
+    {
+      "year": 2015,
+      "value": 923452
+    },
+    {
+      "year": 2016,
+      "value": 1704454
+    },
+    {
+      "year": 2017,
+      "value": 1254879
+    },
+    {
+      "year": 2018,
+      "value": 885049
+    },
+    {
+      "year": 2019,
+      "value": 158723
+    },
+    {
+      "year": 2020,
+      "value": 408241
+    },
+    {
+      "year": 2021,
+      "value": 1270722
+    },
+    {
+      "year": 2022,
+      "value": 1581079
+    },
+    {
+      "year": 2023,
+      "value": 1024730
+    },
+    {
+      "year": 2024,
+      "value": 13469514
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Nauru",
+    "country_code": "NR",
+    "country_name": "Nauru",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 2197885
+    },
+    {
+      "year": 1991,
+      "value": 150099
+    },
+    {
+      "year": 1993,
+      "value": 87094
+    },
+    {
+      "year": 1996,
+      "value": 1400
+    },
+    {
+      "year": 2019,
+      "value": 42014
+    },
+    {
+      "year": 2022,
+      "value": 6717
+    }
+  ]
+}

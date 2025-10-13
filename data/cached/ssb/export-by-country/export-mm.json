@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Myanmar",
+    "country_code": "MM",
+    "country_name": "Myanmar",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1992,
+      "value": 689818
+    },
+    {
+      "year": 1993,
+      "value": 801556
+    },
+    {
+      "year": 1994,
+      "value": 15045029
+    },
+    {
+      "year": 1995,
+      "value": 3924708
+    },
+    {
+      "year": 1996,
+      "value": 1073686
+    },
+    {
+      "year": 1997,
+      "value": 1088180
+    },
+    {
+      "year": 1998,
+      "value": 1475140
+    },
+    {
+      "year": 1999,
+      "value": 598992
+    },
+    {
+      "year": 2000,
+      "value": 964659
+    },
+    {
+      "year": 2001,
+      "value": 869025
+    },
+    {
+      "year": 2002,
+      "value": 1092100
+    },
+    {
+      "year": 2003,
+      "value": 274922
+    },
+    {
+      "year": 2004,
+      "value": 159893
+    },
+    {
+      "year": 2005,
+      "value": 28144
+    },
+    {
+      "year": 2006,
+      "value": 715795
+    },
+    {
+      "year": 2007,
+      "value": 234090
+    },
+    {
+      "year": 2008,
+      "value": 4179634
+    },
+    {
+      "year": 2009,
+      "value": 391246
+    },
+    {
+      "year": 2010,
+      "value": 1200107
+    },
+    {
+      "year": 2011,
+      "value": 7542569
+    },
+    {
+      "year": 2012,
+      "value": 4077022
+    },
+    {
+      "year": 2013,
+      "value": 8651905
+    },
+    {
+      "year": 2014,
+      "value": 8365485
+    },
+    {
+      "year": 2015,
+      "value": 74815295
+    },
+    {
+      "year": 2016,
+      "value": 10143067
+    },
+    {
+      "year": 2017,
+      "value": 11941419
+    },
+    {
+      "year": 2018,
+      "value": 45350187
+    },
+    {
+      "year": 2019,
+      "value": 54836061
+    },
+    {
+      "year": 2020,
+      "value": 64196447
+    },
+    {
+      "year": 2021,
+      "value": 13939526
+    },
+    {
+      "year": 2022,
+      "value": 22188575
+    },
+    {
+      "year": 2023,
+      "value": 20790723
+    },
+    {
+      "year": 2024,
+      "value": 6941528
+    }
+  ]
+}

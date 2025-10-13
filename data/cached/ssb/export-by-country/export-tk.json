@@ -1,0 +1,81 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Tokelau",
+    "country_code": "TK",
+    "country_name": "Tokelau",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 10800
+    },
+    {
+      "year": 1993,
+      "value": 243298
+    },
+    {
+      "year": 1997,
+      "value": 56466
+    },
+    {
+      "year": 2000,
+      "value": 125333
+    },
+    {
+      "year": 2001,
+      "value": 85150
+    },
+    {
+      "year": 2009,
+      "value": 940354
+    },
+    {
+      "year": 2010,
+      "value": 211131
+    },
+    {
+      "year": 2011,
+      "value": 139313
+    },
+    {
+      "year": 2012,
+      "value": 12940
+    },
+    {
+      "year": 2013,
+      "value": 11311
+    },
+    {
+      "year": 2014,
+      "value": 373504
+    },
+    {
+      "year": 2015,
+      "value": 177065
+    },
+    {
+      "year": 2017,
+      "value": 84458
+    },
+    {
+      "year": 2018,
+      "value": 7510
+    },
+    {
+      "year": 2019,
+      "value": 208808
+    },
+    {
+      "year": 2020,
+      "value": 153028
+    },
+    {
+      "year": 2022,
+      "value": 293031
+    }
+  ]
+}

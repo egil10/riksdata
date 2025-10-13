@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Falkland Islands",
+    "country_code": "FK",
+    "country_name": "Falkland Islands",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 570655
+    },
+    {
+      "year": 1989,
+      "value": 19042
+    },
+    {
+      "year": 1990,
+      "value": 1342076
+    },
+    {
+      "year": 1991,
+      "value": 52184
+    },
+    {
+      "year": 1992,
+      "value": 211020
+    },
+    {
+      "year": 1994,
+      "value": 9475
+    },
+    {
+      "year": 1996,
+      "value": 1041449
+    },
+    {
+      "year": 1997,
+      "value": 1383528
+    },
+    {
+      "year": 1998,
+      "value": 1713790
+    },
+    {
+      "year": 1999,
+      "value": 1941935
+    },
+    {
+      "year": 2000,
+      "value": 1436915
+    },
+    {
+      "year": 2001,
+      "value": 34370
+    },
+    {
+      "year": 2002,
+      "value": 70730
+    },
+    {
+      "year": 2003,
+      "value": 55844
+    },
+    {
+      "year": 2004,
+      "value": 154836
+    },
+    {
+      "year": 2005,
+      "value": 287810
+    },
+    {
+      "year": 2006,
+      "value": 140702
+    },
+    {
+      "year": 2007,
+      "value": 1293589
+    },
+    {
+      "year": 2008,
+      "value": 102873
+    },
+    {
+      "year": 2009,
+      "value": 65517
+    },
+    {
+      "year": 2010,
+      "value": 1499259
+    },
+    {
+      "year": 2011,
+      "value": 9835612
+    },
+    {
+      "year": 2012,
+      "value": 8519972
+    },
+    {
+      "year": 2013,
+      "value": 746975
+    },
+    {
+      "year": 2014,
+      "value": 229786
+    },
+    {
+      "year": 2015,
+      "value": 5647806
+    },
+    {
+      "year": 2016,
+      "value": 62430
+    },
+    {
+      "year": 2017,
+      "value": 216250
+    },
+    {
+      "year": 2018,
+      "value": 23458923
+    },
+    {
+      "year": 2019,
+      "value": 1041486
+    },
+    {
+      "year": 2020,
+      "value": 1343990
+    },
+    {
+      "year": 2021,
+      "value": 91723
+    },
+    {
+      "year": 2022,
+      "value": 57071
+    },
+    {
+      "year": 2023,
+      "value": 2315400
+    },
+    {
+      "year": 2024,
+      "value": 3571921
+    }
+  ]
+}

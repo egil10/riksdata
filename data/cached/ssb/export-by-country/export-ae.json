@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to United Arab Emirates",
+    "country_code": "AE",
+    "country_name": "United Arab Emirates",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 183857910
+    },
+    {
+      "year": 1989,
+      "value": 231870715
+    },
+    {
+      "year": 1990,
+      "value": 230799928
+    },
+    {
+      "year": 1991,
+      "value": 216343897
+    },
+    {
+      "year": 1992,
+      "value": 170418433
+    },
+    {
+      "year": 1993,
+      "value": 238537130
+    },
+    {
+      "year": 1994,
+      "value": 259010705
+    },
+    {
+      "year": 1995,
+      "value": 315208652
+    },
+    {
+      "year": 1996,
+      "value": 446435029
+    },
+    {
+      "year": 1997,
+      "value": 323235826
+    },
+    {
+      "year": 1998,
+      "value": 466899192
+    },
+    {
+      "year": 1999,
+      "value": 529626014
+    },
+    {
+      "year": 2000,
+      "value": 786013248
+    },
+    {
+      "year": 2001,
+      "value": 582995488
+    },
+    {
+      "year": 2002,
+      "value": 612249367
+    },
+    {
+      "year": 2003,
+      "value": 874931784
+    },
+    {
+      "year": 2004,
+      "value": 983937718
+    },
+    {
+      "year": 2005,
+      "value": 865193681
+    },
+    {
+      "year": 2006,
+      "value": 1148029200
+    },
+    {
+      "year": 2007,
+      "value": 1464279550
+    },
+    {
+      "year": 2008,
+      "value": 2061482642
+    },
+    {
+      "year": 2009,
+      "value": 2276422933
+    },
+    {
+      "year": 2010,
+      "value": 1779584117
+    },
+    {
+      "year": 2011,
+      "value": 1569933333
+    },
+    {
+      "year": 2012,
+      "value": 1784748661
+    },
+    {
+      "year": 2013,
+      "value": 1932883722
+    },
+    {
+      "year": 2014,
+      "value": 1811012434
+    },
+    {
+      "year": 2015,
+      "value": 2378196958
+    },
+    {
+      "year": 2016,
+      "value": 2056347752
+    },
+    {
+      "year": 2017,
+      "value": 3908593049
+    },
+    {
+      "year": 2018,
+      "value": 2662523831
+    },
+    {
+      "year": 2019,
+      "value": 5747995453
+    },
+    {
+      "year": 2020,
+      "value": 2281382639
+    },
+    {
+      "year": 2021,
+      "value": 2176498472
+    },
+    {
+      "year": 2022,
+      "value": 3804988803
+    },
+    {
+      "year": 2023,
+      "value": 4149552933
+    },
+    {
+      "year": 2024,
+      "value": 4774138491
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Turkmenistan",
+    "country_code": "TM",
+    "country_name": "Turkmenistan",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1994,
+      "value": 14528
+    },
+    {
+      "year": 1997,
+      "value": 204699
+    },
+    {
+      "year": 1998,
+      "value": 922949
+    },
+    {
+      "year": 1999,
+      "value": 121322
+    },
+    {
+      "year": 2000,
+      "value": 1458718
+    },
+    {
+      "year": 2001,
+      "value": 4526097
+    },
+    {
+      "year": 2002,
+      "value": 2247277
+    },
+    {
+      "year": 2003,
+      "value": 1842813
+    },
+    {
+      "year": 2004,
+      "value": 11680180
+    },
+    {
+      "year": 2005,
+      "value": 1364572
+    },
+    {
+      "year": 2006,
+      "value": 153049916
+    },
+    {
+      "year": 2007,
+      "value": 3403849
+    },
+    {
+      "year": 2008,
+      "value": 22801987
+    },
+    {
+      "year": 2009,
+      "value": 69238178
+    },
+    {
+      "year": 2010,
+      "value": 14034300
+    },
+    {
+      "year": 2011,
+      "value": 4229861
+    },
+    {
+      "year": 2012,
+      "value": 1493393
+    },
+    {
+      "year": 2013,
+      "value": 96755896
+    },
+    {
+      "year": 2014,
+      "value": 101972782
+    },
+    {
+      "year": 2015,
+      "value": 7472675
+    },
+    {
+      "year": 2016,
+      "value": 7629264
+    },
+    {
+      "year": 2017,
+      "value": 4130504
+    },
+    {
+      "year": 2018,
+      "value": 9179683
+    },
+    {
+      "year": 2019,
+      "value": 2585765
+    },
+    {
+      "year": 2020,
+      "value": 3383473
+    },
+    {
+      "year": 2021,
+      "value": 7455578
+    },
+    {
+      "year": 2022,
+      "value": 4960235
+    },
+    {
+      "year": 2023,
+      "value": 25479361
+    },
+    {
+      "year": 2024,
+      "value": 7754854
+    }
+  ]
+}

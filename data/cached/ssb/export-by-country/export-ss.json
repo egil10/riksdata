@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to South Sudan (2012-)",
+    "country_code": "SS",
+    "country_name": "South Sudan (2012-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2012,
+      "value": 1447050
+    },
+    {
+      "year": 2013,
+      "value": 2083482
+    },
+    {
+      "year": 2014,
+      "value": 3305749
+    },
+    {
+      "year": 2015,
+      "value": 11881156
+    },
+    {
+      "year": 2016,
+      "value": 1557583
+    },
+    {
+      "year": 2017,
+      "value": 358181
+    },
+    {
+      "year": 2018,
+      "value": 331475
+    },
+    {
+      "year": 2019,
+      "value": 374270
+    },
+    {
+      "year": 2020,
+      "value": 2182039
+    },
+    {
+      "year": 2021,
+      "value": 2763898
+    },
+    {
+      "year": 2022,
+      "value": 1089480
+    },
+    {
+      "year": 2023,
+      "value": 954758
+    },
+    {
+      "year": 2024,
+      "value": 512391
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Serbia and Montenegro (2004-2006)",
+    "country_code": "CS",
+    "country_name": "Serbia and Montenegro (2004-2006)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2004,
+      "value": 37685880
+    },
+    {
+      "year": 2005,
+      "value": 71141301
+    },
+    {
+      "year": 2006,
+      "value": 102661567
+    }
+  ]
+}

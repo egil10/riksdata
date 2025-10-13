@@ -1,0 +1,25 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Holy See",
+    "country_code": "VA",
+    "country_name": "Holy See",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 171016
+    },
+    {
+      "year": 1991,
+      "value": 28220
+    },
+    {
+      "year": 2000,
+      "value": 36000
+    }
+  ]
+}

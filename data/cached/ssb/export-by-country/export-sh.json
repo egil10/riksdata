@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Saint Helena, Ascension and Tristan da Cunha",
+    "country_code": "SH",
+    "country_name": "Saint Helena, Ascension and Tristan da Cunha",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 1988,
+      "value": 35379
+    },
+    {
+      "year": 1989,
+      "value": 1100
+    },
+    {
+      "year": 1995,
+      "value": 69100
+    },
+    {
+      "year": 1996,
+      "value": 62448
+    },
+    {
+      "year": 2001,
+      "value": 263673
+    },
+    {
+      "year": 2002,
+      "value": 14092
+    },
+    {
+      "year": 2010,
+      "value": 1075643
+    },
+    {
+      "year": 2011,
+      "value": 284116
+    },
+    {
+      "year": 2012,
+      "value": 1952097
+    },
+    {
+      "year": 2016,
+      "value": 22623
+    },
+    {
+      "year": 2017,
+      "value": 1915
+    },
+    {
+      "year": 2019,
+      "value": 177312
+    },
+    {
+      "year": 2022,
+      "value": 252897
+    }
+  ]
+}

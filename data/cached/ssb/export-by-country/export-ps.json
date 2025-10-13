@@ -1,0 +1,77 @@
+{
+  "metadata": {
+    "source": "SSB",
+    "dataset": "External trade in goods, by imports/exports, country, year and contents",
+    "description": "Norwegian exports to Palestine (2013-)",
+    "country_code": "PS",
+    "country_name": "Palestine (2013-)",
+    "unit": "NOK",
+    "last_updated": "2025-08-14T01:01:03.447381"
+  },
+  "data": [
+    {
+      "year": 2001,
+      "value": 637058
+    },
+    {
+      "year": 2005,
+      "value": 5088762
+    },
+    {
+      "year": 2009,
+      "value": 156723
+    },
+    {
+      "year": 2010,
+      "value": 123842
+    },
+    {
+      "year": 2011,
+      "value": 275798
+    },
+    {
+      "year": 2013,
+      "value": 6000
+    },
+    {
+      "year": 2014,
+      "value": 3745599
+    },
+    {
+      "year": 2015,
+      "value": 8643258
+    },
+    {
+      "year": 2016,
+      "value": 1082622
+    },
+    {
+      "year": 2018,
+      "value": 1769571
+    },
+    {
+      "year": 2019,
+      "value": 865874
+    },
+    {
+      "year": 2020,
+      "value": 230559
+    },
+    {
+      "year": 2021,
+      "value": 209695
+    },
+    {
+      "year": 2022,
+      "value": 914416
+    },
+    {
+      "year": 2023,
+      "value": 2132227
+    },
+    {
+      "year": 2024,
+      "value": 1531661
+    }
+  ]
+}

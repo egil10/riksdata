@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "country": "United States Minor Outlying Islands",
+    "country_code": "UM",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2006,
+      "value": 121009.0
+    },
+    {
+      "year": 2007,
+      "value": 1395054.0
+    },
+    {
+      "year": 2012,
+      "value": 17721.0
+    },
+    {
+      "year": 2016,
+      "value": 2169.0
+    }
+  ]
+}

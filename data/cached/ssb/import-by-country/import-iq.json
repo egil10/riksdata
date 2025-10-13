@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "country": "Iraq",
+    "country_code": "IQ",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2004,
+      "value": 1618099.0
+    },
+    {
+      "year": 2006,
+      "value": 104317.0
+    },
+    {
+      "year": 2007,
+      "value": 171389.0
+    },
+    {
+      "year": 2008,
+      "value": 1300261.0
+    },
+    {
+      "year": 2009,
+      "value": 128848.0
+    },
+    {
+      "year": 2010,
+      "value": 460063.0
+    },
+    {
+      "year": 2011,
+      "value": 15370.0
+    },
+    {
+      "year": 2012,
+      "value": 42571.0
+    },
+    {
+      "year": 2013,
+      "value": 71860.0
+    },
+    {
+      "year": 2014,
+      "value": 734624.0
+    },
+    {
+      "year": 2015,
+      "value": 308803.0
+    },
+    {
+      "year": 2016,
+      "value": 312235.0
+    },
+    {
+      "year": 2017,
+      "value": 552814.0
+    },
+    {
+      "year": 2018,
+      "value": 190518.0
+    },
+    {
+      "year": 2019,
+      "value": 274375.0
+    },
+    {
+      "year": 2020,
+      "value": 106621.0
+    },
+    {
+      "year": 2021,
+      "value": 6772458.0
+    },
+    {
+      "year": 2022,
+      "value": 1424641.0
+    },
+    {
+      "year": 2023,
+      "value": 566262.0
+    },
+    {
+      "year": 2024,
+      "value": 1707272.0
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "country": "Saint Vincent and the Grenadines",
+    "country_code": "VC",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 57513000.0
+    },
+    {
+      "year": 1999,
+      "value": 332787000.0
+    },
+    {
+      "year": 2001,
+      "value": 4662.0
+    },
+    {
+      "year": 2004,
+      "value": 15564.0
+    },
+    {
+      "year": 2005,
+      "value": 2874.0
+    },
+    {
+      "year": 2006,
+      "value": 3700000.0
+    },
+    {
+      "year": 2011,
+      "value": 1901.0
+    },
+    {
+      "year": 2017,
+      "value": 20725.0
+    }
+  ]
+}

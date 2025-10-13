@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "country": "East Timor (-2002)",
+    "country_code": "TP",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1999,
+      "value": 4536.0
+    },
+    {
+      "year": 2000,
+      "value": 28004.0
+    }
+  ]
+}

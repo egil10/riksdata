@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "country": "French Guiana",
+    "country_code": "GF",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1999,
+      "value": 636950.0
+    },
+    {
+      "year": 2000,
+      "value": 327290.0
+    },
+    {
+      "year": 2009,
+      "value": 96517.0
+    },
+    {
+      "year": 2012,
+      "value": 17731.0
+    },
+    {
+      "year": 2019,
+      "value": 38586.0
+    },
+    {
+      "year": 2021,
+      "value": 5964389.0
+    },
+    {
+      "year": 2023,
+      "value": 302971.0
+    }
+  ]
+}

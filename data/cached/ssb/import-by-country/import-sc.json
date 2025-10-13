@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "country": "Seychelles",
+    "country_code": "SC",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 6636.0
+    },
+    {
+      "year": 2001,
+      "value": 24222.0
+    },
+    {
+      "year": 2003,
+      "value": 60939.0
+    },
+    {
+      "year": 2004,
+      "value": 623694.0
+    },
+    {
+      "year": 2005,
+      "value": 45573.0
+    },
+    {
+      "year": 2007,
+      "value": 894722.0
+    },
+    {
+      "year": 2008,
+      "value": 2047765.0
+    },
+    {
+      "year": 2009,
+      "value": 199755.0
+    },
+    {
+      "year": 2010,
+      "value": 66657.0
+    },
+    {
+      "year": 2011,
+      "value": 108376.0
+    },
+    {
+      "year": 2012,
+      "value": 438026.0
+    },
+    {
+      "year": 2013,
+      "value": 261153.0
+    },
+    {
+      "year": 2014,
+      "value": 2353050.0
+    },
+    {
+      "year": 2015,
+      "value": 52378.0
+    },
+    {
+      "year": 2016,
+      "value": 56086.0
+    },
+    {
+      "year": 2017,
+      "value": 811876.0
+    },
+    {
+      "year": 2018,
+      "value": 143630.0
+    },
+    {
+      "year": 2019,
+      "value": 62704.0
+    },
+    {
+      "year": 2020,
+      "value": 6265.0
+    },
+    {
+      "year": 2021,
+      "value": 221848.0
+    },
+    {
+      "year": 2022,
+      "value": 891294.0
+    },
+    {
+      "year": 2023,
+      "value": 573419.0
+    },
+    {
+      "year": 2024,
+      "value": 553265.0
+    }
+  ]
+}

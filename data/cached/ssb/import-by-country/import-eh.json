@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "country": "Western Sahara",
+    "country_code": "EH",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2009,
+      "value": 77908628.0
+    },
+    {
+      "year": 2010,
+      "value": 21875630.0
+    }
+  ]
+}

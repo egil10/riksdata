@@ -1,0 +1,70 @@
+{
+  "metadata": {
+    "country": "Jersey (2007-)",
+    "country_code": "JE",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2008,
+      "value": 716300.0
+    },
+    {
+      "year": 2011,
+      "value": 57580.0
+    },
+    {
+      "year": 2012,
+      "value": 122206.0
+    },
+    {
+      "year": 2013,
+      "value": 567127.0
+    },
+    {
+      "year": 2014,
+      "value": 4341.0
+    },
+    {
+      "year": 2015,
+      "value": 79560.0
+    },
+    {
+      "year": 2016,
+      "value": 37277.0
+    },
+    {
+      "year": 2017,
+      "value": 194717.0
+    },
+    {
+      "year": 2018,
+      "value": 150869.0
+    },
+    {
+      "year": 2019,
+      "value": 141730.0
+    },
+    {
+      "year": 2020,
+      "value": 75437.0
+    },
+    {
+      "year": 2021,
+      "value": 13554.0
+    },
+    {
+      "year": 2022,
+      "value": 85721.0
+    },
+    {
+      "year": 2023,
+      "value": 35523.0
+    },
+    {
+      "year": 2024,
+      "value": 2140.0
+    }
+  ]
+}

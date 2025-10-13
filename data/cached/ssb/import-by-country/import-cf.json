@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "country": "Central African Republic",
+    "country_code": "CF",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2001,
+      "value": 32646.0
+    },
+    {
+      "year": 2002,
+      "value": 272677.0
+    },
+    {
+      "year": 2004,
+      "value": 4288.0
+    },
+    {
+      "year": 2005,
+      "value": 7715.0
+    },
+    {
+      "year": 2007,
+      "value": 506296.0
+    },
+    {
+      "year": 2012,
+      "value": 1097.0
+    },
+    {
+      "year": 2017,
+      "value": 7282.0
+    },
+    {
+      "year": 2018,
+      "value": 15860.0
+    },
+    {
+      "year": 2019,
+      "value": 13616.0
+    },
+    {
+      "year": 2022,
+      "value": 10172.0
+    },
+    {
+      "year": 2023,
+      "value": 99777.0
+    }
+  ]
+}

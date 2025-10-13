@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "country": "North Korea",
+    "country_code": "KP",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 1231133.0
+    },
+    {
+      "year": 1998,
+      "value": 36843.0
+    },
+    {
+      "year": 1999,
+      "value": 1327.0
+    }
+  ]
+}

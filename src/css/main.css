@@ -2424,11 +2424,23 @@ footer {
 }
 
 /* Drill-down icon button highlight */
-.icon-btn[data-action="drilldown"] {
+.icon-btn[data-action="drilldown"],
+.icon-btn[data-action="drilldown-exports"],
+.icon-btn[data-action="drilldown-cpi"],
+.icon-btn[data-action="drilldown-imports"],
+.icon-btn[data-action="drilldown-vaccinations"],
+.icon-btn[data-action="drilldown-dfo"],
+.icon-btn[data-action="drilldown-oilfund"] {
     color: var(--accent);
 }
 
-.icon-btn[data-action="drilldown"]:hover {
+.icon-btn[data-action="drilldown"]:hover,
+.icon-btn[data-action="drilldown-exports"]:hover,
+.icon-btn[data-action="drilldown-cpi"]:hover,
+.icon-btn[data-action="drilldown-imports"]:hover,
+.icon-btn[data-action="drilldown-vaccinations"]:hover,
+.icon-btn[data-action="drilldown-dfo"]:hover,
+.icon-btn[data-action="drilldown-oilfund"]:hover {
     background: color-mix(in oklab, var(--accent), transparent 90%);
 }
 

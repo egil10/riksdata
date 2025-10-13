@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "country": "Anguilla",
+    "country_code": "AI",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2017,
+      "value": 4577.0
+    },
+    {
+      "year": 2019,
+      "value": 2029.0
+    },
+    {
+      "year": 2021,
+      "value": 3155.0
+    },
+    {
+      "year": 2023,
+      "value": 5214.0
+    }
+  ]
+}

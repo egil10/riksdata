@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "country": "Sint Marteen (2011-)",
+    "country_code": "SX",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2012,
+      "value": 59300.0
+    },
+    {
+      "year": 2013,
+      "value": 5458.0
+    },
+    {
+      "year": 2015,
+      "value": 96428.0
+    },
+    {
+      "year": 2016,
+      "value": 22572.0
+    },
+    {
+      "year": 2017,
+      "value": 3482.0
+    },
+    {
+      "year": 2019,
+      "value": 72715.0
+    },
+    {
+      "year": 2022,
+      "value": 41541.0
+    }
+  ]
+}

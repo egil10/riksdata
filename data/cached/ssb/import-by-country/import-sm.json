@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "country": "San Marino",
+    "country_code": "SM",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 85440.0
+    },
+    {
+      "year": 2000,
+      "value": 113046.0
+    },
+    {
+      "year": 2001,
+      "value": 412773.0
+    },
+    {
+      "year": 2002,
+      "value": 122618.0
+    },
+    {
+      "year": 2003,
+      "value": 249030.0
+    },
+    {
+      "year": 2004,
+      "value": 10271.0
+    },
+    {
+      "year": 2005,
+      "value": 9215.0
+    },
+    {
+      "year": 2006,
+      "value": 306947.0
+    },
+    {
+      "year": 2007,
+      "value": 181693.0
+    },
+    {
+      "year": 2011,
+      "value": 5674.0
+    },
+    {
+      "year": 2012,
+      "value": 1049459.0
+    },
+    {
+      "year": 2013,
+      "value": 31888.0
+    },
+    {
+      "year": 2014,
+      "value": 9359.0
+    },
+    {
+      "year": 2015,
+      "value": 695738.0
+    },
+    {
+      "year": 2016,
+      "value": 603105.0
+    },
+    {
+      "year": 2017,
+      "value": 3453338.0
+    },
+    {
+      "year": 2018,
+      "value": 4022150.0
+    },
+    {
+      "year": 2019,
+      "value": 7356131.0
+    },
+    {
+      "year": 2020,
+      "value": 1119204.0
+    },
+    {
+      "year": 2021,
+      "value": 6668950.0
+    },
+    {
+      "year": 2022,
+      "value": 4544284.0
+    },
+    {
+      "year": 2023,
+      "value": 5387657.0
+    },
+    {
+      "year": 2024,
+      "value": 13537124.0
+    }
+  ]
+}

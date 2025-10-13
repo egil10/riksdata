@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "country": "Guam",
+    "country_code": "GU",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 55248.0
+    },
+    {
+      "year": 1999,
+      "value": 16782.0
+    },
+    {
+      "year": 2000,
+      "value": 71467.0
+    },
+    {
+      "year": 2001,
+      "value": 7814.0
+    },
+    {
+      "year": 2006,
+      "value": 2220.0
+    },
+    {
+      "year": 2007,
+      "value": 9971.0
+    },
+    {
+      "year": 2019,
+      "value": 2734.0
+    },
+    {
+      "year": 2020,
+      "value": 13552.0
+    },
+    {
+      "year": 2021,
+      "value": 288420.0
+    }
+  ]
+}

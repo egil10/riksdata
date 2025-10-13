@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "country": "American Samoa",
+    "country_code": "AS",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2018,
+      "value": 18058.0
+    },
+    {
+      "year": 2019,
+      "value": 83017.0
+    },
+    {
+      "year": 2020,
+      "value": 92004.0
+    },
+    {
+      "year": 2021,
+      "value": 30986.0
+    },
+    {
+      "year": 2022,
+      "value": 2099.0
+    },
+    {
+      "year": 2024,
+      "value": 614153.0
+    }
+  ]
+}

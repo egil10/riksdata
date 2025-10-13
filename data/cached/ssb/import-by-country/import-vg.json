@@ -1,0 +1,54 @@
+{
+  "metadata": {
+    "country": "Virgin Islands (British)",
+    "country_code": "VG",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 26775000.0
+    },
+    {
+      "year": 2002,
+      "value": 19496353.0
+    },
+    {
+      "year": 2004,
+      "value": 100650000.0
+    },
+    {
+      "year": 2005,
+      "value": 680319.0
+    },
+    {
+      "year": 2006,
+      "value": 262087.0
+    },
+    {
+      "year": 2007,
+      "value": 25599.0
+    },
+    {
+      "year": 2011,
+      "value": 59631146.0
+    },
+    {
+      "year": 2018,
+      "value": 128466.0
+    },
+    {
+      "year": 2020,
+      "value": 154247.0
+    },
+    {
+      "year": 2021,
+      "value": 13923.0
+    },
+    {
+      "year": 2022,
+      "value": 206923.0
+    }
+  ]
+}

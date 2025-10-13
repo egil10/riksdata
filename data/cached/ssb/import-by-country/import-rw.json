@@ -1,0 +1,98 @@
+{
+  "metadata": {
+    "country": "Rwanda",
+    "country_code": "RW",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 22235.0
+    },
+    {
+      "year": 2000,
+      "value": 287482.0
+    },
+    {
+      "year": 2001,
+      "value": 2384.0
+    },
+    {
+      "year": 2006,
+      "value": 483534.0
+    },
+    {
+      "year": 2007,
+      "value": 14217.0
+    },
+    {
+      "year": 2008,
+      "value": 307087.0
+    },
+    {
+      "year": 2009,
+      "value": 1387158.0
+    },
+    {
+      "year": 2010,
+      "value": 381219.0
+    },
+    {
+      "year": 2011,
+      "value": 1227071.0
+    },
+    {
+      "year": 2012,
+      "value": 1865038.0
+    },
+    {
+      "year": 2013,
+      "value": 911586.0
+    },
+    {
+      "year": 2014,
+      "value": 2277227.0
+    },
+    {
+      "year": 2015,
+      "value": 2206249.0
+    },
+    {
+      "year": 2016,
+      "value": 2822099.0
+    },
+    {
+      "year": 2017,
+      "value": 1016699.0
+    },
+    {
+      "year": 2018,
+      "value": 3668932.0
+    },
+    {
+      "year": 2019,
+      "value": 2962199.0
+    },
+    {
+      "year": 2020,
+      "value": 4327436.0
+    },
+    {
+      "year": 2021,
+      "value": 3423232.0
+    },
+    {
+      "year": 2022,
+      "value": 3843983.0
+    },
+    {
+      "year": 2023,
+      "value": 3679702.0
+    },
+    {
+      "year": 2024,
+      "value": 2398339.0
+    }
+  ]
+}

@@ -21,8 +21,14 @@ export function initDrilldownNavigation() {
     // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
     
-    // Add drill-down button to bankruptcies total chart
+    // Add drill-down buttons to charts
     addDrilldownButton();
+    addExportsDrilldownButton();
+    addCPIDrilldownButton();
+    addImportsDrilldownButton();
+    addVaccinationsDrilldownButton();
+    addDFODrilldownButton();
+    addOilFundDrilldownButton();
 }
 
 /**
@@ -35,6 +41,18 @@ function handleHashChange() {
     
     if (hash === 'bankruptcies') {
         showBankruptciesView();
+    } else if (hash === 'exports') {
+        showExportsView();
+    } else if (hash === 'cpi') {
+        showCPIView();
+    } else if (hash === 'imports') {
+        showImportsView();
+    } else if (hash === 'vaccinations') {
+        showVaccinationsView();
+    } else if (hash === 'dfo') {
+        showDFOView();
+    } else if (hash === 'oilfund') {
+        showOilFundView();
     } else {
         showMainDashboard();
     }
@@ -84,6 +102,174 @@ function showBankruptciesView() {
     
     // Load all bankruptcy industry charts
     loadBankruptcyCharts();
+}
+
+/**
+ * Show exports drill-down view
+ */
+function showExportsView() {
+    console.log('🌍 Showing exports drill-down view');
+    currentView = 'exports';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Exports by Country';
+    updateHeaderBreadcrumb('Exports by Country');
+    
+    // Load all export country charts
+    loadExportCharts();
+}
+
+/**
+ * Show CPI drill-down view
+ */
+function showCPIView() {
+    console.log('📊 Showing CPI drill-down view');
+    currentView = 'cpi';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Consumer Price Index Variations';
+    updateHeaderBreadcrumb('CPI Variations');
+    
+    // Load all CPI charts
+    loadCPICharts();
+}
+
+/**
+ * Show imports drill-down view
+ */
+function showImportsView() {
+    console.log('🌍 Showing imports drill-down view');
+    currentView = 'imports';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Imports by Country';
+    updateHeaderBreadcrumb('Imports by Country');
+    
+    // Load all import country charts
+    loadImportCharts();
+}
+
+/**
+ * Show vaccinations drill-down view
+ */
+function showVaccinationsView() {
+    console.log('💉 Showing vaccinations drill-down view');
+    currentView = 'vaccinations';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Vaccination Coverage';
+    updateHeaderBreadcrumb('Vaccination Coverage');
+    
+    // Load all vaccination charts
+    loadVaccinationCharts();
+}
+
+/**
+ * Show DFO drill-down view
+ */
+function showDFOView() {
+    console.log('🏛️ Showing DFO government spending drill-down view');
+    currentView = 'dfo';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Government Spending by Department';
+    updateHeaderBreadcrumb('Government Spending');
+    
+    // Load all DFO charts
+    loadDFOCharts();
+}
+
+/**
+ * Show Oil Fund drill-down view
+ */
+function showOilFundView() {
+    console.log('🛢️ Showing Oil Fund drill-down view');
+    currentView = 'oilfund';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Oil Fund by Asset Class';
+    updateHeaderBreadcrumb('Oil Fund Breakdown');
+    
+    // Load all Oil Fund charts
+    loadOilFundCharts();
 }
 
 /**
@@ -145,6 +331,204 @@ async function loadBankruptcyCharts() {
 }
 
 /**
+ * Load all export country charts
+ */
+async function loadExportCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.exports;
+    console.log(`🌍 Loading ${configs.length} export country charts in drill-down view...`);
+    
+    // Create chart cards for each country
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All export charts loaded in drill-down view!');
+}
+
+/**
+ * Load all CPI variation charts
+ */
+async function loadCPICharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.cpi;
+    console.log(`📊 Loading ${configs.length} CPI variation charts in drill-down view...`);
+    
+    // Create chart cards for each CPI variation
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All CPI charts loaded in drill-down view!');
+}
+
+/**
+ * Load all import country charts
+ */
+async function loadImportCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.imports;
+    console.log(`🌍 Loading ${configs.length} import country charts in drill-down view...`);
+    
+    // Create chart cards for each country
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All import charts loaded in drill-down view!');
+}
+
+/**
+ * Load all vaccination charts
+ */
+async function loadVaccinationCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.vaccinations;
+    console.log(`💉 Loading ${configs.length} vaccination charts in drill-down view...`);
+    
+    // Create chart cards for each vaccination type
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All vaccination charts loaded in drill-down view!');
+}
+
+/**
+ * Load all DFO government spending charts
+ */
+async function loadDFOCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.dfo;
+    console.log(`🏛️ Loading ${configs.length} DFO department charts in drill-down view...`);
+    
+    // Create chart cards for each department
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All DFO charts loaded in drill-down view!');
+}
+
+/**
+ * Load all Oil Fund asset class charts
+ */
+async function loadOilFundCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.oilfund;
+    console.log(`🛢️ Loading ${configs.length} Oil Fund asset class charts in drill-down view...`);
+    
+    // Create chart cards for each asset class
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All Oil Fund charts loaded in drill-down view!');
+}
+
+/**
  * Create a chart card element
  */
 function createChartCard(config) {
@@ -195,12 +579,13 @@ function updateHeaderBreadcrumb(subtitle) {
     if (!appTitle) return;
     
     if (subtitle) {
-        // Show breadcrumb
+        // Show breadcrumb - only Riksdata is clickable/hoverable
         appTitle.innerHTML = `
-            <span onclick="window.location.hash = ''" style="cursor: pointer;">Riksdata</span>
+            <span onclick="window.location.hash = ''" style="cursor: pointer; transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">Riksdata</span>
             <span style="opacity: 0.5; margin: 0 0.5rem;">→</span>
-            <span style="font-weight: 500;">${subtitle}</span>
+            <span style="font-weight: 500; cursor: default;">${subtitle}</span>
         `;
+        appTitle.onclick = null; // Remove global click handler
     } else {
         // Reset to default
         appTitle.innerHTML = 'Riksdata';
@@ -260,6 +645,336 @@ function addDrilldownButton() {
         }
         
         console.log('✅ Drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to export-by-country chart
+ */
+function addExportsDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const exportCard = document.querySelector('[data-chart-id="export-country-chart"]');
+        if (!exportCard) {
+            console.warn('Export by country chart card not found, will retry...');
+            setTimeout(addExportsDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found export by country chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = exportCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-exports"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-exports');
+            drilldownBtn.setAttribute('aria-label', 'View by country');
+            drilldownBtn.setAttribute('title', 'View by country');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'exports';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to exports!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = exportCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'exports';
+            };
+            chartTitle.setAttribute('title', 'Click to view by country');
+            console.log('✅ Made export title clickable!');
+        }
+        
+        console.log('✅ Export drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to CPI chart
+ */
+function addCPIDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const cpiCard = document.querySelector('[data-chart-id="cpi-chart"]');
+        if (!cpiCard) {
+            console.warn('CPI chart card not found, will retry...');
+            setTimeout(addCPIDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found CPI chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = cpiCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-cpi"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-cpi');
+            drilldownBtn.setAttribute('aria-label', 'View CPI variations');
+            drilldownBtn.setAttribute('title', 'View CPI variations');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'cpi';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to CPI!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = cpiCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'cpi';
+            };
+            chartTitle.setAttribute('title', 'Click to view CPI variations');
+            console.log('✅ Made CPI title clickable!');
+        }
+        
+        console.log('✅ CPI drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to import-by-country chart
+ */
+function addImportsDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const importCard = document.querySelector('[data-chart-id="import-country-chart"]');
+        if (!importCard) {
+            console.warn('Import by country chart card not found, will retry...');
+            setTimeout(addImportsDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found import by country chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = importCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-imports"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-imports');
+            drilldownBtn.setAttribute('aria-label', 'View by country');
+            drilldownBtn.setAttribute('title', 'View by country');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'imports';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to imports!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = importCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'imports';
+            };
+            chartTitle.setAttribute('title', 'Click to view by country');
+            console.log('✅ Made import title clickable!');
+        }
+        
+        console.log('✅ Import drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to vaccination chart
+ */
+function addVaccinationsDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const vaccinationCard = document.querySelector('[data-chart-id="vaccination-chart"]');
+        if (!vaccinationCard) {
+            console.warn('Vaccination chart card not found, will retry...');
+            setTimeout(addVaccinationsDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found vaccination chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = vaccinationCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-vaccinations"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-vaccinations');
+            drilldownBtn.setAttribute('aria-label', 'View all vaccines');
+            drilldownBtn.setAttribute('title', 'View all vaccines');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'vaccinations';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to vaccinations!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = vaccinationCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'vaccinations';
+            };
+            chartTitle.setAttribute('title', 'Click to view all vaccines');
+            console.log('✅ Made vaccination title clickable!');
+        }
+        
+        console.log('✅ Vaccination drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to DFO total chart
+ */
+function addDFODrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const dfoCard = document.querySelector('[data-chart-id="dfo-total-chart"]');
+        if (!dfoCard) {
+            console.warn('DFO total chart card not found, will retry...');
+            setTimeout(addDFODrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found DFO total chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = dfoCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-dfo"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-dfo');
+            drilldownBtn.setAttribute('aria-label', 'View by department');
+            drilldownBtn.setAttribute('title', 'View by department');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'dfo';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to DFO!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = dfoCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'dfo';
+            };
+            chartTitle.setAttribute('title', 'Click to view by department');
+            console.log('✅ Made DFO title clickable!');
+        }
+        
+        console.log('✅ DFO drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to Oil Fund total chart
+ */
+function addOilFundDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const oilFundCard = document.querySelector('[data-chart-id="oil-fund-total-chart"]');
+        if (!oilFundCard) {
+            console.warn('Oil Fund total chart card not found, will retry...');
+            setTimeout(addOilFundDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found Oil Fund total chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = oilFundCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-oilfund"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-oilfund');
+            drilldownBtn.setAttribute('aria-label', 'View by asset class');
+            drilldownBtn.setAttribute('title', 'View by asset class');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'oilfund';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to Oil Fund!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = oilFundCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'oilfund';
+            };
+            chartTitle.setAttribute('title', 'Click to view by asset class');
+            console.log('✅ Made Oil Fund title clickable!');
+        }
+        
+        console.log('✅ Oil Fund drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
 

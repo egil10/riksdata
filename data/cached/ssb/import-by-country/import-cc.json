@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "country": "Cocos (Keeling) Islands",
+    "country_code": "CC",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2006,
+      "value": 8712.0
+    },
+    {
+      "year": 2012,
+      "value": 9344.0
+    },
+    {
+      "year": 2024,
+      "value": 15100.0
+    }
+  ]
+}

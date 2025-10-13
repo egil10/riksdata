@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "country": "Niger",
+    "country_code": "NE",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 7626.0
+    },
+    {
+      "year": 1997,
+      "value": 69050.0
+    },
+    {
+      "year": 1998,
+      "value": 2717.0
+    },
+    {
+      "year": 1999,
+      "value": 19890.0
+    },
+    {
+      "year": 2000,
+      "value": 91472.0
+    },
+    {
+      "year": 2001,
+      "value": 304924.0
+    },
+    {
+      "year": 2002,
+      "value": 81578.0
+    },
+    {
+      "year": 2005,
+      "value": 4704.0
+    },
+    {
+      "year": 2007,
+      "value": 6154.0
+    },
+    {
+      "year": 2009,
+      "value": 19453.0
+    },
+    {
+      "year": 2010,
+      "value": 61270.0
+    },
+    {
+      "year": 2011,
+      "value": 7560.0
+    },
+    {
+      "year": 2012,
+      "value": 1721.0
+    },
+    {
+      "year": 2021,
+      "value": 12985.0
+    },
+    {
+      "year": 2022,
+      "value": 33259.0
+    },
+    {
+      "year": 2023,
+      "value": 12891.0
+    },
+    {
+      "year": 2024,
+      "value": 28763.0
+    }
+  ]
+}

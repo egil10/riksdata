@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "country": "Kyrgyzstan",
+    "country_code": "KG",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 1966.0
+    },
+    {
+      "year": 1999,
+      "value": 16058.0
+    },
+    {
+      "year": 2000,
+      "value": 475532.0
+    },
+    {
+      "year": 2001,
+      "value": 2237.0
+    },
+    {
+      "year": 2002,
+      "value": 86118.0
+    },
+    {
+      "year": 2003,
+      "value": 74993.0
+    },
+    {
+      "year": 2004,
+      "value": 590342.0
+    },
+    {
+      "year": 2005,
+      "value": 174663.0
+    },
+    {
+      "year": 2006,
+      "value": 132864.0
+    },
+    {
+      "year": 2008,
+      "value": 65966.0
+    },
+    {
+      "year": 2010,
+      "value": 35907.0
+    },
+    {
+      "year": 2011,
+      "value": 471210.0
+    },
+    {
+      "year": 2012,
+      "value": 10698.0
+    },
+    {
+      "year": 2013,
+      "value": 70114.0
+    },
+    {
+      "year": 2014,
+      "value": 342661.0
+    },
+    {
+      "year": 2015,
+      "value": 449879.0
+    },
+    {
+      "year": 2016,
+      "value": 189470.0
+    },
+    {
+      "year": 2017,
+      "value": 456395.0
+    },
+    {
+      "year": 2018,
+      "value": 190842.0
+    },
+    {
+      "year": 2019,
+      "value": 610644.0
+    },
+    {
+      "year": 2020,
+      "value": 500321.0
+    },
+    {
+      "year": 2021,
+      "value": 477276.0
+    },
+    {
+      "year": 2022,
+      "value": 527862.0
+    },
+    {
+      "year": 2023,
+      "value": 6318989.0
+    },
+    {
+      "year": 2024,
+      "value": 816415.0
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "country": "East Timor (2004-)",
+    "country_code": "TL",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2016,
+      "value": 2616.0
+    },
+    {
+      "year": 2020,
+      "value": 7549.0
+    },
+    {
+      "year": 2022,
+      "value": 7803.0
+    },
+    {
+      "year": 2023,
+      "value": 2570844.0
+    },
+    {
+      "year": 2024,
+      "value": 2455.0
+    }
+  ]
+}

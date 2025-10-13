@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "country": "Palau",
+    "country_code": "PW",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2017,
+      "value": 9561.0
+    }
+  ]
+}

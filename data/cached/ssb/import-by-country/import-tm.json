@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "country": "Turkmenistan",
+    "country_code": "TM",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 300193.0
+    },
+    {
+      "year": 1997,
+      "value": 214448.0
+    },
+    {
+      "year": 1998,
+      "value": 304039.0
+    },
+    {
+      "year": 1999,
+      "value": 56804.0
+    },
+    {
+      "year": 2000,
+      "value": 249273.0
+    },
+    {
+      "year": 2001,
+      "value": 113826.0
+    },
+    {
+      "year": 2002,
+      "value": 141236.0
+    },
+    {
+      "year": 2004,
+      "value": 1202221.0
+    },
+    {
+      "year": 2005,
+      "value": 2596053.0
+    },
+    {
+      "year": 2006,
+      "value": 3032492.0
+    },
+    {
+      "year": 2007,
+      "value": 1242750.0
+    },
+    {
+      "year": 2008,
+      "value": 648527.0
+    },
+    {
+      "year": 2009,
+      "value": 17434.0
+    },
+    {
+      "year": 2010,
+      "value": 59643.0
+    },
+    {
+      "year": 2011,
+      "value": 121752.0
+    },
+    {
+      "year": 2012,
+      "value": 11161.0
+    },
+    {
+      "year": 2015,
+      "value": 533648.0
+    },
+    {
+      "year": 2016,
+      "value": 598293.0
+    },
+    {
+      "year": 2017,
+      "value": 1073666.0
+    },
+    {
+      "year": 2020,
+      "value": 18227.0
+    },
+    {
+      "year": 2021,
+      "value": 376226.0
+    },
+    {
+      "year": 2022,
+      "value": 326111.0
+    },
+    {
+      "year": 2023,
+      "value": 22122274.0
+    },
+    {
+      "year": 2024,
+      "value": 183804.0
+    }
+  ]
+}

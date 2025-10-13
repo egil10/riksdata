@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "country": "Eritrea",
+    "country_code": "ER",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 143540.0
+    },
+    {
+      "year": 1997,
+      "value": 230294.0
+    },
+    {
+      "year": 1999,
+      "value": 27099.0
+    },
+    {
+      "year": 2000,
+      "value": 3236.0
+    },
+    {
+      "year": 2003,
+      "value": 8076.0
+    },
+    {
+      "year": 2004,
+      "value": 33434.0
+    },
+    {
+      "year": 2005,
+      "value": 9291.0
+    },
+    {
+      "year": 2006,
+      "value": 7100.0
+    },
+    {
+      "year": 2007,
+      "value": 33050.0
+    },
+    {
+      "year": 2009,
+      "value": 2690.0
+    },
+    {
+      "year": 2010,
+      "value": 9424.0
+    },
+    {
+      "year": 2011,
+      "value": 22574.0
+    },
+    {
+      "year": 2012,
+      "value": 15662.0
+    },
+    {
+      "year": 2013,
+      "value": 28679.0
+    },
+    {
+      "year": 2014,
+      "value": 109346.0
+    },
+    {
+      "year": 2015,
+      "value": 511368.0
+    },
+    {
+      "year": 2016,
+      "value": 31002.0
+    },
+    {
+      "year": 2017,
+      "value": 20943.0
+    },
+    {
+      "year": 2018,
+      "value": 119083.0
+    },
+    {
+      "year": 2019,
+      "value": 76108.0
+    },
+    {
+      "year": 2020,
+      "value": 39775.0
+    },
+    {
+      "year": 2021,
+      "value": 110348.0
+    },
+    {
+      "year": 2022,
+      "value": 242751.0
+    },
+    {
+      "year": 2023,
+      "value": 220283.0
+    },
+    {
+      "year": 2024,
+      "value": 643337.0
+    }
+  ]
+}

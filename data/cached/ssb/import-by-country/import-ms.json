@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "country": "Montserrat",
+    "country_code": "MS",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 11748.0
+    },
+    {
+      "year": 2007,
+      "value": 3628.0
+    }
+  ]
+}

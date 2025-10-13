@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "country": "South Georgia and the South Sandwich Islands (1999-)",
+    "country_code": "GS",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2020,
+      "value": 2166.0
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "country": "Netherlands Antilles (-2010)",
+    "country_code": "AN",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 86724000.0
+    },
+    {
+      "year": 1997,
+      "value": 50946880.0
+    },
+    {
+      "year": 1999,
+      "value": 10726195.0
+    },
+    {
+      "year": 2000,
+      "value": 81755.0
+    },
+    {
+      "year": 2001,
+      "value": 19936.0
+    },
+    {
+      "year": 2002,
+      "value": 937471.0
+    },
+    {
+      "year": 2003,
+      "value": 86003.0
+    },
+    {
+      "year": 2004,
+      "value": 1398348.0
+    },
+    {
+      "year": 2005,
+      "value": 80517.0
+    },
+    {
+      "year": 2006,
+      "value": 54663.0
+    },
+    {
+      "year": 2007,
+      "value": 198045.0
+    },
+    {
+      "year": 2008,
+      "value": 2826546.0
+    },
+    {
+      "year": 2009,
+      "value": 896735.0
+    },
+    {
+      "year": 2010,
+      "value": 257777.0
+    }
+  ]
+}

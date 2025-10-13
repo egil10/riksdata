@@ -1,0 +1,34 @@
+{
+  "metadata": {
+    "country": "Saint Kitts and Nevis",
+    "country_code": "KN",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 3746.0
+    },
+    {
+      "year": 2012,
+      "value": 7158.0
+    },
+    {
+      "year": 2016,
+      "value": 67879.0
+    },
+    {
+      "year": 2019,
+      "value": 22884.0
+    },
+    {
+      "year": 2021,
+      "value": 23899.0
+    },
+    {
+      "year": 2022,
+      "value": 3078.0
+    }
+  ]
+}

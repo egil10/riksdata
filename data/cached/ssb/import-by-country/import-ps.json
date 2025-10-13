@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "country": "Palestine (2013-)",
+    "country_code": "PS",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2004,
+      "value": 80298.0
+    },
+    {
+      "year": 2009,
+      "value": 308161.0
+    },
+    {
+      "year": 2010,
+      "value": 3816264.0
+    },
+    {
+      "year": 2011,
+      "value": 3760467.0
+    },
+    {
+      "year": 2012,
+      "value": 4659881.0
+    },
+    {
+      "year": 2013,
+      "value": 882685.0
+    },
+    {
+      "year": 2014,
+      "value": 126826.0
+    },
+    {
+      "year": 2015,
+      "value": 1616119.0
+    },
+    {
+      "year": 2016,
+      "value": 1007059.0
+    },
+    {
+      "year": 2017,
+      "value": 1680349.0
+    },
+    {
+      "year": 2018,
+      "value": 2687871.0
+    },
+    {
+      "year": 2019,
+      "value": 4315050.0
+    },
+    {
+      "year": 2020,
+      "value": 7561620.0
+    },
+    {
+      "year": 2021,
+      "value": 7331596.0
+    },
+    {
+      "year": 2022,
+      "value": 7486566.0
+    },
+    {
+      "year": 2023,
+      "value": 14591614.0
+    },
+    {
+      "year": 2024,
+      "value": 25310440.0
+    }
+  ]
+}

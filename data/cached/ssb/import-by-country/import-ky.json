@@ -1,0 +1,94 @@
+{
+  "metadata": {
+    "country": "Cayman Islands",
+    "country_code": "KY",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 5450000.0
+    },
+    {
+      "year": 1997,
+      "value": 5300000.0
+    },
+    {
+      "year": 1998,
+      "value": 593884000.0
+    },
+    {
+      "year": 1999,
+      "value": 492105000.0
+    },
+    {
+      "year": 2000,
+      "value": 1110961000.0
+    },
+    {
+      "year": 2001,
+      "value": 13200000.0
+    },
+    {
+      "year": 2002,
+      "value": 7655787.0
+    },
+    {
+      "year": 2004,
+      "value": 14476.0
+    },
+    {
+      "year": 2006,
+      "value": 28267.0
+    },
+    {
+      "year": 2007,
+      "value": 2488.0
+    },
+    {
+      "year": 2010,
+      "value": 16184534.0
+    },
+    {
+      "year": 2013,
+      "value": 584968.0
+    },
+    {
+      "year": 2014,
+      "value": 1485307.0
+    },
+    {
+      "year": 2017,
+      "value": 466158.0
+    },
+    {
+      "year": 2018,
+      "value": 249582.0
+    },
+    {
+      "year": 2019,
+      "value": 10027414.0
+    },
+    {
+      "year": 2020,
+      "value": 296726.0
+    },
+    {
+      "year": 2021,
+      "value": 181075692.0
+    },
+    {
+      "year": 2022,
+      "value": 1566220799.0
+    },
+    {
+      "year": 2023,
+      "value": 40820.0
+    },
+    {
+      "year": 2024,
+      "value": 28413559.0
+    }
+  ]
+}

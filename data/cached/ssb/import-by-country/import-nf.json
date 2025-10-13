@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "country": "Norfolk Island",
+    "country_code": "NF",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2005,
+      "value": 847062.0
+    }
+  ]
+}

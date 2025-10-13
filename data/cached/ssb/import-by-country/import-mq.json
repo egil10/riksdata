@@ -1,0 +1,86 @@
+{
+  "metadata": {
+    "country": "Martinique",
+    "country_code": "MQ",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 4536.0
+    },
+    {
+      "year": 2002,
+      "value": 263764.0
+    },
+    {
+      "year": 2003,
+      "value": 96716.0
+    },
+    {
+      "year": 2004,
+      "value": 3599.0
+    },
+    {
+      "year": 2005,
+      "value": 52722.0
+    },
+    {
+      "year": 2006,
+      "value": 43686.0
+    },
+    {
+      "year": 2007,
+      "value": 96855.0
+    },
+    {
+      "year": 2008,
+      "value": 9011.0
+    },
+    {
+      "year": 2009,
+      "value": 152557.0
+    },
+    {
+      "year": 2011,
+      "value": 2862.0
+    },
+    {
+      "year": 2013,
+      "value": 28893.0
+    },
+    {
+      "year": 2015,
+      "value": 8501.0
+    },
+    {
+      "year": 2017,
+      "value": 102984.0
+    },
+    {
+      "year": 2018,
+      "value": 2956.0
+    },
+    {
+      "year": 2019,
+      "value": 14236.0
+    },
+    {
+      "year": 2020,
+      "value": 11158.0
+    },
+    {
+      "year": 2022,
+      "value": 15693.0
+    },
+    {
+      "year": 2023,
+      "value": 100839.0
+    },
+    {
+      "year": 2024,
+      "value": 488781.0
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "title": "Total Government Expenditure",
+  "description": "Aggregated expenditure for all Norwegian government departments",
+  "source": "Direktoratet for forvaltning og okonomistyring (DFO)",
+  "source_url": "https://www.dfo.no/",
+  "unit": "NOK",
+  "data": [
+    {
+      "year": 2014,
+      "value": 223260036549.58994
+    },
+    {
+      "year": 2015,
+      "value": 203150996309.85
+    },
+    {
+      "year": 2016,
+      "value": 168970319370.38007
+    },
+    {
+      "year": 2017,
+      "value": 187350819473.97992
+    },
+    {
+      "year": 2018,
+      "value": 219610551333.85004
+    },
+    {
+      "year": 2019,
+      "value": 192358175742.4599
+    },
+    {
+      "year": 2020,
+      "value": 156426313794.39014
+    },
+    {
+      "year": 2021,
+      "value": 317066773044.2999
+    },
+    {
+      "year": 2022,
+      "value": 699541340072.7
+    },
+    {
+      "year": 2023,
+      "value": 392328400581.42
+    },
+    {
+      "year": 2024,
+      "value": 315351244111.2102
+    }
+  ]
+}

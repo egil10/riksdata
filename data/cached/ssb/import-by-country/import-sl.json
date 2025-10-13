@@ -1,0 +1,46 @@
+{
+  "metadata": {
+    "country": "Sierra Leone",
+    "country_code": "SL",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 2812.0
+    },
+    {
+      "year": 1998,
+      "value": 24580.0
+    },
+    {
+      "year": 2000,
+      "value": 125072.0
+    },
+    {
+      "year": 2005,
+      "value": 5773.0
+    },
+    {
+      "year": 2006,
+      "value": 4867.0
+    },
+    {
+      "year": 2007,
+      "value": 4784.0
+    },
+    {
+      "year": 2008,
+      "value": 22397.0
+    },
+    {
+      "year": 2019,
+      "value": 23800.0
+    },
+    {
+      "year": 2021,
+      "value": 10498.0
+    }
+  ]
+}

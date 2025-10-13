@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "country": "Åland (2005-)",
+    "country_code": "AX",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2007,
+      "value": 20976.0
+    },
+    {
+      "year": 2008,
+      "value": 8552.0
+    },
+    {
+      "year": 2009,
+      "value": 5202.0
+    },
+    {
+      "year": 2010,
+      "value": 53603.0
+    },
+    {
+      "year": 2012,
+      "value": 112010.0
+    },
+    {
+      "year": 2013,
+      "value": 13281.0
+    },
+    {
+      "year": 2014,
+      "value": 4386.0
+    },
+    {
+      "year": 2015,
+      "value": 2000399.0
+    },
+    {
+      "year": 2016,
+      "value": 977107.0
+    },
+    {
+      "year": 2017,
+      "value": 10137.0
+    },
+    {
+      "year": 2018,
+      "value": 5050.0
+    },
+    {
+      "year": 2019,
+      "value": 15202.0
+    },
+    {
+      "year": 2020,
+      "value": 72632.0
+    },
+    {
+      "year": 2021,
+      "value": 775574.0
+    },
+    {
+      "year": 2022,
+      "value": 114336.0
+    },
+    {
+      "year": 2023,
+      "value": 91156.0
+    },
+    {
+      "year": 2024,
+      "value": 35346.0
+    }
+  ]
+}

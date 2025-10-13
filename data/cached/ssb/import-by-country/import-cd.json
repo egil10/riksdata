@@ -1,0 +1,110 @@
+{
+  "metadata": {
+    "country": "Congo (the Democratic Republic of the)",
+    "country_code": "CD",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 220466.0
+    },
+    {
+      "year": 1999,
+      "value": 756344.0
+    },
+    {
+      "year": 2000,
+      "value": 998466.0
+    },
+    {
+      "year": 2001,
+      "value": 180665.0
+    },
+    {
+      "year": 2002,
+      "value": 20143.0
+    },
+    {
+      "year": 2003,
+      "value": 2614.0
+    },
+    {
+      "year": 2004,
+      "value": 54594.0
+    },
+    {
+      "year": 2006,
+      "value": 1075.0
+    },
+    {
+      "year": 2008,
+      "value": 47227007.0
+    },
+    {
+      "year": 2009,
+      "value": 126146323.0
+    },
+    {
+      "year": 2010,
+      "value": 45241.0
+    },
+    {
+      "year": 2011,
+      "value": 1161.0
+    },
+    {
+      "year": 2012,
+      "value": 858410.0
+    },
+    {
+      "year": 2013,
+      "value": 2702628.0
+    },
+    {
+      "year": 2014,
+      "value": 409494.0
+    },
+    {
+      "year": 2015,
+      "value": 16139216.0
+    },
+    {
+      "year": 2016,
+      "value": 576544.0
+    },
+    {
+      "year": 2017,
+      "value": 379496.0
+    },
+    {
+      "year": 2018,
+      "value": 184996.0
+    },
+    {
+      "year": 2019,
+      "value": 280447.0
+    },
+    {
+      "year": 2020,
+      "value": 9520.0
+    },
+    {
+      "year": 2021,
+      "value": 174330.0
+    },
+    {
+      "year": 2022,
+      "value": 120269.0
+    },
+    {
+      "year": 2023,
+      "value": 439733.0
+    },
+    {
+      "year": 2024,
+      "value": 604550.0
+    }
+  ]
+}

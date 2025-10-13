@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "country": "Serbia and Montenegro (2004-2006)",
+    "country_code": "CS",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2004,
+      "value": 22643317.0
+    },
+    {
+      "year": 2005,
+      "value": 40618647.0
+    },
+    {
+      "year": 2006,
+      "value": 54859042.0
+    }
+  ]
+}

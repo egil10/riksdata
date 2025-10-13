@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "country": "Wallis and Futuna",
+    "country_code": "WF",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2007,
+      "value": 2404.0
+    }
+  ]
+}

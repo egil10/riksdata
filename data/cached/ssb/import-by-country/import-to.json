@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "country": "Tonga",
+    "country_code": "TO",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2001,
+      "value": 13437.0
+    },
+    {
+      "year": 2002,
+      "value": 33327.0
+    },
+    {
+      "year": 2004,
+      "value": 15720.0
+    },
+    {
+      "year": 2022,
+      "value": 8892.0
+    }
+  ]
+}

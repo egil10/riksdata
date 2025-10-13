@@ -1,0 +1,58 @@
+{
+  "metadata": {
+    "country": "Marshall Islands",
+    "country_code": "MH",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2006,
+      "value": 166012000.0
+    },
+    {
+      "year": 2007,
+      "value": 126719.0
+    },
+    {
+      "year": 2011,
+      "value": 6092.0
+    },
+    {
+      "year": 2012,
+      "value": 12566.0
+    },
+    {
+      "year": 2016,
+      "value": 110621000.0
+    },
+    {
+      "year": 2017,
+      "value": 1841000.0
+    },
+    {
+      "year": 2018,
+      "value": 90956000.0
+    },
+    {
+      "year": 2020,
+      "value": 463932297.0
+    },
+    {
+      "year": 2021,
+      "value": 286694541.0
+    },
+    {
+      "year": 2022,
+      "value": 28814.0
+    },
+    {
+      "year": 2023,
+      "value": 576202263.0
+    },
+    {
+      "year": 2024,
+      "value": 693360000.0
+    }
+  ]
+}

@@ -6,7 +6,7 @@
 export const chartConfigs = [
     // === SSB CHARTS (ALL 125 FILES) ===
     // Core Economic Indicators
-    { id: 'cpi-chart', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', title: 'Consumer Price Index' },
+    // REMOVED: Duplicate - using cached version below with drill-down support
     { id: 'unemployment-chart', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Unemployment Rate', subtitle: 'Percentage' },
     { id: 'house-prices-chart', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Price Index' },
     { id: 'producer-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index' },
@@ -190,11 +190,7 @@ export const chartConfigs = [
     { id: 'obx-chart', url: './data/cached/oslo-indices/obx.json', title: 'OBX - Oslo Børs Total Return Index', subtitle: 'Index Value', type: 'line' },
     
     // === OIL FUND ===
-    { id: 'oil-fund-chart', url: './data/cached/oil-fund.json', title: 'Oil Fund Total Market Value', subtitle: 'Billion NOK', type: 'line' },
-    { id: 'oil-fund-fixed-income-chart', url: './data/cached/oil-fund-fixed-income.json', title: 'Oil Fund Fixed Income', subtitle: 'Billion NOK', type: 'line' },
-    { id: 'oil-fund-equities-chart', url: './data/cached/oil-fund-equities.json', title: 'Oil Fund Equities', subtitle: 'Billion NOK', type: 'line' },
-    { id: 'oil-fund-real-estate-chart', url: './data/cached/oil-fund-real-estate.json', title: 'Oil Fund Real Estate', subtitle: 'Billion NOK', type: 'line' },
-    { id: 'oil-fund-renewable-infrastructure-chart', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Oil Fund Renewable Infrastructure', subtitle: 'Billion NOK', type: 'line' },
+    // REMOVED: Individual charts moved to drill-down (see below)
     
     // === NVE RESERVOIR STATISTICS (Split by Area) ===
     { id: 'nve-norge-reservoir-chart', url: './data/cached/nve/norge-reservoir.json', title: 'NVE Reservoir Fill - Norge (Total)', subtitle: 'Magasinfylling %', type: 'line' },
@@ -205,70 +201,26 @@ export const chartConfigs = [
     { id: 'nve-no5-reservoir-chart', url: './data/cached/nve/no5-reservoir.json', title: 'NVE Reservoir Fill - NO5 (Nord-Norge)', subtitle: 'Magasinfylling %', type: 'line' },
     { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill', subtitle: 'Percent', type: 'line' },
     
-    // === SSB EXPORT BY COUNTRY (Top Trading Partners) ===
-    { id: 'export-gb-chart', url: './data/cached/ssb/export-by-country/export-gb.json', title: 'Norwegian Exports to United Kingdom', subtitle: 'NOK', type: 'line' },
-    { id: 'export-de-chart', url: './data/cached/ssb/export-by-country/export-de.json', title: 'Norwegian Exports to Germany', subtitle: 'NOK', type: 'line' },
-    { id: 'export-us-chart', url: './data/cached/ssb/export-by-country/export-us.json', title: 'Norwegian Exports to USA', subtitle: 'NOK', type: 'line' },
-    { id: 'export-nl-chart', url: './data/cached/ssb/export-by-country/export-nl.json', title: 'Norwegian Exports to Netherlands', subtitle: 'NOK', type: 'line' },
-    { id: 'export-fr-chart', url: './data/cached/ssb/export-by-country/export-fr.json', title: 'Norwegian Exports to France', subtitle: 'NOK', type: 'line' },
-    { id: 'export-se-chart', url: './data/cached/ssb/export-by-country/export-se.json', title: 'Norwegian Exports to Sweden', subtitle: 'NOK', type: 'line' },
-    { id: 'export-dk-chart', url: './data/cached/ssb/export-by-country/export-dk.json', title: 'Norwegian Exports to Denmark', subtitle: 'NOK', type: 'line' },
-    { id: 'export-cn-chart', url: './data/cached/ssb/export-by-country/export-cn.json', title: 'Norwegian Exports to China', subtitle: 'NOK', type: 'line' },
-    { id: 'export-pl-chart', url: './data/cached/ssb/export-by-country/export-pl.json', title: 'Norwegian Exports to Poland', subtitle: 'NOK', type: 'line' },
-    { id: 'export-be-chart', url: './data/cached/ssb/export-by-country/export-be.json', title: 'Norwegian Exports to Belgium', subtitle: 'NOK', type: 'line' },
-    { id: 'export-es-chart', url: './data/cached/ssb/export-by-country/export-es.json', title: 'Norwegian Exports to Spain', subtitle: 'NOK', type: 'line' },
-    { id: 'export-it-chart', url: './data/cached/ssb/export-by-country/export-it.json', title: 'Norwegian Exports to Italy', subtitle: 'NOK', type: 'line' },
-    { id: 'export-fi-chart', url: './data/cached/ssb/export-by-country/export-fi.json', title: 'Norwegian Exports to Finland', subtitle: 'NOK', type: 'line' },
-    { id: 'export-jp-chart', url: './data/cached/ssb/export-by-country/export-jp.json', title: 'Norwegian Exports to Japan', subtitle: 'NOK', type: 'line' },
-    { id: 'export-kr-chart', url: './data/cached/ssb/export-by-country/export-kr.json', title: 'Norwegian Exports to South Korea', subtitle: 'NOK', type: 'line' },
-    { id: 'export-br-chart', url: './data/cached/ssb/export-by-country/export-br.json', title: 'Norwegian Exports to Brazil', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ca-chart', url: './data/cached/ssb/export-by-country/export-ca.json', title: 'Norwegian Exports to Canada', subtitle: 'NOK', type: 'line' },
-    { id: 'export-au-chart', url: './data/cached/ssb/export-by-country/export-au.json', title: 'Norwegian Exports to Australia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-in-chart', url: './data/cached/ssb/export-by-country/export-in.json', title: 'Norwegian Exports to India', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ru-chart', url: './data/cached/ssb/export-by-country/export-ru.json', title: 'Norwegian Exports to Russia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-tr-chart', url: './data/cached/ssb/export-by-country/export-tr.json', title: 'Norwegian Exports to Türkiye', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ch-chart', url: './data/cached/ssb/export-by-country/export-ch.json', title: 'Norwegian Exports to Switzerland', subtitle: 'NOK', type: 'line' },
-    { id: 'export-at-chart', url: './data/cached/ssb/export-by-country/export-at.json', title: 'Norwegian Exports to Austria', subtitle: 'NOK', type: 'line' },
-    { id: 'export-pt-chart', url: './data/cached/ssb/export-by-country/export-pt.json', title: 'Norwegian Exports to Portugal', subtitle: 'NOK', type: 'line' },
-    { id: 'export-gr-chart', url: './data/cached/ssb/export-by-country/export-gr.json', title: 'Norwegian Exports to Greece', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ie-chart', url: './data/cached/ssb/export-by-country/export-ie.json', title: 'Norwegian Exports to Ireland', subtitle: 'NOK', type: 'line' },
-    { id: 'export-cz-chart', url: './data/cached/ssb/export-by-country/export-cz.json', title: 'Norwegian Exports to Czechia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ro-chart', url: './data/cached/ssb/export-by-country/export-ro.json', title: 'Norwegian Exports to Romania', subtitle: 'NOK', type: 'line' },
-    { id: 'export-hu-chart', url: './data/cached/ssb/export-by-country/export-hu.json', title: 'Norwegian Exports to Hungary', subtitle: 'NOK', type: 'line' },
-    { id: 'export-no-chart', url: './data/cached/ssb/export-by-country/export-bg.json', title: 'Norwegian Exports to Bulgaria', subtitle: 'NOK', type: 'line' },
-    { id: 'export-sk-chart', url: './data/cached/ssb/export-by-country/export-sk.json', title: 'Norwegian Exports to Slovakia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-hr-chart', url: './data/cached/ssb/export-by-country/export-hr.json', title: 'Norwegian Exports to Croatia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-lt-chart', url: './data/cached/ssb/export-by-country/export-lt.json', title: 'Norwegian Exports to Lithuania', subtitle: 'NOK', type: 'line' },
-    { id: 'export-lv-chart', url: './data/cached/ssb/export-by-country/export-lv.json', title: 'Norwegian Exports to Latvia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ee-chart', url: './data/cached/ssb/export-by-country/export-ee.json', title: 'Norwegian Exports to Estonia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-si-chart', url: './data/cached/ssb/export-by-country/export-si.json', title: 'Norwegian Exports to Slovenia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-is-chart', url: './data/cached/ssb/export-by-country/export-is.json', title: 'Norwegian Exports to Iceland', subtitle: 'NOK', type: 'line' },
-    { id: 'export-gl-chart', url: './data/cached/ssb/export-by-country/export-gl.json', title: 'Norwegian Exports to Greenland', subtitle: 'NOK', type: 'line' },
-    { id: 'export-fo-chart', url: './data/cached/ssb/export-by-country/export-fo.json', title: 'Norwegian Exports to Faroe Islands', subtitle: 'NOK', type: 'line' },
-    { id: 'export-sg-chart', url: './data/cached/ssb/export-by-country/export-sg.json', title: 'Norwegian Exports to Singapore', subtitle: 'NOK', type: 'line' },
-    { id: 'export-th-chart', url: './data/cached/ssb/export-by-country/export-th.json', title: 'Norwegian Exports to Thailand', subtitle: 'NOK', type: 'line' },
-    { id: 'export-vn-chart', url: './data/cached/ssb/export-by-country/export-vn.json', title: 'Norwegian Exports to Vietnam', subtitle: 'NOK', type: 'line' },
-    { id: 'export-id-chart', url: './data/cached/ssb/export-by-country/export-id.json', title: 'Norwegian Exports to Indonesia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-my-chart', url: './data/cached/ssb/export-by-country/export-my.json', title: 'Norwegian Exports to Malaysia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ph-chart', url: './data/cached/ssb/export-by-country/export-ph.json', title: 'Norwegian Exports to Philippines', subtitle: 'NOK', type: 'line' },
-    { id: 'export-tw-chart', url: './data/cached/ssb/export-by-country/export-tw.json', title: 'Norwegian Exports to Taiwan', subtitle: 'NOK', type: 'line' },
-    { id: 'export-hk-chart', url: './data/cached/ssb/export-by-country/export-hk.json', title: 'Norwegian Exports to Hong Kong', subtitle: 'NOK', type: 'line' },
-    { id: 'export-nz-chart', url: './data/cached/ssb/export-by-country/export-nz.json', title: 'Norwegian Exports to New Zealand', subtitle: 'NOK', type: 'line' },
-    { id: 'export-za-chart', url: './data/cached/ssb/export-by-country/export-za.json', title: 'Norwegian Exports to South Africa', subtitle: 'NOK', type: 'line' },
-    { id: 'export-eg-chart', url: './data/cached/ssb/export-by-country/export-eg.json', title: 'Norwegian Exports to Egypt', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ng-chart', url: './data/cached/ssb/export-by-country/export-ng.json', title: 'Norwegian Exports to Nigeria', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ae-chart', url: './data/cached/ssb/export-by-country/export-ae.json', title: 'Norwegian Exports to UAE', subtitle: 'NOK', type: 'line' },
-    { id: 'export-sa-chart', url: './data/cached/ssb/export-by-country/export-sa.json', title: 'Norwegian Exports to Saudi Arabia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-il-chart', url: './data/cached/ssb/export-by-country/export-il.json', title: 'Norwegian Exports to Israel', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ar-chart', url: './data/cached/ssb/export-by-country/export-ar.json', title: 'Norwegian Exports to Argentina', subtitle: 'NOK', type: 'line' },
-    { id: 'export-cl-chart', url: './data/cached/ssb/export-by-country/export-cl.json', title: 'Norwegian Exports to Chile', subtitle: 'NOK', type: 'line' },
-    { id: 'export-mx-chart', url: './data/cached/ssb/export-by-country/export-mx.json', title: 'Norwegian Exports to Mexico', subtitle: 'NOK', type: 'line' },
-    { id: 'export-co-chart', url: './data/cached/ssb/export-by-country/export-co.json', title: 'Norwegian Exports to Colombia', subtitle: 'NOK', type: 'line' },
-    { id: 'export-pe-chart', url: './data/cached/ssb/export-by-country/export-pe.json', title: 'Norwegian Exports to Peru', subtitle: 'NOK', type: 'line' },
-    { id: 'export-ua-chart', url: './data/cached/ssb/export-by-country/export-ua.json', title: 'Norwegian Exports to Ukraine', subtitle: 'NOK', type: 'line' },
+    // === SSB EXPORT BY COUNTRY (Aggregate - drill-down available) ===
+    // Individual countries moved to drilldown-configs.js
     
     // === SSB BANKRUPTCIES BY INDUSTRY (Quarterly Data) ===
     { id: 'bankruptcies-total-chart', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-total.json', title: 'Bankruptcies - Total (All Industries)', subtitle: 'Number per quarter', type: 'line' },
+    
+    // === SSB CPI (with drill-down) ===
+    { id: 'cpi-chart', url: './data/cached/ssb/cpi.json', title: 'Consumer Price Index (CPI)', subtitle: 'Index (2015=100)', type: 'line' },
+    
+    // === SSB IMPORT BY COUNTRY (with drill-down) ===
+    { id: 'import-country-chart', url: './data/cached/ssb/import-country.json', title: 'Import by Country', subtitle: 'NOK', type: 'line' },
+    
+    // === VACCINATION COVERAGE (with drill-down) ===
+    { id: 'vaccination-chart', url: './data/cached/vaccination_hib3.json', title: 'Vaccination Coverage - Norway', subtitle: 'Hib3 (%)', type: 'line' },
+    
+    // === DFO GOVERNMENT SPENDING (with drill-down) ===
+    { id: 'dfo-total-chart', url: './data/cached/dfo/total-government-expenditure.json', title: 'Total Government Expenditure', subtitle: 'NOK', type: 'line' },
+    
+    // === OIL FUND (with drill-down) ===
+    { id: 'oil-fund-total-chart', url: './data/cached/oil-fund.json', title: 'Norwegian Oil Fund - Total Value', subtitle: 'Billion NOK', type: 'line' },
     
     // === STATNETT ELECTRICITY DATA ===
     { id: 'statnett-latest-detailed-overview-chart', url: './data/cached/statnett/latest-detailed-overview.json', title: 'Statnett Latest Detailed Overview', subtitle: 'Nåværende elektrisitetsproduksjon og forbruk', type: 'statnett-production-consumption' },

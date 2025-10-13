@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "country": "Brunei Darussalam",
+    "country_code": "BN",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 59917.0
+    },
+    {
+      "year": 2000,
+      "value": 494744.0
+    },
+    {
+      "year": 2001,
+      "value": 21802.0
+    },
+    {
+      "year": 2003,
+      "value": 1632.0
+    },
+    {
+      "year": 2005,
+      "value": 569296.0
+    },
+    {
+      "year": 2006,
+      "value": 49411.0
+    },
+    {
+      "year": 2007,
+      "value": 177073.0
+    },
+    {
+      "year": 2008,
+      "value": 34510.0
+    },
+    {
+      "year": 2010,
+      "value": 20757.0
+    },
+    {
+      "year": 2011,
+      "value": 805699.0
+    },
+    {
+      "year": 2012,
+      "value": 248034.0
+    },
+    {
+      "year": 2013,
+      "value": 15139.0
+    },
+    {
+      "year": 2014,
+      "value": 1353142.0
+    },
+    {
+      "year": 2015,
+      "value": 166320.0
+    },
+    {
+      "year": 2016,
+      "value": 50320.0
+    },
+    {
+      "year": 2017,
+      "value": 23622075.0
+    },
+    {
+      "year": 2018,
+      "value": 69207.0
+    },
+    {
+      "year": 2019,
+      "value": 2720457.0
+    },
+    {
+      "year": 2020,
+      "value": 95000.0
+    },
+    {
+      "year": 2021,
+      "value": 39582.0
+    },
+    {
+      "year": 2022,
+      "value": 498099.0
+    },
+    {
+      "year": 2023,
+      "value": 9513.0
+    },
+    {
+      "year": 2024,
+      "value": 1525857.0
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "metadata": {
+    "country": "Holy See",
+    "country_code": "VA",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 59561.0
+    },
+    {
+      "year": 2002,
+      "value": 71617.0
+    },
+    {
+      "year": 2024,
+      "value": 19332.0
+    }
+  ]
+}

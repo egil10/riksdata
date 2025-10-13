@@ -1,0 +1,66 @@
+{
+  "metadata": {
+    "country": "Curacao (2011-)",
+    "country_code": "CW",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2011,
+      "value": 2046240.0
+    },
+    {
+      "year": 2012,
+      "value": 49679.0
+    },
+    {
+      "year": 2013,
+      "value": 3189010.0
+    },
+    {
+      "year": 2014,
+      "value": 648762.0
+    },
+    {
+      "year": 2015,
+      "value": 281869.0
+    },
+    {
+      "year": 2016,
+      "value": 2613312.0
+    },
+    {
+      "year": 2017,
+      "value": 2160990.0
+    },
+    {
+      "year": 2018,
+      "value": 925949.0
+    },
+    {
+      "year": 2019,
+      "value": 516469.0
+    },
+    {
+      "year": 2020,
+      "value": 1405074.0
+    },
+    {
+      "year": 2021,
+      "value": 80914513.0
+    },
+    {
+      "year": 2022,
+      "value": 667153.0
+    },
+    {
+      "year": 2023,
+      "value": 1059513.0
+    },
+    {
+      "year": 2024,
+      "value": 4992442.0
+    }
+  ]
+}

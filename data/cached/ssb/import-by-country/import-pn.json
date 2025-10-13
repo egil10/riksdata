@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "country": "Pitcairn",
+    "country_code": "PN",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2000,
+      "value": 491994.0
+    }
+  ]
+}

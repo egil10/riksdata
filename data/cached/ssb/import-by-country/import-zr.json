@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "country": "Zaire (-1997)",
+    "country_code": "ZR",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1996,
+      "value": 82151046.0
+    },
+    {
+      "year": 1997,
+      "value": 28839463.0
+    }
+  ]
+}

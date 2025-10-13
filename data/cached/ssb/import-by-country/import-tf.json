@@ -1,0 +1,78 @@
+{
+  "metadata": {
+    "country": "French Southern Territories",
+    "country_code": "TF",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 168440000.0
+    },
+    {
+      "year": 2004,
+      "value": 16640.0
+    },
+    {
+      "year": 2005,
+      "value": 184569.0
+    },
+    {
+      "year": 2006,
+      "value": 204084.0
+    },
+    {
+      "year": 2007,
+      "value": 291027.0
+    },
+    {
+      "year": 2008,
+      "value": 259939.0
+    },
+    {
+      "year": 2009,
+      "value": 263544.0
+    },
+    {
+      "year": 2010,
+      "value": 195765.0
+    },
+    {
+      "year": 2011,
+      "value": 131530.0
+    },
+    {
+      "year": 2012,
+      "value": 140506.0
+    },
+    {
+      "year": 2013,
+      "value": 25221.0
+    },
+    {
+      "year": 2014,
+      "value": 6066.0
+    },
+    {
+      "year": 2015,
+      "value": 3201.0
+    },
+    {
+      "year": 2021,
+      "value": 2716.0
+    },
+    {
+      "year": 2022,
+      "value": 4419.0
+    },
+    {
+      "year": 2023,
+      "value": 6427.0
+    },
+    {
+      "year": 2024,
+      "value": 205582.0
+    }
+  ]
+}

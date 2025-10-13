@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "country": "South Sudan (2012-)",
+    "country_code": "SS",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 2015,
+      "value": 47123.0
+    },
+    {
+      "year": 2016,
+      "value": 118842.0
+    },
+    {
+      "year": 2017,
+      "value": 70917.0
+    },
+    {
+      "year": 2018,
+      "value": 6878.0
+    },
+    {
+      "year": 2019,
+      "value": 8161.0
+    },
+    {
+      "year": 2021,
+      "value": 5683.0
+    },
+    {
+      "year": 2022,
+      "value": 121951.0
+    }
+  ]
+}

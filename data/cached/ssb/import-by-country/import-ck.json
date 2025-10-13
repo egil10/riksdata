@@ -1,0 +1,74 @@
+{
+  "metadata": {
+    "country": "Cook Islands",
+    "country_code": "CK",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 4174.0
+    },
+    {
+      "year": 2002,
+      "value": 108361.0
+    },
+    {
+      "year": 2003,
+      "value": 97608.0
+    },
+    {
+      "year": 2004,
+      "value": 88026.0
+    },
+    {
+      "year": 2005,
+      "value": 73875.0
+    },
+    {
+      "year": 2006,
+      "value": 79527.0
+    },
+    {
+      "year": 2007,
+      "value": 17073474.0
+    },
+    {
+      "year": 2008,
+      "value": 39732885.0
+    },
+    {
+      "year": 2009,
+      "value": 79985.0
+    },
+    {
+      "year": 2010,
+      "value": 32963.0
+    },
+    {
+      "year": 2012,
+      "value": 37901.0
+    },
+    {
+      "year": 2013,
+      "value": 66482.0
+    },
+    {
+      "year": 2015,
+      "value": 26308.0
+    },
+    {
+      "year": 2022,
+      "value": 221108.0
+    },
+    {
+      "year": 2023,
+      "value": 4000000.0
+    },
+    {
+      "year": 2024,
+      "value": 1989.0
+    }
+  ]
+}

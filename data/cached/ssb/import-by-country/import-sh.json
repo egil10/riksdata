@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "country": "Saint Helena, Ascension and Tristan da Cunha",
+    "country_code": "SH",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1998,
+      "value": 51105.0
+    },
+    {
+      "year": 2006,
+      "value": 7340.0
+    }
+  ]
+}

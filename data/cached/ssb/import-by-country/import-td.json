@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "country": "Chad",
+    "country_code": "TD",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 7550.0
+    },
+    {
+      "year": 2001,
+      "value": 2900.0
+    },
+    {
+      "year": 2005,
+      "value": 3013.0
+    },
+    {
+      "year": 2006,
+      "value": 9809.0
+    },
+    {
+      "year": 2007,
+      "value": 940599.0
+    },
+    {
+      "year": 2010,
+      "value": 1266.0
+    },
+    {
+      "year": 2011,
+      "value": 48275.0
+    },
+    {
+      "year": 2012,
+      "value": 10319.0
+    },
+    {
+      "year": 2015,
+      "value": 2409450.0
+    },
+    {
+      "year": 2016,
+      "value": 83822.0
+    },
+    {
+      "year": 2017,
+      "value": 326861.0
+    },
+    {
+      "year": 2018,
+      "value": 33999.0
+    },
+    {
+      "year": 2019,
+      "value": 42579.0
+    },
+    {
+      "year": 2020,
+      "value": 1366.0
+    },
+    {
+      "year": 2021,
+      "value": 7068.0
+    },
+    {
+      "year": 2022,
+      "value": 26898.0
+    },
+    {
+      "year": 2023,
+      "value": 573037.0
+    },
+    {
+      "year": 2024,
+      "value": 55117.0
+    }
+  ]
+}

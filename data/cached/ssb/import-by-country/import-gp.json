@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "country": "Guadeloupe",
+    "country_code": "GP",
+    "source": "SSB",
+    "url": "https://data.ssb.no/api/v0/dataset/1132.json?lang=en"
+  },
+  "data": [
+    {
+      "year": 1997,
+      "value": 259405.0
+    },
+    {
+      "year": 1998,
+      "value": 3162.0
+    },
+    {
+      "year": 1999,
+      "value": 16408.0
+    },
+    {
+      "year": 2000,
+      "value": 8570.0
+    },
+    {
+      "year": 2001,
+      "value": 174221.0
+    },
+    {
+      "year": 2015,
+      "value": 1725070.0
+    },
+    {
+      "year": 2019,
+      "value": 6851.0
+    },
+    {
+      "year": 2022,
+      "value": 11847.0
+    }
+  ]
+}

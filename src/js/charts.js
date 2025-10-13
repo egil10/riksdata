@@ -407,6 +407,9 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 } else if (apiUrl.includes('ssb/export-by-country/export-')) {
                     // Handle SSB export-by-country data files
                     parsedData = parseSSBExportCountryData(data);
+                } else if (apiUrl.includes('ssb/import-by-country/import-')) {
+                    // Handle SSB import-by-country data files (same format as exports)
+                    parsedData = parseSSBExportCountryData(data);
                 } else if (apiUrl.includes('ssb/bankruptcies-by-industry/bankruptcies-')) {
                     // Handle SSB bankruptcies-by-industry data files
                     parsedData = parseSSBBankruptciesData(data);

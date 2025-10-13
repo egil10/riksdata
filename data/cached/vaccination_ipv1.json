@@ -1,0 +1,53 @@
+{
+  "dataset": "vaccination-ipv1",
+  "country": "Norway",
+  "metadata": {
+    "title": "IPV1 (Inactivated Polio Vaccine)",
+    "unit": "%",
+    "description": "Vaccination coverage for IPV1 (Inactivated Polio Vaccine)",
+    "source": "WHO & UNICEF (2025)",
+    "retrieved": "2025-08-21"
+  },
+  "data": [
+    {
+      "Year": 2015,
+      "value": 99
+    },
+    {
+      "Year": 2016,
+      "value": 99
+    },
+    {
+      "Year": 2017,
+      "value": 99
+    },
+    {
+      "Year": 2018,
+      "value": 99
+    },
+    {
+      "Year": 2019,
+      "value": 99
+    },
+    {
+      "Year": 2020,
+      "value": 98
+    },
+    {
+      "Year": 2021,
+      "value": 98
+    },
+    {
+      "Year": 2022,
+      "value": 98
+    },
+    {
+      "Year": 2023,
+      "value": 99
+    },
+    {
+      "Year": 2024,
+      "value": 99
+    }
+  ]
+}

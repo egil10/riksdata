@@ -3,33 +3,65 @@
   "description": "Real estate investments in the Norwegian Oil Fund (Government Pension Fund Global)",
   "source": "Norges Bank",
   "data": [
-    {"year": 1998, "total": 0},
-    {"year": 1999, "total": 0},
-    {"year": 2000, "total": 0},
-    {"year": 2001, "total": 0},
-    {"year": 2002, "total": 0},
-    {"year": 2003, "total": 0},
-    {"year": 2004, "total": 0},
-    {"year": 2005, "total": 0},
-    {"year": 2006, "total": 0},
-    {"year": 2007, "total": 0},
-    {"year": 2008, "total": 0},
-    {"year": 2009, "total": 0},
-    {"year": 2010, "total": 0},
-    {"year": 2011, "total": 11},
-    {"year": 2012, "total": 25},
-    {"year": 2013, "total": 52},
-    {"year": 2014, "total": 141},
-    {"year": 2015, "total": 235},
-    {"year": 2016, "total": 242},
-    {"year": 2017, "total": 219},
-    {"year": 2018, "total": 246},
-    {"year": 2019, "total": 273},
-    {"year": 2020, "total": 273},
-    {"year": 2021, "total": 312},
-    {"year": 2022, "total": 330},
-    {"year": 2023, "total": 301},
-    {"year": 2024, "total": 364},
-    {"year": 2025, "total": 365}
+    {
+      "Year": 2011,
+      "value": 11
+    },
+    {
+      "Year": 2012,
+      "value": 25
+    },
+    {
+      "Year": 2013,
+      "value": 52
+    },
+    {
+      "Year": 2014,
+      "value": 141
+    },
+    {
+      "Year": 2015,
+      "value": 235
+    },
+    {
+      "Year": 2016,
+      "value": 242
+    },
+    {
+      "Year": 2017,
+      "value": 219
+    },
+    {
+      "Year": 2018,
+      "value": 246
+    },
+    {
+      "Year": 2019,
+      "value": 273
+    },
+    {
+      "Year": 2020,
+      "value": 273
+    },
+    {
+      "Year": 2021,
+      "value": 312
+    },
+    {
+      "Year": 2022,
+      "value": 330
+    },
+    {
+      "Year": 2023,
+      "value": 301
+    },
+    {
+      "Year": 2024,
+      "value": 364
+    },
+    {
+      "Year": 2025,
+      "value": 365
+    }
   ]
 }

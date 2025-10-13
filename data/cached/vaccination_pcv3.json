@@ -1,0 +1,81 @@
+{
+  "dataset": "vaccination-pcv3",
+  "country": "Norway",
+  "metadata": {
+    "title": "PCV3 (Pneumococcal)",
+    "unit": "%",
+    "description": "Vaccination coverage for PCV3 (Pneumococcal)",
+    "source": "WHO & UNICEF (2025)",
+    "retrieved": "2025-08-21"
+  },
+  "data": [
+    {
+      "Year": 2008,
+      "value": 86
+    },
+    {
+      "Year": 2009,
+      "value": 91
+    },
+    {
+      "Year": 2010,
+      "value": 91
+    },
+    {
+      "Year": 2011,
+      "value": 92
+    },
+    {
+      "Year": 2012,
+      "value": 93
+    },
+    {
+      "Year": 2013,
+      "value": 93
+    },
+    {
+      "Year": 2014,
+      "value": 91
+    },
+    {
+      "Year": 2015,
+      "value": 93
+    },
+    {
+      "Year": 2016,
+      "value": 94
+    },
+    {
+      "Year": 2017,
+      "value": 94
+    },
+    {
+      "Year": 2018,
+      "value": 94
+    },
+    {
+      "Year": 2019,
+      "value": 95
+    },
+    {
+      "Year": 2020,
+      "value": 96
+    },
+    {
+      "Year": 2021,
+      "value": 96
+    },
+    {
+      "Year": 2022,
+      "value": 95
+    },
+    {
+      "Year": 2023,
+      "value": 95
+    },
+    {
+      "Year": 2024,
+      "value": 95
+    }
+  ]
+}

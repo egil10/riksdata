@@ -1,0 +1,37 @@
+{
+  "dataset": "vaccination-hepb3",
+  "country": "Norway",
+  "metadata": {
+    "title": "HepB3 (Hepatitis B)",
+    "unit": "%",
+    "description": "Vaccination coverage for HepB3 (Hepatitis B)",
+    "source": "WHO & UNICEF (2025)",
+    "retrieved": "2025-08-21"
+  },
+  "data": [
+    {
+      "Year": 2019,
+      "value": 96
+    },
+    {
+      "Year": 2020,
+      "value": 97
+    },
+    {
+      "Year": 2021,
+      "value": 96
+    },
+    {
+      "Year": 2022,
+      "value": 96
+    },
+    {
+      "Year": 2023,
+      "value": 96
+    },
+    {
+      "Year": 2024,
+      "value": 96
+    }
+  ]
+}

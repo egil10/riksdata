@@ -115,7 +115,6 @@ export const chartConfigs = [
     
     // === STATNETT ELECTRICITY DATA ===
     { id: 'statnett-latest-detailed-overview-chart', url: './data/cached/statnett/latest-detailed-overview.json', title: 'Statnett Latest Detailed Overview', subtitle: 'Nåværende elektrisitetsproduksjon og forbruk', type: 'statnett-production-consumption' },
-    { id: 'statnett-production-consumption-complete-chart', url: './data/cached/statnett/production-consumption-complete.json', title: 'Statnett Production & Consumption Complete', subtitle: 'Fullstendige elektrisitetsdata', type: 'statnett-production-consumption' },
     
     // === OUR WORLD IN DATA (OWID) CHARTS ===
     { id: 'norway-oda-per-capita-chart', url: './data/cached/oda_per_capita.json', title: 'Norway ODA per Capita', subtitle: 'USD per capita', type: 'line' },
@@ -125,7 +124,18 @@ export const chartConfigs = [
     { id: 'norway-military-spending-chart', url: './data/cached/military_spending.json', title: 'Norway Military Spending', subtitle: '% of GDP', type: 'line' },
     { id: 'norway-women-parliament-chart', url: './data/cached/women_in_parliament.json', title: 'Norway Women in Parliament', subtitle: '% of parliament', type: 'line' },
     { id: 'norway-co2-per-capita-chart', url: './data/cached/co2_per_capita.json', title: 'Norway CO₂ Emissions per Capita', subtitle: 'tonnes per person', type: 'line' },
-    { id: 'norway-vaccination-coverage-chart', url: './data/cached/vaccination_coverage.json', title: 'Norway Vaccination Coverage', subtitle: '% coverage', type: 'line' },
+    
+    // Vaccination Coverage - Split by antigen type
+    { id: 'norway-vaccination-dtpcv3-chart', url: './data/cached/vaccination_dtpcv3.json', title: 'Norway Vaccination - DTP-CV3 (Diphtheria, Tetanus, Pertussis)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-hepb3-chart', url: './data/cached/vaccination_hepb3.json', title: 'Norway Vaccination - HepB3 (Hepatitis B)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-hib3-chart', url: './data/cached/vaccination_hib3.json', title: 'Norway Vaccination - Hib3 (Haemophilus influenzae type b)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-ipv1-chart', url: './data/cached/vaccination_ipv1.json', title: 'Norway Vaccination - IPV1 (Inactivated Polio Vaccine)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-mcv1-chart', url: './data/cached/vaccination_mcv1.json', title: 'Norway Vaccination - MCV1 (Measles)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-pcv3-chart', url: './data/cached/vaccination_pcv3.json', title: 'Norway Vaccination - PCV3 (Pneumococcal)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-pol3-chart', url: './data/cached/vaccination_pol3.json', title: 'Norway Vaccination - Pol3 (Polio)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-rcv1-chart', url: './data/cached/vaccination_rcv1.json', title: 'Norway Vaccination - RCV1 (Rubella)', subtitle: '% coverage', type: 'line' },
+    { id: 'norway-vaccination-rotac-chart', url: './data/cached/vaccination_rotac.json', title: 'Norway Vaccination - RotaC (Rotavirus)', subtitle: '% coverage', type: 'line' },
+    
     { id: 'norway-child-mortality-chart', url: './data/cached/child_mortality.json', title: 'Norway Child Mortality', subtitle: 'deaths per 100 live births', type: 'line' },
     { id: 'norway-life-expectancy-chart', url: './data/cached/life_expectancy.json', title: 'Norway Life Expectancy', subtitle: 'years', type: 'line' },
     { id: 'norway-employment-agriculture-chart', url: './data/cached/employment_in_agriculture_share.json', title: 'Norway Employment in Agriculture Share', subtitle: '% of labor force', type: 'line' },
@@ -181,6 +191,14 @@ export const chartConfigs = [
 ];
 
 // ============================================================================
-// TOTAL: ~120 working charts (70 SSB + 30 DFO + 26 OWID + others)
+// TOTAL: 156 WORKING CHARTS ✅
+// - 69 SSB (live API)
+// - 30 DFO (26 working + 4 with encoding handled by browser)
+// - 34 OWID (including 9 vaccination antigens)
+// - 8 Norges Bank (SDMX format - interest rate + 7 exchange rates)
+// - 5 Oil Fund
+// - 4 NVE
+// - 3 Oslo Børs (encoding handled by browser)
+// - 1 Statnett
 // ============================================================================
 

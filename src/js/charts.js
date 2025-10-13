@@ -401,7 +401,10 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 parsedData = result.parsedData;
             } else if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/') || apiUrl.startsWith('./data/') || apiUrl.startsWith('data/')) {
                 // Handle static data files
-                if (apiUrl.includes('oseax-osebx.json') || apiUrl.includes('oslo-indices/')) {
+                if (apiUrl.includes('nve/') && apiUrl.includes('-reservoir.json')) {
+                    // Handle NVE reservoir data files (split by area)
+                    parsedData = parseNVEReservoirData(data);
+                } else if (apiUrl.includes('oseax-osebx.json') || apiUrl.includes('oslo-indices/')) {
                     // Handle Oslo indices data with new format
                     parsedData = parseOsloIndicesData(data, chartTitle);
                 } else if (apiUrl.includes('exchange-rates/')) {
@@ -2056,6 +2059,37 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     window.chartInstances[canvas.id] = canvas.chart;
 
 
+}
+
+/**
+ * Parse NVE reservoir data with ISO weeks
+ * @param {Object} data - NVE data object with year, week, fillPct
+ * @returns {Array<{date: Date, value: number}>} Parsed data points
+ */
+export function parseNVEReservoirData(data) {
+    try {
+        const rows = Array.isArray(data) ? data : (Array.isArray(data?.data) ? data.data : []);
+        if (!rows.length) return [];
+
+        // Convert ISO week to date and extract fillPct
+        const parsedData = rows
+            .map(item => {
+                if (!item.year || !item.week || item.fillPct === undefined) return null;
+                
+                // Convert ISO week to date (Monday of that week)
+                const date = isoWeekToDate(item.year, item.week);
+                const value = Number(item.fillPct);
+                
+                return { date, value };
+            })
+            .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
+            .sort((a, b) => a.date - b.date);
+
+        return parsedData;
+    } catch (error) {
+        console.error('Error parsing NVE reservoir data:', error);
+        return [];
+    }
 }
 
 /**

@@ -196,10 +196,13 @@ export const chartConfigs = [
     { id: 'oil-fund-real-estate-chart', url: './data/cached/oil-fund-real-estate.json', title: 'Oil Fund Real Estate', subtitle: 'Billion NOK', type: 'line' },
     { id: 'oil-fund-renewable-infrastructure-chart', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Oil Fund Renewable Infrastructure', subtitle: 'Billion NOK', type: 'line' },
     
-    // === NVE RESERVOIR STATISTICS ===
-    { id: 'nve-all-series-chart', url: './data/cached/nve/all-series.json', title: 'NVE Reservoir Statistics - All Series', subtitle: 'Magasinfyllingsgrad etter område', type: 'nve-reservoir' },
-    { id: 'nve-areas-chart', url: './data/cached/nve/areas.json', title: 'NVE Reservoir Statistics - Areas', subtitle: 'Magasinstatistikk etter område', type: 'nve-reservoir' },
-    { id: 'nve-min-max-median-chart', url: './data/cached/nve/min-max-median.json', title: 'NVE Reservoir Statistics - Min/Max/Median', subtitle: 'Magasinstatistikk sammendrag', type: 'nve-reservoir' },
+    // === NVE RESERVOIR STATISTICS (Split by Area) ===
+    { id: 'nve-norge-reservoir-chart', url: './data/cached/nve/norge-reservoir.json', title: 'NVE Reservoir Fill - Norge (Total)', subtitle: 'Magasinfylling %', type: 'line' },
+    { id: 'nve-no1-reservoir-chart', url: './data/cached/nve/no1-reservoir.json', title: 'NVE Reservoir Fill - NO1 (Østlandet)', subtitle: 'Magasinfylling %', type: 'line' },
+    { id: 'nve-no2-reservoir-chart', url: './data/cached/nve/no2-reservoir.json', title: 'NVE Reservoir Fill - NO2 (Sørlandet)', subtitle: 'Magasinfylling %', type: 'line' },
+    { id: 'nve-no3-reservoir-chart', url: './data/cached/nve/no3-reservoir.json', title: 'NVE Reservoir Fill - NO3 (Vestlandet)', subtitle: 'Magasinfylling %', type: 'line' },
+    { id: 'nve-no4-reservoir-chart', url: './data/cached/nve/no4-reservoir.json', title: 'NVE Reservoir Fill - NO4 (Trøndelag)', subtitle: 'Magasinfylling %', type: 'line' },
+    { id: 'nve-no5-reservoir-chart', url: './data/cached/nve/no5-reservoir.json', title: 'NVE Reservoir Fill - NO5 (Nord-Norge)', subtitle: 'Magasinfylling %', type: 'line' },
     { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill', subtitle: 'Percent', type: 'line' },
     
     // === STATNETT ELECTRICITY DATA ===
@@ -280,13 +283,13 @@ export const chartConfigs = [
 ];
 
 // ============================================================================
-// TOTAL: 260+ WORKING CHARTS ✅
+// TOTAL: 263 WORKING CHARTS ✅
 // - 176 SSB (cached data from 125 unique files)
 // - 30 DFO (Norwegian Government Department Budgets 2014-2024)
 // - 34 OWID (including 9 vaccination antigens)
 // - 8 Norges Bank (SDMX format - interest rate + 7 exchange rates)
+// - 7 NVE (6 reservoir areas + 1 annual fill)
 // - 5 Oil Fund (Total, Fixed Income, Equities, Real Estate, Renewable)
-// - 4 NVE (Reservoir Statistics)
 // - 3 Oslo Børs (OSEAX, OSEBX, OBX)
 // - 1 Statnett (Electricity Production & Consumption)
 // ============================================================================

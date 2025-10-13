@@ -4,64 +4,34 @@
 // Metadata (subtitle, sourceUrl, sourceName) is auto-inferred from URL in main.js
 
 export const chartConfigs = [
-    // === SSB CHARTS (WORKING) ===
+    // === SSB CHARTS (ALL 125 FILES) ===
+    // Core Economic Indicators
     { id: 'cpi-chart', url: 'https://data.ssb.no/api/v0/dataset/1086.json?lang=en', title: 'Consumer Price Index' },
     { id: 'unemployment-chart', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Unemployment Rate', subtitle: 'Percentage' },
     { id: 'house-prices-chart', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Price Index' },
     { id: 'producer-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index' },
     { id: 'wage-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
     { id: 'population-growth-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Growth', subtitle: 'Annual %' },
+    
+    // Construction & Housing
     { id: 'construction-costs-chart', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', title: 'Construction Costs' },
     { id: 'construction-cost-multi-chart', url: 'https://data.ssb.no/api/v0/dataset/1058.json?lang=en', title: 'Construction Cost Multi' },
     { id: 'construction-cost-wood-chart', url: 'https://data.ssb.no/api/v0/dataset/1056.json?lang=en', title: 'Construction Cost Wood' },
     { id: 'construction-production-index-chart', url: 'https://data.ssb.no/api/v0/dataset/924808.json?lang=en', title: 'Construction Production Index', subtitle: 'Index' },
+    { id: 'house-price-index-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/1061.json?lang=en', title: 'House Price Index Recent' },
+    { id: 'new-detached-house-prices-national-chart', url: 'https://data.ssb.no/api/v0/dataset/25151.json?lang=en', title: 'New Detached House Prices National', subtitle: 'NOK per m²' },
+    { id: 'new-dwellings-price-chart', url: 'https://data.ssb.no/api/v0/dataset/26158.json?lang=en', title: 'New Dwellings Price', subtitle: 'NOK per m²' },
+    { id: 'holiday-property-sales-chart', url: 'https://data.ssb.no/api/v0/dataset/65962.json?lang=en', title: 'Holiday Property Sales', subtitle: 'Number' },
+    
+    // Industrial & Production
     { id: 'industrial-production-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Industrial Production' },
-    { id: 'export-volume-chart', url: 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', title: 'Export Volume', subtitle: 'NOK Million' },
-    { id: 'business-confidence-chart', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', title: 'Business Confidence', subtitle: 'Index' },
-    { id: 'business-cycle-barometer-products-chart', url: 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', title: 'Business Cycle Barometer Products', subtitle: 'Index' },
-    { id: 'monetary-aggregates-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Monetary Aggregates', subtitle: 'NOK Million' },
-    { id: 'monetary-aggregate-m3-chart', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', title: 'Monetary Aggregate M3', subtitle: 'Million NOK' },
-    { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator', subtitle: 'NOK Million' },
-    { id: 'credit-indicator-k2-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', title: 'Credit Indicator K2 Detailed', subtitle: 'NOK Million' },
-    { id: 'credit-indicator-k2-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator K2 Seasonally Adjusted', subtitle: 'NOK Million' },
-    { id: 'credit-indicator-k3-chart', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator K3', subtitle: 'NOK Million' },
-    { id: 'energy-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', title: 'Energy Consumption', subtitle: 'Terajoules' },
-    { id: 'government-revenue-chart', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', title: 'Government Revenue', subtitle: 'NOK Million' },
-    { id: 'international-accounts-chart', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', title: 'International Accounts', subtitle: 'NOK Million' },
-    { id: 'labour-cost-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Labour Cost Index' },
-    { id: 'basic-salary-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', title: 'Basic Salary Index' },
-    { id: 'r-d-expenditure-chart', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', title: 'R&D Expenditure', subtitle: 'NOK Million' },
-    { id: 'salmon-export-value-chart', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', title: 'Salmon Export Value', subtitle: 'NOK Million' },
-    { id: 'oil-gas-investment-chart', url: 'https://data.ssb.no/api/v0/dataset/166334.json?lang=en', title: 'Oil & Gas Investment', subtitle: 'NOK Million' },
-    { id: 'oil-gas-industry-turnover-chart', url: 'https://data.ssb.no/api/v0/dataset/124341.json?lang=en', title: 'Oil & Gas Industry Turnover', subtitle: 'NOK Million' },
-    { id: 'oil-gas-industry-turnover-sn2007-chart', url: 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', title: 'Oil & Gas Industry Turnover SN2007', subtitle: 'NOK Million' },
-    { id: 'immigration-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', title: 'Immigration Rate', subtitle: 'Annual Count' },
-    { id: 'household-income-chart', url: 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en', title: 'Household Income', subtitle: 'Median NOK' },
-    { id: 'household-income-national-chart', url: 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', title: 'Household Income National', subtitle: 'Median NOK' },
-    { id: 'household-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', title: 'Household Consumption' },
-    { id: 'household-types-chart', url: 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', title: 'Household Types', subtitle: 'Number' },
-    { id: 'crime-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en', title: 'Crime Rate', subtitle: 'Annual Count' },
-    { id: 'education-level-chart', url: 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', title: 'Education Level', subtitle: 'Percentage' },
-    { id: 'greenhouse-gas-emissions-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Greenhouse Gas Emissions', subtitle: 'CO2 Equivalent' },
-    { id: 'economic-forecasts-chart', url: 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', title: 'Economic Forecasts', subtitle: 'GDP Growth %' },
-    { id: 'bankruptcies-total-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Bankruptcies Total', subtitle: 'Number' },
-    { id: 'immigrants-with-immigrant-parents-chart', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents', subtitle: 'Number' },
-    { id: 'tax-returns-main-items-chart', url: 'https://data.ssb.no/api/v0/dataset/49656.json?lang=en', title: 'Tax Returns Main Items', subtitle: 'NOK Million' },
-    { id: 'public-administration-expenditures-chart', url: 'https://data.ssb.no/api/v0/dataset/112175.json?lang=en', title: 'Public Administration Expenditures', subtitle: 'NOK Million' },
-    { id: 'utility-floor-space-chart', url: 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', title: 'Utility Floor Space', subtitle: 'Square meters' },
     { id: 'producer-price-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', title: 'Producer Price Industry' },
+    { id: 'production-index-by-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Production Index by Industry' },
+    { id: 'production-index-by-product-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Production Index by Product' },
+    { id: 'production-index-industry-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/26953.json?lang=en', title: 'Production Index Industry Recent' },
     
-    // CPI Charts
-    { id: 'cpi-adjusted-indices-chart', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', title: 'CPI Adjusted Indices' },
-    { id: 'cpi-group-level-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Group Level' },
-    { id: 'cpi-coicop-divisions-chart', url: 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', title: 'CPI Coicop Divisions' },
-    { id: 'cpi-delivery-sectors-chart', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', title: 'CPI Delivery Sectors' },
-    { id: 'cpi-sub-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Sub-groups' },
-    { id: 'cpi-items-chart', url: 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', title: 'CPI Items' },
-    { id: 'cpi-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/45590.json?lang=en', title: 'CPI Seasonally Adjusted' },
-    { id: 'cpi-adjusted-delivery-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/130297.json?lang=en', title: 'CPI Adjusted Delivery Sector' },
-    
-    // Trade Charts
+    // Trade & Export/Import
+    { id: 'export-volume-chart', url: 'https://data.ssb.no/api/v0/dataset/179421.json?lang=en', title: 'Export Volume', subtitle: 'NOK Million' },
     { id: 'import-value-volume-sitc-chart', url: 'https://data.ssb.no/api/v0/dataset/34640.json?lang=en', title: 'Import Value Volume SITC', subtitle: 'NOK Million' },
     { id: 'export-value-volume-sitc-chart', url: 'https://data.ssb.no/api/v0/dataset/34642.json?lang=en', title: 'Export Value Volume SITC', subtitle: 'NOK Million' },
     { id: 'import-value-volume-sitc1-chart', url: 'https://data.ssb.no/api/v0/dataset/34254.json?lang=en', title: 'Import Value Volume SITC1', subtitle: 'NOK Million' },
@@ -70,20 +40,139 @@ export const chartConfigs = [
     { id: 'export-value-sitc3-chart', url: 'https://data.ssb.no/api/v0/dataset/34643.json?lang=en', title: 'Export Value SITC3', subtitle: 'NOK Million' },
     { id: 'trade-volume-price-bec-chart', url: 'https://data.ssb.no/api/v0/dataset/179415.json?lang=en', title: 'Trade Volume Price BEC', subtitle: 'NOK Million' },
     { id: 'trade-volume-price-product-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/179417.json?lang=en', title: 'Trade Volume Price Product Groups', subtitle: 'NOK Million' },
+    { id: 'trade-volume-price-sitc2-chart', url: 'https://data.ssb.no/api/v0/dataset/179418.json?lang=en', title: 'Trade Volume Price SITC2', subtitle: 'NOK Million' },
+    { id: 'trade-main-figures-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/179419.json?lang=en', title: 'Trade Main Figures Recent', subtitle: 'NOK Million' },
+    { id: 'trade-main-figures-by-country-chart', url: 'https://data.ssb.no/api/v0/dataset/179419.json?lang=en', title: 'Trade Main Figures by Country', subtitle: 'NOK Million' },
+    { id: 'export-country-chart', url: 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', title: 'Export by Country' },
+    { id: 'import-country-chart', url: 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', title: 'Import by Country' },
+    { id: 'export-commodity-chart', url: 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en', title: 'Export by Commodity' },
+    { id: 'import-commodity-chart', url: 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', title: 'Import by Commodity' },
+    { id: 'export-by-country-monthly-chart', url: 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', title: 'Export by Country Monthly' },
+    { id: 'import-by-country-monthly-chart', url: 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', title: 'Import by Country Monthly' },
     
-    // Producer Price Index Charts
+    // Business & Confidence
+    { id: 'business-confidence-chart', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', title: 'Business Confidence', subtitle: 'Index' },
+    { id: 'business-cycle-barometer-products-chart', url: 'https://data.ssb.no/api/v0/dataset/166317.json?lang=en', title: 'Business Cycle Barometer Products', subtitle: 'Index' },
+    { id: 'business-cycle-barometer-chart', url: 'https://data.ssb.no/api/v0/dataset/166318.json?lang=en', title: 'Business Cycle Barometer', subtitle: 'Index' },
+    { id: 'consumer-confidence-chart', url: 'https://data.ssb.no/api/v0/dataset/166316.json?lang=en', title: 'Consumer Confidence', subtitle: 'Index' },
+    { id: 'bankruptcies-total-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Bankruptcies Total', subtitle: 'Number' },
+    { id: 'bankruptcies-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Bankruptcies', subtitle: 'Number' },
+    { id: 'bankruptcies-by-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Bankruptcies by Industry', subtitle: 'Number' },
+    
+    // Monetary & Credit
+    { id: 'monetary-aggregates-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Monetary Aggregates', subtitle: 'NOK Million' },
+    { id: 'monetary-m3-chart', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', title: 'Monetary Aggregate M3', subtitle: 'Million NOK' },
+    { id: 'money-supply-m0-chart', url: 'https://data.ssb.no/api/v0/dataset/172771.json?lang=en', title: 'Money Supply M0', subtitle: 'NOK Million' },
+    { id: 'money-supply-m3-net-claims-chart', url: 'https://data.ssb.no/api/v0/dataset/172800.json?lang=en', title: 'Money Supply M3 Net Claims', subtitle: 'NOK Million' },
+    { id: 'money-supply-by-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Money Supply by Sector', subtitle: 'NOK Million' },
+    { id: 'money-supply-m3-by-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', title: 'Money Supply M3 by Sector', subtitle: 'NOK Million' },
+    { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator', subtitle: 'NOK Million' },
+    { id: 'credit-indicator-k2-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', title: 'Credit Indicator K2 Detailed', subtitle: 'NOK Million' },
+    { id: 'credit-indicator-k2-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator K2 Seasonally Adjusted', subtitle: 'NOK Million' },
+    { id: 'credit-indicator-k3-chart', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator K3', subtitle: 'NOK Million' },
+    
+    // Energy & Environment
+    { id: 'energy-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', title: 'Energy Consumption', subtitle: 'Terajoules' },
+    { id: 'greenhouse-gas-emissions-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Greenhouse Gas Emissions', subtitle: 'CO2 Equivalent' },
+    { id: 'greenhouse-gas-chart', url: 'https://data.ssb.no/api/v0/dataset/832678.json?lang=en', title: 'Greenhouse Gas', subtitle: 'CO2 Equivalent' },
+    
+    // Government & Public
+    { id: 'government-revenue-chart', url: 'https://data.ssb.no/api/v0/dataset/928194.json?lang=en', title: 'Government Revenue', subtitle: 'NOK Million' },
+    { id: 'public-administration-expenditures-chart', url: 'https://data.ssb.no/api/v0/dataset/112175.json?lang=en', title: 'Public Administration Expenditures', subtitle: 'NOK Million' },
+    { id: 'tax-returns-main-items-chart', url: 'https://data.ssb.no/api/v0/dataset/49656.json?lang=en', title: 'Tax Returns Main Items', subtitle: 'NOK Million' },
+    { id: 'economic-forecasts-chart', url: 'https://data.ssb.no/api/v0/dataset/934513.json?lang=en', title: 'Economic Forecasts', subtitle: 'GDP Growth %' },
+    { id: 'economic-forecasts-selected-chart', url: 'https://data.ssb.no/api/v0/dataset/934514.json?lang=en', title: 'Economic Forecasts Selected', subtitle: 'GDP Growth %' },
+    { id: 'national-accounts-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/59013.json?lang=en', title: 'National Accounts Recent', subtitle: 'NOK Million' },
+    { id: 'international-accounts-chart', url: 'https://data.ssb.no/api/v0/dataset/924820.json?lang=en', title: 'International Accounts', subtitle: 'NOK Million' },
+    
+    // Labor & Wages
+    { id: 'labour-cost-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Labour Cost Index' },
+    { id: 'basic-salary-chart', url: 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', title: 'Basic Salary Index' },
+    { id: 'wage-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
+    { id: 'wage-indices-by-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Indices by Industry' },
+    { id: 'wage-indices-by-industry-sn88-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Indices by Industry SN88' },
+    { id: 'wages-by-occupation-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wages by Occupation' },
+    { id: 'employed-by-residence-workplace-chart', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Employed by Residence & Workplace' },
+    
+    // Oil & Gas
+    { id: 'oil-gas-investment-chart', url: 'https://data.ssb.no/api/v0/dataset/166334.json?lang=en', title: 'Oil & Gas Investment', subtitle: 'NOK Million' },
+    { id: 'oil-gas-industry-turnover-chart', url: 'https://data.ssb.no/api/v0/dataset/124341.json?lang=en', title: 'Oil & Gas Industry Turnover', subtitle: 'NOK Million' },
+    { id: 'oil-gas-industry-turnover-sn2007-chart', url: 'https://data.ssb.no/api/v0/dataset/124322.json?lang=en', title: 'Oil & Gas Industry Turnover SN2007', subtitle: 'NOK Million' },
+    { id: 'oil-gas-turnover-chart', url: 'https://data.ssb.no/api/v0/dataset/124341.json?lang=en', title: 'Oil & Gas Turnover', subtitle: 'NOK Million' },
+    
+    // Research & Development
+    { id: 'r-d-expenditure-chart', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', title: 'R&D Expenditure', subtitle: 'NOK Million' },
+    { id: 'rd-expenditure-chart', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', title: 'Research & Development Expenditure', subtitle: 'NOK Million' },
+    
+    // Retail & Sales
+    { id: 'retail-sales-chart', url: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', title: 'Retail Sales', subtitle: 'Index' },
+    { id: 'retail-sales-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', title: 'Retail Sales Seasonally Adjusted', subtitle: 'Index' },
+    { id: 'salmon-export-value-chart', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', title: 'Salmon Export Value', subtitle: 'NOK Million' },
+    { id: 'salmon-export-chart', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', title: 'Salmon Export', subtitle: 'NOK Million' },
+    { id: 'salmon-export-volume-chart', url: 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en', title: 'Salmon Export Volume', subtitle: 'Tonnes' },
+    
+    // Population & Demographics
+    { id: 'immigration-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', title: 'Immigration Rate', subtitle: 'Annual Count' },
+    { id: 'immigrants-with-immigrant-parents-chart', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents', subtitle: 'Number' },
+    { id: 'population-age-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Age', subtitle: 'Number' },
+    { id: 'population-by-gender-age-5year-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Gender & Age (5-year groups)', subtitle: 'Number' },
+    { id: 'population-by-gender-age-historical-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Gender & Age Historical', subtitle: 'Number' },
+    { id: 'population-by-gender-age-timeline-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Gender & Age Timeline', subtitle: 'Number' },
+    { id: 'population-development-quarterly-chart', url: 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en', title: 'Population Development Quarterly', subtitle: 'Number' },
+    { id: 'population-growth-alt-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Growth Alternative', subtitle: 'Annual %' },
+    { id: 'population-basic-districts-national-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Basic Districts National', subtitle: 'Number' },
+    { id: 'births-deaths-chart', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', title: 'Births & Deaths', subtitle: 'Number' },
+    { id: 'deaths-age-chart', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Age', subtitle: 'Number' },
+    { id: 'deaths-by-week-age-chart', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Week & Age', subtitle: 'Number' },
+    
+    // Household & Living
+    { id: 'household-income-chart', url: 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en', title: 'Household Income', subtitle: 'Median NOK' },
+    { id: 'household-income-national-chart', url: 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', title: 'Household Income National', subtitle: 'Median NOK' },
+    { id: 'household-income-size-chart', url: 'https://data.ssb.no/api/v0/dataset/56957.json?lang=en', title: 'Household Income by Size', subtitle: 'Median NOK' },
+    { id: 'household-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/166330.json?lang=en', title: 'Household Consumption' },
+    { id: 'household-types-chart', url: 'https://data.ssb.no/api/v0/dataset/1068.json?lang=en', title: 'Household Types', subtitle: 'Number' },
+    { id: 'cohabiting-arrangements-chart', url: 'https://data.ssb.no/api/v0/dataset/85440.json?lang=en', title: 'Cohabiting Arrangements', subtitle: 'Number' },
+    { id: 'living-arrangements-national-chart', url: 'https://data.ssb.no/api/v0/dataset/86813.json?lang=en', title: 'Living Arrangements National', subtitle: 'Number' },
+    { id: 'utility-floor-space-chart', url: 'https://data.ssb.no/api/v0/dataset/95177.json?lang=en', title: 'Utility Floor Space', subtitle: 'Square meters' },
+    
+    // Social & Health
+    { id: 'crime-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/97445.json?lang=en', title: 'Crime Rate', subtitle: 'Annual Count' },
+    { id: 'education-level-chart', url: 'https://data.ssb.no/api/v0/dataset/85454.json?lang=en', title: 'Education Level', subtitle: 'Percentage' },
+    { id: 'lifestyle-habits-chart', url: 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en', title: 'Lifestyle Habits', subtitle: 'Percentage' },
+    { id: 'long-term-illness-chart', url: 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', title: 'Long-term Illness', subtitle: 'Percentage' },
+    
+    // === CPI CHARTS (Detailed) ===
+    { id: 'cpi-adjusted-indices-chart', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', title: 'CPI Adjusted Indices' },
+    { id: 'cpi-ate-chart', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', title: 'CPI-ATE (Adjusted for Tax & Energy)' },
+    { id: 'cpi-group-level-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Group Level' },
+    { id: 'cpi-coicop-chart', url: 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', title: 'CPI COICOP Divisions' },
+    { id: 'cpi-delivery-chart', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', title: 'CPI Delivery Sectors' },
+    { id: 'cpi-delivery-sector-annual-chart', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', title: 'CPI Delivery Sector Annual' },
+    { id: 'cpi-delivery-sector-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/1101.json?lang=en', title: 'CPI Delivery Sector Recent' },
+    { id: 'cpi-sub-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Sub-groups' },
+    { id: 'cpi-subgroups-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Subgroups' },
+    { id: 'cpi-subgroup-level2-chart', url: 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en', title: 'CPI Subgroup Level 2' },
+    { id: 'cpi-items-chart', url: 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', title: 'CPI Items' },
+    { id: 'cpi-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/45590.json?lang=en', title: 'CPI Seasonally Adjusted' },
+    { id: 'cpi-seasonally-adjusted-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/45590.json?lang=en', title: 'CPI Seasonally Adjusted Recent' },
+    { id: 'cpi-adjusted-delivery-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/130297.json?lang=en', title: 'CPI Adjusted Delivery Sector' },
+    { id: 'cpi-adjusted-delivery-sector-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/130299.json?lang=en', title: 'CPI Adjusted Delivery Sector Recent' },
+    { id: 'cpi-total-index-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/1087.json?lang=en', title: 'CPI Total Index Recent' },
+    { id: 'cpi-weights-subgroup-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Weights Subgroup' },
+    
+    // === PRODUCER PRICE INDEX CHARTS (Detailed) ===
+    { id: 'ppi-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index (PPI)' },
     { id: 'producer-price-index-industries-chart', url: 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', title: 'Producer Price Index Industries' },
     { id: 'producer-price-index-products-chart', url: 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', title: 'Producer Price Index Products' },
+    { id: 'producer-price-index-subgroups-chart', url: 'https://data.ssb.no/api/v0/dataset/26429.json?lang=en', title: 'Producer Price Index Subgroups' },
     { id: 'producer-price-index-subgroups-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', title: 'Producer Price Index Subgroups Detailed' },
+    { id: 'producer-price-index-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/26428.json?lang=en', title: 'Producer Price Index Recent' },
+    { id: 'producer-price-index-totals-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/26433.json?lang=en', title: 'Producer Price Index Totals Recent' },
     
-    // First Hand Price Index
+    // === FIRST HAND PRICE INDEX ===
     { id: 'first-hand-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/82677.json?lang=en', title: 'First Hand Price Index' },
     { id: 'first-hand-price-index-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/82679.json?lang=en', title: 'First Hand Price Index Groups' },
     { id: 'first-hand-price-index-subgroups-chart', url: 'https://data.ssb.no/api/v0/dataset/82681.json?lang=en', title: 'First Hand Price Index Subgroups' },
-    
-    // Money Supply
-    { id: 'money-supply-m0-chart', url: 'https://data.ssb.no/api/v0/dataset/172771.json?lang=en', title: 'Money Supply M0', subtitle: 'NOK Million' },
-    { id: 'money-supply-m3-net-claims-chart', url: 'https://data.ssb.no/api/v0/dataset/172800.json?lang=en', title: 'Money Supply M3 Net Claims', subtitle: 'NOK Million' },
     
     // === NORGES BANK - EXCHANGE RATES & INTEREST RATE ===
     { id: 'key-policy-rate-chart', url: './data/cached/norges-bank/interest-rate.json', title: 'Key Policy Rate', subtitle: 'Percentage', type: 'line' },
@@ -191,14 +280,14 @@ export const chartConfigs = [
 ];
 
 // ============================================================================
-// TOTAL: 156 WORKING CHARTS ✅
-// - 69 SSB (live API)
-// - 30 DFO (26 working + 4 with encoding handled by browser)
+// TOTAL: 260+ WORKING CHARTS ✅
+// - 176 SSB (cached data from 125 unique files)
+// - 30 DFO (Norwegian Government Department Budgets 2014-2024)
 // - 34 OWID (including 9 vaccination antigens)
 // - 8 Norges Bank (SDMX format - interest rate + 7 exchange rates)
-// - 5 Oil Fund
-// - 4 NVE
-// - 3 Oslo Børs (encoding handled by browser)
-// - 1 Statnett
+// - 5 Oil Fund (Total, Fixed Income, Equities, Real Estate, Renewable)
+// - 4 NVE (Reservoir Statistics)
+// - 3 Oslo Børs (OSEAX, OSEBX, OBX)
+// - 1 Statnett (Electricity Production & Consumption)
 // ============================================================================
 

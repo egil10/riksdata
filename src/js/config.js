@@ -2,6 +2,70 @@
 // RIKSDATA CONFIGURATION
 // ============================================================================
 
+// Norwegian Political Party Logos (Wikimedia Commons)
+export const PARTY_LOGOS = {
+    "Ap": {
+        name: "Arbeiderpartiet",
+        shortName: "Ap",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/36/Arbeidarpartiet.svg",
+        color: "#E11926"
+    },
+    "Sp": {
+        name: "Senterpartiet",
+        shortName: "Sp",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Senterpartiets_logo.png",
+        color: "#4CAF50"
+    },
+    "H": {
+        name: "Høyre",
+        shortName: "H",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Flag_of_H%C3%B8yre.png",
+        color: "#87add7"
+    },
+    "KrF": {
+        name: "Kristelig Folkeparti",
+        shortName: "KrF",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b6/KrF_logo.jpg",
+        color: "#FDED34"
+    },
+    "FrP": {
+        name: "Fremskrittspartiet",
+        shortName: "FrP",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Fremskrittspartiet_logo.svg",
+        color: "#003087"
+    },
+    "V": {
+        name: "Venstre",
+        shortName: "V",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Venstres_logo.png",
+        color: "#006666"
+    },
+    "SV": {
+        name: "Sosialistisk Venstreparti",
+        shortName: "SV",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sosialistisk_Venstreparti_logo.svg",
+        color: "#E32636"
+    }
+};
+
+/**
+ * Get party logo URL by party code
+ * @param {string} partyCode - Party short code (e.g., 'Ap', 'H', 'Sp')
+ * @returns {string|null} Party logo URL or null if not found
+ */
+export function getPartyLogo(partyCode) {
+    return PARTY_LOGOS[partyCode]?.imageUrl || null;
+}
+
+/**
+ * Get all party logos for a coalition
+ * @param {Array<string>} parties - Array of party codes
+ * @returns {Array<Object>} Array of party logo objects
+ */
+export function getCoalitionLogos(parties) {
+    return parties.map(code => PARTY_LOGOS[code]).filter(Boolean);
+}
+
 // Political party periods for chart coloring (1945 onwards) with correct Norwegian colors
 export const POLITICAL_PERIODS = [
     {
@@ -44,119 +108,187 @@ export const POLITICAL_PERIODS = [
         start: "1965-10-12",
         end: "1971-03-17",
         color: "#4CAF50", // Senterpartiet green
-        backgroundColor: "rgba(76, 175, 80, 0.7)"
+        backgroundColor: "rgba(76, 175, 80, 0.7)",
+        primeMinister: "Per Borten",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/a/a2/Statsminister_Per_Borten_-_PA-0797_4133_001.jpg",
+        party: "Sp",
+        coalition: ["H", "V", "KrF"]
     },
     {
         name: "Trygve Bratteli I (Ap)",
         start: "1971-03-17",
         end: "1972-10-18",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Trygve Bratteli",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Trygve_Bratteli_%285Fo30141709010076%29.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Lars Korvald (KrF, Sp, V)",
         start: "1972-10-18",
         end: "1973-10-16",
         color: "#FDED34", // Kristelig Folkeparti yellow
-        backgroundColor: "rgba(253, 237, 52, 0.7)"
+        backgroundColor: "rgba(253, 237, 52, 0.7)",
+        primeMinister: "Lars Korvald",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/7/7a/Lars_Korvald_%284Fo30141709010050%29.jpg",
+        party: "KrF",
+        coalition: ["Sp", "V"]
     },
     {
         name: "Trygve Bratteli II (Ap)",
         start: "1973-10-16",
         end: "1976-01-15",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Trygve Bratteli",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Trygve_Bratteli_%285Fo30141709010076%29.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Odvar Nordli (Ap)",
         start: "1976-01-15",
         end: "1981-02-04",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Odvar Nordli",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/17/Odvar_Nordli_1976.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Gro Harlem Brundtland I (Ap)",
         start: "1981-02-04",
         end: "1981-10-14",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Gro Harlem Brundtland",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Kåre Willoch (H)",
         start: "1981-10-14",
         end: "1986-05-09",
         color: "#87add7", // Høyre light blue
-        backgroundColor: "rgba(135, 173, 215, 0.7)"
+        backgroundColor: "rgba(135, 173, 215, 0.7)",
+        primeMinister: "Kåre Willoch",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/61/Willoch_1983_%28high_resolution%2C_cropped%29.jpg",
+        party: "H",
+        coalition: ["KrF", "Sp"]
     },
     {
         name: "Gro Harlem Brundtland II (Ap)",
         start: "1986-05-09",
         end: "1989-10-16",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Gro Harlem Brundtland",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Jan P. Syse (H, KrF, Sp)",
         start: "1989-10-16",
         end: "1990-11-03",
         color: "#87add7", // Høyre light blue
-        backgroundColor: "rgba(135, 173, 215, 0.7)"
+        backgroundColor: "rgba(135, 173, 215, 0.7)",
+        primeMinister: "Jan P. Syse",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/4/47/Jan_P._Syse.JPG",
+        party: "H",
+        coalition: ["KrF", "Sp"]
     },
     {
         name: "Gro Harlem Brundtland III (Ap)",
         start: "1990-11-03",
         end: "1996-10-25",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Gro Harlem Brundtland",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Thorbjørn Jagland (Ap)",
         start: "1996-10-25",
         end: "1997-10-17",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Thorbjørn Jagland",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8d/Thorbj%C3%B8rn_Jagland%2C_Secretary_General%2C_Council_of_Europe_%2822167149560%29_%28cropped%29.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Kjell Magne Bondevik I (KrF, Sp, V)",
         start: "1997-10-17",
         end: "2000-03-17",
         color: "#FDED34", // Kristelig Folkeparti yellow
-        backgroundColor: "rgba(253, 237, 52, 0.7)"
+        backgroundColor: "rgba(253, 237, 52, 0.7)",
+        primeMinister: "Kjell Magne Bondevik",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/da/Kjell_Magne_Bondevik%2C_Norges_statsminister%2C_under_presskonferens_vid_Nordiska_radets_session_i_Stockholm.jpg",
+        party: "KrF",
+        coalition: ["Sp", "V"]
     },
     {
         name: "Jens Stoltenberg I (Ap)",
         start: "2000-03-17",
         end: "2001-10-19",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Jens Stoltenberg",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jens_Stoltenberg_2020.jpg",
+        party: "Ap",
+        coalition: []
     },
     {
         name: "Kjell Magne Bondevik II (KrF, H, V)",
         start: "2001-10-19",
         end: "2005-10-17",
         color: "#FDED34", // Kristelig Folkeparti yellow
-        backgroundColor: "rgba(253, 237, 52, 0.7)"
+        backgroundColor: "rgba(253, 237, 52, 0.7)",
+        primeMinister: "Kjell Magne Bondevik",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/d/da/Kjell_Magne_Bondevik%2C_Norges_statsminister%2C_under_presskonferens_vid_Nordiska_radets_session_i_Stockholm.jpg",
+        party: "KrF",
+        coalition: ["H", "V"]
     },
     {
         name: "Jens Stoltenberg II (Ap, SV, Sp)",
         start: "2005-10-17",
         end: "2013-10-16",
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Jens Stoltenberg",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jens_Stoltenberg_2020.jpg",
+        party: "Ap",
+        coalition: ["SV", "Sp"]
     },
     {
         name: "Erna Solberg (H, FrP; later V, KrF)",
         start: "2013-10-16",
         end: "2021-10-14",
         color: "#87add7", // Høyre light blue
-        backgroundColor: "rgba(135, 173, 215, 0.7)"
+        backgroundColor: "rgba(135, 173, 215, 0.7)",
+        primeMinister: "Erna Solberg",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/5/5d/31.08.2013%2C_Erna_Solberg.2.jpg",
+        party: "H",
+        coalition: ["FrP", "V", "KrF"]
     },
     {
         name: "Jonas Gahr Støre (Ap, Sp)",
         start: "2021-10-14",
         end: "2025-09-08", // Extended until next election
         color: "#E11926", // Arbeiderpartiet red
-        backgroundColor: "rgba(225, 25, 38, 0.7)"
+        backgroundColor: "rgba(225, 25, 38, 0.7)",
+        primeMinister: "Jonas Gahr Støre",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/3/37/Jonas_Gahr_St%C3%B8re_%282025%29_%28cropped%29.jpg",
+        party: "Ap",
+        coalition: ["Sp"]
     }
 ];
 
@@ -279,137 +411,142 @@ export const API_CONFIG = {
 // Dataset mappings for cache files
 export const DATASET_MAPPINGS = {
     ssb: {
-        // Core economic indicators (these files exist)
+        // === COMPREHENSIVE SSB DATASET MAPPINGS (125 FILES) ===
+        // Core Economic Indicators
         '1086': 'cpi',
         '1054': 'unemployment',
         '1060': 'house-prices',
+        '1061': 'house-price-index-recent',
         '26426': 'ppi',
         '1124': 'wage',
-
-        // Removed: '95265': 'bankruptcies-total', // Keeping only bankruptcies-total chart
         '49626': 'population-growth',
+        
+        // Construction & Housing
         '26944': 'construction-costs',
-        '27002': 'industrial-production',
-        '1064': 'retail-sales',
-        '179421': 'export-volume',
-        '179422': 'import-value-volume-sitc',
-        '166316': 'business-confidence',
-
-        '172769': 'monetary-aggregates',
-
-        '166330': 'household-consumption',
-        '26427': 'producer-price-index-recent',
+        '1058': 'construction-cost-multi',
+        '1056': 'construction-cost-wood',
         '924808': 'construction-production',
-        '166326': 'credit-indicator',
-        '928196': 'energy-consumption',
-        '928194': 'government-revenue',
-        '924820': 'international-accounts',
-        '760065': 'labour-cost-index',
-        '61819': 'rd-expenditure',
-        '1122': 'salmon-export',
-        '166334': 'oil-gas-investment',
-        '48651': 'immigration-rate',
-        '56900': 'household-income',
-
-        '97445': 'crime-rate',
-        '85454': 'education-level',
-        '65962': 'holiday-property-sales',
-        '832678': 'greenhouse-gas',
-        '934513': 'economic-forecasts',
+        '25151': 'new-detached-house-prices-national',
         '26158': 'new-dwellings-price',
-        '832683': 'lifestyle-habits',
-        '832685': 'long-term-illness',
-        '1104': 'population-development-quarterly',
-        '1106': 'births-deaths',
-        '1118': 'cpi-ate',
-        '1120': 'salmon-export-volume',
-        '1126': 'basic-salary',
+        '65962': 'holiday-property-sales',
+        
+        // Industrial & Production  
+        '27002': 'industrial-production',
+        '741023': 'producer-price-industry',
+        '26953': 'production-index-industry-recent',
+        
+        // Trade & Export/Import
+        '179421': 'export-volume',
+        '34640': 'import-value-volume-sitc',
+        '34642': 'export-value-volume-sitc',
+        '34254': 'import-value-volume-sitc1',
+        '34256': 'export-value-volume-sitc1',
+        '34641': 'import-value-sitc3',
+        '34643': 'export-value-sitc3',
+        '179415': 'trade-volume-price-bec',
+        '179417': 'trade-volume-price-product-groups',
+        '179418': 'trade-volume-price-sitc2',
+        '179419': 'trade-main-figures-recent',
         '1130': 'export-country',
         '1132': 'import-country',
         '1134': 'export-commodity',
         '1140': 'import-commodity',
-        '1056': 'construction-cost-wood',
         
-        // Additional mappings for charts that exist
-        '1058': 'construction-cost-multi',
-        '1068': 'household-types',
-        '1074': 'population-age',
-        '1084': 'cpi-coicop',
-        '1090': 'cpi-subgroups',
-        '1096': 'cpi-items',
-        '1100': 'cpi-delivery',
-        '56957': 'household-income-size',
-        '85440': 'cohabiting-arrangements',
-        '95177': 'utility-floor-space',
-        '166327': 'credit-indicator-k3',
-        '166329': 'credit-indicator-k2-seasonally-adjusted',
-        '124322': 'oil-gas-turnover',
-        '179415': 'trade-volume-price',
-        '741023': 'producer-price-industry',
-        '567324': 'deaths-age',
-        '924816': 'bankruptcies-total',
-        '172793': 'monetary-m3',
-        '08517': 'unemployed-age-annual',
-
-        '04553': 'unemployment-duration-annual',
-        '13891': 'unemployed-industry-quarterly',
-        '13892': 'unemployed-industry-annual',
-        '14454': 'unemployed-nav-status',
-        
-        // Additional mappings for charts that exist in main.js (these files exist)
-        '1052': 'unemployment',
-        '34640': 'import-value-volume-sitc',
-        '34642': 'export-value-volume-sitc',
-        '49656': 'tax-returns-main-items',
-        '112175': 'public-administration-expenditures',
-        '172771': 'money-supply-m0',
-
-        '172800': 'money-supply-m3-net-claims',
-        '25151': 'new-detached-house-prices-national',
-        '34254': 'import-value-volume-sitc1',
-        '34256': 'export-value-volume-sitc1',
-        '124341': 'oil-gas-industry-turnover',
-        '86813': 'living-arrangements-national',
-        '45590': 'cpi-seasonally-adjusted',
-        '62264': 'credit-indicator-k2-detailed',
-        '82677': 'first-hand-price-index',
-        '82679': 'first-hand-price-index-groups',
-        '130297': 'cpi-adjusted-delivery-sector',
-
-        '96304': 'immigrants-with-immigrant-parents',
-        '1100': 'cpi-delivery-sector-annual',
-        '82681': 'first-hand-price-index-subgroups',
-        '130299': 'cpi-adjusted-delivery-sector-recent',
-        '26428': 'producer-price-index-recent',
-        '1101': 'cpi-delivery-sector-recent',
-        '26429': 'producer-price-index-subgroups',
-        '34641': 'import-value-sitc3',
-        '34643': 'export-value-sitc3',
-        '179415': 'trade-volume-price-bec',
-
-        '26430': 'producer-price-index-industries',
-
-        '179417': 'trade-volume-price-product-groups',
-        '179418': 'trade-volume-price-sitc2',
-        '26431': 'producer-price-index-products',
+        // Business & Confidence
+        '166316': 'business-confidence',
         '166317': 'business-cycle-barometer-products',
         '166318': 'business-cycle-barometer',
-        '56957': 'household-income-national',
-
-        '124322': 'oil-gas-industry-turnover-sn2007',
-        '1061': 'house-price-index-recent',
-        '59013': 'national-accounts-recent',
-        '26432': 'producer-price-index-subgroups-detailed',
-        '1087': 'cpi-total-index-recent',
-        '179419': 'trade-main-figures-recent',
-        '26953': 'production-index-industry-recent',
-        '26433': 'producer-price-index-totals-recent',
+        '924816': 'bankruptcies-total',
+        
+        // Monetary & Credit
+        '172769': 'monetary-aggregates',
+        '172793': 'monetary-m3',
+        '172771': 'money-supply-m0',
+        '172800': 'money-supply-m3-net-claims',
+        '166326': 'credit-indicator',
+        '62264': 'credit-indicator-k2-detailed',
+        '166329': 'credit-indicator-k2-seasonally-adjusted',
+        '166327': 'credit-indicator-k3',
+        
+        // Energy & Environment
+        '928196': 'energy-consumption',
+        '832678': 'greenhouse-gas',
+        
+        // Government & Public
+        '928194': 'government-revenue',
+        '112175': 'public-administration-expenditures',
+        '49656': 'tax-returns-main-items',
+        '934513': 'economic-forecasts',
         '934514': 'economic-forecasts-selected',
+        '59013': 'national-accounts-recent',
+        '924820': 'international-accounts',
+        
+        // Labor & Wages
+        '760065': 'labour-cost-index',
+        '1126': 'basic-salary',
+        
+        // Oil & Gas
+        '166334': 'oil-gas-investment',
+        '124341': 'oil-gas-industry-turnover',
+        '124322': 'oil-gas-industry-turnover-sn2007',
+        
+        // Research & Development
+        '61819': 'rd-expenditure',
+        
+        // Retail & Sales
+        '1064': 'retail-sales',
+        '1122': 'salmon-export',
+        '1120': 'salmon-export-volume',
+        
+        // Population & Demographics
+        '48651': 'immigration-rate',
+        '96304': 'immigrants-with-immigrant-parents',
+        '1074': 'population-age',
+        '1104': 'population-development-quarterly',
+        '1106': 'births-deaths',
+        '567324': 'deaths-age',
+        
+        // Household & Living
+        '56900': 'household-income',
+        '56957': 'household-income-national',
+        '166330': 'household-consumption',
+        '1068': 'household-types',
+        '85440': 'cohabiting-arrangements',
+        '86813': 'living-arrangements-national',
+        '95177': 'utility-floor-space',
+        
+        // Social & Health
+        '97445': 'crime-rate',
+        '85454': 'education-level',
+        '832683': 'lifestyle-habits',
+        '832685': 'long-term-illness',
+        
+        // === CPI DETAILED MAPPINGS ===
         '1118': 'cpi-adjusted-indices',
         '1092': 'cpi-group-level',
+        '1084': 'cpi-coicop',
+        '1100': 'cpi-delivery',
+        '1101': 'cpi-delivery-sector-recent',
+        '1090': 'cpi-subgroups',
         '1094': 'cpi-subgroup-level2',
+        '1096': 'cpi-items',
+        '45590': 'cpi-seasonally-adjusted',
+        '130297': 'cpi-adjusted-delivery-sector',
+        '130299': 'cpi-adjusted-delivery-sector-recent',
+        '1087': 'cpi-total-index-recent',
         
-        // Additional mappings for charts that exist in HTML but were missing (these files exist)
+        // === PRODUCER PRICE INDEX MAPPINGS ===
+        '26430': 'producer-price-index-industries',
+        '26431': 'producer-price-index-products',
+        '26429': 'producer-price-index-subgroups',
+        '26432': 'producer-price-index-subgroups-detailed',
+        '26428': 'producer-price-index-recent',
+        '26433': 'producer-price-index-totals-recent',
+        
+        // === FIRST HAND PRICE INDEX ===
+        '82677': 'first-hand-price-index',
+        '82679': 'first-hand-price-index-groups',
+        '82681': 'first-hand-price-index-subgroups',
     },
     norges_bank: {
         'EXR/M.USD+EUR.NOK.SP': 'exchange-rates',

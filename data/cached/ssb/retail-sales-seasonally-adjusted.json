@@ -1,0 +1,114 @@
+{
+  "dataset": {
+    "dimension": {
+      "NACE": {
+        "label": "industry",
+        "category": {
+          "index": {
+            "47": 0
+          },
+          "label": {
+            "47": "Retail trade, except of motor vehicles and motorcycles"
+          }
+        },
+        "link": {
+          "describedby": [
+            {
+              "extension": {
+                "NACE": "urn:ssb:classification:klass:6"
+              }
+            }
+          ]
+        }
+      },
+      "Tid": {
+        "label": "month",
+        "category": {
+          "index": {
+            "2024M06": 0,
+            "2024M07": 1,
+            "2024M08": 2,
+            "2024M09": 3,
+            "2024M10": 4,
+            "2024M11": 5,
+            "2024M12": 6,
+            "2025M01": 7,
+            "2025M02": 8,
+            "2025M03": 9,
+            "2025M04": 10,
+            "2025M05": 11,
+            "2025M06": 12
+          },
+          "label": {
+            "2024M06": "2024M06",
+            "2024M07": "2024M07",
+            "2024M08": "2024M08",
+            "2024M09": "2024M09",
+            "2024M10": "2024M10",
+            "2024M11": "2024M11",
+            "2024M12": "2024M12",
+            "2025M01": "2025M01",
+            "2025M02": "2025M02",
+            "2025M03": "2025M03",
+            "2025M04": "2025M04",
+            "2025M05": "2025M05",
+            "2025M06": "2025M06"
+          }
+        }
+      },
+      "ContentsCode": {
+        "label": "contents",
+        "category": {
+          "index": {
+            "VolumSesong": 0
+          },
+          "label": {
+            "VolumSesong": "Volume index, seasonally adjusted"
+          },
+          "unit": {
+            "VolumSesong": {
+              "base": "index",
+              "decimals": 1
+            }
+          }
+        }
+      },
+      "id": [
+        "NACE",
+        "Tid",
+        "ContentsCode"
+      ],
+      "size": [
+        1,
+        13,
+        1
+      ],
+      "role": {
+        "time": [
+          "Tid"
+        ],
+        "metric": [
+          "ContentsCode"
+        ]
+      }
+    },
+    "label": "07129: The Index of wholesale and retail trade, by industry, month and contents",
+    "source": "Statistics Norway",
+    "updated": "2025-07-29T06:00:00Z",
+    "value": [
+      91.7,
+      92,
+      92.4,
+      92.2,
+      92.6,
+      93.3,
+      93.3,
+      94.4,
+      94.4,
+      95.1,
+      95.6,
+      95.7,
+      95.7
+    ]
+  }
+}

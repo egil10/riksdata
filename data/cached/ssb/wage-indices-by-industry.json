@@ -1,0 +1,318 @@
+{
+  "dataset": {
+    "dimension": {
+      "ContentsCode": {
+        "label": "contents",
+        "category": {
+          "index": {
+            "GjAvtaltMdlonnIndeks": 0,
+            "GjMdTotalIndeks": 1
+          },
+          "label": {
+            "GjAvtaltMdlonnIndeks": "Index of average monthly basic earnings",
+            "GjMdTotalIndeks": "Index of average monthly earnings"
+          },
+          "unit": {
+            "GjAvtaltMdlonnIndeks": {
+              "base": "index",
+              "decimals": 1
+            },
+            "GjMdTotalIndeks": {
+              "base": "index",
+              "decimals": 1
+            }
+          }
+        }
+      },
+      "Region": {
+        "label": "region",
+        "category": {
+          "index": {
+            "Ialt": 0
+          },
+          "label": {
+            "Ialt": "Total"
+          }
+        }
+      },
+      "NACE2007": {
+        "label": "industry (SIC2007)",
+        "category": {
+          "index": {
+            "00-99": 0,
+            "01-03": 1,
+            "05-09": 2,
+            "10-33": 3,
+            "35-39": 4,
+            "41-43": 5,
+            "45-47": 6,
+            "49-53": 7,
+            "55-56": 8,
+            "58-63": 9,
+            "64-66": 10,
+            "68-75": 11,
+            "77-82": 12,
+            "84": 13,
+            "85": 14,
+            "86-88": 15,
+            "90-99": 16,
+            "00": 17
+          },
+          "label": {
+            "00-99": "All industries",
+            "01-03": "Agriculture, forestry and fishing",
+            "05-09": "Mining and quarrying",
+            "10-33": "Manufacture",
+            "35-39": "Electricity, water supply, sewerage, waste management",
+            "41-43": "Construction",
+            "45-47": "Wholesale and retail trade: repair of motor vehicles and motorcycles",
+            "49-53": "Transportation and storage",
+            "55-56": "Accommodation and food service activities",
+            "58-63": "Information and communication",
+            "64-66": "Financial and insurance activities",
+            "68-75": "Real estate, professional, scientific and technical activities",
+            "77-82": "Administrative and support service activities",
+            "84": "Public adm., defence, soc. security",
+            "85": "Education",
+            "86-88": "Human health and social work activities",
+            "90-99": "Other service activities",
+            "00": "Unspecified"
+          }
+        },
+        "link": {
+          "describedby": [
+            {
+              "extension": {
+                "NACE2007": "urn:ssb:classification:klass:6"
+              }
+            }
+          ]
+        }
+      },
+      "Tid": {
+        "label": "quarter",
+        "category": {
+          "index": {
+            "2024K1": 0,
+            "2024K2": 1,
+            "2024K3": 2,
+            "2024K4": 3,
+            "2025K1": 4
+          },
+          "label": {
+            "2024K1": "2024K1",
+            "2024K2": "2024K2",
+            "2024K3": "2024K3",
+            "2024K4": "2024K4",
+            "2025K1": "2025K1"
+          }
+        }
+      },
+      "id": [
+        "ContentsCode",
+        "Region",
+        "NACE2007",
+        "Tid"
+      ],
+      "size": [
+        2,
+        1,
+        18,
+        5
+      ],
+      "role": {
+        "metric": [
+          "ContentsCode"
+        ],
+        "time": [
+          "Tid"
+        ]
+      }
+    },
+    "label": "11654: Employees, jobs, earnings, and earnings index, by contents, region, industry (SIC2007) and quarter",
+    "source": "Statistics Norway",
+    "updated": "2025-05-09T06:00:00Z",
+    "value": [
+      100,
+      100.4,
+      101.4,
+      104.4,
+      105.2,
+      100,
+      98.1,
+      94.8,
+      102.5,
+      106.4,
+      100,
+      100.2,
+      101.9,
+      105.2,
+      105.5,
+      100,
+      100.6,
+      101.9,
+      104.8,
+      105.4,
+      100,
+      100.3,
+      100,
+      105.1,
+      105.8,
+      100,
+      100.8,
+      102.6,
+      104.4,
+      105.6,
+      100,
+      101,
+      101.6,
+      104.2,
+      105.1,
+      100,
+      100,
+      101.9,
+      104.7,
+      105.1,
+      100,
+      100.4,
+      100.9,
+      104.6,
+      105.9,
+      100,
+      101.2,
+      101.8,
+      104.5,
+      105.3,
+      100,
+      101.2,
+      103.1,
+      104.4,
+      105,
+      100,
+      101.2,
+      101.9,
+      104.7,
+      105.2,
+      100,
+      100.2,
+      102.6,
+      104,
+      105.2,
+      100,
+      100,
+      100.1,
+      102.1,
+      103.3,
+      100,
+      100,
+      103.1,
+      104.3,
+      104.8,
+      100,
+      99.9,
+      101.3,
+      105.2,
+      105.4,
+      100,
+      100.9,
+      100.5,
+      104.2,
+      105.1,
+      100,
+      101.1,
+      100.6,
+      103.7,
+      105.7,
+      100,
+      99.5,
+      97.7,
+      101,
+      105.2,
+      100,
+      101.2,
+      94.5,
+      103.6,
+      108.1,
+      100,
+      87.3,
+      84.6,
+      88.5,
+      103.5,
+      100,
+      102,
+      98.9,
+      102.4,
+      106.4,
+      100,
+      99.7,
+      97.5,
+      102.8,
+      105.3,
+      100,
+      101.7,
+      98.3,
+      101,
+      106,
+      100,
+      98,
+      96.4,
+      99.2,
+      105,
+      100,
+      98.3,
+      97.6,
+      101.1,
+      106.1,
+      100,
+      101.5,
+      100.3,
+      104.1,
+      109.3,
+      100,
+      97.6,
+      94.9,
+      97.2,
+      103.7,
+      100,
+      98.5,
+      96.2,
+      97.5,
+      104,
+      100,
+      102.4,
+      98.8,
+      102.7,
+      105.1,
+      100,
+      99,
+      99.7,
+      100.7,
+      105.5,
+      100,
+      100.9,
+      98.1,
+      102,
+      103.9,
+      100,
+      100.1,
+      103,
+      104.3,
+      104.8,
+      100,
+      100.7,
+      99.7,
+      103,
+      105.2,
+      100,
+      100,
+      99.1,
+      102.9,
+      106.3,
+      100,
+      105.7,
+      100.9,
+      102.2,
+      108.2
+    ]
+  }
+}

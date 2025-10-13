@@ -1,0 +1,318 @@
+{
+  "metadata": {
+    "title": "Norwegian Political Timeline (1965-2025)",
+    "description": "Complete timeline of Norwegian Prime Ministers and governments from 1965 onwards with images",
+    "source": "Wikimedia Commons",
+    "lastUpdated": "2025-10-13"
+  },
+  "parties": {
+    "Ap": {
+      "name": "Arbeiderpartiet",
+      "shortName": "Ap",
+      "englishName": "Labour Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Arbeidarpartiet.svg",
+      "color": "#E11926",
+      "website": "https://www.arbeiderpartiet.no/"
+    },
+    "Sp": {
+      "name": "Senterpartiet",
+      "shortName": "Sp",
+      "englishName": "Centre Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Senterpartiets_logo.png",
+      "color": "#4CAF50",
+      "website": "https://www.senterpartiet.no/"
+    },
+    "H": {
+      "name": "Høyre",
+      "shortName": "H",
+      "englishName": "Conservative Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Flag_of_H%C3%B8yre.png",
+      "color": "#87add7",
+      "website": "https://hoyre.no/"
+    },
+    "KrF": {
+      "name": "Kristelig Folkeparti",
+      "shortName": "KrF",
+      "englishName": "Christian Democratic Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/KrF_logo.jpg",
+      "color": "#FDED34",
+      "website": "https://www.krf.no/"
+    },
+    "FrP": {
+      "name": "Fremskrittspartiet",
+      "shortName": "FrP",
+      "englishName": "Progress Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Fremskrittspartiet_logo.svg",
+      "color": "#003087",
+      "website": "https://www.frp.no/"
+    },
+    "V": {
+      "name": "Venstre",
+      "shortName": "V",
+      "englishName": "Liberal Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Venstres_logo.png",
+      "color": "#006666",
+      "website": "https://www.venstre.no/"
+    },
+    "SV": {
+      "name": "Sosialistisk Venstreparti",
+      "shortName": "SV",
+      "englishName": "Socialist Left Party",
+      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sosialistisk_Venstreparti_logo.svg",
+      "color": "#E32636",
+      "website": "https://www.sv.no/"
+    }
+  },
+  "governments": [
+    {
+      "name": "Per Borten",
+      "period": "Borten",
+      "start": "1965-10-12",
+      "end": "1971-03-17",
+      "primeMinister": "Per Borten",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Statsminister_Per_Borten_-_PA-0797_4133_001.jpg",
+      "party": "Sp",
+      "coalition": ["H", "V", "KrF"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Per_Bortens_regjering",
+      "years": "1965-1971",
+      "color": "#4CAF50"
+    },
+    {
+      "name": "Trygve Bratteli I",
+      "period": "Bratteli I",
+      "start": "1971-03-17",
+      "end": "1972-10-18",
+      "primeMinister": "Trygve Bratteli",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Trygve_Bratteli_%285Fo30141709010076%29.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Trygve_Brattelis_f%C3%B8rste_regjering",
+      "years": "1971-1972",
+      "color": "#E11926"
+    },
+    {
+      "name": "Lars Korvald",
+      "period": "Korvald",
+      "start": "1972-10-18",
+      "end": "1973-10-16",
+      "primeMinister": "Lars Korvald",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Lars_Korvald_%284Fo30141709010050%29.jpg",
+      "party": "KrF",
+      "coalition": ["Sp", "V"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Lars_Korvalds_regjering",
+      "years": "1972-1973",
+      "color": "#FDED34"
+    },
+    {
+      "name": "Trygve Bratteli II",
+      "period": "Bratteli II",
+      "start": "1973-10-16",
+      "end": "1976-01-15",
+      "primeMinister": "Trygve Bratteli",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Trygve_Bratteli_%285Fo30141709010076%29.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Trygve_Brattelis_andre_regjering",
+      "years": "1973-1976",
+      "color": "#E11926"
+    },
+    {
+      "name": "Odvar Nordli",
+      "period": "Nordli",
+      "start": "1976-01-15",
+      "end": "1981-02-04",
+      "primeMinister": "Odvar Nordli",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Odvar_Nordli_1976.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Odvar_Nordlis_regjering",
+      "years": "1976-1981",
+      "color": "#E11926"
+    },
+    {
+      "name": "Gro Harlem Brundtland I",
+      "period": "Brundtland I",
+      "start": "1981-02-04",
+      "end": "1981-10-14",
+      "primeMinister": "Gro Harlem Brundtland",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_f%C3%B8rste_regjering",
+      "years": "1981",
+      "color": "#E11926"
+    },
+    {
+      "name": "Kåre Willoch",
+      "period": "Willoch",
+      "start": "1981-10-14",
+      "end": "1986-05-09",
+      "primeMinister": "Kåre Willoch",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Willoch_1983_%28high_resolution%2C_cropped%29.jpg",
+      "party": "H",
+      "coalition": ["KrF", "Sp"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/K%C3%A5re_Willochs_regjering",
+      "years": "1981-1986",
+      "color": "#87add7"
+    },
+    {
+      "name": "Gro Harlem Brundtland II",
+      "period": "Brundtland II",
+      "start": "1986-05-09",
+      "end": "1989-10-16",
+      "primeMinister": "Gro Harlem Brundtland",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_andre_regjering",
+      "years": "1986-1989",
+      "color": "#E11926"
+    },
+    {
+      "name": "Jan P. Syse",
+      "period": "Syse",
+      "start": "1989-10-16",
+      "end": "1990-11-03",
+      "primeMinister": "Jan P. Syse",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Jan_P._Syse.JPG",
+      "party": "H",
+      "coalition": ["KrF", "Sp"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Jan_P._Syses_regjering",
+      "years": "1989-1990",
+      "color": "#87add7"
+    },
+    {
+      "name": "Gro Harlem Brundtland III",
+      "period": "Brundtland III",
+      "start": "1990-11-03",
+      "end": "1996-10-25",
+      "primeMinister": "Gro Harlem Brundtland",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_tredje_regjering",
+      "years": "1990-1996",
+      "color": "#E11926"
+    },
+    {
+      "name": "Thorbjørn Jagland",
+      "period": "Jagland",
+      "start": "1996-10-25",
+      "end": "1997-10-17",
+      "primeMinister": "Thorbjørn Jagland",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Thorbj%C3%B8rn_Jagland%2C_Secretary_General%2C_Council_of_Europe_%2822167149560%29_%28cropped%29.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Thorbj%C3%B8rn_Jaglands_regjering",
+      "years": "1996-1997",
+      "color": "#E11926"
+    },
+    {
+      "name": "Kjell Magne Bondevik I",
+      "period": "Bondevik I",
+      "start": "1997-10-17",
+      "end": "2000-03-17",
+      "primeMinister": "Kjell Magne Bondevik",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Kjell_Magne_Bondevik%2C_Norges_statsminister%2C_under_presskonferens_vid_Nordiska_radets_session_i_Stockholm.jpg",
+      "party": "KrF",
+      "coalition": ["Sp", "V"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_f%C3%B8rste_regjering",
+      "years": "1997-2000",
+      "color": "#FDED34"
+    },
+    {
+      "name": "Jens Stoltenberg I",
+      "period": "Stoltenberg I",
+      "start": "2000-03-17",
+      "end": "2001-10-19",
+      "primeMinister": "Jens Stoltenberg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jens_Stoltenberg_2020.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Jens_Stoltenbergs_f%C3%B8rste_regjering",
+      "years": "2000-2001",
+      "color": "#E11926"
+    },
+    {
+      "name": "Kjell Magne Bondevik II",
+      "period": "Bondevik II",
+      "start": "2001-10-19",
+      "end": "2005-10-17",
+      "primeMinister": "Kjell Magne Bondevik",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Kjell_Magne_Bondevik%2C_Norges_statsminister%2C_under_presskonferens_vid_Nordiska_radets_session_i_Stockholm.jpg",
+      "party": "KrF",
+      "coalition": ["H", "V"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_andre_regjering",
+      "years": "2001-2005",
+      "color": "#FDED34"
+    },
+    {
+      "name": "Jens Stoltenberg II",
+      "period": "Stoltenberg II",
+      "start": "2005-10-17",
+      "end": "2013-10-16",
+      "primeMinister": "Jens Stoltenberg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jens_Stoltenberg_2020.jpg",
+      "party": "Ap",
+      "coalition": ["SV", "Sp"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Jens_Stoltenbergs_andre_regjering",
+      "years": "2005-2013",
+      "color": "#E11926",
+      "notable": "Red-Green Coalition (Rød-grønn regjering)"
+    },
+    {
+      "name": "Erna Solberg",
+      "period": "Solberg",
+      "start": "2013-10-16",
+      "end": "2021-10-14",
+      "primeMinister": "Erna Solberg",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/31.08.2013%2C_Erna_Solberg.2.jpg",
+      "party": "H",
+      "coalition": ["FrP", "V", "KrF"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Erna_Solbergs_regjering",
+      "years": "2013-2021",
+      "color": "#87add7",
+      "notable": "First female Conservative PM, longest Conservative government since 1928"
+    },
+    {
+      "name": "Jonas Gahr Støre",
+      "period": "Støre",
+      "start": "2021-10-14",
+      "end": "2025-09-08",
+      "primeMinister": "Jonas Gahr Støre",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Jonas_Gahr_St%C3%B8re_%282025%29_%28cropped%29.jpg",
+      "party": "Ap",
+      "coalition": ["Sp"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Jonas_Gahr_St%C3%B8res_regjering",
+      "years": "2021-Present",
+      "color": "#E11926",
+      "notable": "Current government"
+    }
+  ],
+  "statistics": {
+    "totalGovernments": 14,
+    "longestServing": {
+      "name": "Gro Harlem Brundtland III",
+      "years": 6,
+      "period": "1990-1996"
+    },
+    "shortestServing": {
+      "name": "Gro Harlem Brundtland I",
+      "months": 8,
+      "period": "1981"
+    },
+    "partyBreakdown": {
+      "Ap": 8,
+      "H": 3,
+      "KrF": 2,
+      "Sp": 1
+    },
+    "femaleLeaders": [
+      "Gro Harlem Brundtland",
+      "Erna Solberg"
+    ],
+    "coalitionGovernments": 9,
+    "minorityGovernments": 5
+  }
+}
+

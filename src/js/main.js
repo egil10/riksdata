@@ -1320,6 +1320,8 @@ import { copyChartDataTSV } from './utils.js';
  * Show download format picker dropdown
  */
 function showDownloadFormatPicker(btn, card) {
+    console.log('🎯 showDownloadFormatPicker called');
+    
     // Remove any existing format picker
     document.querySelectorAll('.download-format-picker').forEach(picker => picker.remove());
     
@@ -1354,7 +1356,13 @@ function showDownloadFormatPicker(btn, card) {
     
     // Position picker relative to button
     const chartActions = btn.closest('.chart-actions');
+    if (!chartActions) {
+        console.error('🎯 .chart-actions not found!');
+        return;
+    }
+    console.log('🎯 Found .chart-actions, appending picker');
     chartActions.appendChild(picker);
+    console.log('🎯 Picker appended, element:', picker);
     
     // Handle format selection
     picker.querySelectorAll('.download-format-option').forEach(option => {

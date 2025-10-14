@@ -205,11 +205,13 @@ body.loaded {
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    z-index: 1000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    z-index: 9999 !important; /* Very high z-index to ensure visibility */
     min-width: 150px;
     overflow: hidden;
     animation: fadeInDown 0.2s ease-out;
+    display: block !important; /* Force display */
+    visibility: visible !important; /* Force visibility */
 }
 
 .download-format-option {
@@ -280,6 +282,7 @@ body.loaded {
     position: relative;
     display: flex;
     gap: 0.25rem;
+    overflow: visible !important; /* Ensure picker is not clipped */
 }
 
 /* MODERNIZED ICON BUTTONS - Glassmorphism on hover */
@@ -1214,16 +1217,16 @@ main {
     padding: 1.5rem;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--glass-border);
-    transition: all var(--t) var(--ease);
+    transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease); /* Only transition background and shadow, not transform */
     min-height: 200px;
     display: flex;
     flex-direction: column;
     opacity: 1 !important; /* Force visibility for now */
-    animation: fadeInUp 0.6s ease forwards;
+    animation: fadeInUp 0.3s ease forwards; /* Faster, less jarring animation */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden; /* Contain content */
+    overflow: hidden; /* Keep card content contained, picker will be portaled elsewhere */
     color: var(--text); /* Ensure text is visible */
 }
 
@@ -1238,7 +1241,7 @@ main {
 .chart-card:hover {
     background: var(--card-hover);
     box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    /* Removed transform to prevent chart jumping */
 }
 
 /* Chart Actions - Download, Copy, and Fullscreen buttons */
@@ -1274,7 +1277,9 @@ main {
     flex-wrap: nowrap;
     /* IMPORTANT to allow children to actually shrink */
     min-width: 0;
-    overflow: hidden; /* guardrail to avoid horizontal bleed */
+    overflow: visible; /* Allow download picker to show */
+    position: relative; /* Create stacking context for picker */
+    z-index: 10; /* Ensure picker appears above other content */
 }
 
 .chart-subtitle-row {
@@ -1358,7 +1363,7 @@ main {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(10px); /* Reduced from 20px for subtler effect */
     }
     to {
         opacity: 1;
@@ -1436,11 +1441,16 @@ main {
     align-items: center;
     min-height: 0;
     background: var(--card);
+    height: auto !important; /* Override fixed height for fullscreen */
+    max-height: none !important; /* Remove height constraints */
+    min-height: 0 !important; /* Allow it to flex */
 }
 
 .fullscreen-card canvas {
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    width: auto !important; /* Let it scale naturally */
+    height: auto !important; /* Let it scale naturally */
     object-fit: contain;
 }
 

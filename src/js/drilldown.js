@@ -622,32 +622,16 @@ function updateHeaderBreadcrumb(subtitle) {
 }
 
 /**
- * Clear search and go to home
+ * Clear search and go to home (hard refresh)
  */
 window.clearSearchAndGoHome = function() {
-    // Clear search input
-    const searchInput = document.getElementById('headerSearch');
-    const searchApplyBtn = document.getElementById('searchApplyBtn');
-    const searchResetBtn = document.getElementById('searchResetBtn');
-    if (searchInput) {
-        searchInput.value = '';
-        searchInput.classList.remove('has-input');
-    }
-    if (searchApplyBtn) {
-        searchApplyBtn.classList.remove('has-input');
-    }
-    if (searchResetBtn) {
-        searchResetBtn.style.display = 'none';
+    // Clear hash first to avoid navigation issues
+    if (window.location.hash) {
+        window.history.replaceState(null, '', window.location.pathname);
     }
     
-    // Show all cards
-    const chartCards = document.querySelectorAll('.chart-card');
-    chartCards.forEach(card => {
-        card.style.display = 'block';
-    });
-    
-    // Navigate to home
-    window.location.hash = '';
+    // Do a full hard refresh to reset everything
+    window.location.reload(true);
 };
 
 /**

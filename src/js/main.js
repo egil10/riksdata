@@ -1328,23 +1328,23 @@ function showDownloadFormatPicker(btn, card) {
     // Create format picker
     const picker = document.createElement('div');
     picker.className = 'download-format-picker';
-    picker.innerHTML = `
-        <div class="download-format-option" data-format="png">
-            <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-            </svg>
-            <span>PNG Image</span>
-        </div>
-        <div class="download-format-option" data-format="html">
-            <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="16 18 22 12 16 6"/>
-                <polyline points="8 6 2 12 8 18"/>
-            </svg>
-            <span>HTML File</span>
-        </div>
-    `;
+        picker.innerHTML = `
+            <div class="download-format-option" data-format="png">
+                <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                    <circle cx="9" cy="9" r="2"/>
+                    <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+                </svg>
+                <span>PNG Image</span>
+            </div>
+            <div class="download-format-option" data-format="html">
+                <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"/>
+                    <polyline points="8 6 2 12 8 18"/>
+                </svg>
+                <span>HTML File</span>
+            </div>
+        `;
     
     // Position picker relative to button
     const chartActions = btn.closest('.chart-actions');

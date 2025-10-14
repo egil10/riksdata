@@ -359,15 +359,9 @@ export async function downloadChartForCard(cardEl, format = 'png') {
             case 'html':
                 await downloadAsHTML(cardEl, filename, chartTitle);
                 break;
-            case 'pdf':
-                await downloadAsPDF(cardEl, filename, chartTitle);
-                break;
-            case 'svg':
-                await downloadAsSVG(cardEl, filename);
-                break;
             case 'png':
             default:
-                await downloadAsPNG(cardEl, filename, chartTitle);
+                await downloadAsPNG(cardEl, filename, chartTitle); // Back to original PNG approach
                 break;
         }
         
@@ -398,9 +392,9 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         return;
     }
     
-    // Instagram Posts optimized dimensions - much taller to force narrower chart
-    const INSTAGRAM_WIDTH = 1080;
-    const INSTAGRAM_HEIGHT = 1620; // 2:3 format - even taller to force narrower chart
+    // Instagram Posts optimized dimensions - 14:9 landscape format
+    const INSTAGRAM_WIDTH = 1385; // 14:9 format - WIDTH should be larger for landscape!
+    const INSTAGRAM_HEIGHT = 1080;
     
     // Create a temporary container with extra safe padding to prevent Instagram cropping
     const tempContainer = document.createElement('div');
@@ -442,7 +436,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         clonedCanvas.width = 400;
         clonedCanvas.height = 600;
         
-        // Force the chart to redraw with new dimensions
+        // Force the chart to redraw with new dimensions - MERGED APPROACH
         chartInstance.options.maintainAspectRatio = false;
         chartInstance.options.aspectRatio = 0.67; // Very narrow aspect ratio
         
@@ -463,7 +457,11 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
             };
         }
         
+        // Force resize with the narrow dimensions that actually worked!
         chartInstance.resize(400, 600);
+        
+        // Wait a bit for the chart to fully redraw
+        await new Promise(resolve => setTimeout(resolve, 200));
     }
     
     // Enhance the styling for Instagram export
@@ -632,10 +630,10 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         
         // Convert to blob and download with Instagram-safe filename
         canvas.toBlob((blob) => {
-            // Update filename to indicate Instagram 2:3 optimization
-            const instagramSafeFilename = filename.replace('.png', '-instagram-2x3.png');
+            // Update filename to indicate Instagram 14:9 optimization
+            const instagramSafeFilename = filename.replace('.png', '-instagram-14x9.png');
             download(blob, instagramSafeFilename);
-            announce?.(`Chart "${chartTitle}" downloaded as Instagram 2:3 PNG - forced narrow chart!`);
+            announce?.(`Chart "${chartTitle}" downloaded as Instagram 14:9 PNG - landscape format!`);
         }, 'image/png', 1.0); // Maximum quality
         
     } else {
@@ -1217,6 +1215,259 @@ export async function copyChartDataTSV(cardEl, getDataById) {
     console.error('[copyChartDataTSV] Unexpected error:', err);
     announce?.('Could not copy data.');
   }
+}
+
+// JPEG download function
+async function downloadAsJPEG(cardEl, filename, chartTitle, announce) {
+    console.log('[downloadAsJPEG] Starting JPEG download...');
+    
+    const canvas = cardEl.querySelector('canvas');
+    if (!canvas) {
+        console.error('[downloadAsJPEG] No canvas found in card');
+        announce?.('No chart found to download');
+        return;
+    }
+    
+    // Get the chart instance
+    const chartId = canvas.id;
+    const chartInstance = window.chartInstances?.[chartId];
+    if (!chartInstance) {
+        console.error('[downloadAsJPEG] No chart instance found');
+        announce?.('Chart not ready for download. Please wait a moment and try again.');
+        return;
+    }
+    
+    // Instagram Posts optimized dimensions - 14:9 format (less wide than 16:9)
+    const INSTAGRAM_WIDTH = 1385; // 14:9 format - WIDTH should be larger for landscape!
+    const INSTAGRAM_HEIGHT = 1080;
+    
+    // Create a temporary container optimized for JPEG
+    const tempContainer = document.createElement('div');
+    tempContainer.style.cssText = `
+        position: fixed;
+        top: -9999px;
+        left: -9999px;
+        width: ${INSTAGRAM_WIDTH}px;
+        height: ${INSTAGRAM_HEIGHT}px;
+        background: white;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 160px 200px;
+        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        z-index: -1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        margin: 60px 40px;
+        border: 2px solid #f8f9fa;
+    `;
+    
+    // Clone the card and enhance it for export
+    const cardClone = cardEl.cloneNode(true);
+    
+    // Remove action buttons and source link from the clone
+    const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
+    actionButtons.forEach(btn => btn.remove());
+    
+    // FORCE the chart to be narrower by modifying the canvas directly
+    const clonedCanvas = cardClone.querySelector('canvas');
+    if (clonedCanvas && chartInstance) {
+        // Set the canvas to be much narrower
+        clonedCanvas.style.width = '400px';
+        clonedCanvas.style.height = '600px';
+        clonedCanvas.width = 400;
+        clonedCanvas.height = 600;
+        
+        // Force the chart to redraw with new dimensions
+        chartInstance.options.maintainAspectRatio = false;
+        chartInstance.options.aspectRatio = 0.67;
+        
+        // Hide y-axis labels to save horizontal space
+        if (chartInstance.options.scales && chartInstance.options.scales.y) {
+            chartInstance.options.scales.y.display = false;
+        }
+        
+        // Make x-axis labels smaller to fit better
+        if (chartInstance.options.scales && chartInstance.options.scales.x) {
+            chartInstance.options.scales.x.ticks = {
+                ...chartInstance.options.scales.x.ticks,
+                maxRotation: 45,
+                minRotation: 45,
+                font: {
+                    size: 10
+                }
+            };
+        }
+        
+        chartInstance.resize(400, 600);
+    }
+    
+    // Enhance the styling for Instagram export
+    cardClone.style.cssText = `
+        background: white;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-width: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    `;
+    
+    // Enhance header styling with extra safe spacing for 2:3 format
+    const header = cardClone.querySelector('.chart-header');
+    if (header) {
+        header.style.cssText = `
+            margin-bottom: 80px;
+            padding-bottom: 50px;
+            border-bottom: 3px solid #e5e7eb;
+            text-align: center;
+            width: 100%;
+            padding-top: 30px;
+            padding-left: 80px;
+            padding-right: 80px;
+        `;
+    }
+    
+    // Enhance title styling
+    const title = cardClone.querySelector('h3');
+    if (title) {
+        title.style.cssText = `
+            font-size: 48px;
+            font-weight: 800;
+            color: #111827;
+            margin: 0 0 24px 0;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-align: center;
+        `;
+    }
+    
+    // Enhance subtitle styling
+    const subtitle = cardClone.querySelector('.chart-subtitle');
+    if (subtitle) {
+        subtitle.style.cssText = `
+            font-size: 28px;
+            color: #6b7280;
+            font-weight: 600;
+            margin: 0;
+            line-height: 1.3;
+            text-align: center;
+        `;
+    }
+    
+    // Enhance chart container for JPEG format
+    const chartContainer = cardClone.querySelector('.chart-container');
+    if (chartContainer) {
+        chartContainer.style.cssText = `
+            width: 60%;
+            height: 900px;
+            position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 80px;
+            padding: 40px;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            background: #fafafa;
+        `;
+    }
+    
+    // Add safe area indicator overlay
+    const safeAreaOverlay = document.createElement('div');
+    safeAreaOverlay.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        border: 2px dashed rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        margin: 80px 100px;
+        box-sizing: border-box;
+    `;
+    
+    // Add the enhanced card to the temporary container
+    tempContainer.appendChild(cardClone);
+    tempContainer.appendChild(safeAreaOverlay);
+    document.body.appendChild(tempContainer);
+    
+    // Wait a moment for the layout to settle
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Use html2canvas to capture and convert to JPEG
+    if (window.html2canvas) {
+        const canvas = await html2canvas(tempContainer, {
+            scale: 1,
+            backgroundColor: '#ffffff',
+            width: INSTAGRAM_WIDTH,
+            height: INSTAGRAM_HEIGHT,
+            useCORS: true,
+            allowTaint: true,
+            onclone: (clonedDoc) => {
+                // Enhance chart container for JPEG format
+                const clonedChartContainer = clonedDoc.querySelector('.chart-container');
+                if (clonedChartContainer) {
+                    clonedChartContainer.style.height = '900px';
+                    clonedChartContainer.style.width = '60%';
+                    clonedChartContainer.style.margin = '30px 80px';
+                    clonedChartContainer.style.padding = '40px';
+                    clonedChartContainer.style.border = '1px solid #f0f0f0';
+                    clonedChartContainer.style.borderRadius = '12px';
+                    clonedChartContainer.style.background = '#fafafa';
+                }
+                
+                // Ensure title and subtitle are visible and properly styled
+                const clonedTitle = clonedDoc.querySelector('h3');
+                if (clonedTitle) {
+                    clonedTitle.style.display = 'block';
+                    clonedTitle.style.fontSize = '48px';
+                    clonedTitle.style.fontWeight = '800';
+                    clonedTitle.style.color = '#111827';
+                    clonedTitle.style.textAlign = 'center';
+                }
+                
+                const clonedSubtitle = clonedDoc.querySelector('.chart-subtitle');
+                if (clonedSubtitle) {
+                    clonedSubtitle.style.display = 'block';
+                    clonedSubtitle.style.fontSize = '28px';
+                    clonedSubtitle.style.color = '#6b7280';
+                    clonedSubtitle.style.textAlign = 'center';
+                }
+            }
+        });
+        
+        // Convert to PNG blob and download with 14:9 format
+        canvas.toBlob((blob) => {
+            const pngFilename = filename.replace('.png', '-instagram-14x9.png');
+            download(blob, pngFilename);
+            announce?.(`Chart "${chartTitle}" downloaded as Instagram 14:9 PNG - perfect aspect ratio!`);
+        }, 'image/png', 1.0); // Maximum quality
+        
+    } else {
+        console.warn('html2canvas not available, falling back to canvas-only download');
+        const canvas = cardEl.querySelector('canvas');
+        if (canvas) {
+            const link = document.createElement('a');
+            link.download = filename.replace('.png', '.jpeg');
+            link.href = canvas.toDataURL('image/jpeg', 0.9);
+            link.click();
+            announce?.(`Chart "${chartTitle}" downloaded as JPEG!`);
+        }
+    }
+    
+    // Clean up
+    document.body.removeChild(tempContainer);
 }
 
 function announce(msg) {

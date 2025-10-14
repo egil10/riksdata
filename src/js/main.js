@@ -479,6 +479,11 @@ export async function initializeApp() {
             initializationTimeout = null;
         }
         
+        // Wait for first row of charts to actually load before hiding loading screen
+        console.log('Waiting for first charts to load...');
+        updateLoadingStatus('Loading first charts...');
+        await waitForFirstChartsToLoad();
+        
         // Hide loading screen with fade out
         console.log('Hiding loading screen...');
         hideLoadingScreen();
@@ -518,6 +523,37 @@ export async function initializeApp() {
         // Hide loading screen even if there's an error
         hideLoadingScreen();
     }
+}
+
+/**
+ * Wait for first row of charts (at least 3-5 charts) to actually load
+ */
+async function waitForFirstChartsToLoad() {
+    const MIN_CHARTS = 3; // Wait for at least 3 charts to load
+    const MAX_WAIT_TIME = 5000; // Maximum wait time: 5 seconds
+    const CHECK_INTERVAL = 200; // Check every 200ms
+    
+    const startTime = Date.now();
+    
+    return new Promise((resolve) => {
+        const checkCharts = () => {
+            const loadedChartCount = window.chartInstances ? Object.keys(window.chartInstances).length : 0;
+            const elapsedTime = Date.now() - startTime;
+            
+            console.log(`📊 Charts loaded so far: ${loadedChartCount}`);
+            
+            // Resolve if we have enough charts or exceeded max wait time
+            if (loadedChartCount >= MIN_CHARTS || elapsedTime >= MAX_WAIT_TIME) {
+                console.log(`✅ Proceeding with ${loadedChartCount} charts loaded after ${elapsedTime}ms`);
+                resolve();
+            } else {
+                // Check again after interval
+                setTimeout(checkCharts, CHECK_INTERVAL);
+            }
+        };
+        
+        checkCharts();
+    });
 }
 
 /**
@@ -562,16 +598,19 @@ export function initializeUI() {
     // Search functionality - header search with Apply button
     const headerSearchInput = document.getElementById('headerSearch');
     const searchApplyBtn = document.getElementById('searchApplyBtn');
+    const searchResetBtn = document.getElementById('searchResetBtn');
     
-    if (headerSearchInput && searchApplyBtn) {
+    if (headerSearchInput && searchApplyBtn && searchResetBtn) {
         // Add visual feedback when typing (but don't search yet)
         headerSearchInput.addEventListener('input', (e) => {
             if (e.target.value.trim()) {
                 e.target.classList.add('has-input');
                 searchApplyBtn.classList.add('has-input'); // Add rainbow gradient
+                searchResetBtn.style.display = 'flex'; // Show reset button
             } else {
                 e.target.classList.remove('has-input');
                 searchApplyBtn.classList.remove('has-input'); // Remove rainbow gradient
+                searchResetBtn.style.display = 'none'; // Hide reset button
             }
         });
         
@@ -587,6 +626,16 @@ export function initializeUI() {
         searchApplyBtn.addEventListener('click', () => {
             handleSearch({ target: headerSearchInput });
             searchApplyBtn.classList.remove('has-input'); // Remove rainbow after search
+        });
+        
+        // Reset search on Reset button click
+        searchResetBtn.addEventListener('click', () => {
+            headerSearchInput.value = '';
+            headerSearchInput.classList.remove('has-input');
+            searchApplyBtn.classList.remove('has-input');
+            searchResetBtn.style.display = 'none';
+            // Trigger search with empty value to show all cards
+            handleSearch({ target: headerSearchInput });
         });
     }
 
@@ -697,7 +746,11 @@ function handleWindowResize() {
 function handleSearch(event) {
     try {
         const searchTerm = event.target.value.toLowerCase().trim();
-        const chartCards = document.querySelectorAll('.chart-card');
+        // Only search within visible grid
+        const mainGrid = document.querySelector('#main-dashboard .chart-grid');
+        const drilldownGrid = document.querySelector('#drilldown-view #drilldown-charts-container');
+        const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
+        const chartCards = activeGrid ? activeGrid.querySelectorAll('.chart-card') : [];
         
         chartCards.forEach(card => {
             try {
@@ -714,10 +767,11 @@ function handleSearch(event) {
                 const title = titleElement.textContent.toLowerCase();
                 const source = sourceElement.textContent.toLowerCase();
                 
-                // If search is empty, show all cards
-                if (searchTerm === '') {
-                    card.style.display = 'block';
-                } else if (title.includes(searchTerm) || source.includes(searchTerm)) {
+        // If search is empty, reset to default visibility (show only cards that were visible before search)
+        if (searchTerm === '') {
+            // Reset: show cards that are not explicitly hidden by other filters
+            card.style.display = '';
+        } else if (title.includes(searchTerm) || source.includes(searchTerm)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';

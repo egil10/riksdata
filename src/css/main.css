@@ -173,6 +173,30 @@ body.loaded {
     display: block;
 }
 
+.search-reset-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--t) var(--ease);
+    color: var(--text-muted);
+}
+
+.search-reset-btn:hover {
+    background: var(--glass-bg);
+    border-color: #e11926;
+    color: #e11926;
+    transform: rotate(-15deg);
+}
+
+.search-reset-btn svg {
+    display: block;
+}
+
 /* Responsive header search */
 @media (max-width: 768px) {
     .header-search-input {

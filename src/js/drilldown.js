@@ -39,6 +39,9 @@ function handleHashChange() {
     
     console.log(`📍 Hash changed to: ${hash || '(empty)'}`);
     
+    // Clear search filter when navigating to any view (drilldown or main)
+    clearSearchFilter();
+    
     if (hash === 'bankruptcies') {
         showBankruptciesView();
     } else if (hash === 'exports') {
@@ -56,6 +59,32 @@ function handleHashChange() {
     } else {
         showMainDashboard();
     }
+}
+
+/**
+ * Clear search filter and reset visibility
+ */
+function clearSearchFilter() {
+    const searchInput = document.getElementById('headerSearch');
+    const searchApplyBtn = document.getElementById('searchApplyBtn');
+    const searchResetBtn = document.getElementById('searchResetBtn');
+    
+    if (searchInput) {
+        searchInput.value = '';
+        searchInput.classList.remove('has-input');
+    }
+    if (searchApplyBtn) {
+        searchApplyBtn.classList.remove('has-input');
+    }
+    if (searchResetBtn) {
+        searchResetBtn.style.display = 'none';
+    }
+    
+    // Reset all chart cards to visible state
+    const allCards = document.querySelectorAll('.chart-card');
+    allCards.forEach(card => {
+        card.style.display = '';
+    });
 }
 
 /**
@@ -588,7 +617,7 @@ function updateHeaderBreadcrumb(subtitle) {
     } else {
         // Reset to default
         appTitle.innerHTML = 'Riksdata';
-        appTitle.onclick = () => window.location.href = window.location.pathname;
+        appTitle.onclick = () => window.location.reload(true);
     }
 }
 
@@ -599,12 +628,16 @@ window.clearSearchAndGoHome = function() {
     // Clear search input
     const searchInput = document.getElementById('headerSearch');
     const searchApplyBtn = document.getElementById('searchApplyBtn');
+    const searchResetBtn = document.getElementById('searchResetBtn');
     if (searchInput) {
         searchInput.value = '';
         searchInput.classList.remove('has-input');
     }
     if (searchApplyBtn) {
         searchApplyBtn.classList.remove('has-input');
+    }
+    if (searchResetBtn) {
+        searchResetBtn.style.display = 'none';
     }
     
     // Show all cards

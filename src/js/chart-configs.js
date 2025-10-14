@@ -266,37 +266,6 @@ export const chartConfigs = [
     { id: 'norway-rnd-researchers-chart', url: './data/cached/rnd_researchers.json', title: 'Norway R&D Researchers', subtitle: 'per million people', type: 'line' },
     { id: 'norway-tourist-trips-chart', url: './data/cached/tourist_trips.json', title: 'Norway Tourist Trips', subtitle: 'international tourist arrivals', type: 'line' },
     
-    // DFO Budget Data - Norwegian Government Department Budgets (2014-2024)
-    { id: 'dfo-arbeids-inkludering-expenditure-chart', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-arbeids-inkludering-revenue-chart', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-barne-familie-expenditure-chart', url: './data/cached/dfo/barne-og-familiedepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Barne- og familiedepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-barne-familie-revenue-chart', url: './data/cached/dfo/barne-og-familiedepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Barne- og familiedepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-energi-expenditure-chart', url: './data/cached/dfo/energidepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Energidepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-energi-revenue-chart', url: './data/cached/dfo/energidepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Energidepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-finans-expenditure-chart', url: './data/cached/dfo/finansdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Finansdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-finans-revenue-chart', url: './data/cached/dfo/finansdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Finansdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-forsvar-expenditure-chart', url: './data/cached/dfo/forsvarsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Forsvarsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-forsvar-revenue-chart', url: './data/cached/dfo/forsvarsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Forsvarsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-helse-expenditure-chart', url: './data/cached/dfo/helse-og-omsorgsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Helse- og omsorgsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-helse-revenue-chart', url: './data/cached/dfo/helse-og-omsorgsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Helse- og omsorgsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-justis-expenditure-chart', url: './data/cached/dfo/justis-og-beredskapsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Justis- og beredskapsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-justis-revenue-chart', url: './data/cached/dfo/justis-og-beredskapsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Justis- og beredskapsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-klima-expenditure-chart', url: './data/cached/dfo/klima-og-milj-departementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Klima- og miljødepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-klima-revenue-chart', url: './data/cached/dfo/klima-og-milj-departementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Klima- og miljødepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-kommunal-expenditure-chart', url: './data/cached/dfo/kommunal-og-distriktsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kommunal- og distriktsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-kommunal-revenue-chart', url: './data/cached/dfo/kommunal-og-distriktsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Kommunal- og distriktsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-kultur-expenditure-chart', url: './data/cached/dfo/kultur-og-likestillingsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kultur- og likestillingsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-kultur-revenue-chart', url: './data/cached/dfo/kultur-og-likestillingsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Kultur- og likestillingsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-kunnskap-expenditure-chart', url: './data/cached/dfo/kunnskapsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kunnskapsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-kunnskap-revenue-chart', url: './data/cached/dfo/kunnskapsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Kunnskapsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-landbruk-expenditure-chart', url: './data/cached/dfo/landbruks-og-matdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Landbruks- og matdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-landbruk-revenue-chart', url: './data/cached/dfo/landbruks-og-matdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Landbruks- og matdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-naring-expenditure-chart', url: './data/cached/dfo/n-rings-og-fiskeridepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Nærings- og fiskeridepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-naring-revenue-chart', url: './data/cached/dfo/n-rings-og-fiskeridepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Nærings- og fiskeridepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-samferdsel-expenditure-chart', url: './data/cached/dfo/samferdselsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Samferdselsdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-samferdsel-revenue-chart', url: './data/cached/dfo/samferdselsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Samferdselsdepartementet - Inntekter', type: 'dfo-budget' },
-    { id: 'dfo-utenriks-expenditure-chart', url: './data/cached/dfo/utenriksdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Utgifter', type: 'dfo-budget' },
-    { id: 'dfo-utenriks-revenue-chart', url: './data/cached/dfo/utenriksdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Inntekter', type: 'dfo-budget' }
 ];
 
 // ============================================================================

@@ -76,12 +76,18 @@
             <button id="sidebar-toggle" class="icon-btn" aria-label="Åpne/lukk sidemeny" title="Åpne/lukk sidemeny">
                 <span class="icon"></span>
             </button>
-            <span class="app-title" onclick="window.location.href = window.location.pathname">Riksdata</span>
+            <span class="app-title" onclick="window.location.reload(true)">Riksdata</span>
         </div>
         <div class="right-section">
             <!-- Search Input -->
             <div class="header-search">
                 <input type="text" id="headerSearch" placeholder="Søk etter diagrammer..." class="header-search-input">
+                <button id="searchResetBtn" class="search-reset-btn" aria-label="Reset search" title="Reset search" style="display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
+                        <path d="M3 3v5h5"/>
+                    </svg>
+                </button>
                 <button id="searchApplyBtn" class="search-apply-btn" aria-label="Apply search" title="Apply search">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"/>

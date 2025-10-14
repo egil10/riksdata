@@ -80,7 +80,12 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // Determine cache file path based on API URL
         let cachePath;
-        if (apiUrl.includes('ssb.no')) {
+        
+        // Check if URL is already a direct cache path (for drill-down charts)
+        if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
+            console.log(`Using direct cache path: ${apiUrl}`);
+            cachePath = rel(apiUrl);
+        } else if (apiUrl.includes('ssb.no')) {
             // Extract dataset ID from SSB URL; allow alphanumeric IDs
             const datasetId = apiUrl.match(/dataset\/([\w\d]+)\.json/)?.[1];
             if (!datasetId) {

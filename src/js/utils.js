@@ -558,40 +558,56 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
     
     // Get chart data for recreation
     const chartId = cardEl.getAttribute('data-chart-id');
-    const chartData = window.getDataById?.(chartId);
     
-    // Get political periods data if available
-    const politicalPeriods = window.POLITICAL_PERIODS || [];
+    // Extract serializable chart data (avoiding functions and callbacks)
+    const chartType = originalChart.config.type || 'line';
+    const chartLabels = originalChart.data.labels || [];
+    const chartDatasets = (originalChart.data.datasets || []).map(dataset => ({
+        label: dataset.label,
+        data: dataset.data,
+        borderColor: dataset.borderColor,
+        backgroundColor: dataset.backgroundColor,
+        borderWidth: dataset.borderWidth || 2,
+        fill: dataset.fill || false,
+        tension: dataset.tension || 0.1
+    }));
     
-    // Serialize chart data
+    // Create a simple, serializable chart config
     const chartConfig = {
-        type: originalChart.config.type,
-        data: originalChart.data,
+        type: chartType,
+        data: {
+            labels: chartLabels,
+            datasets: chartDatasets
+        },
         options: {
-            ...originalChart.options,
             responsive: true,
             maintainAspectRatio: false,
-            animation: false
+            plugins: {
+                legend: {
+                    display: chartDatasets.length > 1,
+                    position: 'top'
+                },
+                title: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    display: true,
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    display: true,
+                    beginAtZero: false,
+                    grid: {
+                        color: 'rgba(0, 0, 0, 0.1)'
+                    }
+                }
+            }
         }
     };
-    
-    // Build political periods HTML
-    let politicalPeriodsHTML = '';
-    if (politicalPeriods.length > 0) {
-        politicalPeriodsHTML = '<div class="political-legend">' +
-            '<h4>Political Periods</h4>' +
-            '<div class="political-periods">';
-        
-        for (let i = 0; i < politicalPeriods.length; i++) {
-            const period = politicalPeriods[i];
-            politicalPeriodsHTML += '<div class="political-period">' +
-                '<div class="political-color" style="background-color: ' + period.color + '"></div>' +
-                '<span>' + period.name + ' (' + period.start + ' - ' + period.end + ')</span>' +
-                '</div>';
-        }
-        
-        politicalPeriodsHTML += '</div></div>';
-    }
     
     // Create HTML content
     const htmlContent = '<!DOCTYPE html>' +
@@ -611,11 +627,6 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
                 '.chart-wrapper { position: relative; height: 400px; width: 100%; }' +
                 '.chart-canvas { width: 100% !important; height: 100% !important; }' +
                 '.chart-meta { margin-top: 16px; font-size: 14px; color: #6b7280; border-top: 1px solid #e5e7eb; padding-top: 16px; }' +
-                '.political-legend { margin-top: 16px; padding: 12px; background: #f9fafb; border-radius: 8px; border-left: 4px solid #3b82f6; }' +
-                '.political-legend h4 { margin: 0 0 8px 0; font-size: 14px; color: #374151; }' +
-                '.political-periods { display: flex; flex-wrap: wrap; gap: 8px; }' +
-                '.political-period { display: flex; align-items: center; gap: 4px; font-size: 12px; }' +
-                '.political-color { width: 12px; height: 12px; border-radius: 2px; }' +
             '</style>' +
         '</head>' +
         '<body>' +
@@ -631,46 +642,11 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
                     '<p>Generated on ' + new Date().toLocaleDateString() + ' from Riksdata</p>' +
                     '<p>Data source: ' + (cardEl.querySelector('.source-link')?.textContent || 'Unknown') + '</p>' +
                 '</div>' +
-                politicalPeriodsHTML +
             '</div>' +
             '<script>' +
-                'const politicalPeriods = ' + JSON.stringify(politicalPeriods, null, 2) + ';' +
                 'const chartConfig = ' + JSON.stringify(chartConfig, null, 2) + ';' +
                 'document.addEventListener("DOMContentLoaded", function() {' +
                     'const ctx = document.getElementById("chart").getContext("2d");' +
-                    'if (politicalPeriods.length > 0 && chartConfig.data.labels) {' +
-                        'chartConfig.options.plugins = chartConfig.options.plugins || {};' +
-                        'chartConfig.options.plugins.annotation = { annotations: {} };' +
-                        'for (let i = 0; i < politicalPeriods.length; i++) {' +
-                            'const period = politicalPeriods[i];' +
-                            'const startDate = new Date(period.start);' +
-                            'const endDate = new Date(period.end);' +
-                            'const startIndex = chartConfig.data.labels.findIndex(function(label) {' +
-                                'const labelDate = new Date(label);' +
-                                'return labelDate >= startDate;' +
-                            '});' +
-                            'const endIndex = chartConfig.data.labels.findIndex(function(label) {' +
-                                'const labelDate = new Date(label);' +
-                                'return labelDate > endDate;' +
-                            '});' +
-                            'if (startIndex !== -1) {' +
-                                'chartConfig.options.plugins.annotation.annotations["period-" + i] = {' +
-                                    'type: "box",' +
-                                    'xMin: startIndex,' +
-                                    'xMax: endIndex !== -1 ? endIndex : chartConfig.data.labels.length - 1,' +
-                                    'backgroundColor: period.color + "20",' +
-                                    'borderColor: period.color,' +
-                                    'borderWidth: 1,' +
-                                    'label: {' +
-                                        'content: period.name,' +
-                                        'position: "start",' +
-                                        'color: period.color,' +
-                                        'font: { size: 10 }' +
-                                    '}' +
-                                '};' +
-                            '}' +
-                        '}' +
-                    '}' +
                     'new Chart(ctx, chartConfig);' +
                 '});' +
             '</script>' +

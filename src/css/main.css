@@ -91,6 +91,7 @@ body.loaded {
     position: relative;
     display: flex;
     align-items: center;
+    gap: 0.25rem;
 }
 
 .header-search-input {
@@ -99,11 +100,16 @@ body.loaded {
     -webkit-backdrop-filter: blur(var(--blur-amount));
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-full);
-    padding: 0.5rem 2.5rem 0.5rem 1rem;
+    padding: 0.5rem 1rem;
     font-size: 0.875rem;
     color: var(--text);
-    width: 220px;
+    width: 180px;
     transition: all var(--t) var(--ease);
+}
+
+.header-search-input.has-input {
+    border-color: var(--accent-2);
+    background: var(--card-hover);
 }
 
 .header-search-input:focus {
@@ -117,11 +123,27 @@ body.loaded {
     color: var(--text-subtle);
 }
 
-.header-search-icon {
-    position: absolute;
-    right: 0.75rem;
+.search-apply-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-full);
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--t) var(--ease);
     color: var(--text-muted);
-    pointer-events: none;
+}
+
+.search-apply-btn:hover {
+    background: var(--glass-bg);
+    border-color: var(--accent-2);
+    color: var(--accent-2);
+}
+
+.search-apply-btn svg {
+    display: block;
 }
 
 /* Responsive header search */
@@ -475,14 +497,21 @@ html {
 }
 
 /* Chart card layout: give containers a sane height and a fixed aspect on mobile */
+.chart-card {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
 .chart-card .chart-container {
     position: relative;
-    /* Prefer aspect ratio for mobile; browsers that support it will ignore height */
-    aspect-ratio: 16 / 9;
-    /* Fallback height for older browsers + clamp for larger screens */
-    height: clamp(220px, 38vh, 460px);
+    /* Fixed height to prevent resize issues */
+    height: 260px;
+    min-height: 260px;
+    max-height: 260px;
     max-width: 100%;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
 /* Let the canvas fill the container WITHOUT imposing its own height */
@@ -2456,6 +2485,63 @@ footer {
     transition: color var(--t) var(--ease);
 }
 
-.app-title span:hover {
-    color: var(--accent);
+/* Only breadcrumb-home should have hover effect */
+.app-title .breadcrumb-home:hover {
+    color: var(--accent-2);
+}
+
+/* Download format picker dropdown */
+.download-format-picker {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 140px;
+    overflow: hidden;
+    animation: fadeInDown 0.2s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.download-format-option {
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background var(--t) var(--ease);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.875rem;
+    color: var(--text);
+    border-bottom: 1px solid var(--border);
+}
+
+.download-format-option:last-child {
+    border-bottom: none;
+}
+
+.download-format-option:hover {
+    background: var(--bg-elev);
+}
+
+.download-format-icon {
+    width: 16px;
+    height: 16px;
+    opacity: 0.7;
+}
+
+.chart-actions {
+    position: relative;
 }

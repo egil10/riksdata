@@ -531,7 +531,7 @@ async function loadOilFundCharts() {
 /**
  * Create a chart card element
  */
-function createChartCard(config) {
+function createChartCard(config, sourceInfo = { name: 'SSB', url: 'https://www.ssb.no/' }) {
     const card = document.createElement('div');
     card.className = 'chart-card';
     card.setAttribute('data-chart-id', config.id);
@@ -554,17 +554,16 @@ function createChartCard(config) {
                 </div>
             </div>
             <div class="chart-subtitle-row">
-                ${config.subtitle ? `<p class="chart-subtitle">${config.subtitle}</p>` : ''}
-                <a href="https://www.ssb.no/" target="_blank" class="source-link">SSB</a>
+                <div class="chart-subtitle">${config.subtitle || ''}</div>
+                <div class="subtitle-actions">
+                    <a href="${sourceInfo.url}" target="_blank" class="source-link">${sourceInfo.name}</a>
+                </div>
             </div>
         </div>
+        <div class="skeleton-chart" id="${config.id}-skeleton"></div>
         <div class="chart-container">
-            <div class="skeleton-loader" id="${config.id}-skeleton">
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line"></div>
-                <div class="skeleton-line"></div>
-            </div>
             <canvas id="${config.id}"></canvas>
+            <div class="static-tooltip" id="${config.id}-tooltip"></div>
         </div>
     `;
     
@@ -581,9 +580,9 @@ function updateHeaderBreadcrumb(subtitle) {
     if (subtitle) {
         // Show breadcrumb - only Riksdata is clickable/hoverable
         appTitle.innerHTML = `
-            <span onclick="window.location.hash = ''" style="cursor: pointer; transition: color 0.2s ease;" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color=''">Riksdata</span>
-            <span style="opacity: 0.5; margin: 0 0.5rem;">→</span>
-            <span style="font-weight: 500; cursor: default;">${subtitle}</span>
+            <span class="breadcrumb-home" onclick="window.location.hash = ''" style="cursor: pointer;">Riksdata</span>
+            <span style="opacity: 0.5; margin: 0 0.5rem; pointer-events: none;">→</span>
+            <span style="font-weight: 500; cursor: default; pointer-events: none;">${subtitle}</span>
         `;
         appTitle.onclick = null; // Remove global click handler
     } else {

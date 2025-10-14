@@ -559,11 +559,31 @@ export function initializeUI() {
         mobileMenuToggle.addEventListener('click', toggleMobileMenu);
     }
 
-    // Search functionality - header search
+    // Search functionality - header search with Apply button
     const headerSearchInput = document.getElementById('headerSearch');
+    const searchApplyBtn = document.getElementById('searchApplyBtn');
     
-    if (headerSearchInput) {
-        headerSearchInput.addEventListener('input', debounce(handleSearch, 300));
+    if (headerSearchInput && searchApplyBtn) {
+        // Add visual feedback when typing (but don't search yet)
+        headerSearchInput.addEventListener('input', (e) => {
+            if (e.target.value.trim()) {
+                e.target.classList.add('has-input');
+            } else {
+                e.target.classList.remove('has-input');
+            }
+        });
+        
+        // Search on Enter key
+        headerSearchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSearch({ target: headerSearchInput });
+            }
+        });
+        
+        // Search on Apply button click
+        searchApplyBtn.addEventListener('click', () => {
+            handleSearch({ target: headerSearchInput });
+        });
     }
 
     // Source filters
@@ -672,7 +692,7 @@ function handleWindowResize() {
  */
 function handleSearch(event) {
     try {
-        const searchTerm = event.target.value.toLowerCase();
+        const searchTerm = event.target.value.toLowerCase().trim();
         const chartCards = document.querySelectorAll('.chart-card');
         
         chartCards.forEach(card => {
@@ -683,20 +703,24 @@ function handleSearch(event) {
                 // Skip cards that don't have required elements
                 if (!titleElement || !sourceElement) {
                     console.warn('Chart card missing required elements for search:', card);
+                    card.style.display = 'none'; // Hide invalid cards
                     return;
                 }
                 
                 const title = titleElement.textContent.toLowerCase();
                 const source = sourceElement.textContent.toLowerCase();
                 
-                if (title.includes(searchTerm) || source.includes(searchTerm)) {
+                // If search is empty, show all cards
+                if (searchTerm === '') {
+                    card.style.display = 'block';
+                } else if (title.includes(searchTerm) || source.includes(searchTerm)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
                 }
             } catch (cardError) {
                 console.warn('Error processing chart card during search:', cardError, card);
-                // Continue with other cards
+                card.style.display = 'none'; // Hide cards with errors
             }
         });
     } catch (searchError) {
@@ -1222,6 +1246,77 @@ import { copyChartDataTSV } from './utils.js';
 
 // Registry moved to registry.js to avoid circular imports
 
+/**
+ * Show download format picker dropdown
+ */
+function showDownloadFormatPicker(btn, card) {
+    // Remove any existing format picker
+    document.querySelectorAll('.download-format-picker').forEach(picker => picker.remove());
+    
+    // Create format picker
+    const picker = document.createElement('div');
+    picker.className = 'download-format-picker';
+    picker.innerHTML = `
+        <div class="download-format-option" data-format="png">
+            <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                <circle cx="9" cy="9" r="2"/>
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+            </svg>
+            <span>PNG Image</span>
+        </div>
+        <div class="download-format-option" data-format="html">
+            <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+            </svg>
+            <span>HTML File</span>
+        </div>
+        <div class="download-format-option" data-format="svg">
+            <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" x2="12" y1="15" y2="3"/>
+            </svg>
+            <span>SVG Vector</span>
+        </div>
+    `;
+    
+    // Position picker relative to button
+    const chartActions = btn.closest('.chart-actions');
+    chartActions.appendChild(picker);
+    
+    // Handle format selection
+    picker.querySelectorAll('.download-format-option').forEach(option => {
+        option.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const format = option.getAttribute('data-format');
+            picker.remove();
+            
+            // Update button state and download
+            updateActionButtonState(btn, 'loading', 'download');
+            try {
+                await downloadChartForCard(card, format);
+                updateActionButtonState(btn, 'success', 'download');
+            } catch (error) {
+                console.error('Download failed:', error);
+                updateActionButtonState(btn, 'error', 'download');
+            }
+        });
+    });
+    
+    // Close picker when clicking outside
+    const closePickerOnClickOutside = (e) => {
+        if (!picker.contains(e.target) && e.target !== btn) {
+            picker.remove();
+            document.removeEventListener('click', closePickerOnClickOutside);
+        }
+    };
+    setTimeout(() => {
+        document.addEventListener('click', closePickerOnClickOutside);
+    }, 100);
+}
+
 // ---- Chart Actions: Download / Copy ----
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.icon-btn');
@@ -1232,16 +1327,9 @@ document.addEventListener('click', (e) => {
     
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
-        // Directly download as HTML
-        updateActionButtonState(btn, 'loading', 'download');
-        downloadChartForCard(card, 'html')
-            .then(() => {
-                updateActionButtonState(btn, 'success', 'download');
-            })
-            .catch((error) => {
-                console.error('Download failed:', error);
-                updateActionButtonState(btn, 'error', 'download');
-            });
+        e.stopPropagation();
+        // Show download format picker
+        showDownloadFormatPicker(btn, card);
     } else if (action === 'copy') {
         copyChartDataTSV(card, getDataById);
         updateActionButtonState(btn, 'success', 'copy'); // ensure btn is swapped directly

@@ -136,10 +136,37 @@ body.loaded {
     color: var(--text-muted);
 }
 
+/* Rainbow gradient when search has input but not yet applied */
+.search-apply-btn.has-input {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 0, 0, 0.15),
+        rgba(255, 165, 0, 0.15),
+        rgba(255, 255, 0, 0.15),
+        rgba(0, 128, 0, 0.15),
+        rgba(0, 0, 255, 0.15),
+        rgba(75, 0, 130, 0.15),
+        rgba(238, 130, 238, 0.15)
+    );
+    border-color: var(--accent-2);
+    color: var(--accent-2);
+    animation: rainbow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes rainbow-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
 .search-apply-btn:hover {
     background: var(--glass-bg);
     border-color: var(--accent-2);
     color: var(--accent-2);
+}
+
+.search-apply-btn.has-input:hover {
+    animation: none;
+    opacity: 1;
 }
 
 .search-apply-btn svg {
@@ -505,10 +532,10 @@ html {
 
 .chart-card .chart-container {
     position: relative;
-    /* Fixed height to prevent resize issues */
-    height: 260px;
-    min-height: 260px;
-    max-height: 260px;
+    /* Fixed height to prevent resize issues - reduced for less tall cards */
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
     max-width: 100%;
     overflow: hidden;
     flex-shrink: 0;
@@ -525,7 +552,9 @@ html {
 @media (min-width: 900px) {
     .chart-card .chart-container {
         aspect-ratio: 2 / 1;
-        height: clamp(260px, 32vh, 420px);
+        height: 220px !important;
+        min-height: 220px !important;
+        max-height: 220px !important;
     }
 }
 

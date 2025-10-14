@@ -568,8 +568,10 @@ export function initializeUI() {
         headerSearchInput.addEventListener('input', (e) => {
             if (e.target.value.trim()) {
                 e.target.classList.add('has-input');
+                searchApplyBtn.classList.add('has-input'); // Add rainbow gradient
             } else {
                 e.target.classList.remove('has-input');
+                searchApplyBtn.classList.remove('has-input'); // Remove rainbow gradient
             }
         });
         
@@ -577,12 +579,14 @@ export function initializeUI() {
         headerSearchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
                 handleSearch({ target: headerSearchInput });
+                searchApplyBtn.classList.remove('has-input'); // Remove rainbow after search
             }
         });
         
         // Search on Apply button click
         searchApplyBtn.addEventListener('click', () => {
             handleSearch({ target: headerSearchInput });
+            searchApplyBtn.classList.remove('has-input'); // Remove rainbow after search
         });
     }
 
@@ -819,8 +823,12 @@ function handleSourceFilter(event) {
  */
 function sortChartsAlphabetically() {
     try {
-        const chartGrid = document.querySelector('.chart-grid');
-        const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+        // Only sort cards inside the currently visible grid
+        const mainGrid = document.querySelector('#main-dashboard .chart-grid');
+        const drilldownGrid = document.querySelector('#drilldown-view #drilldown-charts-container');
+        const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
+        if (!activeGrid) return;
+        const chartCards = Array.from(activeGrid.querySelectorAll('.chart-card'));
         
         // Sort alphabetically
         chartCards.sort((a, b) => {
@@ -834,9 +842,11 @@ function sortChartsAlphabetically() {
             }
         });
         
-        // Re-append cards in new order
-        chartCards.forEach(card => {
-            chartGrid.appendChild(card);
+        // Re-append only visible and initialized cards first, then hidden ones
+        const visibleCards = chartCards.filter(c => c.style.display !== 'none');
+        const hiddenCards = chartCards.filter(c => c.style.display === 'none');
+        [...visibleCards, ...hiddenCards].forEach(card => {
+            activeGrid.appendChild(card);
         });
     
     // Resize charts after sorting (safe version)
@@ -869,8 +879,11 @@ function sortChartsAlphabetically() {
 function toggleSort() {
     try {
         const sortToggle = document.getElementById('sortToggle');
-        const chartGrid = document.querySelector('.chart-grid');
-        const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+        const mainGrid = document.querySelector('#main-dashboard .chart-grid');
+        const drilldownGrid = document.querySelector('#drilldown-view #drilldown-charts-container');
+        const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
+        if (!activeGrid) return;
+        const chartCards = Array.from(activeGrid.querySelectorAll('.chart-card'));
         
         if (sortToggle.textContent === 'A-Z') {
             // Sort reverse alphabetically
@@ -904,7 +917,7 @@ function toggleSort() {
         
         // Re-append cards in new order
         chartCards.forEach(card => {
-            chartGrid.appendChild(card);
+            activeGrid.appendChild(card);
         });
     
     // Resize charts after sorting (safe version)
@@ -938,8 +951,11 @@ function toggleHeaderSort() {
     try {
         const headerSortToggle = document.getElementById('headerSortToggle');
         const sortIcon = document.getElementById('sortIcon');
-        const chartGrid = document.querySelector('.chart-grid');
-        const chartCards = Array.from(document.querySelectorAll('.chart-card'));
+        const mainGrid = document.querySelector('#main-dashboard .chart-grid');
+        const drilldownGrid = document.querySelector('#drilldown-view #drilldown-charts-container');
+        const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
+        if (!activeGrid) return;
+        const chartCards = Array.from(activeGrid.querySelectorAll('.chart-card'));
         
         // Check current state by looking at the icon (using a unique path segment)
         const isAscending = sortIcon.innerHTML.includes('M20 8h-5');
@@ -994,7 +1010,7 @@ function toggleHeaderSort() {
         
         // Re-append cards in new order
         chartCards.forEach(card => {
-            chartGrid.appendChild(card);
+            activeGrid.appendChild(card);
         });
     
     // Resize charts after sorting (safe version)

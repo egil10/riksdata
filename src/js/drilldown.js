@@ -580,7 +580,7 @@ function updateHeaderBreadcrumb(subtitle) {
     if (subtitle) {
         // Show breadcrumb - only Riksdata is clickable/hoverable
         appTitle.innerHTML = `
-            <span class="breadcrumb-home" onclick="window.location.hash = ''" style="cursor: pointer;">Riksdata</span>
+            <span class="breadcrumb-home" onclick="clearSearchAndGoHome()" style="cursor: pointer;">Riksdata</span>
             <span style="opacity: 0.5; margin: 0 0.5rem; pointer-events: none;">→</span>
             <span style="font-weight: 500; cursor: default; pointer-events: none;">${subtitle}</span>
         `;
@@ -588,9 +588,34 @@ function updateHeaderBreadcrumb(subtitle) {
     } else {
         // Reset to default
         appTitle.innerHTML = 'Riksdata';
-        appTitle.onclick = () => window.location.reload();
+        appTitle.onclick = () => window.location.href = window.location.pathname;
     }
 }
+
+/**
+ * Clear search and go to home
+ */
+window.clearSearchAndGoHome = function() {
+    // Clear search input
+    const searchInput = document.getElementById('headerSearch');
+    const searchApplyBtn = document.getElementById('searchApplyBtn');
+    if (searchInput) {
+        searchInput.value = '';
+        searchInput.classList.remove('has-input');
+    }
+    if (searchApplyBtn) {
+        searchApplyBtn.classList.remove('has-input');
+    }
+    
+    // Show all cards
+    const chartCards = document.querySelectorAll('.chart-card');
+    chartCards.forEach(card => {
+        card.style.display = 'block';
+    });
+    
+    // Navigate to home
+    window.location.hash = '';
+};
 
 /**
  * Add drill-down functionality to bankruptcy chart

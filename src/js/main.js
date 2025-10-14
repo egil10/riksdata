@@ -526,11 +526,11 @@ export async function initializeApp() {
 }
 
 /**
- * Wait for first row of charts (at least 3-5 charts) to actually load
+ * Wait for first row of charts (at least 9 charts) to actually load
  */
 async function waitForFirstChartsToLoad() {
-    const MIN_CHARTS = 3; // Wait for at least 3 charts to load
-    const MAX_WAIT_TIME = 5000; // Maximum wait time: 5 seconds
+    const MIN_CHARTS = 9; // Wait for at least 9 charts to load (first 3 rows)
+    const MAX_WAIT_TIME = 8000; // Maximum wait time: 8 seconds
     const CHECK_INTERVAL = 200; // Check every 200ms
     
     const startTime = Date.now();

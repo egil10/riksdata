@@ -197,6 +197,57 @@ body.loaded {
     display: block;
 }
 
+/* Download format picker dropdown */
+.download-format-picker {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    min-width: 150px;
+    overflow: hidden;
+    animation: fadeInDown 0.2s ease-out;
+}
+
+.download-format-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    transition: all var(--t) var(--ease);
+    color: var(--text);
+}
+
+.download-format-option:hover {
+    background: var(--glass-bg);
+    color: var(--accent-2);
+}
+
+.download-format-icon {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.download-format-option span {
+    font-size: 0.9rem;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Responsive header search */
 @media (max-width: 768px) {
     .header-search-input {
@@ -222,6 +273,13 @@ body.loaded {
 
 .app-title:hover {
     color: var(--accent-2);
+}
+
+/* Chart actions container needs relative positioning for download picker */
+.chart-actions {
+    position: relative;
+    display: flex;
+    gap: 0.25rem;
 }
 
 /* MODERNIZED ICON BUTTONS - Glassmorphism on hover */
@@ -556,10 +614,10 @@ html {
 
 .chart-card .chart-container {
     position: relative;
-    /* Fixed height to prevent resize issues - reduced for less tall cards */
-    height: 200px !important;
-    min-height: 200px !important;
-    max-height: 200px !important;
+    /* Fixed height to prevent resize issues - much smaller for nice rectangle shape */
+    height: 140px !important;
+    min-height: 140px !important;
+    max-height: 140px !important;
     max-width: 100%;
     overflow: hidden;
     flex-shrink: 0;
@@ -575,10 +633,10 @@ html {
 /* On wider screens, relax the aspect a bit and lower the max height */
 @media (min-width: 900px) {
     .chart-card .chart-container {
-        aspect-ratio: 2 / 1;
-        height: 220px !important;
-        min-height: 220px !important;
-        max-height: 220px !important;
+        aspect-ratio: 2.5 / 1;
+        height: 160px !important;
+        min-height: 160px !important;
+        max-height: 160px !important;
     }
 }
 
@@ -1933,9 +1991,6 @@ footer {
         display: block;
         margin: 0.5rem 0 0 0;
         text-align: center;
-    }
-}
-        gap: 1.5rem;
     }
     
     .political-periods h4 {

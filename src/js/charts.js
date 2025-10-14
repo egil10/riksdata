@@ -2090,12 +2090,22 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         console.log(`Chart container display set to block for ${title}`);
     }
 
+    // Make the canvas itself visible
+    canvas.style.display = 'block';
+    console.log(`Canvas display set to block for ${title}`);
+
     // Hide the skeleton for this specific chart
-    const skeletonId = canvas.id.replace('-chart', '-skeleton');
+    // Handle both regular charts (e.g., 'my-chart') and drilldown charts (e.g., 'my-drilldown')
+    let skeletonId = canvas.id + '-skeleton';
+    if (canvas.id.endsWith('-chart')) {
+        skeletonId = canvas.id.replace('-chart', '-skeleton');
+    }
     const skeleton = document.getElementById(skeletonId);
     if (skeleton) {
         skeleton.style.display = 'none';
-        console.log(`Skeleton hidden for ${title}`);
+        console.log(`Skeleton hidden for ${title} (ID: ${skeletonId})`);
+    } else {
+        console.warn(`Skeleton not found for ${title} (tried ID: ${skeletonId})`);
     }
 
     // Force a chart update to ensure it's visible

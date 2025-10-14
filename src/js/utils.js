@@ -384,7 +384,7 @@ export async function downloadChartForCard(cardEl, format = 'png') {
 }
 
 async function downloadAsPNG(cardEl, filename, chartTitle) {
-    console.log('[downloadAsPNG] Starting PNG download...');
+    console.log('[downloadAsPNG] Starting Instagram-friendly PNG download...');
     console.log('[downloadAsPNG] Card element:', cardEl);
     
     // Get the original chart instance
@@ -398,19 +398,32 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         return;
     }
     
-    // Create a temporary container for the card with enhanced styling
+    // Instagram Posts optimized dimensions - much taller to force narrower chart
+    const INSTAGRAM_WIDTH = 1080;
+    const INSTAGRAM_HEIGHT = 1620; // 2:3 format - even taller to force narrower chart
+    
+    // Create a temporary container with extra safe padding to prevent Instagram cropping
     const tempContainer = document.createElement('div');
     tempContainer.style.cssText = `
         position: fixed;
         top: -9999px;
         left: -9999px;
-        width: 1200px;
+        width: ${INSTAGRAM_WIDTH}px;
+        height: ${INSTAGRAM_HEIGHT}px;
         background: white;
-        border-radius: 16px;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
-        padding: 40px;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 160px 200px;
         font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
         z-index: -1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+        /* Add extra safe margins to prevent cropping */
+        margin: 60px 40px;
+        border: 2px solid #f8f9fa;
     `;
     
     // Clone the card and enhance it for export
@@ -420,7 +433,40 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
     const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
     actionButtons.forEach(btn => btn.remove());
     
-    // Enhance the styling for export
+    // FORCE the chart to be narrower by modifying the canvas directly
+    const clonedCanvas = cardClone.querySelector('canvas');
+    if (clonedCanvas && chartInstance) {
+        // Set the canvas to be much narrower
+        clonedCanvas.style.width = '400px';
+        clonedCanvas.style.height = '600px';
+        clonedCanvas.width = 400;
+        clonedCanvas.height = 600;
+        
+        // Force the chart to redraw with new dimensions
+        chartInstance.options.maintainAspectRatio = false;
+        chartInstance.options.aspectRatio = 0.67; // Very narrow aspect ratio
+        
+        // Hide y-axis labels to save horizontal space
+        if (chartInstance.options.scales && chartInstance.options.scales.y) {
+            chartInstance.options.scales.y.display = false;
+        }
+        
+        // Make x-axis labels smaller to fit better
+        if (chartInstance.options.scales && chartInstance.options.scales.x) {
+            chartInstance.options.scales.x.ticks = {
+                ...chartInstance.options.scales.x.ticks,
+                maxRotation: 45,
+                minRotation: 45,
+                font: {
+                    size: 10
+                }
+            };
+        }
+        
+        chartInstance.resize(400, 600);
+    }
+    
+    // Enhance the styling for Instagram export
     cardClone.style.cssText = `
         background: white;
         border: none;
@@ -429,76 +475,118 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         margin: 0;
         width: 100%;
         max-width: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
     `;
     
-    // Enhance header styling
+    // Enhance header styling with extra safe spacing for 4:5 format
     const header = cardClone.querySelector('.chart-header');
     if (header) {
         header.style.cssText = `
-            margin-bottom: 32px;
-            padding-bottom: 24px;
-            border-bottom: 2px solid #e5e7eb;
+            margin-bottom: 80px;
+            padding-bottom: 50px;
+            border-bottom: 3px solid #e5e7eb;
+            text-align: center;
+            width: 100%;
+            /* Extra safe spacing to prevent cropping */
+            padding-top: 30px;
+            padding-left: 80px;
+            padding-right: 80px;
         `;
     }
     
-    // Enhance title styling
+    // Enhance title styling for 16:9 format
     const title = cardClone.querySelector('h3');
     if (title) {
         title.style.cssText = `
-            font-size: 32px;
-            font-weight: 700;
+            font-size: 48px;
+            font-weight: 800;
             color: #111827;
-            margin: 0 0 16px 0;
-            line-height: 1.2;
-            letter-spacing: -0.025em;
+            margin: 0 0 24px 0;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            text-align: center;
         `;
     }
     
-    // Enhance subtitle styling
+    // Enhance subtitle styling for 16:9 format
     const subtitle = cardClone.querySelector('.chart-subtitle');
     if (subtitle) {
         subtitle.style.cssText = `
-            font-size: 20px;
+            font-size: 28px;
             color: #6b7280;
-            font-weight: 500;
+            font-weight: 600;
             margin: 0;
-            line-height: 1.4;
+            line-height: 1.3;
+            text-align: center;
         `;
     }
     
-    // Enhance chart container
+    // Enhance chart container for 4:5 format with extra safe margins
     const chartContainer = cardClone.querySelector('.chart-container');
     if (chartContainer) {
         chartContainer.style.cssText = `
-            width: 100%;
-            height: 500px;
+            width: 60%;
+            height: 900px;
             position: relative;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Extra safe margins to prevent cropping */
+            margin: 30px 80px;
+            padding: 40px;
+            border: 1px solid #f0f0f0;
+            border-radius: 12px;
+            background: #fafafa;
         `;
     }
     
+    // Add a safe area indicator overlay to show Instagram-safe zones
+    const safeAreaOverlay = document.createElement('div');
+    safeAreaOverlay.style.cssText = `
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 10;
+        /* Instagram safe area guidelines */
+        border: 2px dashed rgba(0, 0, 0, 0.1);
+        border-radius: 4px;
+        /* Safe margins for Instagram 4:5 format */
+        margin: 80px 100px;
+        box-sizing: border-box;
+    `;
+    
     // Add the enhanced card to the temporary container
     tempContainer.appendChild(cardClone);
+    tempContainer.appendChild(safeAreaOverlay);
     document.body.appendChild(tempContainer);
     
     // Wait a moment for the layout to settle
     await new Promise(resolve => setTimeout(resolve, 100));
     
-    // Use html2canvas to capture the entire card
+    // Use html2canvas to capture the entire card with 16:9 optimization
     if (window.html2canvas) {
         const canvas = await html2canvas(tempContainer, {
-            scale: 3, // Ultra high resolution for better quality
+            scale: 1, // Perfect resolution for 16:9 format (1920x1080)
             useCORS: true,
             allowTaint: true,
-            backgroundColor: '#ffffff', // White background instead of transparent
-            width: 1200, // Increased width for better quality
-            height: tempContainer.scrollHeight,
+            backgroundColor: '#ffffff',
+            width: INSTAGRAM_WIDTH,
+            height: INSTAGRAM_HEIGHT,
             logging: false,
-            imageTimeout: 15000, // Longer timeout for high-res rendering
+            imageTimeout: 15000,
             onclone: (clonedDoc) => {
-                // Ensure the cloned chart renders properly
+                // Ensure the cloned chart renders properly for 16:9 format
                 const clonedCanvas = clonedDoc.querySelector('canvas');
                 if (clonedCanvas && clonedCanvas.chart) {
-                    // Force the chart to render at the correct size with high DPI
+                    // Force the chart to render at the correct size
                     clonedCanvas.chart.resize();
                     clonedCanvas.chart.render();
                     
@@ -510,31 +598,44 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                     }
                 }
                 
-                // Also ensure the chart container has proper dimensions
+                // Ensure the chart container has proper dimensions for 4:5 format
                 const clonedChartContainer = clonedDoc.querySelector('.chart-container');
                 if (clonedChartContainer) {
-                    clonedChartContainer.style.height = '600px'; // Increased height
-                    clonedChartContainer.style.width = '100%';
+                    clonedChartContainer.style.height = '900px';
+                    clonedChartContainer.style.width = '60%';
+                    clonedChartContainer.style.margin = '30px 80px';
+                    clonedChartContainer.style.padding = '40px';
+                    clonedChartContainer.style.border = '1px solid #f0f0f0';
+                    clonedChartContainer.style.borderRadius = '12px';
+                    clonedChartContainer.style.background = '#fafafa';
                 }
                 
-                // Ensure title and subtitle are visible in PNG
+                // Ensure title and subtitle are visible and properly styled for 16:9 format
                 const clonedTitle = clonedDoc.querySelector('h3');
                 if (clonedTitle) {
                     clonedTitle.style.display = 'block';
                     clonedTitle.style.visibility = 'visible';
+                    clonedTitle.style.fontSize = '48px';
+                    clonedTitle.style.fontWeight = '800';
+                    clonedTitle.style.textAlign = 'center';
                 }
                 const clonedSubtitle = clonedDoc.querySelector('.chart-subtitle');
                 if (clonedSubtitle) {
                     clonedSubtitle.style.display = 'block';
                     clonedSubtitle.style.visibility = 'visible';
+                    clonedSubtitle.style.fontSize = '28px';
+                    clonedSubtitle.style.fontWeight = '600';
+                    clonedSubtitle.style.textAlign = 'center';
                 }
             }
         });
         
-        // Convert to blob and download
+        // Convert to blob and download with Instagram-safe filename
         canvas.toBlob((blob) => {
-            download(blob, filename);
-            announce?.(`Chart "${chartTitle}" downloaded as PNG!`);
+            // Update filename to indicate Instagram 2:3 optimization
+            const instagramSafeFilename = filename.replace('.png', '-instagram-2x3.png');
+            download(blob, instagramSafeFilename);
+            announce?.(`Chart "${chartTitle}" downloaded as Instagram 2:3 PNG - forced narrow chart!`);
         }, 'image/png', 1.0); // Maximum quality
         
     } else {

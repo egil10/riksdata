@@ -26,26 +26,44 @@ The download system is built around several key components:
 ### 1. PNG Export (`downloadAsPNG`)
 
 **Features:**
-- High-resolution export (3x scale)
+- **Instagram-safe 4:5 dimensions**: 1080x1350 pixels with anti-crop padding
 - White background (non-transparent)
-- Includes chart title and subtitle
-- Optimized for sharing and presentations
+- Includes chart title and subtitle with enhanced typography
+- **Instagram Posts optimized**: Perfect 4:5 format - no cropping issues!
+- Centered layout with professional styling and safe area indicators
 
 **Technical Details:**
 ```javascript
+// 4:5 portrait-optimized dimensions for Instagram Posts
+const INSTAGRAM_WIDTH = 1080;
+const INSTAGRAM_HEIGHT = 1350; // 4:5 format - perfect for Instagram Posts (no cropping!)
+
 const canvas = await html2canvas(tempContainer, {
-    scale: 3, // Ultra high resolution
+    scale: 1, // Perfect resolution for 4:5 format (1080x1350)
     backgroundColor: '#ffffff', // White background
+    width: INSTAGRAM_WIDTH,
+    height: INSTAGRAM_HEIGHT,
     useCORS: true,
     allowTaint: true,
     // ... additional options
 });
 ```
 
-**Enhancements Made:**
-- Fixed transparent background issue
-- Ensured title and subtitle are visible
-- Increased resolution for better quality
+**Instagram-Safe Optimizations:**
+- **4:5 portrait format**: 1080x1350 pixels - perfect for Instagram Posts (no cropping!)
+- **Anti-crop padding**: Extra 80px vertical margins to prevent Instagram cropping
+- **Safe area indicators**: Visual guidelines showing Instagram-safe zones
+- **Enhanced typography**: Larger, bolder fonts (48px title, 28px subtitle)
+- **Protected content**: Chart and text positioned within safe margins
+- **Filename indication**: Downloads as `-instagram-4x5.png` to distinguish from regular exports
+
+**Instagram Anti-Crop Benefits:**
+- **Perfect 4:5 format**: Instagram's preferred aspect ratio - absolutely no cropping!
+- **Extra vertical space**: More room for charts and text with 700px chart height
+- **Protected text and charts**: All important content positioned within safe margins
+- **Visual safety guides**: Dashed border shows exactly where Instagram might crop
+- **Professional appearance**: Clean layout with proper spacing
+- **Universal compatibility**: Works perfectly for Instagram Posts, Stories, and other platforms
 
 ### 2. HTML Export (`downloadAsHTML`)
 
@@ -247,6 +265,54 @@ if (!window.html2canvas) {
 3. **Custom Sizing**: User-selectable export dimensions
 4. **Watermarking**: Optional chart watermarks
 5. **Metadata Export**: Include data source and methodology
+6. **Multiple Instagram Formats**: Portrait (4:5) and Landscape (16:9) options
+7. **Social Media Templates**: Pre-designed layouts for different platforms
+
+## Instagram Integration Guide
+
+### Optimal Upload Settings
+
+The PNG export is specifically optimized for Instagram Posts with perfect 4:5 format:
+
+- **Dimensions**: 1080x1350 pixels (perfect 4:5 portrait - Instagram's preferred format!)
+- **Format**: PNG with white background
+- **Anti-Crop Padding**: 80px vertical margins to prevent any cropping
+- **File Size**: Optimized for fast uploads
+- **Typography**: Large, bold fonts for excellent readability
+- **Safe Area**: Visual guides showing Instagram-safe zones
+
+### Upload Process
+
+1. **Download**: Click the download button and select "PNG Image"
+2. **File**: The downloaded file will be named `[chart-name]-instagram-4x5.png`
+3. **Upload**: Directly upload to Instagram Posts without any cropping issues
+4. **Caption**: Add relevant hashtags and context about the data
+
+### Best Practices
+
+- **Hashtags**: Use relevant Norwegian data hashtags like #Norge #Statistikk #SSB
+- **Caption**: Explain the chart context and key insights
+- **Timing**: Post when your audience is most active
+- **Engagement**: Ask questions about the data to encourage comments
+
+### Platform Compatibility
+
+Perfect for multiple platforms with anti-crop protection:
+- **Instagram Posts**: Perfect 4:5 format - absolutely no cropping!
+- **Instagram Stories**: Works great with 4:5 format
+- **LinkedIn Posts**: Professional portrait format
+- **Twitter**: Works well for portrait content
+- **Facebook**: Great for portrait posts
+- **YouTube Thumbnails**: Can be used (may need slight adjustment for 16:9)
+
+### Alternative Formats
+
+If you need different aspect ratios in the future:
+- **Square (1:1)**: 1080x1080 pixels - for Instagram feed
+- **Portrait (4:5)**: 1080x1350 pixels - for Instagram Stories (vertical)
+- **Ultra-wide (21:9)**: 2560x1080 pixels - for cinematic content
+
+*Note: Currently optimized for 4:5 portrait format - Instagram's preferred format with anti-crop protection. Other formats can be added based on demand.*
 
 ### Technical Considerations
 

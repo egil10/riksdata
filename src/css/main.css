@@ -968,6 +968,10 @@ body, .chart-card, .header-content, .slim-header {
     margin-bottom: 1rem;
 }
 
+.loading-content p {
+    font-family: var(--font-sans);
+}
+
 .loading-spinner {
     width: 32px;
     height: 32px;

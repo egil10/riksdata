@@ -489,7 +489,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
             scale: 3, // Ultra high resolution for better quality
             useCORS: true,
             allowTaint: true,
-            backgroundColor: '#ffffff',
+            backgroundColor: '#ffffff', // White background instead of transparent
             width: 1200, // Increased width for better quality
             height: tempContainer.scrollHeight,
             logging: false,
@@ -515,6 +515,18 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                 if (clonedChartContainer) {
                     clonedChartContainer.style.height = '600px'; // Increased height
                     clonedChartContainer.style.width = '100%';
+                }
+                
+                // Ensure title and subtitle are visible in PNG
+                const clonedTitle = clonedDoc.querySelector('h3');
+                if (clonedTitle) {
+                    clonedTitle.style.display = 'block';
+                    clonedTitle.style.visibility = 'visible';
+                }
+                const clonedSubtitle = clonedDoc.querySelector('.chart-subtitle');
+                if (clonedSubtitle) {
+                    clonedSubtitle.style.display = 'block';
+                    clonedSubtitle.style.visibility = 'visible';
                 }
             }
         });
@@ -569,10 +581,14 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
         backgroundColor: dataset.backgroundColor,
         borderWidth: dataset.borderWidth || 2,
         fill: dataset.fill || false,
-        tension: dataset.tension || 0.1
+        tension: dataset.tension || 0.1,
+        // Preserve political colors if they exist
+        segment: dataset.segment,
+        pointBackgroundColor: dataset.pointBackgroundColor,
+        pointBorderColor: dataset.pointBorderColor
     }));
     
-    // Create a simple, serializable chart config
+    // Create a simple, serializable chart config with political colors and better date formatting
     const chartConfig = {
         type: chartType,
         data: {
@@ -596,6 +612,22 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
                     display: true,
                     grid: {
                         display: false
+                    },
+                    ticks: {
+                        callback: function(value, index, ticks) {
+                            // Format dates to YYYY-MM format instead of full ISO string
+                            const label = this.getLabelForValue(value);
+                            if (label && typeof label === 'string') {
+                                // Try to parse as date and format
+                                const date = new Date(label);
+                                if (!isNaN(date.getTime())) {
+                                    const year = date.getFullYear();
+                                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                                    return `${year}-${month}`;
+                                }
+                            }
+                            return label;
+                        }
                     }
                 },
                 y: {

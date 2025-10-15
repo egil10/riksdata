@@ -73,8 +73,12 @@
     <!-- New Header Structure -->
     <header class="app-header">
         <div class="left-section">
-            <button id="sidebar-toggle" class="icon-btn" aria-label="Åpne/lukk sidemeny" title="Åpne/lukk sidemeny">
-                <span class="icon"></span>
+            <button id="political-info-btn" class="icon-btn" aria-label="Politisk tidslinje" title="Se norske regjeringer over tid" onclick="window.location.hash = 'politicalTimeline'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <path d="M12 16v-4"></path>
+                    <path d="M12 8h.01"></path>
+                </svg>
             </button>
             <span class="app-title" onclick="window.location.reload(true)">Riksdata</span>
         </div>
@@ -111,186 +115,6 @@
     </header>
 
     <!-- Political History Sidebar -->
-    <aside id="sidebar" class="sidebar collapsed">
-        <div class="sidebar-content">
-            <div class="political-table">
-                <!-- Header Row -->
-                <div class="political-header">
-                    <span class="header-party">Party</span>
-                    <span class="header-pm">Minister</span>
-                    <span class="header-coalition">Other</span>
-                </div>
-
-                <!-- Political Periods -->
-                <div class="political-row">
-                    <span class="party-color sp"></span>
-                    <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                    <a href="https://no.wikipedia.org/wiki/Per_Bortens_regjering" class="regjering-name">Borten</a>
-                    <span class="years">1965-1971</span>
-                    <span class="coalition-parties">
-                        <a href="https://hoyre.no/" class="party-short">H</a>
-                        <a href="https://www.krf.no/" class="party-short">KrF</a>
-                        <a href="https://www.venstre.no/" class="party-short">V</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Trygve_Brattelis_f%C3%B8rste_regjering" class="regjering-name">Bratteli I</a>
-                    <span class="years">1971-1972</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color krf"></span>
-                    <a href="https://www.krf.no/" class="party-short">KrF</a>
-                    <a href="https://no.wikipedia.org/wiki/Lars_Korvalds_regjering" class="regjering-name">Korvald</a>
-                    <span class="years">1972-1973</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                        <a href="https://www.venstre.no/" class="party-short">V</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Trygve_Brattelis_andre_regjering" class="regjering-name">Bratteli II</a>
-                    <span class="years">1973-1976</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Odvar_Nordlis_regjering" class="regjering-name">Nordli</a>
-                    <span class="years">1976-1981</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_f%C3%B8rste_regjering" class="regjering-name">Brundtland I</a>
-                    <span class="years">1981</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color h"></span>
-                    <a href="https://hoyre.no/" class="party-short">H</a>
-                    <a href="https://no.wikipedia.org/wiki/K%C3%A5re_Willochs_regjering" class="regjering-name">Willoch</a>
-                    <span class="years">1981-1986</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.krf.no/" class="party-short">KrF</a>
-                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_andre_regjering" class="regjering-name">Brundtland II</a>
-                    <span class="years">1986-1989</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color h"></span>
-                    <a href="https://hoyre.no/" class="party-short">H</a>
-                    <a href="https://no.wikipedia.org/wiki/Jan_P._Syses_regjering" class="regjering-name">Syse</a>
-                    <span class="years">1989-1990</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.krf.no/" class="party-short">KrF</a>
-                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_tredje_regjering" class="regjering-name">Brundtland III</a>
-                    <span class="years">1990-1996</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Thorbj%C3%B8rn_Jaglands_regjering" class="regjering-name">Jagland</a>
-                    <span class="years">1996-1997</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color krf"></span>
-                    <a href="https://www.krf.no/" class="party-short">KrF</a>
-                    <a href="https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_f%C3%B8rste_regjering" class="regjering-name">Bondevik I</a>
-                    <span class="years">1997-2000</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                        <a href="https://www.venstre.no/" class="party-short">V</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Jens_Stoltenbergs_f%C3%B8rste_regjering" class="regjering-name">Stoltenberg I</a>
-                    <span class="years">2000-2001</span>
-                    <span class="coalition-parties"></span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color krf"></span>
-                    <a href="https://www.krf.no/" class="party-short">KrF</a>
-                    <a href="https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_andre_regjering" class="regjering-name">Bondevik II</a>
-                    <span class="years">2001-2005</span>
-                    <span class="coalition-parties">
-                        <a href="https://hoyre.no/" class="party-short">H</a>
-                        <a href="https://www.venstre.no/" class="party-short">V</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.wikipedia.org/wiki/Jens_Stoltenbergs_andre_regjering" class="regjering-name">Stoltenberg II</a>
-                    <span class="years">2005-2013</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.sv.no/" class="party-short">SV</a>
-                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color h"></span>
-                    <a href="https://hoyre.no/" class="party-short">H</a>
-                    <a href="https://no.wikipedia.org/wiki/Erna_Solbergs_regjering" class="regjering-name">Solberg</a>
-                    <span class="years">2013-2021</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.frp.no/" class="party-short">FrP</a>
-                        <a href="https://www.venstre.no/" class="party-short">V</a>
-                        <a href="https://www.krf.no/" class="party-short">KrF</a>
-                    </span>
-                </div>
-
-                <div class="political-row">
-                    <span class="party-color ap"></span>
-                    <a href="https://www.arbeiderpartiet.no/" class="party-short">Ap</a>
-                    <a href="https://no.arbeiderpartiet.no/" class="regjering-name">Støre</a>
-                    <span class="years">2021-Present</span>
-                    <span class="coalition-parties">
-                        <a href="https://www.senterpartiet.no/" class="party-short">Sp</a>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </aside>
-
-    <!-- Mobile backdrop for sidebar overlay -->
-    <div id="sidebar-backdrop" class="sidebar-backdrop" style="display: none;"></div>
 
     <!-- Main Content -->
     <main class="main-content" id="main-dashboard">
@@ -450,30 +274,6 @@
         // Initial render pass (replace all data-lucide in DOM)
         if (window.lucide) lucide.createIcons({ attrs: { width: 20, height: 20 } });
         
-        // Sidebar toggle
-        (function initSidebarToggle(){
-          const btn = document.getElementById('sidebar-toggle');
-          if (!btn) return;
-          if (!document.body.classList.contains('is-sidebar-open')) {
-            document.body.classList.add('is-sidebar-open');
-          }
-          function sync() {
-            const open = document.body.classList.contains('is-sidebar-open');
-            setLucideIcon(btn, open ? 'panel-left-open' : 'panel-left-close');
-            btn.setAttribute('aria-pressed', String(open));
-            btn.title = open ? 'Close sidebar' : 'Open sidebar';
-            btn.setAttribute('aria-label', btn.title);
-          }
-          btn.addEventListener('click', () => {
-            document.body.classList.toggle('is-sidebar-open');
-            sync();
-          });
-          if (!btn.querySelector('i[data-lucide], svg')) {
-            const i = document.createElement('i'); i.setAttribute('data-lucide','panel-left-open');
-            btn.appendChild(i);
-          }
-          sync();
-        })();
         
         // Update copyright year dynamically
         const copyrightYear = document.getElementById('copyright-year');

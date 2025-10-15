@@ -35,6 +35,7 @@ export function initDrilldownNavigation() {
     addMoneySupplyDrilldownButton();
     addOsloIndicesDrilldownButton();
     addPopulationDrilldownButton();
+    // Political timeline button is handled directly in HTML with onclick
 }
 
 /**
@@ -74,6 +75,8 @@ function handleHashChange() {
         showOsloIndicesView();
     } else if (hash === 'population') {
         showPopulationView();
+    } else if (hash === 'politicalTimeline') {
+        showPoliticalTimelineView();
     } else {
         showMainDashboard();
     }
@@ -1723,6 +1726,198 @@ function addPopulationDrilldownButton() {
         
         console.log('✅ Population drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Show political timeline drill-down view
+ */
+function showPoliticalTimelineView() {
+    console.log('🏛️ Showing political timeline drill-down view');
+    currentView = 'politicalTimeline';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Political Timeline';
+    updateHeaderBreadcrumb('Political Timeline');
+    
+    // Load political timeline
+    loadPoliticalTimeline();
+}
+
+/**
+ * Load political timeline for drill-down view
+ */
+async function loadPoliticalTimeline() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing content
+    chartsContainer.innerHTML = '';
+    
+    try {
+        // Load political timeline data
+        const response = await fetch('./data/static/political-timeline.json');
+        if (!response.ok) {
+            throw new Error(`Failed to load political timeline: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('🏛️ Loaded political timeline data:', data);
+        
+        // Create timeline container
+        const timelineContainer = document.createElement('div');
+        timelineContainer.className = 'political-timeline-container';
+        timelineContainer.style.cssText = `
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        `;
+        
+        // Create government cards
+        data.governments.forEach((government, index) => {
+            const card = createGovernmentCard(government, data.parties);
+            timelineContainer.appendChild(card);
+        });
+        
+        chartsContainer.appendChild(timelineContainer);
+        
+        console.log('✅ Political timeline loaded successfully!');
+        
+    } catch (error) {
+        console.error('Failed to load political timeline:', error);
+        chartsContainer.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
+                <h3>Failed to load political timeline</h3>
+                <p>Please try refreshing the page.</p>
+            </div>
+        `;
+    }
+}
+
+/**
+ * Create a government card with PM photo and party logos
+ */
+function createGovernmentCard(government, parties) {
+    const card = document.createElement('div');
+    card.className = 'government-card';
+    card.style.cssText = `
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 1.5rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    `;
+    
+    // Add hover effect
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-4px)';
+        card.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.15)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+        card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+    });
+    
+    // Party color accent
+    const party = parties[government.party];
+    const accentColor = party ? party.color : '#666';
+    
+    // Create card content
+    card.innerHTML = `
+        <div style="border-left: 4px solid ${accentColor}; padding-left: 1rem;">
+            <!-- PM Photo and Name -->
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <img src="${government.imageUrl}" 
+                     alt="${government.primeMinister}" 
+                     style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid ${accentColor};">
+                <div>
+                    <h3 style="margin: 0; font-size: 1.25rem; color: var(--text);">${government.primeMinister}</h3>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">${government.years}</p>
+                </div>
+            </div>
+            
+            <!-- Government Name and Period -->
+            <div style="margin-bottom: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--text);">${government.name}</h4>
+                <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">${government.period}</p>
+            </div>
+            
+            <!-- Party Information -->
+            <div style="margin-bottom: 1rem;">
+                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                    <img src="${party?.logoUrl || ''}" 
+                         alt="${party?.name || government.party}" 
+                         style="width: 24px; height: 24px; object-fit: contain;">
+                    <a href="${party?.website || '#'}" 
+                       target="_blank" 
+                       style="color: ${accentColor}; text-decoration: none; font-weight: 500;">
+                        ${party?.name || government.party}
+                    </a>
+                    ${government.coalition.length > 0 ? '<span style="color: var(--text-muted);">+ Coalition</span>' : '<span style="color: var(--text-muted);">(Minority)</span>'}
+                </div>
+                
+                <!-- Coalition Parties -->
+                ${government.coalition.length > 0 ? `
+                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                        ${government.coalition.map(coalitionParty => {
+                            const coalitionPartyData = parties[coalitionParty];
+                            return `
+                                <a href="${coalitionPartyData?.website || '#'}" 
+                                   target="_blank"
+                                   style="display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; background: var(--glass-bg); border-radius: 4px; text-decoration: none; font-size: 0.8rem; color: var(--text);">
+                                    <img src="${coalitionPartyData?.logoUrl || ''}" 
+                                         alt="${coalitionPartyData?.name || coalitionParty}" 
+                                         style="width: 16px; height: 16px; object-fit: contain;">
+                                    ${coalitionPartyData?.name || coalitionParty}
+                                </a>
+                            `;
+                        }).join('')}
+                    </div>
+                ` : ''}
+            </div>
+            
+            <!-- Notable Information -->
+            ${government.notable ? `
+                <div style="margin-bottom: 1rem; padding: 0.75rem; background: var(--glass-bg); border-radius: 6px; border-left: 3px solid ${accentColor};">
+                    <p style="margin: 0; font-size: 0.9rem; color: var(--text); font-style: italic;">${government.notable}</p>
+                </div>
+            ` : ''}
+            
+            <!-- Wikipedia Link -->
+            <div style="margin-top: auto;">
+                <a href="${government.wikipediaUrl}" 
+                   target="_blank" 
+                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-2); text-decoration: none; font-size: 0.9rem; font-weight: 500;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                    </svg>
+                    Read more on Wikipedia
+                </a>
+            </div>
+        </div>
+    `;
+    
+    return card;
 }
 
 // Auto-initialize when module loads

@@ -5,6 +5,11 @@
 // Access via URL hash: index.html#bankruptcies, index.html#exports, etc.
 
 export const drilldownConfigs = {
+    // === POLITICAL TIMELINE (Norwegian Governments 1965-2025) ===
+    politicalTimeline: [
+        { id: 'political-timeline-data', url: './data/static/political-timeline.json', title: 'Norwegian Political Timeline', subtitle: 'Prime Ministers and Governments 1965-2025', type: 'timeline' }
+    ],
+    
     // === BANKRUPTCIES BY INDUSTRY (All 89 Industries) ===
     bankruptcies: [
         { id: 'bankruptcies-total-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-total.json', title: 'Total (All Industries)', subtitle: 'Number per quarter', type: 'line' },

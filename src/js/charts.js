@@ -12,6 +12,7 @@ import {
     hideStaticTooltip
 } from './utils.js';
 import { registerChartData } from './registry.js';
+import { fetchWithRetry, getConnectionInfo } from './request-cache.js';
 
 // Helper function to normalize relative paths for GitHub Pages
 function rel(p) {
@@ -191,13 +192,8 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
             console.log(`Loading Norway chart: ${chartTitle} from ${apiUrl}`);
             
-            // Fetch data using the main pipeline
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
-            }
-            
-            const data = await response.json();
+            // Fetch data using the robust pipeline with retry logic
+            const data = await fetchWithRetry(apiUrl);
             console.log(`Raw data for ${chartTitle}:`, data);
             
             const { parsedData, sourceInfo } = parseStaticData(data, chartTitle);

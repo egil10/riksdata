@@ -9,6 +9,8 @@ import { loadChartData } from './charts.js';
 import { showSkeletonLoading, hideSkeletonLoading, showError, debounce, withTimeout, downloadChartForCard } from './utils.js';
 import { getDataById } from './registry.js';
 import { chartConfigs } from './chart-configs.js';
+import { progressiveLoader, loadChartWithProgress } from './progressive-loader.js';
+import { connectionMonitor } from './connection-monitor.js';
 
 console.log('All modules imported successfully');
 
@@ -431,16 +433,17 @@ async function setupLazyChartLoading() {
             // Unobserve immediately to prevent duplicate loading
             obs.unobserve(card);
             
-            // Load the chart data
+            // Load the chart data with progressive feedback
             const isDfoChart = chartId && chartId.startsWith('dfo-');
             console.log(`🚀 LAZY LOADING CHART: ${chartId} (${config.title}) - Type: ${config.type || 'line'}${isDfoChart ? ' (DFO CHART!)' : ''}`);
-            loadChartData(chartId, config.url, config.title, config.type || 'line')
+            loadChartWithProgress(chartId, config.url, config.title, config.type || 'line')
                 .catch(error => {
                     console.error(`Failed to load chart ${chartId}:`, error);
                 });
         }
     }, { 
-        rootMargin: '800px 0px 800px 0px', // Increased to preload charts earlier
+        // Use connection-aware preload distance
+        rootMargin: `${connectionMonitor.getLoadingStrategy().preloadDistance}px 0px ${connectionMonitor.getLoadingStrategy().preloadDistance}px 0px`,
         threshold: 0 
     });
 

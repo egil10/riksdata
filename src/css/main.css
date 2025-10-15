@@ -1248,6 +1248,20 @@ main {
     /* Removed transform to prevent chart jumping */
 }
 
+/* Ensure canvas and chart-container remain visible on hover and unhover */
+.chart-card:hover .chart-container,
+.chart-card:hover .chart-container canvas {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.chart-card .chart-container,
+.chart-card .chart-container canvas {
+    display: block !important;
+    visibility: visible !important;
+}
+
 /* Chart Actions - Download, Copy, and Fullscreen buttons */
 .chart-header {
     display: flex;

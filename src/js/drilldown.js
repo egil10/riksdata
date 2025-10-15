@@ -29,6 +29,10 @@ export function initDrilldownNavigation() {
     addVaccinationsDrilldownButton();
     addDFODrilldownButton();
     addOilFundDrilldownButton();
+    addExchangeRatesDrilldownButton();
+    addMoneySupplyDrilldownButton();
+    addOsloIndicesDrilldownButton();
+    addPopulationDrilldownButton();
 }
 
 /**
@@ -56,6 +60,14 @@ function handleHashChange() {
         showDFOView();
     } else if (hash === 'oilfund') {
         showOilFundView();
+    } else if (hash === 'exchangeRates') {
+        showExchangeRatesView();
+    } else if (hash === 'moneySupply') {
+        showMoneySupplyView();
+    } else if (hash === 'osloIndices') {
+        showOsloIndicesView();
+    } else if (hash === 'population') {
+        showPopulationView();
     } else {
         showMainDashboard();
     }
@@ -860,7 +872,7 @@ function addImportsDrilldownButton() {
 function addVaccinationsDrilldownButton() {
     // Wait for DOM to be ready
     setTimeout(() => {
-        const vaccinationCard = document.querySelector('[data-chart-id="vaccination-chart"]');
+        const vaccinationCard = document.querySelector('[data-chart-id="norway-vaccination-pol3-chart"]');
         if (!vaccinationCard) {
             console.warn('Vaccination chart card not found, will retry...');
             setTimeout(addVaccinationsDrilldownButton, 1000);
@@ -1016,6 +1028,462 @@ function addOilFundDrilldownButton() {
         }
         
         console.log('✅ Oil Fund drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Show exchange rates drill-down view
+ */
+function showExchangeRatesView() {
+    console.log('💱 Showing exchange rates drill-down view');
+    currentView = 'exchangeRates';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Exchange Rates';
+    updateHeaderBreadcrumb('Exchange Rates');
+    
+    // Load all exchange rate charts
+    loadExchangeRateCharts();
+}
+
+/**
+ * Load exchange rate charts for drill-down view
+ */
+async function loadExchangeRateCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.exchangeRates;
+    console.log(`💱 Loading ${configs.length} exchange rate charts in drill-down view...`);
+    
+    // Create chart cards for each exchange rate
+    for (const config of configs) {
+        const chartCard = createChartCard(config, { name: 'Norges Bank', url: 'https://www.norges-bank.no/' });
+        chartsContainer.appendChild(chartCard);
+    }
+
+    // Load chart data for each card
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type);
+        } catch (error) {
+            console.error(`Failed to load exchange rate chart ${config.id}:`, error);
+        }
+    }
+    
+    console.log('✅ All exchange rate charts loaded successfully!');
+}
+
+/**
+ * Add drill-down functionality to exchange rates chart
+ */
+function addExchangeRatesDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const exchangeRatesCard = document.querySelector('[data-chart-id="i44-nok-chart"]');
+        if (!exchangeRatesCard) {
+            console.warn('Exchange rates chart card not found, will retry...');
+            setTimeout(addExchangeRatesDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found exchange rates chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = exchangeRatesCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-exchangeRates"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-exchangeRates');
+            drilldownBtn.setAttribute('aria-label', 'View all exchange rates');
+            drilldownBtn.setAttribute('title', 'View all exchange rates');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'exchangeRates';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to exchange rates!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = exchangeRatesCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'exchangeRates';
+            };
+            chartTitle.setAttribute('title', 'Click to view all exchange rates');
+            console.log('✅ Made exchange rates title clickable!');
+        }
+        
+        console.log('✅ Exchange rates drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Show money supply drill-down view
+ */
+function showMoneySupplyView() {
+    console.log('💰 Showing money supply drill-down view');
+    currentView = 'moneySupply';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Money Supply';
+    updateHeaderBreadcrumb('Money Supply');
+    
+    // Load all money supply charts
+    loadMoneySupplyCharts();
+}
+
+/**
+ * Load money supply charts for drill-down view
+ */
+async function loadMoneySupplyCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.moneySupply;
+    console.log(`💰 Loading ${configs.length} money supply charts in drill-down view...`);
+    
+    // Create chart cards for each money supply measure
+    for (const config of configs) {
+        const chartCard = createChartCard(config, { name: 'SSB', url: 'https://www.ssb.no/' });
+        chartsContainer.appendChild(chartCard);
+    }
+
+    // Load chart data for each card
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type);
+        } catch (error) {
+            console.error(`Failed to load money supply chart ${config.id}:`, error);
+        }
+    }
+    
+    console.log('✅ All money supply charts loaded successfully!');
+}
+
+/**
+ * Add drill-down functionality to money supply chart
+ */
+function addMoneySupplyDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const moneySupplyCard = document.querySelector('[data-chart-id="money-supply-m0-chart"]');
+        if (!moneySupplyCard) {
+            console.warn('Money supply chart card not found, will retry...');
+            setTimeout(addMoneySupplyDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found money supply chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = moneySupplyCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-moneySupply"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-moneySupply');
+            drilldownBtn.setAttribute('aria-label', 'View all money supply measures');
+            drilldownBtn.setAttribute('title', 'View all money supply measures');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'moneySupply';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to money supply!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = moneySupplyCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'moneySupply';
+            };
+            chartTitle.setAttribute('title', 'Click to view all money supply measures');
+            console.log('✅ Made money supply title clickable!');
+        }
+        
+        console.log('✅ Money supply drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Show Oslo indices drill-down view
+ */
+function showOsloIndicesView() {
+    console.log('📈 Showing Oslo indices drill-down view');
+    currentView = 'osloIndices';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Oslo Stock Exchange Indices';
+    updateHeaderBreadcrumb('Oslo Stock Exchange Indices');
+    
+    // Load all Oslo indices charts
+    loadOsloIndicesCharts();
+}
+
+/**
+ * Load Oslo indices charts for drill-down view
+ */
+async function loadOsloIndicesCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.osloIndices;
+    console.log(`📈 Loading ${configs.length} Oslo indices charts in drill-down view...`);
+    
+    // Create chart cards for each Oslo index
+    for (const config of configs) {
+        const chartCard = createChartCard(config, { name: 'Oslo Børs', url: 'https://www.oslobors.no/' });
+        chartsContainer.appendChild(chartCard);
+    }
+
+    // Load chart data for each card
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type);
+        } catch (error) {
+            console.error(`Failed to load Oslo index chart ${config.id}:`, error);
+        }
+    }
+    
+    console.log('✅ All Oslo indices charts loaded successfully!');
+}
+
+/**
+ * Add drill-down functionality to Oslo indices chart
+ */
+function addOsloIndicesDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const osloIndicesCard = document.querySelector('[data-chart-id="oseax-chart"]');
+        if (!osloIndicesCard) {
+            console.warn('Oslo indices chart card not found, will retry...');
+            setTimeout(addOsloIndicesDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found Oslo indices chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = osloIndicesCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-osloIndices"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-osloIndices');
+            drilldownBtn.setAttribute('aria-label', 'View all Oslo indices');
+            drilldownBtn.setAttribute('title', 'View all Oslo indices');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'osloIndices';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to Oslo indices!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = osloIndicesCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'osloIndices';
+            };
+            chartTitle.setAttribute('title', 'Click to view all Oslo indices');
+            console.log('✅ Made Oslo indices title clickable!');
+        }
+        
+        console.log('✅ Oslo indices drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Show population drill-down view
+ */
+function showPopulationView() {
+    console.log('👥 Showing population drill-down view');
+    currentView = 'population';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Population';
+    updateHeaderBreadcrumb('Population');
+    
+    // Load all population charts
+    loadPopulationCharts();
+}
+
+/**
+ * Load population charts for drill-down view
+ */
+async function loadPopulationCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.population;
+    console.log(`👥 Loading ${configs.length} population charts in drill-down view...`);
+    
+    // Create chart cards for each population measure
+    for (const config of configs) {
+        const chartCard = createChartCard(config, { name: 'SSB', url: 'https://www.ssb.no/' });
+        chartsContainer.appendChild(chartCard);
+    }
+
+    // Load chart data for each card
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type);
+        } catch (error) {
+            console.error(`Failed to load population chart ${config.id}:`, error);
+        }
+    }
+    
+    console.log('✅ All population charts loaded successfully!');
+}
+
+/**
+ * Add drill-down functionality to population chart
+ */
+function addPopulationDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const populationCard = document.querySelector('[data-chart-id="population-basic-districts-national-chart"]');
+        if (!populationCard) {
+            console.warn('Population chart card not found, will retry...');
+            setTimeout(addPopulationDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found population chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = populationCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-population"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-population');
+            drilldownBtn.setAttribute('aria-label', 'View all population statistics');
+            drilldownBtn.setAttribute('title', 'View all population statistics');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'population';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to population!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = populationCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'population';
+            };
+            chartTitle.setAttribute('title', 'Click to view all population statistics');
+            console.log('✅ Made population title clickable!');
+        }
+        
+        console.log('✅ Population drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
 

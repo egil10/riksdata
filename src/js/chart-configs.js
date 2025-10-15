@@ -11,7 +11,6 @@ export const chartConfigs = [
     { id: 'house-prices-chart', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Price Index' },
     { id: 'producer-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index' },
     { id: 'wage-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
-    { id: 'population-growth-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Growth', subtitle: 'Annual %' },
     
     // Construction & Housing
     { id: 'construction-costs-chart', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', title: 'Construction Costs' },
@@ -60,12 +59,8 @@ export const chartConfigs = [
     { id: 'bankruptcies-by-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/924816.json?lang=en', title: 'Bankruptcies by Industry', subtitle: 'Number' },
     
     // Monetary & Credit
-    { id: 'monetary-aggregates-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Monetary Aggregates', subtitle: 'NOK Million' },
-    { id: 'monetary-m3-chart', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', title: 'Monetary Aggregate M3', subtitle: 'Million NOK' },
+    // Money Supply - Main chart (others moved to drilldown)
     { id: 'money-supply-m0-chart', url: 'https://data.ssb.no/api/v0/dataset/172771.json?lang=en', title: 'Money Supply M0', subtitle: 'NOK Million' },
-    { id: 'money-supply-m3-net-claims-chart', url: 'https://data.ssb.no/api/v0/dataset/172800.json?lang=en', title: 'Money Supply M3 Net Claims', subtitle: 'NOK Million' },
-    { id: 'money-supply-by-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/172769.json?lang=en', title: 'Money Supply by Sector', subtitle: 'NOK Million' },
-    { id: 'money-supply-m3-by-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/172793.json?lang=en', title: 'Money Supply M3 by Sector', subtitle: 'NOK Million' },
     { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator', subtitle: 'NOK Million' },
     { id: 'credit-indicator-k2-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', title: 'Credit Indicator K2 Detailed', subtitle: 'NOK Million' },
     { id: 'credit-indicator-k2-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator K2 Seasonally Adjusted', subtitle: 'NOK Million' },
@@ -114,12 +109,7 @@ export const chartConfigs = [
     // Population & Demographics
     { id: 'immigration-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', title: 'Immigration Rate', subtitle: 'Annual Count' },
     { id: 'immigrants-with-immigrant-parents-chart', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents', subtitle: 'Number' },
-    { id: 'population-age-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Age', subtitle: 'Number' },
-    { id: 'population-by-gender-age-5year-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Gender & Age (5-year groups)', subtitle: 'Number' },
-    { id: 'population-by-gender-age-historical-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Gender & Age Historical', subtitle: 'Number' },
-    { id: 'population-by-gender-age-timeline-chart', url: 'https://data.ssb.no/api/v0/dataset/1074.json?lang=en', title: 'Population by Gender & Age Timeline', subtitle: 'Number' },
-    { id: 'population-development-quarterly-chart', url: 'https://data.ssb.no/api/v0/dataset/1104.json?lang=en', title: 'Population Development Quarterly', subtitle: 'Number' },
-    { id: 'population-growth-alt-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Growth Alternative', subtitle: 'Annual %' },
+    // Population charts - Main chart (others moved to drilldown)
     { id: 'population-basic-districts-national-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Basic Districts National', subtitle: 'Number' },
     { id: 'births-deaths-chart', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', title: 'Births & Deaths', subtitle: 'Number' },
     { id: 'deaths-age-chart', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Age', subtitle: 'Number' },
@@ -141,24 +131,8 @@ export const chartConfigs = [
     { id: 'lifestyle-habits-chart', url: 'https://data.ssb.no/api/v0/dataset/832683.json?lang=en', title: 'Lifestyle Habits', subtitle: 'Percentage' },
     { id: 'long-term-illness-chart', url: 'https://data.ssb.no/api/v0/dataset/832685.json?lang=en', title: 'Long-term Illness', subtitle: 'Percentage' },
     
-    // === CPI CHARTS (Detailed) ===
-    { id: 'cpi-adjusted-indices-chart', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', title: 'CPI Adjusted Indices' },
-    { id: 'cpi-ate-chart', url: 'https://data.ssb.no/api/v0/dataset/1118.json?lang=en', title: 'CPI-ATE (Adjusted for Tax & Energy)' },
-    { id: 'cpi-group-level-chart', url: 'https://data.ssb.no/api/v0/dataset/1092.json?lang=en', title: 'CPI Group Level' },
-    { id: 'cpi-coicop-chart', url: 'https://data.ssb.no/api/v0/dataset/1084.json?lang=en', title: 'CPI COICOP Divisions' },
-    { id: 'cpi-delivery-chart', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', title: 'CPI Delivery Sectors' },
-    { id: 'cpi-delivery-sector-annual-chart', url: 'https://data.ssb.no/api/v0/dataset/1100.json?lang=en', title: 'CPI Delivery Sector Annual' },
-    { id: 'cpi-delivery-sector-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/1101.json?lang=en', title: 'CPI Delivery Sector Recent' },
-    { id: 'cpi-sub-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Sub-groups' },
-    { id: 'cpi-subgroups-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Subgroups' },
-    { id: 'cpi-subgroup-level2-chart', url: 'https://data.ssb.no/api/v0/dataset/1094.json?lang=en', title: 'CPI Subgroup Level 2' },
-    { id: 'cpi-items-chart', url: 'https://data.ssb.no/api/v0/dataset/1096.json?lang=en', title: 'CPI Items' },
-    { id: 'cpi-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/45590.json?lang=en', title: 'CPI Seasonally Adjusted' },
-    { id: 'cpi-seasonally-adjusted-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/45590.json?lang=en', title: 'CPI Seasonally Adjusted Recent' },
-    { id: 'cpi-adjusted-delivery-sector-chart', url: 'https://data.ssb.no/api/v0/dataset/130297.json?lang=en', title: 'CPI Adjusted Delivery Sector' },
-    { id: 'cpi-adjusted-delivery-sector-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/130299.json?lang=en', title: 'CPI Adjusted Delivery Sector Recent' },
-    { id: 'cpi-total-index-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/1087.json?lang=en', title: 'CPI Total Index Recent' },
-    { id: 'cpi-weights-subgroup-chart', url: 'https://data.ssb.no/api/v0/dataset/1090.json?lang=en', title: 'CPI Weights Subgroup' },
+    // === CPI CHARTS (MOVED TO DRILLDOWN) ===
+    // All CPI charts except the main one have been moved to drilldown-configs.js
     
     // === PRODUCER PRICE INDEX CHARTS (Detailed) ===
     { id: 'ppi-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index (PPI)' },
@@ -176,18 +150,12 @@ export const chartConfigs = [
     
     // === NORGES BANK - EXCHANGE RATES & INTEREST RATE ===
     { id: 'key-policy-rate-chart', url: './data/cached/norges-bank/interest-rate.json', title: 'Key Policy Rate', subtitle: 'Percentage', type: 'line' },
-    { id: 'usd-nok-chart', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK Exchange Rate', subtitle: 'Norwegian Krone per US Dollar', type: 'line' },
-    { id: 'eur-nok-chart', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK Exchange Rate', subtitle: 'Norwegian Krone per Euro', type: 'line' },
-    { id: 'gbp-nok-chart', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK Exchange Rate', subtitle: 'Norwegian Krone per British Pound', type: 'line' },
-    { id: 'chf-nok-chart', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK Exchange Rate', subtitle: 'Norwegian Krone per Swiss Franc', type: 'line' },
-    { id: 'sek-nok-chart', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK Exchange Rate', subtitle: 'Norwegian Krone per Swedish Krona', type: 'line' },
-    { id: 'cny-nok-chart', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK Exchange Rate', subtitle: 'Norwegian Krone per Chinese Yuan', type: 'line' },
+    // Exchange Rates - Main chart (others moved to drilldown)
     { id: 'i44-nok-chart', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK Exchange Rate', subtitle: 'Norwegian Krone per I44 Index', type: 'line' },
     
     // === OSLO STOCK EXCHANGE INDICES ===
+    // Oslo Indices - Main chart (others moved to drilldown)
     { id: 'oseax-chart', url: './data/cached/oslo-indices/oseax.json', title: 'OSEAX - Oslo Stock Exchange All Share Index', subtitle: 'Index Value', type: 'line' },
-    { id: 'osebx-chart', url: './data/cached/oslo-indices/osebx.json', title: 'OSEBX - Oslo Stock Exchange Benchmark Index', subtitle: 'Index Value', type: 'line' },
-    { id: 'obx-chart', url: './data/cached/oslo-indices/obx.json', title: 'OBX - Oslo Børs Total Return Index', subtitle: 'Index Value', type: 'line' },
     
     // === OIL FUND ===
     // REMOVED: Individual charts moved to drill-down (see below)
@@ -199,7 +167,7 @@ export const chartConfigs = [
     { id: 'nve-no3-reservoir-chart', url: './data/cached/nve/no3-reservoir.json', title: 'NVE Reservoir Fill - NO3 (Vestlandet)', subtitle: 'Magasinfylling %', type: 'line' },
     { id: 'nve-no4-reservoir-chart', url: './data/cached/nve/no4-reservoir.json', title: 'NVE Reservoir Fill - NO4 (Trøndelag)', subtitle: 'Magasinfylling %', type: 'line' },
     { id: 'nve-no5-reservoir-chart', url: './data/cached/nve/no5-reservoir.json', title: 'NVE Reservoir Fill - NO5 (Nord-Norge)', subtitle: 'Magasinfylling %', type: 'line' },
-    { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Norway Annual Reservoir Fill', subtitle: 'Percent', type: 'line' },
+    { id: 'nve-reservoir-fill-chart', url: './data/static/nve-reservoir-fill.json', title: 'Annual Reservoir Fill', subtitle: 'Percent', type: 'line' },
     
     // === SSB EXPORT BY COUNTRY (Aggregate - drill-down available) ===
     // Individual countries moved to drilldown-configs.js
@@ -214,7 +182,6 @@ export const chartConfigs = [
     { id: 'import-country-chart', url: './data/cached/ssb/import-country.json', title: 'Import by Country', subtitle: 'NOK', type: 'line' },
     
     // === VACCINATION COVERAGE (with drill-down) ===
-    { id: 'vaccination-chart', url: './data/cached/vaccination_hib3.json', title: 'Vaccination Coverage - Norway', subtitle: 'Hib3 (%)', type: 'line' },
     
     // === DFO GOVERNMENT SPENDING (with drill-down) ===
     { id: 'dfo-total-chart', url: './data/cached/dfo/total-government-expenditure.json', title: 'Total Government Expenditure', subtitle: 'NOK', type: 'line' },
@@ -226,45 +193,37 @@ export const chartConfigs = [
     { id: 'statnett-latest-detailed-overview-chart', url: './data/cached/statnett/latest-detailed-overview.json', title: 'Statnett Latest Detailed Overview', subtitle: 'Nåværende elektrisitetsproduksjon og forbruk', type: 'statnett-production-consumption' },
     
     // === OUR WORLD IN DATA (OWID) CHARTS ===
-    { id: 'norway-oda-per-capita-chart', url: './data/cached/oda_per_capita.json', title: 'Norway ODA per Capita', subtitle: 'USD per capita', type: 'line' },
-    { id: 'norway-internet-usage-chart', url: './data/cached/internet_use.json', title: 'Norway Internet Usage', subtitle: '% of population', type: 'line' },
-    { id: 'norway-homicide-rate-chart', url: './data/cached/homicide_rate.json', title: 'Norway Homicide Rate', subtitle: 'per 100,000 population', type: 'line' },
-    { id: 'norway-maternal-mortality-chart', url: './data/cached/maternal_mortality.json', title: 'Norway Maternal Mortality', subtitle: 'deaths per 100,000 live births', type: 'line' },
-    { id: 'norway-military-spending-chart', url: './data/cached/military_spending.json', title: 'Norway Military Spending', subtitle: '% of GDP', type: 'line' },
-    { id: 'norway-women-parliament-chart', url: './data/cached/women_in_parliament.json', title: 'Norway Women in Parliament', subtitle: '% of parliament', type: 'line' },
-    { id: 'norway-co2-per-capita-chart', url: './data/cached/co2_per_capita.json', title: 'Norway CO₂ Emissions per Capita', subtitle: 'tonnes per person', type: 'line' },
+    { id: 'norway-oda-per-capita-chart', url: './data/cached/oda_per_capita.json', title: 'ODA per Capita', subtitle: 'USD per capita', type: 'line' },
+    { id: 'norway-internet-usage-chart', url: './data/cached/internet_use.json', title: 'Internet Usage', subtitle: '% of population', type: 'line' },
+    { id: 'norway-homicide-rate-chart', url: './data/cached/homicide_rate.json', title: 'Homicide Rate', subtitle: 'per 100,000 population', type: 'line' },
+    { id: 'norway-maternal-mortality-chart', url: './data/cached/maternal_mortality.json', title: 'Maternal Mortality', subtitle: 'deaths per 100,000 live births', type: 'line' },
+    { id: 'norway-military-spending-chart', url: './data/cached/military_spending.json', title: 'Military Spending', subtitle: '% of GDP', type: 'line' },
+    { id: 'norway-women-parliament-chart', url: './data/cached/women_in_parliament.json', title: 'Women in Parliament', subtitle: '% of parliament', type: 'line' },
+    { id: 'norway-co2-per-capita-chart', url: './data/cached/co2_per_capita.json', title: 'CO₂ Emissions per Capita', subtitle: 'tonnes per person', type: 'line' },
     
-    // Vaccination Coverage - Split by antigen type
-    { id: 'norway-vaccination-dtpcv3-chart', url: './data/cached/vaccination_dtpcv3.json', title: 'Norway Vaccination - DTP-CV3 (Diphtheria, Tetanus, Pertussis)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-hepb3-chart', url: './data/cached/vaccination_hepb3.json', title: 'Norway Vaccination - HepB3 (Hepatitis B)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-hib3-chart', url: './data/cached/vaccination_hib3.json', title: 'Norway Vaccination - Hib3 (Haemophilus influenzae type b)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-ipv1-chart', url: './data/cached/vaccination_ipv1.json', title: 'Norway Vaccination - IPV1 (Inactivated Polio Vaccine)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-mcv1-chart', url: './data/cached/vaccination_mcv1.json', title: 'Norway Vaccination - MCV1 (Measles)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-pcv3-chart', url: './data/cached/vaccination_pcv3.json', title: 'Norway Vaccination - PCV3 (Pneumococcal)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-pol3-chart', url: './data/cached/vaccination_pol3.json', title: 'Norway Vaccination - Pol3 (Polio)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-rcv1-chart', url: './data/cached/vaccination_rcv1.json', title: 'Norway Vaccination - RCV1 (Rubella)', subtitle: '% coverage', type: 'line' },
-    { id: 'norway-vaccination-rotac-chart', url: './data/cached/vaccination_rotac.json', title: 'Norway Vaccination - RotaC (Rotavirus)', subtitle: '% coverage', type: 'line' },
+    // Vaccination Coverage - Main chart (others moved to drilldown)
+    { id: 'norway-vaccination-pol3-chart', url: './data/cached/vaccination_pol3.json', title: 'Vaccination - Pol3 (Polio)', subtitle: '% coverage', type: 'line' },
     
-    { id: 'norway-child-mortality-chart', url: './data/cached/child_mortality.json', title: 'Norway Child Mortality', subtitle: 'deaths per 100 live births', type: 'line' },
-    { id: 'norway-life-expectancy-chart', url: './data/cached/life_expectancy.json', title: 'Norway Life Expectancy', subtitle: 'years', type: 'line' },
-    { id: 'norway-employment-agriculture-chart', url: './data/cached/employment_in_agriculture_share.json', title: 'Norway Employment in Agriculture Share', subtitle: '% of labor force', type: 'line' },
-    { id: 'norway-daily-calories-chart', url: './data/cached/daily_calories.json', title: 'Norway Daily Calories', subtitle: 'kilocalories per day', type: 'line' },
-    { id: 'norway-median-age-chart', url: './data/cached/median_age.json', title: 'Norway Median Age', subtitle: 'years', type: 'line' },
-    { id: 'norway-fertility-rate-chart', url: './data/cached/fertility_rate_period.json', title: 'Norway Fertility Rate', subtitle: 'live births per woman', type: 'line' },
-    { id: 'norway-mean-income-per-day-chart', url: './data/cached/mean_income_per_day.json', title: 'Norway Mean Income per Day', subtitle: 'international-$ (2021 prices) per day', type: 'line' },
-    { id: 'norway-armed-forces-personnel-chart', url: './data/cached/armed_forces_personnel.json', title: 'Norway Armed Forces Personnel', subtitle: 'persons', type: 'line' },
-    { id: 'norway-alcohol-consumption-chart', url: './data/cached/alcohol_consumption_per_capita.json', title: 'Norway Alcohol Consumption per Capita', subtitle: 'liters of pure alcohol per person (15+) per year', type: 'line' },
-    { id: 'norway-trade-share-gdp-chart', url: './data/cached/trade_share_gdp.json', title: 'Norway Trade Share of GDP', subtitle: '% of GDP', type: 'line' },
-    { id: 'norway-energy-use-per-capita-chart', url: './data/cached/energy_use_per_capita.json', title: 'Norway Energy Use per Capita', subtitle: 'kilowatt-hours per person', type: 'line' },
-    { id: 'norway-marriage-rate-chart', url: './data/cached/marriage_rate.json', title: 'Norway Marriage Rate', subtitle: 'per 1,000 people', type: 'line' },
-    { id: 'norway-electric-car-sales-share-chart', url: './data/cached/electric_car_sales_share.json', title: 'Norway Electric Car Sales Share', subtitle: '% of new car sales', type: 'line' },
-    { id: 'norway-weekly-covid-cases-chart', url: './data/cached/weekly_covid_cases.json', title: 'Norway Weekly COVID Cases', subtitle: 'weekly confirmed cases', type: 'line' },
-    { id: 'norway-no-education-share-chart', url: './data/cached/no_education_share.json', title: 'Norway No Education Share', subtitle: '% of population (ages 15-64)', type: 'line' },
-    { id: 'norway-avg-years-schooling-chart', url: './data/cached/avg_years_schooling.json', title: 'Norway Average Years Schooling', subtitle: 'years (ages 25+)', type: 'line' },
-    { id: 'norway-pisa-science-chart', url: './data/cached/pisa_science.json', title: 'Norway PISA Science', subtitle: 'PISA score (mean=500, SD=100)', type: 'line' },
-    { id: 'norway-pisa-reading-chart', url: './data/cached/pisa_reading.json', title: 'Norway PISA Reading', subtitle: 'PISA score (mean=500, SD=100)', type: 'line' },
-    { id: 'norway-rnd-researchers-chart', url: './data/cached/rnd_researchers.json', title: 'Norway R&D Researchers', subtitle: 'per million people', type: 'line' },
-    { id: 'norway-tourist-trips-chart', url: './data/cached/tourist_trips.json', title: 'Norway Tourist Trips', subtitle: 'international tourist arrivals', type: 'line' },
+    { id: 'norway-child-mortality-chart', url: './data/cached/child_mortality.json', title: 'Child Mortality', subtitle: 'deaths per 100 live births', type: 'line' },
+    { id: 'norway-life-expectancy-chart', url: './data/cached/life_expectancy.json', title: 'Life Expectancy', subtitle: 'years', type: 'line' },
+    { id: 'norway-employment-agriculture-chart', url: './data/cached/employment_in_agriculture_share.json', title: 'Employment in Agriculture Share', subtitle: '% of labor force', type: 'line' },
+    { id: 'norway-daily-calories-chart', url: './data/cached/daily_calories.json', title: 'Daily Calories', subtitle: 'kilocalories per day', type: 'line' },
+    { id: 'norway-median-age-chart', url: './data/cached/median_age.json', title: 'Median Age', subtitle: 'years', type: 'line' },
+    { id: 'norway-fertility-rate-chart', url: './data/cached/fertility_rate_period.json', title: 'Fertility Rate', subtitle: 'live births per woman', type: 'line' },
+    { id: 'norway-mean-income-per-day-chart', url: './data/cached/mean_income_per_day.json', title: 'Mean Income per Day', subtitle: 'international-$ (2021 prices) per day', type: 'line' },
+    { id: 'norway-armed-forces-personnel-chart', url: './data/cached/armed_forces_personnel.json', title: 'Armed Forces Personnel', subtitle: 'persons', type: 'line' },
+    { id: 'norway-alcohol-consumption-chart', url: './data/cached/alcohol_consumption_per_capita.json', title: 'Alcohol Consumption per Capita', subtitle: 'liters of pure alcohol per person (15+) per year', type: 'line' },
+    { id: 'norway-trade-share-gdp-chart', url: './data/cached/trade_share_gdp.json', title: 'Trade Share of GDP', subtitle: '% of GDP', type: 'line' },
+    { id: 'norway-energy-use-per-capita-chart', url: './data/cached/energy_use_per_capita.json', title: 'Energy Use per Capita', subtitle: 'kilowatt-hours per person', type: 'line' },
+    { id: 'norway-marriage-rate-chart', url: './data/cached/marriage_rate.json', title: 'Marriage Rate', subtitle: 'per 1,000 people', type: 'line' },
+    { id: 'norway-electric-car-sales-share-chart', url: './data/cached/electric_car_sales_share.json', title: 'Electric Car Sales Share', subtitle: '% of new car sales', type: 'line' },
+    { id: 'norway-weekly-covid-cases-chart', url: './data/cached/weekly_covid_cases.json', title: 'Weekly COVID Cases', subtitle: 'weekly confirmed cases', type: 'line' },
+    { id: 'norway-no-education-share-chart', url: './data/cached/no_education_share.json', title: 'No Education Share', subtitle: '% of population (ages 15-64)', type: 'line' },
+    { id: 'norway-avg-years-schooling-chart', url: './data/cached/avg_years_schooling.json', title: 'Average Years Schooling', subtitle: 'years (ages 25+)', type: 'line' },
+    { id: 'norway-pisa-science-chart', url: './data/cached/pisa_science.json', title: 'PISA Science', subtitle: 'PISA score (mean=500, SD=100)', type: 'line' },
+    { id: 'norway-pisa-reading-chart', url: './data/cached/pisa_reading.json', title: 'PISA Reading', subtitle: 'PISA score (mean=500, SD=100)', type: 'line' },
+    { id: 'norway-rnd-researchers-chart', url: './data/cached/rnd_researchers.json', title: 'R&D Researchers', subtitle: 'per million people', type: 'line' },
+    { id: 'norway-tourist-trips-chart', url: './data/cached/tourist_trips.json', title: 'Tourist Trips', subtitle: 'international tourist arrivals', type: 'line' },
     
 ];
 

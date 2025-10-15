@@ -32,6 +32,25 @@ export const drilldownConfigs = {
         { id: 'bankruptcies-85-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-85-education.json', title: 'Education', subtitle: 'Number per quarter', type: 'line' },
     ],
     
+    // === CREDIT INDICATOR VARIATIONS (4 Indicators) ===
+    creditIndicator: [
+        { id: 'credit-indicator-main-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator - Main', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-k2-detailed-drilldown', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', title: 'Credit Indicator - K2 Detailed', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-k2-seasonally-adjusted-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator - K2 Seasonally Adjusted', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-k3-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator - K3', subtitle: 'Millioner NOK', type: 'line' },
+    ],
+    
+    // === PRODUCER PRICE INDEX (PPI) VARIATIONS (7 Detailed Views) ===
+    ppi: [
+        { id: 'ppi-main-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'PPI - Total Index', subtitle: 'Index (2015=100)', type: 'line' },
+        { id: 'ppi-industries-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', title: 'PPI - By Industries', subtitle: 'Index (2015=100)', type: 'line' },
+        { id: 'ppi-products-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', title: 'PPI - By Products', subtitle: 'Index (2015=100)', type: 'line' },
+        { id: 'ppi-subgroups-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26429.json?lang=en', title: 'PPI - By Subgroups', subtitle: 'Index (2015=100)', type: 'line' },
+        { id: 'ppi-subgroups-detailed-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', title: 'PPI - Subgroups (Detailed)', subtitle: 'Index (2015=100)', type: 'line' },
+        { id: 'ppi-recent-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26428.json?lang=en', title: 'PPI - Recent Data', subtitle: 'Index (2015=100)', type: 'line' },
+        { id: 'ppi-totals-recent-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26433.json?lang=en', title: 'PPI - Total Index (Recent)', subtitle: 'Index (2015=100)', type: 'line' },
+    ],
+    
     // === CPI VARIATIONS (16 Different Measures) ===
     cpi: [
         { id: 'cpi-main-drilldown', url: './data/cached/ssb/cpi.json', title: 'CPI - All-Item Index', subtitle: 'Index (2015=100)', type: 'line' },

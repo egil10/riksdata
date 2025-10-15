@@ -58,6 +58,61 @@ function optimizeDataForMobile(data, isMobile = false) {
 }
 
 /**
+ * Detect the scale of data to normalize y-axis
+ * Returns factor to divide by, unit suffix, and Norwegian label
+ * @param {Array} data - Chart data with {date, value} objects
+ * @returns {Object} - {factor, unit, unitLabel}
+ */
+function detectDataScale(data) {
+    if (!data || data.length === 0) {
+        return { factor: 1, unit: '', unitLabel: '' };
+    }
+    
+    // Find max absolute value in dataset
+    const maxValue = Math.max(...data.map(d => Math.abs(d.value || 0)));
+    
+    // Determine scale based on max value
+    // Goal: Keep y-axis values between 1-9999 (max 4 digits)
+    
+    if (maxValue >= 1e12) {
+        // Trillions
+        return { 
+            factor: 1e12, 
+            unit: 'T', 
+            unitLabel: 'Billioner' // Norwegian for trillions
+        };
+    } else if (maxValue >= 1e9) {
+        // Billions
+        return { 
+            factor: 1e9, 
+            unit: 'B', 
+            unitLabel: 'Milliarder' // Norwegian for billions
+        };
+    } else if (maxValue >= 1e6) {
+        // Millions
+        return { 
+            factor: 1e6, 
+            unit: 'M', 
+            unitLabel: 'Millioner' // Norwegian for millions
+        };
+    } else if (maxValue >= 10000) {
+        // Thousands (only if >= 10,000)
+        return { 
+            factor: 1e3, 
+            unit: 'K', 
+            unitLabel: 'Tusen' // Norwegian for thousands
+        };
+    } else {
+        // No scaling needed - values are already in good range
+        return { 
+            factor: 1, 
+            unit: '', 
+            unitLabel: '' 
+        };
+    }
+}
+
+/**
  * Load and render chart data from cached files
  * @param {string} canvasId - Canvas element ID
  * @param {string} apiUrl - Original API URL or cache path
@@ -1796,6 +1851,45 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         });
     }
 
+    // Detect scale and normalize data for cleaner y-axis
+    const dataScale = detectDataScale(data);
+    console.log(`🎯 Detected scale for ${title}:`, dataScale);
+    
+    // Normalize data if scale is detected
+    if (dataScale.factor > 1) {
+        // Normalize the data
+        const normalizedData = data.map(item => ({
+            ...item,
+            value: item.value / dataScale.factor
+        }));
+        
+        // Update chart data with normalized values
+        if (chartType === 'line') {
+            chartData.datasets[0].data = normalizedData.map(item => ({
+                x: item.date,
+                y: item.value
+            }));
+        } else {
+            // Bar charts
+            chartData.datasets[0].data = normalizedData.map(item => ({
+                x: item.date,
+                y: item.value
+            }));
+        }
+        
+        // Update subtitle to include scale
+        const subtitleEl = canvas.closest('.chart-card')?.querySelector('.chart-subtitle');
+        if (subtitleEl && dataScale.unitLabel) {
+            const currentSubtitle = subtitleEl.textContent;
+            // Only prepend scale if not already there
+            if (!currentSubtitle.includes(dataScale.unitLabel)) {
+                subtitleEl.textContent = `${dataScale.unitLabel} • ${currentSubtitle}`;
+            }
+        }
+        
+        console.log(`✅ Normalized ${title} by ${dataScale.factor} (${dataScale.unit})`);
+    }
+    
     // Create chart options with theme-aware colors
     let chartOptions = {
         ...CHART_CONFIG,
@@ -1816,7 +1910,22 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 ...CHART_CONFIG.scales?.y,
                 ticks: {
                     ...CHART_CONFIG.scales?.y?.ticks,
-                    color: textMuted
+                    color: textMuted,
+                    // Override callback to just show plain numbers (no B/M/K)
+                    callback: dataScale.factor > 1 ? function(value) {
+                        // For scaled data, show plain numbers with appropriate decimals
+                        if (Math.abs(value) >= 1000) {
+                            return value.toFixed(0);
+                        } else if (Math.abs(value) >= 100) {
+                            return value.toFixed(0);
+                        } else if (Math.abs(value) >= 10) {
+                            return value.toFixed(1);
+                        } else if (Math.abs(value) >= 1) {
+                            return value.toFixed(1);
+                        } else {
+                            return value.toFixed(2);
+                        }
+                    } : CHART_CONFIG.scales?.y?.ticks?.callback
                 },
                 grid: {
                     ...CHART_CONFIG.scales?.y?.grid,
@@ -1874,36 +1983,10 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         };
     }
     
-    // Special options for Government Debt chart
-    if (title === 'Government Debt' && chartType === 'line') {
-        chartOptions = {
-            ...chartOptions,
-            plugins: {
-                ...CHART_CONFIG.plugins,
-                tooltip: {
-                    ...CHART_CONFIG.plugins?.tooltip,
-                    callbacks: {
-                        label: function(context) {
-                            const valueInBillions = context.parsed.y / 1000000000;
-                            return `${context.dataset.label}: ${valueInBillions.toFixed(1)} billion NOK`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                ...chartOptions.scales,
-                y: {
-                    ...chartOptions.scales.y,
-                    ticks: {
-                        ...chartOptions.scales.y.ticks,
-                        callback: function(value) {
-                            return (value / 1000000000).toFixed(0) + 'B';
-                        }
-                    }
-                }
-            }
-        };
-    } else if (title === 'Housing Starts' && chartType === 'bar') {
+    // Special options for Government Debt chart - uses default smart formatting now
+    // (removed custom callback - default smart formatting handles it better)
+    
+    if (title === 'Housing Starts' && chartType === 'bar') {
         chartOptions = {
             ...chartOptions,
             plugins: {
@@ -1998,14 +2081,24 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ticks: {
                         ...chartOptions.scales.y.ticks,
                         callback: function(value) {
-                            if (value >= 1000000000) {
-                                return (value / 1000000000).toFixed(0) + 'B';
-                            } else if (value >= 1000000) {
-                                return (value / 1000000).toFixed(0) + 'M';
-                            } else if (value >= 1000) {
-                                return (value / 1000).toFixed(0) + 'K';
+                            // Smart number formatting - max 4 digits with unit suffixes
+                            const absValue = Math.abs(value);
+                            
+                            if (absValue >= 1e12) {
+                                return (value / 1e12).toFixed(absValue >= 1e13 ? 0 : 1) + 'T';
+                            } else if (absValue >= 1e9) {
+                                return (value / 1e9).toFixed(absValue >= 1e10 ? 0 : 1) + 'B';
+                            } else if (absValue >= 1e6) {
+                                return (value / 1e6).toFixed(absValue >= 1e7 ? 0 : 1) + 'M';
+                            } else if (absValue >= 1e4) {
+                                return (value / 1e3).toFixed(absValue >= 1e5 ? 0 : 1) + 'K';
+                            } else if (absValue >= 10) {
+                                return value.toFixed(0);
+                            } else if (absValue >= 1) {
+                                return value.toFixed(1);
+                            } else {
+                                return value.toFixed(2);
                             }
-                            return value.toLocaleString();
                         }
                     }
                 }

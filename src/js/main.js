@@ -220,12 +220,71 @@ window.addEventListener('beforeunload', () => {
 });
 
 /**
+ * Enhance subtitle with more informative details
+ * Converts simple units to detailed info with dots as separators
+ * NOTE: Scale units (Millioner, Milliarder, etc.) are auto-detected and added by detectDataScale()
+ */
+function enhanceSubtitle(subtitle, title, id) {
+    if (!subtitle) return 'Data';
+    
+    let parts = [];
+    
+    // Enhance unit descriptions (but NOT scale units - those are auto-detected)
+    // Only add base unit like "NOK", "Prosent", "Indeks", etc.
+    if (subtitle.includes('NOK Million') || subtitle === 'NOK Million') {
+        parts.push('NOK'); // Scale (Millioner) will be auto-detected
+    } else if (subtitle.includes('NOK') && subtitle.includes('milliarder')) {
+        parts.push('NOK'); // Scale (Milliarder) will be auto-detected
+    } else if (subtitle.includes('NOK per m²')) {
+        parts.push('NOK per m²');
+    } else if (subtitle === 'Percentage') {
+        parts.push('Prosent');
+    } else if (subtitle === 'Index') {
+        parts.push('Indeks (2015=100)');
+    } else if (subtitle === 'Number') {
+        parts.push('Antall');
+    } else if (subtitle === 'Terajoules') {
+        parts.push('Terajoule (TJ)');
+    } else if (subtitle.includes('CO2')) {
+        parts.push('CO₂-ekvivalenter');
+    } else if (subtitle.includes('GDP')) {
+        parts.push('BNP-vekst (%)');
+    } else if (subtitle.includes('NOK')) {
+        parts.push('NOK'); // Generic NOK, scale will be detected
+    } else {
+        parts.push(subtitle);
+    }
+    
+    // Add frequency based on chart type/ID
+    if (id.includes('monthly') || title.includes('Monthly')) {
+        parts.push('Månedlig');
+    } else if (id.includes('quarterly') || title.includes('Quarterly') || id.includes('quarter')) {
+        parts.push('Kvartalsvis');
+    } else if (id.includes('recent') || title.includes('Recent')) {
+        parts.push('Siste data');
+    } else if (id.includes('annual') || title.includes('Annual')) {
+        parts.push('Årlig');
+    }
+    
+    // Add context based on chart type
+    if (title.includes('Seasonally Adjusted')) {
+        parts.push('Sesongjustert');
+    }
+    if (title.includes('Index') && !parts.some(p => p.includes('Indeks'))) {
+        parts.push('Indeks');
+    }
+    
+    // Join with dots
+    return parts.join(' • ');
+}
+
+/**
  * Infer metadata from chart configuration
  */
 function inferChartMetadata(config) {
     const { url, id, title, subtitle, sourceUrl, sourceName } = config;
     
-    let inferredSubtitle = subtitle || 'Index (2015=100)';
+    let inferredSubtitle = subtitle || 'Indeks (2015=100)';
     let inferredSourceUrl = sourceUrl;
     let inferredSourceName = sourceName;
     let inferredSource = 'ssb';
@@ -259,7 +318,7 @@ function inferChartMetadata(config) {
         inferredSourceName = inferredSourceName || 'Yahoo Finance';
         inferredSource = 'yahoo';
     } else if (url.includes('dfo/') || id.includes('dfo-')) {
-        inferredSubtitle = 'NOK (milliarder)';
+        inferredSubtitle = 'NOK • Årlig • Statsbudsjett'; // Scale (Milliarder) will be auto-detected
         inferredSourceUrl = inferredSourceUrl || 'https://www.dfo.no/';
         inferredSourceName = inferredSourceName || 'DFO';
         inferredSource = 'dfo';
@@ -267,6 +326,11 @@ function inferChartMetadata(config) {
         inferredSourceUrl = inferredSourceUrl || 'https://ourworldindata.org/';
         inferredSourceName = inferredSourceName || 'Our World in Data';
         inferredSource = 'static';
+    }
+    
+    // Enhance subtitle with more details (except for DFO which already has enhanced subtitle)
+    if (!url.includes('dfo/') && !id.includes('dfo-')) {
+        inferredSubtitle = enhanceSubtitle(inferredSubtitle, title, id);
     }
     
     return { 

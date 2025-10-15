@@ -9,7 +9,7 @@ export const chartConfigs = [
     // REMOVED: Duplicate - using cached version below with drill-down support
     { id: 'unemployment-chart', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Unemployment Rate', subtitle: 'Percentage' },
     { id: 'house-prices-chart', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Price Index' },
-    { id: 'producer-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index' },
+    // REMOVED: Duplicate - using ppi-chart below with drill-down support
     { id: 'wage-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
     
     // Construction & Housing
@@ -61,10 +61,8 @@ export const chartConfigs = [
     // Monetary & Credit
     // Money Supply - Main chart (others moved to drilldown)
     { id: 'money-supply-m0-chart', url: 'https://data.ssb.no/api/v0/dataset/172771.json?lang=en', title: 'Money Supply M0', subtitle: 'NOK Million' },
+    // Credit Indicator - Main chart with drilldown (K2 Detailed, K2 Seasonally Adjusted, K3 moved to #creditIndicator)
     { id: 'credit-indicator-chart', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator', subtitle: 'NOK Million' },
-    { id: 'credit-indicator-k2-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', title: 'Credit Indicator K2 Detailed', subtitle: 'NOK Million' },
-    { id: 'credit-indicator-k2-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator K2 Seasonally Adjusted', subtitle: 'NOK Million' },
-    { id: 'credit-indicator-k3-chart', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator K3', subtitle: 'NOK Million' },
     
     // Energy & Environment
     { id: 'energy-consumption-chart', url: 'https://data.ssb.no/api/v0/dataset/928196.json?lang=en', title: 'Energy Consumption', subtitle: 'Terajoules' },
@@ -134,14 +132,9 @@ export const chartConfigs = [
     // === CPI CHARTS (MOVED TO DRILLDOWN) ===
     // All CPI charts except the main one have been moved to drilldown-configs.js
     
-    // === PRODUCER PRICE INDEX CHARTS (Detailed) ===
-    { id: 'ppi-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index (PPI)' },
-    { id: 'producer-price-index-industries-chart', url: 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', title: 'Producer Price Index Industries' },
-    { id: 'producer-price-index-products-chart', url: 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', title: 'Producer Price Index Products' },
-    { id: 'producer-price-index-subgroups-chart', url: 'https://data.ssb.no/api/v0/dataset/26429.json?lang=en', title: 'Producer Price Index Subgroups' },
-    { id: 'producer-price-index-subgroups-detailed-chart', url: 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', title: 'Producer Price Index Subgroups Detailed' },
-    { id: 'producer-price-index-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/26428.json?lang=en', title: 'Producer Price Index Recent' },
-    { id: 'producer-price-index-totals-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/26433.json?lang=en', title: 'Producer Price Index Totals Recent' },
+    // === PRODUCER PRICE INDEX (Main Chart with Drilldown) ===
+    // All detailed PPI charts moved to drilldown view (#ppi hash)
+    { id: 'ppi-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index (PPI)', subtitle: 'Index (2015=100)' },
     
     // === FIRST HAND PRICE INDEX ===
     { id: 'first-hand-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/82677.json?lang=en', title: 'First Hand Price Index' },

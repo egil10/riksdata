@@ -374,7 +374,35 @@ export const CHART_CONFIG = {
                 },
                 padding: window.innerWidth < 768 ? 5 : 10, // Less padding on mobile
                 callback: function(value) {
-                    return value.toLocaleString();
+                    // Smart number formatting - max 4 digits with unit suffixes
+                    const absValue = Math.abs(value);
+                    
+                    // For very large numbers (trillions)
+                    if (absValue >= 1e12) {
+                        return (value / 1e12).toFixed(absValue >= 1e13 ? 0 : 1) + 'T';
+                    }
+                    // Billions
+                    else if (absValue >= 1e9) {
+                        return (value / 1e9).toFixed(absValue >= 1e10 ? 0 : 1) + 'B';
+                    }
+                    // Millions
+                    else if (absValue >= 1e6) {
+                        return (value / 1e6).toFixed(absValue >= 1e7 ? 0 : 1) + 'M';
+                    }
+                    // Thousands
+                    else if (absValue >= 1e4) {
+                        return (value / 1e3).toFixed(absValue >= 1e5 ? 0 : 1) + 'K';
+                    }
+                    // Small numbers - show up to 2 decimal places
+                    else if (absValue >= 10) {
+                        return value.toFixed(0);
+                    }
+                    else if (absValue >= 1) {
+                        return value.toFixed(1);
+                    }
+                    else {
+                        return value.toFixed(2);
+                    }
                 }
             },
             border: {

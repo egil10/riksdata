@@ -25,6 +25,8 @@ export function initDrilldownNavigation() {
     addDrilldownButton();
     addExportsDrilldownButton();
     addCPIDrilldownButton();
+    addPPIDrilldownButton();
+    addCreditIndicatorDrilldownButton();
     addImportsDrilldownButton();
     addVaccinationsDrilldownButton();
     addDFODrilldownButton();
@@ -52,6 +54,10 @@ function handleHashChange() {
         showExportsView();
     } else if (hash === 'cpi') {
         showCPIView();
+    } else if (hash === 'ppi') {
+        showPPIView();
+    } else if (hash === 'creditIndicator') {
+        showCreditIndicatorView();
     } else if (hash === 'imports') {
         showImportsView();
     } else if (hash === 'vaccinations') {
@@ -199,6 +205,62 @@ function showCPIView() {
     
     // Load all CPI charts
     loadCPICharts();
+}
+
+/**
+ * Show PPI drill-down view
+ */
+function showPPIView() {
+    console.log('📊 Showing PPI drill-down view');
+    currentView = 'ppi';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Producer Price Index Variations';
+    updateHeaderBreadcrumb('PPI Variations');
+    
+    // Load all PPI charts
+    loadPPICharts();
+}
+
+/**
+ * Show Credit Indicator drill-down view
+ */
+function showCreditIndicatorView() {
+    console.log('💳 Showing Credit Indicator drill-down view');
+    currentView = 'creditIndicator';
+    
+    const mainView = document.getElementById('main-dashboard');
+    let drilldownView = document.getElementById('drilldown-view');
+    
+    // Hide main dashboard
+    if (mainView) mainView.style.display = 'none';
+    
+    // Create drill-down view if it doesn't exist
+    if (!drilldownView) {
+        drilldownView = createDrilldownView();
+    }
+    
+    drilldownView.style.display = 'block';
+    
+    // Update page title and header breadcrumb
+    document.title = 'Riksdata - Credit Indicator Variations';
+    updateHeaderBreadcrumb('Credit Indicator Variations');
+    
+    // Load all Credit Indicator charts
+    loadCreditIndicatorCharts();
 }
 
 /**
@@ -435,6 +497,72 @@ async function loadCPICharts() {
     }
     
     console.log('✅ All CPI charts loaded in drill-down view!');
+}
+
+/**
+ * Load all PPI variation charts
+ */
+async function loadPPICharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.ppi;
+    console.log(`📊 Loading ${configs.length} PPI variation charts in drill-down view...`);
+    
+    // Create chart cards for each PPI variation
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All PPI charts loaded in drill-down view!');
+}
+
+/**
+ * Load all Credit Indicator variation charts
+ */
+async function loadCreditIndicatorCharts() {
+    const chartsContainer = document.getElementById('drilldown-charts-container');
+    if (!chartsContainer) return;
+    
+    // Clear existing charts
+    chartsContainer.innerHTML = '';
+    
+    const configs = drilldownConfigs.creditIndicator;
+    console.log(`💳 Loading ${configs.length} Credit Indicator charts in drill-down view...`);
+    
+    // Create chart cards for each Credit Indicator variation
+    for (const config of configs) {
+        const chartCard = createChartCard(config);
+        chartsContainer.appendChild(chartCard);
+    }
+    
+    // Now load all charts
+    console.log('✅ Chart cards created, loading data...');
+    
+    for (const config of configs) {
+        try {
+            await loadChartData(config.id, config.url, config.title, config.type || 'line');
+        } catch (error) {
+            console.error(`Failed to load ${config.title}:`, error);
+        }
+    }
+    
+    console.log('✅ All Credit Indicator charts loaded in drill-down view!');
 }
 
 /**
@@ -808,6 +936,116 @@ function addCPIDrilldownButton() {
         }
         
         console.log('✅ CPI drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to PPI chart
+ */
+function addPPIDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const ppiCard = document.querySelector('[data-chart-id="ppi-chart"]');
+        if (!ppiCard) {
+            console.warn('PPI chart card not found, will retry...');
+            setTimeout(addPPIDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found PPI chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = ppiCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-ppi"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-ppi');
+            drilldownBtn.setAttribute('aria-label', 'View PPI variations');
+            drilldownBtn.setAttribute('title', 'View PPI variations');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'ppi';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to PPI!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = ppiCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'ppi';
+            };
+            chartTitle.setAttribute('title', 'Click to view PPI variations');
+            console.log('✅ Made PPI title clickable!');
+        }
+        
+        console.log('✅ PPI drill-down features added successfully!');
+    }, 3000); // Wait 3 seconds for charts to load
+}
+
+/**
+ * Add drill-down functionality to Credit Indicator chart
+ */
+function addCreditIndicatorDrilldownButton() {
+    // Wait for DOM to be ready
+    setTimeout(() => {
+        const creditCard = document.querySelector('[data-chart-id="credit-indicator-chart"]');
+        if (!creditCard) {
+            console.warn('Credit Indicator chart card not found, will retry...');
+            setTimeout(addCreditIndicatorDrilldownButton, 1000);
+            return;
+        }
+        
+        console.log('✅ Found Credit Indicator chart card, adding drill-down features...');
+        
+        // 1. Add chart-spline icon to chart actions
+        const chartActions = creditCard.querySelector('.chart-actions');
+        if (chartActions && !chartActions.querySelector('[data-action="drilldown-credit-indicator"]')) {
+            const drilldownBtn = document.createElement('button');
+            drilldownBtn.className = 'icon-btn';
+            drilldownBtn.setAttribute('data-action', 'drilldown-credit-indicator');
+            drilldownBtn.setAttribute('aria-label', 'View Credit Indicator variations');
+            drilldownBtn.setAttribute('title', 'View Credit Indicator variations');
+            drilldownBtn.innerHTML = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v16a2 2 0 0 0 2 2h16"></path>
+                    <path d="m19 9-5 5-4-4-3 3"></path>
+                </svg>
+            `;
+            drilldownBtn.onclick = (e) => {
+                e.stopPropagation();
+                window.location.hash = 'creditIndicator';
+            };
+            
+            // Insert as first button
+            chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
+            console.log('✅ Added drill-down icon button to Credit Indicator!');
+        }
+        
+        // 2. Make title clickable
+        const chartTitle = creditCard.querySelector('.chart-header h3');
+        if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
+            chartTitle.style.cursor = 'pointer';
+            chartTitle.setAttribute('data-drilldown-enabled', 'true');
+            chartTitle.onclick = () => {
+                window.location.hash = 'creditIndicator';
+            };
+            chartTitle.setAttribute('title', 'Click to view Credit Indicator variations');
+            console.log('✅ Made Credit Indicator title clickable!');
+        }
+        
+        console.log('✅ Credit Indicator drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
 

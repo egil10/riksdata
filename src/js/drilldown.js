@@ -1788,8 +1788,8 @@ async function loadPoliticalTimeline() {
             margin: 0 auto;
         `;
         
-        // Create government cards
-        data.governments.forEach((government, index) => {
+        // Create government cards (newest first - reverse chronological)
+        data.governments.slice().reverse().forEach((government, index) => {
             const card = createGovernmentCard(government, data.parties);
             timelineContainer.appendChild(card);
         });
@@ -1819,16 +1819,16 @@ function createGovernmentCard(government, parties) {
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        padding: 1.5rem;
+        padding: 1rem;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
         position: relative;
         overflow: hidden;
     `;
     
-    // Add hover effect
+    // Add subtle hover effect (matching chart cards)
     card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-4px)';
+        card.style.transform = 'translateY(-2px)';
         card.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.15)';
     });
     
@@ -1841,78 +1841,64 @@ function createGovernmentCard(government, parties) {
     const party = parties[government.party];
     const accentColor = party ? party.color : '#666';
     
-    // Create card content
+    // Create card content with horizontal layout
     card.innerHTML = `
-        <div style="border-left: 4px solid ${accentColor}; padding-left: 1rem;">
-            <!-- PM Photo and Name -->
-            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-                <img src="${government.imageUrl}" 
-                     alt="${government.primeMinister}" 
-                     style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; border: 2px solid ${accentColor};">
-                <div>
-                    <h3 style="margin: 0; font-size: 1.25rem; color: var(--text);">${government.primeMinister}</h3>
-                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">${government.years}</p>
-                </div>
+        <div style="height: 100%; display: flex; flex-direction: column;">
+            <!-- Government Name and Year Header -->
+            <div style="margin-bottom: 0.75rem; border-bottom: 3px solid ${accentColor}; padding-bottom: 0.5rem;">
+                <a href="${government.wikipediaUrl}" 
+                   target="_blank" 
+                   style="text-decoration: none; color: inherit;">
+                    <h3 style="margin: 0; font-size: 1.3rem; color: var(--text); font-weight: 600;">${government.name}</h3>
+                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">${government.years}</p>
+                </a>
             </div>
             
-            <!-- Government Name and Period -->
-            <div style="margin-bottom: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--text);">${government.name}</h4>
-                <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem;">${government.period}</p>
-            </div>
-            
-            <!-- Party Information -->
-            <div style="margin-bottom: 1rem;">
-                <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                    <img src="${party?.logoUrl || ''}" 
-                         alt="${party?.name || government.party}" 
-                         style="width: 24px; height: 24px; object-fit: contain;">
-                    <a href="${party?.website || '#'}" 
-                       target="_blank" 
-                       style="color: ${accentColor}; text-decoration: none; font-weight: 500;">
-                        ${party?.name || government.party}
-                    </a>
-                    ${government.coalition.length > 0 ? '<span style="color: var(--text-muted);">+ Coalition</span>' : '<span style="color: var(--text-muted);">(Minority)</span>'}
+            <!-- Horizontal Layout: Image Left, Party Info Right -->
+            <div style="display: flex; gap: 1rem; flex: 1;">
+                <!-- PM Photo - Left Side -->
+                <div style="flex-shrink: 0;">
+                    <img src="${government.imageUrl}" 
+                         alt="${government.primeMinister}" 
+                         style="width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid ${accentColor}; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);">
                 </div>
                 
-                <!-- Coalition Parties -->
-                ${government.coalition.length > 0 ? `
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                <!-- Party Information - Right Side -->
+                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;">
+                    <!-- Main Party -->
+                    <div style="display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
+                        <img src="${party?.logoUrl || ''}" 
+                             alt="${party?.name || government.party}" 
+                             style="width: 20px; height: 20px; object-fit: contain;">
+                        <a href="${party?.website || '#'}" 
+                           target="_blank" 
+                           style="color: ${accentColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+                            ${party?.name || government.party}
+                        </a>
+                        <span style="color: var(--text-muted); font-size: 0.75rem;">
+                            ${government.coalition.length > 0 ? '(Coalition)' : '(Minority)'}
+                        </span>
+                    </div>
+                    
+                    <!-- Coalition Partners - Stacked -->
+                    ${government.coalition.length > 0 ? `
                         ${government.coalition.map(coalitionParty => {
                             const coalitionPartyData = parties[coalitionParty];
                             return `
-                                <a href="${coalitionPartyData?.website || '#'}" 
-                                   target="_blank"
-                                   style="display: flex; align-items: center; gap: 0.25rem; padding: 0.25rem 0.5rem; background: var(--glass-bg); border-radius: 4px; text-decoration: none; font-size: 0.8rem; color: var(--text);">
+                                <div style="display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
                                     <img src="${coalitionPartyData?.logoUrl || ''}" 
                                          alt="${coalitionPartyData?.name || coalitionParty}" 
-                                         style="width: 16px; height: 16px; object-fit: contain;">
-                                    ${coalitionPartyData?.name || coalitionParty}
-                                </a>
+                                         style="width: 18px; height: 18px; object-fit: contain;">
+                                    <a href="${coalitionPartyData?.website || '#'}" 
+                                       target="_blank"
+                                       style="color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.8rem;">
+                                        ${coalitionPartyData?.name || coalitionParty}
+                                    </a>
+                                </div>
                             `;
                         }).join('')}
-                    </div>
-                ` : ''}
-            </div>
-            
-            <!-- Notable Information -->
-            ${government.notable ? `
-                <div style="margin-bottom: 1rem; padding: 0.75rem; background: var(--glass-bg); border-radius: 6px; border-left: 3px solid ${accentColor};">
-                    <p style="margin: 0; font-size: 0.9rem; color: var(--text); font-style: italic;">${government.notable}</p>
+                    ` : ''}
                 </div>
-            ` : ''}
-            
-            <!-- Wikipedia Link -->
-            <div style="margin-top: auto;">
-                <a href="${government.wikipediaUrl}" 
-                   target="_blank" 
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-2); text-decoration: none; font-size: 0.9rem; font-weight: 500;">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-                        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-                    </svg>
-                    Read more on Wikipedia
-                </a>
             </div>
         </div>
     `;

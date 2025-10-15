@@ -78,22 +78,20 @@ politicalTimeline: [
 - **Wikipedia Links** - Direct links to government pages
 - **Responsive Grid** - Auto-fit layout (350px minimum cards)
 
-**Card Layout:**
+**New Card Layout (Newest First):**
 ```
 ┌─────────────────────────────────────┐
-│ 🖼️ [PM Photo] Jonas Gahr Støre      │
-│               2021-Present          │
+│ Jonas Gahr Støre                   │
+│ 2021-Present                       │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │ ← Party color line
 ├─────────────────────────────────────┤
-│ Jonas Gahr Støres regjering         │
-│ Støre                              │
+│        🖼️ [Large PM Photo]          │
+│      (120x160px upright)           │
 ├─────────────────────────────────────┤
-│ 🏛️ [Ap Logo] Arbeiderpartiet        │
-│     + Coalition                    │
+│ [Ap Logo] Arbeiderpartiet (Coalition) │
 │ [Sp Logo] Senterpartiet            │
 ├─────────────────────────────────────┤
 │ 💡 Current government              │
-├─────────────────────────────────────┤
-│ 🔗 Read more on Wikipedia          │
 └─────────────────────────────────────┘
 ```
 
@@ -281,14 +279,14 @@ politicalTimeline: [
 
 ### Government Cards Include:
 
-1. **Prime Minister Photo** - High-quality Wikimedia Commons images
-2. **Government Name** - Full official name
-3. **Years in Office** - Clear time period
-4. **Leading Party** - Logo, name, and website link
-5. **Coalition Partners** - Logos and names for coalition governments
-6. **Notable Information** - Special highlights and achievements
-7. **Wikipedia Link** - Direct access to detailed information
-8. **Party Color Coding** - Visual consistency with chart colors
+1. **Government Name & Years** - Prominently displayed at top with party color line
+2. **Large PM Photo** - 120x160px upright rectangle with party color border
+3. **Leading Party** - Logo, name, and website link in single line
+4. **Coalition Partners** - Logos and names in single line below
+5. **Notable Information** - Special highlights and achievements
+6. **Integrated Links** - Government name links to Wikipedia, party names link to websites
+7. **Party Color Coding** - Visual consistency with chart colors throughout
+8. **Newest First** - Chronological order with most recent governments first
 
 ### Interactive Elements:
 
@@ -301,31 +299,52 @@ politicalTimeline: [
 
 ## 🌟 Real-World Examples
 
-### Current Government (Støre)
+### Current Government (Støre) - Now First!
 ```
-🏛️ Jonas Gahr Støre (2021-Present)
-   [Ap Logo] Arbeiderpartiet + Coalition
-   [Sp Logo] Senterpartiet
-   💡 Current government
-   🔗 Read more on Wikipedia
+┌─────────────────────────────────────┐
+│ Jonas Gahr Støre                   │
+│ 2021-Present                       │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │ ← Red line
+├─────────────────────────────────────┤
+│        🖼️ [Large PM Photo]          │
+├─────────────────────────────────────┤
+│ [Ap Logo] Arbeiderpartiet (Coalition) │
+│ [Sp Logo] Senterpartiet            │
+├─────────────────────────────────────┤
+│ 💡 Current government              │
+└─────────────────────────────────────┘
 ```
 
 ### Historic Government (Solberg)
 ```
-🏛️ Erna Solberg (2013-2021)
-   [H Logo] Høyre + Coalition
-   [FrP Logo] [V Logo] [KrF Logo]
-   💡 First female Conservative PM, longest Conservative government since 1928
-   🔗 Read more on Wikipedia
+┌─────────────────────────────────────┐
+│ Erna Solberg                       │
+│ 2013-2021                          │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │ ← Blue line
+├─────────────────────────────────────┤
+│        🖼️ [Large PM Photo]          │
+├─────────────────────────────────────┤
+│ [H Logo] Høyre (Coalition)         │
+│ [FrP Logo] [V Logo] [KrF Logo]     │
+├─────────────────────────────────────┤
+│ 💡 First female Conservative PM... │
+└─────────────────────────────────────┘
 ```
 
 ### Famous Coalition (Stoltenberg II)
 ```
-🏛️ Jens Stoltenberg II (2005-2013)
-   [Ap Logo] Arbeiderpartiet + Coalition
-   [SV Logo] [Sp Logo]
-   💡 Red-Green Coalition (Rød-grønn regjering)
-   🔗 Read more on Wikipedia
+┌─────────────────────────────────────┐
+│ Jens Stoltenberg II                │
+│ 2005-2013                          │
+│ ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ │ ← Red line
+├─────────────────────────────────────┤
+│        🖼️ [Large PM Photo]          │
+├─────────────────────────────────────┤
+│ [Ap Logo] Arbeiderpartiet (Coalition) │
+│ [SV Logo] [Sp Logo]                │
+├─────────────────────────────────────┤
+│ 💡 Red-Green Coalition (Rød-grønn) │
+└─────────────────────────────────────┘
 ```
 
 ---

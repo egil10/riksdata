@@ -1780,13 +1780,14 @@ async function loadPoliticalTimeline() {
     
     try {
         // Load political timeline data
-        const response = await fetch('./data/static/political-timeline.json');
+        const response = await fetch('./data/static/political-timeline.json?v=' + Date.now());
         if (!response.ok) {
             throw new Error(`Failed to load political timeline: ${response.status}`);
         }
         
         const data = await response.json();
         console.log('🏛️ Loaded political timeline data:', data);
+        console.log('🏛️ Total governments found:', data.governments.length);
         
         // Create timeline container
         const timelineContainer = document.createElement('div');
@@ -1801,7 +1802,10 @@ async function loadPoliticalTimeline() {
         `;
         
         // Create government cards (newest first - reverse chronological)
-        data.governments.slice().reverse().forEach((government, index) => {
+        const reversedGovernments = data.governments.slice().reverse();
+        console.log('🏛️ Creating cards for governments:', reversedGovernments.map(g => g.name));
+        
+        reversedGovernments.forEach((government, index) => {
             const card = createGovernmentCard(government, data.parties);
             timelineContainer.appendChild(card);
         });

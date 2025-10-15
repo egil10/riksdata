@@ -1,9 +1,9 @@
 {
   "metadata": {
-    "title": "Norwegian Political Timeline (1965-2025)",
-    "description": "Complete timeline of Norwegian Prime Ministers and governments from 1965 onwards with images",
+    "title": "Norwegian Political Timeline (1945-2025)",
+    "description": "Complete timeline of Norwegian Prime Ministers and governments from 1945 onwards with images",
     "source": "Wikimedia Commons",
-    "lastUpdated": "2025-10-13"
+    "lastUpdated": "2025-10-15"
   },
   "parties": {
     "Ap": {
@@ -64,6 +64,85 @@
     }
   },
   "governments": [
+    {
+      "name": "Einar Gerhardsens fjerde regjering",
+      "period": "Gerhardsen IV",
+      "start": "1963-09-25",
+      "end": "1965-10-12",
+      "primeMinister": "Einar Gerhardsen",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_fjerde_regjering",
+      "years": "1963-1965",
+      "color": "#E11926"
+    },
+    {
+      "name": "John Lyngs regjering",
+      "period": "Lyng",
+      "start": "1963-08-28",
+      "end": "1963-09-25",
+      "primeMinister": "John Lyng",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/John_Lyng_%28FA-0035-HI-V-33620-03%29.jpg",
+      "party": "H",
+      "coalition": ["Sp", "V", "KrF"],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/John_Lyngs_regjering",
+      "years": "1963",
+      "color": "#87add7"
+    },
+    {
+      "name": "Einar Gerhardsens tredje regjering",
+      "period": "Gerhardsen III",
+      "start": "1955-01-22",
+      "end": "1963-08-28",
+      "primeMinister": "Einar Gerhardsen",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_tredje_regjering",
+      "years": "1955-1963",
+      "color": "#E11926"
+    },
+    {
+      "name": "Oscar Torps regjering",
+      "period": "Torp",
+      "start": "1951-11-19",
+      "end": "1955-01-22",
+      "primeMinister": "Oscar Torp",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/26771_Oscar_Torp_%28cropped%29.jpg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Oscar_Torps_regjering",
+      "years": "1951-1955",
+      "color": "#E11926"
+    },
+    {
+      "name": "Einar Gerhardsens andre regjering",
+      "period": "Gerhardsen II",
+      "start": "1945-11-05",
+      "end": "1951-11-19",
+      "primeMinister": "Einar Gerhardsen",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_andre_regjering",
+      "years": "1945-1951",
+      "color": "#E11926"
+    },
+    {
+      "name": "Einar Gerhardsens første regjering",
+      "period": "Gerhardsen I",
+      "start": "1945-06-25",
+      "end": "1945-11-05",
+      "primeMinister": "Einar Gerhardsen",
+      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "party": "Ap",
+      "coalition": [],
+      "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_f%C3%B8rste_regjering",
+      "years": "1945",
+      "color": "#E11926",
+      "notable": "Samlingsregjering (Unity Government)"
+    },
     {
       "name": "Per Borten",
       "period": "Borten",
@@ -290,20 +369,20 @@
     }
   ],
   "statistics": {
-    "totalGovernments": 14,
+    "totalGovernments": 20,
     "longestServing": {
-      "name": "Gro Harlem Brundtland III",
-      "years": 6,
-      "period": "1990-1996"
+      "name": "Einar Gerhardsens tredje regjering",
+      "years": 8,
+      "period": "1955-1963"
     },
     "shortestServing": {
-      "name": "Gro Harlem Brundtland I",
-      "months": 8,
-      "period": "1981"
+      "name": "John Lyngs regjering",
+      "months": 1,
+      "period": "1963"
     },
     "partyBreakdown": {
-      "Ap": 8,
-      "H": 3,
+      "Ap": 13,
+      "H": 4,
       "KrF": 2,
       "Sp": 1
     },
@@ -311,8 +390,8 @@
       "Gro Harlem Brundtland",
       "Erna Solberg"
     ],
-    "coalitionGovernments": 9,
-    "minorityGovernments": 5
+    "coalitionGovernments": 11,
+    "minorityGovernments": 9
   }
 }
 

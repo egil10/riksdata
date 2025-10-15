@@ -202,6 +202,9 @@ function showCPIView() {
     
     drilldownView.style.display = 'block';
     
+    // Scroll to top of page
+    window.scrollTo(0, 0);
+    
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Consumer Price Index Variations';
     updateHeaderBreadcrumb('CPI Variations');
@@ -229,6 +232,9 @@ function showPPIView() {
     }
     
     drilldownView.style.display = 'block';
+    
+    // Scroll to top of page
+    window.scrollTo(0, 0);
     
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Producer Price Index Variations';
@@ -399,6 +405,9 @@ function createDrilldownView() {
     } else {
         document.body.appendChild(container);
     }
+    
+    // Scroll to top when drilldown view is created
+    window.scrollTo(0, 0);
     
     return container;
 }
@@ -1752,6 +1761,9 @@ function showPoliticalTimelineView() {
     document.title = 'Riksdata - Political Timeline';
     updateHeaderBreadcrumb('Political Timeline');
     
+    // Scroll to top of page
+    window.scrollTo(0, 0);
+    
     // Load political timeline
     loadPoliticalTimeline();
 }
@@ -1826,14 +1838,12 @@ function createGovernmentCard(government, parties) {
         overflow: hidden;
     `;
     
-    // Add subtle hover effect (matching chart cards)
+    // Add subtle hover effect (shadow only, no movement)
     card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-2px)';
         card.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.15)';
     });
     
     card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0)';
         card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
     });
     

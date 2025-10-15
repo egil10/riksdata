@@ -99,11 +99,47 @@ class ConnectionMonitor {
     }
     
     /**
-     * Create connection quality indicator (DISABLED - too much visual clutter)
+     * Create connection quality indicator in footer
      */
     createQualityIndicator() {
-        // Connection indicator disabled to keep header clean
-        console.log('📶 Connection monitoring active (indicator hidden for clean UI)');
+        // Don't create if already exists
+        if (document.getElementById('connection-indicator')) return;
+        
+        const indicator = document.createElement('div');
+        indicator.id = 'connection-indicator';
+        indicator.className = 'connection-indicator footer-connection';
+        indicator.innerHTML = `
+            <div class="connection-icon">
+                <i data-lucide="wifi-high" class="connection-icon-lucide"></i>
+            </div>
+            <div class="connection-status">
+                <span class="connection-text">Good connection</span>
+                <div class="connection-bars">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+            </div>
+        `;
+        
+        // Add to footer under mood rating section
+        const moodSection = document.querySelector('footer .footer-section:has(.mood-rating)');
+        if (moodSection) {
+            // Add connection indicator directly to mood section
+            moodSection.appendChild(indicator);
+        } else {
+            // Fallback: find any footer section and add it
+            const footer = document.querySelector('footer .footer-content');
+            if (footer) {
+                footer.appendChild(indicator);
+            }
+        }
+        
+        // Add CSS styles
+        this.addConnectionIndicatorStyles();
+        
+        console.log('📶 Connection indicator added to footer');
     }
     
     /**
@@ -112,20 +148,24 @@ class ConnectionMonitor {
     addConnectionIndicatorStyles() {
         const style = document.createElement('style');
         style.textContent = `
-            .connection-indicator {
+            /* Footer connection indicator styles */
+            .connection-indicator.footer-connection {
                 display: flex;
                 align-items: center;
                 gap: 0.5rem;
-                padding: 0.25rem 0.5rem;
+                padding: 0.5rem;
                 background: var(--glass-bg);
-                border-radius: 6px;
-                font-size: 0.75rem;
-                opacity: 0.8;
+                border-radius: 8px;
+                font-size: 0.8rem;
+                opacity: 0.9;
                 transition: all 0.3s ease;
+                border: 1px solid var(--border);
+                margin-top: 0.75rem;
             }
             
-            .connection-indicator:hover {
+            .connection-indicator.footer-connection:hover {
                 opacity: 1;
+                background: var(--bg-elev);
             }
             
             .connection-icon {
@@ -133,36 +173,50 @@ class ConnectionMonitor {
                 align-items: center;
             }
             
+            .connection-icon-lucide {
+                width: 16px;
+                height: 16px;
+                color: var(--text-muted);
+                transition: color 0.3s ease;
+            }
+            
             .connection-status {
                 display: flex;
                 align-items: center;
-                gap: 0.25rem;
+                gap: 0.5rem;
+                flex: 1;
             }
             
             .connection-text {
-                font-size: 0.7rem;
+                font-size: 0.75rem;
                 color: var(--text-muted);
+                font-weight: 500;
             }
             
             .connection-bars {
                 display: flex;
-                gap: 1px;
+                gap: 2px;
                 align-items: end;
             }
             
             .connection-bars .bar {
-                width: 2px;
+                width: 3px;
                 background: var(--text-muted);
-                border-radius: 1px;
+                border-radius: 2px;
                 transition: all 0.3s ease;
             }
             
-            .connection-bars .bar:nth-child(1) { height: 4px; }
-            .connection-bars .bar:nth-child(2) { height: 6px; }
-            .connection-bars .bar:nth-child(3) { height: 8px; }
-            .connection-bars .bar:nth-child(4) { height: 10px; }
+            .connection-bars .bar:nth-child(1) { height: 6px; }
+            .connection-bars .bar:nth-child(2) { height: 8px; }
+            .connection-bars .bar:nth-child(3) { height: 10px; }
+            .connection-bars .bar:nth-child(4) { height: 12px; }
             
+            /* Quality-specific styles */
             .connection-indicator.quality-good .connection-text {
+                color: var(--success);
+            }
+            
+            .connection-indicator.quality-good .connection-icon-lucide {
                 color: var(--success);
             }
             
@@ -174,13 +228,29 @@ class ConnectionMonitor {
                 color: var(--warning);
             }
             
+            .connection-indicator.quality-medium .connection-icon-lucide {
+                color: var(--warning);
+            }
+            
+            .connection-indicator.quality-medium .bar {
+                background: var(--warning);
+            }
+            
             .connection-indicator.quality-medium .bar:nth-child(3),
             .connection-indicator.quality-medium .bar:nth-child(4) {
-                opacity: 0.3;
+                opacity: 0.4;
             }
             
             .connection-indicator.quality-slow .connection-text {
                 color: var(--error);
+            }
+            
+            .connection-indicator.quality-slow .connection-icon-lucide {
+                color: var(--error);
+            }
+            
+            .connection-indicator.quality-slow .bar {
+                background: var(--error);
             }
             
             .connection-indicator.quality-slow .bar:nth-child(2),
@@ -193,7 +263,12 @@ class ConnectionMonitor {
                 color: var(--error);
             }
             
+            .connection-indicator.quality-offline .connection-icon-lucide {
+                color: var(--error);
+            }
+            
             .connection-indicator.quality-offline .bar {
+                background: var(--error);
                 opacity: 0.3;
             }
         `;
@@ -202,11 +277,48 @@ class ConnectionMonitor {
     }
     
     /**
-     * Update connection quality indicator (DISABLED)
+     * Update connection quality indicator
      */
     updateQualityIndicator() {
-        // Connection indicator disabled - no visual update needed
-        // Quality monitoring still works in background for adaptive loading
+        const indicator = document.getElementById('connection-indicator');
+        if (!indicator) return;
+        
+        const textElement = indicator.querySelector('.connection-text');
+        const iconElement = indicator.querySelector('.connection-icon-lucide');
+        
+        // Update class for styling
+        indicator.className = `connection-indicator footer-connection quality-${this.quality}`;
+        
+        // Update text and icon
+        if (textElement && iconElement) {
+            switch (this.quality) {
+                case 'good':
+                    textElement.textContent = 'Good connection';
+                    iconElement.setAttribute('data-lucide', 'wifi-high');
+                    break;
+                case 'medium':
+                    textElement.textContent = 'Medium connection';
+                    iconElement.setAttribute('data-lucide', 'wifi');
+                    break;
+                case 'slow':
+                    textElement.textContent = 'Slow connection';
+                    iconElement.setAttribute('data-lucide', 'wifi-low');
+                    break;
+                case 'offline':
+                    textElement.textContent = 'Offline';
+                    iconElement.setAttribute('data-lucide', 'wifi-off');
+                    break;
+                default:
+                    textElement.textContent = 'Unknown';
+                    iconElement.setAttribute('data-lucide', 'help-circle');
+                    break;
+            }
+            
+            // Refresh Lucide icons if available
+            if (window.lucide) {
+                window.lucide.createIcons();
+            }
+        }
     }
     
     /**

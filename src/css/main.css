@@ -2265,40 +2265,48 @@ footer {
     opacity: 1;
 }
 
-/* Back to top button */
+/* Back to top button - Modern minimalistic styling */
 .back-to-top-btn {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
-    background: var(--glass-bg);
-    backdrop-filter: blur(var(--blur-amount));
-    -webkit-backdrop-filter: blur(var(--blur-amount));
-    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 0, 0, 0.08);
     color: var(--text);
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
-    transition: all var(--t) var(--ease);
+    transition: all 0.2s ease;
     z-index: 1000;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .back-to-top-btn:hover {
-    background: var(--card-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+.back-to-top-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .back-to-top-btn svg {
-    transition: transform var(--t) var(--ease);
+    transition: transform 0.2s ease;
+    width: 20px;
+    height: 20px;
 }
 
 .back-to-top-btn:hover svg {
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
 
 /* Legacy drawer styles - removed in favor of new sidebar layout */

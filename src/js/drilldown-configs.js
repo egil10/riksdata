@@ -9,6 +9,19 @@ export const drilldownConfigs = {
     politicalTimeline: [
         { id: 'political-timeline-data', url: './data/static/political-timeline.json', title: 'Norwegian Political Timeline', subtitle: 'Prime Ministers and Governments 1965-2025', type: 'timeline' }
     ],
+
+    // === POPULATION DRILLDOWN (Detailed Population Analysis) ===
+    population: [
+        { id: 'population-basic-districts-national-drilldown', url: './data/cached/ssb/population-basic-districts-national.json', title: 'Population by Districts', subtitle: 'persons', type: 'line' },
+        { id: 'population-by-gender-age-historical-drilldown', url: './data/cached/ssb/population-by-gender-age-historical.json', title: 'Population by Gender & Age (Historical)', subtitle: 'persons', type: 'line' },
+        { id: 'population-by-gender-age-5year-drilldown', url: './data/cached/ssb/population-by-gender-age-5year.json', title: 'Population by Gender & Age (5-year groups)', subtitle: 'persons', type: 'line' },
+        { id: 'population-growth-alt-drilldown', url: './data/cached/ssb/population-growth-alt.json', title: 'Population Growth (Quarterly)', subtitle: 'persons', type: 'line' },
+        { id: 'immigration-rate-drilldown', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', title: 'Immigration Rate', subtitle: 'Annual Count', type: 'line' },
+        { id: 'immigrants-with-immigrant-parents-drilldown', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents', subtitle: 'Number', type: 'line' },
+        { id: 'births-deaths-drilldown', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', title: 'Births & Deaths', subtitle: 'Number', type: 'line' },
+        { id: 'deaths-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Age', subtitle: 'Number', type: 'line' },
+        { id: 'deaths-by-week-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Week & Age', subtitle: 'Number', type: 'line' }
+    ],
     
     // === BANKRUPTCIES BY INDUSTRY (All 89 Industries) ===
     bankruptcies: [
@@ -45,15 +58,33 @@ export const drilldownConfigs = {
         { id: 'credit-indicator-k3-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator - K3', subtitle: 'Millioner NOK', type: 'line' },
     ],
     
-    // === PRODUCER PRICE INDEX (PPI) VARIATIONS (7 Detailed Views) ===
+    // === PRODUCER PRICE INDEX (PPI) DRILLDOWN (Individual Time Series) ===
     ppi: [
-        { id: 'ppi-main-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'PPI - Total Index', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'ppi-industries-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26430.json?lang=en', title: 'PPI - By Industries', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'ppi-products-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26431.json?lang=en', title: 'PPI - By Products', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'ppi-subgroups-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26429.json?lang=en', title: 'PPI - By Subgroups', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'ppi-subgroups-detailed-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26432.json?lang=en', title: 'PPI - Subgroups (Detailed)', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'ppi-recent-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26428.json?lang=en', title: 'PPI - Recent Data', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'ppi-totals-recent-drilldown', url: 'https://data.ssb.no/api/v0/dataset/26433.json?lang=en', title: 'PPI - Total Index (Recent)', subtitle: 'Index (2015=100)', type: 'line' },
+        // Main PPI - Total Index (All Markets)
+        { id: 'ppi-total-all-markets-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-and-export-market-total.json', title: 'PPI - Total (All Markets)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-total-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-market.json', title: 'PPI - Total (Domestic Market)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-total-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-export-market.json', title: 'PPI - Total (Export Market)', subtitle: 'Index', type: 'line' },
+        
+        // Oil & Gas Extraction
+        { id: 'ppi-oil-gas-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-and-export-market-total.json', title: 'PPI - Oil & Gas (All Markets)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-oil-gas-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-market.json', title: 'PPI - Oil & Gas (Domestic)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-oil-gas-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-export-market.json', title: 'PPI - Oil & Gas (Export)', subtitle: 'Index', type: 'line' },
+        
+        // Manufacturing
+        { id: 'ppi-manufacturing-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-and-export-market-total.json', title: 'PPI - Manufacturing (All Markets)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-manufacturing-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-market.json', title: 'PPI - Manufacturing (Domestic)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-manufacturing-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-export-market.json', title: 'PPI - Manufacturing (Export)', subtitle: 'Index', type: 'line' },
+        
+        // Energy Sectors
+        { id: 'ppi-electricity-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn35_tot-domestic-and-export-market-total.json', title: 'PPI - Electricity & Gas (All Markets)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-excl-energy-all-drilldown', url: './data/cached/ssb/ppi/ppi-spe4-domestic-and-export-market-total.json', title: 'PPI - Excluding Energy (All Markets)', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-energy-goods-all-drilldown', url: './data/cached/ssb/ppi/ppi-e6_tot-domestic-and-export-market-total.json', title: 'PPI - Energy Goods (All Markets)', subtitle: 'Index', type: 'line' },
+        
+        // Key Manufacturing Industries
+        { id: 'ppi-food-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn10-domestic-and-export-market-total.json', title: 'PPI - Food Manufacturing', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-wood-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn16-domestic-and-export-market-total.json', title: 'PPI - Wood Manufacturing', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-chemical-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn20-domestic-and-export-market-total.json', title: 'PPI - Chemical Manufacturing', subtitle: 'Index', type: 'line' },
+        { id: 'ppi-metal-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn24-domestic-and-export-market-total.json', title: 'PPI - Metal Manufacturing', subtitle: 'Index', type: 'line' }
     ],
     
     // === CPI VARIATIONS (16 Different Measures) ===
@@ -254,6 +285,41 @@ export const drilldownConfigs = {
         { id: 'export-co-drilldown', url: './data/cached/ssb/export-by-country/export-co.json', title: 'Colombia', subtitle: 'NOK', type: 'line' },
         { id: 'export-pe-drilldown', url: './data/cached/ssb/export-by-country/export-pe.json', title: 'Peru', subtitle: 'NOK', type: 'line' },
         { id: 'export-ua-drilldown', url: './data/cached/ssb/export-by-country/export-ua.json', title: 'Ukraine', subtitle: 'NOK', type: 'line' },
+    ],
+    
+    // === WAGE INDEX VARIATIONS (Individual Industry Time Series) ===
+    wages: [
+        // Main wage indices - All Industries
+        { id: 'wage-basic-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-00_99-ialt.json', title: 'Wage Index - Basic Earnings (All Industries)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-total-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-00_99-ialt.json', title: 'Wage Index - Total Earnings (All Industries)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Manufacturing
+        { id: 'wage-manufacturing-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-10_33-ialt.json', title: 'Wage Index - Manufacturing (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-manufacturing-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-10_33-ialt.json', title: 'Wage Index - Manufacturing (Total)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Construction
+        { id: 'wage-construction-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-41_43-ialt.json', title: 'Wage Index - Construction (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-construction-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-41_43-ialt.json', title: 'Wage Index - Construction (Total)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Financial Services
+        { id: 'wage-financial-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-64_66-ialt.json', title: 'Wage Index - Financial Services (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-financial-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-64_66-ialt.json', title: 'Wage Index - Financial Services (Total)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Public Administration
+        { id: 'wage-public-admin-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-84-ialt.json', title: 'Wage Index - Public Administration (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-public-admin-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-84-ialt.json', title: 'Wage Index - Public Administration (Total)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Education
+        { id: 'wage-education-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-85-ialt.json', title: 'Wage Index - Education (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-education-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-85-ialt.json', title: 'Wage Index - Education (Total)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Health & Social Work
+        { id: 'wage-health-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-86_88-ialt.json', title: 'Wage Index - Health & Social Work (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-health-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-86_88-ialt.json', title: 'Wage Index - Health & Social Work (Total)', subtitle: 'Index', type: 'line' },
+        
+        // Key Industries - Information & Communication
+        { id: 'wage-it-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-58_63-ialt.json', title: 'Wage Index - IT & Communication (Basic)', subtitle: 'Index', type: 'line' },
+        { id: 'wage-it-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-58_63-ialt.json', title: 'Wage Index - IT & Communication (Total)', subtitle: 'Index', type: 'line' }
     ]
 };
 

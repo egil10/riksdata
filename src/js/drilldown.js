@@ -1688,7 +1688,7 @@ async function loadPopulationCharts() {
 function addPopulationDrilldownButton() {
     // Wait for DOM to be ready
     setTimeout(() => {
-        const populationCard = document.querySelector('[data-chart-id="population-basic-districts-national-chart"]');
+        const populationCard = document.querySelector('[data-chart-id="population-growth-chart"]');
         if (!populationCard) {
             console.warn('Population chart card not found, will retry...');
             setTimeout(addPopulationDrilldownButton, 1000);

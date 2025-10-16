@@ -102,8 +102,8 @@ class ConnectionMonitor {
      * Create connection quality indicator in footer
      */
     createQualityIndicator() {
-        // Don't create if already exists
-        if (document.getElementById('connection-indicator')) return;
+        // DISABLED: Connection monitor removed as requested
+        return;
         
         const indicator = document.createElement('div');
         indicator.id = 'connection-indicator';
@@ -123,16 +123,20 @@ class ConnectionMonitor {
             </div>
         `;
         
-        // Add to footer under mood rating section
-        const moodSection = document.querySelector('footer .footer-section:has(.mood-rating)');
-        if (moodSection) {
-            // Add connection indicator directly to mood section
-            moodSection.appendChild(indicator);
+        // Add to footer under "Om Riksdata" section
+        const aboutSection = document.querySelector('footer .footer-section:has(h4:contains("Om Riksdata"))');
+        if (aboutSection) {
+            // Add connection indicator to about section
+            aboutSection.appendChild(indicator);
         } else {
-            // Fallback: find any footer section and add it
-            const footer = document.querySelector('footer .footer-content');
-            if (footer) {
-                footer.appendChild(indicator);
+            // Fallback: find the about section by text content
+            const footerSections = document.querySelectorAll('footer .footer-section');
+            for (const section of footerSections) {
+                const h4 = section.querySelector('h4');
+                if (h4 && h4.textContent.includes('Om Riksdata')) {
+                    section.appendChild(indicator);
+                    break;
+                }
             }
         }
         

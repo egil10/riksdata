@@ -10,7 +10,7 @@ export const chartConfigs = [
     { id: 'unemployment-chart', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Unemployment Rate', subtitle: 'Percentage' },
     { id: 'house-prices-chart', url: 'https://data.ssb.no/api/v0/dataset/1060.json?lang=en', title: 'House Price Index' },
     // REMOVED: Duplicate - using ppi-chart below with drill-down support
-    { id: 'wage-index-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
+    // REMOVED: Duplicate - using wage-chart below
     
     // Construction & Housing
     { id: 'construction-costs-chart', url: 'https://data.ssb.no/api/v0/dataset/26944.json?lang=en', title: 'Construction Costs' },
@@ -23,10 +23,10 @@ export const chartConfigs = [
     { id: 'holiday-property-sales-chart', url: 'https://data.ssb.no/api/v0/dataset/65962.json?lang=en', title: 'Holiday Property Sales', subtitle: 'Number' },
     
     // Industrial & Production
-    { id: 'industrial-production-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Industrial Production' },
+    // REMOVED: Duplicate - same URL as Production Index by Industry
     { id: 'producer-price-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/741023.json?lang=en', title: 'Producer Price Industry' },
     { id: 'production-index-by-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Production Index by Industry' },
-    { id: 'production-index-by-product-chart', url: 'https://data.ssb.no/api/v0/dataset/27002.json?lang=en', title: 'Production Index by Product' },
+    // REMOVED: Duplicate - same URL as Production Index by Industry
     { id: 'production-index-industry-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/26953.json?lang=en', title: 'Production Index Industry Recent' },
     
     // Trade & Export/Import
@@ -41,9 +41,9 @@ export const chartConfigs = [
     { id: 'trade-volume-price-product-groups-chart', url: 'https://data.ssb.no/api/v0/dataset/179417.json?lang=en', title: 'Trade Volume Price Product Groups', subtitle: 'NOK Million' },
     { id: 'trade-volume-price-sitc2-chart', url: 'https://data.ssb.no/api/v0/dataset/179418.json?lang=en', title: 'Trade Volume Price SITC2', subtitle: 'NOK Million' },
     { id: 'trade-main-figures-recent-chart', url: 'https://data.ssb.no/api/v0/dataset/179419.json?lang=en', title: 'Trade Main Figures Recent', subtitle: 'NOK Million' },
-    { id: 'trade-main-figures-by-country-chart', url: 'https://data.ssb.no/api/v0/dataset/179419.json?lang=en', title: 'Trade Main Figures by Country', subtitle: 'NOK Million' },
+    // REMOVED: Duplicate - same URL as Trade Main Figures Recent
     { id: 'export-country-chart', url: 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', title: 'Export by Country' },
-    { id: 'import-country-chart', url: 'https://data.ssb.no/api/v0/dataset/1132.json?lang=en', title: 'Import by Country' },
+    // REMOVED: Duplicate - using cached version below with drill-down support
     { id: 'export-commodity-chart', url: 'https://data.ssb.no/api/v0/dataset/1134.json?lang=en', title: 'Export by Commodity' },
     { id: 'import-commodity-chart', url: 'https://data.ssb.no/api/v0/dataset/1140.json?lang=en', title: 'Import by Commodity' },
     { id: 'export-by-country-monthly-chart', url: 'https://data.ssb.no/api/v0/dataset/1130.json?lang=en', title: 'Export by Country Monthly' },
@@ -81,10 +81,8 @@ export const chartConfigs = [
     // Labor & Wages
     { id: 'labour-cost-index-chart', url: 'https://data.ssb.no/api/v0/dataset/760065.json?lang=en', title: 'Labour Cost Index' },
     { id: 'basic-salary-chart', url: 'https://data.ssb.no/api/v0/dataset/1126.json?lang=en', title: 'Basic Salary Index' },
-    { id: 'wage-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Index' },
-    { id: 'wage-indices-by-industry-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Indices by Industry' },
-    { id: 'wage-indices-by-industry-sn88-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wage Indices by Industry SN88' },
-    { id: 'wages-by-occupation-chart', url: 'https://data.ssb.no/api/v0/dataset/1124.json?lang=en', title: 'Wages by Occupation' },
+    { id: 'wage-chart', url: './data/cached/ssb/wage-indices-by-industry.json', title: 'Wage Index', subtitle: 'Index (2015=100)', type: 'line' },
+    // REMOVED: Duplicates - moved to wage drilldown (all use same URL 1124)
     { id: 'employed-by-residence-workplace-chart', url: 'https://data.ssb.no/api/v0/dataset/1054.json?lang=en', title: 'Employed by Residence & Workplace' },
     
     // Oil & Gas
@@ -95,23 +93,19 @@ export const chartConfigs = [
     
     // Research & Development
     { id: 'r-d-expenditure-chart', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', title: 'R&D Expenditure', subtitle: 'NOK Million' },
-    { id: 'rd-expenditure-chart', url: 'https://data.ssb.no/api/v0/dataset/61819.json?lang=en', title: 'Research & Development Expenditure', subtitle: 'NOK Million' },
+    // REMOVED: Duplicate - same URL as R&D Expenditure
     
     // Retail & Sales
     { id: 'retail-sales-chart', url: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', title: 'Retail Sales', subtitle: 'Index' },
-    { id: 'retail-sales-seasonally-adjusted-chart', url: 'https://data.ssb.no/api/v0/dataset/1064.json?lang=en', title: 'Retail Sales Seasonally Adjusted', subtitle: 'Index' },
+    // REMOVED: Duplicate - same URL as Retail Sales
     { id: 'salmon-export-value-chart', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', title: 'Salmon Export Value', subtitle: 'NOK Million' },
-    { id: 'salmon-export-chart', url: 'https://data.ssb.no/api/v0/dataset/1122.json?lang=en', title: 'Salmon Export', subtitle: 'NOK Million' },
+    // REMOVED: Duplicate - same URL as Salmon Export Value
     { id: 'salmon-export-volume-chart', url: 'https://data.ssb.no/api/v0/dataset/1120.json?lang=en', title: 'Salmon Export Volume', subtitle: 'Tonnes' },
     
-    // Population & Demographics
-    { id: 'immigration-rate-chart', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', title: 'Immigration Rate', subtitle: 'Annual Count' },
-    { id: 'immigrants-with-immigrant-parents-chart', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents', subtitle: 'Number' },
-    // Population charts - Main chart (others moved to drilldown)
-    { id: 'population-basic-districts-national-chart', url: 'https://data.ssb.no/api/v0/dataset/49626.json?lang=en', title: 'Population Basic Districts National', subtitle: 'Number' },
-    { id: 'births-deaths-chart', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', title: 'Births & Deaths', subtitle: 'Number' },
-    { id: 'deaths-age-chart', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Age', subtitle: 'Number' },
-    { id: 'deaths-by-week-age-chart', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Week & Age', subtitle: 'Number' },
+    // Population & Demographics - Main Dashboard (3 key charts)
+    { id: 'population-growth-chart', url: './data/cached/ssb/population-growth.json', title: 'Population Growth', subtitle: 'persons', type: 'line' },
+    { id: 'population-age-chart', url: './data/cached/ssb/population-age.json', title: 'Population by Age', subtitle: 'persons', type: 'line' },
+    { id: 'population-development-quarterly-chart', url: './data/cached/ssb/population-development-quarterly.json', title: 'Population Development Quarterly', subtitle: 'persons', type: 'line' },
     
     // Household & Living
     { id: 'household-income-chart', url: 'https://data.ssb.no/api/v0/dataset/56900.json?lang=en', title: 'Household Income', subtitle: 'Median NOK' },
@@ -133,8 +127,8 @@ export const chartConfigs = [
     // All CPI charts except the main one have been moved to drilldown-configs.js
     
     // === PRODUCER PRICE INDEX (Main Chart with Drilldown) ===
-    // All detailed PPI charts moved to drilldown view (#ppi hash)
-    { id: 'ppi-chart', url: 'https://data.ssb.no/api/v0/dataset/26426.json?lang=en', title: 'Producer Price Index (PPI)', subtitle: 'Index (2015=100)' },
+    // Main PPI chart - all detailed charts moved to drilldown view (#ppi hash)
+    { id: 'ppi-chart', url: './data/cached/ssb/ppi.json', title: 'Producer Price Index (PPI)', subtitle: 'Index', type: 'line' },
     
     // === FIRST HAND PRICE INDEX ===
     { id: 'first-hand-price-index-chart', url: 'https://data.ssb.no/api/v0/dataset/82677.json?lang=en', title: 'First Hand Price Index' },

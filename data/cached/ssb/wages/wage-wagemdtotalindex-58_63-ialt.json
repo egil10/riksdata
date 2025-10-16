@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "label": "Wage Index - Index of average monthly earnings (Information and communication, Total)",
+    "source": "Statistics Norway",
+    "updated": "2025-05-09T06:00:00Z",
+    "value": [
+      {
+        "date": "2024K1",
+        "value": 100
+      },
+      {
+        "date": "2024K2",
+        "value": 97.6
+      },
+      {
+        "date": "2024K3",
+        "value": 94.9
+      },
+      {
+        "date": "2024K4",
+        "value": 97.2
+      },
+      {
+        "date": "2025K1",
+        "value": 103.7
+      }
+    ]
+  },
+  "_metadata": {
+    "source": "SSB",
+    "title": "Wage Index - Index of average monthly earnings (Information and communication)",
+    "fetched_at": "",
+    "url": "",
+    "original_file": "wage-indices-by-industry.json",
+    "contents": "Index of average monthly earnings",
+    "industry": "Information and communication",
+    "region": "Total"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "label": "Wage Index - Index of average monthly earnings (Public adm., defence, soc. security, Total)",
+    "source": "Statistics Norway",
+    "updated": "2025-05-09T06:00:00Z",
+    "value": [
+      {
+        "date": "2024K1",
+        "value": 100
+      },
+      {
+        "date": "2024K2",
+        "value": 100.9
+      },
+      {
+        "date": "2024K3",
+        "value": 98.1
+      },
+      {
+        "date": "2024K4",
+        "value": 102
+      },
+      {
+        "date": "2025K1",
+        "value": 103.9
+      }
+    ]
+  },
+  "_metadata": {
+    "source": "SSB",
+    "title": "Wage Index - Index of average monthly earnings (Public adm., defence, soc. security)",
+    "fetched_at": "",
+    "url": "",
+    "original_file": "wage-indices-by-industry.json",
+    "contents": "Index of average monthly earnings",
+    "industry": "Public adm., defence, soc. security",
+    "region": "Total"
+  }
+}

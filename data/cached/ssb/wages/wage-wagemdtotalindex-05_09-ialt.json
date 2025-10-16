@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "label": "Wage Index - Index of average monthly earnings (Mining and quarrying, Total)",
+    "source": "Statistics Norway",
+    "updated": "2025-05-09T06:00:00Z",
+    "value": [
+      {
+        "date": "2024K1",
+        "value": 100
+      },
+      {
+        "date": "2024K2",
+        "value": 87.3
+      },
+      {
+        "date": "2024K3",
+        "value": 84.6
+      },
+      {
+        "date": "2024K4",
+        "value": 88.5
+      },
+      {
+        "date": "2025K1",
+        "value": 103.5
+      }
+    ]
+  },
+  "_metadata": {
+    "source": "SSB",
+    "title": "Wage Index - Index of average monthly earnings (Mining and quarrying)",
+    "fetched_at": "",
+    "url": "",
+    "original_file": "wage-indices-by-industry.json",
+    "contents": "Index of average monthly earnings",
+    "industry": "Mining and quarrying",
+    "region": "Total"
+  }
+}

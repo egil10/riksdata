@@ -1,0 +1,39 @@
+{
+  "dataset": {
+    "label": "Wage Index - Index of average monthly basic earnings (Agriculture, forestry and fishing, Total)",
+    "source": "Statistics Norway",
+    "updated": "2025-05-09T06:00:00Z",
+    "value": [
+      {
+        "date": "2024K1",
+        "value": 100
+      },
+      {
+        "date": "2024K2",
+        "value": 98.1
+      },
+      {
+        "date": "2024K3",
+        "value": 94.8
+      },
+      {
+        "date": "2024K4",
+        "value": 102.5
+      },
+      {
+        "date": "2025K1",
+        "value": 106.4
+      }
+    ]
+  },
+  "_metadata": {
+    "source": "SSB",
+    "title": "Wage Index - Index of average monthly basic earnings (Agriculture, forestry and fishing)",
+    "fetched_at": "",
+    "url": "",
+    "original_file": "wage-indices-by-industry.json",
+    "contents": "Index of average monthly basic earnings",
+    "industry": "Agriculture, forestry and fishing",
+    "region": "Total"
+  }
+}

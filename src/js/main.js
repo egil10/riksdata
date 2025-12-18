@@ -1745,9 +1745,26 @@ function openChartFullscreen(card) {
         }
     }, 100);
 
+    // Disable body scroll
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.overflowY = 'hidden';
+
     // Handle close button click
     const closeFullscreen = () => {
         try {
+            // Re-enable body scroll
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.width = '';
+            document.body.style.top = '';
+            document.body.style.overflowY = '';
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
+
             // First, remove the modal to avoid DOM conflicts
             if (document.body.contains(modal)) {
                 document.body.removeChild(modal);

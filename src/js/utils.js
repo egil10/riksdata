@@ -688,11 +688,10 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
         pointBorderColor: dataset.pointBorderColor
     }));
 
-    // Create a simple, serializable chart config with political colors and better date formatting
+    // Create a simple, serializable chart config (functions will be added back in the script)
     const chartConfig = {
         type: chartType,
         data: {
-            labels: chartLabels,
             datasets: chartDatasets
         },
         options: {
@@ -703,39 +702,32 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
                     display: chartDatasets.length > 1,
                     position: 'top'
                 },
-                title: {
-                    display: false
-                }
+                title: { display: false },
+                tooltip: { enabled: true }
             },
             scales: {
                 x: {
-                    display: true,
-                    grid: {
-                        display: false
+                    type: 'time',
+                    time: {
+                        unit: 'year',
+                        displayFormats: {
+                            year: 'yyyy',
+                            month: 'yyyy',
+                            quarter: 'yyyy'
+                        }
                     },
                     ticks: {
-                        callback: function (value, index, ticks) {
-                            // Format dates to YYYY-MM format instead of full ISO string
-                            const label = this.getLabelForValue(value);
-                            if (label && typeof label === 'string') {
-                                // Try to parse as date and format
-                                const date = new Date(label);
-                                if (!isNaN(date.getTime())) {
-                                    const year = date.getFullYear();
-                                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                                    return `${year}-${month}`;
-                                }
-                            }
-                            return label;
-                        }
-                    }
+                        autoSkip: true,
+                        maxTicksLimit: 15,
+                        maxRotation: 0,
+                        font: { size: 12 }
+                    },
+                    grid: { display: false }
                 },
                 y: {
                     display: true,
                     beginAtZero: false,
-                    grid: {
-                        color: 'rgba(0, 0, 0, 0.1)'
-                    }
+                    grid: { color: 'rgba(0, 0, 0, 0.05)' }
                 }
             }
         }
@@ -793,13 +785,25 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
 
         const config = ${JSON.stringify(chartConfig)};
         
-        // Restore political coloring logic for line charts
+        // Restore dynamic functions lost in JSON serialization
+        
+        // 1. X-axis Year-only Formatting
+        if (config.options.scales && config.options.scales.x) {
+            config.options.scales.x.ticks.callback = function(value, index, values) {
+                const date = new Date(value);
+                if (isNaN(date.getTime())) return value;
+                return date.getFullYear().toString();
+            };
+        }
+
+        // 2. Political Color Segments
         if (config.type === 'line') {
             config.data.datasets.forEach(dataset => {
                 dataset.segment = {
                     borderColor: (ctx) => {
-                        const date = ctx.p0.parsed.x;
-                        const period = getPoliticalPeriod(date);
+                        if (!ctx || !ctx.p0 || !ctx.p0.parsed) return dataset.borderColor || '#3b82f6';
+                        const xVal = ctx.p0.parsed.x;
+                        const period = getPoliticalPeriod(xVal);
                         return period ? period.color : (dataset.borderColor || '#3b82f6');
                     }
                 };

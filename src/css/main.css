@@ -1749,14 +1749,15 @@ main {
 }
 
 footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: 8rem 2rem 6rem;
-    /* Even more whitespace */
+    background: var(--bg-elev);
+    /* Distinguished from page background */
+    border-top: 4px solid var(--ap-red);
+    /* Strong red accent line */
+    padding: 6rem 2rem 4rem;
     width: 100%;
     margin-top: 10rem;
-    box-shadow: none;
-    /* Truly flat */
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.03);
+    /* Very subtle separation */
 }
 
 .footer-content {
@@ -1897,14 +1898,14 @@ footer {
 }
 
 .back-to-top {
-    color: var(--text-muted);
-    text-decoration: none;
-    font-size: 0.75rem;
+    color: var(--ap-red);
+    text-decoration: underline;
+    font-size: 0.85rem;
     margin-left: 1rem;
-    padding: 0.25rem 0.5rem;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    background: var(--bg-elev);
+    font-weight: 600;
+    background: none;
+    border: none;
+    padding: 0;
 }
 
 .back-to-top:hover {
@@ -2402,7 +2403,8 @@ footer {
     right: 2rem;
     width: 44px;
     height: 44px;
-    border-radius: 4px;
+    border-radius: 50%;
+    /* Back to circle */
     background: var(--bg-elev);
     border: 1px solid var(--border);
     color: var(--text);
@@ -2411,10 +2413,8 @@ footer {
     align-items: center;
     justify-content: center;
     transition: none !important;
-    /* Force no animation */
     z-index: 1000;
     box-shadow: none !important;
-    /* Force no shadow */
 }
 
 .back-to-top-btn:hover {

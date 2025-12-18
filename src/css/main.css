@@ -6,15 +6,19 @@
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
 }
 
 @keyframes pulse {
-    0%, 100% {
+
+    0%,
+    100% {
         opacity: 1;
     }
+
     50% {
         opacity: 0.5;
     }
@@ -24,6 +28,7 @@
     0% {
         background-position: -200px 0;
     }
+
     100% {
         background-position: calc(200px + 100%) 0;
     }
@@ -34,6 +39,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -60,7 +66,7 @@
     --header-bg: color-mix(in oklab, var(--bg), transparent 20%);
     --progress-bg: color-mix(in oklab, var(--accent), transparent 90%);
     --progress-fill: var(--accent);
-    
+
     /* Sidebar variables */
     --sidebar-width: 260px;
     --sidebar-collapsed-width: 40px;
@@ -109,7 +115,8 @@ body.loaded {
     z-index: 100;
 }
 
-.left-section, .right-section {
+.left-section,
+.right-section {
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -167,24 +174,29 @@ body.loaded {
 
 /* Rainbow gradient when search has input but not yet applied */
 .search-apply-btn.has-input {
-    background: linear-gradient(
-        135deg,
-        rgba(255, 0, 0, 0.15),
-        rgba(255, 165, 0, 0.15),
-        rgba(255, 255, 0, 0.15),
-        rgba(0, 128, 0, 0.15),
-        rgba(0, 0, 255, 0.15),
-        rgba(75, 0, 130, 0.15),
-        rgba(238, 130, 238, 0.15)
-    );
+    background: linear-gradient(135deg,
+            rgba(255, 0, 0, 0.15),
+            rgba(255, 165, 0, 0.15),
+            rgba(255, 255, 0, 0.15),
+            rgba(0, 128, 0, 0.15),
+            rgba(0, 0, 255, 0.15),
+            rgba(75, 0, 130, 0.15),
+            rgba(238, 130, 238, 0.15));
     border-color: var(--accent-2);
     color: var(--accent-2);
     animation: rainbow-pulse 3s ease-in-out infinite;
 }
 
 @keyframes rainbow-pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
 }
 
 .search-apply-btn:hover {
@@ -235,12 +247,15 @@ body.loaded {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-    z-index: 9999 !important; /* Very high z-index to ensure visibility */
+    z-index: 9999 !important;
+    /* Very high z-index to ensure visibility */
     min-width: 150px;
     overflow: hidden;
     animation: fadeInDown 0.2s ease-out;
-    display: block !important; /* Force display */
-    visibility: visible !important; /* Force visibility */
+    display: block !important;
+    /* Force display */
+    visibility: visible !important;
+    /* Force visibility */
 }
 
 .download-format-option {
@@ -273,6 +288,7 @@ body.loaded {
         opacity: 0;
         transform: translateY(-10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -311,7 +327,8 @@ body.loaded {
     position: relative;
     display: flex;
     gap: 0.25rem;
-    overflow: visible !important; /* Ensure picker is not clipped */
+    overflow: visible !important;
+    /* Ensure picker is not clipped */
 }
 
 /* MODERNIZED ICON BUTTONS - Glassmorphism on hover */
@@ -576,13 +593,41 @@ body.sidebar-expanded .toggle-icon {
 }
 
 /* Party Colors - Consistent with chart colors */
-.party-color.ap { background: #E11926; } /* Arbeiderpartiet red */
-.party-color.h { background: #87add7; } /* Høyre light blue */
-.party-color.sp { background: #4CAF50; } /* Senterpartiet green */
-.party-color.v { background: #006666; } /* Venstre teal */
-.party-color.krf { background: #FDED34; } /* Kristelig Folkeparti yellow */
-.party-color.sv { background: #B5317C; } /* Sosialistisk Venstreparti pink */
-.party-color.frp { background: #004F80; } /* Fremskrittspartiet dark blue */
+.party-color.ap {
+    background: #E11926;
+}
+
+/* Arbeiderpartiet red */
+.party-color.h {
+    background: #87add7;
+}
+
+/* Høyre light blue */
+.party-color.sp {
+    background: #4CAF50;
+}
+
+/* Senterpartiet green */
+.party-color.v {
+    background: #006666;
+}
+
+/* Venstre teal */
+.party-color.krf {
+    background: #FDED34;
+}
+
+/* Kristelig Folkeparti yellow */
+.party-color.sv {
+    background: #B5317C;
+}
+
+/* Sosialistisk Venstreparti pink */
+.party-color.frp {
+    background: #004F80;
+}
+
+/* Fremskrittspartiet dark blue */
 
 /* Main Content */
 .main-content {
@@ -659,7 +704,8 @@ html {
 .chart-card .chart-container canvas {
     display: block;
     width: 100% !important;
-    height: 100% !important; /* important ONLY because Chart.js may inline a height */
+    height: 100% !important;
+    /* important ONLY because Chart.js may inline a height */
 }
 
 /* On wider screens, relax the aspect a bit and lower the max height */
@@ -674,12 +720,15 @@ html {
 
 /* If you use CSS Grid with equal-height rows, prevent "1fr" rows from stretching cards */
 .chart-grid {
-    grid-auto-rows: auto; /* not 1fr */
-    align-items: start;   /* avoid children stretching grid tracks vertically */
+    grid-auto-rows: auto;
+    /* not 1fr */
+    align-items: start;
+    /* avoid children stretching grid tracks vertically */
 }
 
 /* Mobile optimizations - COMPLETELY OVERHAULED */
 @media (max-width: 768px) {
+
     /* Thinner, more modern header */
     header {
         padding: 0.375rem 0.75rem;
@@ -687,22 +736,24 @@ html {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
-    
+
     /* Responsive tweaks for tight viewports */
     .source-link {
-        max-width: 18ch;          /* a bit tighter on phones */
+        max-width: 18ch;
+        /* a bit tighter on phones */
     }
+
     .chart-actions {
         transform: scale(0.7);
         margin-right: 0.25rem;
     }
-    
+
     header h1 {
         font-size: 1.125rem;
         font-weight: 600;
         letter-spacing: -0.02em;
     }
-    
+
     /* Improved mobile menu */
     .mobile-menu-toggle {
         display: flex;
@@ -718,21 +769,21 @@ html {
         width: 32px;
         height: 32px;
     }
-    
+
     .mobile-menu-toggle:hover {
         background: var(--border);
     }
-    
+
     .hamburger-icon {
         width: 18px;
         height: 18px;
         transition: transform 0.3s ease;
     }
-    
+
     .mobile-menu-toggle.active .hamburger-icon {
         transform: rotate(90deg);
     }
-    
+
     /* Enhanced mobile menu dropdown */
     .header-controls {
         display: none;
@@ -751,23 +802,24 @@ html {
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
     }
-    
+
     .header-controls.mobile-open {
         display: flex;
         animation: slideDown 0.3s ease-out;
     }
-    
+
     @keyframes slideDown {
         from {
             opacity: 0;
             transform: translateY(-10px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
-    
+
     .control-btn {
         padding: 0.625rem;
         font-size: 0.875rem;
@@ -777,38 +829,40 @@ html {
         font-weight: 500;
         transition: background-color var(--t) var(--ease);
     }
-    
+
     .control-btn:hover {
         background: var(--border);
     }
-    
+
     /* Improved chart grid for mobile */
     .chart-grid {
         grid-template-columns: 1fr;
         padding: 0.75rem;
         gap: 0.75rem;
     }
-    
+
     .chart-card {
         width: 100%;
         margin-bottom: 0;
         border-radius: var(--radius);
         padding: 0.875rem;
-        box-shadow: none; /* Turn off shadows on mobile for performance */
+        box-shadow: none;
+        /* Turn off shadows on mobile for performance */
         transition: all var(--t) var(--ease);
     }
-    
+
     .chart-card:hover {
-        box-shadow: none; /* Keep shadows off on mobile */
+        box-shadow: none;
+        /* Keep shadows off on mobile */
     }
 
 
-    
+
     .chart-container {
         border-radius: 8px;
         overflow: hidden;
     }
-    
+
     /* Better typography for mobile */
     .chart-header h3 {
         font-size: 0.875rem;
@@ -816,43 +870,43 @@ html {
         line-height: 1.3;
         margin-bottom: 0.25rem;
     }
-    
+
     .chart-subtitle {
         font-size: 0.75rem;
         opacity: 0.7;
         font-weight: 400;
     }
-    
+
     /* Improved skeleton loading */
     .skeleton-chart {
         height: 120px !important;
         border-radius: 8px;
         margin: 0;
     }
-    
+
     /* Better progress bar */
     .progress-bar {
         height: 2px !important;
     }
-    
+
     /* Enhanced filter panel for mobile */
     .slim-header {
         width: 280px;
         padding: 0.5rem 0.75rem;
         border-left: 1px solid var(--border);
     }
-    
+
     .filter-container {
         flex-direction: column;
         gap: 0.75rem;
         align-items: stretch;
     }
-    
+
     .search-box {
         width: 100%;
         max-width: none;
     }
-    
+
     .search-input {
         font-size: 0.875rem;
         padding: 0.625rem 0.75rem 0.625rem 2.5rem;
@@ -860,27 +914,28 @@ html {
         border: 1px solid var(--border);
         background: var(--card);
     }
-    
-    .search-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
-    outline: none;
-}
 
-.search-input:focus-visible {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
-    outline: none;
-}
-    
+    .search-input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
+        outline: none;
+    }
+
+    .search-input:focus-visible {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px color-mix(in oklab, var(--accent), transparent 90%);
+        outline: none;
+    }
+
     .source-filters {
         display: flex;
         flex-direction: column;
         gap: 0.5rem;
         width: 100%;
     }
-    
-    .filter-btn, .sort-btn {
+
+    .filter-btn,
+    .sort-btn {
         padding: 0.5rem 0.75rem;
         font-size: 0.8rem;
         border-radius: var(--radius);
@@ -888,24 +943,26 @@ html {
         text-align: center;
         transition: background-color var(--t) var(--ease);
     }
-    
-    .filter-btn:hover, .sort-btn:hover {
+
+    .filter-btn:hover,
+    .sort-btn:hover {
         background: var(--border);
     }
-    
+
     /* Main content improvements */
     main {
         padding: 0.5rem;
         padding-bottom: 2rem;
         min-height: calc(100vh - 44px);
     }
-    
+
     /* Increase tap targets for better UX */
-    a, button {
+    a,
+    button {
         min-width: 44px;
         min-height: 44px;
     }
-    
+
     /* Better source link positioning */
     .source-link {
         font-size: 0.7rem;
@@ -921,7 +978,7 @@ html {
     .mobile-menu-toggle {
         display: none;
     }
-    
+
     .header-controls {
         display: flex !important;
     }
@@ -934,7 +991,10 @@ html {
 }
 
 /* Smooth transitions for theme switching */
-body, .chart-card, .header-content, .slim-header {
+body,
+.chart-card,
+.header-content,
+.slim-header {
     transition: background-color var(--t) var(--ease), color var(--t) var(--ease), border-color var(--t) var(--ease);
 }
 
@@ -969,10 +1029,13 @@ body, .chart-card, .header-content, .slim-header {
 }
 
 @keyframes loading-timeout {
-    0%, 90% {
+
+    0%,
+    90% {
         opacity: 1;
         visibility: visible;
     }
+
     100% {
         opacity: 0;
         visibility: hidden;
@@ -983,7 +1046,8 @@ body, .chart-card, .header-content, .slim-header {
 .loading-screen.hidden {
     opacity: 0;
     pointer-events: none;
-    animation: none; /* Disable timeout animation when manually hidden */
+    animation: none;
+    /* Disable timeout animation when manually hidden */
 }
 
 .loading-content {
@@ -1012,8 +1076,13 @@ body, .chart-card, .header-content, .slim-header {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 .loading-content h2 {
@@ -1036,12 +1105,16 @@ body, .chart-card, .header-content, .slim-header {
 }
 
 @keyframes loadingDots {
-    0%, 20% {
+
+    0%,
+    20% {
         opacity: 0;
     }
+
     50% {
         opacity: 1;
     }
+
     100% {
         opacity: 0;
     }
@@ -1049,21 +1122,26 @@ body, .chart-card, .header-content, .slim-header {
 
 /* Skeleton Loading */
 .skeleton-chart {
-    background: linear-gradient(90deg, 
-        color-mix(in oklab, var(--card) 94%, var(--bg) 6%) 25%, 
-        color-mix(in oklab, var(--card) 86%, var(--bg) 14%) 50%, 
-        color-mix(in oklab, var(--card) 94%, var(--bg) 6%) 75%
-    );
+    background: linear-gradient(90deg,
+            color-mix(in oklab, var(--card) 94%, var(--bg) 6%) 25%,
+            color-mix(in oklab, var(--card) 86%, var(--bg) 14%) 50%,
+            color-mix(in oklab, var(--card) 94%, var(--bg) 6%) 75%);
     background-size: 200% 100%;
     animation: skeleton-loading 1.5s infinite;
     border-radius: 4px;
     height: 100%;
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
 }
 
 @keyframes skeleton-loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
 }
 
 /* Legacy header styles - removed in favor of new sidebar layout */
@@ -1250,17 +1328,22 @@ main {
     padding: 1.5rem;
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--glass-border);
-    transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease); /* Only transition background and shadow, not transform */
+    transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease);
+    /* Only transition background and shadow, not transform */
     min-height: 200px;
     display: flex;
     flex-direction: column;
-    opacity: 1 !important; /* Force visibility for now */
-    animation: fadeInUp 0.3s ease forwards; /* Faster, less jarring animation */
+    opacity: 1 !important;
+    /* Force visibility for now */
+    animation: fadeInUp 0.3s ease forwards;
+    /* Faster, less jarring animation */
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;
-    overflow: hidden; /* Keep card content contained, picker will be portaled elsewhere */
-    color: var(--text); /* Ensure text is visible */
+    overflow: hidden;
+    /* Keep card content contained, picker will be portaled elsewhere */
+    color: var(--text);
+    /* Ensure text is visible */
 }
 
 /* Ensure proper text hierarchy in chart cards */
@@ -1295,7 +1378,8 @@ main {
 .chart-header {
     display: flex;
     flex-direction: column;
-    gap: 0.0625rem; /* Further reduced gap between header and subtitle */
+    gap: 0.0625rem;
+    /* Further reduced gap between header and subtitle */
     margin-bottom: 0.75rem;
     padding-bottom: 0.75rem;
     border-bottom: 1px solid var(--border);
@@ -1310,7 +1394,8 @@ main {
     letter-spacing: -0.025em;
     /* make it the flexible child */
     flex: 1 1 auto;
-    min-width: 0;               /* CRUCIAL for ellipsis in flex */
+    min-width: 0;
+    /* CRUCIAL for ellipsis in flex */
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -1324,9 +1409,12 @@ main {
     flex-wrap: nowrap;
     /* IMPORTANT to allow children to actually shrink */
     min-width: 0;
-    overflow: visible; /* Allow download picker to show */
-    position: relative; /* Create stacking context for picker */
-    z-index: 10; /* Ensure picker appears above other content */
+    overflow: visible;
+    /* Allow download picker to show */
+    position: relative;
+    /* Create stacking context for picker */
+    z-index: 10;
+    /* Ensure picker appears above other content */
 }
 
 .chart-subtitle-row {
@@ -1349,13 +1437,15 @@ main {
 }
 
 .chart-actions {
-    margin-left: auto;          /* keep it on the right */
+    margin-left: auto;
+    /* keep it on the right */
     display: inline-flex;
     gap: 4px;
     transform: scale(0.75);
     transform-origin: right center;
     margin-right: 0.5rem;
-    flex: 0 0 auto;             /* don't grow, don't shrink too small */
+    flex: 0 0 auto;
+    /* don't grow, don't shrink too small */
 }
 
 .subtitle-actions {
@@ -1410,8 +1500,10 @@ main {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(10px); /* Reduced from 20px for subtler effect */
+        transform: translateY(10px);
+        /* Reduced from 20px for subtler effect */
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1488,16 +1580,21 @@ main {
     align-items: center;
     min-height: 0;
     background: var(--card);
-    height: auto !important; /* Override fixed height for fullscreen */
-    max-height: none !important; /* Remove height constraints */
-    min-height: 0 !important; /* Allow it to flex */
+    height: auto !important;
+    /* Override fixed height for fullscreen */
+    max-height: none !important;
+    /* Remove height constraints */
+    min-height: 0 !important;
+    /* Allow it to flex */
 }
 
 .fullscreen-card canvas {
     max-width: 100% !important;
     max-height: 100% !important;
-    width: auto !important; /* Let it scale naturally */
-    height: auto !important; /* Let it scale naturally */
+    width: auto !important;
+    /* Let it scale naturally */
+    height: auto !important;
+    /* Let it scale naturally */
     object-fit: contain;
 }
 
@@ -1523,9 +1620,12 @@ main {
     transition: all var(--t) var(--ease);
     opacity: 0.6;
     font-weight: 500;
-    white-space: nowrap;        /* stays a single run */
-    max-width: 30ch;            /* keep it reasonable */
-    overflow: hidden;           /* allow truncation */
+    white-space: nowrap;
+    /* stays a single run */
+    max-width: 30ch;
+    /* keep it reasonable */
+    overflow: hidden;
+    /* allow truncation */
     text-overflow: ellipsis;
     display: inline-flex;
     align-items: center;
@@ -1544,11 +1644,13 @@ main {
     flex: 1;
     position: relative;
     min-height: 150px;
-    height: 180px; /* Fixed height to maintain consistent aspect ratio */
+    height: 180px;
+    /* Fixed height to maintain consistent aspect ratio */
     display: block;
     visibility: visible;
     max-width: 100%;
-    overflow: hidden;           /* keep children from spilling out */
+    overflow: hidden;
+    /* keep children from spilling out */
 }
 
 /* Improve canvas rendering quality for better text clarity */
@@ -1559,14 +1661,17 @@ main {
     -moz-osx-font-smoothing: grayscale;
     display: block;
     max-width: 100%;
-    width: 100% !important;     /* Chart.js respects this */
-    height: 100% !important;    /* Fixed height to maintain aspect ratio */
+    width: 100% !important;
+    /* Chart.js respects this */
+    height: 100% !important;
+    /* Fixed height to maintain aspect ratio */
 }
 
 /* Static Tooltip Area */
 .static-tooltip {
     position: absolute;
-    top: 2.5rem; /* Position below the source link button */
+    top: 2.5rem;
+    /* Position below the source link button */
     right: 0;
     background: color-mix(in oklab, var(--card), transparent 5%);
     border: 1px solid var(--border);
@@ -1644,25 +1749,22 @@ main {
 }
 
 footer {
-    background: var(--bg-elev);
+    background: var(--bg);
     border-top: 1px solid var(--border);
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
-    padding: 4rem 2rem 2rem;
-    height: auto;
-    min-height: 400px;
-    box-shadow: var(--shadow-lg);
+    padding: 8rem 2rem 6rem;
+    /* Even more whitespace */
     width: 100%;
-    margin-top: var(--space-7);
+    margin-top: 10rem;
+    box-shadow: none;
+    /* Truly flat */
 }
 
 .footer-content {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
+    gap: 4rem;
     max-width: 1200px;
     margin: 0 auto;
-    border-top: 3px solid var(--footer-accent);
-    padding-top: 2rem;
     align-items: start;
     position: relative;
 }
@@ -1670,18 +1772,30 @@ footer {
 .footer-section {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
-    height: 100%;
+    gap: 2rem;
 }
 
 .footer-section h4 {
-    font-size: 1.1rem;
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    /* Larger headings */
     font-weight: 600;
-    color: var(--footer-text);
-    margin: 0 0 1rem 0;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-    display: inline-block;
+    color: var(--text);
+    margin: 0;
+    letter-spacing: -0.02em;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.footer-section h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 1px;
+    /* Thinner line for elegance */
+    background: var(--text-subtle);
 }
 
 .footer-section p {
@@ -1698,22 +1812,30 @@ footer {
     flex: 1;
 }
 
-.source-link, .social-link, .contact-link {
+.source-link,
+.social-link,
+.contact-link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
-    color: var(--footer-text);
-    transition: color 0.2s ease, transform 0.2s ease;
+    color: var(--text-muted);
+    transition: color 0.15s ease;
     font-size: 0.875rem;
     padding: 0.25rem 0;
+    letter-spacing: 0.01em;
 }
 
-.source-link:hover, .social-link:hover, .contact-link:hover {
-    color: var(--footer-accent);
+.source-link:hover,
+.social-link:hover,
+.contact-link:hover {
+    color: var(--text);
+    text-decoration: underline;
 }
 
-.source-icon, .social-icon, .contact-icon {
+.source-icon,
+.social-icon,
+.contact-icon {
     width: var(--icon-size);
     height: var(--icon-size);
     flex-shrink: 0;
@@ -1775,16 +1897,19 @@ footer {
 }
 
 .back-to-top {
-    color: var(--footer-accent);
+    color: var(--text-muted);
     text-decoration: none;
     font-size: 0.75rem;
     margin-left: 1rem;
-    transition: color 0.2s ease;
+    padding: 0.25rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-elev);
 }
 
 .back-to-top:hover {
-    color: var(--footer-text);
-    text-decoration: underline;
+    color: var(--text);
+    background: var(--border);
 }
 
 /* Button Success Feedback Animation - No background color change */
@@ -1808,36 +1933,36 @@ footer {
 }
 
 .mood-btn {
-    background: none;
-    border: none;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
     padding: 0.5rem;
-    border-radius: 50%;
+    border-radius: 4px;
+    /* Square consistent with back-to-top */
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.15s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.25rem;
+    height: 2.25rem;
     color: var(--text-muted);
-    opacity: 0.7;
 }
 
-        .mood-btn:hover {
-            opacity: 1;
-        }
-        
-        .mood-btn.success-feedback[data-mood="happy"] {
-            color: #10b981;
-        }
-        
-        .mood-btn.success-feedback[data-mood="neutral"] {
-            color: #f59e0b;
-        }
-        
-        .mood-btn.success-feedback[data-mood="sad"] {
-            color: #ef4444;
-        }
+.mood-btn:hover {
+    opacity: 1;
+}
+
+.mood-btn.success-feedback[data-mood="happy"] {
+    color: #10b981;
+}
+
+.mood-btn.success-feedback[data-mood="neutral"] {
+    color: #f59e0b;
+}
+
+.mood-btn.success-feedback[data-mood="sad"] {
+    color: #ef4444;
+}
 
 /* Dark theme adjustments for mood buttons */
 [data-theme="dark"] .mood-btn {
@@ -1850,7 +1975,7 @@ footer {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .mood-section {
         justify-content: center;
         margin-top: 1.5rem;
@@ -1903,128 +2028,132 @@ footer {
 
 /* COMPLETELY OVERHAULED MOBILE FOOTER */
 @media (max-width: 768px) {
+
     /* Slim header positioning for mobile */
     .slim-header {
         top: 44px;
     }
-    
+
     main {
         padding: 0.5rem;
         padding-bottom: 2rem;
         min-height: calc(100vh - 44px);
     }
-    
+
     .chart-grid {
         grid-template-columns: 1fr;
         gap: 0.75rem;
         padding-bottom: 1.5rem;
     }
-    
+
     .chart-card {
         min-height: 160px;
         padding: 0.75rem;
         border-radius: 12px;
     }
-    
+
     .chart-header h3 {
         font-size: 0.875rem;
         line-height: 1.3;
     }
-    
+
     .chart-subtitle {
         font-size: 0.75rem;
     }
-    
+
     .chart-container {
         min-height: 120px;
-        height: 130px; /* Fixed height for mobile to maintain aspect ratio */
+        height: 130px;
+        /* Fixed height for mobile to maintain aspect ratio */
         max-height: 130px;
         overflow: hidden;
     }
-    
+
     /* COMPLETELY REDESIGNED MOBILE FOOTER */
     footer {
         padding: 2rem 1rem;
         min-height: auto;
     }
-    
+
     /* Old flexbox footer styles removed - now using CSS Grid */
-    
+
     .footer-section h4 {
         font-size: 0.8rem;
         margin-bottom: 0.5rem;
         border-bottom: none;
     }
-    
+
     .footer-section p {
         font-size: 0.7rem;
     }
-    
+
     .disclaimer-text {
         max-width: none;
     }
-    
+
     .disclaimer-text p {
         font-size: 0.6rem !important;
         text-align: left;
     }
-    
+
     /* Mobile mood buttons */
     .mood-section {
         padding: 0.5rem 0;
     }
-    
+
     .mood-container {
         gap: 0.25rem;
     }
-    
+
     .mood-btn {
         width: 2rem;
         height: 2rem;
         padding: 0.25rem;
     }
-    
+
     /* Old footer-right styles removed - now using CSS Grid */
-    
+
     .footer-copyright {
         text-align: center;
         width: 100%;
         margin-top: 2rem;
         padding-top: 1.5rem;
     }
-    
+
     .footer-copyright p {
         font-size: 0.65rem;
     }
-    
+
     /* Modernized Footer Responsive Design */
     .footer-content {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 1.5rem;
     }
-    
+
     .footer-section {
         height: auto;
         justify-content: flex-start;
         gap: 1rem;
     }
-    
+
     .footer-section:last-child {
         align-items: center;
     }
-    
-    .source-link, .social-link {
+
+    .source-link,
+    .social-link {
         font-size: 0.8rem;
         gap: 0.4rem;
         justify-content: center;
     }
-    
-    .source-icon, .social-icon {
+
+    .source-icon,
+    .social-icon {
         width: 1rem;
         height: 1rem;
     }
-    
+
     .external-icon {
         width: 0.7rem;
         height: 0.7rem;
@@ -2035,32 +2164,32 @@ footer {
     .footer-section h4 {
         font-size: 1.1rem;
     }
-    
+
     .disclaimer-text p {
         font-size: 0.9rem;
     }
-    
+
     .footer-copyright p {
         font-size: 0.7rem;
     }
-    
+
     .back-to-top {
         display: block;
         margin: 0.5rem 0 0 0;
         text-align: center;
     }
-    
+
     .political-periods h4 {
         font-size: 1rem;
         margin-bottom: 1rem;
         text-align: center;
     }
-    
+
     /* COMPLETELY REDESIGNED POLITICAL PERIODS FOR MOBILE */
     .political-text {
         gap: 0.75rem;
     }
-    
+
     .political-period {
         flex-direction: column;
         align-items: stretch;
@@ -2072,11 +2201,11 @@ footer {
         box-shadow: var(--shadow-sm);
         transition: all var(--t) var(--ease);
     }
-    
+
     .political-period:hover {
         box-shadow: var(--shadow-md);
     }
-    
+
     /* Header row for each political period */
     .political-period-header {
         display: flex;
@@ -2084,28 +2213,28 @@ footer {
         gap: 0.75rem;
         margin-bottom: 0.5rem;
     }
-    
+
     .main-party {
         display: flex;
         align-items: center;
         gap: 0.25rem;
         min-width: 50px;
     }
-    
+
     .regjering-info {
         display: flex;
         flex-direction: column;
         gap: 0.1rem;
         flex: 1;
     }
-    
+
     .pm-name {
         font-size: 0.875rem;
         font-weight: 600;
         min-width: auto;
         line-height: 1.1;
     }
-    
+
     .period-dates {
         font-size: 0.75rem;
         font-weight: 500;
@@ -2113,7 +2242,7 @@ footer {
         color: var(--text-muted);
         opacity: 0.8;
     }
-    
+
     /* Party information row */
     .political-parties {
         display: flex;
@@ -2121,21 +2250,21 @@ footer {
         gap: 0.5rem;
         align-items: center;
     }
-    
+
     .party-square {
         width: 16px;
         height: 16px;
         border-radius: 3px;
     }
-    
+
     .party-name {
         font-size: 0.8rem;
         font-weight: 600;
         min-width: auto;
     }
-    
+
     /* Removed .other-parties styles as they're no longer used */
-    
+
     /* Party colors grid for mobile */
     .party-colors {
         display: grid;
@@ -2143,7 +2272,7 @@ footer {
         gap: 1rem;
         margin-bottom: 1.5rem;
     }
-    
+
     .party-color-item {
         font-size: 0.8rem;
         padding: 0.5rem;
@@ -2151,26 +2280,26 @@ footer {
         border-radius: var(--radius);
         border: 1px solid var(--border);
     }
-    
+
     .party-color {
         width: 16px;
         height: 16px;
         border-radius: 3px;
     }
-    
+
     /* Footer right section for mobile */
     .footer-right {
         align-items: center;
         gap: 1.5rem;
         width: 100%;
     }
-    
+
     .social-links {
         gap: 1rem;
         justify-content: center;
         flex-wrap: wrap;
     }
-    
+
     .social-link {
         padding: 0.5rem 0.75rem;
         font-size: 0.75rem;
@@ -2179,18 +2308,18 @@ footer {
         border-radius: var(--radius);
         transition: all var(--t) var(--ease);
     }
-    
+
     .social-link:hover {
         box-shadow: var(--shadow-md);
     }
-    
+
     .footer-text {
         text-align: center;
         font-size: 0.75rem;
         width: 100%;
         line-height: 1.4;
     }
-    
+
     .footer-text p {
         margin-bottom: 0.75rem;
     }
@@ -2221,7 +2350,8 @@ footer {
 }
 
 /* Loading & Error States */
-.loading, .error {
+.loading,
+.error {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2265,35 +2395,36 @@ footer {
     opacity: 1;
 }
 
-/* Back to top button - Modern minimalistic styling */
+/* Back to top button - Very flat Scandinavian style */
 .back-to-top-btn {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    width: 44px;
+    height: 44px;
+    border-radius: 4px;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
     color: var(--text);
     cursor: pointer;
     display: none;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: none !important;
+    /* Force no animation */
     z-index: 1000;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: none !important;
+    /* Force no shadow */
 }
 
 .back-to-top-btn:hover {
-    background: rgba(255, 255, 255, 0.95);
-    border-color: rgba(0, 0, 0, 0.12);
+    background: var(--border);
+    border-color: var(--text-subtle);
 }
 
 .back-to-top-btn:active {
-    background: rgba(255, 255, 255, 1);
+    background: var(--text-subtle);
+    color: var(--bg);
 }
 
 .back-to-top-btn svg {
@@ -2350,7 +2481,7 @@ footer {
 .sidebar-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: saturate(120%) blur(2px);
     z-index: 85;
     opacity: 0;
@@ -2366,7 +2497,7 @@ footer {
 .filter-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.35);
+    background: rgba(0, 0, 0, 0.35);
     backdrop-filter: saturate(120%) blur(2px);
     z-index: 90;
     opacity: 0;
@@ -2380,49 +2511,50 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+
     /* Mobile sidebar behavior */
     .sidebar {
         transform: translateX(-100%);
         transition: transform 0.2s ease;
         width: 280px;
     }
-    
+
     .sidebar.expanded {
         transform: translateX(0);
     }
-    
+
     .sidebar.collapsed {
         transform: translateX(-100%);
     }
-    
+
     /* Main content on mobile */
     .main-content {
         margin-left: 0;
         margin-top: var(--header-height);
     }
-    
+
     body.sidebar-expanded .main-content {
         margin-left: 0;
     }
-    
+
     /* Header adjustments for mobile */
     .app-header {
         padding: 0.5rem;
     }
-    
+
     .app-title {
         font-size: 1rem;
     }
-    
+
     .right-section {
         gap: 0.25rem;
     }
-    
+
     .btn {
         padding: 0.5rem;
         font-size: 0.8rem;
     }
-    
+
     /* Political table adjustments for mobile */
     .political-header {
         gap: 0.15rem 0.3rem;
@@ -2430,7 +2562,7 @@ footer {
         font-size: 0.55rem;
         min-height: 2rem;
     }
-    
+
     .political-row {
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
@@ -2439,54 +2571,55 @@ footer {
         font-size: 0.6rem;
         min-height: 2rem;
     }
-    
+
     .political-row .party-color {
         width: 8px;
         margin-right: 0.25rem;
     }
-    
+
     .political-row .party-short {
         font-size: 0.6rem;
         margin-left: 1.1rem;
     }
-    
+
     .political-row .regjering-name {
         font-size: 0.6rem;
     }
-    
+
     .political-row .years,
     .political-row .coalition-parties {
         font-size: 0.55rem;
     }
-    
+
     .political-row .coalition-parties {
         max-width: 55%;
     }
-    
+
 
 }
 
 @media (max-width: 480px) {
+
     /* Very small screens */
     .footer-content {
         flex-direction: column;
         gap: 1.5rem;
     }
-    
+
     .footer-left,
     .footer-center,
     .footer-right {
         min-width: auto;
         width: 100%;
     }
-    
+
     .political-header {
         gap: 0.15rem 0.25rem;
         padding: 0.3rem;
         font-size: 0.5rem;
         min-height: 1.8rem;
     }
-    
+
     .political-row {
         grid-template-columns: auto 1fr;
         grid-template-rows: auto auto;
@@ -2494,29 +2627,29 @@ footer {
         padding: 0.3rem;
         min-height: 1.8rem;
     }
-    
+
     .political-row .party-color {
         width: 7px;
         margin-right: 0.2rem;
     }
-    
+
     .political-row .party-short {
         font-size: 0.55rem;
         margin-left: 0.9rem;
     }
-    
+
     .political-row .regjering-name,
     .political-row .years,
     .political-row .coalition-parties {
         font-size: 0.55rem;
     }
-    
+
     .political-row .coalition-parties {
         max-width: 50%;
     }
-    
 
-    
+
+
     .sidebar-content {
         padding: 0.5rem;
         padding-top: calc(var(--header-height) + 0.5rem);
@@ -2528,7 +2661,7 @@ footer {
     .sidebar {
         transform: none !important;
     }
-    
+
     .sidebar.collapsed {
         transform: none !important;
         width: 0 !important;
@@ -2539,6 +2672,7 @@ footer {
     from {
         opacity: 0;
     }
+
     to {
         opacity: 1;
     }
@@ -2546,57 +2680,60 @@ footer {
 
 /* Typography Fix - Match subtitle and source-link styling */
 .chart-header .chart-subtitle {
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: 0.01em;
-  font-family: inherit;
-  color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    font-family: inherit;
+    color: var(--text-muted);
 }
 
 /* Source link styling - matches subtitle exactly with underline */
 .chart-header .source-link {
-  font-size: 0.75rem;
-  font-weight: 500;
-  line-height: 1.35;
-  letter-spacing: 0.01em;
-  font-family: inherit;
-  color: var(--text-muted);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  opacity: 0.7;
-  transition: opacity var(--t) var(--ease);
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.35;
+    letter-spacing: 0.01em;
+    font-family: inherit;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    opacity: 0.7;
+    transition: opacity var(--t) var(--ease);
 }
 
 .chart-header .source-link:hover,
 .chart-header .source-link:focus {
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  opacity: 1;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    opacity: 1;
 }
 
 /* Icon button styling (shared) - MODERNIZED */
 .icon-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 34px;
-  height: 34px;
-  padding: 0;
-  border: none;
-  border-radius: 8px;
-  background: transparent;
-  cursor: pointer;
-  transition: background-color var(--t) var(--ease);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color var(--t) var(--ease);
 }
-.icon-btn:hover { 
-  background: var(--border, rgba(0,0,0,0.04)); 
+
+.icon-btn:hover {
+    background: var(--border, rgba(0, 0, 0, 0.04));
 }
-.icon-btn:focus { 
-  outline: none; 
+
+.icon-btn:focus {
+    outline: none;
 }
-.icon-btn .icon svg { 
-  display: block; 
+
+.icon-btn .icon svg {
+    display: block;
 }
 
 /* ============================================================================
@@ -2675,6 +2812,7 @@ footer {
         opacity: 0;
         transform: translateY(-8px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -2713,12 +2851,10 @@ footer {
 
 /* Enhanced loading states */
 .skeleton-chart.loading {
-    background: linear-gradient(
-        90deg,
-        var(--glass-bg) 25%,
-        var(--border) 50%,
-        var(--glass-bg) 75%
-    );
+    background: linear-gradient(90deg,
+            var(--glass-bg) 25%,
+            var(--border) 50%,
+            var(--glass-bg) 75%);
     background-size: 200px 100%;
     animation: shimmer 1.5s infinite;
 }
@@ -2730,12 +2866,10 @@ footer {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255, 255, 255, 0.2) 50%,
-        transparent 100%
-    );
+    background: linear-gradient(90deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            transparent 100%);
     animation: shimmer 2s infinite;
 }
 

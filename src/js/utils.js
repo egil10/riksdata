@@ -381,276 +381,147 @@ export async function downloadChartForCard(cardEl, format = 'png') {
 }
 
 async function downloadAsPNG(cardEl, filename, chartTitle) {
-    console.log('[downloadAsPNG] Starting Instagram-friendly PNG download...');
-    console.log('[downloadAsPNG] Card element:', cardEl);
+    console.log('[downloadAsPNG] Generating premium cinematic PNG...');
 
-    // Get the original chart instance
-    const chartId = cardEl.getAttribute('data-chart-id');
     const originalCanvas = cardEl.querySelector('canvas');
     const originalChart = originalCanvas?.chart;
 
     if (!originalChart) {
         console.error('[downloadAsPNG] No chart instance found');
-        announce?.('Chart not ready for download. Please wait a moment and try again.');
         return;
     }
 
-    // Instagram Posts optimized dimensions - 14:9 landscape format
-    const INSTAGRAM_WIDTH = 1385; // 14:9 format - WIDTH should be larger for landscape!
-    const INSTAGRAM_HEIGHT = 1080;
+    // Cinematic Format optimized for sharing (14:9 landscape)
+    const WIDTH = 1400;
+    const HEIGHT = 900;
+    const SCALE = 2; // High DPI capture
 
-    // Create a temporary container with extra safe padding to prevent Instagram cropping
-    const tempContainer = document.createElement('div');
-    tempContainer.style.cssText = `
+    const container = document.createElement('div');
+    container.style.cssText = `
         position: fixed;
         top: -9999px;
         left: -9999px;
-        width: ${INSTAGRAM_WIDTH}px;
-        height: ${INSTAGRAM_HEIGHT}px;
-        background: white;
-        border-radius: 0;
-        box-shadow: none;
-        padding: 160px 200px;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
-        z-index: -1;
+        width: ${WIDTH}px;
+        height: ${HEIGHT}px;
+        background: #f5f0e8;
+        padding: 60px;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        justify-content: space-between;
         box-sizing: border-box;
-        /* Add extra safe margins to prevent cropping */
-        margin: 60px 40px;
-        border: 2px solid #f8f9fa;
+        font-family: 'Inter', system-ui, sans-serif;
     `;
 
-    // Clone the card and enhance it for export
-    const cardClone = cardEl.cloneNode(true);
+    const chartSubtitleText = cardEl.querySelector('.chart-subtitle')?.textContent || '';
+    const sourceText = cardEl.querySelector('.source-link')?.textContent || 'Riksdata';
 
-    // Remove action buttons and source link from the clone
-    const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
-    actionButtons.forEach(btn => btn.remove());
+    container.innerHTML = `
+        <div style="background: white; border-radius: 16px; padding: 60px; height: 100%; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
+            <div style="margin-bottom: 40px; padding-bottom: 30px; border-bottom: 6px solid #09213C; text-align: center;">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: #020202; margin: 0 0 10px 0; letter-spacing: -0.01em;">${chartTitle}</h1>
+                <p style="font-family: 'Inter', sans-serif; font-size: 24px; color: rgba(2,2,2,0.55); font-weight: 600; margin: 0;">${chartSubtitleText}</p>
+            </div>
+            
+            <div style="flex: 1; position: relative; width: 100%; display: flex; align-items: center; justify-content: center;">
+                <canvas id="png-export-canvas" style="width: 100% !important; height: 100% !important;"></canvas>
+            </div>
 
-    // FORCE the chart to be narrower by modifying the canvas directly
-    const clonedCanvas = cardClone.querySelector('canvas');
-    if (clonedCanvas && originalChart) {
-        // Set dimensions for export
-        clonedCanvas.style.width = '1000px';
-        clonedCanvas.style.height = '600px';
-        clonedCanvas.width = 1000;
-        clonedCanvas.height = 600;
-
-        // Redraw with the same data but export-friendly options
-        const exportOptions = JSON.parse(JSON.stringify(originalChart.options));
-        exportOptions.responsive = false;
-        exportOptions.animation = false;
-        exportOptions.maintainAspectRatio = true;
-
-        // MANUALLY restore political colors logic for export
-        if (originalChart.options.plugins?.segment) {
-            exportOptions.plugins.segment = originalChart.options.plugins.segment;
-        }
-
-        // Also check if segments are defined at dataset level
-        const exportDatasets = originalChart.data.datasets.map(ds => {
-            const newDs = { ...ds };
-            if (ds.segment) newDs.segment = ds.segment;
-            return newDs;
-        });
-
-        new Chart(clonedCanvas, {
-            type: originalChart.config.type,
-            data: { ...originalChart.data, datasets: exportDatasets },
-            options: exportOptions
-        });
-
-        // Wait for next frame to ensure clone is ready
-        await new Promise(resolve => setTimeout(resolve, 300));
-    }
-
-    // Enhance the styling for Instagram export
-    cardClone.style.cssText = `
-        background: white;
-        border: none;
-        box-shadow: none;
-        padding: 40px;
-        margin: 0;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
+            <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; font-family: 'Inter', sans-serif;">
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                    <span style="font-size: 16px; font-weight: 700; color: #09213C; text-transform: uppercase; letter-spacing: 0.1em;">riksdata.no</span>
+                    <span style="font-size: 14px; color: rgba(0,0,0,0.4); font-weight: 500;">Generert ${new Date().toLocaleDateString('no-NO')}</span>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 14px; color: rgba(0,0,0,0.4); font-weight: 500;">Kilde</span>
+                    <div style="font-size: 18px; font-weight: 700; color: #020202;">${sourceText}</div>
+                </div>
+            </div>
+        </div>
     `;
 
-    // Enhance header styling with extra safe spacing for 4:5 format
-    const header = cardClone.querySelector('.chart-header');
-    if (header) {
-        header.style.cssText = `
-            margin-bottom: 80px;
-            padding-bottom: 50px;
-            border-bottom: 3px solid #e5e7eb;
-            text-align: center;
-            width: 100%;
-            /* Extra safe spacing to prevent cropping */
-            padding-top: 30px;
-            padding-left: 80px;
-            padding-right: 80px;
-        `;
-    }
+    document.body.appendChild(container);
 
-    // Enhance title styling for 16:9 format
-    const title = cardClone.querySelector('h3');
-    if (title) {
-        title.style.cssText = `
-            font-size: 48px;
-            font-weight: 800;
-            color: #111827;
-            margin: 0 0 24px 0;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            text-align: center;
-        `;
-    }
+    // Setup high-res chart
+    const exportCanvas = container.querySelector('#png-export-canvas');
+    const ctx = exportCanvas.getContext('2d');
 
-    // Enhance subtitle styling for 16:9 format
-    const subtitle = cardClone.querySelector('.chart-subtitle');
-    if (subtitle) {
-        subtitle.style.cssText = `
-            font-size: 28px;
-            color: #6b7280;
-            font-weight: 600;
-            margin: 0;
-            line-height: 1.3;
-            text-align: center;
-        `;
-    }
+    // Set internal resolution for the export canvas
+    exportCanvas.width = (WIDTH - 200) * SCALE;
+    exportCanvas.height = (HEIGHT - 400) * SCALE;
 
-    // Enhance chart container for 4:5 format with extra safe margins
-    const chartContainer = cardClone.querySelector('.chart-container');
-    if (chartContainer) {
-        chartContainer.style.cssText = `
-            width: 60%;
-            height: 900px;
-            position: relative;
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            /* Extra safe margins to prevent cropping */
-            margin: 30px 80px;
-            padding: 40px;
-            border: 1px solid #f0f0f0;
-            border-radius: 12px;
-            background: #fafafa;
-        `;
-    }
+    const exportDatasets = originalChart.data.datasets.map(ds => {
+        const newDs = { ...ds };
+        if (ds.segment) newDs.segment = ds.segment;
+        newDs.borderWidth = 3 * SCALE; // Extra thick for PNG impact
+        return newDs;
+    });
 
-    // Add a safe area indicator overlay to show Instagram-safe zones
-    const safeAreaOverlay = document.createElement('div');
-    safeAreaOverlay.style.cssText = `
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 10;
-        /* Instagram safe area guidelines */
-        border: 2px dashed rgba(0, 0, 0, 0.1);
-        border-radius: 4px;
-        /* Safe margins for Instagram 4:5 format */
-        margin: 80px 100px;
-        box-sizing: border-box;
-    `;
-
-    // Add the enhanced card to the temporary container
-    tempContainer.appendChild(cardClone);
-    tempContainer.appendChild(safeAreaOverlay);
-    document.body.appendChild(tempContainer);
-
-    // Wait a moment for the layout to settle
-    await new Promise(resolve => setTimeout(resolve, 100));
-
-    // Use html2canvas to capture the entire card with 16:9 optimization
-    if (window.html2canvas) {
-        const canvas = await html2canvas(tempContainer, {
-            scale: 1, // Perfect resolution for 16:9 format (1920x1080)
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff',
-            width: INSTAGRAM_WIDTH,
-            height: INSTAGRAM_HEIGHT,
-            logging: false,
-            imageTimeout: 15000,
-            onclone: (clonedDoc) => {
-                // Ensure the cloned chart renders properly for 16:9 format
-                const clonedCanvas = clonedDoc.querySelector('canvas');
-                if (clonedCanvas && clonedCanvas.chart) {
-                    // Force the chart to render at the correct size
-                    clonedCanvas.chart.resize();
-                    clonedCanvas.chart.render();
-
-                    // Set canvas dimensions for high quality
-                    const ctx = clonedCanvas.getContext('2d');
-                    if (ctx) {
-                        ctx.imageSmoothingEnabled = true;
-                        ctx.imageSmoothingQuality = 'high';
+    const exportOptions = {
+        ...JSON.parse(JSON.stringify(originalChart.options)),
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+            ...originalChart.options.plugins,
+            legend: {
+                display: exportDatasets.length > 1,
+                position: 'top',
+                labels: { font: { size: 12 * SCALE, weight: '700' } }
+            }
+        },
+        scales: {
+            x: {
+                ...originalChart.options.scales?.x,
+                grid: { display: false },
+                ticks: {
+                    ...originalChart.options.scales?.x?.ticks,
+                    font: { size: 10 * SCALE, weight: '700' },
+                    callback: function (value) {
+                        const date = new Date(value);
+                        return isNaN(date.getTime()) ? value : date.getFullYear().toString();
                     }
                 }
-
-                // Ensure the chart container has proper dimensions for 4:5 format
-                const clonedChartContainer = clonedDoc.querySelector('.chart-container');
-                if (clonedChartContainer) {
-                    clonedChartContainer.style.height = '900px';
-                    clonedChartContainer.style.width = '60%';
-                    clonedChartContainer.style.margin = '30px 80px';
-                    clonedChartContainer.style.padding = '40px';
-                    clonedChartContainer.style.border = '1px solid #f0f0f0';
-                    clonedChartContainer.style.borderRadius = '12px';
-                    clonedChartContainer.style.background = '#fafafa';
-                }
-
-                // Ensure title and subtitle are visible and properly styled for 16:9 format
-                const clonedTitle = clonedDoc.querySelector('h3');
-                if (clonedTitle) {
-                    clonedTitle.style.display = 'block';
-                    clonedTitle.style.visibility = 'visible';
-                    clonedTitle.style.fontSize = '48px';
-                    clonedTitle.style.fontWeight = '800';
-                    clonedTitle.style.textAlign = 'center';
-                }
-                const clonedSubtitle = clonedDoc.querySelector('.chart-subtitle');
-                if (clonedSubtitle) {
-                    clonedSubtitle.style.display = 'block';
-                    clonedSubtitle.style.visibility = 'visible';
-                    clonedSubtitle.style.fontSize = '28px';
-                    clonedSubtitle.style.fontWeight = '600';
-                    clonedSubtitle.style.textAlign = 'center';
+            },
+            y: {
+                ...originalChart.options.scales?.y,
+                grid: { lineWidth: 0.5 * SCALE },
+                ticks: {
+                    ...originalChart.options.scales?.y?.ticks,
+                    font: { size: 10 * SCALE, weight: '700' }
                 }
             }
-        });
-
-        // Convert to blob and download with Instagram-safe filename
-        canvas.toBlob((blob) => {
-            // Update filename to indicate Instagram 14:9 optimization
-            const instagramSafeFilename = filename.replace('.png', '-instagram-14x9.png');
-            download(blob, instagramSafeFilename);
-            announce?.(`Chart "${chartTitle}" downloaded as Instagram 14:9 PNG - landscape format!`);
-        }, 'image/png', 1.0); // Maximum quality
-
-    } else {
-        // Fallback to original method if html2canvas is not available
-        console.warn('html2canvas not available, falling back to canvas-only download');
-        const canvas = cardEl.querySelector('canvas');
-        if (canvas) {
-            downloadPNG(canvas, filename);
-        } else {
-            announce?.('Could not download chart.');
         }
+    };
+
+    if (originalChart.options.plugins?.segment) {
+        exportOptions.plugins.segment = originalChart.options.plugins.segment;
     }
 
-    // Clean up
-    document.body.removeChild(tempContainer);
+    new Chart(ctx, {
+        type: originalChart.config.type,
+        data: { ...originalChart.data, datasets: exportDatasets },
+        options: exportOptions
+    });
+
+    // Wait for render
+    await new Promise(resolve => setTimeout(resolve, 600));
+
+    if (window.html2canvas) {
+        const resultCanvas = await html2canvas(container, {
+            scale: SCALE,
+            useCORS: true,
+            backgroundColor: null,
+            logging: false
+        });
+
+        resultCanvas.toBlob((blob) => {
+            download(blob, filename);
+            announce?.(`PNG eksportert: ${filename}`);
+            document.body.removeChild(container);
+        }, 'image/png', 1.0);
+    }
 }
+
 
 async function downloadAsHTML(cardEl, filename, chartTitle) {
     // Create a standalone HTML file with the chart

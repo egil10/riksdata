@@ -1791,51 +1791,48 @@ async function loadPoliticalTimeline() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
 
-    // Clear existing content
-    chartsContainer.innerHTML = '';
+    // Show loading state
+    chartsContainer.innerHTML = '<div style="display: flex; justify-content: center; padding: 4rem;"><div class="skeleton-chart loading" style="width: 100%; height: 400px; border-radius: 12px;"></div></div>';
 
     try {
-        // Load political timeline data
         const response = await fetch('./data/static/political-timeline.json?v=' + Date.now());
-        if (!response.ok) {
-            throw new Error(`Failed to load political timeline: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Failed to load: ${response.status}`);
 
         const data = await response.json();
-        console.log('🏛️ Loaded political timeline data:', data);
-        console.log('🏛️ Total governments found:', data.governments.length);
 
-        // Create timeline container
+        // Clear container for final render
+        chartsContainer.innerHTML = '';
+
         const timelineContainer = document.createElement('div');
         timelineContainer.className = 'political-timeline-container';
         timelineContainer.style.cssText = `
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
             max-width: 1400px;
             margin: 0 auto;
+            will-change: transform;
         `;
 
-        // Create government cards (newest first - reverse chronological)
+        // Use DocumentFragment for high-performance batch insertion
+        const fragment = document.createDocumentFragment();
         const reversedGovernments = data.governments.slice().reverse();
-        console.log('🏛️ Creating cards for governments:', reversedGovernments.map(g => g.name));
 
-        reversedGovernments.forEach((government, index) => {
+        reversedGovernments.forEach((government) => {
             const card = createGovernmentCard(government, data.parties);
-            timelineContainer.appendChild(card);
+            fragment.appendChild(card);
         });
 
+        timelineContainer.appendChild(fragment);
         chartsContainer.appendChild(timelineContainer);
-
-        console.log('✅ Political timeline loaded successfully!');
 
     } catch (error) {
         console.error('Failed to load political timeline:', error);
         chartsContainer.innerHTML = `
-            <div style="text-align: center; padding: 2rem; color: var(--text-muted);">
-                <h3>Failed to load political timeline</h3>
-                <p>Please try refreshing the page.</p>
+            <div style="text-align: center; padding: 4rem; color: var(--text-muted);">
+                <h3>Kunne ikke laste politisk tidslinje</h3>
+                <p>Prøv å laste siden på nytt.</p>
             </div>
         `;
     }
@@ -1848,88 +1845,62 @@ function createGovernmentCard(government, parties) {
     const card = document.createElement('div');
     card.className = 'government-card';
     card.style.cssText = `
-        background: var(--card);
+        background: var(--bg-elev);
         border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 1rem;
+        border-radius: 8px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
         box-shadow: none;
-        transition: none;
-        position: relative;
-        overflow: hidden;
     `;
 
-    // Simple active state instead of transition
-    card.addEventListener('mousedown', () => {
-        card.style.background = 'var(--bg-hover)';
-    });
-
-    card.addEventListener('mouseup', () => {
-        card.style.background = 'var(--card)';
-    });
-
-    // Party color accent
     const party = parties[government.party];
-    const accentColor = party ? party.color : '#666';
+    const accentColor = party ? party.color : 'var(--text-muted)';
 
-    // Create card content with horizontal layout
     card.innerHTML = `
-        <div style="height: 100%; display: flex; flex-direction: column;">
-            <!-- Government Name and Year Header -->
-            <div style="margin-bottom: 0.75rem; border-bottom: 3px solid ${accentColor}; padding-bottom: 0.5rem;">
-                <a href="${government.wikipediaUrl}" 
-                   target="_blank" 
-                   style="text-decoration: none; color: inherit;">
-                    <h3 style="margin: 0; font-size: 1.3rem; color: var(--text); font-weight: 600;">${government.name}</h3>
-                    <p style="margin: 0; color: var(--text-muted); font-size: 0.9rem; font-weight: 500;">${government.years}</p>
-                </a>
+        <div style="margin-bottom: 1rem; border-bottom: 2px solid ${accentColor}; padding-bottom: 0.75rem;">
+            <a href="${government.wikipediaUrl}" target="_blank" style="text-decoration: none; color: inherit;">
+                <h3 style="margin: 0; font-size: 1.15rem; color: var(--text); font-weight: 600; font-family: var(--font-serif);">${government.name}</h3>
+                <p style="margin: 0.25rem 0 0 0; color: var(--text-muted); font-size: 0.85rem; font-weight: 500;">${government.years}</p>
+            </a>
+        </div>
+        
+        <div style="display: flex; gap: 1.15rem; flex: 1;">
+            <div style="flex-shrink: 0;">
+                <img src="${government.imageUrl}" 
+                     alt="${government.primeMinister}" 
+                     width="85"
+                     height="110"
+                     style="width: 85px; height: 110px; object-fit: cover; border-radius: 4px; border: 1px solid var(--border);"
+                     loading="lazy">
             </div>
             
-            <!-- Horizontal Layout: Image Left, Party Info Right -->
-            <div style="display: flex; gap: 1rem; flex: 1;">
-                <!-- PM Photo - Left Side -->
-                <div style="flex-shrink: 0;">
-                    <img src="${government.imageUrl}" 
-                         alt="${government.primeMinister}" 
-                         style="width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid ${accentColor}; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);"
-                         loading="lazy">
+            <div style="flex: 1; display: flex; flex-direction: column; gap: 0.75rem; justify-content: center;">
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <img src="${party?.logoUrl || ''}" 
+                         alt="${party?.name || government.party}" 
+                         width="20"
+                         height="20"
+                         style="width: 20px; height: 20px; object-fit: contain;">
+                    <a href="${party?.website || '#'}" target="_blank" style="color: ${accentColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
+                        ${party?.name || government.party}
+                    </a>
                 </div>
                 
-                <!-- Party Information - Right Side -->
-                <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0.5rem;">
-                    <!-- Main Party -->
-                    <div style="display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
-                        <img src="${party?.logoUrl || ''}" 
-                             alt="${party?.name || government.party}" 
-                             style="width: 20px; height: 20px; object-fit: contain;">
-                        <a href="${party?.website || '#'}" 
-                           target="_blank" 
-                           style="color: ${accentColor}; text-decoration: none; font-weight: 600; font-size: 0.9rem;">
-                            ${party?.name || government.party}
-                        </a>
-                        <span style="color: var(--text-muted); font-size: 0.75rem;">
-                            ${government.coalition.length > 0 ? '(Coalition)' : '(Minority)'}
-                        </span>
-                    </div>
-                    
-                    <!-- Coalition Partners - Stacked -->
-                    ${government.coalition.length > 0 ? `
-                        ${government.coalition.map(coalitionParty => {
-        const coalitionPartyData = parties[coalitionParty];
+                ${government.coalition.length > 0 ? `
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.5rem; padding-top: 0.25rem; border-top: 1px solid var(--border-subtle);">
+                        ${government.coalition.map(cp => {
+        const cpData = parties[cp];
         return `
-                                <div style="display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
-                                    <img src="${coalitionPartyData?.logoUrl || ''}" 
-                                         alt="${coalitionPartyData?.name || coalitionParty}" 
-                                         style="width: 18px; height: 18px; object-fit: contain;">
-                                    <a href="${coalitionPartyData?.website || '#'}" 
-                                       target="_blank"
-                                       style="color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.8rem;">
-                                        ${coalitionPartyData?.name || coalitionParty}
-                                    </a>
+                                <div style="display: flex; align-items: center; gap: 0.35rem; opacity: 0.85;">
+                                    <img src="${cpData?.logoUrl || ''}" alt="${cp}" width="16" height="16" style="width: 16px; height: 16px; object-fit: contain;">
+                                    <span style="font-size: 0.75rem; font-weight: 500;">${cpData?.name || cp}</span>
                                 </div>
                             `;
     }).join('')}
-                    ` : ''}
-                </div>
+                    </div>
+                ` : '<div style="font-size: 0.75rem; color: var(--text-subtle); font-style: italic;">Mindretallsregjering</div>'}
             </div>
         </div>
     `;

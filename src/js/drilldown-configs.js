@@ -22,7 +22,7 @@ export const drilldownConfigs = {
         { id: 'deaths-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Age', subtitle: 'Number', type: 'line' },
         { id: 'deaths-by-week-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Week & Age', subtitle: 'Number', type: 'line' }
     ],
-    
+
     // === BANKRUPTCIES BY INDUSTRY (All 89 Industries) ===
     bankruptcies: [
         { id: 'bankruptcies-total-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-total.json', title: 'Total (All Industries)', subtitle: 'Number per quarter', type: 'line' },
@@ -49,7 +49,7 @@ export const drilldownConfigs = {
         { id: 'bankruptcies-73-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-73-advertising-and-market-research.json', title: 'Advertising & Marketing', subtitle: 'Number per quarter', type: 'line' },
         { id: 'bankruptcies-85-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-85-education.json', title: 'Education', subtitle: 'Number per quarter', type: 'line' },
     ],
-    
+
     // === CREDIT INDICATOR VARIATIONS (4 Indicators) ===
     creditIndicator: [
         { id: 'credit-indicator-main-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator - Main', subtitle: 'Millioner NOK', type: 'line' },
@@ -57,36 +57,36 @@ export const drilldownConfigs = {
         { id: 'credit-indicator-k2-seasonally-adjusted-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator - K2 Seasonally Adjusted', subtitle: 'Millioner NOK', type: 'line' },
         { id: 'credit-indicator-k3-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator - K3', subtitle: 'Millioner NOK', type: 'line' },
     ],
-    
+
     // === PRODUCER PRICE INDEX (PPI) DRILLDOWN (Individual Time Series) ===
     ppi: [
         // Main PPI - Total Index (All Markets)
         { id: 'ppi-total-all-markets-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-and-export-market-total.json', title: 'PPI - Total (All Markets)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-total-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-market.json', title: 'PPI - Total (Domestic Market)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-total-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-export-market.json', title: 'PPI - Total (Export Market)', subtitle: 'Index', type: 'line' },
-        
+
         // Oil & Gas Extraction
         { id: 'ppi-oil-gas-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-and-export-market-total.json', title: 'PPI - Oil & Gas (All Markets)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-oil-gas-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-market.json', title: 'PPI - Oil & Gas (Domestic)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-oil-gas-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-export-market.json', title: 'PPI - Oil & Gas (Export)', subtitle: 'Index', type: 'line' },
-        
+
         // Manufacturing
         { id: 'ppi-manufacturing-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-and-export-market-total.json', title: 'PPI - Manufacturing (All Markets)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-manufacturing-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-market.json', title: 'PPI - Manufacturing (Domestic)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-manufacturing-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-export-market.json', title: 'PPI - Manufacturing (Export)', subtitle: 'Index', type: 'line' },
-        
+
         // Energy Sectors
         { id: 'ppi-electricity-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn35_tot-domestic-and-export-market-total.json', title: 'PPI - Electricity & Gas (All Markets)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-excl-energy-all-drilldown', url: './data/cached/ssb/ppi/ppi-spe4-domestic-and-export-market-total.json', title: 'PPI - Excluding Energy (All Markets)', subtitle: 'Index', type: 'line' },
         { id: 'ppi-energy-goods-all-drilldown', url: './data/cached/ssb/ppi/ppi-e6_tot-domestic-and-export-market-total.json', title: 'PPI - Energy Goods (All Markets)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Manufacturing Industries
         { id: 'ppi-food-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn10-domestic-and-export-market-total.json', title: 'PPI - Food Manufacturing', subtitle: 'Index', type: 'line' },
         { id: 'ppi-wood-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn16-domestic-and-export-market-total.json', title: 'PPI - Wood Manufacturing', subtitle: 'Index', type: 'line' },
         { id: 'ppi-chemical-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn20-domestic-and-export-market-total.json', title: 'PPI - Chemical Manufacturing', subtitle: 'Index', type: 'line' },
         { id: 'ppi-metal-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn24-domestic-and-export-market-total.json', title: 'PPI - Metal Manufacturing', subtitle: 'Index', type: 'line' }
     ],
-    
+
     // === CPI VARIATIONS (16 Different Measures) ===
     cpi: [
         { id: 'cpi-main-drilldown', url: './data/cached/ssb/cpi.json', title: 'CPI - All-Item Index', subtitle: 'Index (2015=100)', type: 'line' },
@@ -107,7 +107,7 @@ export const drilldownConfigs = {
         { id: 'cpi-adjusted-delivery-sector-drilldown', url: './data/cached/ssb/cpi-adjusted-delivery-sector.json', title: 'CPI - Adjusted Delivery Sector', subtitle: 'Index', type: 'line' },
         { id: 'cpi-adjusted-delivery-sector-recent-drilldown', url: './data/cached/ssb/cpi-adjusted-delivery-sector-recent.json', title: 'CPI - Adjusted Delivery Sector (Recent)', subtitle: 'Index', type: 'line' },
     ],
-    
+
     // === IMPORTS BY COUNTRY (Top 50 Trading Partners) ===
     imports: [
         { id: 'import-gb-drilldown', url: './data/cached/ssb/import-by-country/import-gb.json', title: 'United Kingdom', subtitle: 'NOK', type: 'line' },
@@ -166,7 +166,7 @@ export const drilldownConfigs = {
         { id: 'import-hk-drilldown', url: './data/cached/ssb/import-by-country/import-hk.json', title: 'Hong Kong', subtitle: 'NOK', type: 'line' },
         { id: 'import-ua-drilldown', url: './data/cached/ssb/import-by-country/import-ua.json', title: 'Ukraine', subtitle: 'NOK', type: 'line' },
     ],
-    
+
     // === DFO GOVERNMENT SPENDING (All 15 Departments × 2) ===
     dfo: [
         { id: 'dfo-arbeids-expenditure-drilldown', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
@@ -200,7 +200,7 @@ export const drilldownConfigs = {
         { id: 'dfo-utenriks-expenditure-drilldown', url: './data/cached/dfo/utenriksdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
         { id: 'dfo-utenriks-revenue-drilldown', url: './data/cached/dfo/utenriksdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
     ],
-    
+
     // === OIL FUND BREAKDOWN (By Asset Class) ===
     oilfund: [
         { id: 'oil-fund-total-drilldown', url: './data/cached/oil-fund.json', title: 'Oil Fund - Total Market Value', subtitle: 'Billion NOK', type: 'line' },
@@ -209,7 +209,7 @@ export const drilldownConfigs = {
         { id: 'oil-fund-real-estate-drilldown', url: './data/cached/oil-fund-real-estate.json', title: 'Real Estate', subtitle: 'Billion NOK', type: 'line' },
         { id: 'oil-fund-renewable-drilldown', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Renewable Infrastructure', subtitle: 'Billion NOK', type: 'line' },
     ],
-    
+
     // === VACCINATION COVERAGE (All 9 Vaccines) ===
     vaccinations: [
         { id: 'vaccination-hib3-drilldown', url: './data/cached/vaccination_hib3.json', title: 'Hib3 (Haemophilus influenzae type b)', subtitle: 'Coverage %', type: 'line' },
@@ -222,7 +222,7 @@ export const drilldownConfigs = {
         { id: 'vaccination-rcv1-drilldown', url: './data/cached/vaccination_rcv1.json', title: 'RCV1 (Rubella)', subtitle: 'Coverage %', type: 'line' },
         { id: 'vaccination-rotac-drilldown', url: './data/cached/vaccination_rotac.json', title: 'RotaC (Rotavirus)', subtitle: 'Coverage %', type: 'line' },
     ],
-    
+
     // === EXPORTS BY COUNTRY (Top 50 Trading Partners) ===
     exports: [
         { id: 'export-gb-drilldown', url: './data/cached/ssb/export-by-country/export-gb.json', title: 'United Kingdom', subtitle: 'NOK', type: 'line' },
@@ -286,40 +286,68 @@ export const drilldownConfigs = {
         { id: 'export-pe-drilldown', url: './data/cached/ssb/export-by-country/export-pe.json', title: 'Peru', subtitle: 'NOK', type: 'line' },
         { id: 'export-ua-drilldown', url: './data/cached/ssb/export-by-country/export-ua.json', title: 'Ukraine', subtitle: 'NOK', type: 'line' },
     ],
-    
+
     // === WAGE INDEX VARIATIONS (Individual Industry Time Series) ===
     wages: [
         // Main wage indices - All Industries
         { id: 'wage-basic-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-00_99-ialt.json', title: 'Wage Index - Basic Earnings (All Industries)', subtitle: 'Index', type: 'line' },
         { id: 'wage-total-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-00_99-ialt.json', title: 'Wage Index - Total Earnings (All Industries)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Manufacturing
         { id: 'wage-manufacturing-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-10_33-ialt.json', title: 'Wage Index - Manufacturing (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-manufacturing-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-10_33-ialt.json', title: 'Wage Index - Manufacturing (Total)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Construction
         { id: 'wage-construction-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-41_43-ialt.json', title: 'Wage Index - Construction (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-construction-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-41_43-ialt.json', title: 'Wage Index - Construction (Total)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Financial Services
         { id: 'wage-financial-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-64_66-ialt.json', title: 'Wage Index - Financial Services (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-financial-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-64_66-ialt.json', title: 'Wage Index - Financial Services (Total)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Public Administration
         { id: 'wage-public-admin-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-84-ialt.json', title: 'Wage Index - Public Administration (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-public-admin-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-84-ialt.json', title: 'Wage Index - Public Administration (Total)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Education
         { id: 'wage-education-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-85-ialt.json', title: 'Wage Index - Education (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-education-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-85-ialt.json', title: 'Wage Index - Education (Total)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Health & Social Work
         { id: 'wage-health-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-86_88-ialt.json', title: 'Wage Index - Health & Social Work (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-health-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-86_88-ialt.json', title: 'Wage Index - Health & Social Work (Total)', subtitle: 'Index', type: 'line' },
-        
+
         // Key Industries - Information & Communication
         { id: 'wage-it-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-58_63-ialt.json', title: 'Wage Index - IT & Communication (Basic)', subtitle: 'Index', type: 'line' },
         { id: 'wage-it-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-58_63-ialt.json', title: 'Wage Index - IT & Communication (Total)', subtitle: 'Index', type: 'line' }
-    ]
+    ],
+
+    // === EXCHANGE RATES (Norges Bank) ===
+    exchangeRates: [
+        { id: 'i44-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK', subtitle: 'Index', type: 'line' },
+        { id: 'usd-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK', subtitle: 'NOK per USD', type: 'line' },
+        { id: 'eur-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK', subtitle: 'NOK per EUR', type: 'line' },
+        { id: 'gbp-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK', subtitle: 'NOK per GBP', type: 'line' },
+        { id: 'sek-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK', subtitle: 'NOK per 100 SEK', type: 'line' },
+        { id: 'chf-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK', subtitle: 'NOK per 100 CHF', type: 'line' },
+        { id: 'cny-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK', subtitle: 'NOK per 100 CNY', type: 'line' }
+    ],
+
+    // === MONEY SUPPLY (SSB) ===
+    moneySupply: [
+        { id: 'money-supply-m0-drilldown', url: './data/cached/ssb/money-supply-m0.json', title: 'Money Supply M0', subtitle: 'NOK Million', type: 'line' },
+        { id: 'money-supply-by-sector-drilldown', url: './data/cached/ssb/money-supply-by-sector.json', title: 'Money Supply by Sector', subtitle: 'NOK Million', type: 'line' },
+        { id: 'money-supply-m3-by-sector-drilldown', url: './data/cached/ssb/money-supply-m3-by-sector.json', title: 'M3 Money Supply by Sector', subtitle: 'NOK Million', type: 'line' },
+        { id: 'money-supply-m3-net-claims-drilldown', url: './data/cached/ssb/money-supply-m3-net-claims.json', title: 'M3 Net Claims', subtitle: 'NOK Million', type: 'line' }
+    ],
+
+    // === OSLO STOCK EXCHANGE INDICES ===
+    osloIndices: [
+        { id: 'oseax-drilldown', url: './data/cached/oslo-indices/oseax.json', title: 'OSEAX All Share Index', subtitle: 'Index Value', type: 'line' },
+        { id: 'osebx-drilldown', url: './data/cached/oslo-indices/osebx.json', title: 'OSEBX Benchmark Index', subtitle: 'Index Value', type: 'line' },
+        { id: 'obx-drilldown', url: './data/cached/oslo-indices/obx.json', title: 'OBX 25 Liquid Index', subtitle: 'Index Value', type: 'line' }
+    ],
+
 };
+
 

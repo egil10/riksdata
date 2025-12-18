@@ -2289,24 +2289,16 @@ footer {
 
 .back-to-top-btn:hover {
     background: rgba(255, 255, 255, 0.95);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     border-color: rgba(0, 0, 0, 0.12);
 }
 
 .back-to-top-btn:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 1);
 }
 
 .back-to-top-btn svg {
-    transition: transform 0.2s ease;
     width: 20px;
     height: 20px;
-}
-
-.back-to-top-btn:hover svg {
-    transform: translateY(-1px);
 }
 
 /* Legacy drawer styles - removed in favor of new sidebar layout */

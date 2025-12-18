@@ -5,55 +5,66 @@
 :root {
   /* Native hint */
   color-scheme: light;
-  
+
   /* Typography - Elegant mix */
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
   --font-serif: 'Playfair Display', Georgia, Cambria, "Times New Roman", Times, serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
-  
+
   /* Size & radii - More rounded, pill-like */
   --radius: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
-  --shadow-sm: 0 1px 3px rgba(0,0,0,.08);
-  --shadow-md: 0 4px 12px rgba(0,0,0,.12);
-  --shadow-lg: 0 8px 24px rgba(0,0,0,.15);
-  
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, .08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, .12);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, .15);
+
   /* Light elegant palette - warm and sophisticated */
-  --bg: #f5f0e8; /* Warm cream background */
-  --bg-elev: #ffffff; /* Pure white for elevated elements */
-  --card: rgba(255, 255, 255, 0.7); /* Subtle glass card */
+  --bg: #f5f0e8;
+  /* Warm cream background */
+  --bg-elev: #ffffff;
+  /* Pure white for elevated elements */
+  --card: rgba(255, 255, 255, 0.7);
+  /* Subtle glass card */
   --card-hover: rgba(255, 255, 255, 0.95);
-  --border: rgba(2, 2, 2, 0.1); /* Soft dark border */
+  --border: rgba(2, 2, 2, 0.1);
+  /* Soft dark border */
   --border-subtle: rgba(2, 2, 2, 0.05);
-  --text: #020202; /* Almost black */
-  --text-muted: rgba(2, 2, 2, 0.65); /* 65% opacity */
+  --text: #020202;
+  /* Almost black */
+  --text-muted: rgba(2, 2, 2, 0.65);
+  /* 65% opacity */
   --text-subtle: rgba(2, 2, 2, 0.45);
-  
+
   /* Glassmorphism effects for light theme */
   --glass-bg: rgba(255, 255, 255, 0.5);
   --glass-border: rgba(2, 2, 2, 0.08);
   --blur-amount: 64px;
-  
+
   /* Norwegian-themed accents with elegance */
-  --accent: #09213C; /* Deep navy (inspired by TrumpRx button) */
+  --accent: #09213C;
+  /* Deep navy (inspired by TrumpRx button) */
   --accent-hover: #0a2847;
-  --accent-2: #3b82f6; /* Blue for charts */
-  --accent-3: #ef4444; /* Red for charts */
-  --accent-4: #10b981; /* Teal for charts */
-  --grid: rgba(2, 2, 2, 0.08); /* Subtle gridlines */
-  
+  --accent-2: #3b82f6;
+  /* Blue for charts */
+  --accent-3: #ef4444;
+  /* Red for charts */
+  --accent-4: #10b981;
+  /* Teal for charts */
+  --grid: rgba(2, 2, 2, 0.08);
+  /* Subtle gridlines */
+
   /* States */
   --success: #22c55e;
   --warn: #f59e0b;
   --danger: #ef4444;
-  
+
   /* Transitions - Smooth and elegant */
-  --ease: cubic-bezier(.2,.8,.2,1);
-  --ease-spring: cubic-bezier(.34,1.56,.64,1);
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
   --t: 280ms;
   --t-fast: 180ms;
-  
+
   /* Typographic scale - Larger, more impactful */
   --step--1: clamp(.875rem, .83rem + .2vw, .95rem);
   --step-0: clamp(1rem, .96rem + .25vw, 1.1rem);
@@ -61,7 +72,7 @@
   --step-2: clamp(1.5rem, 1.3rem + .9vw, 1.875rem);
   --step-3: clamp(2rem, 1.6rem + 1.5vw, 2.5rem);
   --step-4: clamp(2.5rem, 2rem + 2vw, 3.5rem);
-  
+
   /* Spacing scale */
   --space-1: .5rem;
   --space-2: .75rem;
@@ -73,7 +84,8 @@
 }
 
 /* Base usage - Elegant dark foundation */
-html, body {
+html,
+body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-sans);
@@ -112,7 +124,9 @@ h4 {
   font-weight: 600;
 }
 
-body, p, li {
+body,
+p,
+li {
   font-size: var(--step-0);
   line-height: 1.6;
 }
@@ -146,8 +160,7 @@ small {
 
 .card:hover {
   background: var(--card-hover);
-  box-shadow: 0 20px 60px rgba(0,0,0,.4);
-  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 /* Glass badge/pill elements */
@@ -199,8 +212,7 @@ a:hover {
   background: var(--glass-bg);
   backdrop-filter: blur(var(--blur-amount));
   -webkit-backdrop-filter: blur(var(--blur-amount));
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-md);
+  box-shadow: var(--shadow-sm);
 }
 
 .btn-ghost:focus-visible {
@@ -229,8 +241,7 @@ a:hover {
 
 .btn:hover {
   background: var(--card-hover);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 }
 
 .btn-primary {
@@ -272,7 +283,7 @@ a:hover {
 }
 
 /* Layout utilities */
-.stack > * + * {
+.stack>*+* {
   margin-top: var(--space-3);
 }
 
@@ -300,7 +311,8 @@ table {
   overflow: hidden;
 }
 
-th, td {
+th,
+td {
   padding: 1rem 1.25rem;
   border-bottom: 1px solid var(--border-subtle);
   text-align: left;
@@ -346,18 +358,22 @@ tbody tr:last-child td {
 .skeleton {
   border-radius: var(--radius);
   height: 1rem;
-  background: linear-gradient(90deg, 
-    rgba(2, 2, 2, 0.03),
-    rgba(2, 2, 2, 0.08),
-    rgba(2, 2, 2, 0.03)
-  );
+  background: linear-gradient(90deg,
+      rgba(2, 2, 2, 0.03),
+      rgba(2, 2, 2, 0.08),
+      rgba(2, 2, 2, 0.03));
   background-size: 200% 100%;
   animation: shimmer 1.5s var(--ease) infinite;
 }
 
 @keyframes shimmer {
-  0% { background-position: 200% 0; }
-  100% { background-position: -200% 0; }
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
 }
 
 /* Fade in animation */
@@ -366,6 +382,7 @@ tbody tr:last-child td {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -392,7 +409,7 @@ tbody tr:last-child td {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  
+
   .skeleton {
     animation: none;
   }

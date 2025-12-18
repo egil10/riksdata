@@ -14,13 +14,13 @@ let currentView = 'main';
  */
 export function initDrilldownNavigation() {
     console.log('🔍 Initializing drill-down navigation...');
-    
+
     // Handle initial hash
     handleHashChange();
-    
+
     // Listen for hash changes
     window.addEventListener('hashchange', handleHashChange);
-    
+
     // Add drill-down buttons to charts
     addDrilldownButton();
     addExportsDrilldownButton();
@@ -43,12 +43,12 @@ export function initDrilldownNavigation() {
  */
 function handleHashChange() {
     const hash = window.location.hash.slice(1); // Remove the '#'
-    
+
     console.log(`📍 Hash changed to: ${hash || '(empty)'}`);
-    
+
     // Clear search filter when navigating to any view (drilldown or main)
     clearSearchFilter();
-    
+
     if (hash === 'bankruptcies') {
         showBankruptciesView();
     } else if (hash === 'exports') {
@@ -89,7 +89,7 @@ function clearSearchFilter() {
     const searchInput = document.getElementById('headerSearch');
     const searchApplyBtn = document.getElementById('searchApplyBtn');
     const searchResetBtn = document.getElementById('searchResetBtn');
-    
+
     if (searchInput) {
         searchInput.value = '';
         searchInput.classList.remove('has-input');
@@ -100,7 +100,7 @@ function clearSearchFilter() {
     if (searchResetBtn) {
         searchResetBtn.style.display = 'none';
     }
-    
+
     // Reset all chart cards to visible state
     const allCards = document.querySelectorAll('.chart-card');
     allCards.forEach(card => {
@@ -114,13 +114,13 @@ function clearSearchFilter() {
 function showMainDashboard() {
     console.log('📊 Showing main dashboard');
     currentView = 'main';
-    
+
     const mainView = document.getElementById('main-dashboard');
     const drilldownView = document.getElementById('drilldown-view');
-    
+
     if (mainView) mainView.style.display = 'block';
     if (drilldownView) drilldownView.style.display = 'none';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Norske Data og Statistikk';
     updateHeaderBreadcrumb('');
@@ -132,24 +132,24 @@ function showMainDashboard() {
 function showBankruptciesView() {
     console.log('🏢 Showing bankruptcies drill-down view');
     currentView = 'bankruptcies';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Bankruptcies by Industry';
     updateHeaderBreadcrumb('Bankruptcies by Industry');
-    
+
     // Load all bankruptcy industry charts
     loadBankruptcyCharts();
 }
@@ -160,24 +160,24 @@ function showBankruptciesView() {
 function showExportsView() {
     console.log('🌍 Showing exports drill-down view');
     currentView = 'exports';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Exports by Country';
     updateHeaderBreadcrumb('Exports by Country');
-    
+
     // Load all export country charts
     loadExportCharts();
 }
@@ -188,27 +188,27 @@ function showExportsView() {
 function showCPIView() {
     console.log('📊 Showing CPI drill-down view');
     currentView = 'cpi';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Scroll to top of page
     window.scrollTo(0, 0);
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Consumer Price Index Variations';
     updateHeaderBreadcrumb('CPI Variations');
-    
+
     // Load all CPI charts
     loadCPICharts();
 }
@@ -219,27 +219,27 @@ function showCPIView() {
 function showPPIView() {
     console.log('📊 Showing PPI drill-down view');
     currentView = 'ppi';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Scroll to top of page
     window.scrollTo(0, 0);
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Producer Price Index Variations';
     updateHeaderBreadcrumb('PPI Variations');
-    
+
     // Load all PPI charts
     loadPPICharts();
 }
@@ -250,24 +250,24 @@ function showPPIView() {
 function showCreditIndicatorView() {
     console.log('💳 Showing Credit Indicator drill-down view');
     currentView = 'creditIndicator';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Credit Indicator Variations';
     updateHeaderBreadcrumb('Credit Indicator Variations');
-    
+
     // Load all Credit Indicator charts
     loadCreditIndicatorCharts();
 }
@@ -278,24 +278,24 @@ function showCreditIndicatorView() {
 function showImportsView() {
     console.log('🌍 Showing imports drill-down view');
     currentView = 'imports';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Imports by Country';
     updateHeaderBreadcrumb('Imports by Country');
-    
+
     // Load all import country charts
     loadImportCharts();
 }
@@ -306,24 +306,24 @@ function showImportsView() {
 function showVaccinationsView() {
     console.log('💉 Showing vaccinations drill-down view');
     currentView = 'vaccinations';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Vaccination Coverage';
     updateHeaderBreadcrumb('Vaccination Coverage');
-    
+
     // Load all vaccination charts
     loadVaccinationCharts();
 }
@@ -334,24 +334,24 @@ function showVaccinationsView() {
 function showDFOView() {
     console.log('🏛️ Showing DFO government spending drill-down view');
     currentView = 'dfo';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Government Spending by Department';
     updateHeaderBreadcrumb('Government Spending');
-    
+
     // Load all DFO charts
     loadDFOCharts();
 }
@@ -362,24 +362,24 @@ function showDFOView() {
 function showOilFundView() {
     console.log('🛢️ Showing Oil Fund drill-down view');
     currentView = 'oilfund';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Oil Fund by Asset Class';
     updateHeaderBreadcrumb('Oil Fund Breakdown');
-    
+
     // Load all Oil Fund charts
     loadOilFundCharts();
 }
@@ -391,13 +391,13 @@ function createDrilldownView() {
     const container = document.createElement('div');
     container.id = 'drilldown-view';
     container.className = 'main-content';
-    
+
     container.innerHTML = `
         <div id="drilldown-charts-container" class="chart-grid">
             <!-- Charts will be dynamically loaded here -->
         </div>
     `;
-    
+
     // Insert after main-dashboard
     const mainDashboard = document.getElementById('main-dashboard');
     if (mainDashboard && mainDashboard.parentNode) {
@@ -405,10 +405,10 @@ function createDrilldownView() {
     } else {
         document.body.appendChild(container);
     }
-    
+
     // Scroll to top when drilldown view is created
     window.scrollTo(0, 0);
-    
+
     return container;
 }
 
@@ -418,22 +418,22 @@ function createDrilldownView() {
 async function loadBankruptcyCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.bankruptcies;
     console.log(`📊 Loading ${configs.length} bankruptcy charts in drill-down view...`);
-    
+
     // Create chart cards for each industry
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts (lazy loading will handle visibility)
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -441,7 +441,7 @@ async function loadBankruptcyCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All bankruptcy charts loaded in drill-down view!');
 }
 
@@ -451,22 +451,22 @@ async function loadBankruptcyCharts() {
 async function loadExportCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.exports;
     console.log(`🌍 Loading ${configs.length} export country charts in drill-down view...`);
-    
+
     // Create chart cards for each country
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -474,7 +474,7 @@ async function loadExportCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All export charts loaded in drill-down view!');
 }
 
@@ -484,22 +484,22 @@ async function loadExportCharts() {
 async function loadCPICharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.cpi;
     console.log(`📊 Loading ${configs.length} CPI variation charts in drill-down view...`);
-    
+
     // Create chart cards for each CPI variation
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -507,7 +507,7 @@ async function loadCPICharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All CPI charts loaded in drill-down view!');
 }
 
@@ -517,22 +517,22 @@ async function loadCPICharts() {
 async function loadPPICharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.ppi;
     console.log(`📊 Loading ${configs.length} PPI variation charts in drill-down view...`);
-    
+
     // Create chart cards for each PPI variation
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -540,7 +540,7 @@ async function loadPPICharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All PPI charts loaded in drill-down view!');
 }
 
@@ -550,22 +550,22 @@ async function loadPPICharts() {
 async function loadCreditIndicatorCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.creditIndicator;
     console.log(`💳 Loading ${configs.length} Credit Indicator charts in drill-down view...`);
-    
+
     // Create chart cards for each Credit Indicator variation
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -573,7 +573,7 @@ async function loadCreditIndicatorCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All Credit Indicator charts loaded in drill-down view!');
 }
 
@@ -583,22 +583,22 @@ async function loadCreditIndicatorCharts() {
 async function loadImportCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.imports;
     console.log(`🌍 Loading ${configs.length} import country charts in drill-down view...`);
-    
+
     // Create chart cards for each country
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -606,7 +606,7 @@ async function loadImportCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All import charts loaded in drill-down view!');
 }
 
@@ -616,22 +616,22 @@ async function loadImportCharts() {
 async function loadVaccinationCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.vaccinations;
     console.log(`💉 Loading ${configs.length} vaccination charts in drill-down view...`);
-    
+
     // Create chart cards for each vaccination type
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -639,7 +639,7 @@ async function loadVaccinationCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All vaccination charts loaded in drill-down view!');
 }
 
@@ -649,22 +649,22 @@ async function loadVaccinationCharts() {
 async function loadDFOCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.dfo;
     console.log(`🏛️ Loading ${configs.length} DFO department charts in drill-down view...`);
-    
+
     // Create chart cards for each department
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -672,7 +672,7 @@ async function loadDFOCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All DFO charts loaded in drill-down view!');
 }
 
@@ -682,22 +682,22 @@ async function loadDFOCharts() {
 async function loadOilFundCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.oilfund;
     console.log(`🛢️ Loading ${configs.length} Oil Fund asset class charts in drill-down view...`);
-    
+
     // Create chart cards for each asset class
     for (const config of configs) {
         const chartCard = createChartCard(config);
         chartsContainer.appendChild(chartCard);
     }
-    
+
     // Now load all charts
     console.log('✅ Chart cards created, loading data...');
-    
+
     for (const config of configs) {
         try {
             await loadChartData(config.id, config.url, config.title, config.type || 'line');
@@ -705,7 +705,7 @@ async function loadOilFundCharts() {
             console.error(`Failed to load ${config.title}:`, error);
         }
     }
-    
+
     console.log('✅ All Oil Fund charts loaded in drill-down view!');
 }
 
@@ -717,7 +717,7 @@ function createChartCard(config, sourceInfo = { name: 'SSB', url: 'https://www.s
     card.className = 'chart-card';
     card.setAttribute('data-chart-id', config.id);
     card.setAttribute('data-source', 'cached');
-    
+
     card.innerHTML = `
         <div class="chart-header">
             <div class="chart-header-top">
@@ -747,7 +747,7 @@ function createChartCard(config, sourceInfo = { name: 'SSB', url: 'https://www.s
             <div class="static-tooltip" id="${config.id}-tooltip"></div>
         </div>
     `;
-    
+
     return card;
 }
 
@@ -757,7 +757,7 @@ function createChartCard(config, sourceInfo = { name: 'SSB', url: 'https://www.s
 function updateHeaderBreadcrumb(subtitle) {
     const appTitle = document.querySelector('.app-title');
     if (!appTitle) return;
-    
+
     if (subtitle) {
         // Show breadcrumb - only Riksdata is clickable/hoverable
         appTitle.innerHTML = `
@@ -776,12 +776,12 @@ function updateHeaderBreadcrumb(subtitle) {
 /**
  * Clear search and go to home (hard refresh)
  */
-window.clearSearchAndGoHome = function() {
+window.clearSearchAndGoHome = function () {
     // Clear hash first to avoid navigation issues
     if (window.location.hash) {
         window.history.replaceState(null, '', window.location.pathname);
     }
-    
+
     // Do a full hard refresh to reset everything
     window.location.reload(true);
 };
@@ -798,9 +798,9 @@ function addDrilldownButton() {
             setTimeout(addDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found bankruptcy chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = bankruptcyCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown"]')) {
@@ -819,12 +819,12 @@ function addDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'bankruptcies';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = bankruptcyCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -836,7 +836,7 @@ function addDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view by industry');
             console.log('✅ Made title clickable!');
         }
-        
+
         console.log('✅ Drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -853,9 +853,9 @@ function addExportsDrilldownButton() {
             setTimeout(addExportsDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found export by country chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = exportCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-exports"]')) {
@@ -874,12 +874,12 @@ function addExportsDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'exports';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to exports!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = exportCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -891,7 +891,7 @@ function addExportsDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view by country');
             console.log('✅ Made export title clickable!');
         }
-        
+
         console.log('✅ Export drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -908,9 +908,9 @@ function addCPIDrilldownButton() {
             setTimeout(addCPIDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found CPI chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = cpiCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-cpi"]')) {
@@ -929,12 +929,12 @@ function addCPIDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'cpi';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to CPI!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = cpiCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -946,7 +946,7 @@ function addCPIDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view CPI variations');
             console.log('✅ Made CPI title clickable!');
         }
-        
+
         console.log('✅ CPI drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -963,9 +963,9 @@ function addPPIDrilldownButton() {
             setTimeout(addPPIDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found PPI chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = ppiCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-ppi"]')) {
@@ -984,12 +984,12 @@ function addPPIDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'ppi';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to PPI!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = ppiCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1001,7 +1001,7 @@ function addPPIDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view PPI variations');
             console.log('✅ Made PPI title clickable!');
         }
-        
+
         console.log('✅ PPI drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1018,9 +1018,9 @@ function addCreditIndicatorDrilldownButton() {
             setTimeout(addCreditIndicatorDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found Credit Indicator chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = creditCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-credit-indicator"]')) {
@@ -1039,12 +1039,12 @@ function addCreditIndicatorDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'creditIndicator';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to Credit Indicator!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = creditCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1056,7 +1056,7 @@ function addCreditIndicatorDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view Credit Indicator variations');
             console.log('✅ Made Credit Indicator title clickable!');
         }
-        
+
         console.log('✅ Credit Indicator drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1073,9 +1073,9 @@ function addImportsDrilldownButton() {
             setTimeout(addImportsDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found import by country chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = importCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-imports"]')) {
@@ -1094,12 +1094,12 @@ function addImportsDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'imports';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to imports!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = importCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1111,7 +1111,7 @@ function addImportsDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view by country');
             console.log('✅ Made import title clickable!');
         }
-        
+
         console.log('✅ Import drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1128,9 +1128,9 @@ function addVaccinationsDrilldownButton() {
             setTimeout(addVaccinationsDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found vaccination chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = vaccinationCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-vaccinations"]')) {
@@ -1149,12 +1149,12 @@ function addVaccinationsDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'vaccinations';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to vaccinations!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = vaccinationCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1166,7 +1166,7 @@ function addVaccinationsDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view all vaccines');
             console.log('✅ Made vaccination title clickable!');
         }
-        
+
         console.log('✅ Vaccination drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1183,9 +1183,9 @@ function addDFODrilldownButton() {
             setTimeout(addDFODrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found DFO total chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = dfoCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-dfo"]')) {
@@ -1204,12 +1204,12 @@ function addDFODrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'dfo';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to DFO!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = dfoCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1221,7 +1221,7 @@ function addDFODrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view by department');
             console.log('✅ Made DFO title clickable!');
         }
-        
+
         console.log('✅ DFO drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1238,9 +1238,9 @@ function addOilFundDrilldownButton() {
             setTimeout(addOilFundDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found Oil Fund total chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = oilFundCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-oilfund"]')) {
@@ -1259,12 +1259,12 @@ function addOilFundDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'oilfund';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to Oil Fund!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = oilFundCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1276,7 +1276,7 @@ function addOilFundDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view by asset class');
             console.log('✅ Made Oil Fund title clickable!');
         }
-        
+
         console.log('✅ Oil Fund drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1287,24 +1287,24 @@ function addOilFundDrilldownButton() {
 function showExchangeRatesView() {
     console.log('💱 Showing exchange rates drill-down view');
     currentView = 'exchangeRates';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Exchange Rates';
     updateHeaderBreadcrumb('Exchange Rates');
-    
+
     // Load all exchange rate charts
     loadExchangeRateCharts();
 }
@@ -1315,13 +1315,17 @@ function showExchangeRatesView() {
 async function loadExchangeRateCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.exchangeRates;
+    if (!configs || !Array.isArray(configs)) {
+        console.warn('⚠️ No exchange rate configurations found');
+        return;
+    }
     console.log(`💱 Loading ${configs.length} exchange rate charts in drill-down view...`);
-    
+
     // Create chart cards for each exchange rate
     for (const config of configs) {
         const chartCard = createChartCard(config, { name: 'Norges Bank', url: 'https://www.norges-bank.no/' });
@@ -1336,7 +1340,7 @@ async function loadExchangeRateCharts() {
             console.error(`Failed to load exchange rate chart ${config.id}:`, error);
         }
     }
-    
+
     console.log('✅ All exchange rate charts loaded successfully!');
 }
 
@@ -1352,9 +1356,9 @@ function addExchangeRatesDrilldownButton() {
             setTimeout(addExchangeRatesDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found exchange rates chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = exchangeRatesCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-exchangeRates"]')) {
@@ -1373,12 +1377,12 @@ function addExchangeRatesDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'exchangeRates';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to exchange rates!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = exchangeRatesCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1390,7 +1394,7 @@ function addExchangeRatesDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view all exchange rates');
             console.log('✅ Made exchange rates title clickable!');
         }
-        
+
         console.log('✅ Exchange rates drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1401,24 +1405,24 @@ function addExchangeRatesDrilldownButton() {
 function showMoneySupplyView() {
     console.log('💰 Showing money supply drill-down view');
     currentView = 'moneySupply';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Money Supply';
     updateHeaderBreadcrumb('Money Supply');
-    
+
     // Load all money supply charts
     loadMoneySupplyCharts();
 }
@@ -1429,13 +1433,17 @@ function showMoneySupplyView() {
 async function loadMoneySupplyCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.moneySupply;
+    if (!configs || !Array.isArray(configs)) {
+        console.warn('⚠️ No money supply configurations found');
+        return;
+    }
     console.log(`💰 Loading ${configs.length} money supply charts in drill-down view...`);
-    
+
     // Create chart cards for each money supply measure
     for (const config of configs) {
         const chartCard = createChartCard(config, { name: 'SSB', url: 'https://www.ssb.no/' });
@@ -1450,7 +1458,7 @@ async function loadMoneySupplyCharts() {
             console.error(`Failed to load money supply chart ${config.id}:`, error);
         }
     }
-    
+
     console.log('✅ All money supply charts loaded successfully!');
 }
 
@@ -1466,9 +1474,9 @@ function addMoneySupplyDrilldownButton() {
             setTimeout(addMoneySupplyDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found money supply chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = moneySupplyCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-moneySupply"]')) {
@@ -1487,12 +1495,12 @@ function addMoneySupplyDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'moneySupply';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to money supply!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = moneySupplyCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1504,7 +1512,7 @@ function addMoneySupplyDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view all money supply measures');
             console.log('✅ Made money supply title clickable!');
         }
-        
+
         console.log('✅ Money supply drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1515,24 +1523,24 @@ function addMoneySupplyDrilldownButton() {
 function showOsloIndicesView() {
     console.log('📈 Showing Oslo indices drill-down view');
     currentView = 'osloIndices';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Oslo Stock Exchange Indices';
     updateHeaderBreadcrumb('Oslo Stock Exchange Indices');
-    
+
     // Load all Oslo indices charts
     loadOsloIndicesCharts();
 }
@@ -1543,13 +1551,17 @@ function showOsloIndicesView() {
 async function loadOsloIndicesCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.osloIndices;
+    if (!configs || !Array.isArray(configs)) {
+        console.warn('⚠️ No Oslo indices configurations found');
+        return;
+    }
     console.log(`📈 Loading ${configs.length} Oslo indices charts in drill-down view...`);
-    
+
     // Create chart cards for each Oslo index
     for (const config of configs) {
         const chartCard = createChartCard(config, { name: 'Oslo Børs', url: 'https://www.oslobors.no/' });
@@ -1564,7 +1576,7 @@ async function loadOsloIndicesCharts() {
             console.error(`Failed to load Oslo index chart ${config.id}:`, error);
         }
     }
-    
+
     console.log('✅ All Oslo indices charts loaded successfully!');
 }
 
@@ -1580,9 +1592,9 @@ function addOsloIndicesDrilldownButton() {
             setTimeout(addOsloIndicesDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found Oslo indices chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = osloIndicesCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-osloIndices"]')) {
@@ -1601,12 +1613,12 @@ function addOsloIndicesDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'osloIndices';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to Oslo indices!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = osloIndicesCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1618,7 +1630,7 @@ function addOsloIndicesDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view all Oslo indices');
             console.log('✅ Made Oslo indices title clickable!');
         }
-        
+
         console.log('✅ Oslo indices drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1629,24 +1641,24 @@ function addOsloIndicesDrilldownButton() {
 function showPopulationView() {
     console.log('👥 Showing population drill-down view');
     currentView = 'population';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Population';
     updateHeaderBreadcrumb('Population');
-    
+
     // Load all population charts
     loadPopulationCharts();
 }
@@ -1657,13 +1669,17 @@ function showPopulationView() {
 async function loadPopulationCharts() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing charts
     chartsContainer.innerHTML = '';
-    
+
     const configs = drilldownConfigs.population;
+    if (!configs || !Array.isArray(configs)) {
+        console.warn('⚠️ No population chart configurations found');
+        return;
+    }
     console.log(`👥 Loading ${configs.length} population charts in drill-down view...`);
-    
+
     // Create chart cards for each population measure
     for (const config of configs) {
         const chartCard = createChartCard(config, { name: 'SSB', url: 'https://www.ssb.no/' });
@@ -1678,7 +1694,7 @@ async function loadPopulationCharts() {
             console.error(`Failed to load population chart ${config.id}:`, error);
         }
     }
-    
+
     console.log('✅ All population charts loaded successfully!');
 }
 
@@ -1694,9 +1710,9 @@ function addPopulationDrilldownButton() {
             setTimeout(addPopulationDrilldownButton, 1000);
             return;
         }
-        
+
         console.log('✅ Found population chart card, adding drill-down features...');
-        
+
         // 1. Add chart-spline icon to chart actions
         const chartActions = populationCard.querySelector('.chart-actions');
         if (chartActions && !chartActions.querySelector('[data-action="drilldown-population"]')) {
@@ -1715,12 +1731,12 @@ function addPopulationDrilldownButton() {
                 e.stopPropagation();
                 window.location.hash = 'population';
             };
-            
+
             // Insert as first button
             chartActions.insertBefore(drilldownBtn, chartActions.firstChild);
             console.log('✅ Added drill-down icon button to population!');
         }
-        
+
         // 2. Make title clickable
         const chartTitle = populationCard.querySelector('.chart-header h3');
         if (chartTitle && !chartTitle.hasAttribute('data-drilldown-enabled')) {
@@ -1732,7 +1748,7 @@ function addPopulationDrilldownButton() {
             chartTitle.setAttribute('title', 'Click to view all population statistics');
             console.log('✅ Made population title clickable!');
         }
-        
+
         console.log('✅ Population drill-down features added successfully!');
     }, 3000); // Wait 3 seconds for charts to load
 }
@@ -1743,27 +1759,27 @@ function addPopulationDrilldownButton() {
 function showPoliticalTimelineView() {
     console.log('🏛️ Showing political timeline drill-down view');
     currentView = 'politicalTimeline';
-    
+
     const mainView = document.getElementById('main-dashboard');
     let drilldownView = document.getElementById('drilldown-view');
-    
+
     // Hide main dashboard
     if (mainView) mainView.style.display = 'none';
-    
+
     // Create drill-down view if it doesn't exist
     if (!drilldownView) {
         drilldownView = createDrilldownView();
     }
-    
+
     drilldownView.style.display = 'block';
-    
+
     // Update page title and header breadcrumb
     document.title = 'Riksdata - Political Timeline';
     updateHeaderBreadcrumb('Political Timeline');
-    
+
     // Scroll to top of page
     window.scrollTo(0, 0);
-    
+
     // Load political timeline
     loadPoliticalTimeline();
 }
@@ -1774,21 +1790,21 @@ function showPoliticalTimelineView() {
 async function loadPoliticalTimeline() {
     const chartsContainer = document.getElementById('drilldown-charts-container');
     if (!chartsContainer) return;
-    
+
     // Clear existing content
     chartsContainer.innerHTML = '';
-    
+
     try {
         // Load political timeline data
         const response = await fetch('./data/static/political-timeline.json?v=' + Date.now());
         if (!response.ok) {
             throw new Error(`Failed to load political timeline: ${response.status}`);
         }
-        
+
         const data = await response.json();
         console.log('🏛️ Loaded political timeline data:', data);
         console.log('🏛️ Total governments found:', data.governments.length);
-        
+
         // Create timeline container
         const timelineContainer = document.createElement('div');
         timelineContainer.className = 'political-timeline-container';
@@ -1800,20 +1816,20 @@ async function loadPoliticalTimeline() {
             max-width: 1400px;
             margin: 0 auto;
         `;
-        
+
         // Create government cards (newest first - reverse chronological)
         const reversedGovernments = data.governments.slice().reverse();
         console.log('🏛️ Creating cards for governments:', reversedGovernments.map(g => g.name));
-        
+
         reversedGovernments.forEach((government, index) => {
             const card = createGovernmentCard(government, data.parties);
             timelineContainer.appendChild(card);
         });
-        
+
         chartsContainer.appendChild(timelineContainer);
-        
+
         console.log('✅ Political timeline loaded successfully!');
-        
+
     } catch (error) {
         console.error('Failed to load political timeline:', error);
         chartsContainer.innerHTML = `
@@ -1836,25 +1852,25 @@ function createGovernmentCard(government, parties) {
         border: 1px solid var(--border);
         border-radius: var(--radius);
         padding: 1rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        transition: all 0.3s ease;
+        box-shadow: none;
+        transition: none;
         position: relative;
         overflow: hidden;
     `;
-    
-    // Add subtle hover effect (shadow only, no movement)
-    card.addEventListener('mouseenter', () => {
-        card.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.15)';
+
+    // Simple active state instead of transition
+    card.addEventListener('mousedown', () => {
+        card.style.background = 'var(--bg-hover)';
     });
-    
-    card.addEventListener('mouseleave', () => {
-        card.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.1)';
+
+    card.addEventListener('mouseup', () => {
+        card.style.background = 'var(--card)';
     });
-    
+
     // Party color accent
     const party = parties[government.party];
     const accentColor = party ? party.color : '#666';
-    
+
     // Create card content with horizontal layout
     card.innerHTML = `
         <div style="height: 100%; display: flex; flex-direction: column;">
@@ -1874,7 +1890,8 @@ function createGovernmentCard(government, parties) {
                 <div style="flex-shrink: 0;">
                     <img src="${government.imageUrl}" 
                          alt="${government.primeMinister}" 
-                         style="width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid ${accentColor}; box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);">
+                         style="width: 80px; height: 100px; object-fit: cover; border-radius: 6px; border: 2px solid ${accentColor}; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);"
+                         loading="lazy">
                 </div>
                 
                 <!-- Party Information - Right Side -->
@@ -1897,8 +1914,8 @@ function createGovernmentCard(government, parties) {
                     <!-- Coalition Partners - Stacked -->
                     ${government.coalition.length > 0 ? `
                         ${government.coalition.map(coalitionParty => {
-                            const coalitionPartyData = parties[coalitionParty];
-                            return `
+        const coalitionPartyData = parties[coalitionParty];
+        return `
                                 <div style="display: flex; align-items: center; gap: 0.4rem; white-space: nowrap;">
                                     <img src="${coalitionPartyData?.logoUrl || ''}" 
                                          alt="${coalitionPartyData?.name || coalitionParty}" 
@@ -1910,13 +1927,13 @@ function createGovernmentCard(government, parties) {
                                     </a>
                                 </div>
                             `;
-                        }).join('')}
+    }).join('')}
                     ` : ''}
                 </div>
             </div>
         </div>
     `;
-    
+
     return card;
 }
 

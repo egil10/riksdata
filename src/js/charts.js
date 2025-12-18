@@ -3,10 +3,10 @@
 // ============================================================================
 
 import { CHART_CONFIG, DATASET_MAPPINGS, API_CONFIG } from './config.js';
-import { 
-    getPoliticalPeriod, 
-    parseTimeLabel, 
-    aggregateDataByMonth, 
+import {
+    getPoliticalPeriod,
+    parseTimeLabel,
+    aggregateDataByMonth,
     showError,
     updateStaticTooltip,
     hideStaticTooltip
@@ -27,7 +27,7 @@ function rel(p) {
 export function initChartWhenVisible(chartId, createChartFn) {
     const el = document.getElementById(chartId);
     if (!el) return;
-    
+
     // Check if IntersectionObserver is supported
     if ('IntersectionObserver' in window) {
         const observer = new IntersectionObserver((entries, obs) => {
@@ -68,47 +68,47 @@ function detectDataScale(data) {
     if (!data || data.length === 0) {
         return { factor: 1, unit: '', unitLabel: '' };
     }
-    
+
     // Find max absolute value in dataset
     const maxValue = Math.max(...data.map(d => Math.abs(d.value || 0)));
-    
+
     // Determine scale based on max value
     // Goal: Keep y-axis values between 1-9999 (max 4 digits)
-    
+
     if (maxValue >= 1e12) {
         // Trillions
-        return { 
-            factor: 1e12, 
-            unit: 'T', 
+        return {
+            factor: 1e12,
+            unit: 'T',
             unitLabel: 'Billioner' // Norwegian for trillions
         };
     } else if (maxValue >= 1e9) {
         // Billions
-        return { 
-            factor: 1e9, 
-            unit: 'B', 
+        return {
+            factor: 1e9,
+            unit: 'B',
             unitLabel: 'Milliarder' // Norwegian for billions
         };
     } else if (maxValue >= 1e6) {
         // Millions
-        return { 
-            factor: 1e6, 
-            unit: 'M', 
+        return {
+            factor: 1e6,
+            unit: 'M',
             unitLabel: 'Millioner' // Norwegian for millions
         };
     } else if (maxValue >= 10000) {
         // Thousands (only if >= 10,000)
-        return { 
-            factor: 1e3, 
-            unit: 'K', 
+        return {
+            factor: 1e3,
+            unit: 'K',
             unitLabel: 'Tusen' // Norwegian for thousands
         };
     } else {
         // No scaling needed - values are already in good range
-        return { 
-            factor: 1, 
-            unit: '', 
-            unitLabel: '' 
+        return {
+            factor: 1,
+            unit: '',
+            unitLabel: ''
         };
     }
 }
@@ -136,7 +136,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // Determine cache file path based on API URL
         let cachePath;
-        
+
         // Check if URL is already a direct cache path (for drill-down charts)
         if (apiUrl.startsWith('./data/cached/') || apiUrl.startsWith('data/cached/')) {
             console.log(`Using direct cache path: ${apiUrl}`);
@@ -148,15 +148,15 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 console.warn(`Could not extract dataset ID from SSB URL: ${apiUrl}`);
                 return null;
             }
-            
+
             const cacheName = DATASET_MAPPINGS.ssb[datasetId];
             if (!cacheName) {
                 console.warn(`No cache mapping found for dataset ID: ${datasetId}`);
                 return null;
             }
-            
+
             cachePath = rel(`${API_CONFIG.CACHE_BASE_PATH}/ssb/${cacheName}.json`);
-            
+
         } else if (apiUrl.includes('norges-bank.no')) {
             // Extract the API endpoint from the URL for mapping
             const urlMatch = apiUrl.match(/\/api\/data\/([^?]+)/);
@@ -191,15 +191,15 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             }
 
             console.log(`Loading Norway chart: ${chartTitle} from ${apiUrl}`);
-            
+
             // Fetch data using the robust pipeline with retry logic
             const data = await fetchWithRetry(apiUrl);
             console.log(`Raw data for ${chartTitle}:`, data);
-            
+
             const { parsedData, sourceInfo } = parseStaticData(data, chartTitle);
             console.log(`Parsed data for ${chartTitle}:`, parsedData);
             console.log(`Source info for ${chartTitle}:`, sourceInfo);
-            
+
             if (!parsedData || parsedData.length === 0) {
                 console.warn(`No data available for ${chartTitle}`);
                 showNoDataState(canvasId);
@@ -211,7 +211,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 const year = new Date(item.date).getFullYear();
                 return year >= 1945;
             });
-            
+
             console.log(`Filtered data for ${chartTitle} (1945 onwards):`, filteredData.length, 'data points');
 
             // Register data for export
@@ -224,7 +224,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
             // Render the chart using the main renderChart function
             renderChart(canvas, filteredData, chartTitle, 'line');
-            
+
             // Check if chart was created successfully by looking at the canvas.chart property
             if (canvas.chart) {
                 console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
@@ -264,7 +264,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 // Render the chart using line chart type
                 console.log(`🎯 About to render vaccination chart: ${chartTitle} with ${parsedData.length} data points`);
                 renderChart(canvas, parsedData, chartTitle, 'line');
-                
+
                 // Check if chart was created successfully
                 if (canvas.chart) {
                     console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
@@ -290,28 +290,28 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             }
 
             console.log(`Loading DFO budget chart: ${chartTitle} from ${apiUrl}`);
-            
+
             // Fetch data using the main pipeline
             const response = await fetch(rel(apiUrl));
             if (!response.ok) {
                 throw new Error(`Failed to load data: ${response.status} ${response.statusText}`);
             }
-            
+
             const data = await response.json();
             console.log(`Raw DFO data for ${chartTitle}:`, data);
-            
+
             const result = parseStaticData(data, chartTitle);
             console.log(`Parse result for ${chartTitle}:`, result);
             const { parsedData, sourceInfo } = result;
             console.log(`Parsed DFO data for ${chartTitle}:`, parsedData);
             console.log(`Number of data points:`, parsedData ? parsedData.length : 0);
-            
+
             if (parsedData && parsedData.length > 0) {
                 console.log(`Sample data point:`, parsedData[0]);
                 console.log(`Date check:`, parsedData[0].date instanceof Date, parsedData[0].date);
                 console.log(`Value check:`, typeof parsedData[0].value, parsedData[0].value);
             }
-            
+
             if (!parsedData || parsedData.length === 0) {
                 console.warn(`No data available for ${chartTitle}`);
                 showNoDataState(canvasId);
@@ -319,7 +319,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             }
 
             // DFO data is from 2014-2024, no need to filter by 1945
-            
+
             // Convert all values to absolute values (positive) for DFO charts
             const absoluteData = parsedData.map(d => ({
                 ...d,
@@ -339,7 +339,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             console.log(`🎯 About to render DFO chart: ${chartTitle} with ${absoluteData.length} data points`);
             console.log(`🎯 Sample DFO data:`, absoluteData.slice(0, 3));
             renderChart(canvas, absoluteData, chartTitle, 'line');
-            
+
             // Check if chart was created successfully
             if (canvas.chart) {
                 console.log(`Successfully rendered ${chartTitle}: ${canvasId}`);
@@ -366,22 +366,22 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // Fetch data from cache file with logging
         console.log(`Loading cached data from: ${cachePath}`);
-        
+
         // Log fetch attempt to debug panel
         const li = document.createElement('li');
         li.textContent = `GET ${cachePath} ...`;
         document.getElementById('fetchStatus')?.appendChild(li);
-        
+
         let response;
         try {
-            response = await fetch(cachePath, { 
+            response = await fetch(cachePath, {
                 cache: 'no-store',
                 headers: {
                     'Accept': 'application/json'
                 }
             });
             li.textContent = `GET ${cachePath} → ${response.status}`;
-            
+
             if (!response.ok) {
                 throw new Error(`Failed to load cached data: ${response.status} ${response.statusText} for ${cachePath}`);
             }
@@ -404,7 +404,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             // Don't throw here, just return null to allow other charts to continue loading
             return null;
         }
-        
+
         // Parse data based on source
         let parsedData;
         let ssbSelectedContentLabel = null;
@@ -500,15 +500,15 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
             console.error(`Failed to parse data for ${chartTitle}:`, error);
             return null;
         }
-        
+
         if (!parsedData || parsedData.length < 1) {
             console.warn(`No data points after parsing for ${chartTitle}`);
             return null;
         }
-        
+
         console.log(`Parsed ${parsedData.length} data points for ${chartTitle}`);
         console.log(`Sample data for ${chartTitle}:`, parsedData.slice(0, 3));
-        
+
         // Filter data from 1945 onwards for all charts
         const filteredData = parsedData.filter(item => {
             const year = new Date(item.date).getFullYear();
@@ -517,18 +517,18 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
 
         // Limit data for charts with too many data points
         let finalFiltered = filteredData;
-        
+
         // Determine if we should limit and what the target should be
         const isHighVolumeChart = (
-            chartTitle.includes('Exchange Rate') || 
-            chartTitle.includes('Valutakurs') || 
+            chartTitle.includes('Exchange Rate') ||
+            chartTitle.includes('Valutakurs') ||
             chartTitle.includes('COVID') ||
             chartTitle.includes('Statnett') ||
             chartTitle.includes('NVE') ||
             chartTitle.includes('Magasin') ||
             chartTitle.includes('Reservoir')
         );
-        
+
         // More aggressive limiting for very large datasets
         let targetPoints = 5000;
         if (filteredData.length > 10000) {
@@ -536,7 +536,7 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         } else if (filteredData.length > 5000) {
             targetPoints = 3000;
         }
-        
+
         const shouldLimit = isHighVolumeChart && filteredData.length > targetPoints;
         if (shouldLimit) {
             console.log(`🎯 Limiting ${chartTitle} data from ${filteredData.length} to ${targetPoints} points`);
@@ -553,27 +553,27 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
         const isMobile = window.innerWidth < 768;
         const optimizedData = optimizeDataForMobile(finalData, isMobile);
 
-            // Optional subtitle from SSB content label (e.g., "(2015=100)")
-    if (ssbSelectedContentLabel) {
-        if (ssbSelectedContentLabel.includes('(')) {
-            const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
-            if (paren && paren[0]) {
-                setChartSubtitle(canvas, paren[0]);
+        // Optional subtitle from SSB content label (e.g., "(2015=100)")
+        if (ssbSelectedContentLabel) {
+            if (ssbSelectedContentLabel.includes('(')) {
+                const paren = ssbSelectedContentLabel.match(/\([^\)]*\)/);
+                if (paren && paren[0]) {
+                    setChartSubtitle(canvas, paren[0]);
+                }
+            } else if (ssbSelectedContentLabel.toLowerCase().includes('confidence indicator')) {
+                // For Business Tendency Survey, show that it's a balance indicator
+                setChartSubtitle(canvas, '(Balance indicator)');
             }
-        } else if (ssbSelectedContentLabel.toLowerCase().includes('confidence indicator')) {
-            // For Business Tendency Survey, show that it's a balance indicator
-            setChartSubtitle(canvas, '(Balance indicator)');
         }
-    }
-    
-    // Special subtitle for bankruptcies
-    if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
-        setChartSubtitle(canvas, '(Total of all types)');
-    }
+
+        // Special subtitle for bankruptcies
+        if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
+            setChartSubtitle(canvas, '(Total of all types)');
+        }
 
         // Render the chart
         renderChart(canvas, optimizedData, chartTitle, chartType);
-        
+
         return true; // Indicate success
 
     } catch (error) {
@@ -620,7 +620,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
         if (dimByName.ContentsCode) {
             const contentLabels = dimByName.ContentsCode.category.label;
             const contentIndices = dimByName.ContentsCode.category.index;
-            
+
             // Special handling for Business Tendency Survey - prefer "Confidence Indicator"
             let preferred;
             if (chartTitle.toLowerCase().includes('business tendency') || chartTitle.toLowerCase().includes('business confidence')) {
@@ -629,7 +629,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                     lbl.toLowerCase().includes('sammensattkonj')
                 );
             }
-            
+
             // Fallback to general preferences
             if (!preferred) {
                 preferred = Object.entries(contentLabels).find(([_, lbl]) =>
@@ -639,7 +639,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                     lbl.toLowerCase().includes('main')
                 );
             }
-            
+
             const key = preferred ? preferred[0] : Object.keys(contentIndices)[0];
             contentsIndex = contentIndices[key] ?? 0;
         }
@@ -650,7 +650,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
             if (!dim?.category?.index) return 0;
             const labels = dim.category.label || {};
             const indices = dim.category.index || {};
-            
+
             // Special handling for trade balance - select the main trade balance category
             if (dimName === 'HovedVareStrommer' && chartTitle.toLowerCase().includes('trade balance')) {
                 // Look for "Hbtot" which is the main trade balance category
@@ -663,7 +663,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                     return indices[tradeBalanceKey];
                 }
             }
-            
+
             // Special handling for household consumption - select the total consumption category
             if (dimName === 'Varer' && chartTitle.toLowerCase().includes('household consumption')) {
                 // Look for "VAREKONSUM" which is the total household consumption
@@ -676,7 +676,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                     return indices[totalConsumptionKey];
                 }
             }
-            
+
             // Prefer labels implying totals/national
             const preferredKey = Object.keys(labels).find(k => {
                 const lbl = (labels[k] + '').toLowerCase();
@@ -731,7 +731,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
         });
 
         dataPoints.sort((a, b) => new Date(a.date) - new Date(b.date));
-        
+
         // Debug logging for trade balance
         if (chartTitle.toLowerCase().includes('trade balance')) {
             console.log(`Trade balance data parsing: Found ${dataPoints.length} data points`);
@@ -740,7 +740,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                 console.log(`Sample values: ${dataPoints.slice(0, 5).map(d => d.value).join(', ')}`);
             }
         }
-        
+
         // Debug logging for household consumption
         if (chartTitle.toLowerCase().includes('household consumption')) {
             console.log(`Household consumption data parsing: Found ${dataPoints.length} data points`);
@@ -749,7 +749,7 @@ function parseSSBDataGeneric(ssbData, chartTitle) {
                 console.log(`Sample values: ${dataPoints.slice(0, 5).map(d => d.value).join(', ')}`);
             }
         }
-        
+
         return dataPoints;
     } catch (error) {
         console.error('Error parsing SSB data:', error);
@@ -829,41 +829,41 @@ function parseOilPriceData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.NaringUtenriks) {
             console.warn('Oil price data: Missing required dimensions');
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const industryLabels = dimension.NaringUtenriks.category.label;
         const industryIndices = dimension.NaringUtenriks.category.index;
-        
+
         // Find the oil and gas extraction category (SNN06_TOT)
-        const oilGasKey = Object.keys(industryLabels).find(key => 
+        const oilGasKey = Object.keys(industryLabels).find(key =>
             industryLabels[key].toLowerCase().includes('extraction of oil and natural gas') ||
             key === 'SNN06_TOT'
         );
-        
+
         if (!oilGasKey) {
             console.warn('Oil price data: Could not find oil and gas extraction category');
             return [];
         }
-        
+
         const oilGasIndex = industryIndices[oilGasKey];
         console.log(`Oil price data: Using category "${industryLabels[oilGasKey]}" (index: ${oilGasIndex})`);
-        
+
         // Calculate the number of industries and markets
         const numIndustries = Object.keys(industryIndices).length;
         const numMarkets = dimension.Marked ? Object.keys(dimension.Marked.category.index).length : 1;
-        
+
         // Use total market (00) if available, otherwise use first market
         let marketIndex = 0;
         if (dimension.Marked) {
             const marketLabels = dimension.Marked.category.label;
             const marketIndices = dimension.Marked.category.index;
-            const totalMarketKey = Object.keys(marketLabels).find(key => 
+            const totalMarketKey = Object.keys(marketLabels).find(key =>
                 marketLabels[key].toLowerCase().includes('total') ||
                 key === '00'
             );
@@ -871,17 +871,17 @@ function parseOilPriceData(ssbData) {
                 marketIndex = marketIndices[totalMarketKey];
             }
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Calculate the value index: time * (industries * markets) + market * industries + industry
             const valueIndex = timeIndexValue * (numIndustries * numMarkets) + marketIndex * numIndustries + oilGasIndex;
-            
+
             if (valueIndex < value.length) {
                 const v = value[valueIndex];
                 if (v !== undefined && v !== null && v !== '..') {
@@ -889,11 +889,11 @@ function parseOilPriceData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         console.log(`Oil price data: Extracted ${dataPoints.length} data points`);
         console.log(`Sample oil price data:`, dataPoints.slice(0, 5));
-        
+
         // Validate data quality
         if (dataPoints.length > 0) {
             const values = dataPoints.map(p => p.value);
@@ -902,7 +902,7 @@ function parseOilPriceData(ssbData) {
             const avg = values.reduce((a, b) => a + b, 0) / values.length;
             console.log(`Oil price data validation: min=${min}, max=${max}, avg=${avg.toFixed(2)}`);
         }
-        
+
         return dataPoints;
     } catch (error) {
         console.error('Error parsing oil price data:', error);
@@ -1003,8 +1003,8 @@ function parseStaticOilFundData(staticData) {
             if (item.year && item.total !== undefined) {
                 // Create date for January 1st of each year
                 const date = new Date(item.year, 0, 1);
-                dataPoints.push({ 
-                    date, 
+                dataPoints.push({
+                    date,
                     value: Number(item.total),
                     // Store all asset classes for potential future use
                     equity: Number(item.equity),
@@ -1018,7 +1018,7 @@ function parseStaticOilFundData(staticData) {
         dataPoints.sort((a, b) => a.date - b.date);
         console.log(`Oil fund data: Extracted ${dataPoints.length} data points`);
         console.log(`Sample oil fund data:`, dataPoints.slice(0, 3));
-        
+
         return dataPoints;
     } catch (error) {
         console.error('Error parsing oil fund data:', error);
@@ -1031,76 +1031,76 @@ export function parseSSBData(ssbData, chartTitle) {
     if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
         return parseBankruptciesData(ssbData);
     }
-    
+
     // Special handling for Credit Indicator C2 - filter for LTOT (Total loan debt) only
     if (chartTitle.toLowerCase().includes('credit indicator c2')) {
         return parseCreditIndicatorC2Data(ssbData);
     }
-    
+
     // Special handling for Housing Starts - use "BoligIgang" (Building permits dwellings)
     if (chartTitle.toLowerCase().includes('housing starts')) {
         return parseHousingStartsData(ssbData);
     }
-    
+
     // Special handling for Job Vacancies - use "LedigeStillinger" (Job vacancies) and filter negative values
     if (chartTitle.toLowerCase().includes('job vacancies')) {
         return parseJobVacanciesData(ssbData);
     }
-    
+
     // Special handling for Oil Price - extract oil and gas extraction data from PPI
     if (chartTitle.toLowerCase().includes('oil price')) {
         return parseOilPriceData(ssbData);
     }
-    
+
     // Special handling for Producer Prices - extract total PPI data from PPI dataset
     if (chartTitle.toLowerCase().includes('producer prices')) {
         return parseProducerPricesData(ssbData);
     }
-    
+
     // Special handling for Oil Fund - parse static data
     if (chartTitle.toLowerCase().includes('oil fund')) {
         return parseStaticOilFundData(ssbData);
     }
-    
+
     // Special handling for Crime Rate - filter for total crimes only
     if (chartTitle.toLowerCase().includes('crime rate')) {
         return parseCrimeRateData(ssbData);
     }
-    
+
     // Special handling for Life Expectancy - filter for both sexes, age 0
     if (chartTitle.toLowerCase().includes('life expectancy')) {
         return parseLifeExpectancyData(ssbData);
     }
-    
+
     // Special handling for Living Arrangements National - filter for total
     if (chartTitle.toLowerCase().includes('living arrangements national')) {
         return parseLivingArrangementsData(ssbData);
     }
-    
+
     // Special handling for Trade Balance - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('trade balance')) {
         const tradeBalanceData = parseSSBDataGeneric(ssbData, chartTitle) || [];
         return tradeBalanceData;
     }
-    
+
     // Special handling for GDP Growth - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('gdp growth')) {
         const gdpData = parseSSBDataGeneric(ssbData, chartTitle) || [];
         return gdpData;
     }
-    
+
     // Special handling for Housing Starts - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('housing starts')) {
         const housingData = parseSSBDataGeneric(ssbData, chartTitle) || [];
         return housingData;
     }
-    
+
     // Special handling for Job Vacancies - use generic parsing with automatic content selection
     if (chartTitle.toLowerCase().includes('job vacancies')) {
         const jobVacancyData = parseSSBDataGeneric(ssbData, chartTitle) || [];
         return jobVacancyData;
     }
-    
+
     // Default: try generic parsing first, then legacy if needed
     const generic = parseSSBDataGeneric(ssbData, chartTitle) || [];
     const sufficient = generic.length >= 3 && new Set(generic.map(p => p.value)).size > 1;
@@ -1117,27 +1117,27 @@ function parseBankruptciesData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.ContentsCode) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const contentIndices = dimension.ContentsCode.category.index;
         const numContentTypes = Object.keys(contentIndices).length;
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Sum all bankruptcy types for this time period
             let totalBankruptcies = 0;
             let hasValidData = false;
-            
+
             for (let i = 0; i < numContentTypes; i++) {
                 const valueIndex = timeIndexValue * numContentTypes + i;
                 if (valueIndex < value.length) {
@@ -1148,12 +1148,12 @@ function parseBankruptciesData(ssbData) {
                     }
                 }
             }
-            
+
             if (hasValidData) {
                 dataPoints.push({ date, value: totalBankruptcies });
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -1170,39 +1170,39 @@ function parseCreditIndicatorC2Data(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.Kredittkilde || !dimension.ContentsCode) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const creditSourceIndices = dimension.Kredittkilde.category.index;
         const contentIndices = dimension.ContentsCode.category.index;
         const numCreditSources = Object.keys(creditSourceIndices).length;
         const numContentTypes = Object.keys(contentIndices).length;
-        
+
         // Find the index for LTOT (Total loan debt) and Bruttogjeld (stock value)
         const ltotIndex = creditSourceIndices['LTOT'];
         const bruttogjeldIndex = contentIndices['Bruttogjeld'];
-        
+
         if (ltotIndex === undefined) {
             console.error('LTOT category not found in Credit Indicator data');
             return [];
         }
-        
+
         if (bruttogjeldIndex === undefined) {
             console.error('Bruttogjeld category not found in Credit Indicator data');
             return [];
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Get the value for LTOT category and Bruttogjeld content type only
             const valueIndex = (timeIndexValue * numCreditSources + ltotIndex) * numContentTypes + bruttogjeldIndex;
             if (valueIndex < value.length) {
@@ -1212,7 +1212,7 @@ function parseCreditIndicatorC2Data(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -1229,41 +1229,41 @@ function parseGDPGrowthData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.ContentsCode || !dimension.Makrost) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const contentIndices = dimension.ContentsCode.category.index;
         const macroIndices = dimension.Makrost.category.index;
         const numContentTypes = Object.keys(contentIndices).length;
         const numMacroTypes = Object.keys(macroIndices).length;
-        
+
         // Find the index for GDP growth rate (VolumEndrSesJust - quarter-over-quarter change)
         const gdpGrowthIndex = contentIndices['VolumEndrSesJust'];
-        
+
         if (gdpGrowthIndex === undefined) {
             console.error('VolumEndrSesJust category not found in GDP data');
             return [];
         }
-        
+
         // Find the index for Mainland Norway GDP (bnpb.nr23_9fn - Gross domestic product Mainland Norway, market values)
         const totalGDPIndex = macroIndices['bnpb.nr23_9fn'];
-        
+
         if (totalGDPIndex === undefined) {
             console.error('bnpb.nr23_9fn category not found in GDP data');
             return [];
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Get the value for total GDP and quarterly growth rate
             const valueIndex = (timeIndexValue * numMacroTypes + totalGDPIndex) * numContentTypes + gdpGrowthIndex;
             if (valueIndex < value.length) {
@@ -1273,7 +1273,7 @@ function parseGDPGrowthData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -1290,30 +1290,30 @@ function parseHousingStartsData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.ContentsCode) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const contentIndices = dimension.ContentsCode.category.index;
-        
+
         // Find the index for "BoligIgang" (Building permits dwellings)
         const boligIgangIndex = contentIndices['BoligIgang'];
-        
+
         if (boligIgangIndex === undefined) {
             console.error('BoligIgang category not found in Housing Starts data');
             return [];
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Get the value for BoligIgang (Building permits dwellings)
             const valueIndex = timeIndexValue * Object.keys(contentIndices).length + boligIgangIndex;
             if (valueIndex < value.length) {
@@ -1323,7 +1323,7 @@ function parseHousingStartsData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -1340,42 +1340,42 @@ function parseJobVacanciesData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.ContentsCode || !dimension.NACE2007) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const contentIndices = dimension.ContentsCode.category.index;
         const industryIndices = dimension.NACE2007.category.index;
-        
+
         // Find the index for "LedigeStillinger" (Job vacancies)
         const ledigeStillingerIndex = contentIndices['LedigeStillinger'];
-        
+
         if (ledigeStillingerIndex === undefined) {
             console.error('LedigeStillinger category not found in Job Vacancies data');
             return [];
         }
-        
+
         // Find the index for "All industries" (01-96)
         const allIndustriesIndex = industryIndices['01-96'];
-        
+
         if (allIndustriesIndex === undefined) {
             console.error('All industries category not found in Job Vacancies data');
             return [];
         }
-        
+
         const numIndustries = Object.keys(industryIndices).length;
         const numContentTypes = Object.keys(contentIndices).length;
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Get the value for All industries and LedigeStillinger content type
             const valueIndex = (timeIndexValue * numIndustries + allIndustriesIndex) * numContentTypes + ledigeStillingerIndex;
             if (valueIndex < value.length) {
@@ -1385,7 +1385,7 @@ function parseJobVacanciesData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -1428,7 +1428,7 @@ function setChartSubtitle(canvas, text) {
         if (subtitle && !subtitle.textContent) {
             subtitle.textContent = text;
         }
-    } catch(_) {}
+    } catch (_) { }
 }
 
 /**
@@ -1443,12 +1443,12 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
         // Handle both cached files (structure at root) and API responses (structure in data.data)
         const structure = data.structure || data.data?.structure;
         const dataSets = data.data?.dataSets || data.dataSets;
-        
+
         if (!structure || !dataSets || !dataSets[0]) {
             console.error('Missing structure or dataSets in exchange rate data');
             return [];
         }
-        
+
         const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
         const timeValues = timeDim?.values || [];
         const seriesMap = dataSets[0].series;
@@ -1465,7 +1465,7 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
 
         const allPoints = [];
         const monthlyData = new Map(); // Group by year-month to get last value of each month
-        
+
         seriesKeys.forEach(sk => {
             const observations = seriesMap[sk].observations;
             Object.keys(observations).forEach(obsIdxStr => {
@@ -1477,7 +1477,7 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
                     const [y, m, d] = timeId.split('-');
                     const yearMonth = `${y}-${m}`;
                     const date = new Date(parseInt(y, 10), parseInt(m, 10) - 1, parseInt(d || 1, 10));
-                    
+
                     // Keep only the last value for each month (latest date wins)
                     if (!monthlyData.has(yearMonth) || date > monthlyData.get(yearMonth).date) {
                         monthlyData.set(yearMonth, { date, value: parseFloat(val) });
@@ -1485,7 +1485,7 @@ export function parseExchangeRateData(data, preferredBaseCurrency = null) {
                 }
             });
         });
-        
+
         // Convert to array
         monthlyData.forEach(point => allPoints.push(point));
 
@@ -1508,12 +1508,12 @@ export function parseInterestRateData(data) {
         const dataSet = data.data.dataSets[0];
         const series = dataSet.series;
         const points = [];
-        
+
         // Get time dimension from structure
         const structure = data.data.structure;
         const timeDim = structure.dimensions.observation.find(d => d.id === 'TIME_PERIOD');
         const timeValues = timeDim?.values || [];
-        
+
         // Extract data from series
         Object.keys(series).forEach(seriesKey => {
             const observations = series[seriesKey].observations;
@@ -1528,16 +1528,16 @@ export function parseInterestRateData(data) {
                         const [year, month] = timeId.split('-');
                         if (year && month) {
                             const date = new Date(parseInt(year, 10), parseInt(month, 10) - 1, 1);
-                            points.push({ 
-                                date: date, 
-                                value: Number(value) 
+                            points.push({
+                                date: date,
+                                value: Number(value)
                             });
                         }
                     }
                 }
             });
         });
-        
+
         return points.sort((a, b) => new Date(a.date) - new Date(b.date));
 
     } catch (error) {
@@ -1558,14 +1558,14 @@ export function parseGovernmentDebtData(data) {
         const series = dataSet.series;
         const structure = data.data.structure;
         const points = [];
-        
+
         // Get time dimension from structure
         const timeDimension = structure?.dimensions?.observation?.find(d => d.id === 'TIME_PERIOD');
         if (!timeDimension || !timeDimension.values) {
             console.error('Time dimension not found in government debt data');
             return [];
         }
-        
+
         // Create time mapping: index -> date
         const timeMapping = {};
         timeDimension.values.forEach((timeValue, index) => {
@@ -1576,7 +1576,7 @@ export function parseGovernmentDebtData(data) {
                 timeMapping[index] = date;
             }
         });
-        
+
         // Get unit multiplier from attributes
         let unitMultiplier = 1;
         if (structure?.attributes?.series) {
@@ -1586,35 +1586,35 @@ export function parseGovernmentDebtData(data) {
                 unitMultiplier = Math.pow(10, parseInt(unitMultAttr.values[0].id));
             }
         }
-        
+
         console.log(`Government debt unit multiplier: ${unitMultiplier} (${unitMultiplier === 1000000 ? 'millions' : unitMultiplier === 1000000000 ? 'billions' : 'units'})`);
-        
+
         // Parse series data
         Object.keys(series).forEach(seriesKey => {
             const observations = series[seriesKey].observations;
-            
+
             Object.keys(observations).forEach(timeIndex => {
                 const value = observations[timeIndex][0];
                 if (value !== null && value !== undefined) {
                     const numValue = Number(value) * unitMultiplier;
-                    
+
                     // Get the date from mapping
                     const date = timeMapping[parseInt(timeIndex)];
                     if (date && !isNaN(numValue)) {
-                        points.push({ 
-                            date: date, 
-                            value: numValue 
+                        points.push({
+                            date: date,
+                            value: numValue
                         });
                     }
                 }
             });
         });
-        
+
         // Sort by date and remove duplicates
         const sortedPoints = points.sort((a, b) => a.date - b.date);
         const uniquePoints = [];
         const seenDates = new Set();
-        
+
         sortedPoints.forEach(point => {
             const dateKey = point.date.toISOString().split('T')[0];
             if (!seenDates.has(dateKey)) {
@@ -1622,13 +1622,13 @@ export function parseGovernmentDebtData(data) {
                 uniquePoints.push(point);
             }
         });
-        
+
         console.log(`Government debt data: Extracted ${uniquePoints.length} unique data points`);
         if (uniquePoints.length > 0) {
             console.log(`Date range: ${uniquePoints[0].date.toISOString().split('T')[0]} to ${uniquePoints[uniquePoints.length - 1].date.toISOString().split('T')[0]}`);
             console.log(`Sample values: ${uniquePoints.slice(0, 5).map(p => (p.value / 1000000000).toFixed(1) + 'B').join(', ')}`);
         }
-        
+
         return uniquePoints;
 
     } catch (error) {
@@ -1647,7 +1647,7 @@ export function parseGovernmentDebtData(data) {
 export function createPoliticalDatasets(data, title, chartType = 'line') {
     const datasets = [];
     const periods = {};
-    
+
     // Group data by political period
     data.forEach(item => {
         const period = getPoliticalPeriod(item.date);
@@ -1668,7 +1668,7 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
             });
         }
     });
-    
+
     // Convert to array and sort by start date to paint continuous segments without gaps
     const periodDatasets = Object.values(periods).map(ds => {
         ds.data.sort((a, b) => new Date(a.x) - new Date(b.x));
@@ -1676,7 +1676,7 @@ export function createPoliticalDatasets(data, title, chartType = 'line') {
     });
     periodDatasets.sort((a, b) => new Date(a.data[0]?.x || 0) - new Date(b.data[0]?.x || 0));
     periodDatasets.forEach(ds => datasets.push(ds));
-    
+
     return datasets;
 }
 
@@ -1696,14 +1696,14 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         showError('Chart.js library not loaded', canvas);
         return;
     }
-    
+
     // Clear any existing chart - use Chart.js built-in method
     const existingChart = Chart.getChart(canvas);
     if (existingChart) {
         console.log(`Destroying existing chart for ${title}`);
         existingChart.destroy();
     }
-    
+
     // Also clear the canvas.chart reference if it exists
     if (canvas.chart) {
         try {
@@ -1719,59 +1719,60 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     const gridColor = getComputedStyle(document.documentElement).getPropertyValue('--grid').trim();
     const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
 
-                    let chartData;
-                if (chartType === 'line') {
-                    // Single dataset with segment coloring for seamless line without gaps
-                    // Filter out any invalid data points
-                    const validData = data
-                        .filter(item => {
-                            if (!item || !item.date || item.value === undefined || item.value === null) {
-                                return false;
-                            }
-                            // Check if date is a valid Date object
-                            if (!(item.date instanceof Date) || isNaN(item.date.getTime())) {
-                                return false;
-                            }
-                            // Check if value is a valid number
-                            if (!Number.isFinite(item.value)) {
-                                return false;
-                            }
-                            return true;
-                        })
-                        .map(item => ({ x: item.date, y: item.value }));
-                    
-                    chartData = {
-                        labels: validData.map(item => item.x),
-                        datasets: [
-                            {
-                                label: title,
-                                data: validData,
-                                borderWidth: 2,
-                                borderColor: '#3b82f6',
-                                fill: false,
-                                spanGaps: false,
-                                segment: {
-                                    borderColor: (ctx) => {
-                                        const xVal = ctx.p0?.parsed?.x;
-                                        const period = xVal ? getPoliticalPeriod(new Date(xVal)) : null;
-                                        return period?.color || '#3b82f6';
-                                    }
-                                }
-                            }
-                        ]
-                    };
-                    console.log(`Chart data for ${title}:`, {
-                        labels: chartData.labels.length,
-                        dataPoints: chartData.datasets[0].data.length,
-                        sampleData: chartData.datasets[0].data.slice(0, 3),
-                        validationInfo: `Filtered ${data.length - validData.length} invalid points`,
-                        firstDate: chartData.datasets[0].data[0]?.x,
-                        isDateObject: chartData.datasets[0].data[0]?.x instanceof Date
-                    });
+    let chartData;
+    if (chartType === 'line') {
+        // Single dataset with segment coloring for seamless line without gaps
+        // Filter out any invalid data points
+        const validData = data
+            .filter(item => {
+                if (!item || !item.date || item.value === undefined || item.value === null) {
+                    return false;
+                }
+                // Check if date is a valid Date object
+                if (!(item.date instanceof Date) || isNaN(item.date.getTime())) {
+                    return false;
+                }
+                // Check if value is a valid number
+                if (!Number.isFinite(item.value)) {
+                    return false;
+                }
+                return true;
+            })
+            .map(item => ({ x: item.date, y: item.value }));
+
+        chartData = {
+            labels: validData.map(item => item.x),
+            datasets: [
+                {
+                    label: title,
+                    data: validData,
+                    borderWidth: 2,
+                    borderColor: '#3b82f6',
+                    fill: false,
+                    spanGaps: false,
+                    segment: {
+                        borderColor: (ctx) => {
+                            if (!ctx || !ctx.p0 || !ctx.p0.parsed) return '#3b82f6';
+                            const xVal = ctx.p0.parsed.x;
+                            const period = xVal ? getPoliticalPeriod(new Date(xVal)) : null;
+                            return period?.color || '#3b82f6';
+                        }
+                    }
+                }
+            ]
+        };
+        console.log(`Chart data for ${title}:`, {
+            labels: chartData.labels.length,
+            dataPoints: chartData.datasets[0].data.length,
+            sampleData: chartData.datasets[0].data.slice(0, 3),
+            validationInfo: `Filtered ${data.length - validData.length} invalid points`,
+            firstDate: chartData.datasets[0].data[0]?.x,
+            isDateObject: chartData.datasets[0].data[0]?.x instanceof Date
+        });
     } else {
         // Bar charts: color each bar individually by political party
         // chartData already declared above
-        
+
         // Special styling for Housing Starts chart
         if (title === 'Housing Starts') {
             chartData = {
@@ -1839,7 +1840,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 ]
             };
         }
-        
+
         console.log(`Bar chart data for ${title}:`, {
             labels: chartData.labels.length,
             dataPoints: chartData.datasets[0].data.length,
@@ -1850,7 +1851,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     // Detect scale and normalize data for cleaner y-axis
     const dataScale = detectDataScale(data);
     console.log(`🎯 Detected scale for ${title}:`, dataScale);
-    
+
     // Normalize data if scale is detected
     if (dataScale.factor > 1) {
         // Normalize the data
@@ -1858,7 +1859,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             ...item,
             value: item.value / dataScale.factor
         }));
-        
+
         // Update chart data with normalized values
         if (chartType === 'line') {
             chartData.datasets[0].data = normalizedData.map(item => ({
@@ -1872,7 +1873,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 y: item.value
             }));
         }
-        
+
         // Update subtitle to include scale
         const subtitleEl = canvas.closest('.chart-card')?.querySelector('.chart-subtitle');
         if (subtitleEl && dataScale.unitLabel) {
@@ -1882,10 +1883,10 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 subtitleEl.textContent = `${dataScale.unitLabel} • ${currentSubtitle}`;
             }
         }
-        
+
         console.log(`✅ Normalized ${title} by ${dataScale.factor} (${dataScale.unit})`);
     }
-    
+
     // Create chart options with theme-aware colors
     let chartOptions = {
         ...CHART_CONFIG,
@@ -1908,7 +1909,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ...CHART_CONFIG.scales?.y?.ticks,
                     color: textMuted,
                     // Override callback to just show plain numbers (no B/M/K)
-                    callback: dataScale.factor > 1 ? function(value) {
+                    callback: dataScale.factor > 1 ? function (value) {
                         // For scaled data, show plain numbers with appropriate decimals
                         if (Math.abs(value) >= 1000) {
                             return value.toFixed(0);
@@ -1930,7 +1931,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             }
         }
     };
-    
+
     // Special options for NVE Reservoir charts
     if (title.includes('NVE') && title.includes('Reservoir')) {
         console.log(`🎯 NVE RESERVOIR CHART OPTIONS APPLIED for: ${title}`);
@@ -1942,7 +1943,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ...CHART_CONFIG.plugins?.tooltip,
                     enabled: true,
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             return `Fill: ${context.parsed.y.toFixed(2)}%`;
                         }
                     }
@@ -1970,7 +1971,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     max: 100,
                     ticks: {
                         ...chartOptions.scales.y.ticks,
-                        callback: function(value) {
+                        callback: function (value) {
                             return value + '%';
                         }
                     }
@@ -1978,10 +1979,10 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             }
         };
     }
-    
+
     // Special options for Government Debt chart - uses default smart formatting now
     // (removed custom callback - default smart formatting handles it better)
-    
+
     if (title === 'Housing Starts' && chartType === 'bar') {
         chartOptions = {
             ...chartOptions,
@@ -1990,7 +1991,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 tooltip: {
                     ...CHART_CONFIG.plugins?.tooltip,
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} dwellings`;
                         }
                     }
@@ -2016,7 +2017,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 tooltip: {
                     ...CHART_CONFIG.plugins?.tooltip,
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} positions`;
                         }
                     }
@@ -2044,7 +2045,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ...CHART_CONFIG.plugins?.tooltip,
                     enabled: true,
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             const valueInBillions = context.parsed.y / 1000000000;
                             return `${valueInBillions.toFixed(2)} billion NOK`;
                         }
@@ -2065,7 +2066,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ticks: {
                         ...chartOptions.scales.x.ticks,
                         maxTicksLimit: 12,
-                        callback: function(value, index, values) {
+                        callback: function (value, index, values) {
                             const date = new Date(value);
                             return date.getFullYear().toString();
                         }
@@ -2076,10 +2077,10 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     beginAtZero: false,  // Let Chart.js auto-scale for better visualization
                     ticks: {
                         ...chartOptions.scales.y.ticks,
-                        callback: function(value) {
+                        callback: function (value) {
                             // Smart number formatting - max 4 digits with unit suffixes
                             const absValue = Math.abs(value);
-                            
+
                             if (absValue >= 1e12) {
                                 return (value / 1e12).toFixed(absValue >= 1e13 ? 0 : 1) + 'T';
                             } else if (absValue >= 1e9) {
@@ -2109,7 +2110,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 tooltip: {
                     ...CHART_CONFIG.plugins?.tooltip,
                     callbacks: {
-                        label: function(context) {
+                        label: function (context) {
                             return `${context.dataset.label}: ${context.parsed.y.toLocaleString()}`;
                         }
                     }
@@ -2127,7 +2128,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
             }
         };
     }
-    
+
     // Skip work when a dataset is missing
     if (!data || data.length === 0) {
         console.warn(`No data available for chart: ${title}`);
@@ -2135,7 +2136,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         showNoDataState(canvas.id);
         return;
     }
-    
+
     // Create the chart
     console.log(`Creating Chart.js instance for ${title}...`);
     console.log(`Chart type: ${chartType}`);
@@ -2150,7 +2151,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         console.log(`Chart created successfully for ${title}`);
         console.log(`Canvas dimensions: ${canvas.width} x ${canvas.height}`);
         console.log(`Chart instance:`, canvas.chart);
-        
+
         // Register chart data for download/copy functionality
         const chartCard = canvas.closest('.chart-card');
         if (chartCard) {
@@ -2202,7 +2203,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
         if (canvas.chart) {
             canvas.chart.update();
             console.log(`Chart updated for ${title}`);
-            
+
 
         }
     }, 100);
@@ -2210,11 +2211,11 @@ export function renderChart(canvas, data, title, chartType = 'line') {
     // Add static tooltip functionality
     const tooltipId = canvas.id.replace('-chart', '-tooltip');
     const tooltipElement = document.getElementById(tooltipId);
-    
+
     if (tooltipElement) {
         // Add throttled mouse move event listener to canvas for better performance
         let tooltipTimeout;
-        canvas.addEventListener('mousemove', function(event) {
+        canvas.addEventListener('mousemove', function (event) {
             // Throttle tooltip updates to improve performance
             clearTimeout(tooltipTimeout);
             tooltipTimeout = setTimeout(() => {
@@ -2226,9 +2227,9 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                 }
             }, 16); // ~60fps throttling
         });
-        
+
         // Hide tooltip when mouse leaves canvas
-        canvas.addEventListener('mouseleave', function() {
+        canvas.addEventListener('mouseleave', function () {
             clearTimeout(tooltipTimeout);
             hideStaticTooltip(tooltipId);
         });
@@ -2263,11 +2264,11 @@ export function parseNVEReservoirData(data) {
         const parsedData = rows
             .map(item => {
                 if (!item.year || !item.week || item.fillPct === undefined) return null;
-                
+
                 // Convert ISO week to date (Monday of that week)
                 const date = isoWeekToDate(item.year, item.week);
                 const value = Number(item.fillPct);
-                
+
                 return { date, value };
             })
             .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
@@ -2302,11 +2303,11 @@ export function parseSSBExportCountryData(data) {
         const parsedData = rows
             .map(item => {
                 if (!item.year || item.value === undefined || item.value === null) return null;
-                
+
                 // Convert year to Date (January 1st of that year)
                 const date = new Date(item.year, 0, 1);
                 const value = Number(item.value);
-                
+
                 return { date, value };
             })
             .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value) && d.value > 0)
@@ -2340,19 +2341,19 @@ export function parseSSBBankruptciesData(data) {
         const parsedData = rows
             .map(item => {
                 if (!item.period || item.value === undefined || item.value === null) return null;
-                
+
                 // Parse period format: "YYYYKQ" where K is "Kvartal" and Q is quarter number (1-4)
                 const match = item.period.match(/^(\d{4})K(\d)$/);
                 if (!match) return null;
-                
+
                 const year = parseInt(match[1]);
                 const quarter = parseInt(match[2]);
-                
+
                 // Convert quarter to month (Q1=Jan, Q2=Apr, Q3=Jul, Q4=Oct)
                 const month = (quarter - 1) * 3;
                 const date = new Date(year, month, 1);
                 const value = Number(item.value);
-                
+
                 return { date, value };
             })
             .filter(d => d && d.date instanceof Date && !isNaN(d.date) && Number.isFinite(d.value))
@@ -2506,7 +2507,7 @@ export function parseOsloIndicesData(data, chartTitle) {
 export function parseVaccinationCoverageData(data) {
     try {
         console.log('Parsing vaccination coverage data:', data);
-        
+
         if (!data.data || !Array.isArray(data.data)) {
             console.error('Invalid vaccination data structure - missing data array');
             return [];
@@ -2514,7 +2515,7 @@ export function parseVaccinationCoverageData(data) {
 
         // Group data by antigen (vaccine type) and filter out missing values
         const antigenData = {};
-        
+
         data.data.forEach(item => {
             if (item.value !== null && item.value !== undefined && item.Year && item.antigen) {
                 if (!antigenData[item.antigen]) {
@@ -2532,7 +2533,7 @@ export function parseVaccinationCoverageData(data) {
         // Choose the most complete antigen dataset (the one with the most data points)
         let bestAntigen = null;
         let maxDataPoints = 0;
-        
+
         Object.keys(antigenData).forEach(antigen => {
             const dataPoints = antigenData[antigen].length;
             if (dataPoints > maxDataPoints) {
@@ -2575,51 +2576,51 @@ function parseCrimeRateData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.LovbruddKrim || !dimension.Gjerningssted) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const crimeTypeLabels = dimension.LovbruddKrim.category.label;
         const crimeTypeIndex = dimension.LovbruddKrim.category.index;
         const sceneLabels = dimension.Gjerningssted.category.label;
         const sceneIndex = dimension.Gjerningssted.category.index;
-        
+
         // Find the index for "All groups of offences" and "Total" scene
         let totalCrimeIndex = null;
         let totalSceneIndex = null;
-        
+
         Object.keys(crimeTypeLabels).forEach(key => {
             if (crimeTypeLabels[key].includes('All groups of offences')) {
                 totalCrimeIndex = crimeTypeIndex[key];
             }
         });
-        
+
         Object.keys(sceneLabels).forEach(key => {
             if (sceneLabels[key].includes('Total')) {
                 totalSceneIndex = sceneIndex[key];
             }
         });
-        
+
         if (totalCrimeIndex === null || totalSceneIndex === null) {
             console.warn('Could not find required categories in crime rate data');
             return [];
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Calculate value index: time * scenes * crimes + scene * crimes + crime
             const numScenes = Object.keys(sceneIndex).length;
             const numCrimes = Object.keys(crimeTypeIndex).length;
             const valueIndex = timeIndexValue * numScenes * numCrimes + totalSceneIndex * numCrimes + totalCrimeIndex;
-            
+
             if (valueIndex < value.length) {
                 const v = value[valueIndex];
                 if (v !== undefined && v !== null) {
@@ -2627,7 +2628,7 @@ function parseCrimeRateData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -2644,51 +2645,51 @@ function parseLifeExpectancyData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.Kjonn || !dimension.AlderX) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const sexLabels = dimension.Kjonn.category.label;
         const sexIndex = dimension.Kjonn.category.index;
         const ageLabels = dimension.AlderX.category.label;
         const ageIndex = dimension.AlderX.category.index;
-        
+
         // Find the index for "Both sexes" and age "000" (0 years)
         let bothSexesIndex = null;
         let ageZeroIndex = null;
-        
+
         Object.keys(sexLabels).forEach(key => {
             if (sexLabels[key].includes('Both sexes')) {
                 bothSexesIndex = sexIndex[key];
             }
         });
-        
+
         Object.keys(ageLabels).forEach(key => {
             if (ageLabels[key] === '000') {
                 ageZeroIndex = ageIndex[key];
             }
         });
-        
+
         if (bothSexesIndex === null || ageZeroIndex === null) {
             console.warn('Could not find "Both sexes" or age "000" in life expectancy data');
             return [];
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Calculate the value index based on the dimensions
             const numSexes = Object.keys(sexIndex).length;
             const numAges = Object.keys(ageIndex).length;
             const valueIndex = timeIndexValue * numSexes * numAges + bothSexesIndex * numAges + ageZeroIndex;
-            
+
             if (valueIndex < value.length) {
                 const v = value[valueIndex];
                 if (v !== undefined && v !== null) {
@@ -2696,7 +2697,7 @@ function parseLifeExpectancyData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -2713,51 +2714,51 @@ function parseLivingArrangementsData(ssbData) {
         const dataset = ssbData.dataset;
         const dimension = dataset.dimension;
         const value = dataset.value;
-        
+
         if (!dimension || !dimension.Tid || !dimension.Samlivsform || !dimension.Region) {
             return [];
         }
-        
+
         const timeLabels = dimension.Tid.category.label;
         const timeIndex = dimension.Tid.category.index;
         const arrangementLabels = dimension.Samlivsform.category.label;
         const arrangementIndex = dimension.Samlivsform.category.index;
         const regionLabels = dimension.Region.category.label;
         const regionIndex = dimension.Region.category.index;
-        
+
         // Find the index for "In couples, married" and "The whole country"
         let marriedIndex = null;
         let countryIndex = null;
-        
+
         Object.keys(arrangementLabels).forEach(key => {
             if (arrangementLabels[key].includes('married')) {
                 marriedIndex = arrangementIndex[key];
             }
         });
-        
+
         Object.keys(regionLabels).forEach(key => {
             if (regionLabels[key].includes('whole country')) {
                 countryIndex = regionIndex[key];
             }
         });
-        
+
         if (marriedIndex === null || countryIndex === null) {
             console.warn('Could not find required categories in living arrangements data');
             return [];
         }
-        
+
         const dataPoints = [];
         Object.keys(timeLabels).forEach(timeKey => {
             const timeLabel = timeLabels[timeKey];
             const timeIndexValue = timeIndex[timeKey];
             const date = parseTimeLabel(timeLabel);
             if (!date) return;
-            
+
             // Calculate value index: time * regions * arrangements + region * arrangements + arrangement
             const numRegions = Object.keys(regionIndex).length;
             const numArrangements = Object.keys(arrangementIndex).length;
             const valueIndex = timeIndexValue * numRegions * numArrangements + countryIndex * numArrangements + marriedIndex;
-            
+
             if (valueIndex < value.length) {
                 const v = value[valueIndex];
                 if (v !== undefined && v !== null) {
@@ -2765,7 +2766,7 @@ function parseLivingArrangementsData(ssbData) {
                 }
             }
         });
-        
+
         dataPoints.sort((a, b) => a.date - b.date);
         return dataPoints;
     } catch (error) {
@@ -2794,7 +2795,7 @@ function hideSkeleton(chartId) {
 function showNoDataState(chartId) {
     const canvas = document.getElementById(chartId);
     if (!canvas) return;
-    
+
     const chartContainer = canvas.closest('.chart-container');
     if (chartContainer) {
         // Create a no data message
@@ -2810,7 +2811,7 @@ function showNoDataState(chartId) {
             padding: 1rem;
         `;
         noDataDiv.textContent = 'No data available';
-        
+
         // Clear the container and add the message
         chartContainer.innerHTML = '';
         chartContainer.appendChild(noDataDiv);
@@ -2828,35 +2829,35 @@ function showNoDataState(chartId) {
 async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
     try {
         console.log(`Loading NVE chart: ${canvasId} - ${chartTitle}`);
-        
+
         // Extract area and metric from URL (e.g., nve://magasins/norge/fillPct -> norge, fillPct)
         const urlMatch = apiUrl.match(/nve:\/\/magasins\/([^\/]+)(?:\/(.+))?/);
         if (!urlMatch) {
             console.warn(`Invalid NVE URL format: ${apiUrl}`);
             return null;
         }
-        
+
         let area = urlMatch[1].toUpperCase();
         if (area === 'NORGE') {
             area = 'Norge'; // Special case for Norway
         }
-        
+
         const metric = urlMatch[2] || 'fillPct'; // Default to fillPct if not specified
-        
+
         // Load the cached NVE data
         const response = await fetch('./data/cached/nve/all-series.json');
         if (!response.ok) {
             throw new Error(`Failed to load NVE data: ${response.status} ${response.statusText}`);
         }
-        
+
         const data = await response.json();
         console.log(`Loaded NVE data for ${area}:`, data.data ? data.data.length : 'No data');
-        
+
         if (!data.data || !Array.isArray(data.data)) {
             console.warn('Invalid NVE data format');
             return null;
         }
-        
+
         // Filter data for the specified area and metric
         const filteredData = data.data
             .filter(item => item.area === area)
@@ -2868,15 +2869,15 @@ async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
             })
             .filter(item => item.value !== null && item.value !== undefined)
             .sort((a, b) => a.date - b.date);
-        
+
         console.log(`Filtered ${filteredData.length} data points for ${area} ${metric}`);
-        
+
         if (filteredData.length === 0) {
             console.warn(`No data available for ${area} ${metric}`);
             showNoDataState(canvasId);
             return null;
         }
-        
+
         // Register data for export
         const exportData = filteredData.map(d => ({
             date: d.date,
@@ -2884,16 +2885,16 @@ async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
             series: `${area} ${metric}`
         }));
         registerChartData(canvasId, exportData);
-        
+
         // Render the chart
         const canvas = document.getElementById(canvasId);
         if (!canvas) {
             console.warn(`Canvas with id '${canvasId}' not found`);
             return null;
         }
-        
+
         renderChart(canvas, filteredData, chartTitle, 'line');
-        
+
         if (canvas.chart) {
             console.log(`Successfully rendered NVE chart: ${canvasId}`);
             hideSkeleton(canvasId);
@@ -2903,7 +2904,7 @@ async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
             showNoDataState(canvasId);
             return null;
         }
-        
+
     } catch (error) {
         console.error(`Failed to load NVE chart ${canvasId}:`, error);
         showNoDataState(canvasId);
@@ -2920,7 +2921,7 @@ async function loadNVEChart(canvasId, apiUrl, chartTitle, chartType) {
 function isoWeekToDate(year, week) {
     const simple = new Date(Date.UTC(year, 0, 1 + (week - 1) * 7));
     const dow = simple.getUTCDay(); // 0..6
-    const ISOweekStart = dow <= 4 ? 
+    const ISOweekStart = dow <= 4 ?
         new Date(simple.setUTCDate(simple.getUTCDate() - (dow || 7) + 1)) :
         new Date(simple.setUTCDate(simple.getUTCDate() + (8 - dow)));
     return ISOweekStart; // Mon 00:00 UTC
@@ -2937,11 +2938,11 @@ function isoWeekToDate(year, week) {
 async function loadStatnettChart(canvasId, apiUrl, chartTitle, chartType) {
     try {
         console.log(`Loading Statnett chart: ${canvasId} - ${chartTitle}`);
-        
+
         // Import and render the Statnett chart
         const { createStatnettProductionConsumptionChart } = await import('./charts/statnett-production-consumption.js');
         const chart = await createStatnettProductionConsumptionChart(canvasId, apiUrl, chartTitle);
-        
+
         if (chart) {
             console.log(`Successfully rendered Statnett chart: ${canvasId}`);
             hideSkeleton(canvasId);
@@ -2949,9 +2950,9 @@ async function loadStatnettChart(canvasId, apiUrl, chartTitle, chartType) {
             console.warn(`Failed to render Statnett chart: ${canvasId}`);
             showNoDataState(canvasId);
         }
-        
+
         return chart;
-        
+
     } catch (error) {
         console.error(`Failed to load Statnett chart ${canvasId}:`, error);
         showNoDataState(canvasId);
@@ -2970,10 +2971,10 @@ async function loadStatnettChart(canvasId, apiUrl, chartTitle, chartType) {
 async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
     try {
         console.log(`Loading Stortinget chart: ${canvasId} - ${chartTitle}`);
-        
+
         // Import and render the appropriate Stortinget chart
         const { renderWomenCountChart, renderWomenPercentageChart } = await import('./charts/stortinget-women-representation.js');
-        
+
         let chart;
         if (chartType === 'stortinget-women-count') {
             chart = await renderWomenCountChart(canvasId);
@@ -2983,7 +2984,7 @@ async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
             console.warn(`Unknown Stortinget chart type: ${chartType}`);
             return null;
         }
-        
+
         if (chart) {
             console.log(`Successfully rendered Stortinget chart: ${canvasId}`);
             hideSkeleton(canvasId);
@@ -2991,9 +2992,9 @@ async function loadStortingetChart(canvasId, apiUrl, chartTitle, chartType) {
             console.warn(`Failed to render Stortinget chart: ${canvasId}`);
             showNoDataState(canvasId);
         }
-        
+
         return chart;
-        
+
     } catch (error) {
         console.error(`Failed to load Stortinget chart ${canvasId}:`, error);
         showNoDataState(canvasId);

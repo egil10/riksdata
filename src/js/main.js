@@ -42,11 +42,11 @@ function setEllipsisTitle(el) {
 // Top-level error guards
 window.addEventListener('error', e => {
     console.error('Global error:', e.error || e.message, 'Stack:', e.error?.stack);
-    
+
     // Don't show global error for Chart.js resize operations during fullscreen or zoom
     if (e.message && (
-        e.message.includes('resize') || 
-        e.message.includes('canvas') || 
+        e.message.includes('resize') ||
+        e.message.includes('canvas') ||
         e.message.includes('Chart') ||
         e.message.includes('getContext') ||
         e.message.includes('appendChild') ||
@@ -60,12 +60,15 @@ window.addEventListener('error', e => {
         e.message.includes('viewport') ||
         e.message.includes('devicePixelRatio') ||
         e.message.includes('innerWidth') ||
-        e.message.includes('innerHeight')
+        e.message.includes('innerHeight') ||
+        e.message.includes('destructure') ||
+        e.message.includes('null') ||
+        e.message.includes('undefined')
     )) {
         console.warn('Suppressing Chart.js/DOM/zoom error from global handler:', e.message);
         return;
     }
-    
+
     // Also check the stack trace for Chart.js related errors
     if (e.error && e.error.stack && (
         e.error.stack.includes('Chart') ||
@@ -81,7 +84,7 @@ window.addEventListener('error', e => {
         console.warn('Suppressing Chart.js/zoom error from stack trace:', e.error.stack);
         return;
     }
-    
+
     // Hide loading screen on critical errors
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
@@ -91,19 +94,19 @@ window.addEventListener('error', e => {
             loadingScreen.style.display = 'none';
         }, 500);
     }
-    
+
     // Show user-friendly error message
     showGlobalError('An unexpected error occurred. Please refresh the page.');
 });
 
 window.addEventListener('unhandledrejection', e => {
     console.error('Unhandled promise rejection:', e.reason);
-    
+
     // Don't show global error for Chart.js related promise rejections
     if (e.reason && (
         e.reason.message && (
-            e.reason.message.includes('resize') || 
-            e.reason.message.includes('canvas') || 
+            e.reason.message.includes('resize') ||
+            e.reason.message.includes('canvas') ||
             e.reason.message.includes('Chart') ||
             e.reason.message.includes('getContext') ||
             e.reason.message.includes('appendChild') ||
@@ -121,7 +124,7 @@ window.addEventListener('unhandledrejection', e => {
         console.warn('Suppressing Chart.js/zoom promise rejection from global handler:', e.reason);
         return;
     }
-    
+
     // Also check the stack trace for Chart.js related errors
     if (e.reason && e.reason.stack && (
         e.reason.stack.includes('Chart') ||
@@ -137,7 +140,7 @@ window.addEventListener('unhandledrejection', e => {
         console.warn('Suppressing Chart.js promise rejection from stack trace:', e.reason.stack);
         return;
     }
-    
+
     // Hide loading screen on unhandled rejections
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
@@ -147,7 +150,7 @@ window.addEventListener('unhandledrejection', e => {
             loadingScreen.style.display = 'none';
         }, 500);
     }
-    
+
     // Show user-friendly error message
     showGlobalError('Failed to load data. Please check your internet connection and refresh the page.');
 });
@@ -171,7 +174,7 @@ function showGlobalError(message) {
     if (existingError) {
         existingError.remove();
     }
-    
+
     const errorDiv = document.createElement('div');
     errorDiv.className = 'global-error';
     errorDiv.style.cssText = `
@@ -228,9 +231,9 @@ window.addEventListener('beforeunload', () => {
  */
 function enhanceSubtitle(subtitle, title, id) {
     if (!subtitle) return 'Data';
-    
+
     let parts = [];
-    
+
     // Enhance unit descriptions (but NOT scale units - those are auto-detected)
     // Only add base unit like "NOK", "Prosent", "Indeks", etc.
     if (subtitle.includes('NOK Million') || subtitle === 'NOK Million') {
@@ -256,7 +259,7 @@ function enhanceSubtitle(subtitle, title, id) {
     } else {
         parts.push(subtitle);
     }
-    
+
     // Add frequency based on chart type/ID
     if (id.includes('monthly') || title.includes('Monthly')) {
         parts.push('Månedlig');
@@ -267,7 +270,7 @@ function enhanceSubtitle(subtitle, title, id) {
     } else if (id.includes('annual') || title.includes('Annual')) {
         parts.push('Årlig');
     }
-    
+
     // Add context based on chart type
     if (title.includes('Seasonally Adjusted')) {
         parts.push('Sesongjustert');
@@ -275,7 +278,7 @@ function enhanceSubtitle(subtitle, title, id) {
     if (title.includes('Index') && !parts.some(p => p.includes('Indeks'))) {
         parts.push('Indeks');
     }
-    
+
     // Join with dots
     return parts.join(' • ');
 }
@@ -285,12 +288,12 @@ function enhanceSubtitle(subtitle, title, id) {
  */
 function inferChartMetadata(config) {
     const { url, id, title, subtitle, sourceUrl, sourceName } = config;
-    
+
     let inferredSubtitle = subtitle || 'Indeks (2015=100)';
     let inferredSourceUrl = sourceUrl;
     let inferredSourceName = sourceName;
     let inferredSource = 'ssb';
-    
+
     // Infer from URL if not provided
     if (url.includes('data.ssb.no')) {
         const match = url.match(/\/dataset\/(\d+)/);
@@ -329,15 +332,15 @@ function inferChartMetadata(config) {
         inferredSourceName = inferredSourceName || 'Our World in Data';
         inferredSource = 'static';
     }
-    
+
     // Enhance subtitle with more details (except for DFO which already has enhanced subtitle)
     if (!url.includes('dfo/') && !id.includes('dfo-')) {
         inferredSubtitle = enhanceSubtitle(inferredSubtitle, title, id);
     }
-    
-    return { 
-        subtitle: inferredSubtitle, 
-        sourceUrl: inferredSourceUrl, 
+
+    return {
+        subtitle: inferredSubtitle,
+        sourceUrl: inferredSourceUrl,
         sourceName: inferredSourceName,
         source: inferredSource
     };
@@ -350,7 +353,7 @@ function createChartCardHTML(config) {
     const metadata = inferChartMetadata(config);
     const { id, title } = config;
     const { subtitle, sourceUrl, sourceName, source } = metadata;
-    
+
     return `
         <div class="chart-card" data-chart-id="${id}" data-source="${source}">
             <div class="chart-header">
@@ -393,12 +396,12 @@ function renderChartCards() {
         console.error('Chart grid container not found!');
         return;
     }
-    
+
     console.log(`📊 Rendering ${chartConfigs.length} chart cards dynamically...`);
-    
+
     const html = chartConfigs.map(config => createChartCardHTML(config)).join('');
     chartGrid.innerHTML = html;
-    
+
     console.log(`✅ Successfully rendered ${chartConfigs.length} chart cards`);
 }
 
@@ -408,18 +411,18 @@ function renderChartCards() {
 async function setupLazyChartLoading() {
     console.log('🔧 Setting up lazy chart loading...');
     const { loadChartData } = await import('./charts.js');
-    
+
     const observer = new IntersectionObserver((entries, obs) => {
         for (const entry of entries) {
             if (!entry.isIntersecting) continue;
-            
+
             const card = entry.target;
             const canvas = card.querySelector('canvas');
             const chartId = card.getAttribute('data-chart-id');
-            
-            if (!chartId) { 
-                obs.unobserve(card); 
-                continue; 
+
+            if (!chartId) {
+                obs.unobserve(card);
+                continue;
             }
 
             // Find the chart configuration
@@ -432,7 +435,7 @@ async function setupLazyChartLoading() {
 
             // Unobserve immediately to prevent duplicate loading
             obs.unobserve(card);
-            
+
             // Load the chart data with progressive feedback
             const isDfoChart = chartId && chartId.startsWith('dfo-');
             console.log(`🚀 LAZY LOADING CHART: ${chartId} (${config.title}) - Type: ${config.type || 'line'}${isDfoChart ? ' (DFO CHART!)' : ''}`);
@@ -441,16 +444,16 @@ async function setupLazyChartLoading() {
                     console.error(`Failed to load chart ${chartId}:`, error);
                 });
         }
-    }, { 
+    }, {
         // Use connection-aware preload distance
         rootMargin: `${connectionMonitor.getLoadingStrategy().preloadDistance}px 0px ${connectionMonitor.getLoadingStrategy().preloadDistance}px 0px`,
-        threshold: 0 
+        threshold: 0
     });
 
     // Observe all chart cards
     const chartCards = document.querySelectorAll('.chart-card');
     console.log(`🔍 Found ${chartCards.length} chart cards to observe`);
-    
+
     let dfoChartCount = 0;
     chartCards.forEach((card, index) => {
         const chartId = card.getAttribute('data-chart-id');
@@ -459,7 +462,7 @@ async function setupLazyChartLoading() {
         console.log(`📊 Chart ${index + 1}: ${chartId}${isDfoChart ? ' (DFO CHART!)' : ''}`);
         observer.observe(card);
     });
-    
+
     console.log(`🎯 Total DFO charts found: ${dfoChartCount}`);
 }
 
@@ -470,44 +473,44 @@ export async function initializeApp() {
     try {
         console.log('Starting application initialization...');
         updateLoadingStatus('Initializing');
-        
+
         // Set a global timeout for the entire initialization process
         initializationTimeout = setTimeout(() => {
             console.error('Application initialization timed out after 20 seconds');
             hideLoadingScreen();
             showGlobalError('Application initialization timed out. Please refresh the page.');
         }, 20000);
-        
+
         // Show loading screen and progress bars
         const loadingScreen = document.getElementById('loading-screen');
         const loadProgressBar = document.getElementById('load-progress-bar');
         const scrollProgressBar = document.getElementById('scroll-progress-bar');
-        
+
         console.log('Loading screen element:', loadingScreen);
         console.log('Load progress bar element:', loadProgressBar);
         console.log('Scroll progress bar element:', scrollProgressBar);
-        
+
         // Initialize loading progress bar
         if (loadProgressBar) {
             loadProgressBar.style.width = '0%';
             loadProgressBar.classList.add('active');
         }
-        
+
         // Render chart cards dynamically
         console.log('Rendering chart cards dynamically...');
         updateLoadingStatus('Building interface...');
         renderChartCards();
-        
+
         // Show skeleton loading for all charts
         console.log('Showing skeleton loading...');
         updateLoadingStatus('Preparing charts...');
         showSkeletonLoading();
-        
+
         // Show loading progress bar immediately
         if (loadProgressBar) {
             loadProgressBar.classList.add('active');
         }
-        
+
         // Apply theme to Chart.js if available
         if (typeof Chart !== 'undefined') {
             try {
@@ -525,7 +528,7 @@ export async function initializeApp() {
         console.log('🚀 About to call setupLazyChartLoading...');
         await setupLazyChartLoading();
         console.log('✅ setupLazyChartLoading completed successfully');
-        
+
         // Complete loading progress bar and hide it
         console.log('Setting loading progress bar to 100%');
         if (loadProgressBar) {
@@ -535,58 +538,58 @@ export async function initializeApp() {
                 loadProgressBar.classList.remove('active');
             }, 500);
         }
-        
+
         // Hide skeleton loading
         console.log('Hiding skeleton loading...');
         hideSkeletonLoading();
-        
+
         // Clear the initialization timeout since we're done
         if (initializationTimeout) {
             clearTimeout(initializationTimeout);
             initializationTimeout = null;
         }
-        
+
         // Wait for first row of charts to actually load before hiding loading screen
         console.log('Waiting for first charts to load...');
         updateLoadingStatus('Loading first charts...');
         await waitForFirstChartsToLoad();
-        
+
         // Hide loading screen with fade out
         console.log('Hiding loading screen...');
         hideLoadingScreen();
         console.log('Loading screen hidden');
-        
+
         // Sort charts alphabetically by default
         sortChartsAlphabetically();
-        
+
         // Set up ellipsis tooltips for truncated chart titles
         setupEllipsisTooltips();
-        
+
         // Add info buttons to all charts
         addInfoButtonsToCharts();
-        
+
         // Add source links to OWID charts
         addSourceLinksToOWIDCharts();
-        
+
         console.log('Application initialization complete!');
-        
+
     } catch (error) {
         console.error('Error initializing charts:', error);
-        
+
         // Clear the initialization timeout
         if (initializationTimeout) {
             clearTimeout(initializationTimeout);
             initializationTimeout = null;
         }
-        
+
         showError('Failed to load chart data. Please try again later.');
-        
+
         // Hide loading progress bar even on error
         const loadProgressBar = document.getElementById('load-progress-bar');
         if (loadProgressBar) {
             loadProgressBar.classList.remove('active');
         }
-        
+
         // Hide loading screen even if there's an error
         hideLoadingScreen();
     }
@@ -599,16 +602,16 @@ async function waitForFirstChartsToLoad() {
     const MIN_CHARTS = 9; // Wait for at least 9 charts to load (first 3 rows)
     const MAX_WAIT_TIME = 8000; // Maximum wait time: 8 seconds
     const CHECK_INTERVAL = 200; // Check every 200ms
-    
+
     const startTime = Date.now();
-    
+
     return new Promise((resolve) => {
         const checkCharts = () => {
             const loadedChartCount = window.chartInstances ? Object.keys(window.chartInstances).length : 0;
             const elapsedTime = Date.now() - startTime;
-            
+
             console.log(`📊 Charts loaded so far: ${loadedChartCount}`);
-            
+
             // Resolve if we have enough charts or exceeded max wait time
             if (loadedChartCount >= MIN_CHARTS || elapsedTime >= MAX_WAIT_TIME) {
                 console.log(`✅ Proceeding with ${loadedChartCount} charts loaded after ${elapsedTime}ms`);
@@ -618,7 +621,7 @@ async function waitForFirstChartsToLoad() {
                 setTimeout(checkCharts, CHECK_INTERVAL);
             }
         };
-        
+
         checkCharts();
     });
 }
@@ -643,9 +646,9 @@ function hideLoadingScreen() {
  */
 export function initializeUI() {
     console.log('Initializing UI...');
-    
+
     // Theme initialization removed - only using light theme
-    
+
     // Language toggle
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
@@ -666,7 +669,7 @@ export function initializeUI() {
     const headerSearchInput = document.getElementById('headerSearch');
     const searchApplyBtn = document.getElementById('searchApplyBtn');
     const searchResetBtn = document.getElementById('searchResetBtn');
-    
+
     if (headerSearchInput && searchApplyBtn && searchResetBtn) {
         // Add visual feedback when typing (but don't search yet)
         headerSearchInput.addEventListener('input', (e) => {
@@ -680,7 +683,7 @@ export function initializeUI() {
                 searchResetBtn.style.display = 'none'; // Hide reset button
             }
         });
-        
+
         // Search on Enter key
         headerSearchInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -688,13 +691,13 @@ export function initializeUI() {
                 searchApplyBtn.classList.remove('has-input'); // Remove rainbow after search
             }
         });
-        
+
         // Search on Apply button click
         searchApplyBtn.addEventListener('click', () => {
             handleSearch({ target: headerSearchInput });
             searchApplyBtn.classList.remove('has-input'); // Remove rainbow after search
         });
-        
+
         // Reset search on Reset button click
         searchResetBtn.addEventListener('click', () => {
             headerSearchInput.value = '';
@@ -714,7 +717,7 @@ export function initializeUI() {
 
     // Sort toggle - header sort
     const headerSortToggle = document.getElementById('headerSortToggle');
-    
+
     if (headerSortToggle) {
         headerSortToggle.addEventListener('click', toggleHeaderSort);
     }
@@ -727,7 +730,7 @@ export function initializeUI() {
 
     // Progress bar on scroll
     window.addEventListener('scroll', updateProgressBarOnScroll);
-    
+
     // Initialize scroll progress bar to 0% immediately
     requestAnimationFrame(() => {
         const scrollProgressBar = document.getElementById('scroll-progress-bar');
@@ -735,10 +738,10 @@ export function initializeUI() {
             scrollProgressBar.style.width = '0%';
         }
     });
-    
+
     // Handle window resize for mobile optimization
     window.addEventListener('resize', debounce(handleWindowResize, 250));
-    
+
     // Debug panel toggle (Ctrl+Shift+D)
     document.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.shiftKey && e.key === 'D') {
@@ -748,7 +751,7 @@ export function initializeUI() {
             }
         }
     });
-    
+
     console.log('UI initialization complete!');
 }
 
@@ -758,7 +761,7 @@ export function initializeUI() {
 function toggleLanguage() {
     currentLanguage = currentLanguage === 'en' ? 'no' : 'en';
     document.body.className = `lang-${currentLanguage}`;
-    
+
     // Update language texts
     updateLanguageTexts();
 }
@@ -773,11 +776,11 @@ function toggleLanguage() {
 function toggleMobileMenu() {
     const headerControls = document.querySelector('.header-controls');
     const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-    
+
     if (headerControls) {
         headerControls.classList.toggle('mobile-open');
     }
-    
+
     if (mobileMenuToggle) {
         mobileMenuToggle.classList.toggle('active');
     }
@@ -788,18 +791,18 @@ function toggleMobileMenu() {
  */
 function handleWindowResize() {
     const isMobile = window.innerWidth < 768;
-    
+
     // Chart colors update removed - only using light theme
-    
+
     // Close mobile menu if switching to desktop
     if (!isMobile) {
         const headerControls = document.querySelector('.header-controls');
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        
+
         if (headerControls) {
             headerControls.classList.remove('mobile-open');
         }
-        
+
         if (mobileMenuToggle) {
             mobileMenuToggle.classList.remove('active');
         }
@@ -818,27 +821,27 @@ function handleSearch(event) {
         const drilldownGrid = document.querySelector('#drilldown-view #drilldown-charts-container');
         const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
         const chartCards = activeGrid ? activeGrid.querySelectorAll('.chart-card') : [];
-        
+
         chartCards.forEach(card => {
             try {
                 const titleElement = card.querySelector('h3');
                 const sourceElement = card.querySelector('.source-link');
-                
+
                 // Skip cards that don't have required elements
                 if (!titleElement || !sourceElement) {
                     console.warn('Chart card missing required elements for search:', card);
                     card.style.display = 'none'; // Hide invalid cards
                     return;
                 }
-                
+
                 const title = titleElement.textContent.toLowerCase();
                 const source = sourceElement.textContent.toLowerCase();
-                
-        // If search is empty, reset to default visibility (show only cards that were visible before search)
-        if (searchTerm === '') {
-            // Reset: show cards that are not explicitly hidden by other filters
-            card.style.display = '';
-        } else if (title.includes(searchTerm) || source.includes(searchTerm)) {
+
+                // If search is empty, reset to default visibility (show only cards that were visible before search)
+                if (searchTerm === '') {
+                    // Reset: show cards that are not explicitly hidden by other filters
+                    card.style.display = '';
+                } else if (title.includes(searchTerm) || source.includes(searchTerm)) {
                     card.style.display = 'block';
                 } else {
                     card.style.display = 'none';
@@ -852,7 +855,7 @@ function handleSearch(event) {
         console.error('Error in search function:', searchError);
         // Don't show global error for search issues
     }
-    
+
     // Resize visible charts after search (safe version)
     setTimeout(() => {
         try {
@@ -881,58 +884,58 @@ function handleSourceFilter(event) {
     try {
         const source = event.target.dataset.source;
         currentSourceFilter = source;
-        
+
         // Update active button
         document.querySelectorAll('.filter-btn').forEach(btn => {
             btn.classList.remove('active');
         });
         event.target.classList.add('active');
-    
-    // Filter charts
-    const chartCards = document.querySelectorAll('.chart-card');
-    chartCards.forEach(card => {
-        try {
-            const sourceLink = card.querySelector('.source-link');
-            
-            // Skip cards that don't have source link
-            if (!sourceLink) {
-                console.warn('Chart card missing source link for filtering:', card);
-                return;
+
+        // Filter charts
+        const chartCards = document.querySelectorAll('.chart-card');
+        chartCards.forEach(card => {
+            try {
+                const sourceLink = card.querySelector('.source-link');
+
+                // Skip cards that don't have source link
+                if (!sourceLink) {
+                    console.warn('Chart card missing source link for filtering:', card);
+                    return;
+                }
+
+                const cardSource = sourceLink.textContent.includes('SSB') ? 'ssb' :
+                    sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' :
+                        sourceLink.textContent.includes('NVE') ? 'nve' : 'static';
+
+                if (source === 'all' || cardSource === source) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            } catch (cardError) {
+                console.warn('Error processing chart card during filtering:', cardError, card);
+                // Continue with other cards
             }
-            
-            const cardSource = sourceLink.textContent.includes('SSB') ? 'ssb' : 
-                              sourceLink.textContent.includes('Norges Bank') ? 'norges-bank' :
-                              sourceLink.textContent.includes('NVE') ? 'nve' : 'static';
-            
-            if (source === 'all' || cardSource === source) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        } catch (cardError) {
-            console.warn('Error processing chart card during filtering:', cardError, card);
-            // Continue with other cards
-        }
-    });
-    
-    // Resize visible charts after filtering (safe version)
-    setTimeout(() => {
-        try {
-            if (window.chartInstances) {
-                Object.values(window.chartInstances).forEach(chart => {
-                    if (chart && typeof chart.resize === 'function') {
-                        try {
-                            chart.resize();
-                        } catch (resizeError) {
-                            // Silently ignore resize errors
+        });
+
+        // Resize visible charts after filtering (safe version)
+        setTimeout(() => {
+            try {
+                if (window.chartInstances) {
+                    Object.values(window.chartInstances).forEach(chart => {
+                        if (chart && typeof chart.resize === 'function') {
+                            try {
+                                chart.resize();
+                            } catch (resizeError) {
+                                // Silently ignore resize errors
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            } catch (error) {
+                // Silently ignore any chart resize errors
             }
-        } catch (error) {
-            // Silently ignore any chart resize errors
-        }
-    }, 100);
+        }, 100);
     } catch (filterError) {
         console.error('Error in source filter function:', filterError);
         // Don't show global error for filter issues
@@ -950,7 +953,7 @@ function sortChartsAlphabetically() {
         const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
         if (!activeGrid) return;
         const chartCards = Array.from(activeGrid.querySelectorAll('.chart-card'));
-        
+
         // Sort alphabetically
         chartCards.sort((a, b) => {
             try {
@@ -962,32 +965,32 @@ function sortChartsAlphabetically() {
                 return 0; // Keep original order if sorting fails
             }
         });
-        
+
         // Re-append only visible and initialized cards first, then hidden ones
         const visibleCards = chartCards.filter(c => c.style.display !== 'none');
         const hiddenCards = chartCards.filter(c => c.style.display === 'none');
         [...visibleCards, ...hiddenCards].forEach(card => {
             activeGrid.appendChild(card);
         });
-    
-    // Resize charts after sorting (safe version)
-    setTimeout(() => {
-        try {
-            if (window.chartInstances) {
-                Object.values(window.chartInstances).forEach(chart => {
-                    if (chart && typeof chart.resize === 'function') {
-                        try {
-                            chart.resize();
-                        } catch (resizeError) {
-                            // Silently ignore resize errors
+
+        // Resize charts after sorting (safe version)
+        setTimeout(() => {
+            try {
+                if (window.chartInstances) {
+                    Object.values(window.chartInstances).forEach(chart => {
+                        if (chart && typeof chart.resize === 'function') {
+                            try {
+                                chart.resize();
+                            } catch (resizeError) {
+                                // Silently ignore resize errors
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            } catch (error) {
+                // Silently ignore any chart resize errors
             }
-        } catch (error) {
-            // Silently ignore any chart resize errors
-        }
-    }, 100);
+        }, 100);
     } catch (sortError) {
         console.error('Error in sortChartsAlphabetically function:', sortError);
         // Don't show global error for sorting issues
@@ -1005,7 +1008,7 @@ function toggleSort() {
         const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
         if (!activeGrid) return;
         const chartCards = Array.from(activeGrid.querySelectorAll('.chart-card'));
-        
+
         if (sortToggle.textContent === 'A-Z') {
             // Sort reverse alphabetically
             chartCards.sort((a, b) => {
@@ -1035,30 +1038,30 @@ function toggleSort() {
             sortToggle.textContent = 'A-Z';
             sortToggle.classList.remove('active');
         }
-        
+
         // Re-append cards in new order
         chartCards.forEach(card => {
             activeGrid.appendChild(card);
         });
-    
-    // Resize charts after sorting (safe version)
-    setTimeout(() => {
-        try {
-            if (window.chartInstances) {
-                Object.values(window.chartInstances).forEach(chart => {
-                    if (chart && typeof chart.resize === 'function') {
-                        try {
-                            chart.resize();
-                        } catch (resizeError) {
-                            // Silently ignore resize errors
+
+        // Resize charts after sorting (safe version)
+        setTimeout(() => {
+            try {
+                if (window.chartInstances) {
+                    Object.values(window.chartInstances).forEach(chart => {
+                        if (chart && typeof chart.resize === 'function') {
+                            try {
+                                chart.resize();
+                            } catch (resizeError) {
+                                // Silently ignore resize errors
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            } catch (error) {
+                // Silently ignore any chart resize errors
             }
-        } catch (error) {
-            // Silently ignore any chart resize errors
-        }
-    }, 100);
+        }, 100);
     } catch (toggleError) {
         console.error('Error in toggleSort function:', toggleError);
         // Don't show global error for toggle issues
@@ -1077,10 +1080,10 @@ function toggleHeaderSort() {
         const activeGrid = (drilldownGrid && drilldownGrid.offsetParent !== null) ? drilldownGrid : mainGrid;
         if (!activeGrid) return;
         const chartCards = Array.from(activeGrid.querySelectorAll('.chart-card'));
-        
+
         // Check current state by looking at the icon (using a unique path segment)
         const isAscending = sortIcon.innerHTML.includes('M20 8h-5');
-        
+
         if (isAscending) {
             // Sort reverse alphabetically (Z-A)
             chartCards.sort((a, b) => {
@@ -1093,7 +1096,7 @@ function toggleHeaderSort() {
                     return 0; // Keep original order if sorting fails
                 }
             });
-            
+
             // Update icon to Z-A (arrow-down-z-a)
             sortIcon.innerHTML = `
                 <path d="m3 16 4 4 4-4"/>
@@ -1116,7 +1119,7 @@ function toggleHeaderSort() {
                     return 0; // Keep original order if sorting fails
                 }
             });
-            
+
             // Update icon to A-Z (arrow-up-a-z)
             sortIcon.innerHTML = `
                 <path d="m3 8 4-4 4 4"/>
@@ -1128,30 +1131,30 @@ function toggleHeaderSort() {
             headerSortToggle.setAttribute('aria-label', 'Sort alphabetically');
             headerSortToggle.setAttribute('title', 'Sort alphabetically');
         }
-        
+
         // Re-append cards in new order
         chartCards.forEach(card => {
             activeGrid.appendChild(card);
         });
-    
-    // Resize charts after sorting (safe version)
-    setTimeout(() => {
-        try {
-            if (window.chartInstances) {
-                Object.values(window.chartInstances).forEach(chart => {
-                    if (chart && typeof chart.resize === 'function') {
-                        try {
-                            chart.resize();
-                        } catch (resizeError) {
-                            // Silently ignore resize errors
+
+        // Resize charts after sorting (safe version)
+        setTimeout(() => {
+            try {
+                if (window.chartInstances) {
+                    Object.values(window.chartInstances).forEach(chart => {
+                        if (chart && typeof chart.resize === 'function') {
+                            try {
+                                chart.resize();
+                            } catch (resizeError) {
+                                // Silently ignore resize errors
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            } catch (error) {
+                // Silently ignore any chart resize errors
             }
-        } catch (error) {
-            // Silently ignore any chart resize errors
-        }
-    }, 100);
+        }, 100);
     } catch (headerSortError) {
         console.error('Error in toggleHeaderSort function:', headerSortError);
         // Don't show global error for header sort issues
@@ -1163,16 +1166,16 @@ function toggleHeaderSort() {
  */
 function updateLanguageTexts() {
     const lang = currentLanguage;
-    
+
     // Update filter button texts
     const allSourcesBtn = document.querySelector('[data-source="all"]');
     if (allSourcesBtn) {
         allSourcesBtn.textContent = lang === 'no' ? 'Alle kilder' : 'All Sources';
     }
-    
+
     // Update search placeholder
     const headerSearchInput = document.getElementById('headerSearch');
-    
+
     if (headerSearchInput) {
         headerSearchInput.placeholder = lang === 'no' ? 'Søk i diagrammer...' : 'Search charts...';
     }
@@ -1198,23 +1201,23 @@ function updateProgressBarOnScroll() {
     if (loadingScreen && loadingScreen.style.display !== 'none') {
         return; // Don't update scroll progress bar during loading
     }
-    
+
     // Also check if the body has the 'loaded' class to ensure loading is truly complete
     if (!document.body.classList.contains('loaded')) {
         return; // Don't update scroll progress bar until loading is complete
     }
-    
+
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
     const scrollPercentage = (scrollTop / scrollHeight) * 100;
-    
+
     // Show scroll progress bar and update it
     const scrollProgressBar = document.getElementById('scroll-progress-bar');
     if (scrollProgressBar) {
         scrollProgressBar.classList.add('active');
         updateScrollProgressBar(scrollPercentage);
     }
-    
+
     // Show/hide back to top button
     const backToTopBtn = document.getElementById('backToTop');
     if (backToTopBtn) {
@@ -1243,40 +1246,40 @@ function scrollToTop() {
     const sidebar = document.getElementById('sidebar');
     const toggleBtn = document.getElementById('sidebar-toggle');
     const backdrop = document.getElementById('sidebar-backdrop');
-    
+
     if (!sidebar || !toggleBtn) return;
-    
+
     // Restore state
     const PREF_KEY = 'sidebarExpanded';
     const wasExpanded = localStorage.getItem(PREF_KEY) === '1';
     const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-    
+
     function expandSidebar() {
         sidebar.classList.remove('collapsed');
         sidebar.classList.add('expanded');
         document.body.classList.add('sidebar-expanded');
-        
+
         if (isMobile() && backdrop) {
             backdrop.style.display = 'block';
             setTimeout(() => backdrop.classList.add('show'), 10);
         }
-        
+
         localStorage.setItem(PREF_KEY, '1');
     }
-    
+
     function collapseSidebar() {
         sidebar.classList.remove('expanded');
         sidebar.classList.add('collapsed');
         document.body.classList.remove('sidebar-expanded');
-        
+
         if (isMobile() && backdrop) {
             backdrop.classList.remove('show');
             setTimeout(() => backdrop.style.display = 'none', 150);
         }
-        
+
         localStorage.setItem(PREF_KEY, '0');
     }
-    
+
     function toggle() {
         if (sidebar.classList.contains('expanded')) {
             collapseSidebar();
@@ -1284,15 +1287,15 @@ function scrollToTop() {
             expandSidebar();
         }
     }
-    
+
     // Events
     toggleBtn.addEventListener('click', toggle);
-    
+
     // Close sidebar when clicking backdrop on mobile
     if (backdrop) {
         backdrop.addEventListener('click', collapseSidebar);
     }
-    
+
     // Close sidebar on escape key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && sidebar.classList.contains('expanded')) {
@@ -1301,7 +1304,7 @@ function scrollToTop() {
     });
 
     // Filter panel removed - escape key handler no longer needed
-    
+
     // Restore state on load
     if (wasExpanded) {
         // delay until layout paints to avoid jank
@@ -1318,12 +1321,12 @@ function boot() {
     try {
         bootAttempts++;
         console.log(`DOM loaded, starting application... (attempt ${bootAttempts})`);
-        
+
         // Clear any existing timeout
         if (bootTimeout) {
             clearTimeout(bootTimeout);
         }
-        
+
         // Prevent infinite loops
         if (bootAttempts > MAX_BOOT_ATTEMPTS) {
             console.error('Maximum boot attempts reached. Chart.js may not be loading properly.');
@@ -1332,7 +1335,7 @@ function boot() {
             showError('Failed to load Chart.js library. Please refresh the page.');
             return;
         }
-        
+
         // Wait for Chart.js to be loaded
         if (typeof Chart === 'undefined') {
             console.log('Waiting for Chart.js to load...');
@@ -1340,12 +1343,12 @@ function boot() {
             bootTimeout = setTimeout(boot, 200); // Increased interval to reduce CPU usage
             return;
         }
-        
+
         console.log('Chart.js is loaded, proceeding with initialization...');
         updateLoadingStatus('Chart.js loaded, initializing...');
-        
+
         // Using light theme only - no theme switching needed
-        
+
         console.log('Initializing UI...');
         initializeUI();
         console.log('Initializing app...');
@@ -1388,14 +1391,14 @@ import { copyChartDataTSV } from './utils.js';
  */
 function showDownloadFormatPicker(btn, card) {
     console.log('🎯 showDownloadFormatPicker called');
-    
+
     // Remove any existing format picker
     document.querySelectorAll('.download-format-picker').forEach(picker => picker.remove());
-    
+
     // Create format picker
     const picker = document.createElement('div');
     picker.className = 'download-format-picker';
-        picker.innerHTML = `
+    picker.innerHTML = `
             <div class="download-format-option" data-format="png">
                 <svg class="download-format-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
@@ -1412,7 +1415,7 @@ function showDownloadFormatPicker(btn, card) {
                 <span>HTML File</span>
             </div>
         `;
-    
+
     // Position picker relative to button
     const chartActions = btn.closest('.chart-actions');
     if (!chartActions) {
@@ -1422,14 +1425,14 @@ function showDownloadFormatPicker(btn, card) {
     console.log('🎯 Found .chart-actions, appending picker');
     chartActions.appendChild(picker);
     console.log('🎯 Picker appended, element:', picker);
-    
+
     // Handle format selection
     picker.querySelectorAll('.download-format-option').forEach(option => {
         option.addEventListener('click', async (e) => {
             e.stopPropagation();
             const format = option.getAttribute('data-format');
             picker.remove();
-            
+
             // Update button state and download
             updateActionButtonState(btn, 'loading', 'download');
             try {
@@ -1441,7 +1444,7 @@ function showDownloadFormatPicker(btn, card) {
             }
         });
     });
-    
+
     // Close picker when clicking outside
     const closePickerOnClickOutside = (e) => {
         if (!picker.contains(e.target) && e.target !== btn) {
@@ -1458,10 +1461,10 @@ function showDownloadFormatPicker(btn, card) {
 document.addEventListener('click', (e) => {
     const btn = e.target.closest('.icon-btn');
     if (!btn) return;
-    
+
     const card = btn.closest('.chart-card');
     if (!card) return;
-    
+
     const action = btn.getAttribute('data-action');
     if (action === 'download') {
         e.stopPropagation();
@@ -1484,7 +1487,7 @@ document.addEventListener('click', (e) => {
                 const originalContainer = originalCard.querySelector('.chart-container');
                 if (canvas && originalContainer) {
                     originalContainer.appendChild(canvas);
-                    
+
                     // Resize chart back to original size
                     const chartInstance = canvas.chart;
                     if (chartInstance && typeof chartInstance.resize === 'function') {
@@ -1494,7 +1497,7 @@ document.addEventListener('click', (e) => {
                     }
                 }
             }
-            
+
             // Remove modal
             document.body.removeChild(fullscreenModal);
         }
@@ -1518,12 +1521,12 @@ function copyPoliticalTable(tableId) {
             const regjeringName = row.querySelector('.regjering-name');
             const years = row.querySelector('.years');
             const coalitionParties = row.querySelector('.coalition-parties');
-            
+
             const partyName = partyShort ? partyShort.textContent.trim() : '';
             const regjering = regjeringName ? regjeringName.textContent.trim() : '';
             const period = years ? years.textContent.trim() : '';
             const coalition = coalitionParties ? coalitionParties.textContent.trim() : '';
-            
+
             return `${partyName}\t${regjering}\t${period}\t${coalition}`;
         })
         .join('\n');
@@ -1561,12 +1564,12 @@ function downloadPoliticalTable(tableId, filename = "norwegian-political-history
             const regjeringName = row.querySelector('.regjering-name');
             const years = row.querySelector('.years');
             const coalitionParties = row.querySelector('.coalition-parties');
-            
+
             const partyName = partyShort ? partyShort.textContent.trim() : '';
             const regjering = regjeringName ? regjeringName.textContent.trim() : '';
             const period = years ? years.textContent.trim() : '';
             const coalition = coalitionParties ? coalitionParties.textContent.trim() : '';
-            
+
             return `"${partyName}","${regjering}","${period}","${coalition}"`;
         })
         .join('\n');
@@ -1609,7 +1612,7 @@ window.addEventListener('resize', debounce(() => {
     try {
         // Safely resize charts with error handling
         if (window.Chart && Chart.instances) {
-            Chart.instances.forEach(chart => {
+            Object.values(Chart.instances).forEach(chart => {
                 try {
                     if (chart && typeof chart.resize === 'function') {
                         const canvas = chart.canvas;
@@ -1634,8 +1637,8 @@ window.addEventListener('resize', debounce(() => {
 
 // Resize Chart.js instances when sidebar toggles or layout changes
 function resizeCharts() {
-    if (window.Chart) {
-        Chart.helpers.each(Chart.instances, (chart) => {
+    if (window.Chart && Chart.instances) {
+        Object.values(Chart.instances).forEach((chart) => {
             if (chart && typeof chart.resize === 'function') {
                 // Only resize charts that are visible and have proper containers
                 const canvas = chart.canvas;
@@ -1669,36 +1672,36 @@ document.addEventListener('DOMContentLoaded', () => {
 function openChartFullscreen(card) {
     const chartId = card.getAttribute('data-chart-id');
     const chartCanvas = card.querySelector('canvas');
-    
+
     if (!chartCanvas) {
         console.warn('No chart canvas found for fullscreen');
         return;
     }
-    
+
     // Get the Chart.js instance
     const chartInstance = chartCanvas.chart;
     if (!chartInstance) {
         console.warn('No Chart.js instance found for fullscreen');
         return;
     }
-    
+
     // Store reference to original container
     const originalContainer = card.querySelector('.chart-container');
-    
+
     // Create fullscreen modal
     const modal = document.createElement('div');
     modal.className = 'fullscreen-modal';
-    
+
     // Clone the entire chart card structure
     const cardClone = card.cloneNode(true);
     cardClone.classList.add('fullscreen-card');
-    
+
     // Remove the skeleton chart from the clone
     const skeletonChart = cardClone.querySelector('.skeleton-chart');
     if (skeletonChart) {
         skeletonChart.remove();
     }
-    
+
     // Replace the fullscreen button with a minimize button
     const fullscreenBtn = cardClone.querySelector('[data-action="fullscreen"]');
     if (fullscreenBtn) {
@@ -1714,7 +1717,7 @@ function openChartFullscreen(card) {
             </svg>
         `;
     }
-    
+
     // Remove the cloned canvas and move the original canvas
     const clonedCanvas = cardClone.querySelector('canvas');
     if (clonedCanvas) {
@@ -1724,13 +1727,13 @@ function openChartFullscreen(card) {
     if (chartContainer) {
         chartContainer.appendChild(chartCanvas);
     }
-    
+
     // Add the cloned card to modal
     modal.appendChild(cardClone);
-    
+
     // Add to body
     document.body.appendChild(modal);
-    
+
     // Resize the chart to fit the fullscreen container
     setTimeout(() => {
         try {
@@ -1741,7 +1744,7 @@ function openChartFullscreen(card) {
             console.warn('Error resizing chart in fullscreen:', error);
         }
     }, 100);
-    
+
     // Handle close button click
     const closeFullscreen = () => {
         try {
@@ -1749,7 +1752,7 @@ function openChartFullscreen(card) {
             if (document.body.contains(modal)) {
                 document.body.removeChild(modal);
             }
-            
+
             // Then move the canvas back to its original container
             if (originalContainer && chartCanvas && !originalContainer.contains(chartCanvas)) {
                 try {
@@ -1758,7 +1761,7 @@ function openChartFullscreen(card) {
                     console.warn('Error appending canvas back to original container:', appendError);
                 }
             }
-            
+
             // Resize chart back to original size with a longer delay
             setTimeout(() => {
                 try {
@@ -1780,7 +1783,7 @@ function openChartFullscreen(card) {
                 console.warn('Error removing modal in fallback:', removeError);
             }
         }
-        
+
         // Clean up event listeners
         try {
             document.removeEventListener('keydown', handleEscape);
@@ -1788,13 +1791,13 @@ function openChartFullscreen(card) {
             console.warn('Error removing event listener:', listenerError);
         }
     };
-    
+
     // Handle minimize button click
     const minimizeBtn = cardClone.querySelector('[data-action="minimize"]');
     if (minimizeBtn) {
         minimizeBtn.addEventListener('click', closeFullscreen);
     }
-    
+
     // Handle escape key
     const handleEscape = (e) => {
         if (e.key === 'Escape') {
@@ -1802,7 +1805,7 @@ function openChartFullscreen(card) {
         }
     };
     document.addEventListener('keydown', handleEscape);
-    
+
     // Clean up on modal background click
     modal.addEventListener('click', (e) => {
         if (e.target === modal) {
@@ -1820,20 +1823,20 @@ function openChartFullscreen(card) {
  */
 function addSourceLinksToOWIDCharts() {
     const owidCharts = document.querySelectorAll('.chart-card[data-source="static"]');
-    
+
     owidCharts.forEach(chartCard => {
         const subtitleRow = chartCard.querySelector('.chart-subtitle-row');
         if (!subtitleRow) return;
-        
+
         let subtitleActions = subtitleRow.querySelector('.subtitle-actions');
-        
+
         // Create subtitle-actions if it doesn't exist
         if (!subtitleActions) {
             subtitleActions = document.createElement('div');
             subtitleActions.className = 'subtitle-actions';
             subtitleRow.appendChild(subtitleActions);
         }
-        
+
         // Check if source link already exists
         const existingSourceLink = subtitleActions.querySelector('.source-link');
         if (existingSourceLink) {
@@ -1849,7 +1852,7 @@ function addSourceLinksToOWIDCharts() {
             sourceLink.textContent = 'Our World in Data';
             subtitleActions.appendChild(sourceLink);
         }
-        
+
         // Remove any existing chart-source div (the long text block)
         const existingChartSource = chartCard.querySelector('.chart-source');
         if (existingChartSource) {

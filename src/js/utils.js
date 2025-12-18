@@ -749,7 +749,7 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
         .chart-header { margin-bottom: 24px; padding-bottom: 16px; border-bottom: 3px solid #09213C; }
         .chart-title { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: #020202; margin: 0 0 8px 0; }
         .chart-subtitle { font-size: 16px; color: rgba(2,2,2,0.65); font-weight: 500; margin: 0; }
-        .chart-container { position: relative; height: 500px; width: 100%; margin-top: 20px; }
+        .chart-container { position: relative; height: 400px; width: 100%; margin-top: 20px; }
         .footer { margin-top: 24px; font-size: 12px; color: rgba(2,2,2,0.45); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 16px; display: flex; justify-content: space-between; }
         .footer a { color: #3b82f6; text-decoration: none; }
     </style>
@@ -884,6 +884,8 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
     const exportDatasets = originalChart.data.datasets.map(ds => {
         const newDs = { ...ds };
         if (ds.segment) newDs.segment = ds.segment;
+        // Increase line thickness for high-res PDF
+        newDs.borderWidth = 2.5 * SCALE;
         return newDs;
     });
 
@@ -897,15 +899,19 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
             legend: {
                 display: exportDatasets.length > 1,
                 position: 'top',
-                labels: { font: { size: 10 * SCALE } }
+                labels: { font: { size: 11 * SCALE, weight: '600' } }
             }
         },
         scales: {
             x: {
                 ...originalChart.options.scales?.x,
+                grid: {
+                    ...originalChart.options.scales?.x?.grid,
+                    lineWidth: 0.5 * SCALE
+                },
                 ticks: {
                     ...originalChart.options.scales?.x?.ticks,
-                    font: { size: 9 * SCALE },
+                    font: { size: 10 * SCALE, weight: '600' },
                     callback: function (value) {
                         const date = new Date(value);
                         return isNaN(date.getTime()) ? value : date.getFullYear().toString();
@@ -914,7 +920,11 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
             },
             y: {
                 ...originalChart.options.scales?.y,
-                ticks: { ...originalChart.options.scales?.y?.ticks, font: { size: 9 * SCALE } }
+                grid: {
+                    ...originalChart.options.scales?.y?.grid,
+                    lineWidth: 0.5 * SCALE
+                },
+                ticks: { ...originalChart.options.scales?.y?.ticks, font: { size: 10 * SCALE, weight: '600' } }
             }
         }
     };

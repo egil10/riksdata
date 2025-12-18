@@ -867,14 +867,14 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
     const sourceText = cardEl.querySelector('.source-link')?.textContent || 'Riksdata';
 
     cardClone.innerHTML = `
-        <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 4px solid #09213C;">
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #020202; margin: 0 0 10px 0;">${chartTitle}</h1>
-            <p style="font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(2,2,2,0.65); font-weight: 500; margin: 0;">${chartSubtitleText}</p>
+        <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 4px solid #09213C;">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #020202; margin: 0 0 5px 0;">${chartTitle}</h1>
+            <p style="font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(2,2,2,0.65); font-weight: 500; margin: 0;">${chartSubtitleText}</p>
         </div>
-        <div style="position: relative; height: 600px; width: 100%;">
-            <canvas id="export-canvas"></canvas>
+        <div style="position: relative; height: 500px; width: 100%; display: flex; align-items: center; justify-content: center;">
+            <canvas id="export-canvas" style="width: 100% !important; height: 100% !important;"></canvas>
         </div>
-        <div style="margin-top: 30px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(2,2,2,0.45); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; display: flex; justify-content: space-between;">
+        <div style="margin-top: 20px; font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(2,2,2,0.45); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; display: flex; justify-content: space-between;">
             <span>Generert fra riksdata.no &bull; ${new Date().toLocaleDateString('no-NO')}</span>
             <span>Kilde: ${sourceText}</span>
         </div>
@@ -903,8 +903,16 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
     new Chart(ctx, {
         type: originalChart.config.type,
         data: { ...originalChart.data, datasets: exportDatasets },
-        options: exportOptions
+        options: {
+            ...exportOptions,
+            responsive: false,
+            maintainAspectRatio: false
+        }
     });
+
+    // Explicitly set canvas size to match container
+    exportCanvas.style.width = '100%';
+    exportCanvas.style.height = '100%';
 
     // Wait for render
     await new Promise(resolve => setTimeout(resolve, 300));
@@ -920,7 +928,7 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
 
         const imgData = canvas.toDataURL('image/png', 1.0);
         const pdf = new jsPDF({
-            orientation: canvas.width > canvas.height ? 'l' : 'p',
+            orientation: 'l',
             unit: 'px',
             format: [canvas.width / SCALE, canvas.height / SCALE]
         });

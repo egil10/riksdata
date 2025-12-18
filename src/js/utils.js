@@ -359,6 +359,9 @@ export async function downloadChartForCard(cardEl, format = 'png') {
             case 'html':
                 await downloadAsHTML(cardEl, filename, chartTitle);
                 break;
+            case 'pdf':
+                await downloadAsPDF(cardEl, filename, chartTitle);
+                break;
             case 'png':
             default:
                 await downloadAsPNG(cardEl, filename, chartTitle); // Back to original PNG approach
@@ -442,8 +445,26 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
         exportOptions.animation = false;
         exportOptions.maintainAspectRatio = true;
 
+        // MANUALLY restore political colors logic for export
+        if (originalChart.options.plugins?.segment) {
+            exportOptions.plugins.segment = originalChart.options.plugins.segment;
+        }
+
+        // Also check if segments are defined at dataset level
+        const exportDatasets = originalChart.data.datasets.map(ds => {
+            const newDs = { ...ds };
+            if (ds.segment) newDs.segment = ds.segment;
+            return newDs;
+        });
+
+        new Chart(clonedCanvas, {
+            type: originalChart.config.type,
+            data: { ...originalChart.data, datasets: exportDatasets },
+            options: exportOptions
+        });
+
         // Wait for next frame to ensure clone is ready
-        await new Promise(resolve => requestAnimationFrame(resolve));
+        await new Promise(resolve => setTimeout(resolve, 300));
     }
 
     // Enhance the styling for Instagram export
@@ -756,7 +777,35 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
         </div>
     </div>
     <script>
+        const POLITICAL_PERIODS = ${JSON.stringify(POLITICAL_PERIODS)};
+        
+        function getPoliticalPeriod(date) {
+            const targetDate = new Date(date);
+            for (const period of POLITICAL_PERIODS) {
+                const startDate = new Date(period.start);
+                const endDate = new Date(period.end);
+                if (targetDate >= startDate && targetDate <= endDate) {
+                    return period;
+                }
+            }
+            return null;
+        }
+
         const config = ${JSON.stringify(chartConfig)};
+        
+        // Restore political coloring logic for line charts
+        if (config.type === 'line') {
+            config.data.datasets.forEach(dataset => {
+                dataset.segment = {
+                    borderColor: (ctx) => {
+                        const date = ctx.p0.parsed.x;
+                        const period = getPoliticalPeriod(date);
+                        return period ? period.color : (dataset.borderColor || '#3b82f6');
+                    }
+                };
+            });
+        }
+
         window.onload = () => {
             const ctx = document.getElementById('chart').getContext('2d');
             new Chart(ctx, config);
@@ -772,143 +821,115 @@ async function downloadAsHTML(cardEl, filename, chartTitle) {
 }
 
 async function downloadAsPDF(cardEl, filename, chartTitle) {
-    // For PDF generation, we'll use html2canvas to create an image first
-    // then convert it to PDF using jsPDF
     if (typeof window.jspdf === 'undefined') {
-        // If jsPDF is not available, fallback to PNG
         console.warn('jsPDF not available, falling back to PNG');
         await downloadAsPNG(cardEl, filename.replace('.pdf', '.png'), chartTitle);
         return;
     }
 
-    // Get the original chart instance
+    const { jsPDF } = window.jspdf;
     const originalCanvas = cardEl.querySelector('canvas');
     const originalChart = originalCanvas?.chart;
 
     if (!originalChart) {
         console.error('[downloadAsPDF] No chart instance found');
-        announce?.('Chart not ready for download. Please wait a moment and try again.');
         return;
     }
 
-    // Create the same enhanced card as PNG
+    // High DPI export scaling
+    const SCALE = 2;
+    const WIDTH = 1200;
+
     const tempContainer = document.createElement('div');
     tempContainer.style.cssText = `
         position: fixed;
         top: -9999px;
         left: -9999px;
-        width: 800px;
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        padding: 24px;
-        font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+        width: ${WIDTH}px;
+        background: #f5f0e8;
+        padding: 60px;
         z-index: -1;
     `;
 
-    const cardClone = cardEl.cloneNode(true);
-    const actionButtons = cardClone.querySelectorAll('.chart-actions, .source-link');
-    actionButtons.forEach(btn => btn.remove());
-
+    const cardClone = document.createElement('div');
+    cardClone.className = 'chart-card';
     cardClone.style.cssText = `
-        background: white;
-        border: none;
-        box-shadow: none;
-        padding: 0;
-        margin: 0;
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 40px;
+        border: 1px solid rgba(0,0,0,0.1);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         width: 100%;
-        max-width: none;
+        box-sizing: border-box;
     `;
 
-    const header = cardClone.querySelector('.chart-header');
-    if (header) {
-        header.style.cssText = `
-            margin-bottom: 20px;
-            padding-bottom: 16px;
-            border-bottom: 2px solid #e5e7eb;
-        `;
-    }
+    const chartSubtitleText = cardEl.querySelector('.chart-subtitle')?.textContent || '';
+    const sourceText = cardEl.querySelector('.source-link')?.textContent || 'Riksdata';
 
-    const title = cardClone.querySelector('h3');
-    if (title) {
-        title.style.cssText = `
-            font-size: 24px;
-            font-weight: 700;
-            color: #111827;
-            margin: 0 0 8px 0;
-            line-height: 1.2;
-        `;
-    }
-
-    const subtitle = cardClone.querySelector('.chart-subtitle');
-    if (subtitle) {
-        subtitle.style.cssText = `
-            font-size: 16px;
-            color: #6b7280;
-            font-weight: 500;
-            margin: 0;
-        `;
-    }
-
-    const chartContainer = cardClone.querySelector('.chart-container');
-    if (chartContainer) {
-        chartContainer.style.cssText = `
-            width: 100%;
-            height: 400px;
-            position: relative;
-        `;
-    }
+    cardClone.innerHTML = `
+        <div style="margin-bottom: 30px; padding-bottom: 20px; border-bottom: 4px solid #09213C;">
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #020202; margin: 0 0 10px 0;">${chartTitle}</h1>
+            <p style="font-family: 'Inter', sans-serif; font-size: 18px; color: rgba(2,2,2,0.65); font-weight: 500; margin: 0;">${chartSubtitleText}</p>
+        </div>
+        <div style="position: relative; height: 600px; width: 100%;">
+            <canvas id="export-canvas"></canvas>
+        </div>
+        <div style="margin-top: 30px; font-family: 'Inter', sans-serif; font-size: 14px; color: rgba(2,2,2,0.45); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 20px; display: flex; justify-content: space-between;">
+            <span>Generert fra riksdata.no &bull; ${new Date().toLocaleDateString('no-NO')}</span>
+            <span>Kilde: ${sourceText}</span>
+        </div>
+    `;
 
     tempContainer.appendChild(cardClone);
     document.body.appendChild(tempContainer);
 
-    // Wait a moment for the layout to settle
-    await new Promise(resolve => setTimeout(resolve, 100));
+    // Render high-quality chart on secondary canvas
+    const exportCanvas = cardClone.querySelector('#export-canvas');
+    const ctx = exportCanvas.getContext('2d');
+
+    // Create new chart instance with original data but static settings
+    const exportOptions = JSON.parse(JSON.stringify(originalChart.options));
+    exportOptions.responsive = false;
+    exportOptions.animation = false;
+    exportOptions.maintainAspectRatio = true;
+
+    // Restore political colors for PDF export
+    const exportDatasets = originalChart.data.datasets.map(ds => {
+        const newDs = { ...ds };
+        if (ds.segment) newDs.segment = ds.segment;
+        return newDs;
+    });
+
+    new Chart(ctx, {
+        type: originalChart.config.type,
+        data: { ...originalChart.data, datasets: exportDatasets },
+        options: exportOptions
+    });
+
+    // Wait for render
+    await new Promise(resolve => setTimeout(resolve, 300));
 
     if (window.html2canvas) {
-        const canvas = await html2canvas(tempContainer, {
-            scale: 2,
+        const canvas = await html2canvas(cardClone, {
+            scale: SCALE,
             useCORS: true,
             allowTaint: true,
-            backgroundColor: '#ffffff',
-            width: 800,
-            height: tempContainer.scrollHeight,
-            logging: false,
-            onclone: (clonedDoc) => {
-                // Ensure the cloned chart renders properly
-                const clonedCanvas = clonedDoc.querySelector('canvas');
-                if (clonedCanvas && clonedCanvas.chart) {
-                    clonedCanvas.chart.resize();
-                    clonedCanvas.chart.render();
-                }
-            }
+            backgroundColor: null,
+            logging: false
         });
 
-        // Convert canvas to PDF
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new window.jspdf.jsPDF('p', 'mm', 'a4');
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 295; // A4 height in mm
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        let heightLeft = imgHeight;
+        const imgData = canvas.toDataURL('image/png', 1.0);
+        const pdf = new jsPDF({
+            orientation: canvas.width > canvas.height ? 'l' : 'p',
+            unit: 'px',
+            format: [canvas.width / SCALE, canvas.height / SCALE]
+        });
 
-        let position = 0;
-
-        pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
-
-        while (heightLeft >= 0) {
-            position = heightLeft - imgHeight;
-            pdf.addPage();
-            pdf.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-            heightLeft -= pageHeight;
-        }
-
+        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width / SCALE, canvas.height / SCALE);
         pdf.save(filename);
-        announce?.(`Chart "${chartTitle}" downloaded as PDF!`);
+        announce?.(`PDF eksportert: ${filename}`);
     }
 
-    // Clean up
     document.body.removeChild(tempContainer);
 }
 

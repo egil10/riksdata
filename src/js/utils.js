@@ -840,109 +840,113 @@ async function downloadAsPDF(cardEl, filename, chartTitle) {
         return;
     }
 
-    // High DPI export scaling
-    const SCALE = 2;
-    const WIDTH = 1200;
+    // High DPI export scaling & 12:6 cinematic ratio
+    const SCALE = 4;
+    const PDF_WIDTH = 1200;
+    const PDF_HEIGHT = 600;
 
-    const tempContainer = document.createElement('div');
-    tempContainer.style.cssText = `
-        position: fixed;
-        top: -9999px;
-        left: -9999px;
-        width: ${WIDTH}px;
-        background: #f5f0e8;
-        padding: 60px;
-        z-index: -1;
-    `;
+    const pdf = new jsPDF({
+        orientation: 'l',
+        unit: 'px',
+        format: [PDF_WIDTH, PDF_HEIGHT]
+    });
 
-    const cardClone = document.createElement('div');
-    cardClone.className = 'chart-card';
-    cardClone.style.cssText = `
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 40px;
-        border: 1px solid rgba(0,0,0,0.1);
-        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        width: 100%;
-        box-sizing: border-box;
-    `;
+    // 1. Draw Background
+    pdf.setFillColor(245, 240, 232); // #f5f0e8
+    pdf.rect(0, 0, PDF_WIDTH, PDF_HEIGHT, 'F');
 
-    const chartSubtitleText = cardEl.querySelector('.chart-subtitle')?.textContent || '';
-    const sourceText = cardEl.querySelector('.source-link')?.textContent || 'Riksdata';
+    // 2. Add Vector Text (Selectable and perfectly sharp)
+    pdf.setTextColor(2, 2, 2);
+    pdf.setFont('times', 'bold');
+    pdf.setFontSize(32);
+    pdf.text(chartTitle, 40, 65);
 
-    cardClone.innerHTML = `
-        <div style="margin-bottom: 20px; padding-bottom: 15px; border-bottom: 4px solid #09213C;">
-            <h1 style="font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 700; color: #020202; margin: 0 0 5px 0;">${chartTitle}</h1>
-            <p style="font-family: 'Inter', sans-serif; font-size: 16px; color: rgba(2,2,2,0.65); font-weight: 500; margin: 0;">${chartSubtitleText}</p>
-        </div>
-        <div style="position: relative; height: 500px; width: 100%; display: flex; align-items: center; justify-content: center;">
-            <canvas id="export-canvas" style="width: 100% !important; height: 100% !important;"></canvas>
-        </div>
-        <div style="margin-top: 20px; font-family: 'Inter', sans-serif; font-size: 12px; color: rgba(2,2,2,0.45); border-top: 1px solid rgba(0,0,0,0.05); padding-top: 15px; display: flex; justify-content: space-between;">
-            <span>Generert fra riksdata.no &bull; ${new Date().toLocaleDateString('no-NO')}</span>
-            <span>Kilde: ${sourceText}</span>
-        </div>
-    `;
+    const subtitleText = cardEl.querySelector('.chart-subtitle')?.textContent || '';
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(14);
+    pdf.setTextColor(107, 114, 128);
+    pdf.text(subtitleText, 40, 88);
 
-    tempContainer.appendChild(cardClone);
-    document.body.appendChild(tempContainer);
+    // 3. Branding Accent
+    pdf.setDrawColor(9, 33, 60);
+    pdf.setLineWidth(3);
+    pdf.line(40, 110, PDF_WIDTH - 40, 110);
 
-    // Render high-quality chart on secondary canvas
-    const exportCanvas = cardClone.querySelector('#export-canvas');
-    const ctx = exportCanvas.getContext('2d');
+    // 4. Render High-Resolution Chart (Scale: 4x)
+    const shadowCanvas = document.createElement('canvas');
+    const chartAreaWidth = PDF_WIDTH - 80;
+    const chartAreaHeight = PDF_HEIGHT - 210; // Reserve space for header/footer
 
-    // Create new chart instance with original data but static settings
-    const exportOptions = JSON.parse(JSON.stringify(originalChart.options));
-    exportOptions.responsive = false;
-    exportOptions.animation = false;
-    exportOptions.maintainAspectRatio = true;
+    shadowCanvas.width = chartAreaWidth * SCALE;
+    shadowCanvas.height = chartAreaHeight * SCALE;
+    const ctx = shadowCanvas.getContext('2d');
 
-    // Restore political colors for PDF export
     const exportDatasets = originalChart.data.datasets.map(ds => {
         const newDs = { ...ds };
         if (ds.segment) newDs.segment = ds.segment;
         return newDs;
     });
 
+    const exportOptions = {
+        ...JSON.parse(JSON.stringify(originalChart.options)),
+        responsive: false,
+        maintainAspectRatio: false,
+        animation: false,
+        plugins: {
+            ...originalChart.options.plugins,
+            legend: {
+                display: exportDatasets.length > 1,
+                position: 'top',
+                labels: { font: { size: 10 * SCALE } }
+            }
+        },
+        scales: {
+            x: {
+                ...originalChart.options.scales?.x,
+                ticks: {
+                    ...originalChart.options.scales?.x?.ticks,
+                    font: { size: 9 * SCALE },
+                    callback: function (value) {
+                        const date = new Date(value);
+                        return isNaN(date.getTime()) ? value : date.getFullYear().toString();
+                    }
+                }
+            },
+            y: {
+                ...originalChart.options.scales?.y,
+                ticks: { ...originalChart.options.scales?.y?.ticks, font: { size: 9 * SCALE } }
+            }
+        }
+    };
+
+    if (originalChart.options.plugins?.segment) {
+        exportOptions.plugins.segment = originalChart.options.plugins.segment;
+    }
+
     new Chart(ctx, {
         type: originalChart.config.type,
         data: { ...originalChart.data, datasets: exportDatasets },
-        options: {
-            ...exportOptions,
-            responsive: false,
-            maintainAspectRatio: false
-        }
+        options: exportOptions
     });
 
-    // Explicitly set canvas size to match container
-    exportCanvas.style.width = '100%';
-    exportCanvas.style.height = '100%';
+    // Wait for ultra-high-res render to complete
+    await new Promise(resolve => setTimeout(resolve, 600));
 
-    // Wait for render
-    await new Promise(resolve => setTimeout(resolve, 300));
+    const imgData = shadowCanvas.toDataURL('image/png', 1.0);
+    pdf.addImage(imgData, 'PNG', 40, 140, chartAreaWidth, chartAreaHeight);
 
-    if (window.html2canvas) {
-        const canvas = await html2canvas(cardClone, {
-            scale: SCALE,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: null,
-            logging: false
-        });
+    // 5. Vector Footer
+    pdf.setFont('helvetica', 'normal');
+    pdf.setFontSize(10);
+    pdf.setTextColor(150, 150, 150);
+    const dateStr = new Date().toLocaleDateString('no-NO');
+    pdf.text(`Generert fra riksdata.no • ${dateStr}`, 40, PDF_HEIGHT - 40);
 
-        const imgData = canvas.toDataURL('image/png', 1.0);
-        const pdf = new jsPDF({
-            orientation: 'l',
-            unit: 'px',
-            format: [canvas.width / SCALE, canvas.height / SCALE]
-        });
+    const sourceText = cardEl.querySelector('.source-link')?.textContent || 'Riksdata';
+    pdf.text(`Kilde: ${sourceText}`, PDF_WIDTH - 40, PDF_HEIGHT - 40, { align: 'right' });
 
-        pdf.addImage(imgData, 'PNG', 0, 0, canvas.width / SCALE, canvas.height / SCALE);
-        pdf.save(filename);
-        announce?.(`PDF eksportert: ${filename}`);
-    }
-
-    document.body.removeChild(tempContainer);
+    pdf.save(filename);
+    announce?.(`PDF eksportert: ${filename}`);
 }
 
 async function downloadAsSVG(cardEl, filename) {

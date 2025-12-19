@@ -562,13 +562,13 @@ export async function loadChartData(canvasId, apiUrl, chartTitle, chartType = 'l
                 }
             } else if (ssbSelectedContentLabel.toLowerCase().includes('confidence indicator')) {
                 // For Business Tendency Survey, show that it's a balance indicator
-                setChartSubtitle(canvas, '(Balance indicator)');
+                setChartSubtitle(canvas, '(Nettotall)');
             }
         }
 
         // Special subtitle for bankruptcies
         if (chartTitle.toLowerCase().includes('bankruptcies') && !chartTitle.toLowerCase().includes('total')) {
-            setChartSubtitle(canvas, '(Total of all types)');
+            setChartSubtitle(canvas, '(Totalt for alle typer)');
         }
 
         // Render the chart
@@ -1944,7 +1944,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     enabled: true,
                     callbacks: {
                         label: function (context) {
-                            return `Fill: ${context.parsed.y.toFixed(2)}%`;
+                            return `Fyllingsgrad: ${context.parsed.y.toFixed(2)}%`;
                         }
                     }
                 }
@@ -1992,7 +1992,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ...CHART_CONFIG.plugins?.tooltip,
                     callbacks: {
                         label: function (context) {
-                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} dwellings`;
+                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} boliger`;
                         }
                     }
                 }
@@ -2018,7 +2018,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     ...CHART_CONFIG.plugins?.tooltip,
                     callbacks: {
                         label: function (context) {
-                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} positions`;
+                            return `${context.dataset.label}: ${context.parsed.y.toLocaleString()} stillinger`;
                         }
                     }
                 }
@@ -2047,7 +2047,7 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                     callbacks: {
                         label: function (context) {
                             const valueInBillions = context.parsed.y / 1000000000;
-                            return `${valueInBillions.toFixed(2)} billion NOK`;
+                            return `${valueInBillions.toFixed(2)} mrd. NOK`;
                         }
                     }
                 }
@@ -2082,13 +2082,13 @@ export function renderChart(canvas, data, title, chartType = 'line') {
                             const absValue = Math.abs(value);
 
                             if (absValue >= 1e12) {
-                                return (value / 1e12).toFixed(absValue >= 1e13 ? 0 : 1) + 'T';
+                                return (value / 1e12).toFixed(absValue >= 1e13 ? 0 : 1) + ' bilj.';
                             } else if (absValue >= 1e9) {
-                                return (value / 1e9).toFixed(absValue >= 1e10 ? 0 : 1) + 'B';
+                                return (value / 1e9).toFixed(absValue >= 1e10 ? 0 : 1) + ' mrd.';
                             } else if (absValue >= 1e6) {
-                                return (value / 1e6).toFixed(absValue >= 1e7 ? 0 : 1) + 'M';
+                                return (value / 1e6).toFixed(absValue >= 1e7 ? 0 : 1) + ' mill.';
                             } else if (absValue >= 1e4) {
-                                return (value / 1e3).toFixed(absValue >= 1e5 ? 0 : 1) + 'K';
+                                return (value / 1e3).toFixed(absValue >= 1e5 ? 0 : 1) + 'k';
                             } else if (absValue >= 10) {
                                 return value.toFixed(0);
                             } else if (absValue >= 1) {

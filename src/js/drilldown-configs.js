@@ -5,349 +5,209 @@
 // Access via URL hash: index.html#bankruptcies, index.html#exports, etc.
 
 export const drilldownConfigs = {
-    // === POLITICAL TIMELINE (Norwegian Governments 1965-2025) ===
+    // === POLITISK TIDSLINJE (Norske regjeringer 1965-2025) ===
     politicalTimeline: [
-        { id: 'political-timeline-data', url: './data/static/political-timeline.json', title: 'Norwegian Political Timeline', subtitle: 'Prime Ministers and Governments 1965-2025', type: 'timeline' }
+        { id: 'political-timeline-data', url: './data/static/political-timeline.json', title: 'Norsk politisk tidslinje', subtitle: 'Statsministre og regjeringer 1965-2025', type: 'timeline' }
     ],
 
-    // === POPULATION DRILLDOWN (Detailed Population Analysis) ===
+    // === BEFOLKNING (Detaljert befolkningsanalyse) ===
     population: [
-        { id: 'population-basic-districts-national-drilldown', url: './data/cached/ssb/population-basic-districts-national.json', title: 'Population by Districts', subtitle: 'persons', type: 'line' },
-        { id: 'population-by-gender-age-historical-drilldown', url: './data/cached/ssb/population-by-gender-age-historical.json', title: 'Population by Gender & Age (Historical)', subtitle: 'persons', type: 'line' },
-        { id: 'population-by-gender-age-5year-drilldown', url: './data/cached/ssb/population-by-gender-age-5year.json', title: 'Population by Gender & Age (5-year groups)', subtitle: 'persons', type: 'line' },
-        { id: 'population-growth-alt-drilldown', url: './data/cached/ssb/population-growth-alt.json', title: 'Population Growth (Quarterly)', subtitle: 'persons', type: 'line' },
-        { id: 'immigration-rate-drilldown', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=en', title: 'Immigration Rate', subtitle: 'Annual Count', type: 'line' },
-        { id: 'immigrants-with-immigrant-parents-drilldown', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=en', title: 'Immigrants with Immigrant Parents', subtitle: 'Number', type: 'line' },
-        { id: 'births-deaths-drilldown', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=en', title: 'Births & Deaths', subtitle: 'Number', type: 'line' },
-        { id: 'deaths-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Age', subtitle: 'Number', type: 'line' },
-        { id: 'deaths-by-week-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=en', title: 'Deaths by Week & Age', subtitle: 'Number', type: 'line' }
+        { id: 'population-basic-districts-national-drilldown', url: './data/cached/ssb/population-basic-districts-national.json', title: 'Befolkning etter distrikt', subtitle: 'Personer', type: 'line' },
+        { id: 'population-by-gender-age-historical-drilldown', url: './data/cached/ssb/population-by-gender-age-historical.json', title: 'Befolkning etter kjønn og alder (Historisk)', subtitle: 'Personer', type: 'line' },
+        { id: 'population-by-gender-age-5year-drilldown', url: './data/cached/ssb/population-by-gender-age-5year.json', title: 'Befolkning etter kjønn og alder (5-årsgrupper)', subtitle: 'Personer', type: 'line' },
+        { id: 'population-growth-alt-drilldown', url: './data/cached/ssb/population-growth-alt.json', title: 'Befolkningsvekst (Kvartalsvis)', subtitle: 'Personer', type: 'line' },
+        { id: 'immigration-rate-drilldown', url: 'https://data.ssb.no/api/v0/dataset/48651.json?lang=no', title: 'Innvandringsrate', subtitle: 'Årlig antall', type: 'line' },
+        { id: 'immigrants-with-immigrant-parents-drilldown', url: 'https://data.ssb.no/api/v0/dataset/96304.json?lang=no', title: 'Innvandrere med innvandrerforeldre', subtitle: 'Antall', type: 'line' },
+        { id: 'births-deaths-drilldown', url: 'https://data.ssb.no/api/v0/dataset/1106.json?lang=no', title: 'Fødsler og dødsfall', subtitle: 'Antall', type: 'line' },
+        { id: 'deaths-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=no', title: 'Dødsfall etter alder', subtitle: 'Antall', type: 'line' },
+        { id: 'deaths-by-week-age-drilldown', url: 'https://data.ssb.no/api/v0/dataset/567324.json?lang=no', title: 'Dødsfall per uke og alder', subtitle: 'Antall', type: 'line' }
     ],
 
-    // === BANKRUPTCIES BY INDUSTRY (All 89 Industries) ===
+    // === KONKURSER ETTER NÆRING ===
     bankruptcies: [
-        { id: 'bankruptcies-total-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-total.json', title: 'Total (All Industries)', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-01-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-01-crop-and-animal-production-hunting-and-related-service-activities.json', title: 'Agriculture & Hunting', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-03-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-03-fishing-and-aquaculture.json', title: 'Fishing & Aquaculture', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-06-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-06-extraction-of-crude-petroleum-and-natural-gas.json', title: 'Oil & Gas Extraction', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-09-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-09-mining-support-service-activities.json', title: 'Mining Support Services', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-10-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-10-manufacture-of-food-products.json', title: 'Food Manufacturing', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-31-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-31-manufacture-of-furniture.json', title: 'Furniture Manufacturing', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-41-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-41-construction-of-buildings.json', title: 'Construction of Buildings', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-42-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-42-civil-engineering.json', title: 'Civil Engineering', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-43-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-43-specialised-construction-activities.json', title: 'Specialized Construction', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-45-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-45-wholesale-and-retail-trade-and-repair-of-motor-vehicles-and-motorcycles.json', title: 'Auto Sales & Repair', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-46-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-46-wholesale-trade-except-of-motor-vehicles-and-motorcycles.json', title: 'Wholesale Trade', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-47-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-47-retail-trade-except-of-motor-vehicles-and-motorcycles.json', title: 'Retail Trade', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-49-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-49-land-transport-and-transport-via-pipelines.json', title: 'Land Transport', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-50-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-50-water-transport.json', title: 'Water Transport (Shipping)', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-55-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-55-accommodation.json', title: 'Accommodation (Hotels)', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-56-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-56-food-and-beverage-service-activities.json', title: 'Restaurants & Food Service', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-62-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-62-computer-programming.json', title: 'Computer Programming', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-68-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-68-real-estate-activities.json', title: 'Real Estate', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-69-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-69-legal-and-accounting-activities.json', title: 'Legal & Accounting', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-71-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-71-architectural-and-engineering-activities.json', title: 'Engineering & Architecture', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-73-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-73-advertising-and-market-research.json', title: 'Advertising & Marketing', subtitle: 'Number per quarter', type: 'line' },
-        { id: 'bankruptcies-85-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-85-education.json', title: 'Education', subtitle: 'Number per quarter', type: 'line' },
+        { id: 'bankruptcies-total-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-total.json', title: 'Totalt (Alle næringer)', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-01-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-01-crop-and-animal-production-hunting-and-related-service-activities.json', title: 'Jordbruk og jakt', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-03-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-03-fishing-and-aquaculture.json', title: 'Fiske og akvakultur', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-06-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-06-extraction-of-crude-petroleum-and-natural-gas.json', title: 'Utvinning av olje og gass', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-09-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-09-mining-support-service-activities.json', title: 'Støttetjenester for utvinning', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-10-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-10-manufacture-of-food-products.json', title: 'Matvareproduksjon', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-31-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-31-manufacture-of-furniture.json', title: 'Møbelproduksjon', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-41-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-41-construction-of-buildings.json', title: 'Oppføring av bygninger', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-42-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-42-civil-engineering.json', title: 'Anleggsarbeid', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-43-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-43-specialised-construction-activities.json', title: 'Spesialisert byggevirksomhet', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-45-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-45-wholesale-and-retail-trade-and-repair-of-motor-vehicles-and-motorcycles.json', title: 'Bilsalg og reparasjon', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-46-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-46-wholesale-trade-except-of-motor-vehicles-and-motorcycles.json', title: 'Engroshandel', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-47-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-47-retail-trade-except-of-motor-vehicles-and-motorcycles.json', title: 'Detaljhandel', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-49-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-49-land-transport-and-transport-via-pipelines.json', title: 'Landtransport', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-50-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-50-water-transport.json', title: 'Sjøfart og sjøtransport', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-55-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-55-accommodation.json', title: 'Overnatting (Hotell)', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-56-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-56-food-and-beverage-service-activities.json', title: 'Serveringsvirksomhet', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-62-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-62-computer-programming.json', title: 'IT-programmering', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-68-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-68-real-estate-activities.json', title: 'Eiendomsomsetning', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-69-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-69-legal-and-accounting-activities.json', title: 'Juridisk og regnskapsmessig tjenesteyting', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-71-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-71-architectural-and-engineering-activities.json', title: 'Arkitekt- og ingeniørvirksomhet', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-73-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-73-advertising-and-market-research.json', title: 'Reklame og markedføring', subtitle: 'Antall per kvartal', type: 'line' },
+        { id: 'bankruptcies-85-drilldown', url: './data/cached/ssb/bankruptcies-by-industry/bankruptcies-85-education.json', title: 'Undervisning', subtitle: 'Antall per kvartal', type: 'line' },
     ],
 
-    // === CREDIT INDICATOR VARIATIONS (4 Indicators) ===
+    // === KREDITTINDIKATORER ===
     creditIndicator: [
-        { id: 'credit-indicator-main-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=en', title: 'Credit Indicator - Main', subtitle: 'Millioner NOK', type: 'line' },
-        { id: 'credit-indicator-k2-detailed-drilldown', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=en', title: 'Credit Indicator - K2 Detailed', subtitle: 'Millioner NOK', type: 'line' },
-        { id: 'credit-indicator-k2-seasonally-adjusted-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=en', title: 'Credit Indicator - K2 Seasonally Adjusted', subtitle: 'Millioner NOK', type: 'line' },
-        { id: 'credit-indicator-k3-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=en', title: 'Credit Indicator - K3', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-main-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166326.json?lang=no', title: 'Kredittindikator - Hovedtall', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-k2-detailed-drilldown', url: 'https://data.ssb.no/api/v0/dataset/62264.json?lang=no', title: 'Kredittindikator - K2 Detaljert', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-k2-seasonally-adjusted-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166329.json?lang=no', title: 'Kredittindikator - K2 Sesongjustert', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'credit-indicator-k3-drilldown', url: 'https://data.ssb.no/api/v0/dataset/166327.json?lang=no', title: 'Kredittindikator - K3', subtitle: 'Millioner NOK', type: 'line' },
     ],
 
-    // === PRODUCER PRICE INDEX (PPI) DRILLDOWN (Individual Time Series) ===
+    // === PRODUSENTPRISINDEKS (PPI) ===
     ppi: [
-        // Main PPI - Total Index (All Markets)
-        { id: 'ppi-total-all-markets-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-and-export-market-total.json', title: 'PPI - Total (All Markets)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-total-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-market.json', title: 'PPI - Total (Domestic Market)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-total-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-export-market.json', title: 'PPI - Total (Export Market)', subtitle: 'Index', type: 'line' },
-
-        // Oil & Gas Extraction
-        { id: 'ppi-oil-gas-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-and-export-market-total.json', title: 'PPI - Oil & Gas (All Markets)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-oil-gas-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-market.json', title: 'PPI - Oil & Gas (Domestic)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-oil-gas-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-export-market.json', title: 'PPI - Oil & Gas (Export)', subtitle: 'Index', type: 'line' },
-
-        // Manufacturing
-        { id: 'ppi-manufacturing-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-and-export-market-total.json', title: 'PPI - Manufacturing (All Markets)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-manufacturing-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-market.json', title: 'PPI - Manufacturing (Domestic)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-manufacturing-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-export-market.json', title: 'PPI - Manufacturing (Export)', subtitle: 'Index', type: 'line' },
-
-        // Energy Sectors
-        { id: 'ppi-electricity-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn35_tot-domestic-and-export-market-total.json', title: 'PPI - Electricity & Gas (All Markets)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-excl-energy-all-drilldown', url: './data/cached/ssb/ppi/ppi-spe4-domestic-and-export-market-total.json', title: 'PPI - Excluding Energy (All Markets)', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-energy-goods-all-drilldown', url: './data/cached/ssb/ppi/ppi-e6_tot-domestic-and-export-market-total.json', title: 'PPI - Energy Goods (All Markets)', subtitle: 'Index', type: 'line' },
-
-        // Key Manufacturing Industries
-        { id: 'ppi-food-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn10-domestic-and-export-market-total.json', title: 'PPI - Food Manufacturing', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-wood-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn16-domestic-and-export-market-total.json', title: 'PPI - Wood Manufacturing', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-chemical-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn20-domestic-and-export-market-total.json', title: 'PPI - Chemical Manufacturing', subtitle: 'Index', type: 'line' },
-        { id: 'ppi-metal-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn24-domestic-and-export-market-total.json', title: 'PPI - Metal Manufacturing', subtitle: 'Index', type: 'line' }
+        { id: 'ppi-total-all-markets-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-and-export-market-total.json', title: 'PPI - Totalt (Alle markeder)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-total-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-domestic-market.json', title: 'PPI - Totalt (Hjemmemarked)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-total-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn0-export-market.json', title: 'PPI - Totalt (Eksportmarked)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-oil-gas-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-and-export-market-total.json', title: 'PPI - Olje og gass (Alle markeder)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-oil-gas-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-domestic-market.json', title: 'PPI - Olje og gass (Hjemme)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-oil-gas-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn06_tot-export-market.json', title: 'PPI - Olje og gass (Eksport)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-manufacturing-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-and-export-market-total.json', title: 'PPI - Industri (Alle markeder)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-manufacturing-domestic-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-domestic-market.json', title: 'PPI - Industri (Hjemme)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-manufacturing-export-drilldown', url: './data/cached/ssb/ppi/ppi-snn10_33-export-market.json', title: 'PPI - Industri (Eksport)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-electricity-all-drilldown', url: './data/cached/ssb/ppi/ppi-snn35_tot-domestic-and-export-market-total.json', title: 'PPI - Strøm og gass (Alle markeder)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-excl-energy-all-drilldown', url: './data/cached/ssb/ppi/ppi-spe4-domestic-and-export-market-total.json', title: 'PPI - Ekskludert energi (Alle markeder)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-energy-goods-all-drilldown', url: './data/cached/ssb/ppi/ppi-e6_tot-domestic-and-export-market-total.json', title: 'PPI - Energivarer (Alle markeder)', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-food-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn10-domestic-and-export-market-total.json', title: 'PPI - Matvareindustri', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-wood-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn16-domestic-and-export-market-total.json', title: 'PPI - Trevareindustri', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-chemical-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn20-domestic-and-export-market-total.json', title: 'PPI - Kjemisk industri', subtitle: 'Indeks', type: 'line' },
+        { id: 'ppi-metal-manufacturing-drilldown', url: './data/cached/ssb/ppi/ppi-snn24-domestic-and-export-market-total.json', title: 'PPI - Metallindustri', subtitle: 'Indeks', type: 'line' }
     ],
 
-    // === CPI VARIATIONS (16 Different Measures) ===
+    // === KPI (Konsumprisindeks) ===
     cpi: [
-        { id: 'cpi-main-drilldown', url: './data/cached/ssb/cpi.json', title: 'CPI - All-Item Index', subtitle: 'Index (2015=100)', type: 'line' },
-        { id: 'cpi-ate-drilldown', url: './data/cached/ssb/cpi-ate.json', title: 'CPI - ATE (Adjusted for Tax and Energy)', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-seasonally-adjusted-drilldown', url: './data/cached/ssb/cpi-seasonally-adjusted.json', title: 'CPI - Seasonally Adjusted', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-seasonally-adjusted-recent-drilldown', url: './data/cached/ssb/cpi-seasonally-adjusted-recent.json', title: 'CPI - Seasonally Adjusted (Recent)', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-total-index-recent-drilldown', url: './data/cached/ssb/cpi-total-index-recent.json', title: 'CPI - Total Index (Recent)', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-subgroups-drilldown', url: './data/cached/ssb/cpi-subgroups.json', title: 'CPI - By Subgroups', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-subgroup-level2-drilldown', url: './data/cached/ssb/cpi-subgroup-level2.json', title: 'CPI - By Subgroup Level 2', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-group-level-drilldown', url: './data/cached/ssb/cpi-group-level.json', title: 'CPI - By Group Level', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-coicop-drilldown', url: './data/cached/ssb/cpi-coicop.json', title: 'CPI - By COICOP Classification', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-items-drilldown', url: './data/cached/ssb/cpi-items.json', title: 'CPI - By Items', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-weights-subgroup-drilldown', url: './data/cached/ssb/cpi-weights-subgroup.json', title: 'CPI - Weights by Subgroup', subtitle: 'Weight', type: 'line' },
-        { id: 'cpi-delivery-drilldown', url: './data/cached/ssb/cpi-delivery.json', title: 'CPI - By Delivery Sector', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-delivery-sector-annual-drilldown', url: './data/cached/ssb/cpi-delivery-sector-annual.json', title: 'CPI - Delivery Sector (Annual)', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-delivery-sector-recent-drilldown', url: './data/cached/ssb/cpi-delivery-sector-recent.json', title: 'CPI - Delivery Sector (Recent)', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-adjusted-indices-drilldown', url: './data/cached/ssb/cpi-adjusted-indices.json', title: 'CPI - Adjusted Indices', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-adjusted-delivery-sector-drilldown', url: './data/cached/ssb/cpi-adjusted-delivery-sector.json', title: 'CPI - Adjusted Delivery Sector', subtitle: 'Index', type: 'line' },
-        { id: 'cpi-adjusted-delivery-sector-recent-drilldown', url: './data/cached/ssb/cpi-adjusted-delivery-sector-recent.json', title: 'CPI - Adjusted Delivery Sector (Recent)', subtitle: 'Index', type: 'line' },
+        { id: 'cpi-main-drilldown', url: './data/cached/ssb/cpi.json', title: 'KPI - Totalindeks', subtitle: 'Indeks (2015=100)', type: 'line' },
+        { id: 'cpi-ate-drilldown', url: './data/cached/ssb/cpi-ate.json', title: 'KPI-JAE (Justert for avgift og energi)', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-seasonally-adjusted-drilldown', url: './data/cached/ssb/cpi-seasonally-adjusted.json', title: 'KPI - Sesongjustert', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-seasonally-adjusted-recent-drilldown', url: './data/cached/ssb/cpi-seasonally-adjusted-recent.json', title: 'KPI - Sesongjustert (Siste data)', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-total-index-recent-drilldown', url: './data/cached/ssb/cpi-total-index-recent.json', title: 'KPI - Totalindeks (Siste data)', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-subgroups-drilldown', url: './data/cached/ssb/cpi-subgroups.json', title: 'KPI - Etter undergrupper', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-subgroup-level2-drilldown', url: './data/cached/ssb/cpi-subgroup-level2.json', title: 'KPI - Etter undergrupper nivå 2', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-group-level-drilldown', url: './data/cached/ssb/cpi-group-level.json', title: 'KPI - Etter gruppenivå', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-coicop-drilldown', url: './data/cached/ssb/cpi-coicop.json', title: 'KPI - Etter COICOP-klassifisering', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-items-drilldown', url: './data/cached/ssb/cpi-items.json', title: 'KPI - Etter enkeltvarer', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-weights-subgroup-drilldown', url: './data/cached/ssb/cpi-weights-subgroup.json', title: 'KPI - Vekter etter undergruppe', subtitle: 'Vekt', type: 'line' },
+        { id: 'cpi-delivery-drilldown', url: './data/cached/ssb/cpi-delivery.json', title: 'KPI - Etter leveringssektor', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-delivery-sector-annual-drilldown', url: './data/cached/ssb/cpi-delivery-sector-annual.json', title: 'KPI - Leveringssektor (Årlig)', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-delivery-sector-recent-drilldown', url: './data/cached/ssb/cpi-delivery-sector-recent.json', title: 'KPI - Leveringssektor (Siste data)', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-adjusted-indices-drilldown', url: './data/cached/ssb/cpi-adjusted-indices.json', title: 'KPI-JA - Justerte indekser', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-adjusted-delivery-sector-drilldown', url: './data/cached/ssb/cpi-adjusted-delivery-sector.json', title: 'KPI-JA - Justert leveringssektor', subtitle: 'Indeks', type: 'line' },
+        { id: 'cpi-adjusted-delivery-sector-recent-drilldown', url: './data/cached/ssb/cpi-adjusted-delivery-sector-recent.json', title: 'KPI-JA - Justert leveringssektor (Siste data)', subtitle: 'Indeks', type: 'line' },
     ],
 
-    // === IMPORTS BY COUNTRY (Top 50 Trading Partners) ===
+    // === IMPORT ETTER LAND ===
     imports: [
-        { id: 'import-gb-drilldown', url: './data/cached/ssb/import-by-country/import-gb.json', title: 'United Kingdom', subtitle: 'NOK', type: 'line' },
-        { id: 'import-de-drilldown', url: './data/cached/ssb/import-by-country/import-de.json', title: 'Germany', subtitle: 'NOK', type: 'line' },
-        { id: 'import-us-drilldown', url: './data/cached/ssb/import-by-country/import-us.json', title: 'United States', subtitle: 'NOK', type: 'line' },
-        { id: 'import-cn-drilldown', url: './data/cached/ssb/import-by-country/import-cn.json', title: 'China', subtitle: 'NOK', type: 'line' },
-        { id: 'import-se-drilldown', url: './data/cached/ssb/import-by-country/import-se.json', title: 'Sweden', subtitle: 'NOK', type: 'line' },
-        { id: 'import-dk-drilldown', url: './data/cached/ssb/import-by-country/import-dk.json', title: 'Denmark', subtitle: 'NOK', type: 'line' },
-        { id: 'import-nl-drilldown', url: './data/cached/ssb/import-by-country/import-nl.json', title: 'Netherlands', subtitle: 'NOK', type: 'line' },
-        { id: 'import-fr-drilldown', url: './data/cached/ssb/import-by-country/import-fr.json', title: 'France', subtitle: 'NOK', type: 'line' },
-        { id: 'import-it-drilldown', url: './data/cached/ssb/import-by-country/import-it.json', title: 'Italy', subtitle: 'NOK', type: 'line' },
-        { id: 'import-jp-drilldown', url: './data/cached/ssb/import-by-country/import-jp.json', title: 'Japan', subtitle: 'NOK', type: 'line' },
-        { id: 'import-kr-drilldown', url: './data/cached/ssb/import-by-country/import-kr.json', title: 'South Korea', subtitle: 'NOK', type: 'line' },
+        { id: 'import-se-drilldown', url: './data/cached/ssb/import-by-country/import-se.json', title: 'Sverige', subtitle: 'NOK', type: 'line' },
+        { id: 'import-de-drilldown', url: './data/cached/ssb/import-by-country/import-de.json', title: 'Tyskland', subtitle: 'NOK', type: 'line' },
+        { id: 'import-cn-drilldown', url: './data/cached/ssb/import-by-country/import-cn.json', title: 'Kina', subtitle: 'NOK', type: 'line' },
+        { id: 'import-us-drilldown', url: './data/cached/ssb/import-by-country/import-us.json', title: 'USA', subtitle: 'NOK', type: 'line' },
+        { id: 'import-dk-drilldown', url: './data/cached/ssb/import-by-country/import-dk.json', title: 'Danmark', subtitle: 'NOK', type: 'line' },
+        { id: 'import-gb-drilldown', url: './data/cached/ssb/import-by-country/import-gb.json', title: 'Storbritannia', subtitle: 'NOK', type: 'line' },
+        { id: 'import-nl-drilldown', url: './data/cached/ssb/import-by-country/import-nl.json', title: 'Nederland', subtitle: 'NOK', type: 'line' },
+        { id: 'import-fr-drilldown', url: './data/cached/ssb/import-by-country/import-fr.json', title: 'Frankrike', subtitle: 'NOK', type: 'line' },
+        { id: 'import-it-drilldown', url: './data/cached/ssb/import-by-country/import-it.json', title: 'Italia', subtitle: 'NOK', type: 'line' },
+        { id: 'import-pl-drilldown', url: './data/cached/ssb/import-by-country/import-pl.json', title: 'Polen', subtitle: 'NOK', type: 'line' },
         { id: 'import-fi-drilldown', url: './data/cached/ssb/import-by-country/import-fi.json', title: 'Finland', subtitle: 'NOK', type: 'line' },
-        { id: 'import-be-drilldown', url: './data/cached/ssb/import-by-country/import-be.json', title: 'Belgium', subtitle: 'NOK', type: 'line' },
-        { id: 'import-es-drilldown', url: './data/cached/ssb/import-by-country/import-es.json', title: 'Spain', subtitle: 'NOK', type: 'line' },
-        { id: 'import-pl-drilldown', url: './data/cached/ssb/import-by-country/import-pl.json', title: 'Poland', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ru-drilldown', url: './data/cached/ssb/import-by-country/import-ru.json', title: 'Russia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-br-drilldown', url: './data/cached/ssb/import-by-country/import-br.json', title: 'Brazil', subtitle: 'NOK', type: 'line' },
-        { id: 'import-in-drilldown', url: './data/cached/ssb/import-by-country/import-in.json', title: 'India', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ca-drilldown', url: './data/cached/ssb/import-by-country/import-ca.json', title: 'Canada', subtitle: 'NOK', type: 'line' },
-        { id: 'import-au-drilldown', url: './data/cached/ssb/import-by-country/import-au.json', title: 'Australia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ch-drilldown', url: './data/cached/ssb/import-by-country/import-ch.json', title: 'Switzerland', subtitle: 'NOK', type: 'line' },
-        { id: 'import-at-drilldown', url: './data/cached/ssb/import-by-country/import-at.json', title: 'Austria', subtitle: 'NOK', type: 'line' },
-        { id: 'import-tr-drilldown', url: './data/cached/ssb/import-by-country/import-tr.json', title: 'Turkey', subtitle: 'NOK', type: 'line' },
-        { id: 'import-th-drilldown', url: './data/cached/ssb/import-by-country/import-th.json', title: 'Thailand', subtitle: 'NOK', type: 'line' },
-        { id: 'import-my-drilldown', url: './data/cached/ssb/import-by-country/import-my.json', title: 'Malaysia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-sg-drilldown', url: './data/cached/ssb/import-by-country/import-sg.json', title: 'Singapore', subtitle: 'NOK', type: 'line' },
-        { id: 'import-id-drilldown', url: './data/cached/ssb/import-by-country/import-id.json', title: 'Indonesia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-vn-drilldown', url: './data/cached/ssb/import-by-country/import-vn.json', title: 'Vietnam', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ph-drilldown', url: './data/cached/ssb/import-by-country/import-ph.json', title: 'Philippines', subtitle: 'NOK', type: 'line' },
-        { id: 'import-mx-drilldown', url: './data/cached/ssb/import-by-country/import-mx.json', title: 'Mexico', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ar-drilldown', url: './data/cached/ssb/import-by-country/import-ar.json', title: 'Argentina', subtitle: 'NOK', type: 'line' },
-        { id: 'import-cl-drilldown', url: './data/cached/ssb/import-by-country/import-cl.json', title: 'Chile', subtitle: 'NOK', type: 'line' },
-        { id: 'import-za-drilldown', url: './data/cached/ssb/import-by-country/import-za.json', title: 'South Africa', subtitle: 'NOK', type: 'line' },
-        { id: 'import-eg-drilldown', url: './data/cached/ssb/import-by-country/import-eg.json', title: 'Egypt', subtitle: 'NOK', type: 'line' },
-        { id: 'import-sa-drilldown', url: './data/cached/ssb/import-by-country/import-sa.json', title: 'Saudi Arabia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ae-drilldown', url: './data/cached/ssb/import-by-country/import-ae.json', title: 'UAE', subtitle: 'NOK', type: 'line' },
-        { id: 'import-il-drilldown', url: './data/cached/ssb/import-by-country/import-il.json', title: 'Israel', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ie-drilldown', url: './data/cached/ssb/import-by-country/import-ie.json', title: 'Ireland', subtitle: 'NOK', type: 'line' },
-        { id: 'import-pt-drilldown', url: './data/cached/ssb/import-by-country/import-pt.json', title: 'Portugal', subtitle: 'NOK', type: 'line' },
-        { id: 'import-gr-drilldown', url: './data/cached/ssb/import-by-country/import-gr.json', title: 'Greece', subtitle: 'NOK', type: 'line' },
-        { id: 'import-cz-drilldown', url: './data/cached/ssb/import-by-country/import-cz.json', title: 'Czechia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-hu-drilldown', url: './data/cached/ssb/import-by-country/import-hu.json', title: 'Hungary', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ro-drilldown', url: './data/cached/ssb/import-by-country/import-ro.json', title: 'Romania', subtitle: 'NOK', type: 'line' },
-        { id: 'import-bg-drilldown', url: './data/cached/ssb/import-by-country/import-bg.json', title: 'Bulgaria', subtitle: 'NOK', type: 'line' },
-        { id: 'import-hr-drilldown', url: './data/cached/ssb/import-by-country/import-hr.json', title: 'Croatia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-sk-drilldown', url: './data/cached/ssb/import-by-country/import-sk.json', title: 'Slovakia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-si-drilldown', url: './data/cached/ssb/import-by-country/import-si.json', title: 'Slovenia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-lt-drilldown', url: './data/cached/ssb/import-by-country/import-lt.json', title: 'Lithuania', subtitle: 'NOK', type: 'line' },
-        { id: 'import-lv-drilldown', url: './data/cached/ssb/import-by-country/import-lv.json', title: 'Latvia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ee-drilldown', url: './data/cached/ssb/import-by-country/import-ee.json', title: 'Estonia', subtitle: 'NOK', type: 'line' },
-        { id: 'import-is-drilldown', url: './data/cached/ssb/import-by-country/import-is.json', title: 'Iceland', subtitle: 'NOK', type: 'line' },
-        { id: 'import-nz-drilldown', url: './data/cached/ssb/import-by-country/import-nz.json', title: 'New Zealand', subtitle: 'NOK', type: 'line' },
-        { id: 'import-tw-drilldown', url: './data/cached/ssb/import-by-country/import-tw.json', title: 'Taiwan', subtitle: 'NOK', type: 'line' },
-        { id: 'import-hk-drilldown', url: './data/cached/ssb/import-by-country/import-hk.json', title: 'Hong Kong', subtitle: 'NOK', type: 'line' },
-        { id: 'import-ua-drilldown', url: './data/cached/ssb/import-by-country/import-ua.json', title: 'Ukraine', subtitle: 'NOK', type: 'line' },
+        { id: 'import-be-drilldown', url: './data/cached/ssb/import-by-country/import-be.json', title: 'Belgia', subtitle: 'NOK', type: 'line' },
+        { id: 'import-jp-drilldown', url: './data/cached/ssb/import-by-country/import-jp.json', title: 'Japan', subtitle: 'NOK', type: 'line' },
+        { id: 'import-kr-drilldown', url: './data/cached/ssb/import-by-country/import-kr.json', title: 'Sør-Korea', subtitle: 'NOK', type: 'line' },
+        { id: 'import-es-drilldown', url: './data/cached/ssb/import-by-country/import-es.json', title: 'Spania', subtitle: 'NOK', type: 'line' },
     ],
 
-    // === DFO GOVERNMENT SPENDING (All 15 Departments × 2) ===
+    // === EKSPLISITTE STATSBUDSJETT (DFO) ===
     dfo: [
-        { id: 'dfo-arbeids-expenditure-drilldown', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-arbeids-revenue-drilldown', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-barne-expenditure-drilldown', url: './data/cached/dfo/barne-og-familiedepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Barne- og familiedepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-barne-revenue-drilldown', url: './data/cached/dfo/barne-og-familiedepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Barne- og familiedepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-energi-expenditure-drilldown', url: './data/cached/dfo/energidepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Energidepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-energi-revenue-drilldown', url: './data/cached/dfo/energidepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Energidepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-finans-expenditure-drilldown', url: './data/cached/dfo/finansdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Finansdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-finans-revenue-drilldown', url: './data/cached/dfo/finansdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Finansdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-forsvar-expenditure-drilldown', url: './data/cached/dfo/forsvarsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Forsvarsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-forsvar-revenue-drilldown', url: './data/cached/dfo/forsvarsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Forsvarsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-helse-expenditure-drilldown', url: './data/cached/dfo/helse-og-omsorgsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Helse- og omsorgsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-helse-revenue-drilldown', url: './data/cached/dfo/helse-og-omsorgsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Helse- og omsorgsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-justis-expenditure-drilldown', url: './data/cached/dfo/justis-og-beredskapsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Justis- og beredskapsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-justis-revenue-drilldown', url: './data/cached/dfo/justis-og-beredskapsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Justis- og beredskapsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-klima-expenditure-drilldown', url: './data/cached/dfo/klima-og-milj-departementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Klima- og miljødepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-klima-revenue-drilldown', url: './data/cached/dfo/klima-og-milj-departementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Klima- og miljødepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-kommunal-expenditure-drilldown', url: './data/cached/dfo/kommunal-og-distriktsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kommunal- og distriktsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-kommunal-revenue-drilldown', url: './data/cached/dfo/kommunal-og-distriktsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Kommunal- og distriktsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-kultur-expenditure-drilldown', url: './data/cached/dfo/kultur-og-likestillingsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kultur- og likestillingsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-kultur-revenue-drilldown', url: './data/cached/dfo/kultur-og-likestillingsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Kultur- og likestillingsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-kunnskap-expenditure-drilldown', url: './data/cached/dfo/kunnskapsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kunnskapsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-kunnskap-revenue-drilldown', url: './data/cached/dfo/kunnskapsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Kunnskapsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-landbruk-expenditure-drilldown', url: './data/cached/dfo/landbruks-og-matdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Landbruks- og matdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-landbruk-revenue-drilldown', url: './data/cached/dfo/landbruks-og-matdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Landbruks- og matdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-naering-expenditure-drilldown', url: './data/cached/dfo/n-rings-og-fiskeridepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Nærings- og fiskeridepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-naering-revenue-drilldown', url: './data/cached/dfo/n-rings-og-fiskeridepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Nærings- og fiskeridepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-samferdsel-expenditure-drilldown', url: './data/cached/dfo/samferdselsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Samferdselsdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-samferdsel-revenue-drilldown', url: './data/cached/dfo/samferdselsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Samferdselsdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-utenriks-expenditure-drilldown', url: './data/cached/dfo/utenriksdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Expenditure', subtitle: 'NOK', type: 'line' },
-        { id: 'dfo-utenriks-revenue-drilldown', url: './data/cached/dfo/utenriksdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Revenue', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-arbeids-expenditure-drilldown', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-arbeids-revenue-drilldown', url: './data/cached/dfo/arbeids-og-inkluderingsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Arbeids- og inkluderingsdepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-barne-expenditure-drilldown', url: './data/cached/dfo/barne-og-familiedepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Barne- og familiedepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-barne-revenue-drilldown', url: './data/cached/dfo/barne-og-familiedepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Barne- og familiedepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-energi-expenditure-drilldown', url: './data/cached/dfo/energidepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Energidepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-energi-revenue-drilldown', url: './data/cached/dfo/energidepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Energidepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-finans-expenditure-drilldown', url: './data/cached/dfo/finansdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Finansdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-finans-revenue-drilldown', url: './data/cached/dfo/finansdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Finansdepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-forsvar-expenditure-drilldown', url: './data/cached/dfo/forsvarsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Forsvarsdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-forsvar-revenue-drilldown', url: './data/cached/dfo/forsvarsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Forsvarsdepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-helse-expenditure-drilldown', url: './data/cached/dfo/helse-og-omsorgsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Helse- og omsorgsdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-helse-revenue-drilldown', url: './data/cached/dfo/helse-og-omsorgsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Helse- og omsorgsdepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-justis-expenditure-drilldown', url: './data/cached/dfo/justis-og-beredskapsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Justis- og beredskapsdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-justis-revenue-drilldown', url: './data/cached/dfo/justis-og-beredskapsdepartementet-revenue-20142015201620172018201920202021202220232024.json', title: 'Justis- og beredskapsdepartementet - Inntekter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-kunnskap-expenditure-drilldown', url: './data/cached/dfo/kunnskapsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Kunnskapsdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-naering-expenditure-drilldown', url: './data/cached/dfo/n-rings-og-fiskeridepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Nærings- og fiskeridepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-samferdsel-expenditure-drilldown', url: './data/cached/dfo/samferdselsdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Samferdselsdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
+        { id: 'dfo-utenriks-expenditure-drilldown', url: './data/cached/dfo/utenriksdepartementet-expenditure-20142015201620172018201920202021202220232024.json', title: 'Utenriksdepartementet - Utgifter', subtitle: 'NOK', type: 'line' },
     ],
 
-    // === OIL FUND BREAKDOWN (By Asset Class) ===
+    // === OLJEFONDET (SPU) FORDELING ===
     oilfund: [
-        { id: 'oil-fund-total-drilldown', url: './data/cached/oil-fund.json', title: 'Oil Fund - Total Market Value', subtitle: 'Billion NOK', type: 'line' },
-        { id: 'oil-fund-equities-drilldown', url: './data/cached/oil-fund-equities.json', title: 'Equities', subtitle: 'Billion NOK', type: 'line' },
-        { id: 'oil-fund-fixed-income-drilldown', url: './data/cached/oil-fund-fixed-income.json', title: 'Fixed Income', subtitle: 'Billion NOK', type: 'line' },
-        { id: 'oil-fund-real-estate-drilldown', url: './data/cached/oil-fund-real-estate.json', title: 'Real Estate', subtitle: 'Billion NOK', type: 'line' },
-        { id: 'oil-fund-renewable-drilldown', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Renewable Infrastructure', subtitle: 'Billion NOK', type: 'line' },
+        { id: 'oil-fund-total-drilldown', url: './data/cached/oil-fund.json', title: 'Oljefondet - Total markedsverdi', subtitle: 'Milliarder NOK', type: 'line' },
+        { id: 'oil-fund-equities-drilldown', url: './data/cached/oil-fund-equities.json', title: 'Aksjer', subtitle: 'Milliarder NOK', type: 'line' },
+        { id: 'oil-fund-fixed-income-drilldown', url: './data/cached/oil-fund-fixed-income.json', title: 'Rentepapirer', subtitle: 'Milliarder NOK', type: 'line' },
+        { id: 'oil-fund-real-estate-drilldown', url: './data/cached/oil-fund-real-estate.json', title: 'Eiendom', subtitle: 'Milliarder NOK', type: 'line' },
+        { id: 'oil-fund-renewable-drilldown', url: './data/cached/oil-fund-renewable-infrastructure.json', title: 'Fornybar infrastruktur', subtitle: 'Milliarder NOK', type: 'line' },
     ],
 
-    // === VACCINATION COVERAGE (All 9 Vaccines) ===
+    // === VAKSINASJONSDEKNING ===
     vaccinations: [
-        { id: 'vaccination-hib3-drilldown', url: './data/cached/vaccination_hib3.json', title: 'Hib3 (Haemophilus influenzae type b)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-dtpcv3-drilldown', url: './data/cached/vaccination_dtpcv3.json', title: 'DTP-containing vaccine 3rd dose', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-hepb3-drilldown', url: './data/cached/vaccination_hepb3.json', title: 'HepB3 (Hepatitis B)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-ipv1-drilldown', url: './data/cached/vaccination_ipv1.json', title: 'IPV1 (Inactivated Polio Vaccine)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-mcv1-drilldown', url: './data/cached/vaccination_mcv1.json', title: 'MCV1 (Measles)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-pcv3-drilldown', url: './data/cached/vaccination_pcv3.json', title: 'PCV3 (Pneumococcal)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-pol3-drilldown', url: './data/cached/vaccination_pol3.json', title: 'Pol3 (Polio)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-rcv1-drilldown', url: './data/cached/vaccination_rcv1.json', title: 'RCV1 (Rubella)', subtitle: 'Coverage %', type: 'line' },
-        { id: 'vaccination-rotac-drilldown', url: './data/cached/vaccination_rotac.json', title: 'RotaC (Rotavirus)', subtitle: 'Coverage %', type: 'line' },
+        { id: 'vaccination-hib3-drilldown', url: './data/cached/vaccination_hib3.json', title: 'Hib3 (Haemophilus influenzae type b)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-dtpcv3-drilldown', url: './data/cached/vaccination_dtpcv3.json', title: 'DTP-vaksine (3. dose)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-hepb3-drilldown', url: './data/cached/vaccination_hepb3.json', title: 'HepB3 (Hepatitt B)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-ipv1-drilldown', url: './data/cached/vaccination_ipv1.json', title: 'IPV1 (Polio vaksine)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-mcv1-drilldown', url: './data/cached/vaccination_mcv1.json', title: 'MCV1 (Meslinger)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-pcv3-drilldown', url: './data/cached/vaccination_pcv3.json', title: 'PCV3 (Pneumokokkar)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-pol3-drilldown', url: './data/cached/vaccination_pol3.json', title: 'Pol3 (Polio)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-rcv1-drilldown', url: './data/cached/vaccination_rcv1.json', title: 'RCV1 (Røde hunder)', subtitle: 'Dekning %', type: 'line' },
+        { id: 'vaccination-rotac-drilldown', url: './data/cached/vaccination_rotac.json', title: 'RotaC (Rotavirus)', subtitle: 'Dekning %', type: 'line' },
     ],
 
-    // === EXPORTS BY COUNTRY (Top 50 Trading Partners) ===
+    // === EKSPORT ETTER LAND ===
     exports: [
-        { id: 'export-gb-drilldown', url: './data/cached/ssb/export-by-country/export-gb.json', title: 'United Kingdom', subtitle: 'NOK', type: 'line' },
-        { id: 'export-de-drilldown', url: './data/cached/ssb/export-by-country/export-de.json', title: 'Germany', subtitle: 'NOK', type: 'line' },
-        { id: 'export-us-drilldown', url: './data/cached/ssb/export-by-country/export-us.json', title: 'United States', subtitle: 'NOK', type: 'line' },
-        { id: 'export-nl-drilldown', url: './data/cached/ssb/export-by-country/export-nl.json', title: 'Netherlands', subtitle: 'NOK', type: 'line' },
-        { id: 'export-fr-drilldown', url: './data/cached/ssb/export-by-country/export-fr.json', title: 'France', subtitle: 'NOK', type: 'line' },
-        { id: 'export-se-drilldown', url: './data/cached/ssb/export-by-country/export-se.json', title: 'Sweden', subtitle: 'NOK', type: 'line' },
-        { id: 'export-dk-drilldown', url: './data/cached/ssb/export-by-country/export-dk.json', title: 'Denmark', subtitle: 'NOK', type: 'line' },
-        { id: 'export-cn-drilldown', url: './data/cached/ssb/export-by-country/export-cn.json', title: 'China', subtitle: 'NOK', type: 'line' },
-        { id: 'export-pl-drilldown', url: './data/cached/ssb/export-by-country/export-pl.json', title: 'Poland', subtitle: 'NOK', type: 'line' },
-        { id: 'export-be-drilldown', url: './data/cached/ssb/export-by-country/export-be.json', title: 'Belgium', subtitle: 'NOK', type: 'line' },
-        { id: 'export-es-drilldown', url: './data/cached/ssb/export-by-country/export-es.json', title: 'Spain', subtitle: 'NOK', type: 'line' },
-        { id: 'export-it-drilldown', url: './data/cached/ssb/export-by-country/export-it.json', title: 'Italy', subtitle: 'NOK', type: 'line' },
-        { id: 'export-fi-drilldown', url: './data/cached/ssb/export-by-country/export-fi.json', title: 'Finland', subtitle: 'NOK', type: 'line' },
-        { id: 'export-jp-drilldown', url: './data/cached/ssb/export-by-country/export-jp.json', title: 'Japan', subtitle: 'NOK', type: 'line' },
-        { id: 'export-kr-drilldown', url: './data/cached/ssb/export-by-country/export-kr.json', title: 'South Korea', subtitle: 'NOK', type: 'line' },
-        { id: 'export-br-drilldown', url: './data/cached/ssb/export-by-country/export-br.json', title: 'Brazil', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ca-drilldown', url: './data/cached/ssb/export-by-country/export-ca.json', title: 'Canada', subtitle: 'NOK', type: 'line' },
-        { id: 'export-au-drilldown', url: './data/cached/ssb/export-by-country/export-au.json', title: 'Australia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-in-drilldown', url: './data/cached/ssb/export-by-country/export-in.json', title: 'India', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ru-drilldown', url: './data/cached/ssb/export-by-country/export-ru.json', title: 'Russia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-tr-drilldown', url: './data/cached/ssb/export-by-country/export-tr.json', title: 'Türkiye', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ch-drilldown', url: './data/cached/ssb/export-by-country/export-ch.json', title: 'Switzerland', subtitle: 'NOK', type: 'line' },
-        { id: 'export-at-drilldown', url: './data/cached/ssb/export-by-country/export-at.json', title: 'Austria', subtitle: 'NOK', type: 'line' },
-        { id: 'export-pt-drilldown', url: './data/cached/ssb/export-by-country/export-pt.json', title: 'Portugal', subtitle: 'NOK', type: 'line' },
-        { id: 'export-gr-drilldown', url: './data/cached/ssb/export-by-country/export-gr.json', title: 'Greece', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ie-drilldown', url: './data/cached/ssb/export-by-country/export-ie.json', title: 'Ireland', subtitle: 'NOK', type: 'line' },
-        { id: 'export-cz-drilldown', url: './data/cached/ssb/export-by-country/export-cz.json', title: 'Czechia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ro-drilldown', url: './data/cached/ssb/export-by-country/export-ro.json', title: 'Romania', subtitle: 'NOK', type: 'line' },
-        { id: 'export-hu-drilldown', url: './data/cached/ssb/export-by-country/export-hu.json', title: 'Hungary', subtitle: 'NOK', type: 'line' },
-        { id: 'export-bg-drilldown', url: './data/cached/ssb/export-by-country/export-bg.json', title: 'Bulgaria', subtitle: 'NOK', type: 'line' },
-        { id: 'export-sk-drilldown', url: './data/cached/ssb/export-by-country/export-sk.json', title: 'Slovakia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-hr-drilldown', url: './data/cached/ssb/export-by-country/export-hr.json', title: 'Croatia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-lt-drilldown', url: './data/cached/ssb/export-by-country/export-lt.json', title: 'Lithuania', subtitle: 'NOK', type: 'line' },
-        { id: 'export-lv-drilldown', url: './data/cached/ssb/export-by-country/export-lv.json', title: 'Latvia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ee-drilldown', url: './data/cached/ssb/export-by-country/export-ee.json', title: 'Estonia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-si-drilldown', url: './data/cached/ssb/export-by-country/export-si.json', title: 'Slovenia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-is-drilldown', url: './data/cached/ssb/export-by-country/export-is.json', title: 'Iceland', subtitle: 'NOK', type: 'line' },
-        { id: 'export-gl-drilldown', url: './data/cached/ssb/export-by-country/export-gl.json', title: 'Greenland', subtitle: 'NOK', type: 'line' },
-        { id: 'export-fo-drilldown', url: './data/cached/ssb/export-by-country/export-fo.json', title: 'Faroe Islands', subtitle: 'NOK', type: 'line' },
-        { id: 'export-sg-drilldown', url: './data/cached/ssb/export-by-country/export-sg.json', title: 'Singapore', subtitle: 'NOK', type: 'line' },
-        { id: 'export-th-drilldown', url: './data/cached/ssb/export-by-country/export-th.json', title: 'Thailand', subtitle: 'NOK', type: 'line' },
-        { id: 'export-vn-drilldown', url: './data/cached/ssb/export-by-country/export-vn.json', title: 'Vietnam', subtitle: 'NOK', type: 'line' },
-        { id: 'export-id-drilldown', url: './data/cached/ssb/export-by-country/export-id.json', title: 'Indonesia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-my-drilldown', url: './data/cached/ssb/export-by-country/export-my.json', title: 'Malaysia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ph-drilldown', url: './data/cached/ssb/export-by-country/export-ph.json', title: 'Philippines', subtitle: 'NOK', type: 'line' },
-        { id: 'export-tw-drilldown', url: './data/cached/ssb/export-by-country/export-tw.json', title: 'Taiwan', subtitle: 'NOK', type: 'line' },
-        { id: 'export-hk-drilldown', url: './data/cached/ssb/export-by-country/export-hk.json', title: 'Hong Kong', subtitle: 'NOK', type: 'line' },
-        { id: 'export-nz-drilldown', url: './data/cached/ssb/export-by-country/export-nz.json', title: 'New Zealand', subtitle: 'NOK', type: 'line' },
-        { id: 'export-za-drilldown', url: './data/cached/ssb/export-by-country/export-za.json', title: 'South Africa', subtitle: 'NOK', type: 'line' },
-        { id: 'export-eg-drilldown', url: './data/cached/ssb/export-by-country/export-eg.json', title: 'Egypt', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ng-drilldown', url: './data/cached/ssb/export-by-country/export-ng.json', title: 'Nigeria', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ae-drilldown', url: './data/cached/ssb/export-by-country/export-ae.json', title: 'UAE', subtitle: 'NOK', type: 'line' },
-        { id: 'export-sa-drilldown', url: './data/cached/ssb/export-by-country/export-sa.json', title: 'Saudi Arabia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-il-drilldown', url: './data/cached/ssb/export-by-country/export-il.json', title: 'Israel', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ar-drilldown', url: './data/cached/ssb/export-by-country/export-ar.json', title: 'Argentina', subtitle: 'NOK', type: 'line' },
-        { id: 'export-cl-drilldown', url: './data/cached/ssb/export-by-country/export-cl.json', title: 'Chile', subtitle: 'NOK', type: 'line' },
-        { id: 'export-mx-drilldown', url: './data/cached/ssb/export-by-country/export-mx.json', title: 'Mexico', subtitle: 'NOK', type: 'line' },
-        { id: 'export-co-drilldown', url: './data/cached/ssb/export-by-country/export-co.json', title: 'Colombia', subtitle: 'NOK', type: 'line' },
-        { id: 'export-pe-drilldown', url: './data/cached/ssb/export-by-country/export-pe.json', title: 'Peru', subtitle: 'NOK', type: 'line' },
-        { id: 'export-ua-drilldown', url: './data/cached/ssb/export-by-country/export-ua.json', title: 'Ukraine', subtitle: 'NOK', type: 'line' },
+        { id: 'export-de-drilldown', url: './data/cached/ssb/export-by-country/export-de.json', title: 'Tyskland', subtitle: 'NOK', type: 'line' },
+        { id: 'export-gb-drilldown', url: './data/cached/ssb/export-by-country/export-gb.json', title: 'Storbritannia', subtitle: 'NOK', type: 'line' },
+        { id: 'export-nl-drilldown', url: './data/cached/ssb/export-by-country/export-nl.json', title: 'Nederland', subtitle: 'NOK', type: 'line' },
+        { id: 'export-us-drilldown', url: './data/cached/ssb/export-by-country/export-us.json', title: 'USA', subtitle: 'NOK', type: 'line' },
+        { id: 'export-se-drilldown', url: './data/cached/ssb/export-by-country/export-se.json', title: 'Sverige', subtitle: 'NOK', type: 'line' },
+        { id: 'export-fr-drilldown', url: './data/cached/ssb/export-by-country/export-fr.json', title: 'Frankrike', subtitle: 'NOK', type: 'line' },
+        { id: 'export-dk-drilldown', url: './data/cached/ssb/export-by-country/export-dk.json', title: 'Danmark', subtitle: 'NOK', type: 'line' },
+        { id: 'export-cn-drilldown', url: './data/cached/ssb/export-by-country/export-cn.json', title: 'Kina', subtitle: 'NOK', type: 'line' },
+        { id: 'export-be-drilldown', url: './data/cached/ssb/export-by-country/export-be.json', title: 'Belgia', subtitle: 'NOK', type: 'line' },
+        { id: 'export-it-drilldown', url: './data/cached/ssb/export-by-country/export-it.json', title: 'Italia', subtitle: 'NOK', type: 'line' },
     ],
 
-    // === WAGE INDEX VARIATIONS (Individual Industry Time Series) ===
+    // === LØNNSINDEKS (Fordelt på næring) ===
     wages: [
-        // Main wage indices - All Industries
-        { id: 'wage-basic-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-00_99-ialt.json', title: 'Wage Index - Basic Earnings (All Industries)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-total-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-00_99-ialt.json', title: 'Wage Index - Total Earnings (All Industries)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Manufacturing
-        { id: 'wage-manufacturing-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-10_33-ialt.json', title: 'Wage Index - Manufacturing (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-manufacturing-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-10_33-ialt.json', title: 'Wage Index - Manufacturing (Total)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Construction
-        { id: 'wage-construction-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-41_43-ialt.json', title: 'Wage Index - Construction (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-construction-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-41_43-ialt.json', title: 'Wage Index - Construction (Total)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Financial Services
-        { id: 'wage-financial-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-64_66-ialt.json', title: 'Wage Index - Financial Services (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-financial-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-64_66-ialt.json', title: 'Wage Index - Financial Services (Total)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Public Administration
-        { id: 'wage-public-admin-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-84-ialt.json', title: 'Wage Index - Public Administration (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-public-admin-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-84-ialt.json', title: 'Wage Index - Public Administration (Total)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Education
-        { id: 'wage-education-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-85-ialt.json', title: 'Wage Index - Education (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-education-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-85-ialt.json', title: 'Wage Index - Education (Total)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Health & Social Work
-        { id: 'wage-health-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-86_88-ialt.json', title: 'Wage Index - Health & Social Work (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-health-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-86_88-ialt.json', title: 'Wage Index - Health & Social Work (Total)', subtitle: 'Index', type: 'line' },
-
-        // Key Industries - Information & Communication
-        { id: 'wage-it-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-58_63-ialt.json', title: 'Wage Index - IT & Communication (Basic)', subtitle: 'Index', type: 'line' },
-        { id: 'wage-it-total-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-58_63-ialt.json', title: 'Wage Index - IT & Communication (Total)', subtitle: 'Index', type: 'line' }
+        { id: 'wage-basic-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-00_99-ialt.json', title: 'Lønnsindeks - Grunnlønn (Alle næringer)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-total-all-industries-drilldown', url: './data/cached/ssb/wages/wage-wagemdtotalindex-00_99-ialt.json', title: 'Lønnsindeks - Total lønn (Alle næringer)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-manufacturing-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-10_33-ialt.json', title: 'Lønnsindeks - Industri (Grunnlønn)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-construction-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-41_43-ialt.json', title: 'Lønnsindeks - Byggevirksomhet (Grunnlønn)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-financial-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-64_66-ialt.json', title: 'Lønnsindeks - Finans og forsikring (Grunnlønn)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-public-admin-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-84-ialt.json', title: 'Lønnsindeks - Offentlig forvaltning (Grunnlønn)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-education-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-85-ialt.json', title: 'Lønnsindeks - Undervisning (Grunnlønn)', subtitle: 'Indeks', type: 'line' },
+        { id: 'wage-health-basic-drilldown', url: './data/cached/ssb/wages/wage-wagebasicmonthlyindex-86_88-ialt.json', title: 'Lønnsindeks - Helse- og sosialtjenester (Grunnlønn)', subtitle: 'Indeks', type: 'line' },
     ],
 
-    // === EXCHANGE RATES (Norges Bank) ===
+    // === VALUTAKURSER (Norges Bank) ===
     exchangeRates: [
-        { id: 'i44-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK', subtitle: 'Index', type: 'line' },
+        { id: 'i44-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/i44.json', title: 'I44/NOK', subtitle: 'Indeks', type: 'line' },
         { id: 'usd-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/usd.json', title: 'USD/NOK', subtitle: 'NOK per USD', type: 'line' },
         { id: 'eur-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/eur.json', title: 'EUR/NOK', subtitle: 'NOK per EUR', type: 'line' },
         { id: 'gbp-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/gbp.json', title: 'GBP/NOK', subtitle: 'NOK per GBP', type: 'line' },
         { id: 'sek-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/sek.json', title: 'SEK/NOK', subtitle: 'NOK per 100 SEK', type: 'line' },
-        { id: 'chf-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/chf.json', title: 'CHF/NOK', subtitle: 'NOK per 100 CHF', type: 'line' },
-        { id: 'cny-nok-drilldown', url: './data/cached/norges-bank/exchange-rates/cny.json', title: 'CNY/NOK', subtitle: 'NOK per 100 CNY', type: 'line' }
     ],
 
-    // === MONEY SUPPLY (SSB) ===
+    // === PENGEMENGDE (SSB) ===
     moneySupply: [
-        { id: 'money-supply-m0-drilldown', url: './data/cached/ssb/money-supply-m0.json', title: 'Money Supply M0', subtitle: 'NOK Million', type: 'line' },
-        { id: 'money-supply-by-sector-drilldown', url: './data/cached/ssb/money-supply-by-sector.json', title: 'Money Supply by Sector', subtitle: 'NOK Million', type: 'line' },
-        { id: 'money-supply-m3-by-sector-drilldown', url: './data/cached/ssb/money-supply-m3-by-sector.json', title: 'M3 Money Supply by Sector', subtitle: 'NOK Million', type: 'line' },
-        { id: 'money-supply-m3-net-claims-drilldown', url: './data/cached/ssb/money-supply-m3-net-claims.json', title: 'M3 Net Claims', subtitle: 'NOK Million', type: 'line' }
+        { id: 'money-supply-m0-drilldown', url: './data/cached/ssb/money-supply-m0.json', title: 'Pengemengde M0', subtitle: 'Millioner NOK', type: 'line' },
+        { id: 'money-supply-by-sector-drilldown', url: './data/cached/ssb/money-supply-by-sector.json', title: 'Pengemengde etter sektor', subtitle: 'Millioner NOK', type: 'line' },
     ],
 
-    // === OSLO STOCK EXCHANGE INDICES ===
+    // === OSLO BØRS INDEKSER ===
     osloIndices: [
-        { id: 'oseax-drilldown', url: './data/cached/oslo-indices/oseax.json', title: 'OSEAX All Share Index', subtitle: 'Index Value', type: 'line' },
-        { id: 'osebx-drilldown', url: './data/cached/oslo-indices/osebx.json', title: 'OSEBX Benchmark Index', subtitle: 'Index Value', type: 'line' },
-        { id: 'obx-drilldown', url: './data/cached/oslo-indices/obx.json', title: 'OBX 25 Liquid Index', subtitle: 'Index Value', type: 'line' }
+        { id: 'oseax-drilldown', url: './data/cached/oslo-indices/oseax.json', title: 'OSEAX Hovedindeks', subtitle: 'Indeksverdi', type: 'line' },
+        { id: 'osebx-drilldown', url: './data/cached/oslo-indices/osebx.json', title: 'OSEBX Benchmark-indeks', subtitle: 'Indeksverdi', type: 'line' },
+        { id: 'obx-drilldown', url: './data/cached/oslo-indices/obx.json', title: 'OBX 25 Liquid-indeks', subtitle: 'Indeksverdi', type: 'line' }
     ],
 
 };
-
-

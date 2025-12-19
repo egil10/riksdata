@@ -209,8 +209,8 @@ function showGlobalError(message) {
     document.body.appendChild(errorDiv);
 }
 
-// Global state
-let currentLanguage = 'en';
+const PREF_KEY = 'riksdata_sidebar_expanded';
+let currentLanguage = 'no';
 let currentSourceFilter = 'all';
 let initializationTimeout = null;
 
@@ -234,28 +234,48 @@ function enhanceSubtitle(subtitle, title, id) {
 
     let parts = [];
 
-    // Enhance unit descriptions (but NOT scale units - those are auto-detected)
-    // Only add base unit like "NOK", "Prosent", "Indeks", etc.
+    const normalizedSubtitle = subtitle.toLowerCase();
+
     if (subtitle.includes('NOK Million') || subtitle === 'NOK Million') {
         parts.push('NOK'); // Scale (Millioner) will be auto-detected
     } else if (subtitle.includes('NOK') && subtitle.includes('milliarder')) {
         parts.push('NOK'); // Scale (Milliarder) will be auto-detected
     } else if (subtitle.includes('NOK per m²')) {
         parts.push('NOK per m²');
-    } else if (subtitle === 'Percentage') {
+    } else if (normalizedSubtitle.includes('percentage') || normalizedSubtitle.includes('prosent')) {
         parts.push('Prosent');
-    } else if (subtitle === 'Index') {
+    } else if (normalizedSubtitle.includes('index') || normalizedSubtitle.includes('indeks')) {
         parts.push('Indeks (2015=100)');
-    } else if (subtitle === 'Number') {
+    } else if (normalizedSubtitle.includes('number') || normalizedSubtitle.includes('antall')) {
         parts.push('Antall');
-    } else if (subtitle === 'Terajoules') {
+    } else if (normalizedSubtitle.includes('terajoules') || normalizedSubtitle.includes('terajoule')) {
         parts.push('Terajoule (TJ)');
-    } else if (subtitle.includes('CO2')) {
+    } else if (normalizedSubtitle.includes('co2')) {
         parts.push('CO₂-ekvivalenter');
-    } else if (subtitle.includes('GDP')) {
+    } else if (normalizedSubtitle.includes('gdp') || normalizedSubtitle.includes('bnp')) {
         parts.push('BNP-vekst (%)');
-    } else if (subtitle.includes('NOK')) {
-        parts.push('NOK'); // Generic NOK, scale will be detected
+    } else if (normalizedSubtitle.includes('liters of pure alcohol')) {
+        parts.push('Liter ren alkohol per person');
+    } else if (normalizedSubtitle.includes('years of schooling')) {
+        parts.push('Gjennomsnittlig antall skoleår');
+    } else if (normalizedSubtitle.includes('deaths per 100 live births')) {
+        parts.push('Dødsfall per 100 fødte');
+    } else if (normalizedSubtitle.includes('deaths per 100,000 live births')) {
+        parts.push('Dødsfall per 100 000 fødte');
+    } else if (normalizedSubtitle.includes('tonnes per person')) {
+        parts.push('Tonn per person');
+    } else if (normalizedSubtitle.includes('international-$')) {
+        parts.push('Internasjonale dollar ($)');
+    } else if (normalizedSubtitle.includes('pisa score')) {
+        parts.push('PISA-score');
+    } else if (normalizedSubtitle.includes('per million people')) {
+        parts.push('Per million innbyggere');
+    } else if (normalizedSubtitle.includes('persons')) {
+        parts.push('Personer');
+    } else if (normalizedSubtitle.includes('nok')) {
+        parts.push('NOK');
+    } else if (normalizedSubtitle.includes('percent') || normalizedSubtitle.includes('percentage')) {
+        parts.push('%');
     } else {
         parts.push(subtitle);
     }
@@ -299,7 +319,7 @@ function inferChartMetadata(config) {
         const match = url.match(/\/dataset\/(\d+)/);
         if (match) {
             inferredSourceUrl = inferredSourceUrl || `https://data.ssb.no/api/v0/dataset/${match[1]}`;
-            inferredSourceName = inferredSourceName || `SSB ${match[1]}`;
+            inferredSourceName = inferredSourceName || `Statistisk sentralbyrå (SSB)`;
         }
         inferredSource = 'ssb';
     } else if (url.includes('norges-bank') || url.includes('data.norges-bank.no')) {
@@ -329,7 +349,7 @@ function inferChartMetadata(config) {
         inferredSource = 'dfo';
     } else {
         inferredSourceUrl = inferredSourceUrl || 'https://ourworldindata.org/';
-        inferredSourceName = inferredSourceName || 'Our World in Data';
+        inferredSourceName = inferredSourceName || 'Vår verden i data (OWID)';
         inferredSource = 'static';
     }
 
@@ -564,9 +584,6 @@ export async function initializeApp() {
 
         // Set up ellipsis tooltips for truncated chart titles
         setupEllipsisTooltips();
-
-        // Add info buttons to all charts
-        addInfoButtonsToCharts();
 
         // Add source links to OWID charts
         addSourceLinksToOWIDCharts();
@@ -1105,8 +1122,8 @@ function toggleHeaderSort() {
                 <path d="M15 20v-3.5a2.5 2.5 0 0 1 5 0V20"/>
                 <path d="M20 18h-5"/>
             `;
-            headerSortToggle.setAttribute('aria-label', 'Sort reverse alphabetically');
-            headerSortToggle.setAttribute('title', 'Sort reverse alphabetically');
+            headerSortToggle.setAttribute('aria-label', 'Sorter omvendt alfabetisk');
+            headerSortToggle.setAttribute('title', 'Sorter omvendt alfabetisk');
         } else {
             // Sort alphabetically (A-Z)
             chartCards.sort((a, b) => {
@@ -1128,8 +1145,8 @@ function toggleHeaderSort() {
                 <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/>
                 <path d="M15 14h5l-5 6h5"/>
             `;
-            headerSortToggle.setAttribute('aria-label', 'Sort alphabetically');
-            headerSortToggle.setAttribute('title', 'Sort alphabetically');
+            headerSortToggle.setAttribute('aria-label', 'Sorter alfabetisk');
+            headerSortToggle.setAttribute('title', 'Sorter alfabetisk');
         }
 
         // Re-append cards in new order
@@ -1339,13 +1356,13 @@ function boot() {
         // Wait for Chart.js to be loaded
         if (typeof Chart === 'undefined') {
             console.log('Waiting for Chart.js to load...');
-            updateLoadingStatus('Loading Chart.js library...');
+            updateLoadingStatus('Laster Chart.js...');
             bootTimeout = setTimeout(boot, 200); // Increased interval to reduce CPU usage
             return;
         }
 
         console.log('Chart.js is loaded, proceeding with initialization...');
-        updateLoadingStatus('Chart.js loaded, initializing...');
+        updateLoadingStatus('Chart.js lastet, starter...');
 
         // Using light theme only - no theme switching needed
 
@@ -1358,7 +1375,7 @@ function boot() {
         console.error('BOOT ERROR:', e);
         hideSkeletonLoading();
         hideLoadingScreen();
-        showError('Application failed to start. Please refresh the page.');
+        showError('Programmet kunne ikke starte. Vennligst last siden på nytt.');
     }
 }
 
@@ -1867,14 +1884,14 @@ function addSourceLinksToOWIDCharts() {
         if (existingSourceLink) {
             // Update existing source link to point to main OWID homepage
             existingSourceLink.href = 'https://ourworldindata.org/';
-            existingSourceLink.textContent = 'Our World in Data';
+            existingSourceLink.textContent = 'Vår verden i data (OWID)';
         } else {
             // Create new source link
             const sourceLink = document.createElement('a');
             sourceLink.href = 'https://ourworldindata.org/';
             sourceLink.target = '_blank';
             sourceLink.className = 'source-link';
-            sourceLink.textContent = 'Our World in Data';
+            sourceLink.textContent = 'Vår verden i data (OWID)';
             subtitleActions.appendChild(sourceLink);
         }
 

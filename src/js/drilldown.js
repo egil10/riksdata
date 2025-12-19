@@ -147,8 +147,8 @@ function showBankruptciesView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Bankruptcies by Industry';
-    updateHeaderBreadcrumb('Bankruptcies by Industry');
+    document.title = 'Riksdata - Konkurser etter næring';
+    updateHeaderBreadcrumb('Konkurser etter næring');
 
     // Load all bankruptcy industry charts
     loadBankruptcyCharts();
@@ -175,8 +175,8 @@ function showExportsView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Exports by Country';
-    updateHeaderBreadcrumb('Exports by Country');
+    document.title = 'Riksdata - Eksport etter land';
+    updateHeaderBreadcrumb('Eksport etter land');
 
     // Load all export country charts
     loadExportCharts();
@@ -206,8 +206,8 @@ function showCPIView() {
     window.scrollTo(0, 0);
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Consumer Price Index Variations';
-    updateHeaderBreadcrumb('CPI Variations');
+    document.title = 'Riksdata - Konsumprisindeks (KPI) varianter';
+    updateHeaderBreadcrumb('KPI-varianter');
 
     // Load all CPI charts
     loadCPICharts();
@@ -237,8 +237,8 @@ function showPPIView() {
     window.scrollTo(0, 0);
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Producer Price Index Variations';
-    updateHeaderBreadcrumb('PPI Variations');
+    document.title = 'Riksdata - Produsentprisindeks (PPI) varianter';
+    updateHeaderBreadcrumb('PPI-varianter');
 
     // Load all PPI charts
     loadPPICharts();
@@ -265,8 +265,8 @@ function showCreditIndicatorView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Credit Indicator Variations';
-    updateHeaderBreadcrumb('Credit Indicator Variations');
+    document.title = 'Riksdata - Kredittindikator-varianter';
+    updateHeaderBreadcrumb('Kredittindikatorer');
 
     // Load all Credit Indicator charts
     loadCreditIndicatorCharts();
@@ -293,8 +293,8 @@ function showImportsView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Imports by Country';
-    updateHeaderBreadcrumb('Imports by Country');
+    document.title = 'Riksdata - Import etter land';
+    updateHeaderBreadcrumb('Import etter land');
 
     // Load all import country charts
     loadImportCharts();
@@ -321,8 +321,8 @@ function showVaccinationsView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Vaccination Coverage';
-    updateHeaderBreadcrumb('Vaccination Coverage');
+    document.title = 'Riksdata - Vaksinasjonsdekning';
+    updateHeaderBreadcrumb('Vaksinasjonsdekning');
 
     // Load all vaccination charts
     loadVaccinationCharts();
@@ -349,8 +349,8 @@ function showDFOView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Government Spending by Department';
-    updateHeaderBreadcrumb('Government Spending');
+    document.title = 'Riksdata - Offentlige utgifter etter departement';
+    updateHeaderBreadcrumb('Offentlige utgifter');
 
     // Load all DFO charts
     loadDFOCharts();
@@ -377,8 +377,8 @@ function showOilFundView() {
     drilldownView.style.display = 'block';
 
     // Update page title and header breadcrumb
-    document.title = 'Riksdata - Oil Fund by Asset Class';
-    updateHeaderBreadcrumb('Oil Fund Breakdown');
+    document.title = 'Riksdata - Oljefondet fordelt på aktivaklasser';
+    updateHeaderBreadcrumb('Oljefondet-fordeling');
 
     // Load all Oil Fund charts
     loadOilFundCharts();

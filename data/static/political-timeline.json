@@ -10,7 +10,7 @@
       "name": "Arbeiderpartiet",
       "shortName": "Ap",
       "englishName": "Labour Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/36/Arbeidarpartiet.svg",
+      "logoUrl": "./assets/images/political/party-logos/ap.svg",
       "color": "#E11926",
       "website": "https://www.arbeiderpartiet.no/"
     },
@@ -18,7 +18,7 @@
       "name": "Senterpartiet",
       "shortName": "Sp",
       "englishName": "Centre Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Senterpartiets_logo.png",
+      "logoUrl": "./assets/images/political/party-logos/sp.png",
       "color": "#4CAF50",
       "website": "https://www.senterpartiet.no/"
     },
@@ -26,7 +26,7 @@
       "name": "Høyre",
       "shortName": "H",
       "englishName": "Conservative Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8a/Flag_of_H%C3%B8yre.png",
+      "logoUrl": "./assets/images/political/party-logos/h.png",
       "color": "#87add7",
       "website": "https://hoyre.no/"
     },
@@ -34,7 +34,7 @@
       "name": "Kristelig Folkeparti",
       "shortName": "KrF",
       "englishName": "Christian Democratic Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/KrF_logo.jpg",
+      "logoUrl": "./assets/images/political/party-logos/krf.jpg",
       "color": "#FDED34",
       "website": "https://www.krf.no/"
     },
@@ -42,7 +42,7 @@
       "name": "Fremskrittspartiet",
       "shortName": "FrP",
       "englishName": "Progress Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f2/Fremskrittspartiet_logo.svg",
+      "logoUrl": "./assets/images/political/party-logos/frp.svg",
       "color": "#003087",
       "website": "https://www.frp.no/"
     },
@@ -50,7 +50,7 @@
       "name": "Venstre",
       "shortName": "V",
       "englishName": "Liberal Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Venstres_logo.png",
+      "logoUrl": "./assets/images/political/party-logos/v.png",
       "color": "#006666",
       "website": "https://www.venstre.no/"
     },
@@ -58,7 +58,7 @@
       "name": "Sosialistisk Venstreparti",
       "shortName": "SV",
       "englishName": "Socialist Left Party",
-      "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Sosialistisk_Venstreparti_logo.svg",
+      "logoUrl": "./assets/images/political/party-logos/sv.svg",
       "color": "#E32636",
       "website": "https://www.sv.no/"
     }
@@ -70,7 +70,7 @@
       "start": "1945-06-25",
       "end": "1945-11-05",
       "primeMinister": "Einar Gerhardsen",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "imageUrl": "./assets/images/political/prime-ministers/einar_gerhardsen_gerhardsen_i.jpeg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_f%C3%B8rste_regjering",
@@ -84,7 +84,7 @@
       "start": "1945-11-05",
       "end": "1951-11-19",
       "primeMinister": "Einar Gerhardsen",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "imageUrl": "./assets/images/political/prime-ministers/einar_gerhardsen_gerhardsen_i.jpeg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_andre_regjering",
@@ -97,7 +97,7 @@
       "start": "1951-11-19",
       "end": "1955-01-22",
       "primeMinister": "Oscar Torp",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d4/26771_Oscar_Torp_%28cropped%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/oscar_torp_torp.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Oscar_Torps_regjering",
@@ -110,7 +110,7 @@
       "start": "1955-01-22",
       "end": "1963-08-28",
       "primeMinister": "Einar Gerhardsen",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "imageUrl": "./assets/images/political/prime-ministers/einar_gerhardsen_gerhardsen_i.jpeg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_tredje_regjering",
@@ -123,9 +123,13 @@
       "start": "1963-08-28",
       "end": "1963-09-25",
       "primeMinister": "John Lyng",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/85/John_Lyng_%28FA-0035-HI-V-33620-03%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/john_lyng_lyng.jpg",
       "party": "H",
-      "coalition": ["Sp", "V", "KrF"],
+      "coalition": [
+        "Sp",
+        "V",
+        "KrF"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/John_Lyngs_regjering",
       "years": "1963",
       "color": "#87add7"
@@ -136,7 +140,7 @@
       "start": "1963-09-25",
       "end": "1965-10-12",
       "primeMinister": "Einar Gerhardsen",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/45/Einar_Gerhardsen_1945.jpeg",
+      "imageUrl": "./assets/images/political/prime-ministers/einar_gerhardsen_gerhardsen_i.jpeg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Einar_Gerhardsens_fjerde_regjering",
@@ -149,9 +153,13 @@
       "start": "1965-10-12",
       "end": "1971-03-17",
       "primeMinister": "Per Borten",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a2/Statsminister_Per_Borten_-_PA-0797_4133_001.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/per_borten_borten.jpg",
       "party": "Sp",
-      "coalition": ["H", "V", "KrF"],
+      "coalition": [
+        "H",
+        "V",
+        "KrF"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Per_Bortens_regjering",
       "years": "1965-1971",
       "color": "#4CAF50"
@@ -162,7 +170,7 @@
       "start": "1971-03-17",
       "end": "1972-10-18",
       "primeMinister": "Trygve Bratteli",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Trygve_Bratteli_%285Fo30141709010076%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/trygve_bratteli_bratteli_i.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Trygve_Brattelis_f%C3%B8rste_regjering",
@@ -175,9 +183,12 @@
       "start": "1972-10-18",
       "end": "1973-10-16",
       "primeMinister": "Lars Korvald",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7a/Lars_Korvald_%284Fo30141709010050%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/lars_korvald_korvald.jpg",
       "party": "KrF",
-      "coalition": ["Sp", "V"],
+      "coalition": [
+        "Sp",
+        "V"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Lars_Korvalds_regjering",
       "years": "1972-1973",
       "color": "#FDED34"
@@ -188,7 +199,7 @@
       "start": "1973-10-16",
       "end": "1976-01-15",
       "primeMinister": "Trygve Bratteli",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Trygve_Bratteli_%285Fo30141709010076%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/trygve_bratteli_bratteli_i.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Trygve_Brattelis_andre_regjering",
@@ -201,7 +212,7 @@
       "start": "1976-01-15",
       "end": "1981-02-04",
       "primeMinister": "Odvar Nordli",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/1/17/Odvar_Nordli_1976.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/odvar_nordli_nordli.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Odvar_Nordlis_regjering",
@@ -214,7 +225,7 @@
       "start": "1981-02-04",
       "end": "1981-10-14",
       "primeMinister": "Gro Harlem Brundtland",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/gro_harlem_brundtland_brundtland_i.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_f%C3%B8rste_regjering",
@@ -227,9 +238,12 @@
       "start": "1981-10-14",
       "end": "1986-05-09",
       "primeMinister": "Kåre Willoch",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/6/61/Willoch_1983_%28high_resolution%2C_cropped%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/k_re_willoch_willoch.jpg",
       "party": "H",
-      "coalition": ["KrF", "Sp"],
+      "coalition": [
+        "KrF",
+        "Sp"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/K%C3%A5re_Willochs_regjering",
       "years": "1981-1986",
       "color": "#87add7"
@@ -240,7 +254,7 @@
       "start": "1986-05-09",
       "end": "1989-10-16",
       "primeMinister": "Gro Harlem Brundtland",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/gro_harlem_brundtland_brundtland_i.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_andre_regjering",
@@ -253,9 +267,12 @@
       "start": "1989-10-16",
       "end": "1990-11-03",
       "primeMinister": "Jan P. Syse",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/4/47/Jan_P._Syse.JPG",
+      "imageUrl": "./assets/images/political/prime-ministers/jan_p._syse_syse.jpg",
       "party": "H",
-      "coalition": ["KrF", "Sp"],
+      "coalition": [
+        "KrF",
+        "Sp"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Jan_P._Syses_regjering",
       "years": "1989-1990",
       "color": "#87add7"
@@ -266,7 +283,7 @@
       "start": "1990-11-03",
       "end": "1996-10-25",
       "primeMinister": "Gro Harlem Brundtland",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9d/Gro_Harlem_Brundtland_ca.1974%E2%80%931979.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/gro_harlem_brundtland_brundtland_i.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Gro_Harlem_Brundtlands_tredje_regjering",
@@ -279,7 +296,7 @@
       "start": "1996-10-25",
       "end": "1997-10-17",
       "primeMinister": "Thorbjørn Jagland",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/8/8d/Thorbj%C3%B8rn_Jagland%2C_Secretary_General%2C_Council_of_Europe_%2822167149560%29_%28cropped%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/thorbj_rn_jagland_jagland.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Thorbj%C3%B8rn_Jaglands_regjering",
@@ -292,9 +309,12 @@
       "start": "1997-10-17",
       "end": "2000-03-17",
       "primeMinister": "Kjell Magne Bondevik",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Kjell_Magne_Bondevik%2C_Norges_statsminister%2C_under_presskonferens_vid_Nordiska_radets_session_i_Stockholm.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/kjell_magne_bondevik_bondevik_i.jpg",
       "party": "KrF",
-      "coalition": ["Sp", "V"],
+      "coalition": [
+        "Sp",
+        "V"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_f%C3%B8rste_regjering",
       "years": "1997-2000",
       "color": "#FDED34"
@@ -305,7 +325,7 @@
       "start": "2000-03-17",
       "end": "2001-10-19",
       "primeMinister": "Jens Stoltenberg",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jens_Stoltenberg_2020.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/jens_stoltenberg_stoltenberg_i.jpg",
       "party": "Ap",
       "coalition": [],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Jens_Stoltenbergs_f%C3%B8rste_regjering",
@@ -318,9 +338,12 @@
       "start": "2001-10-19",
       "end": "2005-10-17",
       "primeMinister": "Kjell Magne Bondevik",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/d/da/Kjell_Magne_Bondevik%2C_Norges_statsminister%2C_under_presskonferens_vid_Nordiska_radets_session_i_Stockholm.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/kjell_magne_bondevik_bondevik_i.jpg",
       "party": "KrF",
-      "coalition": ["H", "V"],
+      "coalition": [
+        "H",
+        "V"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Kjell_Magne_Bondeviks_andre_regjering",
       "years": "2001-2005",
       "color": "#FDED34"
@@ -331,9 +354,12 @@
       "start": "2005-10-17",
       "end": "2013-10-16",
       "primeMinister": "Jens Stoltenberg",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Jens_Stoltenberg_2020.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/jens_stoltenberg_stoltenberg_i.jpg",
       "party": "Ap",
-      "coalition": ["SV", "Sp"],
+      "coalition": [
+        "SV",
+        "Sp"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Jens_Stoltenbergs_andre_regjering",
       "years": "2005-2013",
       "color": "#E11926",
@@ -345,9 +371,13 @@
       "start": "2013-10-16",
       "end": "2021-10-14",
       "primeMinister": "Erna Solberg",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5d/31.08.2013%2C_Erna_Solberg.2.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/erna_solberg_solberg.jpg",
       "party": "H",
-      "coalition": ["FrP", "V", "KrF"],
+      "coalition": [
+        "FrP",
+        "V",
+        "KrF"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Erna_Solbergs_regjering",
       "years": "2013-2021",
       "color": "#87add7",
@@ -359,9 +389,11 @@
       "start": "2021-10-14",
       "end": "2025-09-08",
       "primeMinister": "Jonas Gahr Støre",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/3/37/Jonas_Gahr_St%C3%B8re_%282025%29_%28cropped%29.jpg",
+      "imageUrl": "./assets/images/political/prime-ministers/jonas_gahr_st_re_st_re.jpg",
       "party": "Ap",
-      "coalition": ["Sp"],
+      "coalition": [
+        "Sp"
+      ],
       "wikipediaUrl": "https://no.wikipedia.org/wiki/Jonas_Gahr_St%C3%B8res_regjering",
       "years": "2021-Present",
       "color": "#E11926",
@@ -394,4 +426,3 @@
     "minorityGovernments": 9
   }
 }
-

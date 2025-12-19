@@ -1809,10 +1809,29 @@ async function loadPoliticalTimeline() {
         timelineContainer.className = 'political-timeline';
         timelineContainer.style.cssText = `
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 1.25rem;
             padding: 1rem 0;
         `;
+
+        // Add responsive behavior via media queries
+        const style = document.createElement('style');
+        style.textContent = `
+            @media (max-width: 1024px) {
+                .political-timeline {
+                    grid-template-columns: repeat(2, 1fr) !important;
+                }
+            }
+            @media (max-width: 640px) {
+                .political-timeline {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+        `;
+        if (!document.getElementById('political-timeline-styles')) {
+            style.id = 'political-timeline-styles';
+            document.head.appendChild(style);
+        }
 
         // Render cards in batches to prevent lag
         const BATCH_SIZE = 10;

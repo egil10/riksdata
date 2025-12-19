@@ -1565,7 +1565,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 2rem;
-    overflow: hidden;
+    overflow: auto;
     animation: focusIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 

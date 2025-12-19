@@ -476,10 +476,10 @@ export async function initializeApp() {
 
         // Set a global timeout for the entire initialization process
         initializationTimeout = setTimeout(() => {
-            console.error('Application initialization timed out after 20 seconds');
+            console.error('Application initialization timed out after 30 seconds');
             hideLoadingScreen();
             showGlobalError('Application initialization timed out. Please refresh the page.');
-        }, 20000);
+        }, 30000);
 
         // Show loading screen and progress bars
         const loadingScreen = document.getElementById('loading-screen');

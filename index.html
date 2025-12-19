@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="no">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -10,14 +11,14 @@
     <title>Riksdata - Norske Data og Statistikk</title>
     <!-- Modular v1 - Dynamically generated charts! -->
     <link rel="stylesheet" href="./src/css/theme.css">
-    <link rel="stylesheet" href="./src/css/main.css?v=2025-modular">
+    <link rel="stylesheet" href="./src/css/main.css?v=1.0.1">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
     <script type="module" src="./src/js/chart-theme.js" defer></script>
     <script src="./src/js/mood-rating.js" defer></script>
-    
+
     <!-- Service Worker Registration -->
     <script>
         if ('serviceWorker' in navigator) {
@@ -27,7 +28,7 @@
                     navigator.serviceWorker.register('/sw.js?v=1.0.1')
                         .then(registration => {
                             console.log('✅ Service Worker registered');
-                            
+
                             // Check for updates
                             registration.onupdatefound = () => {
                                 const installingWorker = registration.installing;
@@ -62,41 +63,42 @@
     <script>
         // Force cache refresh - Modular version
         console.log('🚀 Modular version - Charts generated dynamically!');
-        
+
         // Enhanced Chart.js loading with fallback
         let chartJsLoaded = false;
-        
+
         function loadChartJsFallback() {
             if (typeof Chart !== 'undefined') {
                 chartJsLoaded = true;
                 console.log('Chart.js loaded successfully from primary CDN');
                 return;
             }
-            
+
             console.log('Primary CDN failed, trying fallback...');
             const script = document.createElement('script');
             script.src = 'https://unpkg.com/chart.js@latest/dist/chart.umd.js';
-            script.onload = function() {
+            script.onload = function () {
                 chartJsLoaded = true;
                 console.log('Chart.js loaded successfully from fallback CDN');
             };
-            script.onerror = function() {
+            script.onerror = function () {
                 console.error('Both CDNs failed to load Chart.js');
                 document.body.innerHTML = '<div style="padding: 20px; text-align: center; color: red; font-family: Arial, sans-serif; background: #f8f9fa; border: 1px solid #dc3545; border-radius: 8px; margin: 20px;">Feil: Chart.js-biblioteket kunne ikke lastes fra noen kilder. Vennligst sjekk internettforbindelsen din og last siden på nytt.</div>';
             };
             document.head.appendChild(script);
         }
-        
+
         // Test if Chart.js loaded properly
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             setTimeout(loadChartJsFallback, 2000); // Give primary CDN 2 seconds
         });
     </script>
 </head>
+
 <body class="lang-no">
     <!-- Loading Progress Bar -->
     <div id="load-progress-bar" class="progress-bar load-progress-bar"></div>
-    
+
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress-bar" class="progress-bar scroll-progress-bar"></div>
 
@@ -114,8 +116,10 @@
     <!-- New Header Structure -->
     <header class="app-header">
         <div class="left-section">
-            <button id="political-info-btn" class="icon-btn" aria-label="Politisk tidslinje" title="Se norske regjeringer over tid" onclick="window.location.hash = 'politicalTimeline'">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <button id="political-info-btn" class="icon-btn" aria-label="Politisk tidslinje"
+                title="Se norske regjeringer over tid" onclick="window.location.hash = 'politicalTimeline'">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"></circle>
                     <path d="M12 16v-4"></path>
                     <path d="M12 8h.01"></path>
@@ -127,31 +131,35 @@
             <!-- Search Input -->
             <div class="header-search">
                 <input type="text" id="headerSearch" placeholder="Søk etter diagrammer..." class="header-search-input">
-                <button id="searchResetBtn" class="search-reset-btn" aria-label="Reset search" title="Reset search" style="display: none;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/>
-                        <path d="M3 3v5h5"/>
+                <button id="searchResetBtn" class="search-reset-btn" aria-label="Reset search" title="Reset search"
+                    style="display: none;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                        <path d="M3 3v5h5" />
                     </svg>
                 </button>
                 <button id="searchApplyBtn" class="search-apply-btn" aria-label="Apply search" title="Apply search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="11" cy="11" r="8"/>
-                        <path d="m21 21-4.35-4.35"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <path d="m21 21-4.35-4.35" />
                     </svg>
                 </button>
             </div>
-            
+
             <!-- Sort Toggle -->
             <button id="headerSortToggle" class="icon-btn" aria-label="Sort alphabetically" title="Sort alphabetically">
-                <svg id="sortIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 8 4-4 4 4"/>
-                    <path d="M7 4v16"/>
-                    <path d="M20 8h-5"/>
-                    <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10"/>
-                    <path d="M15 14h5l-5 6h5"/>
+                <svg id="sortIcon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 8 4-4 4 4" />
+                    <path d="M7 4v16" />
+                    <path d="M20 8h-5" />
+                    <path d="M15 10V6.5a2.5 2.5 0 0 1 5 0V10" />
+                    <path d="M15 14h5l-5 6h5" />
                 </svg>
             </button>
-            
+
         </div>
     </header>
 
@@ -169,64 +177,74 @@
             <div class="footer-section">
                 <h4>Datakilder</h4>
                 <div class="data-sources">
-                    <a href="https://www.ssb.no/" target="_blank" class="source-link" aria-label="Visit Statistics Norway (opens in new tab)">
+                    <a href="https://www.ssb.no/" target="_blank" class="source-link"
+                        aria-label="Visit Statistics Norway (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Statistics Norway (SSB)
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.norges-bank.no/" target="_blank" class="source-link" aria-label="Visit Norges Bank (opens in new tab)">
+                    <a href="https://www.norges-bank.no/" target="_blank" class="source-link"
+                        aria-label="Visit Norges Bank (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Norges Bank
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.nve.no/" target="_blank" class="source-link" aria-label="Visit NVE (opens in new tab)">
+                    <a href="https://www.nve.no/" target="_blank" class="source-link"
+                        aria-label="Visit NVE (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         NVE
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://driftsdata.statnett.no/restapi" target="_blank" class="source-link" aria-label="Visit Statnett (opens in new tab)">
+                    <a href="https://driftsdata.statnett.no/restapi" target="_blank" class="source-link"
+                        aria-label="Visit Statnett (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Statnett
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://data.stortinget.no/" target="_blank" class="source-link" aria-label="Visit Stortinget (opens in new tab)">
+                    <a href="https://data.stortinget.no/" target="_blank" class="source-link"
+                        aria-label="Visit Stortinget (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Stortinget
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://finance.yahoo.com/" target="_blank" class="source-link" aria-label="Visit Yahoo Finance (opens in new tab)">
+                    <a href="https://finance.yahoo.com/" target="_blank" class="source-link"
+                        aria-label="Visit Yahoo Finance (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Yahoo Finance
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://ourworldindata.org/" target="_blank" class="source-link" aria-label="Visit Our World in Data (opens in new tab)">
+                    <a href="https://ourworldindata.org/" target="_blank" class="source-link"
+                        aria-label="Visit Our World in Data (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         Our World in Data
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="https://www.dfo.no/" target="_blank" class="source-link" aria-label="Visit DFO (opens in new tab)">
+                    <a href="https://www.dfo.no/" target="_blank" class="source-link"
+                        aria-label="Visit DFO (opens in new tab)">
                         <i data-lucide="check-circle" class="source-icon" aria-hidden="true"></i>
                         DFO (Norwegian Budget)
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
                 </div>
             </div>
-            
+
             <!-- Contact Column -->
             <div class="footer-section">
                 <h4>Kontakt</h4>
                 <div class="contact-links">
-                    <a href="https://github.com/egil10/riksdata" target="_blank" class="contact-link" aria-label="Visit GitHub repository (opens in new tab)">
+                    <a href="https://github.com/egil10/riksdata" target="_blank" class="contact-link"
+                        aria-label="Visit GitHub repository (opens in new tab)">
                         <i data-lucide="github" class="contact-icon" aria-hidden="true"></i>
                         GitHub
                         <i data-lucide="external-link" class="external-icon" aria-hidden="true"></i>
                     </a>
-                    <a href="mailto:contact@riksdata.no" class="contact-link" aria-label="Send email to contact@riksdata.no">
+                    <a href="mailto:contact@riksdata.no" class="contact-link"
+                        aria-label="Send email to contact@riksdata.no">
                         <i data-lucide="mail" class="contact-icon" aria-hidden="true"></i>
                         Email
                     </a>
                 </div>
-                
+
                 <!-- Mood Rating Section -->
                 <div class="mood-section">
                     <div class="mood-container">
@@ -242,14 +260,19 @@
                     </div>
                 </div>
             </div>
-            
+
             <!-- About Column -->
             <div class="footer-section">
                 <h4>Om Riksdata</h4>
                 <div class="about-content">
-                    <p>Omfattende dashboard for norske økonomiske indikatorer med politisk kontekst. Visualisering av Norges økonomiske data siden 1945.</p>
-                    <p class="disclaimer-text">Riksdata presenterer diagrammer fra offentlige API-er (f.eks. Statistisk sentralbyrå, Norges Bank og andre offisielle kilder). Intet ansvar tas for nøyaktighet eller fullstendighet — verifiser alltid via kildelenkene.</p>
-                    <p class="footer-copyright">&copy; <span id="copyright-year">2025</span> Riksdata. Alle rettigheter reservert. <a href="#top" class="back-to-top" aria-label="Tilbake til toppen">↑ Tilbake til toppen</a></p>
+                    <p>Omfattende dashboard for norske økonomiske indikatorer med politisk kontekst. Visualisering av
+                        Norges økonomiske data siden 1945.</p>
+                    <p class="disclaimer-text">Riksdata presenterer diagrammer fra offentlige API-er (f.eks. Statistisk
+                        sentralbyrå, Norges Bank og andre offisielle kilder). Intet ansvar tas for nøyaktighet eller
+                        fullstendighet — verifiser alltid via kildelenkene.</p>
+                    <p class="footer-copyright">&copy; <span id="copyright-year">2025</span> Riksdata. Alle rettigheter
+                        reservert. <a href="#top" class="back-to-top" aria-label="Tilbake til toppen">↑ Tilbake til
+                            toppen</a></p>
                 </div>
             </div>
         </div>
@@ -258,12 +281,13 @@
     <!-- Back to Top Button -->
     <button id="backToTop" class="back-to-top-btn" title="Tilbake til toppen">
         <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
-            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z" />
         </svg>
     </button>
 
     <!-- Debug Panel (hidden by default) -->
-    <div id="debug" style="display: none; position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; max-width: 300px; z-index: 10000;">
+    <div id="debug"
+        style="display: none; position: fixed; top: 10px; right: 10px; background: rgba(0,0,0,0.8); color: white; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 12px; max-width: 300px; z-index: 10000;">
         <h4>Fetch Status</h4>
         <ul id="fetchStatus"></ul>
     </div>
@@ -271,58 +295,59 @@
     <!-- Diagnostic Script -->
     <script>
         // Quick diagnostic to help identify loading issues
-        (function() {
+        (function () {
             console.log('=== RIKSDATA DIAGNOSTIC ===');
             console.log('Document ready state:', document.readyState);
             console.log('Chart.js available:', typeof Chart !== 'undefined');
             console.log('Current URL:', window.location.href);
-            
+
             // Monitor for errors
             window.addEventListener('error', (e) => {
                 console.error('Runtime error:', e.error || e.message);
             });
-            
+
             window.addEventListener('unhandledrejection', (e) => {
                 console.error('Unhandled promise rejection:', e.reason);
             });
-            
+
             console.log('=== END DIAGNOSTIC ===');
         })();
     </script>
 
-    <script type="module" src="./src/js/main.js?v=2025-modular-fix-wage-duplicates" defer></script>
-    <script type="module" src="./src/js/drilldown.js?v=2025-drilldown" defer></script>
-    
+    <script type="module" src="./src/js/main.js?v=1.0.1" defer></script>
+    <script type="module" src="./src/js/drilldown.js?v=1.0.1" defer></script>
+
     <!-- Lucide Icons CDN and Helpers -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
-      // Safe helper: set a Lucide icon into a button (uses data-lucide + createIcons)
-      function setLucideIcon(btn, iconName, size = 20) {
-        if (!window.lucide) { console.warn('Lucide not loaded'); return; }
-        const oldSvg = btn.querySelector('svg');
-        if (oldSvg) oldSvg.remove();
-        let placeholder = btn.querySelector('i[data-lucide]');
-        if (!placeholder) {
-          placeholder = document.createElement('i');
-          btn.appendChild(placeholder);
+        // Safe helper: set a Lucide icon into a button (uses data-lucide + createIcons)
+        function setLucideIcon(btn, iconName, size = 20) {
+            if (!window.lucide) { console.warn('Lucide not loaded'); return; }
+            const oldSvg = btn.querySelector('svg');
+            if (oldSvg) oldSvg.remove();
+            let placeholder = btn.querySelector('i[data-lucide]');
+            if (!placeholder) {
+                placeholder = document.createElement('i');
+                btn.appendChild(placeholder);
+            }
+            placeholder.setAttribute('data-lucide', iconName);
+            lucide.createIcons({ attrs: { width: size, height: size } });
         }
-        placeholder.setAttribute('data-lucide', iconName);
-        lucide.createIcons({ attrs: { width: size, height: size } });
-      }
 
-      // Wire up everything after DOM is ready
-      document.addEventListener('DOMContentLoaded', () => {
-        // Initial render pass (replace all data-lucide in DOM)
-        if (window.lucide) lucide.createIcons({ attrs: { width: 20, height: 20 } });
-        
-        
-        // Update copyright year dynamically
-        const copyrightYear = document.getElementById('copyright-year');
-        if (copyrightYear) {
-          copyrightYear.textContent = new Date().getFullYear();
-        }
-      });
+        // Wire up everything after DOM is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial render pass (replace all data-lucide in DOM)
+            if (window.lucide) lucide.createIcons({ attrs: { width: 20, height: 20 } });
+
+
+            // Update copyright year dynamically
+            const copyrightYear = document.getElementById('copyright-year');
+            if (copyrightYear) {
+                copyrightYear.textContent = new Date().getFullYear();
+            }
+        });
     </script>
 
 </body>
+
 </html>

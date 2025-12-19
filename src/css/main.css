@@ -1963,7 +1963,6 @@ footer {
 .language-toggle {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
     color: var(--ap-red);
     text-decoration: underline;
     font-size: 0.85rem;

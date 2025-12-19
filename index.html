@@ -175,7 +175,7 @@
         <div class="footer-content">
             <!-- Data Sources Column -->
             <div class="footer-section">
-                <h4>Datakilder</h4>
+                <h4 id="footer-data-sources">Datakilder</h4>
                 <div class="data-sources">
                     <a href="https://www.ssb.no/" target="_blank" class="source-link"
                         aria-label="Besøk Statistisk sentralbyrå (åpner i ny fane)">
@@ -230,7 +230,7 @@
 
             <!-- Contact Column -->
             <div class="footer-section">
-                <h4>Kontakt</h4>
+                <h4 id="footer-contact">Kontakt</h4>
                 <div class="contact-links">
                     <a href="https://github.com/egil10/riksdata" target="_blank" class="contact-link"
                         aria-label="Besøk GitHub-depotet (åpner i ny fane)">
@@ -263,19 +263,22 @@
 
             <!-- About Column -->
             <div class="footer-section">
-                <h4>Om Riksdata</h4>
+                <h4 id="footer-about">Om Riksdata</h4>
                 <div class="about-content">
-                    <p>Omfattende dashboard for norske økonomiske indikatorer med politisk kontekst. Visualisering av
+                    <p id="footer-description">Omfattende dashboard for norske økonomiske indikatorer med politisk
+                        kontekst. Visualisering av
                         Norges økonomiske data siden 1945.</p>
-                    <p class="disclaimer-text">Riksdata presenterer diagrammer fra offentlige API-er (f.eks. Statistisk
+                    <p class="disclaimer-text" id="footer-disclaimer">Riksdata presenterer diagrammer fra offentlige
+                        API-er (f.eks. Statistisk
                         sentralbyrå, Norges Bank og andre offisielle kilder). Intet ansvar tas for nøyaktighet eller
                         fullstendighet — verifiser alltid via kildelenkene.</p>
-                    <p class="footer-copyright">&copy; <span id="copyright-year">2025</span> Riksdata. Alle rettigheter
-                        reservert. <a href="#top" class="back-to-top" aria-label="Tilbake til toppen">↑ Tilbake til
-                            toppen</a></p>
+                    <p class="footer-copyright">&copy; <span id="copyright-year">2025</span> Riksdata. <span
+                            id="footer-rights">Alle rettigheter
+                            reservert.</span> <a href="#top" class="back-to-top" id="back-to-top-link"
+                            aria-label="Tilbake til toppen">↑ <span id="back-to-top-text">Tilbake til
+                                toppen</span></a></p>
                     <p class="language-toggle-container">
                         <button id="languageToggle" class="language-toggle" aria-label="Toggle language">
-                            <i data-lucide="languages" aria-hidden="true"></i>
                             <span class="lang-text">English</span>
                         </button>
                     </p>

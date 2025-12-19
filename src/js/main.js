@@ -1239,9 +1239,57 @@ function updateLanguageTexts() {
 
     // Update search placeholder
     const headerSearchInput = document.getElementById('headerSearch');
-
     if (headerSearchInput) {
         headerSearchInput.placeholder = lang === 'no' ? 'Søk i diagrammer...' : 'Search charts...';
+    }
+
+    // Update footer headings
+    const footerDataSources = document.getElementById('footer-data-sources');
+    if (footerDataSources) {
+        footerDataSources.textContent = lang === 'no' ? 'Datakilder' : 'Data Sources';
+    }
+
+    const footerContact = document.getElementById('footer-contact');
+    if (footerContact) {
+        footerContact.textContent = lang === 'no' ? 'Kontakt' : 'Contact';
+    }
+
+    const footerAbout = document.getElementById('footer-about');
+    if (footerAbout) {
+        footerAbout.textContent = lang === 'no' ? 'Om Riksdata' : 'About Riksdata';
+    }
+
+    // Update footer description
+    const footerDescription = document.getElementById('footer-description');
+    if (footerDescription) {
+        footerDescription.textContent = lang === 'no'
+            ? 'Omfattende dashboard for norske økonomiske indikatorer med politisk kontekst. Visualisering av Norges økonomiske data siden 1945.'
+            : 'Comprehensive dashboard for Norwegian economic indicators with political context. Visualization of Norway\'s economic data since 1945.';
+    }
+
+    // Update footer disclaimer
+    const footerDisclaimer = document.getElementById('footer-disclaimer');
+    if (footerDisclaimer) {
+        footerDisclaimer.textContent = lang === 'no'
+            ? 'Riksdata presenterer diagrammer fra offentlige API-er (f.eks. Statistisk sentralbyrå, Norges Bank og andre offisielle kilder). Intet ansvar tas for nøyaktighet eller fullstendighet — verifiser alltid via kildelenkene.'
+            : 'Riksdata presents charts from public APIs (e.g., Statistics Norway, Norges Bank, and other official sources). No responsibility is taken for accuracy or completeness — always verify via source links.';
+    }
+
+    // Update footer rights
+    const footerRights = document.getElementById('footer-rights');
+    if (footerRights) {
+        footerRights.textContent = lang === 'no' ? 'Alle rettigheter reservert.' : 'All rights reserved.';
+    }
+
+    // Update back to top link
+    const backToTopText = document.getElementById('back-to-top-text');
+    if (backToTopText) {
+        backToTopText.textContent = lang === 'no' ? 'Tilbake til toppen' : 'Back to top';
+    }
+
+    const backToTopLink = document.getElementById('back-to-top-link');
+    if (backToTopLink) {
+        backToTopLink.setAttribute('aria-label', lang === 'no' ? 'Tilbake til toppen' : 'Back to top');
     }
 }
 

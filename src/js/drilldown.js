@@ -1810,13 +1810,20 @@ async function loadPoliticalTimeline() {
         timelineContainer.style.cssText = `
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.25rem;
-            padding: 1rem 0;
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+            width: 100%;
+            box-sizing: border-box;
         `;
 
         // Add responsive behavior via media queries
         const style = document.createElement('style');
         style.textContent = `
+            .political-timeline {
+                padding-bottom: 2rem;
+            }
             @media (max-width: 1024px) {
                 .political-timeline {
                     grid-template-columns: repeat(2, 1fr) !important;
@@ -1837,8 +1844,11 @@ async function loadPoliticalTimeline() {
         const BATCH_SIZE = 10;
         const governments = data.governments || [];
 
+        // Reverse the array to show newest first (Støre at top, Gerhardsen at bottom)
+        const reversedGovernments = [...governments].reverse();
+
         // Create all cards first (without appending)
-        const cards = governments.map(government =>
+        const cards = reversedGovernments.map(government =>
             createGovernmentCard(government, data.parties)
         );
 

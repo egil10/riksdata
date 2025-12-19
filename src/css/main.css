@@ -1122,23 +1122,41 @@ body,
 /* Loading dots animation */
 .loading-dots {
     display: inline-block;
+    min-width: 1.5em;
+    text-align: left;
+}
+
+.loading-dots::after {
+    content: '...';
     animation: loadingDots 1.5s infinite;
 }
 
 @keyframes loadingDots {
+    0% {
+        content: '';
+    }
 
-    0%,
-    20% {
-        opacity: 0;
+    25% {
+        content: '.';
     }
 
     50% {
-        opacity: 1;
+        content: '..';
+    }
+
+    75% {
+        content: '...';
     }
 
     100% {
-        opacity: 0;
+        content: '';
     }
+}
+
+/* Ensure loading status has consistent font-weight */
+#loading-status {
+    font-weight: 500;
+    min-height: 1.5em;
 }
 
 /* Skeleton Loading */

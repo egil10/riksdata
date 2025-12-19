@@ -92,14 +92,14 @@ class ProgressiveLoader {
                         messageKey = 'Initializing charts...';
                     } else if (completed < total) {
                         const baseMessage = getLoadingMessage('Loading charts...');
-                        statusElement.innerHTML = `${baseMessage} ${completed}/${total}<span class="loading-dots">...</span>`;
+                        statusElement.innerHTML = `${baseMessage} ${completed}/${total}<span class="loading-dots"></span>`;
                         return;
                     } else {
                         messageKey = 'Finalizing...';
                     }
 
                     const message = getLoadingMessage(messageKey);
-                    statusElement.innerHTML = message + '<span class="loading-dots">...</span>';
+                    statusElement.innerHTML = message + '<span class="loading-dots"></span>';
                 }).catch(() => {
                     // Fallback to English if import fails
                     if (completed === 0) {

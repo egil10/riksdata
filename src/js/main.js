@@ -193,7 +193,7 @@ function updateLoadingStatus(messageKey) {
     if (statusElement) {
         // Get translated message or fallback to key
         const message = loadingMessages[currentLanguage]?.[messageKey] || messageKey;
-        statusElement.innerHTML = message + '<span class="loading-dots">...</span>';
+        statusElement.innerHTML = message + '<span class="loading-dots"></span>';
     }
 }
 

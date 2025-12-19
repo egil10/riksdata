@@ -3,8 +3,8 @@
  * Provides offline caching and improved performance
  */
 
-const CACHE_NAME = 'riksdata-v1.0.0';
-const STATIC_CACHE_NAME = 'riksdata-static-v1.0.0';
+const CACHE_NAME = 'riksdata-v1.0.1';
+const STATIC_CACHE_NAME = 'riksdata-static-v1.0.1';
 
 // Assets to cache immediately
 const STATIC_ASSETS = [
@@ -40,7 +40,7 @@ const DATA_FILES = [
 // Install event - cache static assets
 self.addEventListener('install', event => {
     console.log('🔧 Service Worker installing...');
-    
+
     event.waitUntil(
         caches.open(STATIC_CACHE_NAME)
             .then(cache => {
@@ -60,7 +60,7 @@ self.addEventListener('install', event => {
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
     console.log('🚀 Service Worker activating...');
-    
+
     event.waitUntil(
         caches.keys()
             .then(cacheNames => {
@@ -84,17 +84,17 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
     const { request } = event;
     const url = new URL(request.url);
-    
+
     // Skip non-GET requests
     if (request.method !== 'GET') {
         return;
     }
-    
+
     // Skip external requests
     if (url.origin !== location.origin) {
         return;
     }
-    
+
     event.respondWith(
         handleRequest(request)
     );
@@ -106,34 +106,41 @@ self.addEventListener('fetch', event => {
 async function handleRequest(request) {
     const url = new URL(request.url);
     const pathname = url.pathname;
-    
+
     try {
-        // Strategy 1: Static assets - Cache First
-        if (isStaticAsset(pathname)) {
-            return await cacheFirst(request, STATIC_CACHE_NAME);
+        // Strategy 1: HTML & Navigation - Network First
+        // This ensures users always get the latest version when online, but falls back to cache
+        if (request.mode === 'navigate' || isHtmlRequest(pathname)) {
+            return await networkFirst(request, STATIC_CACHE_NAME);
         }
-        
-        // Strategy 2: Data files - Stale While Revalidate
+
+        // Strategy 2: Static assets - Stale While Revalidate
+        // Good for JS/CSS/Images - serves from cache instantly, updates in background
+        if (isStaticAsset(pathname)) {
+            return await staleWhileRevalidate(request, STATIC_CACHE_NAME);
+        }
+
+        // Strategy 3: Data files - Stale While Revalidate
         if (isDataFile(pathname)) {
             return await staleWhileRevalidate(request, CACHE_NAME);
         }
-        
-        // Strategy 3: API/SSB requests - Network First with fallback
+
+        // Strategy 4: API/SSB requests - Network First with fallback
         if (isApiRequest(pathname)) {
             return await networkFirst(request, CACHE_NAME);
         }
-        
-        // Strategy 4: Everything else - Network First
+
+        // Strategy 5: Everything else - Network First
         return await networkFirst(request, CACHE_NAME);
-        
+
     } catch (error) {
         console.error('❌ Request failed:', request.url, error);
-        
+
         // Return offline page for navigation requests
         if (request.mode === 'navigate') {
             return await caches.match('/index.html');
         }
-        
+
         throw error;
     }
 }
@@ -146,13 +153,13 @@ async function cacheFirst(request, cacheName) {
     if (cachedResponse) {
         return cachedResponse;
     }
-    
+
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
         const cache = await caches.open(cacheName);
         cache.put(request, networkResponse.clone());
     }
-    
+
     return networkResponse;
 }
 
@@ -181,7 +188,7 @@ async function networkFirst(request, cacheName) {
  */
 async function staleWhileRevalidate(request, cacheName) {
     const cachedResponse = await caches.match(request);
-    
+
     const networkPromise = fetch(request).then(response => {
         if (response.ok) {
             const cache = caches.open(cacheName);
@@ -189,20 +196,31 @@ async function staleWhileRevalidate(request, cacheName) {
         }
         return response;
     });
-    
+
     return cachedResponse || networkPromise;
 }
 
 /**
  * Check if path is a static asset
  */
+function isHtmlRequest(pathname) {
+    return pathname === '/' ||
+        pathname === '/index.html' ||
+        pathname.endsWith('.html');
+}
+
+/**
+ * Check if path is a static asset (JS, CSS, Images, etc.)
+ */
 function isStaticAsset(pathname) {
-    return pathname.startsWith('/src/') || 
-           pathname === '/' || 
-           pathname === '/index.html' ||
-           pathname.endsWith('.ico') ||
-           pathname.endsWith('.css') ||
-           pathname.endsWith('.js');
+    return pathname.startsWith('/src/') ||
+        pathname.endsWith('.ico') ||
+        pathname.endsWith('.css') ||
+        pathname.endsWith('.js') ||
+        pathname.endsWith('.png') ||
+        pathname.endsWith('.jpg') ||
+        pathname.endsWith('.svg') ||
+        pathname.endsWith('.webp');
 }
 
 /**
@@ -210,7 +228,7 @@ function isStaticAsset(pathname) {
  */
 function isDataFile(pathname) {
     return pathname.startsWith('/data/static/') ||
-           pathname.startsWith('/data/cached/');
+        pathname.startsWith('/data/cached/');
 }
 
 /**
@@ -218,8 +236,8 @@ function isDataFile(pathname) {
  */
 function isApiRequest(pathname) {
     return pathname.includes('ssb.no') ||
-           pathname.includes('norges-bank.no') ||
-           pathname.includes('api');
+        pathname.includes('norges-bank.no') ||
+        pathname.includes('api');
 }
 
 // Handle messages from main thread
@@ -227,7 +245,7 @@ self.addEventListener('message', event => {
     if (event.data && event.data.type === 'SKIP_WAITING') {
         self.skipWaiting();
     }
-    
+
     if (event.data && event.data.type === 'GET_CACHE_STATS') {
         getCacheStats().then(stats => {
             event.ports[0].postMessage(stats);
@@ -244,7 +262,7 @@ async function getCacheStats() {
         caches: {},
         totalSize: 0
     };
-    
+
     for (const cacheName of cacheNames) {
         const cache = await caches.open(cacheName);
         const keys = await cache.keys();
@@ -253,6 +271,6 @@ async function getCacheStats() {
             urls: keys.map(request => request.url)
         };
     }
-    
+
     return stats;
 }

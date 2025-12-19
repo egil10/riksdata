@@ -166,7 +166,10 @@ const loadingMessages = {
         'Preparing lazy loading...': 'Forbereder lazy loading...',
         'Loading first charts...': 'Laster første diagrammer...',
         'Laster Chart.js...': 'Laster Chart.js...',
-        'Chart.js lastet, starter...': 'Chart.js lastet, starter...'
+        'Chart.js lastet, starter...': 'Chart.js lastet, starter...',
+        'Initializing charts...': 'Initialiserer diagrammer...',
+        'Loading charts...': 'Laster diagrammer...',
+        'Finalizing...': 'Fullfører...'
     },
     en: {
         'Initializing': 'Initializing',
@@ -175,7 +178,10 @@ const loadingMessages = {
         'Preparing lazy loading...': 'Preparing lazy loading...',
         'Loading first charts...': 'Loading first charts...',
         'Laster Chart.js...': 'Loading Chart.js...',
-        'Chart.js lastet, starter...': 'Chart.js loaded, initializing...'
+        'Chart.js lastet, starter...': 'Chart.js loaded, initializing...',
+        'Initializing charts...': 'Initializing charts...',
+        'Loading charts...': 'Loading charts...',
+        'Finalizing...': 'Finalizing...'
     }
 };
 
@@ -189,6 +195,23 @@ function updateLoadingStatus(messageKey) {
         const message = loadingMessages[currentLanguage]?.[messageKey] || messageKey;
         statusElement.innerHTML = message + '<span class="loading-dots">...</span>';
     }
+}
+
+/**
+ * Get translated loading message
+ * @param {string} messageKey - The message key to translate
+ * @returns {string} Translated message
+ */
+export function getLoadingMessage(messageKey) {
+    return loadingMessages[currentLanguage]?.[messageKey] || messageKey;
+}
+
+/**
+ * Get current language
+ * @returns {string} Current language code
+ */
+export function getCurrentLanguage() {
+    return currentLanguage;
 }
 
 /**

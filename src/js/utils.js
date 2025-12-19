@@ -422,19 +422,14 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                 <p style="font-family: 'Inter', sans-serif; font-size: 24px; color: rgba(2,2,2,0.55); font-weight: 600; margin: 0;">${chartSubtitleText}</p>
             </div>
             
-            <div style="flex: 1; position: relative; width: 100%; display: flex; align-items: center; justify-content: center;">
+            <div style="flex: 1; position: relative; width: 100%; display: flex; align-items: center; justify-content: center; margin-bottom: 30px;">
                 <canvas id="png-export-canvas" style="width: 100% !important; height: 100% !important;"></canvas>
             </div>
 
-            <div style="margin-top: 40px; display: flex; justify-content: space-between; align-items: flex-end; font-family: 'Inter', sans-serif;">
-                <div style="display: flex; flex-direction: column; gap: 4px;">
-                    <span style="font-size: 16px; font-weight: 700; color: #09213C; text-transform: uppercase; letter-spacing: 0.1em;">riksdata.no</span>
-                    <span style="font-size: 14px; color: rgba(0,0,0,0.4); font-weight: 500;">Generert ${new Date().toLocaleDateString('no-NO')}</span>
-                </div>
-                <div style="text-align: right;">
-                    <span style="font-size: 14px; color: rgba(0,0,0,0.4); font-weight: 500;">Kilde</span>
-                    <div style="font-size: 18px; font-weight: 700; color: #020202;">${sourceText}</div>
-                </div>
+            <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid rgba(0,0,0,0.08); display: flex; justify-content: space-between; align-items: center; font-family: 'Inter', sans-serif;">
+                <span style="font-size: 14px; font-weight: 600; color: #09213C; text-transform: uppercase; letter-spacing: 0.05em;">riksdata.no</span>
+                <span style="font-size: 13px; color: rgba(0,0,0,0.45); font-weight: 500;">Generert ${new Date().toLocaleDateString('no-NO')}</span>
+                <span style="font-size: 13px; color: rgba(0,0,0,0.45); font-weight: 500;">Kilde: <span style="font-weight: 700; color: #020202;">${sourceText}</span></span>
             </div>
         </div>
     `;
@@ -475,7 +470,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                 grid: { display: false },
                 ticks: {
                     ...originalChart.options.scales?.x?.ticks,
-                    font: { size: 14 * SCALE, weight: '700' }, // Increased from 10 to 14
+                    font: { size: 16 * SCALE, weight: '700' }, // Increased from 14 to 16
                     callback: function (value) {
                         const date = new Date(value);
                         return isNaN(date.getTime()) ? value : date.getFullYear().toString();
@@ -487,7 +482,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                 grid: { lineWidth: 0.5 * SCALE },
                 ticks: {
                     ...originalChart.options.scales?.y?.ticks,
-                    font: { size: 14 * SCALE, weight: '700' } // Increased from 10 to 14
+                    font: { size: 16 * SCALE, weight: '700' } // Increased from 14 to 16
                 }
             }
         }

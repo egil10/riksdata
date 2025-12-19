@@ -156,11 +156,37 @@ window.addEventListener('unhandledrejection', e => {
 });
 
 /**
+ * Loading message translations
+ */
+const loadingMessages = {
+    no: {
+        'Initializing': 'Initialiserer',
+        'Building interface...': 'Bygger grensesnitt...',
+        'Preparing charts...': 'Forbereder diagrammer...',
+        'Preparing lazy loading...': 'Forbereder lazy loading...',
+        'Loading first charts...': 'Laster første diagrammer...',
+        'Laster Chart.js...': 'Laster Chart.js...',
+        'Chart.js lastet, starter...': 'Chart.js lastet, starter...'
+    },
+    en: {
+        'Initializing': 'Initializing',
+        'Building interface...': 'Building interface...',
+        'Preparing charts...': 'Preparing charts...',
+        'Preparing lazy loading...': 'Preparing lazy loading...',
+        'Loading first charts...': 'Loading first charts...',
+        'Laster Chart.js...': 'Loading Chart.js...',
+        'Chart.js lastet, starter...': 'Chart.js loaded, initializing...'
+    }
+};
+
+/**
  * Update loading status message
  */
-function updateLoadingStatus(message) {
+function updateLoadingStatus(messageKey) {
     const statusElement = document.getElementById('loading-status');
     if (statusElement) {
+        // Get translated message or fallback to key
+        const message = loadingMessages[currentLanguage]?.[messageKey] || messageKey;
         statusElement.innerHTML = message + '<span class="loading-dots">...</span>';
     }
 }
@@ -1198,6 +1224,12 @@ function toggleHeaderSort() {
  */
 function updateLanguageTexts() {
     const lang = currentLanguage;
+
+    // Update loading screen title
+    const loadingTitle = document.getElementById('loading-title');
+    if (loadingTitle) {
+        loadingTitle.textContent = lang === 'no' ? 'Laster Riksdata' : 'Loading Riksdata';
+    }
 
     // Update filter button texts
     const allSourcesBtn = document.querySelector('[data-source="all"]');

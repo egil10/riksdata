@@ -666,7 +666,13 @@ export function initializeUI() {
 
     // Theme initialization removed - only using light theme
 
-    // Language toggle
+    // Language toggle (footer)
+    const languageToggle = document.getElementById('languageToggle');
+    if (languageToggle) {
+        languageToggle.addEventListener('click', toggleLanguage);
+    }
+
+    // Legacy language toggle (if exists)
     const langToggle = document.getElementById('langToggle');
     if (langToggle) {
         langToggle.addEventListener('click', toggleLanguage);
@@ -778,6 +784,15 @@ export function initializeUI() {
 function toggleLanguage() {
     currentLanguage = currentLanguage === 'en' ? 'no' : 'en';
     document.body.className = `lang-${currentLanguage}`;
+
+    // Update language toggle button text
+    const languageToggle = document.getElementById('languageToggle');
+    if (languageToggle) {
+        const langText = languageToggle.querySelector('.lang-text');
+        if (langText) {
+            langText.textContent = currentLanguage === 'no' ? 'English' : 'Norsk';
+        }
+    }
 
     // Update language texts
     updateLanguageTexts();
@@ -1884,14 +1899,14 @@ function addSourceLinksToOWIDCharts() {
         if (existingSourceLink) {
             // Update existing source link to point to main OWID homepage
             existingSourceLink.href = 'https://ourworldindata.org/';
-            existingSourceLink.textContent = 'Vår verden i data (OWID)';
+            existingSourceLink.textContent = 'Our World in Data';
         } else {
             // Create new source link
             const sourceLink = document.createElement('a');
             sourceLink.href = 'https://ourworldindata.org/';
             sourceLink.target = '_blank';
             sourceLink.className = 'source-link';
-            sourceLink.textContent = 'Vår verden i data (OWID)';
+            sourceLink.textContent = 'Our World in Data';
             subtitleActions.appendChild(sourceLink);
         }
 

@@ -417,8 +417,8 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
 
     container.innerHTML = `
         <div style="background: white; border-radius: 16px; padding: 60px; height: 100%; display: flex; flex-direction: column; border: 1px solid rgba(0,0,0,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.05);">
-            <div style="margin-bottom: 40px; padding-bottom: 30px; border-bottom: 6px solid #09213C; text-align: center;">
-                <h1 style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: #020202; margin: 0 0 10px 0; letter-spacing: -0.01em;">${chartTitle}</h1>
+            <div style="margin-bottom: 50px; padding-bottom: 30px; border-bottom: 6px solid #09213C; text-align: center;">
+                <h1 style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: #020202; margin: 0 0 16px 0; letter-spacing: -0.01em;">${chartTitle}</h1>
                 <p style="font-family: 'Inter', sans-serif; font-size: 24px; color: rgba(2,2,2,0.55); font-weight: 600; margin: 0;">${chartSubtitleText}</p>
             </div>
             
@@ -447,7 +447,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
 
     // Set internal resolution for the export canvas
     exportCanvas.width = (WIDTH - 200) * SCALE;
-    exportCanvas.height = (HEIGHT - 400) * SCALE;
+    exportCanvas.height = (HEIGHT - 450) * SCALE; // Increased from 400 to 450 for more spacing
 
     const exportDatasets = originalChart.data.datasets.map(ds => {
         const newDs = { ...ds };
@@ -475,7 +475,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                 grid: { display: false },
                 ticks: {
                     ...originalChart.options.scales?.x?.ticks,
-                    font: { size: 10 * SCALE, weight: '700' },
+                    font: { size: 14 * SCALE, weight: '700' }, // Increased from 10 to 14
                     callback: function (value) {
                         const date = new Date(value);
                         return isNaN(date.getTime()) ? value : date.getFullYear().toString();
@@ -487,7 +487,7 @@ async function downloadAsPNG(cardEl, filename, chartTitle) {
                 grid: { lineWidth: 0.5 * SCALE },
                 ticks: {
                     ...originalChart.options.scales?.y?.ticks,
-                    font: { size: 10 * SCALE, weight: '700' }
+                    font: { size: 14 * SCALE, weight: '700' } // Increased from 10 to 14
                 }
             }
         }

@@ -1796,36 +1796,56 @@ async function loadPoliticalTimeline() {
 
     try {
         const response = await fetch('./data/static/political-timeline.json?v=' + Date.now());
-        if (!response.ok) throw new Error(`Failed to load: ${response.status}`);
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
 
         const data = await response.json();
+        console.log('📊 Political timeline data loaded:', data);
 
-        // Clear container for final render
+        // Clear loading state
         chartsContainer.innerHTML = '';
 
+        // Create timeline container
         const timelineContainer = document.createElement('div');
-        timelineContainer.className = 'political-timeline-container';
+        timelineContainer.className = 'political-timeline';
         timelineContainer.style.cssText = `
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 1.5rem;
-            padding: 1rem;
-            max-width: 1400px;
-            margin: 0 auto;
-            will-change: transform;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.25rem;
+            padding: 1rem 0;
         `;
 
-        // Use DocumentFragment for high-performance batch insertion
-        const fragment = document.createDocumentFragment();
-        const reversedGovernments = data.governments.slice().reverse();
+        // Render cards in batches to prevent lag
+        const BATCH_SIZE = 10;
+        const governments = data.governments || [];
 
-        reversedGovernments.forEach((government) => {
-            const card = createGovernmentCard(government, data.parties);
-            fragment.appendChild(card);
-        });
+        // Create all cards first (without appending)
+        const cards = governments.map(government =>
+            createGovernmentCard(government, data.parties)
+        );
 
-        timelineContainer.appendChild(fragment);
+        // Append cards in batches using requestAnimationFrame
+        let currentIndex = 0;
+
+        function renderBatch() {
+            const fragment = document.createDocumentFragment();
+            const endIndex = Math.min(currentIndex + BATCH_SIZE, cards.length);
+
+            for (let i = currentIndex; i < endIndex; i++) {
+                fragment.appendChild(cards[i]);
+            }
+
+            timelineContainer.appendChild(fragment);
+            currentIndex = endIndex;
+
+            // Continue rendering if there are more cards
+            if (currentIndex < cards.length) {
+                requestAnimationFrame(renderBatch);
+            }
+        }
+
+        // Start rendering
         chartsContainer.appendChild(timelineContainer);
+        requestAnimationFrame(renderBatch);
 
     } catch (error) {
         console.error('Failed to load political timeline:', error);

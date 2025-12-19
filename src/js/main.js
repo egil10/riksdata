@@ -240,6 +240,71 @@ let currentLanguage = 'no';
 let currentSourceFilter = 'all';
 let initializationTimeout = null;
 
+// Chart title translations (Norwegian → English)
+const chartTitleTranslations = {
+    // Core Economic
+    'Arbeidsledighet': 'Unemployment',
+    'Boligprisindeks': 'House Price Index',
+    'Byggekostnader': 'Construction Costs',
+    'Produksjonsindeks for Bygg og Anlegg': 'Construction Production Index',
+    'Pris per m² nye eneboliger': 'Price per m² New Detached Houses',
+    'Pris per m² nye boliger': 'Price per m² New Dwellings',
+    'Omsetning av fritidsboliger': 'Holiday Property Sales',
+
+    // Industry & Production
+    'Produsentprisindeks for industri': 'Producer Price Index for Industry',
+    'Produksjonsindeks for industri': 'Production Index for Industry',
+
+    // Trade
+    'Eksportvolum': 'Export Volume',
+    'Importverdi (SITC)': 'Import Value (SITC)',
+    'Eksportverdi (SITC)': 'Export Value (SITC)',
+    'Eksport etter land': 'Exports by Country',
+    'Eksport etter vare': 'Exports by Commodity',
+    'Import etter vare': 'Imports by Commodity',
+    'Utenrikshandel': 'Foreign Trade',
+
+    // Business & Confidence
+    'Tiltro til næringslivet': 'Business Confidence',
+    'Konjunkturbarometer': 'Business Cycle Barometer',
+    'Forbrukertillit': 'Consumer Confidence',
+    'Konkurser': 'Bankruptcies',
+    'Konkurser etter næring': 'Bankruptcies by Industry',
+
+    // Labor Market
+    'Sysselsetting': 'Employment',
+    'Ledige stillinger': 'Job Vacancies',
+    'Lønnsindeks': 'Wage Index',
+
+    // Prices & Inflation
+    'Konsumprisindeks (KPI)': 'Consumer Price Index (CPI)',
+    'Produsentprisindeks (PPI)': 'Producer Price Index (PPI)',
+
+    // Energy
+    'Kraftproduksjon': 'Power Production',
+    'Kraftforbruk': 'Power Consumption',
+    'Kraftpriser': 'Power Prices',
+    'Vannmagasinfylling': 'Reservoir Filling',
+
+    // Finance
+    'Statsgjeld': 'Government Debt',
+    'Statens pensjonsfond utland': 'Government Pension Fund Global',
+    'Oljefondet': 'Oil Fund',
+    'Renter': 'Interest Rates',
+    'Valutakurser': 'Exchange Rates',
+
+    // Demographics
+    'Befolkning': 'Population',
+    'Fødselsrate': 'Birth Rate',
+    'Innvandring': 'Immigration',
+
+    // Common suffixes/prefixes
+    'Siste data': 'Latest Data',
+    'Månedlig': 'Monthly',
+    'Årlig': 'Annual',
+    'Kvartalsvis': 'Quarterly'
+};
+
 // Scroll to top on page load/reload
 window.addEventListener('load', () => {
     window.scrollTo(0, 0);
@@ -1291,6 +1356,43 @@ function updateLanguageTexts() {
     if (backToTopLink) {
         backToTopLink.setAttribute('aria-label', lang === 'no' ? 'Tilbake til toppen' : 'Back to top');
     }
+
+    // Update all chart titles
+    document.querySelectorAll('.chart-card h3').forEach(titleElement => {
+        const norwegianTitle = titleElement.textContent.trim();
+
+        if (lang === 'en') {
+            // Translate to English
+            let englishTitle = chartTitleTranslations[norwegianTitle];
+
+            // If exact match not found, try fuzzy matching for titles with suffixes
+            if (!englishTitle) {
+                for (const [no, en] of Object.entries(chartTitleTranslations)) {
+                    if (norwegianTitle.includes(no)) {
+                        englishTitle = norwegianTitle.replace(no, en);
+                        break;
+                    }
+                }
+            }
+
+            if (englishTitle) {
+                titleElement.textContent = englishTitle;
+                titleElement.setAttribute('title', englishTitle);
+            }
+        } else {
+            // For Norwegian, we need to reverse translate from English back to Norwegian
+            // Store original Norwegian title in data attribute on first translation
+            if (!titleElement.dataset.originalTitle) {
+                titleElement.dataset.originalTitle = norwegianTitle;
+            }
+
+            // Restore original Norwegian title
+            if (titleElement.dataset.originalTitle) {
+                titleElement.textContent = titleElement.dataset.originalTitle;
+                titleElement.setAttribute('title', titleElement.dataset.originalTitle);
+            }
+        }
+    });
 }
 
 /**

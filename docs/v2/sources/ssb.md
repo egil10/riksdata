@@ -47,7 +47,7 @@ One `update` costs three calls per table. `riksdata catalog ssb --refresh` costs
 - **Table 12439 has a break between 2014 and 2015** (new data source). SSB says only the seasonally and influenza adjusted series is comparable across it, which is why we fetch that series alongside the seasonally adjusted one.
 - **Table 13760:** SSB recommends the trend or the three-month average over the monthly seasonally adjusted figures, which are volatile. We fetch the seasonally adjusted figures (`Justering: S`). Adding `T` to the selection adds the trend.
 - **Table 09842 looks stale.** It was last updated on 2025-06-20 and ends in 2024. It isn't marked as discontinued, and the catalogue has no other per-capita table for the national accounts.
-- **Skipped updates.** `update` skips a table whose `updated` timestamp hasn't changed. After changing a selection or the adapter, run `update --force`.
+- **Skipped updates.** `update` skips a table when SSB's `updated` timestamp and our registry entry are both unchanged. After changing the adapter code, run `update --force`.
 
 ## Datasets
 

@@ -43,7 +43,7 @@ def _is_expression(code: str) -> bool:
 
 def _ordered_codes(category: dict[str, Any]) -> list[str]:
     index = category["index"]
-    return sorted(index, key=index.get) if isinstance(index, dict) else list(index)
+    return sorted(index, key=lambda code: index[code]) if isinstance(index, dict) else list(index)
 
 
 def _expand(cells: Any, size: int) -> list[Any]:
@@ -89,8 +89,8 @@ def check_selection(ds: DatasetSpec, metadata: dict[str, Any]) -> None:
     if missing or unknown:
         raise ValueError(
             f"{ds.key}: `select` must list exactly the table's dimensions {list(dimensions)} "
-            f"(missing: {missing}, unknown: {unknown}). SSB returns a default subset for "
-            "dimensions that are left out."
+            f"(missing: {missing}, unknown: {unknown}). SSB rejects a request that leaves "
+            "out a mandatory dimension and silently aggregates over an optional one."
         )
     cells = 1
     for dim, wanted in ds.select.items():

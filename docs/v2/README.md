@@ -84,7 +84,7 @@ uv run riksdata export            # writes beta/data/ from the published series 
 uv run pytest -q                                          # offline, uses tests/fixtures/
 uv run pytest -m live                                     # also calls SSB and OWID
 uv run ruff check . && uv run ruff format --check .
-uv run --with mypy --with types-PyYAML mypy py/riksdata   # type check; mypy is not a dependency
+uv run mypy                                               # strict type check of py/riksdata
 ```
 
 ## Sources

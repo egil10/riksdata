@@ -256,6 +256,6 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   3. Freshness is measured from the end of the last period. A `0` between non-zero values is flagged (`suspicious_zeros`). SSB 05803 no longer selects marriages and divorces (published as 0 for missing years).
   4. Some hosts refuse our HTTP client whatever it says about itself: www.echr.coe.int answers 403 to httpx and 200 to curl with the same User-Agent. Such rows stay `blocked`; changing the client to get past a bot check is a decision for Egil.
 - **2026-10-03 (sweep, PR `v2/01f-sweep`):**
-  1. No change to the data model or the architecture. The lint rules are wider (ruff: naming, simpler code, pathlib, timezone-aware datetimes, no `print`, pytest style, pylint's checks) and the package passes mypy, which is run on demand and is not a dependency.
+  1. No change to the data model or the architecture. The lint rules are wider (ruff: naming, simpler code, pathlib, timezone-aware datetimes, no `print`, pytest style, pylint's checks) and the package passes mypy in strict mode. Mypy is a dev dependency and one of the checks before a PR (Egil's go-ahead, 2026-10-03).
   2. `SOURCES.md` carries the corrections from the Mac tests in its rows, and every row that was blocked from the server also gives the Mac's result. `docs/v2/source-checks.md` now only describes the command; all results are in `docs/v2/source-inventory.md`.
   3. `README.md` describes both the live v1 site and Riksdata 2.0. `.gitignore` drops v1's catch-all patterns. No v1 file is touched.

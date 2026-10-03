@@ -16,6 +16,7 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 5. **Before opening a PR, run all of these and paste the results in the PR description:**
    ```bash
    uv run ruff check . && uv run ruff format --check .
+   uv run mypy
    uv run pytest -q
    uv run riksdata update --source <sources touched>   # live run
    uv run riksdata validate
@@ -27,8 +28,8 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 
 ## 2. Python conventions
 - **uv only**: `uv add <pkg>`, `uv add --dev <pkg>`, `uv run …`. Never `pip install`. Commit `uv.lock`. Python 3.12.
-- Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff. **Ask before adding any other dependency.**
-- Type hints everywhere. Pydantic for anything loaded from YAML or external JSON configs.
+- Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff, mypy. **Ask before adding any other dependency.**
+- Type hints everywhere; `uv run mypy` checks `py/riksdata` in strict mode. Pydantic for anything loaded from YAML or external JSON configs.
 - Ruff for lint and format (line length 100).
 - Network I/O only through `riksdata.http` (rate limiting, retries, User-Agent `riksdata/<version> (+https://riksdata.org; <contact email>)`). File I/O only through `riksdata.storage`.
 - Never send a browser-like or spoofed User-Agent. If a host refuses `riksdata/…`, use its official API or bulk download, or ask the publisher, and record the source as `blocked` meanwhile.

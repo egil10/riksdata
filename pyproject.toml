@@ -41,6 +41,15 @@ select = [
 # En dashes are ordinary punctuation in our titles and citations.
 allowed-confusables = ["–"]
 
+[tool.mypy]
+files = ["py/riksdata"]
+strict = true
+
+# PyYAML ships no type hints, and what it loads is validated by pydantic anyway.
+[[tool.mypy.overrides]]
+module = "yaml"
+ignore_missing_imports = true
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-m 'not live'"
@@ -48,6 +57,7 @@ markers = ["live: hits real publisher APIs (run with `uv run pytest -m live`)"]
 
 [dependency-groups]
 dev = [
+    "mypy>=2.4.0",
     "pytest>=9.1.1",
     "ruff>=0.16.10",
 ]

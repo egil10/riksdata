@@ -31,7 +31,7 @@ The list of requests is `registry/source_checks.yaml`, one entry per catalogue r
 | `ok` | The endpoint answered and the expected content was in the response |
 | `reachable` | A page or endpoint answered, but its content wasn't verified (mostly landing pages) |
 | `needs_key` | The source wants a free key that we don't have yet |
-| `blocked` | The host refused us: 401, 403 or 429 |
+| `blocked` | The host refused us: 401, 403, 429 or 451 |
 | `unreachable` | No answer: timeout, DNS, connection or certificate error |
 | `failed` | An answer, but not the expected one: 404, 5xx, wrong content or a soft 404 |
 | `skipped` | Deliberately not requested |

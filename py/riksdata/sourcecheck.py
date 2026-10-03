@@ -6,7 +6,7 @@ it reads at most the first bytes of one response and records what came back. Sta
     ok           the endpoint answered and the expected content was there
     reachable    the page or endpoint answered; its content was not verified
     needs_key    the source wants a (free) key that we don't have
-    blocked      the host refused us (401, 403, 429)
+    blocked      the host refused us (401, 403, 429, 451)
     unreachable  no answer: timeout, DNS, connection or TLS error
     failed       an answer, but not the expected one (404, 5xx, wrong content)
     skipped      deliberately not requested (see the entry's `skip` reason)
@@ -33,11 +33,10 @@ from pathlib import Path
 from typing import Any, Literal
 
 import httpx
-import yaml
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, ValidationError, model_validator
 
 from riksdata.http import Sample, Sampler
-from riksdata.registry import DEFAULT_REGISTRY_DIR, RegistryError
+from riksdata.registry import DEFAULT_REGISTRY_DIR, RegistryError, describe, read_yaml
 
 DEFAULT_CHECKS_FILE = DEFAULT_REGISTRY_DIR / "source_checks.yaml"
 
@@ -105,28 +104,15 @@ class CheckResult:
 
 def load_checks(path: Path = DEFAULT_CHECKS_FILE) -> list[SourceCheck]:
     """Load and validate the check list. Raises RegistryError naming the entry at fault."""
-    try:
-        entries = yaml.safe_load(path.read_text(encoding="utf-8")) or []
-    except FileNotFoundError as exc:
-        raise RegistryError(f"{path}: file not found") from exc
-    except yaml.YAMLError as exc:
-        raise RegistryError(f"{path}: invalid YAML: {exc}") from exc
     checks: list[SourceCheck] = []
-    for index, entry in enumerate(entries):
+    for index, entry in enumerate(read_yaml(path) or []):
         try:
             checks.append(SourceCheck(**entry))
         except (ValidationError, TypeError) as exc:
             name = (
                 entry.get("id", f"entry {index}") if isinstance(entry, dict) else f"entry {index}"
             )
-            detail = (
-                "; ".join(
-                    f"{'.'.join(str(part) for part in err['loc']) or '<entry>'}: {err['msg']}"
-                    for err in exc.errors()
-                )
-                if isinstance(exc, ValidationError)
-                else str(exc)
-            )
+            detail = describe(exc) if isinstance(exc, ValidationError) else str(exc)
             raise RegistryError(f"{path}: check {name!r}: {detail}") from exc
     duplicates = sorted(key for key, n in Counter(check.id for check in checks).items() if n > 1)
     if duplicates:

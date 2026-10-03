@@ -106,7 +106,8 @@ class Registry(BaseModel):
         ]
 
 
-def _read_yaml(path: Path) -> Any:
+def read_yaml(path: Path) -> Any:
+    """Parse a registry file. Raises RegistryError if it is missing or not valid YAML."""
     try:
         return yaml.safe_load(path.read_text(encoding="utf-8"))
     except FileNotFoundError as exc:
@@ -115,7 +116,8 @@ def _read_yaml(path: Path) -> Any:
         raise RegistryError(f"{path}: invalid YAML: {exc}") from exc
 
 
-def _describe(exc: ValidationError) -> str:
+def describe(exc: ValidationError) -> str:
+    """A validation error as one line: `field: what is wrong; field: ...`."""
     return "; ".join(
         f"{'.'.join(str(part) for part in err['loc']) or '<entry>'}: {err['msg']}"
         for err in exc.errors()
@@ -125,7 +127,7 @@ def _describe(exc: ValidationError) -> str:
 def load_registry(root: Path = DEFAULT_REGISTRY_DIR) -> Registry:
     """Load and cross-check the registry. Raises RegistryError with the file and entry at fault."""
     sources_path = root / "sources.yaml"
-    raw_sources = _read_yaml(sources_path)
+    raw_sources = read_yaml(sources_path)
     if not isinstance(raw_sources, dict):
         raise RegistryError(f"{sources_path}: expected a mapping of source id to settings")
 
@@ -134,7 +136,7 @@ def load_registry(root: Path = DEFAULT_REGISTRY_DIR) -> Registry:
         try:
             sources[source_id] = Source(source_id=source_id, **(body or {}))
         except (ValidationError, TypeError) as exc:
-            detail = _describe(exc) if isinstance(exc, ValidationError) else str(exc)
+            detail = describe(exc) if isinstance(exc, ValidationError) else str(exc)
             raise RegistryError(f"{sources_path}: source {source_id!r}: {detail}") from exc
 
     datasets: list[DatasetSpec] = []
@@ -144,7 +146,7 @@ def load_registry(root: Path = DEFAULT_REGISTRY_DIR) -> Registry:
             raise RegistryError(
                 f"{path}: no source {path.stem!r} in {sources_path} (known: {sorted(sources)})"
             )
-        entries = _read_yaml(path) or []
+        entries = read_yaml(path) or []
         if not isinstance(entries, list):
             raise RegistryError(f"{path}: expected a list of datasets")
         for index, entry in enumerate(entries):
@@ -164,7 +166,7 @@ def load_registry(root: Path = DEFAULT_REGISTRY_DIR) -> Registry:
                 datasets.append(DatasetSpec(**{**defaults, **entry, "source_id": source.source_id}))
             except ValidationError as exc:
                 name = entry.get("dataset", f"entry {index}")
-                raise RegistryError(f"{path}: dataset {name!r}: {_describe(exc)}") from exc
+                raise RegistryError(f"{path}: dataset {name!r}: {describe(exc)}") from exc
 
     for field in ("dataset", "slug"):
         counts = Counter((ds.source_id, getattr(ds, field)) for ds in datasets)

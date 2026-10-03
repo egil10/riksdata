@@ -1,0 +1,65 @@
+# Our World in Data grapher charts. Format: PLAN.md §5. Details: docs/v2/sources/owid.md.
+#
+# `dataset` is the chart slug in https://ourworldindata.org/grapher/<slug>. Every chart is
+# filtered to the same comparison set: the Nordics, Germany, the UK, the US and the world.
+# Titles, units, citations and licences come from OWID's metadata. Defaults: publish: true.
+
+- dataset: life-expectancy
+  title_no: Forventet levealder ved fødsel
+  topic: health
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: co-emissions-per-capita
+  title_no: CO₂-utslipp per innbygger
+  topic: climate
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: children-per-woman-un
+  title_no: Samlet fruktbarhetstall (barn per kvinne)
+  topic: population
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: homicide-rate-unodc
+  title_no: Drap per 100 000 innbyggere
+  topic: crime
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: military-spending-as-a-share-of-gdp-sipri
+  title_no: Militærutgifter som andel av BNP
+  topic: defence
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: median-age
+  title_no: Medianalder
+  topic: population
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: share-of-individuals-using-the-internet
+  title_no: Andel av befolkningen som bruker internett
+  topic: technology
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: child-mortality
+  title_no: Barnedødelighet (under fem år)
+  topic: health
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: gdp-per-capita-worldbank
+  title_no: BNP per innbygger (kjøpekraftsjustert)
+  topic: economy
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: daily-per-capita-caloric-supply
+  title_no: Daglig kaloritilførsel per person
+  topic: food
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly

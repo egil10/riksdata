@@ -1,0 +1,13 @@
+entity,code,year,ny_gdp_pcap_pp_kd,owid_region
+Norway,NOR,2022,95109.82,Europe
+Norway,NOR,2023,94364.96,Europe
+Norway,NOR,2024,94803.67,Europe
+Norway,NOR,2025,95173.43,Europe
+United States,USA,2022,72828.74,North America
+United States,USA,2023,74351.67,North America
+United States,USA,2024,75698.18,North America
+United States,USA,2025,76931.31,North America
+World,OWID_WRL,2022,20421.734,
+World,OWID_WRL,2023,20894.867,
+World,OWID_WRL,2024,21393.184,
+World,OWID_WRL,2025,21913.51,

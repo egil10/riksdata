@@ -42,3 +42,46 @@ for path in pathlib.Path(".").glob("*.json"):
 ```
 
 SSB revises figures, so a new recording can differ from the values the tests assert. Update the expected values in `tests/test_ssb.py` if that happens.
+
+## owid/
+
+Recorded from Our World in Data on 2026-10-03: three charts with their chart metadata and indicator metadata. The metadata files are unedited. The CSVs are trimmed to a few entities and years, and the indicator files have their `dimensions` key (a list of every entity and year) removed. To record them again, run this from the repository root:
+
+```bash
+cd tests/fixtures/owid
+UA="riksdata/0.1.0 (+https://riksdata.org)"
+Q="v=1&csvType=full&useColumnShortNames=true"
+for slug in life-expectancy median-age gdp-per-capita-worldbank; do
+  curl -sS -L --compressed -A "$UA" -o "$slug.metadata.json" "https://ourworldindata.org/grapher/$slug.metadata.json?$Q"; sleep 1
+  curl -sS -L --compressed -A "$UA" -o "$slug.csv" "https://ourworldindata.org/grapher/$slug.csv?$Q"; sleep 1
+done
+# Indicator ids are the `owidVariableId` of each numeric column in the chart metadata.
+for id in 1118466 950958 950961 1294305; do
+  curl -sS -L --compressed -A "$UA" -o "indicator_$id.json" "https://api.ourworldindata.org/v1/indicators/$id.metadata.json"; sleep 1
+done
+cd ../../..
+
+uv run python -c '
+import csv, json, pathlib
+
+folder = pathlib.Path("tests/fixtures/owid")
+keep = {  # chart -> (entity codes, years)
+    "life-expectancy": ({"NOR", "SWE", "FRA", "OWID_WRL"}, range(2019, 2024)),
+    "median-age": ({"NOR", "OWID_WRL"}, range(2021, 2027)),
+    "gdp-per-capita-worldbank": ({"NOR", "USA", "OWID_WRL"}, range(2022, 2026)),
+}
+for slug, (codes, years) in keep.items():
+    path = folder / f"{slug}.csv"
+    with path.open(encoding="utf-8", newline="") as handle:
+        header, *rows = list(csv.reader(handle))
+    rows = [row for row in rows if row[1] in codes and int(row[2]) in years]
+    with path.open("w", encoding="utf-8", newline="") as handle:
+        csv.writer(handle, lineterminator="\n").writerows([header, *rows])
+for path in folder.glob("indicator_*.json"):
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data.pop("dimensions", None)
+    path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+'
+```
+
+What each chart is for: `life-expectancy` is a plain one-column chart and includes France to test the entity filter. `median-age` has a second, projected column. `gdp-per-capita-worldbank` has the non-numeric `owid_region` column.

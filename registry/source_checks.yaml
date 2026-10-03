@@ -238,8 +238,13 @@
    url: "https://www.datatilsynet.no/"}
 - {id: regjeringsadvokaten, section: "5", priority: C, access: docs, name: "Regjeringsadvokaten",
    url: "https://www.regjeringsadvokaten.no"}
-- {id: hudoc, section: "5", priority: A, access: api, name: "ECHR HUDOC",
-   url: "https://hudoc.echr.coe.int/app/query/results?query=contentsitename%3AECHR%20AND%20respondent%3A%22NOR%22%20AND%20documentcollectionid2%3A%22JUDGMENTS%22&select=itemid,kpdate&sort=&start=0&length=1", expect: '"resultcount"', pii: true}
+- {id: hudoc, section: "5", priority: "-", access: none, name: "ECHR HUDOC",
+   skip: "No official HUDOC data API; the web UI's query endpoint is not used (Egil 2026-10-03). See the echr-* rows"}
+- {id: echr-country-profile-norway, section: "5", priority: A, access: docs, name: "ECHR country profile: Norway (PDF)",
+   url: "https://www.echr.coe.int/documents/d/echr/CP_Norway_ENG", expect_type: "application/pdf", pii: true,
+   note: "A wrong ECHR address answers 200 with an HTML not-found page, so the content type matters"}
+- {id: echr-violations-by-state, section: "5", priority: A, access: docs, name: "ECHR violations by article and by state, 2024 (PDF)",
+   url: "https://www.echr.coe.int/documents/d/echr/stats-violation-2024-eng", expect_type: "application/pdf"}
 - {id: esa-efta-court, section: "5", priority: B, access: docs, name: "ESA and EFTA Court",
    url: "https://www.eftasurv.int"}
 - {id: eea-lex, section: "5", priority: A, access: page, name: "EEA-Lex (EFTA)",
@@ -299,8 +304,8 @@
 - {id: dfo-innbyggerundersokelsen, section: "7", priority: B, access: page, name: "DFØ Innbyggerundersøkelsen",
    url: "https://www.dfo.no/undersokelser/innbyggerundersokelsen-2026", expect: ".xlsx", max_bytes: 200000}
 - {id: oecd-trust-survey, section: "7", priority: B, access: api, name: "OECD Trust Survey",
-   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.GOV.GIP/DSD_GOV_TDG_SPS_GPC@DF_GOV_TDG_2023/latest", expect: "DF_GOV_TDG_2023",
-   note: "The survey's aggregates as an OECD dataflow. The survey's page on www.oecd.org refuses our User-Agent (403)"}
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.GOV.GIP/DSD_GOV_INT@DF_GOV_TDG_2025/latest", expect: "DF_GOV_TDG_2025",
+   note: "The trust indicators as an OECD dataflow (Government at a Glance 2025). Pages on www.oecd.org are not fetched"}
 - {id: ches, section: "7", priority: B, access: file, name: "Chapel Hill Expert Survey",
    url: "https://github.com/chesdata/chesdata.github.io/releases/download/ches-trend/1999-2024_CHES_dataset_meansV2.csv", expect: "lrgen",
    note: "The 1999-2024 trend file. chesdata.eu/ches-europe links to every wave as CSV and Stata files"}
@@ -543,7 +548,7 @@
 - {id: kongehuset, section: "18", priority: C, access: page, name: "Kongehuset official programme",
    url: "https://www.kongehuset.no/"}
 
-# --- 19a. OECD (the API limits every request, structure calls too; a full run sends 24) --
+# --- 19a. OECD (the API limits every request, structure calls too; a full run sends 25) --
 - {id: oecd-revenue-statistics, section: "19a", priority: A, access: api, name: "OECD Revenue Statistics (comparative), data call",
    url: "https://sdmx.oecd.org/public/rest/data/OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,/NOR.TAX_REV.S13._T._T.PT_B1GQ.A?startPeriod=2023&format=csv", expect: "NOR"}
 - {id: oecd-revenue-norway, section: "19a", priority: A, access: api, name: "OECD Revenue Statistics, Norway country table",
@@ -554,8 +559,9 @@
    url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.CTP.TPS/DSD_TAX_WAGES_COMP@DF_TW_COMP/latest", expect: "DF_TW_COMP"}
 - {id: oecd-taxben, section: "19a", priority: A, access: api, name: "OECD TaxBEN suite (METR)",
    url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.JAI/DSD_TAXBEN_METR@DF_METR/latest", expect: "DF_METR"}
-- {id: oecd-taxben-calculator, section: "19a", priority: C, access: manual, name: "OECD TaxBEN web calculator",
-   url: "https://www.oecd.org/social/benefits-and-wages/"}
+- {id: oecd-taxben-calculator, section: "19a", priority: C, access: api, name: "OECD TaxBEN web calculator",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.JAI/DSD_TAXBEN_NRR@DF_NRR/latest", expect: "DF_NRR",
+   note: "Net replacement rates, one of the calculator's outputs as a dataflow. The calculator page on www.oecd.org is not fetched"}
 - {id: oecd-socx, section: "19a", priority: A, access: api, name: "OECD SOCX",
    url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.SPD", expect: "DSD_SOCX_AGG", max_bytes: 3000000}
 - {id: oecd-lmp, section: "19a", priority: B, access: api, name: "OECD labour-market programmes (LMP)",
@@ -592,9 +598,9 @@
    url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_PDB@DF_PDB_LV/latest", expect: "DF_PDB_LV"}
 - {id: oecd-pisa-health-education, section: "19a", priority: B, access: api, name: "OECD PISA, health, Education at a Glance",
    url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.HD/DSD_SHA@DF_SHA/latest", expect: "DF_SHA",
-   note: "Health expenditure and financing, one of the health dataflows. No dataflow has PISA in its name"}
+   note: "Health expenditure and financing, one of the health dataflows. Education has 141 dataflows under OECD.EDU (Education at a Glance, TALIS). No dataflow has PISA in its name"}
 - {id: oecd-economic-survey-norway, section: "19a", priority: B, access: docs, name: "OECD Economic Survey of Norway",
-   url: "https://www.oecd.org/norway"}
+   skip: "Publication/link-out; no official data API. Its forecasts are in the Economic Outlook dataflow"}
 
 # --- 19b. IMF (SDMX 3.0 is slow, so only WEO gets a data call) ---------------------------
 - {id: imf-datamapper, section: "19b", priority: B, access: api, name: "IMF DataMapper",
@@ -622,7 +628,7 @@
 - {id: imf-trade, section: "19b", priority: C, access: api, name: "IMF trade (IMTS, ITS, ED)",
    url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.STA/IMTS/+", expect: "IMTS", timeout: 60}
 - {id: imf-article-iv, section: "19b", priority: A, access: docs, name: "IMF Article IV, Norway",
-   url: "https://www.imf.org/en/Countries/NOR"}
+   skip: "Publication/link-out; no official data API"}
 
 # --- 19c. Eurostat, World Bank, BIS, ECB and other agencies ------------------------------
 - {id: eurostat, section: "19c", priority: A, access: api, name: "Eurostat (gov_10a_main)",
@@ -683,8 +689,9 @@
 - {id: marpor, section: "20", priority: A, access: api, name: "Comparative Manifesto Project (MARPOR)",
    url: "https://manifesto-project.wzb.eu/api/v1/list_core_versions", expect: '"datasets"',
    note: "The data endpoints need a free key (MANIFESTO_API_KEY)"}
-- {id: parlgov, section: "20", priority: B, access: file, name: "ParlGov",
-   url: "https://www.parlgov.org/data/parlgov-development_csv-utf-8/view_cabinet.csv", expect: "cabinet_name"}
+- {id: parlgov, section: "20", priority: B, access: file, name: "ParlGov (2024 release, Harvard Dataverse)",
+   url: "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/2VZ5ZC", expect: "ParlGov 2024 Release",
+   note: "The official release, CC0 1.0. Files at dataverse.harvard.edu/api/access/datafile/<id>: view_cabinet.tab = 10437088, view_election.tab = 10437092, view_party.tab = 10437089"}
 - {id: cpds, section: "20", priority: B, access: page, name: "Comparative Political Data Set",
    url: "https://www.cpds-data.org/data/", expect: ".xlsx", max_bytes: 400000}
 - {id: qog, section: "20", priority: B, access: page, name: "Quality of Government",

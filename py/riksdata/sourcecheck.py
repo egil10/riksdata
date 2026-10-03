@@ -138,6 +138,10 @@ def evaluate(check: SourceCheck, sample: Sample) -> tuple[Status, str]:
     """Turn a response into a status and a one-line explanation."""
     code = sample.status_code
     if 200 <= code < 300:
+        # A soft 404: the host redirected us to its not-found page and answered 200 there.
+        final = httpx.URL(sample.url).path
+        if "404" in final and final != httpx.URL(check.url or "").path:
+            return "failed", "redirected to a not-found page"
         if check.expect is None and check.expect_type is None:
             return "reachable", "answered; content not verified"
         if check.expect_type is not None and check.expect_type not in sample.content_type:

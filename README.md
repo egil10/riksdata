@@ -58,4 +58,4 @@ Its own notes are in `docs/*.md`. Don't change version 1 files; they are served 
 
 Every series carries its source, licence and retrieval date. Statistics Norway's data is CC BY 4.0 ("Kilde: Statistisk sentralbyrå"). Data from Our World in Data keeps the licence of each upstream provider. Where a licence is not an open one, the series carries a note on the terms, and the site stays non-commercial.
 
-The code is under the MIT License, as this README has stated since version 1. There is no `LICENSE` file in the repository yet.
+The code is under the MIT License; see [LICENSE](LICENSE). The licence covers the code, not the data: the files under `data/` and `beta/data/` come from the publishers and keep the publishers' licences.

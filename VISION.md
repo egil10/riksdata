@@ -129,7 +129,88 @@ Curated long-read pages in MDX: prose plus `<Chart>` specs that point at series 
 - **MVP:** 40–60 **concrete, verifiable** promises in **tax and welfare** from the governing party and the two largest opposition parties, hand-linked. Publish only verified links, with methodology up front. Don't scale this until the review workflow is proven.
 
 ### 1.6 Other strong pages (backlog)
-Representative pages ("Min representant": votes, questions, committee, attendance); **Valg** (valgresultat.no results by municipality and krets, 2009→, on maps; turnout; swing); "Din kommune" (KOSTRA, eiendomsskatt via SSB 14155, local election results); **Partifinansiering** (income by source per party, 2008→); **Oljefondet** (NBIM holdings by country/sector, the fund vs. the budget transfer); **Sykefravær og uføre**; **Strømpris og magasin**; **Tidslinje over reformer** (§6.3).
+Representative pages ("Min representant": votes, questions, committee, attendance); **Valg** (valgresultat.no results by municipality and krets, 2009→, on maps; turnout; swing); "Din kommune" (KOSTRA, eiendomsskatt via SSB 14155, local election results); **Partifinansiering** (income by source per party, 2008→); **Oljefondet** (NBIM holdings by country/sector, the fund vs. the budget transfer); **Sykefravær og uføre**; **Strømpris og magasin**; **Tidslinje over reformer** (§6.3). The full, source-mapped backlog is in §1.7.
+
+### 1.7 Page backlog (from the five source hunts, 2026-10-03)
+Every page lists the sources it needs (section numbers refer to `SOURCES.md`). **Effort:** **S** = about 1 Claude Code session once the adapter exists, or a trivial new adapter plus one page · **M** = 2–4 sessions · **L** = 5+ sessions, or blocked on keys, the Mac runner (SOURCES A1) or human review. Check marks follow SOURCES: ✅ verified · 🌐 reachable · 🔑 key · ❌ blocked from the box · ❓ unchecked. **QW** = quick win (see the list after the table).
+
+| Universe | Page | Question it answers | Sources needed | Effort | Notes |
+|---|---|---|---|---|---|
+| **Økonomien** | **Norge i 200 år** (QW5) | How did Norway get rich, and was it before oil? | Maddison via OWID ✅ (§19d), Norges Bank HMS ✅ (house prices 1819→, CPI, stock index) (§2), SSB 13151 turnout 1829→ ✅ (§1b), events timeline. Later: IMF HPD ❓, WID ✅, PWT ❌ (manual), JST ✅ (NC, Lab only) | M | Reform markers: 1814, 1905, 1969, 1980s deregulation, 1990 fund law, 2001 fiscal rule, 2006 tax reform |
+| Økonomien | **Hvor godt spår de?** forecast scorecard | IMF vs. OECD vs. Finansdepartementet: who forecasts Norway best? | IMF WEO/FM vintages ✅ (§19b), OECD EO 114–119 ✅ (§19a), SSB outturns ✅. Later: Nasjonalbudsjettet/Norges Bank MPR (❌ Mac) | M | A neutral accountability page. ESTIMATE/publisher vs. DATA |
+| Økonomien | **Husholdningsgjelden vs. verden** (runner-up QW) | Do Norwegian households carry the world's heaviest debt service? | BIS WS_DSR/WS_SPP/WS_CREDIT_GAP ✅ (§19c), SSB 08726-series 🌐, Norges Bank LENDINGSURVEY 🌐, Gjeldsregisteret 🌐 | S | DSR 20.9 % (2026-Q1) |
+| Økonomien | Hvem kjøper norsk gass og fisk? | Which countries depend on Norwegian exports, before and after 2022? | SSB 08799/08801 ✅, Eurostat Comext ✅, UN Comtrade preview ✅ (§19c) | S/M | Country-code crosswalk (579/578/NO/NOR) |
+| Økonomien | Blir økonomien enklere? | Is Norway's economy getting less complex? | Atlas ECI ✅ (**CC BY-NC-SA**), SSB trade ✅, OECD TiVA ❓ | M | `publish: false` until the NC question is settled (SOURCES A3) |
+| Økonomien | Konkursbølge? | Bankruptcies since 1980 against interest rates | SSB 09694/09695 ✅, Norges Bank ✅ | S | |
+| **Staten** | **Statens balanse** | Is Norway rich, or is the state rich? | IMF GFS_BS ✅ + PSBS ✅ (§19b), SSB 08753 🌐, 07107 (1980M01→) 🌐, 03730 🌐 | M | Answers "why gross debt in an oil-fund state?" |
+| Staten | **Oljefondet og deg** | From field to fund to boardroom: your share of the world and how the fund votes | Sodir FactPages/FactMaps ✅ (§11), NBIM holdings ✅ (§2), NBIM voting 🔑, Etikkrådet WP JSON ✅, DFØ ✅ | M (holdings) / L (votes) | Sankey from barrel to AGM vote |
+| Staten | **Hvem får støtte?** (subsidies and næringsstøtte) | Where do subsidies and business support go, by kommune, industry and giver? | Støtteregisteret POST API ✅ (§4b), Innovasjon Norge CSV ✅, Forskningsrådet ✅, SSB 12639/12641 ✅, Brreg regnskap ✅ (§16). Later: Patentstyret 🔑 | M | Firms only; sole proprietors aggregated. Descriptive, no "effect of support" claims |
+| Staten | **Statens postkasse** | How many documents and access requests each ministry handles, and the spikes | eInnsyn `/statistics` ✅ (§4b) | M | Organisations only, no person names |
+| Staten | Offentlige innkjøp | Who wins public contracts? Single-bid rates | TED ✅, Doffin 🔑, OpenTender ❌ (NC) | M | |
+| Staten | **Din kommune: kommunekassa** | Where does my municipality's money come from and go? | SSB 07022 ✅, 12367 ✅ (chunked), 14670 🌐, 13540-series 🌐, Grønt hefte ❌ (Mac) | L | The big municipal page. Needs the chunked SSB adapter |
+| Staten | **Det skjulte budsjettet** | The transfers nobody debates, in kroner per resident | EU ETS registry 🌐 (§11), EEA Grants ✅, Norad IATI ✅ (§17), Havbruksfondet ✅, Statens eierberetning ❌ (Mac), SSB 12774/12940 🌐 | L | Each block can ship separately |
+| **Skatt** | **Skattemiksen 1965–2024** (QW4) | Has the burden shifted from income to consumption? Which government level collects what? | OECD DF_REVNOR ✅ + DF_RSOECD ✅ (§19a) | S | Pairs with F2 |
+| Skatt | **Hvem eier Norge?** (QW1) | How concentrated is wealth, and who carries the wealth-tax base? | SSB 10318 ✅, 08815 ✅ (§1b), OECD WDD ✅ (§19a). Later: WID ✅, SSB 05802 🌐 | S | Top 1 % 21.7 %, top 0.1 % 10.3 % (2024) |
+| Skatt | **Hva sitter du igjen med av neste tusenlapp?** EMTR explorer | How much of an extra 1,000 kr do you keep? | OECD TaxBEN METR/PTR/NRR ✅ now. Later: our engine + Skatteetaten trekktabell 🌐 + NAV G API ✅ + SIFO ❓ | M (OECD) / L (engine) | External benchmark before the engine exists |
+| Skatt | Grenselekkasjen | How much of the excise base leaks to Sweden, by county? | SSB 13983/14044/14221–14224 ✅. Later: Vinmonopolet salgstall 🔑/🌐 | S | |
+| Skatt | Utbytteskatt i Norden | Combined corporate + dividend top rate vs. peers | OECD DF_CIT_DIVD_INCOME 🌐, DF_PIT 🌐 | S | |
+| **Velferd** | **Ledighet i din kommune** (QW2) | Unemployment by municipality this month, as a map | NAV files ✅ (CC BY 4.0) (§3), Kartverket kommuneinfo ✅ | S | Monthly refresh; scrape links from NAV's statistics page |
+| Velferd | Velferdsstaten i tall (upgrade) | Disability and sickness spending gross vs. net, vs. the Nordics | OECD SOCX 🌐 (net SOCX), Eurostat ESSPROS ✅ + COFOG L2 ✅, NAV ✅, SSB 13076/13077 🌐 | M | "Not causal" label next to the reform timeline |
+| Velferd | Hva lever de av? | Income composition and poverty risk of uføre, AAP recipients and pensioners | SSB 13076–13095, 13680–13687, 13747–13755 🌐 (§1b) | S/M | |
+| Velferd | Har G holdt følge? | G vs. prices and wages since 1967 | NAV G API ✅, SSB CPI ✅, SSB 09855 🌐 | S | |
+| Velferd | Hvor ofte tar NAV feil? | Reversal rates by benefit | Trygderetten 🌐 (PDF), Sivilombudet 🌐 | M | |
+| **Befolkningen** | Navnekartet | When did Emma and Muhammad peak? | SSB 10467/10501 ✅ | S | A traffic magnet |
+| Befolkningen | Samemanntallet | Where the Sami electoral roll is growing | SSB 05926 + 14662/14663/14679 ✅ | S | Roll doubled 2005→2025 |
+| Befolkningen | Sekulariseringen | Baptism share per municipality vs. KrF vote | SSB church tables ✅, valgresultat ✅ | S | |
+| Befolkningen | Hvordan vi bruker dagen, 1970–2022 | Housework gender gap then and now | SSB 14320 ✅ | S | |
+| Befolkningen | Utvandring da, innvandring nå | Emigrants per parish 1860–1920 vs. immigration today | Digitalarkivet 🌐, SSB ✅ | L | |
+| **Offentlige tjenester** | **Smilefjes-kartet** (QW8) | Where are the worst kitchens? Chains vs. independents | Mattilsynet CSV ✅ (§5), Kartverket ✅, Brreg ✅ | S | Always show inspection date and re-inspections |
+| Tjenester | **Din skole** | Bullying, results and teacher density per school | Udir Elevundersøkelsen API ✅, NSR ✅, Statistikkportalen 🌐, FHI nokkel ✅ (§8–9) | M | NLOD |
+| Tjenester | **Helsekøen** | Did "ventetidsløftet" happen, per hospital? | Helsedir NKI 🔑, ventetider ❓, fastlegestatistikk ❓, FHI NPR ✅ | M/L | Plugs into the tracker |
+| Tjenester | **Avstand til staten** | Distance to school, emergency hospital, police and bus for every resident | SSB 250 m grid ❓, Geonorge adresser ✅, NSR ✅, Entur GTFS ✅, police/hospital lists | L | The centralisation debate in numbers |
+| Tjenester | Anmeldt vs. opplevd kriminalitet | Is the rise in reported crime real? | SSB 08484/08487/04876 ✅ | S | |
+| Tjenester | Domstolene etter reformen | Processing times before/after the 2021 court mergers | Domstoladministrasjonen 🌐 | M | |
+| **Energi, klima og natur** | **Hvem eier vannkraften?** (QW7) | Who owns Norway's hydropower: state, municipalities or private? | NVE kraftverk API ✅ (NLOD) (§11), Brreg ✅ | S | Owner orgnr → sector via Brreg |
+| Energi | **Strømregningen din** | Total kr/kWh per municipality = price + nettleie + taxes − support | hvakosterstrommen ✅, ENTSO-E 🔑, NVE nettleie 🌐, Elhub ✅, Lovdata (support rules) | M | Behaviour in 2022 via Elhub |
+| Energi | **Hvem eier havet?** | Quota concentration, landings, salmon licences, Havbruksfondet money | Fiskeridir frtyweb ✅, fangstdata ✅, Akvakultur API ✅, Havbruksfondet ✅ (§15) | L | ⚠ Person IDs hashed at ingest (A3). Reconcile with official totals |
+| Energi | **Gårdsstøtten** (anonymised) | Does each jordbruksoppgjør really favour small farms? | Landbruksdir per-farm CSV ✅ (2013→) | M | Distributions only; sole proprietors unnamed |
+| Energi | **Kysten i tall** | Cruise, shipping, lice and emissions along the coast | Kystdatahuset ✅, BarentsWatch 🔑, Miljødir ❓ | M | |
+| Energi | Viltet og veiene | Wildlife killed by cars and trains per municipality since 1987 | SSB 03501, 06036 ✅. Later: NVDB ❌ | S | |
+| Energi | Utslipp i din kommune | Real cuts or a plant closing? | Miljødir Excel ❓, norskeutslipp ❓ | S/M | |
+| Energi | Rovdyr og beitedyr | Predator compensation vs. the vote | Rovbase 🌐, valgresultat ✅ | M | Coarsen locations |
+| Energi | Gratiskvotene | Free ETS allowances per Norwegian plant | EU ETS registry 🌐 | M | |
+| **Partiene** | **Lokaldemokratiet** | Kommunestyre composition since 1971, list demographics, personal-vote reordering | Sikt Kommunedatabasen ✅, valg.no XLSX ✅, valgresultat ✅, eInnsyn ✅ | M | Elected candidates named; lists aggregated |
+| Partiene | **Ord vs. stemmer** | Does each party talk about what it votes on and proposes? | ParlaMint 5.0 ✅ + referat, Stortinget votes ✅, Dok 8 ✅, MARPOR 🔑 | L | CAP topics are already in ParlaMint |
+| Partiene | Partiregisteret | How many parties register before each election, and which survive? | Partiregisteret ✅, Partifinansiering ✅ | S | |
+| Partiene | Meningsmålinger (licensed) | Poll average vs. results | PolitPro 🔑 (attribution licence), Wikipedia 🌐 | M | Never scrape pollofpolls |
+| Partiene | Hva mener velgerne? | Attitudes to taxes and spending by party voters | ISSP ❓, NCP/NES (Sikt) ❓, ESS (NC) 🌐 | L | Aggregates only |
+| **Stortinget** | **Opposisjonens spørsmål** (QW3) | Who asks written questions, and which ministers answer slowest? | Stortinget `skriftligesporsmal` ✅ (§4c) | S | 2024–25: 3,234 questions, median 7.1 days, Ap 8 vs. FrP 807 |
+| Stortinget | **Opposisjonens verktøykasse** (QW3 extended) | Dok 8 pass rates under majority vs. minority governments; ignored anmodningsvedtak | Stortinget saker/voteringer ✅, anmodningsvedtak tables ❌ (Mac) | M | Feeds F6 |
+| Stortinget | **Hva snakker Norge om?** attention dashboard (runner-up QW) | Does media attention lead parliamentary attention? | DHLAB ✅, Wikimedia pageviews ✅ (CC0), ParlaMint ✅, questions ✅, eInnsyn ✅ | M (S for DHLAB + pageviews only) | |
+| Stortinget | Interesseregisteret | MPs' registered interests vs. committee seats | Register PDF ✅ (+ community archive) | M | Editorial rules: show only what the register says |
+| Stortinget | Svingdøra | Where departing ministers and state secretaries go | Karantenenemnda ❌ (Mac), Wikidata ✅ | M | Public role only |
+| Stortinget | Lovverkstedet | The most-amended laws; election-year bursts | Lovdata Lovtidend ✅ | S/M | |
+| Stortinget | Latter i salen | Chamber tone over time | Referat XML ✅ | S/M | Chartbook fun |
+| Stortinget | EØS uten stemme | Share of EU acts incorporated without a Storting vote | EEA-Lex ❌ (Mac), ESA scoreboard 🌐 | M | |
+| **Norge vs. verden** | **Norge på verdensrankingene** (QW6) | Where is Norway #1, and where is it slipping? | WGI ✅, TI CPI ✅, RSF ✅, UNDP HDI ✅, OECD PMR ✅ (§19–20) | M | Extension of F5. Show SE/methodology per index |
+| Verden | **Norge for retten** | Where does the state get it wrong, and is it improving? | HUDOC ✅, ESA/EFTA Court 🌐, Sivilombudet 🌐, Trygderetten 🌐, Riksrevisjonen grades 🌐, Regjeringsadvokaten 🌐 | L | Riksrevisjonen grades need LLM classification + review |
+| Verden | EØS-midlene og bistanden | What Norway pays for abroad, per country and sector | EEA Grants API ✅, Norad IATI ✅ | M | |
+| Verden | Tillit i Norden | Is Norway's trust drop unusual? | OECD Trust 🌐, DFØ Innbyggerundersøkelsen ❓, ESS (NC) 🌐 | M | |
+| Verden | Norge i FN | Who Norway votes with at the UN | UNGA votes ✅ | M | |
+| **Tracker / Tidslinje** | Anmodningsvedtak-sporing | Which Storting orders the government delivers | Stortinget vedtak ✅, Prop. 1 S tables ❌ (Mac) | M | |
+| Tracker | Holder de ord 2009–2017 seed | Promise fulfilment then vs. 2025–2029 | HDO repos ❓, Stortinget ✅ | M | Validation set for F6 |
+
+**Eight quick wins for the M2/M3 beta.** Each uses only open, ✅-checked sources, needs no key, no Mac runner and no person-level data, and builds on adapters that exist after M1 (SSB, OECD, OWID, WB, Stortinget) plus at most one small new adapter:
+1. **QW1 Hvem eier Norge?** SSB 10318 + 08815 + OECD WDD. Wealth shares to the top 0.1 % and the wealth-tax base by asset. *S, M2.*
+2. **QW2 Ledighet i din kommune.** NAV monthly CSV (CC BY 4.0) + Kartverket. Unemployment map with a monthly refresh. *S, M2 (new NAV adapter).*
+3. **QW3 Opposisjonens spørsmål.** Stortinget `skriftligesporsmal`. Who asks, who answers, and how fast, per session. *S, M2.*
+4. **QW4 Skattemiksen 1965–2024.** OECD DF_REVNOR + DF_RSOECD. Sixty years of tax mix by government level. *S, M3 (next to F2).*
+5. **QW5 Norge i 200 år.** Maddison/OWID + Norges Bank HMS + SSB 13151. GDP, house prices and turnout from 1819/1820/1829. *M, M3 (new HMS xlsx adapter; confirm the HMS licence).*
+6. **QW6 Norge på verdensrankingene.** WGI + TI CPI + RSF + HDI + OECD PMR. One standardised dashboard with trends. *M, M3 (small file adapters; confirm the RSF/HDI terms).*
+7. **QW7 Hvem eier vannkraften?** NVE kraftverk API + Brreg. Ownership of 1,863 plants by sector and municipality. *S, M3 (NLOD both).*
+8. **QW8 Smilefjes-kartet.** Mattilsynet CSV + Kartverket. Food-safety grades per municipality, with the date shown. *S, M2/M3 (confirm the NLOD statement).*
+
+Runners-up: Husholdningsgjelden vs. verden (BIS), Hva snakker Norge om? (DHLAB + pageviews), Navnekartet (SSB), Viltet og veiene (SSB 03501).
 
 ---
 
@@ -207,7 +288,7 @@ regjeringen.no høringer (government consultations): ❌ 403 from the box, so pl
 - Gotcha: incomplete qualifiers (start/end dates, parliamentary group), so treat it as enrichment, never as the source of truth for votes or seats.
 
 ### 2.8 Polls: pollofpolls.no
-✅ The site is reachable. It offers **HTML tables plus RSS feeds** (`rss_maling.php`), **no API**, and **no open licence found** on the "Om" page. Individual polls belong to the commissioning media/pollsters. **Don't scrape and republish** without written permission. Options: (a) ask pollofpolls for permission or a feed (Egil's call; that's an external contact); (b) show only Riksdata's own average computed from polls published under open terms (rare); (c) link out. For the MVP, link out and show no poll numbers.
+✅ The site is reachable. It offers **HTML tables plus RSS feeds** (`rss_maling.php`), **no API**, and **no open licence found** on the "Om" page. Individual polls belong to the commissioning media/pollsters. **Don't scrape and republish** without written permission. Options: (a) ask pollofpolls for permission or a feed (Egil's call; that's an external contact); (b) show only Riksdata's own average computed from polls published under open terms (rare); (c) link out. For the MVP, link out and show no poll numbers. **New option (track B):** the **PolitPro API** (Bearer token, free registration) allows displaying its Norwegian poll series with attribution and a link, as long as we don't build a competing standalone poll platform. Wikipedia's polling tables (CC BY-SA) are a fallback. See SOURCES §4a and A2.
 
 ### 2.9 Party finances: Partifinansiering.no ✅
 Annual Excel files on the front page: **"Alle regnskapstall 2008 … 2025.xlsx"** (party accounts at all levels) plus **"Valgkampbidrag"** files (campaign contributions). Licence ❓ (public register; likely NLOD). Use: party income by source (state support, membership, private contributions above the threshold), per party and year. SSB also publishes party-finance statistics ❓.
@@ -384,12 +465,12 @@ These drive chart annotations, the reform timeline, and the before/after tooling
 5. **No party scoring.** No "most responsible", "most liberal" or "best". Arithmetic, positions and evidence only. Ideal-point maps are labelled as statistical summaries of votes, not ideology verdicts.
 6. **Symmetry:** every party gets the same template, the same depth and the same order rules (seat count or alphabetical, fixed). Government vs. opposition differences are structural (only the government can enact), so they're shown separately.
 7. **Neutral language:** use official terms (e.g. "formuesskatt", "arbeidsinnvandring") and avoid campaign framing.
-8. **Privacy:** person-level data only for people acting in public office (MPs' votes, questions, speeches). **No use of skattelister** (public tax lists are login-gated and logged, and mass collection is prohibited), and no survey microdata republication.
+8. **Privacy:** person-level data only for people acting in public office (MPs' votes, questions, speeches). **No use of skattelister** (public tax lists are login-gated and logged, and mass collection is prohibited), and no survey microdata republication. The binding, consolidated rules (aggregate person-level registers, hash person IDs at ingest, no scraping of Finn/lovdata.no/pollofpolls, NC licences vs. ads) are in **SOURCES.md Appendix A3**.
 9. **Right of correction:** a visible "Meld feil" link, and parties/ministries can flag errors. (Whether to proactively contact parties is Egil's call.)
 10. **Election-time discipline:** freeze new politics features in the two weeks before an election. Only data refreshes and corrections go out.
 
 ### 6.2 Licences and attribution
-Respect per-source terms (`SOURCES.md`). Non-redistributable sources (polls, MARPOR raw, survey microdata) can feed **private** analyses in the lake (`publish: false`) and only published aggregates with citation.
+Respect per-source terms (`SOURCES.md`). Non-redistributable sources (polls, MARPOR raw, survey microdata) can feed **private** analyses in the lake (`publish: false`) and only published aggregates with citation. **NC/SA licences** (ESS CC BY-NC-SA 4.0, JST, Atlas ECI, OpenTender, WHO GHO, MARPOR) can't appear on a site with ads or commercial use. Keeping riksdata.org ad-free is therefore a licensing decision as well as a design one (Egil's call).
 
 ### 6.3 "What has worked and what hasn't": linking reforms and promises to outcomes
 This is the most tempting and the most dangerous feature, so build it in three tiers:
@@ -409,8 +490,8 @@ Ordered so something visible ships early, and timed around **budget season (Oct�
 | Milestone | When | Builds | Demo-able outcome |
 |---|---|---|---|
 | **M1: Pipeline** (Phase 1) | Oct 2026 (3 weekends) | uv package, registry, SSB/OWID/WB/OECD/Stortinget adapters, Actions refresh, releases | `riksdata sql` over a nightly-refreshed lake. First data release `data-2026-10-xx` |
-| **M2: v2 beta site** (Phase 2a) | Nov 2026 | Astro site, Explorer (search + series page + compare + transforms), "Norge 2026" front page (24 tiles), 3 chartbook pages, deployed at `riksdata.org/beta/` (v1 stays at `/`) | **A public beta link** with SSB+OWID+OECD+WB, the first thing to show people |
-| **M3: Staten & Skatt** (Phase 2b) | Dec 2026 – Jan 2027 | DFØ + bevilgningshistorikk adapters, `budget_lines`, **F1 Hvor går 1000 kroner**, **F2 Skattetrykk**, F5 outlier wall MVP | Two flagships live, and v2 replaces v1 at `/` (v1 moves to `/v1/`) |
+| **M2: v2 beta site** (Phase 2a) | Nov 2026 | Astro site, Explorer (search + series page + compare + transforms), "Norge 2026" front page (24 tiles), 3 chartbook pages + quick wins QW1–QW3 and QW8 (§1.7), deployed at `riksdata.org/beta/` (v1 stays at `/`) | **A public beta link** with SSB+OWID+OECD+WB, the first thing to show people |
+| **M3: Staten & Skatt** (Phase 2b) | Dec 2026 – Jan 2027 | DFØ + bevilgningshistorikk adapters, `budget_lines`, **F1 Hvor går 1000 kroner**, **F2 Skattetrykk**, F5 outlier wall MVP, quick wins QW4–QW7 | Two flagships live, and v2 replaces v1 at `/` (v1 moves to `/v1/`) |
 | **M4: Stortinget** (Phase 3a) | Feb – Mar 2027 | Full Stortinget model (cases, votes, results, questions, committees, referat index), entities + Wikidata, valgresultat.no elections + Kartverket maps, **F4 voting similarity**, MP pages | "Hvem stemmer med hvem" plus election maps |
 | **M5: Tax engine v1** (Phase 3b) | Mar – May 2027 | `riksdata.tax` wage earner 2024–2027 + employer side, golden tests (Prop. 1 LS, kalkulator, OECD wedge), TS port, calculator + marginal-rate curves | **"Skattekalkulator med kilder"**, with the OECD tax wedge reproduced |
 | **M6: Party data** (Phase 4a) | May – Jul 2027 | documents/pages store, extraction pipeline (qwen3:8b + review), gold set + evaluation, 2025–2029 programmes (tax and welfare first), **F3 party fiscal arithmetic** (budget 2027 alternatives from Innst. 2 S), tax proposals → engine | Party pages with verified proposals and arithmetic |
@@ -462,3 +543,24 @@ Prompts 01–03 already exist (Phase 1). Each later prompt should follow the sam
 - **prompt-28**: Events/reform timeline from Lovdata + budgets + Stortinget decisions, with chart annotations.
 - **prompt-29**: Wealth tax + capital income in the engine; then prompt-30 benefits and EMTR curves.
 - **prompt-31**: Lab: staggered-DiD/event-study template on a KOSTRA municipal reform, with a design note and robustness checks.
+
+**New stubs from the 2026-10-03 source hunts** (see SOURCES.md and §1.7; registry fields `runner`, `secret_env`, `pii`, `encoding` per PLAN.md §10):
+- **prompt-32**: Quick-win adapter pack: NAV statistics files (scrape attachment links from the official statistics pages, Latin-1, `;`, decimal comma), NAV G API, Norges Bank HMS xlsx, NVE kraftverk, Mattilsynet smilefjes CSV, ranking files (TI CPI xlsx, RSF CSV, HDI CSV, WGI via WB `source=3`), SSB table packs (10318, 08815, 13151, 05926 …) as registry entries only.
+- **prompt-33**: Quick-win pages QW1–QW8 (§1.7), one PR per page, each with a methodology box and licence line.
+- **prompt-34**: SSB chunked fetch for huge tables (12367: 66.5M cells, so year × ~25 municipalities per call, 40 calls/60 s, resumable, ~1 h backfill) + the "Din kommune: kommunekassa" page (07022, 14670, 13540-series).
+- **prompt-35**: IMF SDMX 3.0 adapter (positional keys, URL-encoded filter brackets, vintage flows, per-indicator paging for PSBS) + "Statens balanse" + the forecast scorecard (with OECD EO vintages).
+- **prompt-36**: OECD flow pack with a cached DSD key builder: TaxBEN (METR/PTR/NRR), DF_REVNOR, IDD/WDD, PMR, EO + vintages, SOCX net, LMP, PIT/CIT tables. Then the EMTR explorer v0 on OECD data.
+- **prompt-37**: Privacy-aware ingest (`pii: hash_ids|aggregate`): salted hashing at ingest, validator that fails if PII reaches `clean/`; Fiskeridir frtyweb + fangstdata + Akvakulturregisteret + Havbruksfondet → "Hvem eier havet?"; Landbruksdir per-farm → "Gårdsstøtten" (distributions only).
+- **prompt-38**: Energy pack: Elhub energy-data (JSON:API), hvakosterstrommen + ENTSO-E (key), NVE nettleie + magasin → "Strømregningen din".
+- **prompt-39**: Services pack: Udir NSR/NBR/Elevundersøkelsen, FHI multi-source adapter (13 registries + nokkel), Helsedir HAPI (key) → "Din skole", "Helsekøen".
+- **prompt-40**: Accessibility: SSB 250 m grid + Geonorge addresses + Entur GTFS + facility lists → "Avstand til staten" (isochrones precomputed offline).
+- **prompt-41**: Government activity: eInnsyn `/statistics`, Støtteregisteret POST adapter (verify the endpoint first; the old paths are dead), Innovasjon Norge (cp1252), Forskningsrådet, TED (+ Doffin with key) → "Statens postkasse", "Hvem får støtte?".
+- **prompt-42**: Text and attention: ParlaMint-NO/5.0 TEI ingest + extension past 2022 from referat XML, DHLAB n-grams, Wikimedia pageviews → attention dashboard; later "Ord vs. stemmer".
+- **prompt-43**: Local democracy: Sikt Kommunedatabasen API + valg.no list/candidate XLSX + Partiregisteret → "Lokaldemokratiet" (aggregate candidates, name only the elected).
+- **prompt-44**: Accountability pack: HUDOC JSON, Riksrevisjonen grade classifier (LLM suggestion + human review), Sivilombudet, Trygderetten tables → "Norge for retten".
+- **prompt-45**: Petroleum and fund: Sodir FactPages CSV + FactMaps ArcGIS, NBIM holdings (UTF-16), NBIM voting (key), Etikkrådet WP JSON → "Oljefondet og deg".
+- **prompt-46**: Coast: Kystdatahuset (MARU, port calls, cruise) + BarentsWatch lice (key) → "Kysten i tall".
+- **prompt-47**: Rolling-feed archiver Action (Politiloggen, Avinor XML, AIS/Entur live): daily compressed snapshots to a private bucket or release asset, retention policy, aggregates-only publishing.
+- **prompt-48**: Mac runner: `riksdata update --runner mac` for `runner: mac` sources (regjeringen.no documents, EEA-Lex, Karantenenemnda, eierberetning, Grønt hefte), a reachability probe that runs from both the box and Actions, and an upload of the outputs to the data release (Egil runs it manually).
+- **prompt-49**: Keys and secrets: `secret_env` in the registry, `.env.example`, a checklist of GitHub secrets for Egil (SOURCES A2), and a graceful skip with a warning when a key is missing.
+- **prompt-50**: Long-run and inequality pack: OWID slug list, WID `WID_data_NO.csv` via HTTP range, vendored PWT 11 file (DOI + sha256), JST (`publish: false`), IMF HPD → completes "Norge i 200 år".

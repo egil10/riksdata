@@ -95,7 +95,7 @@ All tables live as Parquet under `lake/parquet/<table>/` and are exposed as Duck
 - **electoral districts** `NO-V-<id>`. These are the *old 19 counties* (Stortinget `fylker`, valgresultat.no) and are not the same as current counties
 - parties `party:A`; persons `person:HASABD`; committees `committee:KONTROLL`; governments `gov:store-ii`; organisations `org:<orgnr>`
 
-Phase 1 only needs countries, `NOR` and the Stortinget entities. The table is designed time-valid from the start so we never have to migrate IDs.
+Countries also carry an `alt_codes` JSON with every publisher code: `NOR` (IMF/OECD/WB), `NO` (BIS/Eurostat/ECB), `578` (ISO numeric, Atlas), `579` (UN Comtrade). Adapters map to `entity_id` through it, never through ad-hoc lookups. Phase 1 only needs countries, `NOR` and the Stortinget entities. The table is designed time-valid from the start so we never have to migrate IDs.
 
 **Stortinget (relational, not time series)**: `st_sessions`, reference tables `st_parties`, `st_districts`, `st_topics` (emner, which also seeds our policy taxonomy), `st_committees`, plus `st_cases` (sak), `st_votes` (votering: id, sak_id, time, topic, personal flag, for/against counts), `st_vote_results` (votering_id, person_id, party_id, county_id, vote ∈ {for, mot, ikke_tilstede}), `st_representatives`. Derived series (e.g. party agreement rates) are written back into `series`/`observations` with tag `ESTIMATE`, `estimate_by = riksdata`.
 
@@ -118,6 +118,12 @@ ssb:
   redistribution: attribution # open | attribution | restricted (restricted ⇒ datasets default to publish: false)
   terms_checked: 2026-10-03
   timeout_seconds: 60         # Stortinget needs 120 (written questions take >30 s)
+  runner: box                 # box | actions | mac — where the fetch can run (SOURCES.md A1: regjeringen.no, EEA-Lex, NVDB … are blocked from datacentre IPs)
+  secret_env: null            # e.g. ENTSOE_TOKEN; read from env/GitHub secrets, never committed. Missing key ⇒ skip with a warning
+  user_agent: default         # default | browser (NAV files need a browser-like UA)
+  encoding: utf-8             # file defaults; override per dataset. Seen: cp1252 (DFØ, Innovasjon Norge), latin-1 (NAV), utf-16 (NBIM)
+  delimiter: ","              # ";" is common for Norwegian CSVs
+  decimal: "."                # "," for DFØ, NAV, RSF
 ```
 `registry/datasets/ssb.yaml`
 ```yaml
@@ -134,7 +140,9 @@ ssb:
   entity: NOR
   schedule: daily              # daily | weekly | monthly
   superseded_by: null          # set when the publisher closes the table
-  publish: true                # false ⇒ kept in the lake for analysis, never exported to the site
+  publish: true                # false ⇒ kept in the lake for analysis, never exported to the site (default false for NC/SA-licensed sources until Egil decides; SOURCES.md A3)
+  pii: none                    # none | aggregate | hash_ids — person-level registers (Fiskeridir owners, farm subsidies, eInnsyn names) are hashed or aggregated at ingest
+  chunk_by: null               # e.g. {Tid: 1, Region: 25} for tables above the 800k-cell limit (SSB 12367 = 66.5M cells)
 ```
 `registry/datasets/owid.yaml`
 ```yaml
@@ -154,7 +162,7 @@ class Adapter(Protocol):
     def fetch(self, ds: DatasetSpec) -> RawArtifact: ...            # url, fetched_at, content_type, content, meta
     def normalize(self, raw: RawArtifact, ds: DatasetSpec) -> Batch: ...  # Batch(series, observations) polars DataFrames
 ```
-Rules: adapters do no I/O except through `http.py`. They never write files themselves (`storage.py` does). `normalize` is a pure function of `(raw, ds)` and is unit-tested against fixtures. `RawArtifact.content` is the main response as bytes. `RawArtifact.meta` carries any second document `normalize` needs (SSB's English metadata, OWID's chart and indicator metadata) and is archived beside the raw file as `<dataset>.meta.json`.
+Rules: adapters do no I/O except through `http.py`. They never write files themselves (`storage.py` does). `normalize` is a pure function of `(raw, ds)` and is unit-tested against fixtures. `RawArtifact.content` is the main response as bytes. `RawArtifact.meta` carries any second document `normalize` needs (SSB's English metadata, OWID's chart and indicator metadata) and is archived beside the raw file as `<dataset>.meta.json`. **PII rule:** when `pii` ≠ `none`, raw person identifiers (11-digit IDs, names of private persons) are replaced with a salted HMAC (salt from the `RIKSDATA_PII_SALT` secret) or dropped inside `normalize`, so they never reach `clean/`. `riksdata validate` fails if a column flagged as PII survives, or if a `publish: true` series comes from a `pii: aggregate` dataset without an aggregation step.
 
 ## 7. Source notes (verified live 2026-10-03)
 | Source | Base | Auth | Limit | Licence | Notes |
@@ -163,11 +171,13 @@ Rules: adapters do no I/O except through `http.py`. They never write files thems
 | Stortinget | `https://data.stortinget.no/eksport/` | none | 100 calls/min (429 after) | NLOD 2.0, credit Stortinget | `?format=json`. .NET dates `/Date(ms+0200)/`, integer enums, `antall_for=-1` when not recorded. Per-MP results only when `personlig_votering: true`. Current session 2026-2027. Big endpoints are slow (`skriftligesporsmal` >2.8 MB / >30 s), so use a 120 s timeout. Referat (debate transcripts) are available as XML via `publikasjon?publikasjonid=`. |
 | OWID | `https://ourworldindata.org/grapher/{slug}.csv?v=1&csvType=full&useColumnShortNames=true` + `{slug}.metadata.json?v=1&…` | none | be polite | CC BY 4.0 for OWID work; third-party data keeps original licence | Store `citationShort` per series, and the upstream licences from `https://api.ourworldindata.org/v1/indicators/{id}.metadata.json`. CSV headers are lower case; projection columns end in `__projected`. Details: `docs/v2/sources/owid.md`. |
 | World Bank | `https://api.worldbank.org/v2/country/{iso3;iso3}/indicator/{code}?format=json&per_page=20000` | none | none documented | CC BY 4.0 | Response is `[meta, rows]`. Tax indicators are **central government** only. |
-| OECD | `https://sdmx.oecd.org/public/rest/data/{agency},{dsd}@{df},{ver}/{key}?startPeriod=…&format=csv` | none | **60 data calls/hour**, structure calls unthrottled, no VPN | CC BY 4.0 | Key needs one slot per dimension: wrong count → 403, wrong codes → 404 `NoResultsFound`. Verified: `OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,/NOR+SWE+DNK+FIN+OECD_REP.TAX_REV.S13._T._T.PT_B1GQ.A` → NOR 2024 = 40.19. |
+| OECD | `https://sdmx.oecd.org/public/rest/data/{agency},{dsd}@{df},{ver}/{key}?startPeriod=…&format=csv` | none | **60 data calls/hour**, structure calls unthrottled, no VPN | CC BY 4.0 | Key needs one slot per dimension: wrong count → 403, wrong codes → 404 `NoResultsFound`. Verified: `OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,/NOR+SWE+DNK+FIN+OECD_REP.TAX_REV.S13._T._T.PT_B1GQ.A` → NOR 2024 = 40.19. Cache each DSD (`dataflow/{agency}/{id}/{ver}?references=datastructure`, unthrottled) and build keys from it. Cache the 8.9 MB dataflow catalogue too. |
 | Norges Bank | `https://data.norges-bank.no/api/data/` | none | — | NLOD | SDMX-JSON. |
 | DFØ statsregnskap | `https://statsregnskapet.dfo.no/nedlasting/statsregnskapet_aar_YYYY.zip` (+ `_siste_maaned`, `_hittil_i_aar`, bevilgningshistorikk) | none | — | NLOD | CSV `;`, **Windows-1252**, decimal comma, `Periode=YYYYMM`, columns kapittel/post/artskonto/virksomhet. |
 | Valgdirektoratet | `https://valgresultat.no/api/{year}/{st\|ko\|fy\|sa}/{district}/{kommune}/{krets}` | none | cache 15 s | (verify, likely NLOD) | HAL+JSON. Elections 2009→. Navigate via `_links.related`. |
 | Lovdata | `https://api.lovdata.no/v1/publicData/list` → `/get/<file>` | none | — | NLOD 2.0 | Bulk tarballs (laws, regulations, Lovtidend 2001→). Never scrape lovdata.no. |
+| IMF SDMX 3.0 | `https://api.imf.org/external/sdmx/3.0/data/dataflow/{agency}/{flow}/+/{key}` | none | slow (~40 s per country × flow) | IMF terms (verify) | **The main IMF adapter** (DataMapper is a fallback). 223 flows incl. dated vintages (`WEO_2025_OCT_VINTAGE`). Positional keys (`NOR.NGDP_RPCH.A`). URL-encode filter brackets (`c%5BCOUNTRY%5D=NOR`). Page PSBS by indicator. |
+| NAV | `https://g.nav.no/api/v1/grunnbeløp`; files `https://www.nav.no/_/attachment/download/<uuid>:<hash>/<file>.csv` | none | — | CC BY 4.0 | `data.nav.no` is dead (404). File hashes change monthly, so scrape links from the statistics page. `;`, Latin-1, decimal comma, browser-like UA. |
 
 ## 8. Phases
 
@@ -176,7 +186,7 @@ Done when `uv run riksdata update && uv run riksdata validate` builds a validate
 - **1a** Scaffold, registry, http client, storage, CLI, **SSB** (catalogue + 7 tables) and **OWID** (~10 charts). (Claude Code session 1)
 - **1b** **Stortinget** (sessions, cases, votes, per-MP results; incremental) + **World Bank** + **OECD**. (session 2)
 - **1c** GitHub Actions: `ci.yml` + `update.yml` (cron, artefacts, weekly release snapshot, run report, freshness file). (session 3)
-- **1d** (reordered by VISION): **DFØ statsregnskap + bevilgningshistorikk** (needed for the "Hvor går 1000 kroner" flagship), **valgresultat.no** (elections), the **Lovdata public-data list** (index only), Norges Bank, and the data.norge.no catalogue.
+- **1d** (reordered by VISION): **DFØ statsregnskap + bevilgningshistorikk** (needed for the "Hvor går 1000 kroner" flagship), **valgresultat.no** (elections), the **Lovdata public-data list** (index only), Norges Bank, and the data.norge.no catalogue. Next, the quick-win adapters (VISION §1.7, prompt-32): NAV files + G API, Norges Bank HMS xlsx, NVE kraftverk, Mattilsynet, ranking files. The registry fields `runner`, `secret_env`, `pii`, `encoding`/`delimiter`/`decimal` and `chunk_by` should exist from 1a (cheap to add now, painful later), even if unused at first.
 - **1b scope addition:** Stortinget reference tables (`partier`, `fylker`, `emner`, `komiteer`, `stortingsperioder`) are cheap and become the entity/taxonomy backbone, so include them in 1b.
 
 Starter SSB tables: 14710 CPI (2025=100), 13760 LFS monthly (seasonally adjusted), 05803 population 1735–2026, 14669 general government expenditure by function, 07391 taxes paid by type (monthly), 12439 sickness absence, 09842 GDP per capita.
@@ -214,4 +224,10 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   7. `update` skips a dataset only when both the publisher's timestamp and a fingerprint of its registry entry are unchanged. `schedule` is validated but not acted on until Phase 1c.
   8. The SSB catalogue is fetched in Norwegian and English so `catalog --search` matches both.
   9. Each `update` rewrites a dataset's Parquet with the latest fetch. Older vintages live only in `lake/raw/` until a rebuild-from-raw command exists.
-
+- **2026-10-03 (v3, after the five source hunts; SOURCES.md v2 has 309 rows):**
+  1. New source fields: `runner` (box/actions/mac, for sources blocked from datacentre IPs), `secret_env` (keyed sources; GitHub secrets only), `user_agent`, and file-format defaults `encoding`/`delimiter`/`decimal` (cp1252, Latin-1 and UTF-16 recur).
+  2. New dataset fields: `pii` (none/aggregate/hash_ids) with a hash-or-drop-at-ingest rule enforced by `validate`, and `chunk_by` for tables above SSB's 800k-cell limit (12367 = 66.5M cells).
+  3. Countries get `alt_codes` (NOR / NO / 578 / 579) so IMF, BIS, Eurostat, Comtrade and Atlas map to one entity.
+  4. IMF SDMX 3.0 becomes the main IMF adapter (vintages, PSBS, GFS). DataMapper is a fallback. The OECD adapter caches DSDs and builds keys from them.
+  5. NAV source note fixed (`data.nav.no` is dead; files + G API, CC BY 4.0).
+  6. Phase 1d continues with the quick-win adapters. No change to the Phase 1 starter tables or prompts 01–03.

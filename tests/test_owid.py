@@ -300,7 +300,13 @@ def test_registry_entries_are_complete() -> None:
     for ds in datasets:
         assert ds.entities == ["NOR", "SWE", "DNK", "FIN", "ISL", "DEU", "GBR", "USA", "OWID_WRL"]
         assert ds.schedule == "weekly", ds.key
-        assert ds.publish is True, ds.key
+    # Charts with non-commercial or unread upstream terms stay out of site exports.
+    assert {ds.dataset for ds in datasets if not ds.publish} == {
+        "homicide-rate-unodc",
+        "military-spending-as-a-share-of-gdp-sipri",
+        "child-mortality",
+        "daily-per-capita-caloric-supply",
+    }
 
 
 @pytest.mark.live

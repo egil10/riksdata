@@ -100,7 +100,7 @@ About 20 rows deliver Excel or ODS workbooks (NAV, regjeringen.no, Partifinansie
 
 - regjeringen.no answers from the Mac on every row. Its `robots.txt` disallows `/api/` and every filtered list (`?documenttype`, `?topic`, `?from` and so on). The sitemap is the allowed index: 80,552 pages in two files of 15 MB together.
 - **Budget figures exist as workbooks.** Every budget year from 2000 to 2027 has a page. The Gul bok figures for 2026 are one workbook of 158 KB, and the sitemap has the same kind of page for 2024 and 2025. "Tallene bak figurene" pages for the national budget and the revised budget exist for most years from 2007 to 2026, and for Prop. 1 LS in 2026.
-- **Finansdepartementet's answers to budget questions have no route for us.** They sit behind a search page that loads from `/no/api/`, which robots.txt disallows. Asking the ministry for the list is the way.
+- **Finansdepartementet's answers to budget questions have no route for us.** They sit behind a search page that loads from `/api/BudsjettSporsmalApi/GetBudsjettSporsmal`, and robots.txt disallows `/api/*`. Asking the ministry for the list is the way.
 - Grønt hefte links to 239 ODS tables, 16 to 18 per year for 2019 to 2026. Karantenenemnda's page links to all 340 decisions as PDFs. Statens eierrapport is a PDF only (22.6 MB for 2025).
 - New: **EØS-notatbasen**, 12,500 notes from 2004 to 2026 on EU acts considered for the EEA Agreement.
 

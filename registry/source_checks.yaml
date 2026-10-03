@@ -74,7 +74,7 @@
    note: "The Gul bok figures for 2026 as one workbook. Each budget year has its own pages and file addresses, linked from regjeringen.no/no/statsbudsjett/<year>/"}
 - {id: regjeringen-budget-answers, section: "2", priority: A, access: manual, name: "Finansdepartementets svar på budsjettspørsmål",
    url: "https://www.regjeringen.no/no/statsbudsjett/2026/svar-pa-budsjettsporsmal/id3119380/",
-   note: "A search page. The answers load from /no/api/, which regjeringen.no's robots.txt disallows, so there is no route for us without asking"}
+   note: "A search page. The answers load from /api/BudsjettSporsmalApi/GetBudsjettSporsmal, and regjeringen.no's robots.txt disallows /api/*, so there is no route for us without asking"}
 - {id: regjeringen-gront-hefte, section: "2", priority: A, access: page, name: "Grønt hefte, frie inntekter, terminutbetalinger",
    url: "https://www.regjeringen.no/no/tema/kommuner-og-regioner/kommuneokonomi/gront-hefte/id547024/", expect: ".ods", max_bytes: 200000,
    note: "The page links to 239 ODS tables: 16 to 18 per year for 2019 to 2026, and older ones"}

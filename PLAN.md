@@ -235,3 +235,8 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
 - **2026-10-03 (source checks, PR `v2/01c-source-check`):**
   1. New command `riksdata check-sources` and `registry/source_checks.yaml`: one small, unretried request per SOURCES.md row, paced per host, reading at most 64 KB. It reports `ok`, `reachable`, `needs_key`, `blocked`, `unreachable`, `failed` or `skipped`. Entries with `pii: true` keep no sample. Results and the Mac-versus-server differences are in `docs/v2/source-checks.md`.
   2. `riksdata.http` gains `Sampler` for these bounded requests. Adapters keep using `HttpClient`.
+- **2026-10-03 (beta page, PR `v2/01d-beta`):**
+  1. `riksdata export` exists. It writes the published series, the source-check results and a build summary to `beta/data/` as JSON. A series that is no longer published has its file removed.
+  2. A stopgap beta page lives in `beta/` and is served at `riksdata.org/beta/` by the existing Pages setup. It is hand-written HTML, CSS and JavaScript with no build step. **`beta/data/` is committed**, which departs from "the site's JSON is a CI build artefact". That holds until the Astro site and its Actions deploy exist (Phase 2); then `beta/` is replaced and the data leaves git again.
+  3. Per-series JSON is `{meta, entities: {<entity_id>: {period[], value[]}}}`, because one series can cover several countries.
+  4. Six more SSB tables and five more OWID charts were added through the existing adapters (see the source docs). The lake now has 115 series; 110 are published.

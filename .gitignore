@@ -67,3 +67,8 @@ test.html
 # Source maps
 *.map
 
+# Riksdata 2.0 (Python pipeline)
+lake/
+.pytest_cache/
+.ruff_cache/
+

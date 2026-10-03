@@ -5,7 +5,7 @@ from collections.abc import Callable
 import httpx
 import pytest
 
-from riksdata import __version__
+from riksdata import __version__, http
 from riksdata.http import HttpClient, HttpError, RateLimiter
 from riksdata.registry import RateLimit
 from support import FakeClock, make_source
@@ -48,8 +48,20 @@ def test_sends_user_agent_and_params() -> None:
     response = client.get(URL, params={"lang": "no", "valueCodes[Tid]": "*"})
 
     assert response.json() == {"status": 200}
-    assert seen[0].headers["User-Agent"] == f"riksdata/{__version__} (+https://riksdata.org)"
+    assert seen[0].headers["User-Agent"] == http.USER_AGENT
     assert dict(seen[0].url.params) == {"lang": "no", "valueCodes[Tid]": "*"}
+
+
+def test_user_agent_names_us_and_a_contact() -> None:
+    placeholder = f"riksdata/{__version__} (+https://riksdata.org; kontakt@riksdata.org)"
+
+    assert http.user_agent({}) == placeholder
+    assert http.user_agent({"RIKSDATA_CONTACT_EMAIL": "  "}) == placeholder
+    assert http.user_agent({"RIKSDATA_CONTACT_EMAIL": "egil@example.org"}) == (
+        f"riksdata/{__version__} (+https://riksdata.org; egil@example.org)"
+    )
+    assert http.USER_AGENT.startswith("riksdata/")
+    assert "@" in http.USER_AGENT
 
 
 def test_retries_429_then_succeeds() -> None:

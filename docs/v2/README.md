@@ -8,7 +8,10 @@ Run every command from the repository root. You need [uv](https://docs.astral.sh
 
 ```bash
 uv sync
+export RIKSDATA_CONTACT_EMAIL=you@example.org   # goes into the User-Agent, so publishers can reach us
 ```
+
+Every request identifies itself as `riksdata/<version> (+https://riksdata.org; <contact email>)`. Without the variable the address is a placeholder, and `update` and `check-sources` say so.
 
 ## Build the lake
 
@@ -20,7 +23,7 @@ uv run riksdata update --force          # refetch even if the publisher reports 
 uv run riksdata validate                # data-quality checks, writes lake/run_report.json
 ```
 
-`update` asks each publisher whether a dataset has changed and skips it if neither the data nor its registry entry has. It prints one row per dataset and exits non-zero if any dataset failed. `validate` exits non-zero if a check fails; warnings don't fail it.
+`update` asks each publisher whether a dataset has changed and skips it if neither the data nor its registry entry has. It prints one row per dataset and exits non-zero if any dataset failed. `validate` exits non-zero if a check fails; warnings don't fail it. Its checks: schema, unique observations, required fields, no empty series, licence terms (fail), and suspicious zeros, freshness and row-count drops (warn).
 
 A full first run takes about two minutes: 39 calls to SSB and 47 to Our World in Data, the latter paced by our own rate cap.
 

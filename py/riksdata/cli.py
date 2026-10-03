@@ -18,7 +18,7 @@ import duckdb
 import polars as pl
 import typer
 
-from riksdata import export, sourcecheck, storage, validate
+from riksdata import export, http, sourcecheck, storage, validate
 from riksdata.adapters import build_adapter
 from riksdata.adapters.base import Adapter, check_batch
 from riksdata.http import HttpClient, Sample, Sampler
@@ -75,6 +75,14 @@ def _load_registry() -> Registry:
     except RegistryError as exc:
         typer.echo(f"Registry error: {exc}", err=True)
         raise typer.Exit(2) from exc
+
+
+def _warn_about_placeholder_contact() -> None:
+    if http.contact_email() == http.CONTACT_PLACEHOLDER:
+        logger.warning(
+            "RIKSDATA_CONTACT_EMAIL is not set, so the User-Agent carries the placeholder %s",
+            http.CONTACT_PLACEHOLDER,
+        )
 
 
 def update_dataset(
@@ -179,6 +187,7 @@ def update_command(
 
     collector = _WarningCollector()
     logging.getLogger().addHandler(collector)
+    _warn_about_placeholder_contact()
     clients = {
         source_id: HttpClient(registry.sources[source_id])
         for source_id in sorted({ds.source_id for ds in datasets})
@@ -337,6 +346,8 @@ def check_sources_command(
     if not selected:
         typer.echo("No checks match.", err=True)
         raise typer.Exit(1)
+
+    _warn_about_placeholder_contact()
 
     def keep_sample(check: sourcecheck.SourceCheck, sample: Sample) -> None:
         storage.write_source_sample(LAKE, check.id, sample.content, sample.content_type)

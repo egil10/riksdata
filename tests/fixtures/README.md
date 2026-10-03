@@ -7,7 +7,7 @@ Small recorded responses, one folder per source. The default test run is offline
 Responses from `https://data.ssb.no/api/pxwebapi/v2`, recorded on 2026-10-03. Narrow selections keep them small. The only edit is that `extension.contact` is removed, because it holds the names, phone numbers and e-mail addresses of SSB staff and the tests don't need it. To record them again, run this from `tests/fixtures/ssb/`:
 
 ```bash
-UA="riksdata/0.1.0 (+https://riksdata.org)"
+UA="riksdata/0.1.0 (+https://riksdata.org; kontakt@riksdata.org)"
 BASE="https://data.ssb.no/api/pxwebapi/v2"
 get() { curl -sS -g -A "$UA" -o "$1" "$2"; sleep 2; }   # -g keeps the [] in valueCodes[...]
 
@@ -49,7 +49,7 @@ Recorded from Our World in Data on 2026-10-03: three charts with their chart met
 
 ```bash
 cd tests/fixtures/owid
-UA="riksdata/0.1.0 (+https://riksdata.org)"
+UA="riksdata/0.1.0 (+https://riksdata.org; kontakt@riksdata.org)"
 Q="v=1&csvType=full&useColumnShortNames=true"
 for slug in life-expectancy median-age gdp-per-capita-worldbank; do
   curl -sS -L --compressed -A "$UA" -o "$slug.metadata.json" "https://ourworldindata.org/grapher/$slug.metadata.json?$Q"; sleep 1

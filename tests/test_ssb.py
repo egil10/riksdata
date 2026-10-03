@@ -377,6 +377,12 @@ def test_registry_entries_are_complete() -> None:
         "07391",
         "12439",
         "09842",
+        "10318",
+        "08815",
+        "13151",
+        "07221",
+        "09695",
+        "08484",
     ]
     for ds in datasets:
         assert ds.entity == "NOR", ds.key

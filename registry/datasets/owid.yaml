@@ -71,3 +71,36 @@
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
   publish: false   # upstream: FAO CC BY-NC-SA 3.0 IGO (non-commercial)
+
+# --- Added 2026-10-03 for the beta page ---
+
+- dataset: gdp-per-capita-maddison-project-database
+  title_no: BNP per innbygger, lange linjer (Maddison)
+  topic: economy
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: share-of-electricity-production-from-renewable-sources
+  title_no: Fornybarandel i kraftproduksjonen
+  topic: energy
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: total-tax-revenues-gdp
+  title_no: Skatteinntekter som andel av BNP
+  topic: tax
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: annual-working-hours-per-worker
+  title_no: Årlig arbeidstid per sysselsatt
+  topic: labour
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+
+- dataset: oil-production-by-country
+  title_no: Oljeproduksjon
+  topic: energy
+  entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
+  schedule: weekly
+  publish: false   # upstream: CC BY-SA 3.0 among the origins (share-alike, CLAUDE.md §4)

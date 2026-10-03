@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Riksdata 2.0 beta</title>
+  <meta name="description" content="Forhåndsvisning av nye Riksdata: tall om Norge hentet automatisk fra kildene, med kilde, lisens og oppdateringsdato på hver serie.">
+  <link rel="icon" href="../src/assets/favicon2.ico">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="./">Riksdata <span class="brand-tag">2.0 beta</span></a>
+      <nav class="site-nav" aria-label="Hovedmeny">
+        <a href="#tallene">Tallene</a>
+        <a href="#kildene">Kildene</a>
+        <a href="#om">Om betaen</a>
+        <a href="../">Dagens riksdata.org</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="intro">
+      <h1>Norge som datasett</h1>
+      <p class="lede">Dette er en tidlig forhåndsvisning av nye Riksdata. Tallene hentes automatisk fra kildene, og hver serie viser hvor den kommer fra, hvilken lisens den har og når den sist ble oppdatert.</p>
+      <div class="kpi-row" id="kpis" aria-live="polite"></div>
+    </section>
+
+    <section id="tallene" aria-labelledby="tallene-title">
+      <div class="section-head">
+        <h2 id="tallene-title">Tallene</h2>
+        <p class="section-note" id="tallene-note"></p>
+      </div>
+      <div class="filter-row">
+        <label class="search">
+          <span class="visually-hidden">Søk i serier</span>
+          <input type="search" id="series-search" placeholder="Søk i serier, for eksempel «formue» eller «ledighet»" autocomplete="off">
+        </label>
+        <div class="chips" id="topic-chips" role="group" aria-label="Tema"></div>
+      </div>
+      <div id="datasets"></div>
+      <p class="empty" id="datasets-empty" hidden>Ingen serier passer med søket.</p>
+    </section>
+
+    <section id="kildene" aria-labelledby="kildene-title">
+      <div class="section-head">
+        <h2 id="kildene-title">Kildene</h2>
+        <p class="section-note" id="kildene-note"></p>
+      </div>
+      <div class="filter-row">
+        <label class="search">
+          <span class="visually-hidden">Søk i kilder</span>
+          <input type="search" id="source-search" placeholder="Søk i kilder, for eksempel «Stortinget» eller «OECD»" autocomplete="off">
+        </label>
+        <div class="chips" id="status-chips" role="group" aria-label="Status"></div>
+      </div>
+      <div id="sources"></div>
+      <p class="empty" id="sources-empty" hidden>Ingen kilder passer med søket.</p>
+    </section>
+
+    <section id="om" class="about" aria-labelledby="om-title">
+      <h2 id="om-title">Om betaen</h2>
+      <p>Riksdata 2.0 bygges ved siden av dagens side, som fortsatt ligger på <a href="../">riksdata.org</a>. Denne siden viser hvor langt den nye datamotoren har kommet.</p>
+      <ul>
+        <li><strong>Tallene</strong> kommer så langt fra to kilder: Statistisk sentralbyrå og Our World in Data. Bare serier med åpen lisens vises her.</li>
+        <li><strong>Kildene</strong> er listen over alt Riksdata planlegger å hente fra. Hver kilde er spurt én gang for å se om den svarer. De fleste er ikke koblet til ennå.</li>
+        <li>Alle tall er merket <span class="tag">DATA</span> (observert statistikk) eller <span class="tag">ESTIMAT</span> (framskrivning eller beregning fra kilden).</li>
+      </ul>
+      <p>Koden og planen ligger åpent på <a href="https://github.com/egil10/riksdata">GitHub</a>. Finner du en feil, si gjerne fra der.</p>
+      <p class="muted" id="build-note"></p>
+    </section>
+  </main>
+
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div class="detail-head">
+      <div>
+        <h2 id="detail-title"></h2>
+        <p class="detail-sub" id="detail-sub"></p>
+      </div>
+      <button type="button" class="close" id="detail-close" aria-label="Lukk">Lukk</button>
+    </div>
+    <div class="filter-row range-row" id="detail-ranges" role="group" aria-label="Tidsrom"></div>
+    <figure class="chart" id="detail-figure">
+      <div class="chart-area" id="detail-chart" tabindex="0" role="img"></div>
+      <div class="legend" id="detail-legend"></div>
+      <figcaption id="detail-caption"></figcaption>
+    </figure>
+    <details class="table-view">
+      <summary>Vis tallene som tabell</summary>
+      <div class="table-scroll" id="detail-table"></div>
+    </details>
+    <dl class="meta" id="detail-meta"></dl>
+    <div class="detail-actions">
+      <button type="button" id="detail-csv">Last ned CSV</button>
+      <a id="detail-json" href="#">Åpne JSON</a>
+    </div>
+  </dialog>
+
+  <noscript><p class="wrap">Denne siden trenger JavaScript for å vise tallene.</p></noscript>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

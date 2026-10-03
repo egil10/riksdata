@@ -272,3 +272,20 @@ def write_source_sample(lake: Path, check_id: str, content: bytes, content_type:
         stale.unlink()
     _replace(path, lambda tmp: tmp.write_bytes(content))
     return path
+
+
+# --- site export -----------------------------------------------------------------------------
+
+
+def write_export(out: Path, files: dict[str, Any]) -> None:
+    """Write the site's JSON files under `out`, and delete series files that are gone.
+
+    Removing stale files matters: a series that is no longer published must not stay online.
+    """
+    wanted = {out / name for name in files}
+    for stale in (out / "series").glob("*.json"):
+        if stale not in wanted:
+            stale.unlink()
+    for name, payload in files.items():
+        text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+        _replace(out / name, lambda tmp, text=text: tmp.write_text(text + "\n", encoding="utf-8"))

@@ -47,6 +47,9 @@ One `update` costs three calls per table. `riksdata catalog ssb --refresh` costs
 - **Table 12439 has a break between 2014 and 2015** (new data source). SSB says only the seasonally and influenza adjusted series is comparable across it, which is why we fetch that series alongside the seasonally adjusted one.
 - **Table 13760:** SSB recommends the trend or the three-month average over the monthly seasonally adjusted figures, which are volatile. We fetch the seasonally adjusted figures (`Justering: S`). Adding `T` to the selection adds the trend.
 - **Table 09842 looks stale.** It was last updated on 2025-06-20 and ends in 2024. It isn't marked as discontinued, and the catalogue has no other per-capita table for the national accounts.
+- **Table 08484 has codes that differ only in case.** `1AAAAA-9ZZZZz` is "all groups of offences" and `1AAAAA-9ZZZZZ` is "all types of offences" in an older classification. Series ids are lower case, so selecting both would collide; the adapter refuses that. We select the groups.
+- **Table 13151 has a row only in election years**, so its two series look stale between elections.
+- **Table 06035** (price per square metre), which the catalogue names, is discontinued.
 - **Skipped updates.** `update` skips a table when SSB's `updated` timestamp and our registry entry are both unchanged. After changing the adapter code, run `update --force`.
 
 ## Datasets
@@ -60,6 +63,12 @@ One `update` costs three calls per table. `riksdata catalog ssb --refresh` costs
 | 07391 | `skatt` | Taxes paid by type, accumulated monthly, from 2008 | All arrangements, total plus the nine tax types | 10 |
 | 12439 | `sykefravaer` | Sickness absence for employees, quarterly from 2000 | Three sexes by three certification types, two adjusted rates | 18 |
 | 09842 | `bnp-per-innbygger` | GDP and main aggregates per capita, from 1970 | All 6 contents | 6 |
+| 10318 | `formuesfordeling` | Share of total net wealth, 2010–2024 | The ten deciles and the top 5, 1 and 0.1 per cent | 13 |
+| 08815 | `formuesskatt` | Taxable wealth, debt and wealth tax, from 1999 | Gross wealth, debt, net wealth, wealth tax: amount and persons, residents 17+ | 8 |
+| 13151 | `valgdeltakelse` | Electoral turnout, from 1829 | Storting elections and local elections, both sexes | 2 |
+| 07221 | `boligpriser` | Price index for existing dwellings, quarterly from 1992 | Whole country, all dwelling types, with and without seasonal adjustment | 2 |
+| 09695 | `konkurser` | Bankruptcies, monthly from 1980 | The table's only content | 1 |
+| 08484 | `anmeldte-lovbrudd` | Offences reported per 1,000 population, from 1993 | All groups and the nine groups of offence | 10 |
 
 ## Fixtures
 

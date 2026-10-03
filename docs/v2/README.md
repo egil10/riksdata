@@ -22,7 +22,7 @@ uv run riksdata validate                # data-quality checks, writes lake/run_r
 
 `update` asks each publisher whether a dataset has changed and skips it if neither the data nor its registry entry has. It prints one row per dataset and exits non-zero if any dataset failed. `validate` exits non-zero if a check fails; warnings don't fail it.
 
-A full first run takes about 70 seconds: 21 calls to SSB and 31 to Our World in Data, the latter paced by our own rate cap.
+A full first run takes about two minutes: 39 calls to SSB and 47 to Our World in Data, the latter paced by our own rate cap.
 
 ## Query it
 
@@ -51,6 +51,14 @@ uv run riksdata check-sources --status failed # re-check what failed last time
 ```
 
 This doesn't ingest anything. It records whether each source answers, needs a key or is blocked. See [Source checks](source-checks.md) for the statuses and the latest results.
+
+## Publish the beta page
+
+```bash
+uv run riksdata export            # writes beta/data/ from the published series in the lake
+```
+
+`beta/` is served at <https://riksdata.org/beta/>. See [The beta page](beta.md).
 
 ## What is in `lake/`
 

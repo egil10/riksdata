@@ -137,6 +137,10 @@ class Sample:
     truncated: bool
     url: str  # after redirects
     seconds: float
+    # Size of the whole response, when the server states it. Left out for compressed
+    # transfers, where the stated length is not the size of what we read.
+    total_bytes: int | None = None
+    last_modified: str | None = None  # the Last-Modified header, as sent
 
 
 class Sampler:
@@ -195,6 +199,8 @@ class Sampler:
                 if size >= max_bytes:
                     truncated = True
                     break
+        length = response.headers.get("content-length", "")
+        compressed = "content-encoding" in response.headers
         return Sample(
             status_code=response.status_code,
             content_type=response.headers.get("content-type", ""),
@@ -202,6 +208,8 @@ class Sampler:
             truncated=truncated,
             url=str(response.url),
             seconds=self._clock() - started,
+            total_bytes=int(length) if length.isdigit() and not compressed else None,
+            last_modified=response.headers.get("last-modified"),
         )
 
     def close(self) -> None:

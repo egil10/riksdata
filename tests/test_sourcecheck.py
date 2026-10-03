@@ -25,7 +25,7 @@ def make_sampler(handler: Handler, clock: FakeClock | None = None) -> Sampler:
 
 
 def make_check(**fields: Any) -> SourceCheck:
-    base = {"id": "demo", "section": "1a", "priority": "A", "name": "Demo source"}
+    base = {"id": "demo", "section": "1a", "priority": "A", "access": "api", "name": "Demo source"}
     if "skip" not in fields:
         base["url"] = "https://example.org/api"
     return SourceCheck(**{**base, **fields})
@@ -65,6 +65,27 @@ def test_sampler_returns_small_bodies_whole() -> None:
     assert result.content == b'{"ok":true}'
     assert (result.status_code, result.truncated) == (200, False)
     assert result.content_type == "application/json"
+
+
+def test_sampler_reports_the_size_and_date_the_server_states() -> None:
+    headers = {"Content-Length": "5000000", "Last-Modified": "Fri, 17 Mar 2023 16:10:21 GMT"}
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        if request.url.path == "/packed":
+            return httpx.Response(200, content=b"", headers={"Content-Encoding": "gzip", **headers})
+        if request.url.path == "/file.zip":
+            return httpx.Response(200, content=(b"x" * 1024 for _ in range(100)), headers=headers)
+        return httpx.Response(200, content=(b"x" for _ in range(3)))  # chunked: no length given
+
+    sampler = make_sampler(handler)
+
+    whole = sampler.fetch("https://example.org/file.zip", max_bytes=2048)
+    assert (len(whole.content), whole.total_bytes) == (2048, 5_000_000)
+    assert whole.last_modified == "Fri, 17 Mar 2023 16:10:21 GMT"
+    # A compressed transfer's length is not the size of what we read, so it is left out.
+    assert sampler.fetch("https://example.org/packed").total_bytes is None
+    unsized = sampler.fetch("https://example.org/stream")
+    assert (unsized.total_bytes, unsized.last_modified) == (None, None)
 
 
 def test_sampler_never_retries_and_reports_the_status() -> None:
@@ -152,7 +173,7 @@ def test_run_checks_classifies_and_keeps_the_registry_order() -> None:
         if path == "/down":
             raise httpx.ConnectError("connection refused")
         codes = {"/ok": 200, "/page": 200, "/key": 401, "/blocked": 403, "/gone": 404}
-        return httpx.Response(codes[path], text='{"rows": []}')
+        return httpx.Response(codes[path], text='{"rows": []}', headers={"Last-Modified": "today"})
 
     checks = [
         make_check(id="never", skip="Never use"),
@@ -178,6 +199,7 @@ def test_run_checks_classifies_and_keeps_the_registry_order() -> None:
     ok = results[2]
     assert (ok.http_status, ok.content_type, ok.bytes) == (200, "text/plain; charset=utf-8", 12)
     assert ok.checked_at == "2026-10-03T12:00:00+00:00"
+    assert (ok.total_bytes, ok.last_modified) == (12, "today")
     assert results[0].detail == "Never use"
     assert results[6].detail.startswith("ConnectError: connection refused")
     assert results[6].http_status is None
@@ -234,12 +256,17 @@ def write_checks(path: Path, body: str) -> Path:
 
 
 def test_load_checks_reports_the_entry_at_fault(tmp_path: Path) -> None:
-    entry = '- {id: demo, section: "1a", priority: A, name: "Demo"'
+    entry = '- {id: demo, section: "1a", priority: A, access: api, name: "Demo"'
     cases = {
         "neither": (entry + "}\n", "check 'demo': <entry>: Value error, give exactly one"),
         "both": (entry + ', url: "https://x.org", skip: "no"}\n', "give exactly one of"),
         "typo": (entry + ', url: "https://x.org", expcet: "x"}\n', "expcet: Extra inputs"),
         "bad-id": (entry.replace("demo", "Demo_1") + ', url: "https://x.org"}\n', "id: String"),
+        "no-access": (
+            entry.replace(" access: api,", "") + ', url: "https://x.org"}\n',
+            "access: Field",
+        ),
+        "bad-access": (entry.replace("api", "ftp") + ', url: "https://x.org"}\n', "access: Input"),
         "duplicate": ((entry + ', url: "https://x.org"}\n') * 2, "duplicate ids: demo"),
     }
     for name, (body, message) in cases.items():
@@ -253,10 +280,13 @@ def test_load_checks_reports_the_entry_at_fault(tmp_path: Path) -> None:
 def test_repo_check_list_covers_every_catalogue_row() -> None:
     checks = load_checks(REPO_ROOT / "registry" / "source_checks.yaml")
 
-    assert len(checks) == 309  # the number of catalogue rows in SOURCES.md v2
+    candidates = [check for check in checks if check.section == "23"]
+    assert len(checks) - len(candidates) == 309  # the catalogue rows in SOURCES.md sections 1-20
+    assert len(candidates) == 7  # the rows of section 23, found by the source inventory
     assert all(check.url.startswith("https://") for check in checks if check.url)
     never_use = [check for check in checks if check.priority == "-"]
-    assert never_use and all(check.skip for check in never_use)
+    assert never_use and all(check.skip and check.access == "none" for check in never_use)
+    assert all(check.access in ("none", "manual") for check in checks if check.skip)
     # Sources with person-level data are flagged, so no sample of them is ever kept.
     flagged = {check.id for check in checks if check.pii}
     assert {
@@ -267,7 +297,7 @@ def test_repo_check_list_covers_every_catalogue_row() -> None:
 
 
 def test_build_report_merges_a_partial_rerun() -> None:
-    checks = [make_check(id="a"), make_check(id="b")]
+    checks = [make_check(id="a"), make_check(id="b", access="page")]
     first = [
         sourcecheck.CheckResult("a", "1a", "A", "A", "failed", "HTTP 404"),
         sourcecheck.CheckResult("b", "1a", "B", "A", "ok", "fine"),
@@ -285,6 +315,11 @@ def test_build_report_merges_a_partial_rerun() -> None:
     assert report["counts"]["ok"] == 2
     assert report["counts"]["failed"] == 0
     assert set(report["counts"]) == set(sourcecheck.STATUSES)
+    # The access class comes from the check list, also for results kept from the last run.
+    assert [item["access"] for item in report["results"]] == ["api", "page"]
+    assert set(report["access"]) == set(sourcecheck.ACCESS)
+    assert (report["access"]["api"]["ok"], report["access"]["page"]["ok"]) == (1, 1)
+    assert sum(sum(row.values()) for row in report["access"].values()) == 2
 
 
 # --- CLI -----------------------------------------------------------------------------------
@@ -293,11 +328,12 @@ def test_build_report_merges_a_partial_rerun() -> None:
 def test_cli_check_sources(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     write_checks(
         tmp_path / "registry" / "source_checks.yaml",
-        '- {id: open, section: "1a", priority: A, name: "Open", url: "https://a.example.org/x", '
-        'expect: "rows"}\n'
-        '- {id: people, section: "15", priority: A, name: "People", pii: true, '
+        '- {id: open, section: "1a", priority: A, access: api, name: "Open", '
+        'url: "https://a.example.org/x", expect: "rows"}\n'
+        '- {id: people, section: "15", priority: A, access: file, name: "People", pii: true, '
         'url: "https://b.example.org/x"}\n'
-        '- {id: never, section: "2", priority: "-", name: "Never", skip: "Never use"}\n',
+        '- {id: never, section: "2", priority: "-", access: none, name: "Never", '
+        'skip: "Never use"}\n',
     )
     monkeypatch.chdir(tmp_path)
     monkeypatch.setattr(
@@ -313,6 +349,11 @@ def test_cli_check_sources(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> N
 
     assert everything.exit_code == 0, everything.output
     assert "Checked 3 now" in everything.output
+    # The second table: one row per access class, one column per status that occurs.
+    lines = [line.split() for line in everything.output.splitlines()]
+    assert ["access", "sources", "ok", "reachable", "skipped"] in lines
+    assert ["api", "1", "1", "0", "0"] in lines
+    assert ["none", "1", "0", "0", "1"] in lines
     report = storage.read_source_checks(Path("lake"))
     assert report is not None
     assert report["counts"] == {

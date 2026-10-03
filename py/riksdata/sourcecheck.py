@@ -10,6 +10,17 @@ it reads at most the first bytes of one response and records what came back. Sta
     unreachable  no answer: timeout, DNS, connection or TLS error
     failed       an answer, but not the expected one (404, 5xx, wrong content)
     skipped      deliberately not requested (see the entry's `skip` reason)
+
+Each entry also says how the source hands out its data (`access`), which decides what kind
+of adapter it would need:
+
+    api      a queryable API (REST, SDMX, PxWeb, GraphQL, ArcGIS and so on)
+    file     a file at a stable address (CSV, Excel, ZIP and so on)
+    page     numbers on web pages: files whose addresses change, or HTML tables
+    docs     text documents (PDF or HTML): reports, rulings, programmes
+    manual   only through an interactive tool, a login or an order form
+    unknown  no data route found yet
+    none     no source of its own: derived metrics and never-use rows
 """
 
 from __future__ import annotations
@@ -40,6 +51,8 @@ STATUSES: tuple[Status, ...] = (
     "failed",
     "skipped",
 )
+Access = Literal["api", "file", "page", "docs", "manual", "unknown", "none"]
+ACCESS: tuple[Access, ...] = ("api", "file", "page", "docs", "manual", "unknown", "none")
 
 
 class SourceCheck(BaseModel):
@@ -51,6 +64,7 @@ class SourceCheck(BaseModel):
     section: StrictStr  # SOURCES.md section, e.g. "19a"
     name: str
     priority: Literal["A", "B", "C", "-"]
+    access: Access  # how the source hands out its data
     url: str | None = None
     method: Literal["GET", "POST"] = "GET"
     headers: dict[str, str] = Field(default_factory=dict)
@@ -82,9 +96,11 @@ class CheckResult:
     detail: str
     http_status: int | None = None
     content_type: str | None = None
-    bytes: int = 0
+    bytes: int = 0  # how much of the response was read
     seconds: float | None = None
     checked_at: str | None = None
+    total_bytes: int | None = None  # size of the whole response, when the server states it
+    last_modified: str | None = None
 
 
 def load_checks(path: Path = DEFAULT_CHECKS_FILE) -> list[SourceCheck]:
@@ -205,6 +221,8 @@ def run_checks(
             content_type=sample.content_type or None,
             bytes=len(sample.content),
             seconds=round(sample.seconds, 2),
+            total_bytes=sample.total_bytes,
+            last_modified=sample.last_modified,
         )
         if keep_sample and not check.pii and 200 <= sample.status_code < 300:
             keep_sample(check, sample)
@@ -220,16 +238,23 @@ def build_report(
 ) -> dict[str, Any]:
     """Merge new results into the previous report, so a partial re-run refines it.
 
-    The report follows the order of `checks` and drops ids that are no longer listed.
+    The report follows the order of `checks` and drops ids that are no longer listed. Each
+    result carries the entry's `access` class as the check list has it now.
     """
     merged: dict[str, dict[str, Any]] = {
         item["id"]: item for item in (previous or {}).get("results", [])
     }
     merged.update({result.id: asdict(result) for result in results})
-    ordered = [merged[check.id] for check in checks if check.id in merged]
+    ordered = [
+        {**merged[check.id], "access": check.access} for check in checks if check.id in merged
+    ]
     counts = Counter(item["status"] for item in ordered)
+    by_access = Counter((item["access"], item["status"]) for item in ordered)
     return {
         "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "counts": {status: counts.get(status, 0) for status in STATUSES},
+        "access": {
+            access: {status: by_access[access, status] for status in STATUSES} for access in ACCESS
+        },
         "results": ordered,
     }

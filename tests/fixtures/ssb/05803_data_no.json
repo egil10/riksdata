@@ -1,0 +1,160 @@
+{
+ "version": "2.0",
+ "class": "dataset",
+ "label": "05803: Endringer i befolkningen i løpet av året, etter år",
+ "source": "Statistisk sentralbyrå",
+ "updated": "2026-04-15T06:00:00Z",
+ "note": [
+  "[Dokumentasjon av kommunetabeller over folkemengdens bevegelse 1906-1968](https://www.ssb.no/befolkning/artikler-og-publikasjoner/dokumentasjon-av-kommunetabeller-over-folkemengdens-bevegelse-1906-1968).",
+  ".. = Tallgrunnlag mangler. Tall er ikke kommet inn i våre databaser eller er for usikre til å publiseres."
+ ],
+ "role": {
+  "time": [
+   "Tid"
+  ],
+  "metric": [
+   "ContentsCode"
+  ]
+ },
+ "id": [
+  "ContentsCode",
+  "Tid"
+ ],
+ "size": [
+  3,
+  4
+ ],
+ "dimension": {
+  "ContentsCode": {
+   "label": "statistikkvariabel",
+   "category": {
+    "index": {
+     "Personer": 0,
+     "Skilsmisse": 1,
+     "Innflyttinger": 2
+    },
+    "label": {
+     "Personer": "Befolkning 1. januar",
+     "Skilsmisse": "Skilsmisser",
+     "Innflyttinger": "Innflyttinger"
+    },
+    "note": {
+     "Personer": [
+      "Før 1816 beregnet middelfolkemengde."
+     ],
+     "Skilsmisse": [
+      "Fra og med 2010 er skilsmisser mellom personer med samme kjønn medregnet."
+     ]
+    },
+    "unit": {
+     "Personer": {
+      "base": "personer",
+      "decimals": 0
+     },
+     "Skilsmisse": {
+      "base": "skilsmisser",
+      "decimals": 0
+     },
+     "Innflyttinger": {
+      "base": "personer",
+      "decimals": 0
+     }
+    }
+   },
+   "extension": {
+    "elimination": false,
+    "refperiod": {
+     "Personer": "1.1.",
+     "Skilsmisse": "31.12.",
+     "Innflyttinger": "31.12."
+    },
+    "show": "value",
+    "measuringType": {
+     "Personer": "Stock",
+     "Skilsmisse": "Flow",
+     "Innflyttinger": "Flow"
+    },
+    "priceType": {
+     "Personer": "NotApplicable",
+     "Skilsmisse": "NotApplicable",
+     "Innflyttinger": "NotApplicable"
+    },
+    "adjustment": {
+     "Personer": "None",
+     "Skilsmisse": "None",
+     "Innflyttinger": "None"
+    },
+    "alternativeText": {
+     "Personer": "Befolkning 1. januar",
+     "Skilsmisse": "Skilsmisser",
+     "Innflyttinger": "Innflyttinger"
+    }
+   }
+  },
+  "Tid": {
+   "label": "år",
+   "category": {
+    "index": {
+     "1735": 0,
+     "1736": 1,
+     "2025": 2,
+     "2026": 3
+    },
+    "label": {
+     "1735": "1735",
+     "1736": "1736",
+     "2025": "2025",
+     "2026": "2026"
+    }
+   },
+   "extension": {
+    "elimination": false,
+    "show": "code"
+   }
+  }
+ },
+ "extension": {
+  "px": {
+   "infofile": "None",
+   "tableid": "05803",
+   "decimals": 0,
+   "official-statistics": true,
+   "aggregallowed": true,
+   "copyright": false,
+   "language": "no",
+   "contents": "05803: Endringer i befolkningen i løpet av året,",
+   "descriptiondefault": false,
+   "heading": [
+    "ContentsCode",
+    "Tid"
+   ],
+   "stub": [],
+   "matrix": "05803",
+   "subject-code": "be",
+   "subject-area": "Befolkning"
+  },
+  "discontinued": null
+ },
+ "value": [
+  616109,
+  622197,
+  5594340,
+  5627400,
+  null,
+  null,
+  0,
+  null,
+  null,
+  null,
+  55243,
+  null
+ ],
+ "status": {
+  "4": "..",
+  "5": "..",
+  "7": "..",
+  "8": "..",
+  "9": "..",
+  "11": ".."
+ }
+}

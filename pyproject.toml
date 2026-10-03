@@ -1,0 +1,46 @@
+[project]
+name = "riksdata"
+version = "0.1.0"
+description = "Riksdata 2.0: a source-linked, version-controlled quantitative model of Norway"
+requires-python = ">=3.12"
+dependencies = [
+    "duckdb>=1.5.6",
+    "httpx>=0.28.1",
+    "polars>=1.44.2",
+    "pyarrow>=25.0.1",
+    "pydantic>=2.13.5",
+    "pyyaml>=6.0.3",
+    "typer>=0.27.2",
+]
+
+[project.scripts]
+riksdata = "riksdata.cli:app"
+
+[build-system]
+requires = ["uv_build>=0.12.20,<0.13.0"]
+build-backend = "uv_build"
+
+# v1 owns src/, so the Python package lives in py/riksdata/.
+[tool.uv.build-backend]
+module-root = "py"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["py", "tests"]
+# Ruff also formats Python code blocks in Markdown. Ours are illustrative, and v1's docs are frozen.
+extend-exclude = ["*.md"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not live'"
+markers = ["live: hits real publisher APIs (run with `uv run pytest -m live`)"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]

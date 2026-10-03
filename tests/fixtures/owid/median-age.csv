@@ -1,0 +1,13 @@
+entity,code,year,median_age__sex_all__age_all__variant_estimates,median_age__sex_all__age_all__variant_medium__projected
+Norway,NOR,2021,39.286,
+Norway,NOR,2022,39.436,
+Norway,NOR,2023,39.54,
+Norway,NOR,2024,,39.668
+Norway,NOR,2025,,39.846
+Norway,NOR,2026,,40.097
+World,OWID_WRL,2021,29.833,
+World,OWID_WRL,2022,30.093,
+World,OWID_WRL,2023,30.364,
+World,OWID_WRL,2024,,30.621
+World,OWID_WRL,2025,,30.863
+World,OWID_WRL,2026,,31.099

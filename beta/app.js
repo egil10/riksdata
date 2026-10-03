@@ -750,7 +750,7 @@ async function start() {
     if (wanted) openDetail(wanted);
     if (sources) renderSources(sources);
     else document.getElementById("kildene").hidden = true;
-    const quality = { pass: "alle kontroller bestått", warn: "ingen feil, men noen serier har ikke fått nye tall på lenge", fail: "kontrollen fant feil" }[build.validation] || "ikke kontrollert";
+    const quality = { pass: "alle kontroller bestått", warn: "ingen feil, men noen advarsler", fail: "kontrollen fant feil" }[build.validation] || "ikke kontrollert";
     document.getElementById("build-note").textContent =
       `Sist bygget ${dateFormat.format(new Date(build.generated_at))}. Datakontroll: ${quality}.`;
   } catch (error) {

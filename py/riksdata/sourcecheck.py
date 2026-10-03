@@ -176,7 +176,10 @@ def run_checks(
     on_result: Callable[[CheckResult], None] | None = None,
     now: Callable[[], datetime] = lambda: datetime.now(UTC),
 ) -> list[CheckResult]:
-    """Run every check once. `keep_sample` is never called for checks marked `pii`."""
+    """Run every check once. `keep_sample` is never called for checks marked `pii`.
+
+    A host that answers 429 (too many requests) gets no further requests in the run.
+    """
     results: list[CheckResult] = []
 
     def record(check: SourceCheck, status: Status, detail: str, **fields: Any) -> None:
@@ -198,8 +201,13 @@ def run_checks(
         if check.skip is not None:
             record(check, "skipped", check.skip)
 
+    limited: set[str] = set()  # hosts that answered 429: not asked again in this run
     for check in _interleave(check for check in checks if check.url is not None):
         assert check.url is not None
+        host = httpx.URL(check.url).host
+        if host in limited:
+            record(check, "blocked", f"not requested: {host} answered 429 earlier in this run")
+            continue
         try:
             sample = sampler.fetch(
                 check.url,
@@ -212,6 +220,8 @@ def run_checks(
         except httpx.HTTPError as exc:
             record(check, "unreachable", f"{type(exc).__name__}: {exc}"[:200])
             continue
+        if sample.status_code == 429:
+            limited.add(host)
         status, detail = evaluate(check, sample)
         record(
             check,

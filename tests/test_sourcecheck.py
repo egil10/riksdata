@@ -246,6 +246,35 @@ def test_run_checks_interleaves_hosts() -> None:
     assert clock.sleeps == [2.0, 2.0]
 
 
+def test_run_checks_stops_asking_a_host_that_answers_429() -> None:
+    seen: list[str] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        seen.append(f"{request.url.host}{request.url.path}")
+        return httpx.Response(429 if request.url.host == "a.example.org" else 200)
+
+    checks = [
+        make_check(id="a1", url="https://a.example.org/1"),
+        make_check(id="a2", url="https://a.example.org/2"),
+        make_check(id="b1", url="https://b.example.org/1"),
+        make_check(id="a3", url="https://a.example.org/3", needs_key="DEMO_KEY"),
+    ]
+
+    results = run_checks(checks, make_sampler(handler))
+
+    # The rate-limited host got one request, not three.
+    assert seen == ["a.example.org/1", "b.example.org/1"]
+    assert [(result.id, result.status) for result in results] == [
+        ("a1", "blocked"),
+        ("a2", "blocked"),
+        ("b1", "reachable"),
+        ("a3", "blocked"),
+    ]
+    assert results[0].detail == "HTTP 429"
+    assert results[1].detail == "not requested: a.example.org answered 429 earlier in this run"
+    assert results[1].http_status is None
+
+
 # --- the check list and the report ---------------------------------------------------------
 
 

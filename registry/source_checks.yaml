@@ -543,7 +543,7 @@
 - {id: kongehuset, section: "18", priority: C, access: page, name: "Kongehuset official programme",
    url: "https://www.kongehuset.no/"}
 
-# --- 19a. OECD (structure calls are unthrottled; data calls are limited to 60 per hour) --
+# --- 19a. OECD (the API limits every request, structure calls too; a full run sends 24) --
 - {id: oecd-revenue-statistics, section: "19a", priority: A, access: api, name: "OECD Revenue Statistics (comparative), data call",
    url: "https://sdmx.oecd.org/public/rest/data/OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,/NOR.TAX_REV.S13._T._T.PT_B1GQ.A?startPeriod=2023&format=csv", expect: "NOR"}
 - {id: oecd-revenue-norway, section: "19a", priority: A, access: api, name: "OECD Revenue Statistics, Norway country table",

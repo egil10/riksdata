@@ -9,6 +9,8 @@ Layout under `lake/` (gitignored):
     parquet/sources.parquet                              from the registry
     parquet/catalog/<name>.parquet                       publisher catalogues, for discovery
     riksdata.duckdb                                      views over the Parquet, no data
+    source_checks/latest.json, source_checks/<date>.json  results of `riksdata check-sources`
+    source_checks/samples/<id>.<ext>                      first bytes of each checked response
     state.json, run_report.json
 """
 
@@ -29,7 +31,13 @@ from riksdata.registry import DatasetSpec, Source
 
 DEFAULT_LAKE_DIR = Path("lake")
 
-_EXTENSIONS = {"application/json": "json", "text/csv": "csv"}
+_EXTENSIONS = {
+    "application/json": "json",
+    "text/csv": "csv",
+    "text/html": "html",
+    "application/xml": "xml",
+    "text/xml": "xml",
+}
 _TABLE_SCHEMAS = {"series": SERIES_SCHEMA, "observations": OBSERVATIONS_SCHEMA}
 
 # view name -> files under lake/parquet/. `entities` is not written yet (PLAN.md §4).
@@ -79,6 +87,10 @@ def _read_json(path: Path) -> Any | None:
 # --- raw archive -----------------------------------------------------------------------------
 
 
+def _extension(content_type: str) -> str:
+    return _EXTENSIONS.get(content_type.split(";")[0].strip().lower(), "bin")
+
+
 def archive_raw(lake: Path, ds: DatasetSpec, raw: RawArtifact) -> Path:
     """Archive a raw response under its fetch date (UTC) and return the path.
 
@@ -86,7 +98,7 @@ def archive_raw(lake: Path, ds: DatasetSpec, raw: RawArtifact) -> Path:
     """
     folder = lake / "raw" / ds.source_id / raw.fetched_at.astimezone(UTC).date().isoformat()
     folder.mkdir(parents=True, exist_ok=True)
-    extension = _EXTENSIONS.get(raw.content_type.split(";")[0].strip().lower(), "bin")
+    extension = _extension(raw.content_type)
     attempt = 1
     while True:
         stem = ds.dataset if attempt == 1 else f"{ds.dataset}.{attempt}"
@@ -235,4 +247,28 @@ def read_run_report(lake: Path) -> dict[str, Any] | None:
 def write_run_report(lake: Path, report: dict[str, Any]) -> Path:
     path = lake / "run_report.json"
     _write_json(path, report)
+    return path
+
+
+# --- source checks ---------------------------------------------------------------------------
+
+
+def read_source_checks(lake: Path) -> dict[str, Any] | None:
+    return _read_json(lake / "source_checks" / "latest.json")
+
+
+def write_source_checks(lake: Path, report: dict[str, Any]) -> Path:
+    """Write the report as `latest.json` and as a dated copy."""
+    folder = lake / "source_checks"
+    _write_json(folder / f"{report['generated_at'][:10]}.json", report)
+    _write_json(folder / "latest.json", report)
+    return folder / "latest.json"
+
+
+def write_source_sample(lake: Path, check_id: str, content: bytes, content_type: str) -> Path:
+    """Keep the sampled start of a response, replacing any earlier sample for the check."""
+    path = lake / "source_checks" / "samples" / f"{check_id}.{_extension(content_type)}"
+    for stale in path.parent.glob(f"{check_id}.*"):
+        stale.unlink()
+    _replace(path, lambda tmp: tmp.write_bytes(content))
     return path

@@ -43,6 +43,15 @@ uv run riksdata catalog ssb --search sykefravær   # matches Norwegian and Engli
 
 The catalogue is for discovery only. A table becomes part of Riksdata when it is added to `registry/datasets/ssb.yaml`.
 
+## Check which sources can be reached
+
+```bash
+uv run riksdata check-sources                 # one small request to each of the 309 rows in SOURCES.md
+uv run riksdata check-sources --status failed # re-check what failed last time
+```
+
+This doesn't ingest anything. It records whether each source answers, needs a key or is blocked. See [Source checks](source-checks.md) for the statuses and the latest results.
+
 ## What is in `lake/`
 
 `lake/` is gitignored and can be deleted and rebuilt at any time.
@@ -54,6 +63,7 @@ The catalogue is for discovery only. A table becomes part of Riksdata when it is
 | `parquet/sources.parquet` | The sources from the registry |
 | `parquet/catalog/` | Publisher catalogues |
 | `riksdata.duckdb` | Views over the Parquet files. It holds no data itself |
+| `source_checks/` | The latest `check-sources` report and the sampled start of each response |
 | `state.json` | Per dataset: the publisher's last-changed time, a fingerprint of the registry entry, and the last successful fetch |
 | `run_report.json` | The latest validation report, with counts per source and dataset |
 

@@ -6,6 +6,7 @@ import logging
 import time
 from collections import deque
 from collections.abc import Callable, Mapping
+from dataclasses import dataclass
 
 import httpx
 
@@ -121,6 +122,87 @@ class HttpClient:
             )
             self._sleep(delay)
         raise AssertionError("unreachable")  # the loop always returns or raises
+
+    def close(self) -> None:
+        self._client.close()
+
+
+@dataclass(frozen=True)
+class Sample:
+    """The start of a response: enough to tell whether an endpoint works."""
+
+    status_code: int
+    content_type: str
+    content: bytes
+    truncated: bool
+    url: str  # after redirects
+    seconds: float
+
+
+class Sampler:
+    """Reads the first bytes of arbitrary URLs: one attempt, paced per host.
+
+    Used to check that a source can be reached, not to ingest data. It never retries, so a
+    host that refuses us is asked once, and it stops reading after `max_bytes`, so a check
+    never downloads a large file.
+    """
+
+    def __init__(
+        self,
+        *,
+        seconds_between_calls: float = 2.0,
+        transport: httpx.BaseTransport | None = None,
+        clock: Callable[[], float] = time.monotonic,
+        sleep: Callable[[float], None] = time.sleep,
+    ) -> None:
+        self._pace = seconds_between_calls
+        self._clock = clock
+        self._sleep = sleep
+        self._limiters: dict[str, RateLimiter] = {}
+        self._client = httpx.Client(
+            headers={"User-Agent": USER_AGENT}, follow_redirects=True, transport=transport
+        )
+
+    def fetch(
+        self,
+        url: str,
+        *,
+        method: str = "GET",
+        headers: Mapping[str, str] | None = None,
+        json: object = None,
+        timeout: float = 30.0,
+        max_bytes: int = 65_536,
+    ) -> Sample:
+        """Send one request and return at most `max_bytes` of the body.
+
+        Raises `httpx.TransportError` if the host can't be reached or times out.
+        """
+        host = httpx.URL(url).host
+        limiter = self._limiters.setdefault(
+            host, RateLimiter(1, self._pace, clock=self._clock, sleep=self._sleep)
+        )
+        limiter.acquire()
+        started = self._clock()
+        chunks: list[bytes] = []
+        size = 0
+        truncated = False
+        with self._client.stream(
+            method, url, headers=headers, json=json, timeout=timeout
+        ) as response:
+            for chunk in response.iter_bytes():
+                chunks.append(chunk)
+                size += len(chunk)
+                if size >= max_bytes:
+                    truncated = True
+                    break
+        return Sample(
+            status_code=response.status_code,
+            content_type=response.headers.get("content-type", ""),
+            content=b"".join(chunks)[:max_bytes],
+            truncated=truncated,
+            url=str(response.url),
+            seconds=self._clock() - started,
+        )
 
     def close(self) -> None:
         self._client.close()

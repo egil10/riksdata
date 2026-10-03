@@ -53,7 +53,7 @@ riksdata/
 ├── PLAN.md, CLAUDE.md, README.md
 ├── pyproject.toml, uv.lock          # Python 3.12, managed with uv
 ├── py/riksdata/                     # Python package (module-root = "py"; v1 owns src/)
-│   ├── cli.py                       # typer app: update | validate | catalog | sql | export
+│   ├── cli.py                       # typer app: update | validate | catalog | sql | export | check-sources
 │   ├── registry.py                  # pydantic models + loader for registry/*.yaml
 │   ├── http.py                      # httpx client, per-source rate limiter, retries, User-Agent
 │   ├── storage.py                   # parquet writer, duckdb view builder, raw archive
@@ -62,7 +62,8 @@ riksdata/
 │   └── adapters/{base,ssb,owid,worldbank,oecd,stortinget,norgesbank,dfo}.py
 ├── registry/
 │   ├── sources.yaml                 # one entry per source
-│   └── datasets/<source>.yaml       # what to fetch from each source
+│   ├── datasets/<source>.yaml       # what to fetch from each source
+│   └── source_checks.yaml           # one small request per SOURCES.md row, for `check-sources`
 ├── tests/  (+ tests/fixtures/<source>/… small recorded responses)
 ├── docs/v2/sources/<source>.md      # one page per adapter
 ├── lake/                            # GITIGNORED: raw/, parquet/, riksdata.duckdb, run_report.json
@@ -231,3 +232,6 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   4. IMF SDMX 3.0 becomes the main IMF adapter (vintages, PSBS, GFS). DataMapper is a fallback. The OECD adapter caches DSDs and builds keys from them.
   5. NAV source note fixed (`data.nav.no` is dead; files + G API, CC BY 4.0).
   6. Phase 1d continues with the quick-win adapters. No change to the Phase 1 starter tables or prompts 01–03.
+- **2026-10-03 (source checks, PR `v2/01c-source-check`):**
+  1. New command `riksdata check-sources` and `registry/source_checks.yaml`: one small, unretried request per SOURCES.md row, paced per host, reading at most 64 KB. It reports `ok`, `reachable`, `needs_key`, `blocked`, `unreachable`, `failed` or `skipped`. Entries with `pii: true` keep no sample. Results and the Mac-versus-server differences are in `docs/v2/source-checks.md`.
+  2. `riksdata.http` gains `Sampler` for these bounded requests. Adapters keep using `HttpClient`.

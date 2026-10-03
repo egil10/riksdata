@@ -205,7 +205,8 @@ def test_cli_update_validate_and_sql(workdir: FakeAdapter) -> None:
     )
 
     assert update.exit_code == 0, update.output
-    assert "demo/first" in update.output and "updated" in update.output
+    assert "demo/first" in update.output
+    assert "updated" in update.output
     assert re.search(r"^total\s+4\s+8\b", update.output, flags=re.MULTILINE)
     assert validate.exit_code == 0, validate.output
     assert "Validation: pass" in validate.output
@@ -279,8 +280,10 @@ def test_cli_catalog_refresh_and_search(workdir: FakeAdapter) -> None:
     assert too_early.exit_code == 1
     assert "riksdata catalog demo --refresh" in too_early.output
     assert "Saved 2 tables" in refresh.output
-    assert "12439" in search.output and "1 of 2 tables match" in search.output
-    assert "14710" in english.output and "12439" not in english.output
+    assert "12439" in search.output
+    assert "1 of 2 tables match" in search.output
+    assert "14710" in english.output
+    assert "12439" not in english.output
     assert "Saved 3 tables" in everything.output
 
 

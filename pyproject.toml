@@ -32,7 +32,14 @@ src = ["py", "tests"]
 extend-exclude = ["*.md"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
+select = [
+    "E", "F", "I", "UP", "B", "N",        # errors, imports, modern syntax, likely bugs, naming
+    "SIM", "C4", "PIE", "RET", "PERF",    # simpler code
+    "PTH", "DTZ", "T20",                  # pathlib, timezone-aware datetimes, no print
+    "PT", "PLC", "PLE", "PLW", "RUF",     # pytest style, pylint conventions/errors/warnings, ruff
+]
+# En dashes are ordinary punctuation in our titles and citations.
+allowed-confusables = ["–"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

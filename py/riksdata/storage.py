@@ -17,7 +17,6 @@ Layout under `lake/` (gitignored):
 from __future__ import annotations
 
 import json
-import os
 from collections.abc import Callable, Iterable
 from datetime import UTC
 from pathlib import Path
@@ -72,12 +71,15 @@ def _replace(path: Path, write: Callable[[Path], object]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_name(path.name + ".tmp")
     write(tmp)
-    os.replace(tmp, path)
+    tmp.replace(path)
+
+
+def _write_text(path: Path, text: str) -> None:
+    _replace(path, lambda tmp: tmp.write_text(text, encoding="utf-8"))
 
 
 def _write_json(path: Path, payload: Any) -> None:
-    text = json.dumps(payload, ensure_ascii=False, indent=2) + "\n"
-    _replace(path, lambda tmp: tmp.write_text(text, encoding="utf-8"))
+    _write_text(path, json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
 
 
 def _read_json(path: Path) -> Any | None:
@@ -88,7 +90,7 @@ def _read_json(path: Path) -> Any | None:
 
 
 def _extension(content_type: str) -> str:
-    return _EXTENSIONS.get(content_type.split(";")[0].strip().lower(), "bin")
+    return _EXTENSIONS.get(content_type.split(";", maxsplit=1)[0].strip().lower(), "bin")
 
 
 def archive_raw(lake: Path, ds: DatasetSpec, raw: RawArtifact) -> Path:
@@ -213,7 +215,7 @@ def build_duckdb(lake: Path) -> Path:
                 )
     finally:
         connection.close()
-    os.replace(tmp, path)
+    tmp.replace(path)
     return path
 
 
@@ -287,5 +289,6 @@ def write_export(out: Path, files: dict[str, Any]) -> None:
         if stale not in wanted:
             stale.unlink()
     for name, payload in files.items():
-        text = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
-        _replace(out / name, lambda tmp, text=text: tmp.write_text(text + "\n", encoding="utf-8"))
+        _write_text(
+            out / name, json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n"
+        )

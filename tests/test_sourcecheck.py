@@ -333,7 +333,8 @@ def test_repo_check_list_covers_every_catalogue_row() -> None:
     assert len(candidates) == 7  # the rows of section 23, found by the source inventory
     assert all(check.url.startswith("https://") for check in checks if check.url)
     never_use = [check for check in checks if check.priority == "-"]
-    assert never_use and all(check.skip and check.access == "none" for check in never_use)
+    assert never_use
+    assert all(check.skip and check.access == "none" for check in never_use)
     # A row that isn't requested has no source of its own, is used by hand, or is a publication.
     assert all(check.access in ("none", "manual", "docs") for check in checks if check.skip)
     # Sources with person-level data are flagged, so no sample of them is ever kept.

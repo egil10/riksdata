@@ -13,7 +13,7 @@ from riksdata import cli, storage
 from riksdata.adapters.base import OBSERVATIONS_SCHEMA, Batch
 from riksdata.export import _decimals, export_site, section_titles
 from riksdata.registry import Registry, load_registry
-from support import make_batch, write_registry
+from support import make_batch, make_dataset, write_registry
 
 NOW = datetime(2026, 10, 3, 12, 0, tzinfo=UTC)
 
@@ -75,15 +75,9 @@ def build_lake(lake: Path) -> None:
         ("demo.ds.a", "SWE", "2025", 21.0),
         ("demo.ds.b", "NOR", "2025", 1500.0),
     ]
-    storage.write_batch(lake, published_dataset(), Batch(series, observations(rows)))
+    storage.write_batch(lake, make_dataset(), Batch(series, observations(rows)))
     hidden = make_batch("demo.hidden.x", publish=False)
-    storage.write_batch(lake, published_dataset(dataset="hidden"), hidden)
-
-
-def published_dataset(**overrides: Any) -> Any:
-    from support import make_dataset
-
-    return make_dataset(**overrides)
+    storage.write_batch(lake, make_dataset(dataset="hidden"), hidden)
 
 
 def read(path: Path) -> Any:
@@ -167,7 +161,7 @@ def test_unpublishing_a_series_removes_its_file(tmp_path: Path, registry: Regist
     values = storage.read_table(lake, "observations").filter(
         pl.col("series_id").str.starts_with("demo.ds.")
     )
-    storage.write_batch(lake, published_dataset(), Batch(withdrawn, values))
+    storage.write_batch(lake, make_dataset(), Batch(withdrawn, values))
     summary = export_site(lake, registry, out, now=NOW)
 
     assert summary["series"] == 1

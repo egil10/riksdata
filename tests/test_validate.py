@@ -162,10 +162,11 @@ def with_values(batch: Batch, values: list[float | None]) -> Batch:
 def test_a_zero_between_values_is_flagged(tmp_path: Path) -> None:
     years = ("2020", "2021", "2022", "2023", "2024", "2025")
     batch = make_batch("demo.ds.a", "demo.ds.b", "demo.ds.c", periods=years)
-    # a: SSB 05803 marriages. b: zeros only at the ends. c: a gap (null) is not a zero.
-    values = [16151.0, 0, 0, 0, 21136.0, 0] + [0, 0, 3.0, 4.0, 0, 0] + [1.0, None, 0, 4.0, 5.0, 6.0]
+    marriages = [16151.0, 0, 0, 0, 21136.0, 0]  # SSB 05803: 0 where a figure is missing
+    zeros_at_the_ends = [0, 0, 3.0, 4.0, 0, 0]
+    gap_then_zero = [1.0, None, 0, 4.0, 5.0, 6.0]  # the gap (null) is not a zero, the 0 is
 
-    report = run(tmp_path, with_values(batch, values))
+    report = run(tmp_path, with_values(batch, [*marriages, *zeros_at_the_ends, *gap_then_zero]))
 
     result = check(report, "suspicious_zeros")
     assert result["status"] == "warn"

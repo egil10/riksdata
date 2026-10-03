@@ -99,7 +99,7 @@ def test_gives_up_after_five_retries() -> None:
     handler, seen = scripted(*[500] * 6)
     clock = FakeClock()
 
-    with pytest.raises(HttpError, match="gave up on .* after 5 retries: HTTP 500"):
+    with pytest.raises(HttpError, match=r"gave up on .* after 5 retries: HTTP 500"):
         make_client(handler, clock).get(URL)
 
     assert len(seen) == 6

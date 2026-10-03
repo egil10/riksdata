@@ -27,6 +27,7 @@ module-root = "py"
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+src = ["py", "tests"]
 # Ruff also formats Python code blocks in Markdown. Ours are illustrative, and v1's docs are frozen.
 extend-exclude = ["*.md"]
 

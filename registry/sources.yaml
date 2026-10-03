@@ -1,0 +1,32 @@
+# One entry per source that has an adapter. The wider catalogue of candidate sources is SOURCES.md.
+# Format: PLAN.md §5. `rate_limit` is our own client-side cap, kept below the publisher's limit.
+
+ssb:
+  name: Statistisk sentralbyrå
+  publisher: Statistics Norway
+  homepage: https://www.ssb.no
+  api_base: https://data.ssb.no/api/pxwebapi/v2
+  licence: CC-BY-4.0
+  licence_url: https://www.ssb.no/en/diverse/lisens
+  attribution: "Kilde: Statistisk sentralbyrå"
+  rate_limit: {calls: 35, per_seconds: 60}   # API enforces 40/60s per IP
+  tier: 1
+  access: api
+  redistribution: attribution
+  terms_checked: 2026-10-03
+
+owid:
+  name: Our World in Data
+  publisher: Global Change Data Lab
+  homepage: https://ourworldindata.org
+  api_base: https://ourworldindata.org/grapher
+  # CC BY 4.0 covers OWID's own work. Third-party data keeps the provider's terms, so each
+  # series carries the upstream licences that OWID records (see docs/v2/sources/owid.md).
+  licence: CC-BY-4.0
+  licence_url: https://ourworldindata.org/faqs
+  attribution: "Our World in Data"
+  rate_limit: {calls: 30, per_seconds: 60}   # no published limit; this is our own polite cap
+  tier: 3
+  access: api
+  redistribution: attribution
+  terms_checked: 2026-10-03

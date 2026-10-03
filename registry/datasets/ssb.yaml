@@ -1,0 +1,125 @@
+# SSB Statbank tables (PxWeb API v2). Format: PLAN.md §5. Details: docs/v2/sources/ssb.md.
+#
+# The codes were read from each table's /metadata on 2026-10-03. `select` lists explicit codes
+# for every dimension and uses "*" only for Tid, so new periods arrive on their own while the
+# set of series stays pinned here. `series_key` names every non-time dimension in table order,
+# so series ids don't change if a selection is widened later.
+# Quote ids and codes made of digits. Defaults: publish: true, superseded_by: null.
+
+- dataset: "14710"
+  slug: kpi
+  title_no: Konsumprisindeks (2025=100)
+  title_en: Consumer price index (2025=100)
+  topic: prices
+  frequency: M
+  select:
+    ContentsCode: [KpiIndMnd]   # the table's only content
+    Tid: ["*"]
+  series_key: [ContentsCode]
+  entity: NOR
+  schedule: daily
+
+- dataset: "13760"
+  slug: aku
+  title_no: Arbeidskraftundersøkelsen, sesongjustert, 15–74 år
+  title_en: Labour force survey, seasonally adjusted, ages 15–74
+  topic: labour
+  frequency: M
+  select:
+    Kjonn: ["0"]                # both sexes
+    Alder: ["15-74"]
+    Justering: [S]              # seasonally adjusted (SSB also offers trend: T)
+    ContentsCode: [Arbeidsstyrken, Sysselsatte, ArbledProsArbstyrk]
+    Tid: ["*"]
+  series_key: [Kjonn, Alder, Justering, ContentsCode]
+  entity: NOR
+  schedule: daily
+
+- dataset: "05803"
+  slug: befolkning
+  title_no: Befolkning og befolkningsendringer
+  title_en: Population and population changes
+  topic: population
+  frequency: A
+  select:
+    ContentsCode:
+      - Personer
+      - Levendefodte
+      - Levendefodte2
+      - Dodfodte
+      - Dode
+      - Dode2
+      - InngEkteskap
+      - Skilsmisse
+      - Innflyttinger
+      - Utflyttinger
+      - Levendef3
+      - Dode3
+      - AbsTilvekst
+      - Tilvekst
+    Tid: ["*"]
+  series_key: [ContentsCode]
+  entity: NOR
+  schedule: weekly
+
+- dataset: "14669"
+  slug: offentlige-utgifter
+  title_no: Offentlig forvaltnings utgifter etter formål
+  title_en: General government expenditure by function
+  topic: public_finance
+  frequency: A
+  select:
+    Sektor: [C_OFF]             # general government (central + local, consolidated)
+    Art: [E]                    # total expenditure
+    # All functions, then the ten COFOG divisions.
+    Formaal: ["0", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10"]
+    ContentsCode: [Belop]
+    Tid: ["*"]
+  series_key: [Sektor, Art, Formaal, ContentsCode]
+  entity: NOR
+  schedule: weekly
+
+- dataset: "07391"
+  slug: skatt
+  title_no: Innbetalt skatt etter art, akkumulert gjennom året
+  title_en: Taxes paid by type, accumulated through the year
+  topic: public_finance
+  frequency: M
+  select:
+    Ordning: ["0"]              # all tax arrangements
+    Art: [A, B2, C, D, E, F2, G2, H, I2, J]   # total, then every tax type in the table
+    ContentsCode: [Skatterekneskap]
+    Tid: ["*"]
+  series_key: [Ordning, Art, ContentsCode]
+  entity: NOR
+  schedule: daily
+
+- dataset: "12439"
+  slug: sykefravaer
+  title_no: Sykefravær for lønnstakere
+  title_en: Sickness absence for employees
+  topic: labour
+  frequency: Q
+  select:
+    Kjonn: ["0", "1", "2"]
+    Sykefraver2: [Alt, E, L]    # all, self-certified, certified by doctor
+    # Seasonally adjusted rate, and the seasonally and influenza adjusted rate. SSB notes
+    # that only the latter is comparable across the 2014/2015 change of data source.
+    ContentsCode: [SykefravProsSesJust, SykefravProsSesInflu]
+    Tid: ["*"]
+  series_key: [Kjonn, Sykefraver2, ContentsCode]
+  entity: NOR
+  schedule: daily
+
+- dataset: "09842"
+  slug: bnp-per-innbygger
+  title_no: BNP og andre hovedstørrelser per innbygger
+  title_en: GDP and other main aggregates per capita
+  topic: economy
+  frequency: A
+  select:
+    ContentsCode: [BNP, BNI, NI, DispINorge, KonsumHIO, MEMOBNP]
+    Tid: ["*"]
+  series_key: [ContentsCode]
+  entity: NOR
+  schedule: weekly

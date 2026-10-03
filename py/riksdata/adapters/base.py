@@ -121,3 +121,34 @@ def check_batch(batch: Batch) -> None:
     )
     if problems:
         raise BatchSchemaError("; ".join(problems))
+
+
+def assemble_batch(series_rows: list[dict[str, Any]], observations: pl.DataFrame) -> Batch:
+    """Build a typed Batch from an adapter's series rows and observations.
+
+    `first_period` and `last_period` are filled in from the observations that have a value,
+    so the rows must not set them. Columns are put in schema order and rows are sorted.
+    """
+    observations = observations.select(
+        pl.col(column).cast(dtype) for column, dtype in OBSERVATIONS_SCHEMA.items()
+    ).sort("series_id", "entity_id", "period_start")
+    spans = (
+        observations.filter(pl.col("value").is_not_null())
+        .group_by("series_id")
+        .agg(
+            pl.col("period").sort_by("period_start").first().alias("first_period"),
+            pl.col("period").sort_by("period_start").last().alias("last_period"),
+        )
+    )
+    row_schema = {
+        column: dtype
+        for column, dtype in SERIES_SCHEMA.items()
+        if column not in ("first_period", "last_period")
+    }
+    series = (
+        pl.DataFrame(series_rows, schema=row_schema)
+        .join(spans, on="series_id", how="left")
+        .select(list(SERIES_SCHEMA))
+        .sort("series_id")
+    )
+    return Batch(series=series, observations=observations)

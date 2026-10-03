@@ -5,11 +5,14 @@ from __future__ import annotations
 from collections.abc import Callable
 
 from riksdata.adapters.base import Adapter
+from riksdata.adapters.ssb import SsbAdapter
 from riksdata.http import HttpClient
 from riksdata.registry import Source
 
 # source id -> adapter class. A source needs an entry here and in registry/sources.yaml.
-ADAPTERS: dict[str, Callable[[Source, HttpClient], Adapter]] = {}
+ADAPTERS: dict[str, Callable[[Source, HttpClient], Adapter]] = {
+    "ssb": SsbAdapter,
+}
 
 
 def build_adapter(source: Source, client: HttpClient) -> Adapter:

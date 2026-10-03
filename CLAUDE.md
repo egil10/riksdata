@@ -28,7 +28,7 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 
 ## 2. Python conventions
 - **uv only**: `uv add <pkg>`, `uv add --dev <pkg>`, `uv run …`. Never `pip install`. Commit `uv.lock`. Python 3.12.
-- Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff, mypy. **Ask before adding any other dependency.**
+- Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff, mypy, types-PyYAML. **Add another dependency when a task needs it** (Egil, 2026-10-03: no need to ask first): with `uv add`, in the PR that first uses it, and named with its reason in the PR description. Don't add one that nothing uses yet.
 - Type hints everywhere; `uv run mypy` checks `py/riksdata` in strict mode. Pydantic for anything loaded from YAML or external JSON configs.
 - Ruff for lint and format (line length 100).
 - Network I/O only through `riksdata.http` (rate limiting, retries, User-Agent `riksdata/<version> (+https://riksdata.org; <contact email>)`). File I/O only through `riksdata.storage`.

@@ -17,6 +17,46 @@ FIXTURES = Path(__file__).resolve().parent / "fixtures"
 
 RETRIEVED_AT = datetime(2026, 10, 3, 9, 0, tzinfo=UTC)
 
+_SOURCE_YAML = """
+{source_id}:
+  name: Demo source
+  publisher: Demo publisher
+  homepage: https://example.org
+  api_base: https://example.org/api
+  licence: CC-BY-4.0
+  licence_url: https://example.org/licence
+  attribution: "Source: Demo"
+  rate_limit: {{calls: 10, per_seconds: 60}}
+  tier: 2
+  access: api
+  redistribution: {redistribution}
+  terms_checked: 2026-10-03
+"""
+
+
+def write_registry(
+    root: Path,
+    datasets: dict[str, str],
+    sources: dict[str, str] | None = None,
+) -> Path:
+    """Write registry YAML files under `root`.
+
+    `datasets` maps a source id to the YAML body of its datasets file. `sources` maps a
+    source id to its `redistribution` setting and defaults to one open source, `demo`.
+    """
+    sources = sources or {"demo": "attribution"}
+    (root / "datasets").mkdir(parents=True)
+    (root / "sources.yaml").write_text(
+        "".join(
+            _SOURCE_YAML.format(source_id=source_id, redistribution=redistribution)
+            for source_id, redistribution in sources.items()
+        ),
+        encoding="utf-8",
+    )
+    for source_id, body in datasets.items():
+        (root / "datasets" / f"{source_id}.yaml").write_text(body, encoding="utf-8")
+    return root
+
 
 def make_source(**overrides: Any) -> Source:
     """A valid registry source; pass keyword overrides for the fields a test cares about."""

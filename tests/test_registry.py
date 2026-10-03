@@ -6,24 +6,7 @@ from pathlib import Path
 import pytest
 
 from riksdata.registry import RegistryError, load_registry
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-
-SOURCE_TEMPLATE = """
-{source_id}:
-  name: Demo source
-  publisher: Demo publisher
-  homepage: https://example.org
-  api_base: https://example.org/api
-  licence: CC-BY-4.0
-  licence_url: https://example.org/licence
-  attribution: "Source: Demo"
-  rate_limit: {{calls: 10, per_seconds: 60}}
-  tier: 2
-  access: api
-  redistribution: {redistribution}
-  terms_checked: 2026-10-03
-"""
+from support import REPO_ROOT, write_registry
 
 DATASET = """
 - dataset: "07391"
@@ -32,26 +15,6 @@ DATASET = """
   topic: public_finance
   schedule: daily
 """
-
-
-def write_registry(
-    root: Path,
-    datasets: dict[str, str],
-    sources: dict[str, str] | None = None,
-) -> Path:
-    """Write a registry where `sources` maps source id to its `redistribution` setting."""
-    sources = sources or {"demo": "attribution"}
-    (root / "datasets").mkdir(parents=True)
-    (root / "sources.yaml").write_text(
-        "".join(
-            SOURCE_TEMPLATE.format(source_id=source_id, redistribution=redistribution)
-            for source_id, redistribution in sources.items()
-        ),
-        encoding="utf-8",
-    )
-    for source_id, body in datasets.items():
-        (root / "datasets" / f"{source_id}.yaml").write_text(body, encoding="utf-8")
-    return root
 
 
 def test_repo_registry_loads() -> None:

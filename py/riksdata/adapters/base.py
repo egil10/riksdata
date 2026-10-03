@@ -79,7 +79,7 @@ class Batch:
 class Adapter(Protocol):
     source_id: str
 
-    def catalog(self) -> pl.DataFrame | None:
+    def catalog(self, *, include_discontinued: bool = False) -> pl.DataFrame | None:
         """The publisher's full catalogue for discovery, if it has one."""
 
     def remote_updated(self, ds: DatasetSpec) -> datetime | None:

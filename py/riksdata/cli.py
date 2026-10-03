@@ -18,7 +18,7 @@ import duckdb
 import polars as pl
 import typer
 
-from riksdata import sourcecheck, storage, validate
+from riksdata import export, sourcecheck, storage, validate
 from riksdata.adapters import build_adapter
 from riksdata.adapters.base import Adapter, check_batch
 from riksdata.http import HttpClient, Sample, Sampler
@@ -358,3 +358,19 @@ def check_sources_command(
     rows.append(["total", len(report["results"])])
     typer.echo(_table(["status", "sources"], rows))
     typer.echo(f"\nChecked {len(results)} now. Report written to {path}")
+
+
+@app.command("export")
+def export_command(
+    out: Annotated[
+        Path, typer.Option(help="Folder for the site's JSON files.")
+    ] = export.DEFAULT_OUT_DIR,
+) -> None:
+    """Write the published series and the source-check results as JSON for the site."""
+    registry = _load_registry()
+    summary = export.export_site(LAKE, registry, out)
+    typer.echo(
+        f"Exported {summary['series']} series ({summary['observations']} observations) "
+        f"from {', '.join(summary['sources'])} to {out}. "
+        f"{summary['unpublished_series']} unpublished series were left out."
+    )

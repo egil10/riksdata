@@ -46,6 +46,7 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 - Every series must have `unit`, `licence`, `source_url`, `retrieved_at` and a tag (`DATA|LAW|ESTIMATE|PROPOSAL`; our own calculations are `ESTIMATE` with `estimate_by = riksdata`). `validate` fails otherwise.
 - Respect publisher limits (see `registry/sources.yaml`): SSB 40/min, Stortinget 100/min, OECD **60 data calls/hour**. Never hammer an API in a loop without the limiter. Cache immutable things (e.g. Stortinget vote results by `votering_id`).
 - Respect `redistribution`/`publish` in the registry: restricted sources never reach `site/` exports. Never scrape a site whose terms forbid it (e.g. lovdata.no web, pollofpolls.no without permission, skattelister). Use the sanctioned API or skip it.
+- **Privacy and terms (binding; full list in SOURCES.md Appendix A3):** person-level registers (`pii` ≠ none) are hashed or aggregated inside `normalize` and never reach `clean/` as raw IDs or names. Never use skattelister, person-level aksjonærregister or beneficial-owner data. Never scrape Finn, Proff, lovdata.no or pollofpolls. NC/SA-licensed sources (ESS, JST, Atlas ECI, MARPOR, WHO GHO, OpenTender) stay `publish: false` unless Egil decides otherwise. Keys come from env/GitHub secrets (`secret_env`), never from files in the repo.
 - Don't invent data. If a value or code can't be verified from the source, leave it out and note it.
 - Credit sources per their licence (SSB: "Kilde: Statistisk sentralbyrå"; Stortinget: NLOD, credit Stortinget; OWID: per-series citation).
 

@@ -47,6 +47,13 @@ class Source(BaseModel):
     redistribution: Literal["open", "attribution", "restricted"]
     terms_checked: date
     timeout_seconds: float = Field(default=60, gt=0)
+    # PLAN.md §5 (v3). Declared now so later adapters don't need a registry migration.
+    runner: Literal["box", "actions", "mac"] = "box"  # where the fetch can run
+    secret_env: str | None = None  # name of the env var holding the key, never the key
+    user_agent: Literal["default", "browser"] = "default"
+    encoding: str = "utf-8"  # file defaults for CSV-style sources
+    delimiter: str = ","
+    decimal: str = "."
 
 
 class DatasetSpec(BaseModel):
@@ -68,6 +75,8 @@ class DatasetSpec(BaseModel):
     schedule: Schedule
     superseded_by: StrictStr | None = None
     publish: bool
+    pii: Literal["none", "aggregate", "hash_ids"] = "none"  # person-level data: PLAN.md §6
+    chunk_by: dict[str, int] | None = None  # for tables above a publisher's request limit
     select: dict[str, list[StrictStr]] = Field(default_factory=dict)
     series_key: list[str] = Field(default_factory=list)
     entity: str | None = None

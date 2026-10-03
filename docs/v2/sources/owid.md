@@ -52,7 +52,16 @@ So a blanket `CC-BY-4.0` would be wrong for several charts. This is what OWID re
 | `median-age` (both series) | CC BY 3.0 IGO | not stated |
 | `child-mortality` | Copyright © UNICEF; CC BY 4.0 | not stated |
 
-None of the ten is flagged `nonRedistributable`, so all have `publish = true` today. Nothing is exported to the site in Phase 1. **Open decision before the first site export:** whether the charts with provider terms that aren't a Creative Commons licence (SIPRI, UNODC, UNICEF, and the FAO non-commercial share-alike licence) should be set to `publish: false` in the registry until the provider's terms have been read.
+None of the ten is flagged `nonRedistributable` by OWID. Four are set to `publish: false` in the registry, so they stay in the lake but never reach a site export:
+
+| Chart | Why it isn't published |
+|---|---|
+| `daily-per-capita-caloric-supply` | FAO's licence is non-commercial and share-alike. CLAUDE.md §4 keeps such sources unpublished unless Egil decides otherwise |
+| `military-spending-as-a-share-of-gdp-sipri` | SIPRI's terms haven't been read yet |
+| `homicide-rate-unodc` | UNODC's terms (© United Nations) haven't been read yet |
+| `child-mortality` | UNICEF's terms haven't been read yet |
+
+`life-expectancy` stays published although one historical origin lists "JSTOR terms": OWID marks the series "with major processing by Our World in Data", which its FAQ puts under OWID's own CC BY licence. To publish one of the four, read the provider's terms and remove `publish: false` from `registry/datasets/owid.yaml`.
 
 ## Quirks and gotchas
 

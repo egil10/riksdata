@@ -40,7 +40,24 @@ def test_dataset_defaults(tmp_path: Path) -> None:
     assert ds.slug == "life-expectancy"
     assert ds.key == "demo/life-expectancy"
     assert ds.publish is True
-    assert registry.sources["demo"].timeout_seconds == 60
+    assert (ds.pii, ds.chunk_by) == ("none", None)
+    source = registry.sources["demo"]
+    assert source.timeout_seconds == 60
+    assert (source.runner, source.secret_env, source.user_agent) == ("box", None, "default")
+    assert (source.encoding, source.delimiter, source.decimal) == ("utf-8", ",", ".")
+
+
+def test_plan_v3_fields_are_validated(tmp_path: Path) -> None:
+    chunked = DATASET + "  pii: hash_ids\n  chunk_by: {Tid: 1, Region: 25}\n"
+    registry = load_registry(write_registry(tmp_path / "ok", {"demo": chunked}))
+
+    (ds,) = registry.datasets
+    assert (ds.pii, ds.chunk_by) == ("hash_ids", {"Tid": 1, "Region": 25})
+
+    with pytest.raises(
+        RegistryError, match="pii: Input should be 'none', 'aggregate' or 'hash_ids'"
+    ):
+        load_registry(write_registry(tmp_path / "bad", {"demo": DATASET + "  pii: maybe\n"}))
 
 
 def test_restricted_source_defaults_to_unpublished(tmp_path: Path) -> None:

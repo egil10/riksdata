@@ -3,6 +3,10 @@
 # `dataset` is the chart slug in https://ourworldindata.org/grapher/<slug>. Every chart is
 # filtered to the same comparison set: the Nordics, Germany, the UK, the US and the world.
 # Titles, units, citations and licences come from OWID's metadata. Defaults: publish: true.
+#
+# `publish: false` keeps a chart in the lake but out of site exports. It is set where OWID
+# records upstream terms that are non-commercial (CLAUDE.md §4) or that nobody has read yet.
+# Egil decides when to flip them; the terms are listed in docs/v2/sources/owid.md.
 
 - dataset: life-expectancy
   title_no: Forventet levealder ved fødsel
@@ -27,12 +31,14 @@
   topic: crime
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  publish: false   # upstream: © United Nations (UNODC terms not read yet)
 
 - dataset: military-spending-as-a-share-of-gdp-sipri
   title_no: Militærutgifter som andel av BNP
   topic: defence
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  publish: false   # upstream: SIPRI Terms and Conditions (not read yet)
 
 - dataset: median-age
   title_no: Medianalder
@@ -51,6 +57,7 @@
   topic: health
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  publish: false   # upstream: Copyright © UNICEF (terms not read yet)
 
 - dataset: gdp-per-capita-worldbank
   title_no: BNP per innbygger (kjøpekraftsjustert)
@@ -63,3 +70,4 @@
   topic: food
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  publish: false   # upstream: FAO CC BY-NC-SA 3.0 IGO (non-commercial)

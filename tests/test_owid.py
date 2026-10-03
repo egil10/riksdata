@@ -328,12 +328,17 @@ def test_registry_entries_are_complete() -> None:
     for ds in datasets:
         assert ds.entities == ["NOR", "SWE", "DNK", "FIN", "ISL", "DEU", "GBR", "USA", "OWID_WRL"]
         assert ds.schedule == "weekly", ds.key
-    # Charts with non-commercial or unread upstream terms stay out of site exports.
-    assert {ds.dataset for ds in datasets if not ds.publish} == {
+    # Every chart is published. Those with an upstream licence that is not open carry the
+    # terms Egil decided on (2026-10-03), which `validate` requires.
+    assert all(ds.publish for ds in datasets)
+    assert {ds.dataset for ds in datasets if ds.terms_note} == {
+        "life-expectancy",
         "homicide-rate-unodc",
         "military-spending-as-a-share-of-gdp-sipri",
         "child-mortality",
         "daily-per-capita-caloric-supply",
+        "share-of-electricity-production-from-renewable-sources",
+        "annual-working-hours-per-worker",
         "oil-production-by-country",
     }
 

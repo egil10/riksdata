@@ -11,8 +11,10 @@ const TOPICS = [
   ["public_finance", "Offentlige finanser"],
   ["population", "Befolkning"],
   ["health", "Helse"],
+  ["food", "Mat"],
   ["democracy", "Demokrati"],
   ["crime", "Kriminalitet"],
+  ["defence", "Forsvar"],
   ["energy", "Energi"],
   ["climate", "Klima"],
   ["technology", "Teknologi"],
@@ -168,7 +170,7 @@ async function getJson(path) {
 function renderKpis(build, sources) {
   const row = document.getElementById("kpis");
   const tiles = [
-    ["Serier", integer.format(build.series), `fra ${build.sources.length} kilder med åpen lisens`],
+    ["Serier", integer.format(build.series), `fra ${build.sources.length} kilder`],
     ["Observasjoner", integer.format(build.observations), "enkelttall i seriene"],
   ];
   if (sources) {
@@ -552,7 +554,8 @@ function renderMeta(series) {
   const frequency = { A: "Årlig", Q: "Kvartalsvis", M: "Månedlig", W: "Ukentlig", D: "Daglig" }[series.frequency] || series.frequency;
   const items = [
     ["Kilde", el("a", { href: series.source_url, text: sourceName(series), rel: "noopener" })],
-    ["Lisens", series.licence],
+    // A terms note records the conditions for data whose upstream licence is not an open one.
+    ["Lisens", series.terms_note ? el("span", {}, series.licence, el("span", { class: "terms", text: series.terms_note })) : series.licence],
     ["Type", series.tag === "ESTIMATE" ? "ESTIMAT: framskrivning eller beregning fra kilden, ikke observerte tall" : "DATA: observert statistikk fra kilden"],
     ["Enhet", series.unit],
     ["Frekvens", frequency],
@@ -576,6 +579,9 @@ function downloadCsv() {
       return point && point.value !== null ? point.value : "";
     })].join(","));
   }
+  // The last row carries the source, licence and terms, padded so every row has the same columns.
+  const credit = `# Kilde: ${sourceName(series)}. Lisens: ${series.licence}.${series.terms_note ? ` ${series.terms_note}` : ""}`;
+  rows.push([`"${credit.replaceAll('"', '""')}"`, ...lines.map(() => "")].join(","));
   const link = el("a", { href: URL.createObjectURL(new Blob([rows.join("\n") + "\n"], { type: "text/csv" })), download: `${series.series_id}.csv` });
   link.click();
   URL.revokeObjectURL(link.href);

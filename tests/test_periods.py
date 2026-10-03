@@ -4,7 +4,7 @@ from datetime import date
 
 import pytest
 
-from riksdata.periods import parse_period
+from riksdata.periods import parse_period, period_end
 
 # (publisher string, canonical period, period start, frequency)
 VALID = [
@@ -69,3 +69,21 @@ def test_canonical_form_parses_to_itself(raw: str) -> None:
 def test_invalid_period_raises(raw: str) -> None:
     with pytest.raises(ValueError, match="period"):
         parse_period(raw)
+
+
+@pytest.mark.parametrize(
+    ("raw", "end"),
+    [
+        ("2026", date(2026, 12, 31)),
+        ("2026-Q1", date(2026, 3, 31)),
+        ("2026K4", date(2026, 12, 31)),
+        ("2026-08", date(2026, 8, 31)),
+        ("2026M12", date(2026, 12, 31)),
+        ("2024-02", date(2024, 2, 29)),  # leap year
+        ("2026-W14", date(2026, 4, 5)),  # Monday 30 March to Sunday 5 April
+        ("2026-W53", date(2027, 1, 3)),
+        ("2026-08-31", date(2026, 8, 31)),
+    ],
+)
+def test_period_end(raw: str, end: date) -> None:
+    assert period_end(raw) == end

@@ -186,6 +186,7 @@ def export_site(
         meta = {name: row[name] for name in _SERIES_META}
         ds = datasets.get((row["source_id"], row["dataset_id"]))
         meta["dataset_title_no"] = ds.title_no if ds else None
+        meta["terms_note"] = ds.terms_note if ds else None
         meta["decimals"] = _decimals(valued["value"])
         meta["source_updated"] = (
             row["source_updated"].date().isoformat() if row["source_updated"] else None

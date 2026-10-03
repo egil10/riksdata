@@ -218,7 +218,7 @@ def update_command(
 @app.command("validate")
 def validate_command() -> None:
     """Run the data-quality checks and write lake/run_report.json."""
-    report = validate.run(LAKE)
+    report = validate.run(LAKE, _load_registry())
     for check in report["checks"]:
         typer.echo(f"{check['status'].upper():<4}  {check['name']}: {check['detail']}")
         for example in check["examples"]:

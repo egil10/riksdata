@@ -27,6 +27,7 @@ DATASETS = """
     Kind: [b, a]
     Tid: ["*"]
   series_key: [Kind]
+  terms_note: Brukt ikke-kommersielt med kildehenvisning.
 """
 
 
@@ -131,6 +132,9 @@ def test_series_file_keeps_inner_gaps_and_trims_the_ends(
     assert series["meta"]["home_entity"] == "NOR"
     assert series["meta"]["dataset_title_no"] == "Demodatasett"
     assert series["meta"]["retrieved_at"] == "2026-10-03"
+    assert series["meta"]["terms_note"] == "Brukt ikke-kommersielt med kildehenvisning."
+    catalog = read(out / "catalog.json")
+    assert {item["terms_note"] for item in catalog["series"]} == {series["meta"]["terms_note"]}
 
 
 def test_catalog_has_tiles_in_registry_order(tmp_path: Path, registry: Registry) -> None:

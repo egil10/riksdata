@@ -1,4 +1,4 @@
-"""Parse publisher period strings into a canonical period and the date it starts.
+"""Parse publisher period strings into a canonical period and the dates it starts and ends.
 
 Canonical forms (PLAN.md §4): `2026`, `2026-Q2`, `2026-08`, `2026-W14`, `2026-08-31`.
 Parsing a canonical period returns it unchanged.
@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from collections.abc import Callable
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, timedelta
 from functools import cache
 
 
@@ -69,3 +69,18 @@ def parse_period(raw: str) -> Period:
             except ValueError as exc:
                 raise ValueError(f"invalid period {raw!r}: {exc}") from exc
     raise ValueError(f"unrecognised period format: {raw!r}")
+
+
+_MONTHS = {"A": 12, "Q": 3, "M": 1}
+
+
+def period_end(raw: str) -> date:
+    """The last day of a period: `2026` ends on 2026-12-31 and `2026-Q2` on 2026-06-30."""
+    period = parse_period(raw)
+    start = period.period_start
+    if period.frequency == "D":
+        return start
+    if period.frequency == "W":
+        return start + timedelta(days=6)
+    months = start.month - 1 + _MONTHS[period.frequency]
+    return date(start.year + months // 12, months % 12 + 1, 1) - timedelta(days=1)

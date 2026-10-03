@@ -9,15 +9,16 @@ import pytest
 
 from riksdata import storage, validate
 from riksdata.adapters.base import Batch
-from support import make_batch, make_dataset
+from riksdata.registry import Registry
+from support import make_batch, make_dataset, make_source
 
 NOW = datetime(2026, 10, 3, 12, 0, tzinfo=UTC)
 
 
-def run(lake: Path, batch: Batch | None = None) -> dict[str, Any]:
+def run(lake: Path, batch: Batch | None = None, registry: Registry | None = None) -> dict[str, Any]:
     if batch is not None:
         storage.write_batch(lake, make_dataset(), batch)
-    return validate.run(lake, now=NOW)
+    return validate.run(lake, registry, now=NOW)
 
 
 def check(report: dict[str, Any], name: str) -> dict[str, Any]:
@@ -28,7 +29,7 @@ def test_clean_lake_passes_and_writes_the_report(tmp_path: Path) -> None:
     report = run(tmp_path, make_batch("demo.ds.a", "demo.ds.b"))
 
     assert report["status"] == "pass"
-    assert [item["status"] for item in report["checks"]] == ["pass"] * 6
+    assert [item["status"] for item in report["checks"]] == ["pass"] * 8
     assert report["datasets"] == {"demo/ds": {"series": 2, "observations": 4}}
     assert report["sources"] == {"demo": {"datasets": 1, "series": 2, "observations": 4}}
     assert report["generated_at"] == "2026-10-03T12:00:00+00:00"
@@ -120,12 +121,13 @@ def test_schema_mismatch_fails_and_skips_the_other_checks(tmp_path: Path) -> Non
 @pytest.mark.parametrize(
     ("periods", "status"),
     [
-        (("2023", "2024"), "pass"),  # 2024-01-01 is 1006 days before NOW
-        (("2022", "2023"), "warn"),
-        (("2026-06", "2026-07"), "pass"),
-        (("2026-05", "2026-06"), "warn"),  # 2026-06-01 is 124 days before NOW
-        (("2026-Q1",), "pass"),
-        (("2025-Q4",), "warn"),
+        # Age is counted from the end of the latest period: 2023 ended 1007 days before NOW.
+        (("2022", "2023"), "pass"),
+        (("2021", "2022"), "warn"),  # 1372 days
+        (("2026-05", "2026-06"), "pass"),  # June ended 95 days before NOW
+        (("2026-04", "2026-05"), "warn"),  # 125 days
+        (("2025-Q4",), "pass"),  # 276 days
+        (("2025-Q3",), "warn"),  # 368 days
         (("2099", "2100"), "pass"),  # projections are never stale
     ],
 )
@@ -151,3 +153,73 @@ def test_row_count_drop_warns(tmp_path: Path) -> None:
     assert result["status"] == "warn"
     assert result["examples"] == ["demo/ds: 4 -> 2 observations"]
     assert big_drop["status"] == "warn"
+
+
+def with_values(batch: Batch, values: list[float | None]) -> Batch:
+    return Batch(batch.series, batch.observations.with_columns(value=pl.Series(values)))
+
+
+def test_a_zero_between_values_is_flagged(tmp_path: Path) -> None:
+    years = ("2020", "2021", "2022", "2023", "2024", "2025")
+    batch = make_batch("demo.ds.a", "demo.ds.b", "demo.ds.c", periods=years)
+    # a: SSB 05803 marriages. b: zeros only at the ends. c: a gap (null) is not a zero.
+    values = [16151.0, 0, 0, 0, 21136.0, 0] + [0, 0, 3.0, 4.0, 0, 0] + [1.0, None, 0, 4.0, 5.0, 6.0]
+
+    report = run(tmp_path, with_values(batch, values))
+
+    result = check(report, "suspicious_zeros")
+    assert result["status"] == "warn"
+    assert result["detail"] == "2 series have a 0 between other values"
+    assert result["examples"] == [
+        "demo.ds.a NOR: 0 in 2021, 2022, 2023",
+        "demo.ds.c NOR: 0 in 2022",
+    ]
+    assert report["status"] == "warn"
+
+
+# The licence strings in the lake on 2026-10-03, and the parts of each that are not open.
+LICENCES = [
+    ("CC-BY-4.0", None),
+    ("CC BY 4.0", None),
+    ("CC BY 3.0 IGO", None),
+    ("CC BY 4.0; CC BY 3.0 IGO; CC0 1.0 Universal; JSTOR terms", "JSTOR terms"),
+    (
+        "CC BY 4.0; © Energy Institute 2026; Open Government Licence v3.0",
+        "© Energy Institute 2026",
+    ),
+    ("CC BY 4.0; © 2005 Huberman and Minns", "© 2005 Huberman and Minns"),
+    ("Copyright © UNICEF; CC BY 4.0", "Copyright © UNICEF"),
+    ("© United Nations; CC BY 3.0 IGO; CC BY 4.0", "© United Nations"),
+    ("SIPRI Terms and Conditions", "SIPRI Terms and Conditions"),
+    (
+        "© Energy Institute 2026; CC BY-SA 3.0; Public domain",
+        "© Energy Institute 2026, CC BY-SA 3.0",
+    ),
+    ("CC BY-NC-SA 3.0 IGO; © FAO 2000; Public Domain", "CC BY-NC-SA 3.0 IGO, © FAO 2000"),
+    ("NLOD-2.0", None),
+]
+
+
+@pytest.mark.parametrize(("licence", "not_open"), LICENCES)
+def test_licence_terms(tmp_path: Path, licence: str, not_open: str | None) -> None:
+    report = run(tmp_path, make_batch(licence=licence))
+
+    result = check(report, "licence_terms")
+    if not_open is None:
+        assert result["status"] == "pass"
+    else:
+        assert result["status"] == "fail"
+        assert result["examples"] == [f"demo.ds.a: not open: {not_open}"]
+        assert report["status"] == "fail"
+
+
+def test_a_terms_note_or_publish_false_settles_a_non_open_licence(tmp_path: Path) -> None:
+    sipri = "SIPRI Terms and Conditions"
+    noted = make_dataset(terms_note="Brukt ikke-kommersielt med kildehenvisning.")
+    registry = Registry(sources={"demo": make_source()}, datasets=[noted])
+
+    decided = run(tmp_path / "noted", make_batch(licence=sipri), registry)
+    held_back = run(tmp_path / "hidden", make_batch(licence=sipri, publish=False))
+
+    assert check(decided, "licence_terms")["status"] == "pass"
+    assert check(held_back, "licence_terms")["status"] == "pass"

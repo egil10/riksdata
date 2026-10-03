@@ -278,6 +278,7 @@ figcaption { font-size: 13px; color: var(--ink-2); margin-top: 6px; }
 .data-table th:first-child, .data-table td:first-child { text-align: left; }
 
 .meta { display: grid; grid-template-columns: max-content 1fr; gap: 4px 16px; font-size: 13.5px; margin: 16px 0 0; }
+.meta .terms { display: block; color: var(--ink-2); margin-top: 2px; }
 .meta dt { color: var(--ink-2); }
 .meta dd { margin: 0; overflow-wrap: anywhere; }
 .detail-actions { display: flex; gap: 14px; align-items: center; margin-top: 16px; font-size: 14px; }

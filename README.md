@@ -1,91 +1,61 @@
 # Riksdata
 
-Riksdata is a modern, high-performance economic and social data dashboard for Norway. It provides interactive visualizations for over 120 datasets sourced from Statistics Norway (SSB), Norges Bank, NVE, Statnett, DFO, and Our World in Data.
+**Norge som datasett.** Riksdata gathers official statistics about Norway, shows where every number comes from, and puts Norway next to other countries and its own history.
 
-The official live version is available at [riksdata.no](https://riksdata.no).
+Two things live in this repository:
 
-## Project Mission
+- **The live site** at [riksdata.org](https://riksdata.org) (version 1): a static dashboard of more than 120 datasets. It is frozen and will be replaced.
+- **Riksdata 2.0**: a Python pipeline that fetches statistics from the publishers into one data model, checks them, and exports them for a new site. A preview is at [riksdata.org/beta](https://riksdata.org/beta/).
 
-The objective of Riksdata is to provide a transparent, accessible, and high-fidelity overview of the Norwegian economy and society. By consolidating disparate data sources into a single, cohesive interface, Riksdata empowers researchers, policymakers, and the public to monitor national trends with precision.
+## Riksdata 2.0
 
-For more information, visit [riksdata.org](https://riksdata.org).
+You need [uv](https://docs.astral.sh/uv/). It installs Python 3.12 and the dependencies.
 
-## Architecture
-
-Riksdata is built with a focus on extreme efficiency and a minimal footprint. The application follows a modular approach where the user interface is decoupled from the data layer, allowing for rapid scaling and performance.
-
-### Core Components
-
-- **Modular Logic**: The interface is generated dynamically from a centralized configuration registry.
-- **High-Resolution Exports**: Professional-grade chart exports for PNG, PDF (vector-hybrid), and interactive HTML.
-- **Flat Scandinavian Design**: A premium, minimal aesthetic focused on readability and data prominence.
-- **Political Context**: Integration of historical Norwegian government periods within financial data timelines.
-
-## Data Sources
-
-The platform aggregates data from several primary institutions:
-
-- **Statistics Norway (SSB)**: Real-time economic indicators, demographics, and industrial production via live API integration.
-- **Norges Bank**: Monetary policy data, including key interest rates and exchange rate histories.
-- **Norwegian Water Resources and Energy Directorate (NVE)**: Reservoir fill levels and energy statistics.
-- **Statnett**: National electricity production and consumption monitoring.
-- **DFO (Norwegian Agency for Public and Financial Management)**: Detailed government department budget allocations (2014-2024).
-- **Our World in Data**: Comparative development statistics, emissions data, and social trends.
-
-## Technical Specifications
-
-### Directory Structure
-
-```text
-riksdata/
-├── index.html             # Entry point and modular application shell
-├── src/                   # Source code
-│   ├── js/                # Core application logic
-│   │   ├── main.js        # Registry management and rendering pipeline
-│   │   ├── charts.js      # Data parsing and Chart.js integration
-│   │   ├── utils.js       # Export systems and utility functions
-│   │   └── config.js      # Political periods and global constants
-│   ├── css/               # Stylesheets
-│   │   ├── main.css       # Core layout and component styling
-│   │   └── theme.css      # Design system variables
-├── data/                  # Data persistence
-│   ├── cached/            # Optimized JSON datasets
-│   └── static/            # Static reference data
-└── docs/                  # Technical documentation
+```bash
+uv sync
+uv run riksdata update      # fetch every dataset in registry/ into lake/
+uv run riksdata validate    # data-quality checks
+uv run riksdata sql "select series_id, title_no, last_period from series limit 10"
+uv run pytest -q            # offline tests
 ```
 
-### Installation and Local Development
+The full quickstart is in [docs/v2/README.md](docs/v2/README.md).
 
-To run the project locally for development purposes:
+Status in October 2026:
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/egil10/riksdata.git
-   cd riksdata
-   ```
+- **Two adapters**, Statistics Norway and Our World in Data: 113 series, about 26,600 observations.
+- **318 sources catalogued and tested** in [SOURCES.md](SOURCES.md). What each one can give us is in the [source inventory](docs/v2/source-inventory.md).
+- **Next**: adapters for the World Bank, the OECD and Stortinget, a nightly refresh, and the new site.
 
-2. Serve the directory using a local web server:
-   ```bash
-   # Using Python
-   python -m http.server 8000
-   ```
+## What is where
 
-3. Access the application:
-   Navigate to `http://localhost:8000` in your browser.
+| Path | What it is |
+|---|---|
+| `py/riksdata/` | The pipeline: adapters, registry, HTTP client, storage, validation, export, CLI |
+| `registry/` | Which sources and datasets we fetch, and one small check per catalogued source |
+| `tests/` | Offline tests with small recorded fixtures |
+| `docs/v2/` | Documentation for the pipeline |
+| `beta/` | The preview page and the data exported for it |
+| `PLAN.md` | Architecture, data model and phases |
+| `VISION.md` | Product vision and roadmap |
+| `SOURCES.md` | The catalogue of sources worth integrating, with terms and privacy rules |
+| `CLAUDE.md` | How work in this repository is done |
+| `index.html`, `src/`, `data/`, `assets/`, `sw.js`, `docs/*.md` | Version 1, frozen until the new site takes over |
 
-## Deployment
+`lake/` (the fetched data) is not in git. It is rebuilt with `riksdata update`.
 
-The project is optimized for deployment via GitHub Pages. The build pipeline ensures that all modular components are correctly resolved and the live site reflects the latest updates to the `main` branch.
+## Version 1
 
-## License
+The live dashboard is plain HTML, CSS and JavaScript with its data committed under `data/`. To look at it locally:
 
-This project is licensed under the MIT License.
+```bash
+python3 -m http.server 8000     # then open http://localhost:8000
+```
 
-## Acknowledgments
+Its own notes are in `docs/*.md`. Don't change version 1 files; they are served as they are until the cut-over described in `PLAN.md`.
 
-This platform would not be possible without the open data initiatives from the Norwegian government and international research organizations. We acknowledge the contribution of Statistics Norway, Norges Bank, Statnett, NVE, and Our World in Data in providing the underlying datasets that power this dashboard.
+## Data and licences
 
----
-Development and maintenance by the Riksdata team.
-Official Website: [riksdata.no](https://riksdata.no)
-Project Information: [riksdata.org](https://riksdata.org)
+Every series carries its source, licence and retrieval date. Statistics Norway's data is CC BY 4.0 ("Kilde: Statistisk sentralbyrå"). Data from Our World in Data keeps the licence of each upstream provider. Where a licence is not an open one, the series carries a note on the terms, and the site stays non-commercial.
+
+The code is under the MIT License, as this README has stated since version 1. There is no `LICENSE` file in the repository yet.

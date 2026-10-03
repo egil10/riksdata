@@ -1,74 +1,26 @@
-# Cached API data
-# Note: We include cached data in the repo for GitHub Pages deployment
-# If you want to exclude cached data from git, uncomment the lines below:
-# data/cached/**/*.json
-# !data/cached/.gitkeep
-*.cache
+# The data lake: rebuilt with `riksdata update`, never committed
+lake/
 
-# Python cache
+# Hand-off notes between planning and coding sessions: local only
+.handoff/
+
+# Python
 __pycache__/
 *.pyc
-*.pyo
-*.pyd
-.Python
-env/
-venv/
 .venv/
-
-# Node modules (if we add Node.js tools)
-node_modules/
-npm-debug.log*
-
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Logs
-*.log
-logs/
-
-# Temporary files
-*.tmp
-*.temp
-
-# Cleanup archives (moved files)
-archives/
-
-# Development tools and reports
-tools/
-data/reports/
-data/ssb-api/
-docs/reports/
-
-# Backup files
-*.backup
-* copy.*
-
-# Test files
-test.html
-
-# Generated reports and analysis
-*.report
-*_report.*
-*_analysis.*
-*_results.*
-*_summary.*
-*_optimization.*
-
-# Jupyter notebook checkpoints
-.ipynb_checkpoints/
-
-# Source maps
-*.map
-
-# Riksdata 2.0 (Python pipeline)
-lake/
 .pytest_cache/
 .ruff_cache/
+.mypy_cache/
 
+# Half-written files left behind by an interrupted atomic write
+*.tmp
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Version 1's tooling
+node_modules/

@@ -4,7 +4,8 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 
 ## 0. Project context (read every session)
 - Riksdata 2.0 is being built **alongside** the frozen v1 site. v1 files (`index.html`, `src/`, `data/`, `sw.js`, `assets/`, `docs/*.md` at the top level of docs/) are live on GitHub Pages at riksdata.org. **Don't modify, move or delete v1 files** unless the task explicitly says it's the Phase 2 cut-over.
-- v2 code lives in: `py/riksdata/` (Python package), `registry/`, `tests/`, `docs/v2/`, `site/` (Phase 2) and `.github/workflows/`.
+- v2 code lives in: `py/riksdata/` (Python package), `registry/`, `tests/`, `docs/v2/`, `beta/` (the stopgap page at riksdata.org/beta/ and its exported data), `site/` (Phase 2) and `.github/workflows/`.
+- Session prompts and reviews from the planning chat arrive in `.handoff/` at the repo root. It is git-ignored: read it at the start of a session, and never commit it.
 - The owner (Egil) is strong in Python/ML and works on a Mac with uv and Python 3.12. Prefer clear, typed, boring Python over clever code.
 
 ## 1. Workflow

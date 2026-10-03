@@ -64,9 +64,12 @@ def _slug(code: str) -> str:
 
 
 def _label(dimensions: dict[str, Any], dim: str, code: str) -> str:
-    """A code's label with whitespace tidied (SSB has stray tabs); the code itself if missing."""
+    """A code's label, tidied; the code itself if the label is missing.
+
+    SSB has stray tabs, and marks sub-categories with a leading "¬ ".
+    """
     label = dimensions.get(dim, {}).get("category", {}).get("label", {}).get(code, code)
-    return " ".join(label.split())
+    return " ".join(label.lstrip("¬ \t").split())
 
 
 def _title(base: str | None, labels: list[str]) -> str | None:
@@ -92,12 +95,19 @@ def check_selection(ds: DatasetSpec, metadata: dict[str, Any]) -> None:
             f"(missing: {missing}, unknown: {unknown}). SSB rejects a request that leaves "
             "out a mandatory dimension and silently aggregates over an optional one."
         )
+    time_dims = metadata.get("role", {}).get("time", [])
     cells = 1
     for dim, wanted in ds.select.items():
         bad = [code for code in wanted if not _is_expression(code) and code not in dimensions[dim]]
         if bad:
             raise ValueError(f"{ds.key}: {dim} has no codes {bad}; check the table's metadata")
         explicit = not any(_is_expression(code) for code in wanted)
+        if not explicit and dim not in time_dims:
+            raise ValueError(
+                f"{ds.key}: {dim}: only the time dimension ({', '.join(time_dims)}) may use "
+                f'an expression such as "*", got {wanted}. List the codes, so the set of '
+                "series stays pinned in the registry."
+            )
         cells *= len(wanted) if explicit else len(dimensions[dim])
     if cells > MAX_CELLS:
         raise ValueError(

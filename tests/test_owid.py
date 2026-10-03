@@ -10,7 +10,7 @@ import polars as pl
 import pytest
 
 from riksdata.adapters.base import RawArtifact, check_batch
-from riksdata.adapters.owid import OwidAdapter
+from riksdata.adapters.owid import OwidAdapter, _licence
 from riksdata.http import HttpClient
 from riksdata.registry import DatasetSpec, load_registry
 from support import FIXTURES, REPO_ROOT, RETRIEVED_AT, make_dataset, make_source
@@ -191,6 +191,29 @@ def test_non_redistributable_indicator_is_not_published() -> None:
     batch = adapter.normalize(RawArtifact(**{**artifact.__dict__, "meta": meta}), LIFE)
 
     assert batch.series["publish"].to_list() == [False]
+
+
+@pytest.mark.parametrize(
+    "names",
+    [
+        # As OWID records child-mortality: one licence per origin, the last with a stray comment.
+        [
+            "Copyright © UNICEF",
+            "CC BY 4.0",
+            "CC BY 4.0# License (same as origin.license, for backwards compatibility)",
+        ],
+        # The same three as one string, which is what an earlier version stored.
+        [
+            "Copyright © UNICEF; CC BY 4.0; "
+            "CC BY 4.0# License (same as origin.license, for backwards compatibility)"
+        ],
+        [" Copyright © UNICEF ;; CC BY 4.0 ", None, "", "# only a comment"],
+    ],
+)
+def test_licence_parts_are_cleaned_and_not_repeated(names: list[str | None]) -> None:
+    origins = [{"license": {"name": name} if name is not None else None} for name in names]
+
+    assert _licence({"origins": origins}) == "Copyright © UNICEF; CC BY 4.0"
 
 
 def test_missing_indicator_metadata_leaves_the_licence_empty() -> None:

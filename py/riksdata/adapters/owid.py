@@ -30,9 +30,13 @@ def _value_columns(metadata: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
 
 def _licence(indicator: dict[str, Any]) -> str | None:
-    """The upstream licences OWID records for an indicator, in order and without repeats."""
+    """The upstream licences OWID records for an indicator, in order and without repeats.
+
+    A name can hold several licences separated by ";", and a stray "# comment" after one.
+    """
     names = [(origin.get("license") or {}).get("name") for origin in indicator.get("origins", [])]
-    return "; ".join(dict.fromkeys(name.strip() for name in names if name)) or None
+    parts = [part.split("#")[0].strip() for name in names if name for part in name.split(";")]
+    return "; ".join(dict.fromkeys(part for part in parts if part)) or None
 
 
 def _midnight(day: str) -> datetime:

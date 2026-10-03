@@ -190,6 +190,19 @@ def test_normalize_keeps_missing_cells_with_their_status() -> None:
     assert row(batch.series, "ssb.05803.skilsmisse")["unit"] == "skilsmisser"
 
 
+def test_labels_lose_the_sub_category_mark() -> None:
+    # SSB prefixes sub-categories with "¬ " (table 08484: "¬ Eiendomstyveri").
+    labels = {"a": "¬ Eiendomstyveri", "b": "¬¬  Tyveri\tfrå butikk ", "c": "Alle lovbrudd"}
+    dimensions = {"Lovbrudd": {"category": {"label": labels}}}
+
+    assert [ssb._label(dimensions, "Lovbrudd", code) for code in ("a", "b", "c", "d")] == [
+        "Eiendomstyveri",
+        "Tyveri frå butikk",
+        "Alle lovbrudd",
+        "d",  # no label: the code itself
+    ]
+
+
 def test_normalize_is_deterministic() -> None:
     adapter, _ = make_adapter()
 
@@ -260,6 +273,9 @@ def test_fetch_passes_explicit_value_codes_for_every_dimension() -> None:
         ),
         ({**LFS.select, "Region": ["0301"]}, r"unknown: \['Region'\]"),
         ({**LFS.select, "Kjonn": ["9"]}, r"Kjonn has no codes \['9'\]"),
+        # "*" would let SSB add series behind our back; only the time dimension may use it.
+        ({**LFS.select, "Kjonn": ["*"]}, r"Kjonn: only the time dimension \(Tid\) may use"),
+        ({**LFS.select, "Alder": ["top(2)"]}, r"Alder: only the time dimension"),
     ],
 )
 def test_fetch_rejects_a_selection_that_does_not_fit_the_table(
@@ -275,12 +291,12 @@ def test_fetch_rejects_a_selection_that_does_not_fit_the_table(
 
 def test_fetch_rejects_a_selection_over_the_cell_limit(monkeypatch: pytest.MonkeyPatch) -> None:
     adapter, _ = make_adapter({"/tables/13760/metadata": fixture("13760_metadata_en.json")})
-    everything = LFS.model_copy(update={"select": dict.fromkeys(LFS.select, ["*"])})
-    monkeypatch.setattr(ssb, "MAX_CELLS", 70_000)
+    every_month = LFS.model_copy(update={"select": {**LFS.select, "Tid": ["*"]}})
+    monkeypatch.setattr(ssb, "MAX_CELLS", 400)
 
-    # 3 sexes x 3 ages x 4 adjustments x 8 contents x 248 months = 71,424 cells.
-    with pytest.raises(ValueError, match="selection is 71424 cells; SSB allows 70000"):
-        adapter.fetch(everything)
+    # 1 sex x 1 age x 1 adjustment x 2 contents x 248 months = 496 cells.
+    with pytest.raises(ValueError, match="selection is 496 cells; SSB allows 400"):
+        adapter.fetch(every_month)
 
 
 def test_remote_updated_reads_the_table_timestamp(caplog: pytest.LogCaptureFixture) -> None:
@@ -384,6 +400,9 @@ def test_registry_entries_are_complete() -> None:
         "09695",
         "08484",
     ]
+    # SSB publishes marriages and divorces as 0 for missing years, so 05803 leaves them out.
+    population = next(ds for ds in datasets if ds.dataset == "05803")
+    assert not {"InngEkteskap", "Skilsmisse"} & set(population.select["ContentsCode"])
     for ds in datasets:
         assert ds.entity == "NOR", ds.key
         assert ds.frequency in ("A", "Q", "M"), ds.key

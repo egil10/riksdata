@@ -5,6 +5,7 @@ The column lists mirror the data model in PLAN.md §4.
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Any, Protocol
@@ -95,9 +96,10 @@ class BatchSchemaError(ValueError):
     """A batch does not match the series or observations schema."""
 
 
-def schema_problems(frame: pl.DataFrame, expected: dict[str, pl.DataType], name: str) -> list[str]:
-    """Differences between a frame's schema and the expected one, as readable messages."""
-    actual = dict(frame.schema)
+def schema_problems(
+    actual: Mapping[str, pl.DataType], expected: Mapping[str, pl.DataType], name: str
+) -> list[str]:
+    """Differences between a schema and the expected one, as readable messages."""
     problems = [f"{name}: missing column {column!r}" for column in expected if column not in actual]
     problems += [
         f"{name}: unexpected column {column!r}" for column in actual if column not in expected
@@ -114,8 +116,8 @@ def schema_problems(frame: pl.DataFrame, expected: dict[str, pl.DataType], name:
 
 def check_batch(batch: Batch) -> None:
     """Raise BatchSchemaError unless both frames match the PLAN.md §4 schemas exactly."""
-    problems = schema_problems(batch.series, SERIES_SCHEMA, "series") + schema_problems(
-        batch.observations, OBSERVATIONS_SCHEMA, "observations"
+    problems = schema_problems(batch.series.schema, SERIES_SCHEMA, "series") + schema_problems(
+        batch.observations.schema, OBSERVATIONS_SCHEMA, "observations"
     )
     if problems:
         raise BatchSchemaError("; ".join(problems))

@@ -1,0 +1,700 @@
+# One small request per row of SOURCES.md, for `riksdata check-sources`.
+#
+# A check proves that a source can be reached from where the command runs. It is not ingestion:
+# the command reads at most `max_bytes` (default 64 KB) of one response and never retries.
+#
+#   url          the request to send. Exactly one of `url` and `skip` is required
+#   expect       text that must be in the sampled body for status `ok`. Without `expect` or
+#                `expect_type`, an answer only counts as `reachable`
+#   expect_type  text that must be in the Content-Type header
+#   needs_key    env var that would hold the (free) key. We send no key, so 401/403 is expected
+#   pii: true    the response holds person-level data, so no sample is kept (SOURCES.md A3)
+#   skip         why the row is not requested at all (never-use rows, paid data, no endpoint)
+#
+# `section` is the SOURCES.md section and `priority` its Pri column ("-" = don't use).
+
+# --- 1a. SSB core services ---------------------------------------------------------------
+- {id: ssb-statbank, section: "1a", priority: A, name: "SSB Statbank (PxWeb API v2)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/14710?lang=en", expect: "14710: Consumer price index"}
+- {id: ssb-kostra, section: "1a", priority: A, name: "SSB KOSTRA (in Statbank)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/12367?lang=en", expect: "12367:"}
+- {id: ssb-klass, section: "1a", priority: A, name: "SSB Klass (classifications)",
+   url: "https://data.ssb.no/api/klass/v1/classifications/131", headers: {Accept: "application/json"}, expect: "kommune"}
+- {id: ssb-projections, section: "1a", priority: B, name: "SSB population projections",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/14740?lang=en", expect: "14740: Population projections"}
+- {id: ssb-histstat, section: "1a", priority: B, name: "SSB Historisk statistikk",
+   url: "https://www.ssb.no/a/histstat/"}
+- {id: microdata-no, section: "1a", priority: B, name: "microdata.no variable catalogue",
+   url: "https://microdata.no/discovery/variables"}
+- {id: data-norge-fdk, section: "1a", priority: A, name: "data.norge.no (FDK) search API",
+   url: "https://search.api.fellesdatakatalog.digdir.no/search", method: POST,
+   body: {query: "folkemengde", pagination: {page: 0, size: 1}}, expect: '"hits"'}
+- {id: ssb-lotte-skatt, section: "1a", priority: C, name: "SSB LOTTE-Skatt / KOMMODE (model docs)",
+   url: "https://www.ssb.no/forskning"}
+
+# --- 1b. SSB table shortlist: one representative table per theme row ----------------------
+- {id: ssb-tables-starter, section: "1b", priority: A, name: "SSB starter set (Phase 1)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/13760?lang=en", expect: "13760:"}
+- {id: ssb-tables-wealth, section: "1b", priority: A, name: "SSB wealth concentration (10318)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/10318?lang=en", expect: "10318:"}
+- {id: ssb-tables-income, section: "1b", priority: A, name: "SSB income distribution (07756)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/07756?lang=en", expect: "07756:"}
+- {id: ssb-tables-debt, section: "1b", priority: A, name: "SSB debt and housing burden (08726)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/08726?lang=en", expect: "08726:"}
+- {id: ssb-tables-low-income, section: "1b", priority: A, name: "SSB low income and benefit groups (12599)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/12599?lang=en", expect: "12599:"}
+- {id: ssb-tables-public-finance, section: "1b", priority: A, name: "SSB tax and public finance (07022)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/07022?lang=en", expect: "07022:"}
+- {id: ssb-tables-kostra-detail, section: "1b", priority: A, name: "SSB KOSTRA detail (13539)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/13539?lang=en", expect: "13539:"}
+- {id: ssb-tables-labour, section: "1b", priority: A, name: "SSB labour and wages (11418)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/11418?lang=en", expect: "11418:"}
+- {id: ssb-tables-crime, section: "1b", priority: A, name: "SSB crime and justice (08484)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/08484?lang=en", expect: "08484:"}
+- {id: ssb-tables-housing, section: "1b", priority: A, name: "SSB housing market (07221)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/07221?lang=en", expect: "07221:"}
+- {id: ssb-tables-trade, section: "1b", priority: A, name: "SSB trade (08799)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/08799?lang=en", expect: "08799:"}
+- {id: ssb-tables-business-support, section: "1b", priority: A, name: "SSB business support and R&D (12639)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/12639?lang=en", expect: "12639:"}
+- {id: ssb-tables-elections, section: "1b", priority: A, name: "SSB elections and democracy (13151)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/13151?lang=en", expect: "13151:"}
+- {id: ssb-tables-society, section: "1b", priority: B, name: "SSB society and everyday life (10467)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/10467?lang=en", expect: "10467:"}
+- {id: ssb-tables-hunting, section: "1b", priority: B, name: "SSB hunting and wildlife (06036)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/06036?lang=en", expect: "06036:"}
+
+# --- 2. Public finance, tax, households (non-SSB) ----------------------------------------
+- {id: dfo-statsregnskap, section: "2", priority: A, name: "DFØ statsregnskap",
+   url: "https://statsregnskapet.dfo.no/nedlasting/statsregnskapet_siste_maaned.zip", expect: "PK"}
+- {id: regjeringen-budget-docs, section: "2", priority: A, name: "regjeringen.no budget documents (Prop. 1 S, Gul bok, Prop. 1 LS)",
+   url: "https://www.regjeringen.no/no/statsbudsjett/2026/id3118616/"}
+- {id: regjeringen-budget-answers, section: "2", priority: A, name: "Finansdepartementets svar på budsjettspørsmål",
+   url: "https://www.regjeringen.no/no/tema/okonomi-og-budsjett/statsbudsjett/id1437/"}
+- {id: regjeringen-gront-hefte, section: "2", priority: A, name: "Grønt hefte, frie inntekter, terminutbetalinger",
+   url: "https://www.regjeringen.no/no/tema/kommuner-og-regioner/kommuneokonomi/gront-hefte/id547024/"}
+- {id: regjeringen-tbu, section: "2", priority: B, name: "TBU (kommuneøkonomi, inntektsoppgjørene)",
+   url: "https://www.regjeringen.no/no/dep/kdd/org/styrer-rad-og-utvalg/tbu/id449207/"}
+- {id: regjeringen-eierberetning, section: "2", priority: A, name: "Statens eierberetning",
+   url: "https://www.regjeringen.no/no/tema/naringsliv/statlig-eierskap/id1336/",
+   note: "The state-ownership topic page. The report itself is linked from there"}
+- {id: skatteetaten-trekktabell, section: "2", priority: A, name: "Skatteetaten trekktabell (all withholding tables, ZIP)",
+   url: "https://www.skatteetaten.no/contentassets/62ac7c2863c245398f9caa8b0c6b058a/alletabelleneienfiltilskatteetatenno.zip", expect: "PK"}
+- {id: skatteetaten-satser, section: "2", priority: B, name: "Skatteetaten satser",
+   url: "https://www.skatteetaten.no/satser/"}
+- {id: skatteetaten-delings-api, section: "2", priority: "-", name: "Skatteetaten delings-APIs",
+   skip: "Don't use: person and organisation lookups under agreement only (SOURCES.md A3)"}
+- {id: skattelister, section: "2", priority: "-", name: "Skattelister and person-level aksjonærregister",
+   skip: "Never use: person-level tax and shareholding data (SOURCES.md A3)"}
+- {id: nav-g-api, section: "2", priority: A, name: "NAV G (grunnbeløp) API",
+   url: "https://g.nav.no/api/v1/grunnbel%C3%B8p", expect: "grunnbel"}
+- {id: norges-bank-sdmx, section: "2", priority: A, name: "Norges Bank SDMX",
+   url: "https://data.norges-bank.no/api/data/EXR/B.USD.NOK.SP?format=sdmx-json&lastNObservations=1", expect: '"dataSets"'}
+- {id: norges-bank-hms, section: "2", priority: A, name: "Norges Bank Historical Monetary Statistics",
+   url: "https://www.norges-bank.no/globalassets/upload/hms/data/hmfs-houseprice-indices-norway_1819-2023.xlsx", expect: "PK"}
+- {id: nbim-holdings, section: "2", priority: A, name: "NBIM holdings report API",
+   url: "https://www.nbim.no/api/investments/v2/report/?assetType=eq&date=2025-12-31&fileType=csv", encoding: "utf-16", expect: ";"}
+- {id: nbim-voting, section: "2", priority: A, name: "NBIM Voting Records API",
+   url: "https://vd.a.nbim.no/v1/query/company/equinor", needs_key: NBIM_VOTING_KEY}
+- {id: etikkradet, section: "2", priority: B, name: "Etikkrådet (WordPress JSON)",
+   url: "https://etikkradet.no/wp-json/wp/v2/posts?per_page=1", expect: '"id"'}
+- {id: finanstilsynet, section: "2", priority: B, name: "Finanstilsynet",
+   url: "https://www.finanstilsynet.no/"}
+- {id: gjeldsregisteret, section: "2", priority: B, name: "Gjeldsregisteret nøkkeltall",
+   url: "https://www.gjeldsregisteret.com/nokkeltall"}
+- {id: lanekassen, section: "2", priority: B, name: "Lånekassen statistics",
+   url: "https://lanekassen.no/"}
+- {id: sifo-referansebudsjett, section: "2", priority: A, name: "SIFO referansebudsjett (OsloMet)",
+   url: "https://www.oslomet.no/om/sifo/referansebudsjettet"}
+- {id: husbanken, section: "2", priority: B, name: "Husbanken statistikkbank",
+   url: "https://statistikk.husbanken.no/"}
+- {id: spk-klp, section: "2", priority: C, name: "SPK / KLP annual reports",
+   url: "https://www.spk.no/"}
+- {id: frisch-evaluations, section: "2", priority: C, name: "Frisch Centre / SSB Discussion Papers / NOU evaluations",
+   url: "https://www.frisch.uio.no/"}
+- {id: robek, section: "2", priority: C, name: "ROBEK register (and Kommunal Rapport)",
+   url: "https://www.regjeringen.no/no/tema/kommuner-og-regioner/kommuneokonomi/robek-2/id449305/",
+   note: "Kommunal Rapport's barometer is behind a paywall and is not requested"}
+
+# --- 3. Welfare and labour ---------------------------------------------------------------
+- {id: nav-statistics, section: "3", priority: A, name: "NAV statistics files",
+   url: "https://www.nav.no/no/nav-og-samfunn/statistikk/arbeidssokere-og-stillinger-statistikk/hovedtall-om-arbeidsmarkedet",
+   note: "The page links to CSV files whose URLs change every month"}
+- {id: nav-pam-stilling-feed, section: "3", priority: C, name: "NAV pam-stilling-feed (public token)",
+   url: "https://pam-stilling-feed.nav.no/api/publicToken", expect: "ey"}
+- {id: nav-partner-apis, section: "3", priority: "-", name: "NAV partner APIs",
+   skip: "Don't use: person-level benefits under agreement only"}
+- {id: arbeidstilsynet, section: "3", priority: B, name: "Arbeidstilsynet open registers",
+   url: "https://data.arbeidstilsynet.no/bemanningsforetaksregisteret2/api"}
+- {id: bufdir, section: "3", priority: C, name: "Bufdir statistics",
+   url: "https://www.bufdir.no/statistikk-og-analyse/"}
+- {id: ks, section: "3", priority: C, name: "KS (PAI aggregates, Kommuneøkonomi)",
+   url: "https://www.ks.no/"}
+- {id: employer-union-orgs, section: "3", priority: C, name: "Employer and union organisations",
+   skip: "No open data of their own; covered by Brreg, Partifinansiering and SSB"}
+
+# --- 4a. Parliament, elections, parties, law ---------------------------------------------
+- {id: stortinget, section: "4a", priority: A, name: "Stortinget open data",
+   url: "https://data.stortinget.no/eksport/sesjoner?format=json", expect: "sesjoner_liste"}
+- {id: stortinget-interesseregister, section: "4a", priority: B, name: "Stortingets register for verv og økonomiske interesser (PDF)",
+   url: "https://www.stortinget.no/globalassets/pdf/verv-og-okonomiske-interesser/arkiv_2025-2026/pr-30-juni-2026.pdf", expect: "%PDF", pii: true}
+- {id: valgresultat, section: "4a", priority: A, name: "Valgdirektoratet valgresultat.no API",
+   url: "https://valgresultat.no/api/2025/st", expect: '"_links"'}
+- {id: valg-lister-kandidater, section: "4a", priority: A, name: "Valgdirektoratet lists and candidates (XLSX)",
+   url: "https://www.valg.no/globalassets/dokumenter-2023/om-valg/valgdata/lister-og-kandidater/kommunestyrevalget_2023_lister_og_kandidater_270623.xlsx", expect: "PK", pii: true}
+- {id: sikt-kommunedatabasen, section: "4a", priority: A, name: "Sikt Kommunedatabasen API",
+   url: "https://kommunedatabasen.sikt.no/api/search?q=valg", expect_type: "json"}
+- {id: sikt-polsys, section: "4a", priority: B, name: "Sikt PolSys",
+   url: "https://polsys.sikt.no"}
+- {id: sikt-partidokumentarkivet, section: "4a", priority: A, name: "Sikt Partidokumentarkivet (ZIP)",
+   url: "https://www.nsd.no/data/individ/publikasjoner/Partidokumentarkivet/parti.zip", expect: "PK", timeout: 60}
+- {id: sikt-forvaltningsdatabasen, section: "4a", priority: B, name: "Sikt Forvaltningsdatabasen",
+   url: "https://forvaltningsdatabasen.sikt.no"}
+- {id: party-programmes, section: "4a", priority: A, name: "Party programmes (index at overstortinget.no)",
+   url: "https://overstortinget.no/partier/programmer"}
+- {id: regjeringsplattformer, section: "4a", priority: A, name: "Regjeringsplattformer (Hurdalsplattformen)",
+   url: "https://www.regjeringen.no/no/dokumenter/hurdalsplattformen/id2877252/"}
+- {id: partiregisteret, section: "4a", priority: B, name: "Partiregisteret (Brreg)",
+   url: "https://data.brreg.no/partiregisteret/api/lastned/csv", expect_type: "csv"}
+- {id: partifinansiering, section: "4a", priority: A, name: "Partifinansiering.no",
+   url: "https://www.partifinansiering.no/"}
+- {id: ssb-partifinansiering, section: "4a", priority: C, name: "SSB partifinansiering statistics (11233)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/11233?lang=en", expect: "11233:"}
+- {id: lovdata-api, section: "4a", priority: A, name: "Lovdata public API",
+   url: "https://api.lovdata.no/v1/publicData/list", expect: "tar.bz2"}
+- {id: wikidata, section: "4a", priority: A, name: "Wikidata SPARQL",
+   url: "https://query.wikidata.org/sparql?query=ASK%20%7B%20wd%3AQ9045502%20%3Fp%20%3Fo%20%7D&format=json", expect: '"boolean"'}
+- {id: party-facts, section: "4a", priority: B, name: "Party Facts",
+   url: "https://partyfacts.herokuapp.com/download/"}
+- {id: wikipedia, section: "4a", priority: C, name: "Wikipedia (MediaWiki API)",
+   url: "https://no.wikipedia.org/w/api.php?action=query&titles=Stortinget&prop=info&format=json", expect: '"pageid"'}
+- {id: pollofpolls, section: "4a", priority: C, name: "pollofpolls.no",
+   skip: "Not requested: no open licence, so no scraping without written permission. Link out only"}
+- {id: politpro, section: "4a", priority: B, name: "PolitPro API",
+   url: "https://politpro.eu/api/v1/NO/polls/latest", needs_key: POLITPRO_TOKEN}
+- {id: holder-de-ord, section: "4a", priority: B, name: "Holder de ord data (GitHub)",
+   url: "https://api.github.com/repos/holderdeord/hdo-storting-importer", expect: '"full_name"'}
+
+# --- 4b. Government activity and transparency --------------------------------------------
+- {id: einnsyn, section: "4b", priority: A, name: "eInnsyn API (monthly statistics)",
+   url: "https://api.einnsyn.no/statistics?administrativEnhet=972417807&aggregateFrom=2026-01-01&aggregateInterval=month", expect_type: "json"}
+- {id: stotteregisteret, section: "4b", priority: A, name: "Støtteregisteret (Brreg)",
+   url: "https://stottetiltak-registerinfo-api.app.brreg.no/api/v1/soek/stoettetildeling?pageSize=1&page=1", method: POST, body: [], expect_type: "json", pii: true}
+- {id: ted, section: "4b", priority: B, name: "TED API v3",
+   url: "https://api.ted.europa.eu/v3/notices/search", method: POST,
+   body: {query: "buyer-country=NOR", fields: ["publication-number"], limit: 1}, expect: '"notices"'}
+- {id: doffin, section: "4b", priority: B, name: "Doffin API (DFØ)",
+   url: "https://api.doffin.no/public/v2/search", needs_key: DOFFIN_KEY}
+- {id: anskaffelser, section: "4b", priority: C, name: "Anskaffelser.no innkjøpsstatistikk",
+   url: "https://anskaffelser.no/"}
+- {id: opentender, section: "4b", priority: C, name: "OpenTender.eu Norway",
+   url: "https://opentender.eu/no/download"}
+- {id: lobbyregister, section: "4b", priority: B, name: "Lobbyregister",
+   skip: "Doesn't exist. Proxies are eInnsyn and the Stortinget and regjeringen hearings"}
+- {id: regjeringen-horinger, section: "4b", priority: C, name: "regjeringen.no høringer",
+   url: "https://www.regjeringen.no/no/dokument/hoyringar/id1763/"}
+- {id: karantenenemnda, section: "4b", priority: C, name: "Karantenenemnda decisions",
+   url: "https://www.regjeringen.no/no/dep/dfd/org/styrer-rad-og-utvalg/karantenenemnda/id2343370/", pii: true}
+- {id: regjeringens-kalender, section: "4b", priority: B, name: "Regjeringens kalender",
+   url: "https://www.regjeringen.no/no/aktuelt/kalender/id1330/"}
+- {id: nb-catalogue-nou, section: "4b", priority: A, name: "NOU / Meld. St. metadata via the NB catalogue",
+   url: "https://api.nb.no/catalog/v1/items?q=NOU&size=1", expect: '"_embedded"'}
+- {id: einnsyn-moetesak, section: "4b", priority: C, name: "Kommunestyre cases via eInnsyn (møtesak)",
+   url: "https://api.einnsyn.no/search?entity=Moetesak&limit=1", expect_type: "json", pii: true}
+
+# --- 4c. Derived politics metrics --------------------------------------------------------
+- {id: derived-question-volume, section: "4c", priority: A, name: "Written-question volume and response times",
+   skip: "Derived metric, computed from Stortinget data. No endpoint of its own"}
+- {id: derived-dok8-fate, section: "4c", priority: A, name: "Fate of Dokument 8 proposals",
+   skip: "Derived metric, computed from Stortinget data. No endpoint of its own"}
+- {id: derived-anmodningsvedtak, section: "4c", priority: A, name: "Anmodningsvedtak follow-up",
+   skip: "Derived metric, computed from Stortinget and regjeringen.no data. No endpoint of its own"}
+- {id: derived-law-velocity, section: "4c", priority: B, name: "Law-change velocity",
+   skip: "Derived metric, computed from Lovdata. No endpoint of its own"}
+- {id: derived-latter-i-salen, section: "4c", priority: C, name: "Latter i salen and reprimands",
+   skip: "Derived metric, computed from Stortinget referat. No endpoint of its own"}
+- {id: derived-speech-vs-votes, section: "4c", priority: B, name: "Speech time by topic vs. votes",
+   skip: "Derived metric, computed from ParlaMint and Stortinget data. No endpoint of its own"}
+
+# --- 5. Accountability, courts, regulators -----------------------------------------------
+- {id: riksrevisjonen, section: "5", priority: A, name: "Riksrevisjonen reports",
+   url: "https://www.riksrevisjonen.no/rapporter/"}
+- {id: sivilombudet, section: "5", priority: B, name: "Sivilombudet statements",
+   url: "https://www.sivilombudet.no/uttalelser/"}
+- {id: trygderetten, section: "5", priority: B, name: "Trygderetten",
+   url: "https://www.trygderetten.no"}
+- {id: diskrimineringsnemnda, section: "5", priority: C, name: "Diskrimineringsnemnda",
+   url: "https://www.diskrimineringsnemnda.no"}
+- {id: tilsyn-decisions, section: "5", priority: C, name: "Datatilsynet / Konkurransetilsynet / Finanstilsynet decisions",
+   url: "https://www.datatilsynet.no/"}
+- {id: regjeringsadvokaten, section: "5", priority: C, name: "Regjeringsadvokaten",
+   url: "https://www.regjeringsadvokaten.no"}
+- {id: hudoc, section: "5", priority: A, name: "ECHR HUDOC",
+   url: "https://hudoc.echr.coe.int/app/query/results?query=contentsitename%3AECHR%20AND%20respondent%3A%22NOR%22%20AND%20documentcollectionid2%3A%22JUDGMENTS%22&select=itemid,kpdate&sort=&start=0&length=1", expect: '"resultcount"', pii: true}
+- {id: esa-efta-court, section: "5", priority: B, name: "ESA and EFTA Court",
+   url: "https://www.eftasurv.int"}
+- {id: eea-lex, section: "5", priority: A, name: "EEA-Lex (EFTA)",
+   url: "https://www.efta.int/eea-lex"}
+- {id: mattilsynet-smilefjes, section: "5", priority: A, name: "Mattilsynet smilefjes",
+   url: "https://data.mattilsynet.no/smilefjes-tilsyn.csv", expect: "orgnummer"}
+
+# --- 6. Speech, text, media, attention ---------------------------------------------------
+- {id: parlamint-no, section: "6", priority: A, name: "ParlaMint-NO 1.2 (Språkbanken)",
+   url: "https://www.nb.no/sbfil/parlamint/v1.2_ParlaMint-NO.TEI.tar.gz", timeout: 60}
+- {id: talk-of-norway, section: "6", priority: B, name: "Talk of Norway (UiO, GitHub)",
+   url: "https://api.github.com/repos/ltgoslo/talk-of-norway", expect: '"full_name"'}
+- {id: trontaler, section: "6", priority: B, name: "Trontaler, CAP-coded",
+   skip: "No stable public URL: supplementary data of a 2023 article"}
+- {id: npsc, section: "6", priority: C, name: "NPSC 2.0 (Språkbanken)",
+   url: "https://www.nb.no/sprakbanken/ressurskatalog/oai-nb-no-sbr-84/"}
+- {id: nb-dhlab, section: "6", priority: A, name: "NB DHLAB API (n-grams)",
+   url: "https://api.nb.no/dhlab/ngram_newspapers", method: POST,
+   body: {word: ["formuesskatt"], period: [2000, 2020]}, expect: "formuesskatt"}
+- {id: nb-catalogue, section: "6", priority: B, name: "NB catalogue / IIIF API",
+   url: "https://api.nb.no/catalog/v1/items?q=statsbudsjettet&size=1", expect: '"_embedded"'}
+- {id: ncc, section: "6", priority: B, name: "Norwegian Colossal Corpus (Hugging Face)",
+   url: "https://huggingface.co/api/datasets/NbAiLab/NCC", expect: '"NbAiLab/NCC"'}
+- {id: wikimedia-pageviews, section: "6", priority: A, name: "Wikimedia pageviews API",
+   url: "https://wikimedia.org/api/rest_v1/metrics/pageviews/per-article/no.wikipedia/all-access/user/Stortinget/monthly/2026010100/2026090100", expect: '"views"'}
+- {id: google-trends, section: "6", priority: C, name: "Google Trends",
+   skip: "Not requested: the official API is application-only and scraping is not allowed (SOURCES.md A3)"}
+- {id: gdelt, section: "6", priority: C, name: "GDELT DOC 2.0",
+   url: "https://api.gdeltproject.org/api/v2/doc/doc?query=norway%20sourcecountry:NO&mode=timelinevol&format=json", expect: '"timeline"'}
+- {id: medietilsynet, section: "6", priority: B, name: "Medietilsynet Mediedatabasen",
+   url: "https://www.medietilsynet.no/fakta/mediedatabasen/"}
+- {id: medietall, section: "6", priority: C, name: "Medietall.no (MBL)",
+   url: "https://www.medietall.no/"}
+- {id: pfu-basen, section: "6", priority: C, name: "PFU-basen",
+   url: "https://pfu.presse.no/pfu-basen", note: "Landing page only. Ask before any bulk use"}
+- {id: retriever, section: "6", priority: C, name: "Retriever / Atekst",
+   skip: "Not requested: institutional login, proprietary content"}
+- {id: ntb, section: "6", priority: "-", name: "NTB",
+   skip: "Don't use: commercial news wire"}
+- {id: nrk-psapi, section: "6", priority: C, name: "NRK PSAPI",
+   url: "https://psapi.nrk.no/documentation/"}
+
+# --- 7. Opinion, values, expert positions ------------------------------------------------
+- {id: medborgerpanelet, section: "7", priority: B, name: "Norsk medborgerpanel (via Sikt Surveybanken)",
+   url: "https://surveybanken.sikt.no/", note: "Landing page only. Data must be ordered with a Feide login"}
+- {id: valgundersokelsen, section: "7", priority: B, name: "Norsk valgundersøkelse (via Sikt Surveybanken)",
+   url: "https://surveybanken.sikt.no/no/search?query=valgunders%C3%B8kelse", note: "Search page only. Data must be ordered"}
+- {id: ess, section: "7", priority: B, name: "European Social Survey (beta API docs)",
+   url: "https://api.ess.sikt.no/docs"}
+- {id: issp, section: "7", priority: B, name: "ISSP (GESIS)",
+   url: "https://www.gesis.org/en/issp/home"}
+- {id: evs-wvs, section: "7", priority: C, name: "EVS / WVS",
+   url: "https://europeanvaluesstudy.eu/"}
+- {id: eurobarometer, section: "7", priority: "-", name: "Eurobarometer",
+   skip: "Skip: Norway is not in the Standard Eurobarometer"}
+- {id: dfo-innbyggerundersokelsen, section: "7", priority: B, name: "DFØ Innbyggerundersøkelsen",
+   url: "https://www.dfo.no/undersokelser/innbyggerundersokelsen-2026"}
+- {id: oecd-trust-survey, section: "7", priority: B, name: "OECD Trust Survey",
+   url: "https://www.oecd.org/governance/trust-in-government/"}
+- {id: ches, section: "7", priority: B, name: "Chapel Hill Expert Survey",
+   url: "https://www.chesdata.eu"}
+- {id: global-party-survey, section: "7", priority: C, name: "Global Party Survey 2019 (Harvard Dataverse)",
+   url: "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/WMGTNS", expect: '"status":"OK"'}
+- {id: polidoc, section: "7", priority: C, name: "POLIDOC",
+   url: "https://polidoc.net"}
+
+# --- 8. Health ---------------------------------------------------------------------------
+- {id: fhi-statistikk, section: "8", priority: A, name: "FHI statistikk-API (13 registries)",
+   url: "https://statistikk-data.fhi.no/api/open/v1/Common/source", expect: '"id"'}
+- {id: fhi-nokkel, section: "8", priority: A, name: "FHI nokkel (Folkehelseprofiler)",
+   url: "https://statistikk-data.fhi.no/api/open/v1/nokkel/Table", expect: '"tableId"'}
+- {id: helsedir-nki, section: "8", priority: A, name: "Helsedirektoratet HAPI: NKI quality indicators",
+   url: "https://api.helsedirektoratet.no/innhold/innhold?infoTyper=NKI", needs_key: HELSEDIR_KEY}
+- {id: helsedir-ventetider, section: "8", priority: A, name: "Helsedirektoratet ventetider and SAMDATA",
+   url: "https://www.helsedirektoratet.no/statistikk"}
+- {id: fastlegestatistikk, section: "8", priority: A, name: "Fastlegestatistikk",
+   url: "https://www.helsedirektoratet.no/statistikk",
+   note: "Helsedirektoratet's statistics landing page. The old fastlegestatistikk address gives 404"}
+- {id: helseatlas, section: "8", priority: B, name: "SKDE Helseatlas",
+   url: "https://helseatlas.no", note: "www.helseatlas.no has a certificate for another host name"}
+- {id: kreftregisteret, section: "8", priority: B, name: "Kreftregisteret statistikkbank",
+   url: "https://sb.kreftregisteret.no/"}
+- {id: kvalitetsregistre, section: "8", priority: C, name: "Nasjonale medisinske kvalitetsregistre",
+   url: "https://www.kvalitetsregistre.no/"}
+- {id: helsenorge, section: "8", priority: "-", name: "Helsenorge 'Velg behandlingssted'",
+   skip: "Don't use: no open licence or API, and scraping is not allowed (SOURCES.md A3)"}
+
+# --- 9. Education ------------------------------------------------------------------------
+- {id: udir-nsr, section: "9", priority: A, name: "Udir NSR (Nasjonalt skoleregister)",
+   url: "https://data-nsr.udir.no/v3/enheter?sidenummer=1&antallPerSide=1", expect_type: "json"}
+- {id: udir-nbr, section: "9", priority: B, name: "Udir NBR (barnehageregister)",
+   url: "https://data-nbr.udir.no/v4/enheter?sidenummer=1&antallPerSide=1", expect_type: "json"}
+- {id: udir-statistikkbanken, section: "9", priority: A, name: "Udir statistikkbanken API (Elevundersøkelsen)",
+   url: "https://api.statistikkbanken.udir.no/api/rest/v2/Eksport/152/filterVerdier", expect_type: "json"}
+- {id: udir-statistikkportalen, section: "9", priority: A, name: "Udir Statistikkportalen",
+   url: "https://statistikkportalen.udir.no"}
+- {id: udir-nasjonale-prover, section: "9", priority: C, name: "Udir nasjonale prøver item-level CSVs",
+   url: "https://www.udir.no/om-udir/data/data-fra-nasjonale-prover/"}
+- {id: udir-barnehagefakta, section: "9", priority: B, name: "Udir Barnehagefakta API",
+   url: "https://www.udir.no/om-udir/data/", note: "The API path is not known; this is Udir's data page"}
+- {id: dbh, section: "9", priority: B, name: "DBH (HK-dir) query API",
+   url: "https://dbh.hkdir.no/dbhapiklient/",
+   note: "The API client page. The query API (POST /api/Tabeller/hentJSONTabellData) answers, but each table needs its own variable and filter names, which are not worked out yet"}
+- {id: samordna-opptak, section: "9", priority: B, name: "Samordna opptak søkertall",
+   url: "https://www.samordnaopptak.no/",
+   note: "Front page only. The old søkertall address gives 404; the same tables are in DBH"}
+- {id: studiebarometeret, section: "9", priority: C, name: "NOKUT Studiebarometeret",
+   url: "https://www.studiebarometeret.no/no/"}
+- {id: utdanning-no, section: "9", priority: C, name: "utdanning.no API",
+   url: "https://api.utdanning.no/"}
+
+# --- 10. Justice and police --------------------------------------------------------------
+- {id: ssb-crime-tables, section: "10", priority: A, name: "SSB crime tables (08487)",
+   url: "https://data.ssb.no/api/pxwebapi/v2/tables/08487?lang=en", expect: "08487:"}
+- {id: politiloggen, section: "10", priority: B, name: "Politiloggen API",
+   url: "https://api.politiet.no/politiloggen/v1/messages?Take=1", expect_type: "json"}
+- {id: politiet-responstid, section: "10", priority: B, name: "Politiet årsrapport / responstid",
+   url: "https://www.politiet.no/om-politiet/tall-og-fakta/"}
+- {id: domstol-statistikk, section: "10", priority: B, name: "Domstoladministrasjonen statistikk",
+   url: "https://www.domstol.no/om-domstolene/statistikk/"}
+- {id: kriminalomsorgen, section: "10", priority: C, name: "Kriminalomsorgen statistics",
+   url: "https://www.kriminalomsorgen.no/"}
+- {id: dsb-bris, section: "10", priority: C, name: "DSB BRIS brannstatistikk",
+   url: "https://www.brannstatistikk.no/"}
+
+# --- 11. Energy and petroleum ------------------------------------------------------------
+- {id: nve-magasinstatistikk, section: "11", priority: A, name: "NVE magasinstatistikk",
+   url: "https://biapi.nve.no/magasinstatistikk/api/Magasinstatistikk/HentOffentligDataSisteUke", expect: "fyllingsgrad"}
+- {id: nve-kraftverk, section: "11", priority: A, name: "NVE kraftverk API",
+   url: "https://api.nve.no/web/Powerplant/GetHydroPowerPlantsInOperation", expect_type: "json"}
+- {id: nve-nettleietariffer, section: "11", priority: A, name: "NVE nettleietariffer API",
+   url: "https://biapi.nve.no/nettleietariffer/api/NettleiePerOmradePrManedHusholdningFritidEffekttariffer?FraDato=2026-08-01&Tariffgruppe=Husholdning&Kundegruppe=1", expect_type: "json"}
+- {id: nve-hydapi, section: "11", priority: C, name: "NVE HydAPI",
+   url: "https://hydapi.nve.no/api/v1/Stations?Active=1", needs_key: NVE_HYDAPI_KEY}
+- {id: nve-regobs, section: "11", priority: C, name: "NVE Varsom / regObs",
+   url: "https://api.regobs.no/v5/Search/Count", method: POST, body: {FromDtObsTime: "2026-01-01T00:00:00"}, expect: "TotalMatches"}
+- {id: statnett-driftsdata, section: "11", priority: B, name: "Statnett driftsdata",
+   url: "https://driftsdata.statnett.no/restapi/ProductionConsumption/GetLatestDetailedOverview", expect: "ProductionData"}
+- {id: elhub, section: "11", priority: A, name: "Elhub energy-data API",
+   url: "https://api.elhub.no/energy-data/v0/price-areas?dataset=CONSUMPTION_PER_GROUP_MBA_HOUR&startDate=2026-09-01T00:00:00%2B02:00&endDate=2026-09-01T02:00:00%2B02:00", expect: '"data"'}
+- {id: hvakosterstrommen, section: "11", priority: A, name: "hvakosterstrommen.no API",
+   url: "https://www.hvakosterstrommen.no/api/v1/prices/2026/10-03_NO1.json", expect: "NOK_per_kWh"}
+- {id: entsoe, section: "11", priority: A, name: "ENTSO-E Transparency",
+   url: "https://web-api.tp.entsoe.eu/api?documentType=A44&in_Domain=10YNO-1--------2&out_Domain=10YNO-1--------2&periodStart=202610010000&periodEnd=202610020000", needs_key: ENTSOE_TOKEN}
+- {id: nobil, section: "11", priority: B, name: "Enova NOBIL",
+   url: "https://nobil.no/api/server/datadump.php?format=json", needs_key: NOBIL_KEY}
+- {id: energimerking, section: "11", priority: C, name: "Energimerkeregisteret (Enova)",
+   url: "https://www.enova.no/energimerking/"}
+- {id: sodir-factpages, section: "11", priority: A, name: "Sodir FactPages CSV export",
+   url: "https://factpages.sodir.no/public?/Factpages/external/tableview/field_production_monthly&rs:Command=Render&rc:Toolbar=false&rc:Parameters=f&IpAddress=not_used&CultureCode=en&rs:Format=CSV&Top100=false", expect: "prfInformationCarrier"}
+- {id: sodir-factmaps, section: "11", priority: A, name: "Sodir FactMaps DataService (ArcGIS REST)",
+   url: "https://factmaps.sodir.no/api/rest/services/DataService/Data/FeatureServer?f=json", expect: '"layers"'}
+- {id: norsk-petroleum, section: "11", priority: C, name: "Norsk Petroleum",
+   url: "https://www.norskpetroleum.no/en/"}
+- {id: rystad, section: "11", priority: "-", name: "Rystad Energy",
+   skip: "Don't use: paid data"}
+- {id: eu-ets-registry, section: "11", priority: A, name: "EU ETS Union Registry",
+   url: "https://union-registry-data.ec.europa.eu/report/welcome"}
+- {id: iea, section: "11", priority: C, name: "IEA",
+   url: "https://www.iea.org/data-and-statistics", note: "Mostly paid. Landing page only"}
+
+# --- 12. Climate, environment, nature, weather -------------------------------------------
+- {id: miljodir-klimagass-kommuner, section: "12", priority: A, name: "Miljødirektoratet klimagassutslipp i kommuner",
+   url: "https://www.miljodirektoratet.no/tjenester/klimagassutslipp-kommuner/"}
+- {id: miljodir-arcgis, section: "12", priority: B, name: "Miljødirektoratet kartkatalog / ArcGIS",
+   url: "https://kart.miljodirektoratet.no/arcgis/rest/services/?f=json", expect: '"services"'}
+- {id: norskeutslipp, section: "12", priority: B, name: "norskeutslipp.no",
+   url: "https://www.norskeutslipp.no/"}
+- {id: vannmiljo, section: "12", priority: C, name: "Vannmiljø / Vann-nett",
+   url: "https://vannmiljo.miljodirektoratet.no"}
+- {id: rovbase, section: "12", priority: B, name: "Rovbase",
+   url: "https://rovbase.no"}
+- {id: nilu, section: "12", priority: B, name: "NILU luftkvalitet API",
+   url: "https://api.nilu.no/aq/utd?areas=Oslo&components=no2", needs_key: NILU_KEY}
+- {id: artskart, section: "12", priority: B, name: "Artsdatabanken Artskart",
+   url: "https://artskart.artsdatabanken.no/publicapi/api/observations/list?taxons=31113&pageSize=1", expect_type: "json", pii: true}
+- {id: artsdatabanken-lister, section: "12", priority: C, name: "Artsdatabanken Rødlista / Fremmedartslista",
+   url: "https://lister.artsdatabanken.no/"}
+- {id: gbif, section: "12", priority: C, name: "GBIF (Norway)",
+   url: "https://api.gbif.org/v1/occurrence/search?country=NO&limit=0", expect: '"count"'}
+- {id: met-frost, section: "12", priority: B, name: "MET Frost API",
+   url: "https://frost.met.no/observations/v0.jsonld?sources=SN18700&referencetime=latest&elements=air_temperature", needs_key: FROST_CLIENT_ID}
+- {id: senorge-thredds, section: "12", priority: C, name: "seNorge THREDDS",
+   url: "https://thredds.met.no/thredds/catalog/senorge/catalog.html", expect: "seNorge"}
+- {id: copernicus-stac, section: "12", priority: C, name: "Copernicus Data Space STAC",
+   url: "https://stac.dataspace.copernicus.eu/v1", expect: "stac_version"}
+- {id: nibio-kilden, section: "12", priority: B, name: "NIBIO Kilden",
+   url: "https://kilden.nibio.no"}
+- {id: barentswatch-fiskehelse, section: "12", priority: B, name: "BarentsWatch fiskehelse API",
+   url: "https://www.barentswatch.no/bwapi/v1/geodata/fishhealth/localities", needs_key: BW_CLIENT_ID}
+
+# --- 13. Transport -----------------------------------------------------------------------
+- {id: nvdb, section: "13", priority: A, name: "NVDB API Les v4 (Vegvesen)",
+   url: "https://nvdbapiles.atlas.vegvesen.no/vegobjekter/api/v4/vegobjekter/105?antall=1", headers: {X-Client: "riksdata"}, expect: '"objekter"'}
+- {id: trafikkdata, section: "13", priority: A, name: "Trafikkdata API (GraphQL)",
+   url: "https://trafikkdata-api.atlas.vegvesen.no/", method: POST,
+   body: {query: "{ areas { counties { number name } } }"}, expect: '"counties"'}
+- {id: vegvesen-autosys, section: "13", priority: B, name: "Vegvesen Autosys kjøretøyopplysninger",
+   url: "https://akfell-datautlevering.atlas.vegvesen.no/", needs_key: SVV_KEY}
+- {id: ofv, section: "13", priority: C, name: "OFV new car registrations",
+   url: "https://ofv.no/"}
+- {id: entur, section: "13", priority: A, name: "Entur Journey Planner v3",
+   url: "https://api.entur.io/journey-planner/v3/graphql", method: POST, headers: {ET-Client-Name: "riksdata-sourcecheck"},
+   body: {query: "{ authorities { id name } }"}, expect: '"authorities"'}
+- {id: entur-siri-history, section: "13", priority: B, name: "Entur SIRI-ET history (BigQuery)",
+   skip: "Not requested: needs a Google account and BigQuery"}
+- {id: avinor, section: "13", priority: C, name: "Avinor flight XML feed",
+   url: "https://asrv.avinor.no/XmlFeed/v1.0?airport=OSL&direction=D&TimeFrom=1&TimeTo=2", expect: "<airport"}
+- {id: kystdatahuset, section: "13", priority: A, name: "Kystdatahuset API (Kystverket)",
+   url: "https://kystdatahuset.no/ws/api/maru/sailed-distance/county-municipality/2025-01/2025-02", expect_type: "json"}
+- {id: kystverket-ais, section: "13", priority: C, name: "Kystverket raw AIS / BarentsWatch AIS",
+   skip: "Not requested: a raw TCP stream, and the BarentsWatch history API needs an OAuth client"}
+- {id: bysykkel, section: "13", priority: C, name: "Bysykkel (Oslo, GBFS)",
+   url: "https://gbfs.urbansharing.com/oslobysykkel.no/gbfs.json", expect: '"feeds"'}
+- {id: bane-nor, section: "13", priority: B, name: "Bane NOR punctuality",
+   url: "https://www.banenor.no/"}
+- {id: ferjedatabanken, section: "13", priority: C, name: "Ferjedatabanken",
+   url: "https://ferjedatabanken.no/"}
+
+# --- 14. Housing, property, geography ----------------------------------------------------
+- {id: kartverket-kommuneinfo, section: "14", priority: A, name: "Kartverket kommuneinfo",
+   url: "https://ws.geonorge.no/kommuneinfo/v1/kommuner/0301", expect: "kommunenavn"}
+- {id: kartverket-adresser, section: "14", priority: B, name: "Kartverket adresser",
+   url: "https://ws.geonorge.no/adresser/v1/sok?kommunenummer=0301&treffPerSide=1", expect: '"adresser"'}
+- {id: kartverket-stedsnavn, section: "14", priority: C, name: "Kartverket stedsnavn API",
+   url: "https://ws.geonorge.no/stedsnavn/v1/navn?sok=Helvete&treffPerSide=1", expect: '"navn"'}
+- {id: ssb-rutenett, section: "14", priority: A, name: "SSB befolkning på rutenett (via Geonorge)",
+   url: "https://kartkatalog.geonorge.no/api/search?text=befolkning%20p%C3%A5%20rutenett&limit=1", expect: '"Results"'}
+- {id: geonorge-kartkatalog, section: "14", priority: B, name: "Geonorge kartkatalog API",
+   url: "https://kartkatalog.geonorge.no/api/search?text=kommuner&limit=1", expect: '"Results"'}
+- {id: eiendom-finn, section: "14", priority: "-", name: "Eiendom Norge / Eiendomsverdi / Finn",
+   skip: "Don't use: proprietary, and scraping is not allowed (SOURCES.md A3)"}
+- {id: digitalarkivet, section: "14", priority: C, name: "Digitalarkivet",
+   url: "https://www.digitalarkivet.no"}
+
+# --- 15. Primary industries --------------------------------------------------------------
+- {id: landbruksdir-tilskudd, section: "15", priority: A, name: "Landbruksdirektoratet produksjons- og avløsertilskudd",
+   url: "https://raw.githubusercontent.com/LandbruksdirektoratetGIT/opendata/refs/heads/main/datasets/produksjon-og-avlosertilskudd/2025/dataset.csv", expect: ";", pii: true}
+- {id: fiskeridir-fartoyregister, section: "15", priority: A, name: "Fiskeridirektoratet Fartøyregisteret extract",
+   url: "https://register.fiskeridir.no/fartoyreg/last/frtyweb.tar", expect: ".csv", pii: true}
+- {id: fiskeridir-fangstdata, section: "15", priority: A, name: "Fiskeridirektoratet fangstdata",
+   url: "https://register.fiskeridir.no/uttrekk/fangstdata_2025.csv.zip", expect: "PK", pii: true}
+- {id: akvakulturregisteret, section: "15", priority: A, name: "Akvakulturregisteret API",
+   url: "https://api.fiskeridir.no/pub-aqua/api/v1/sites?range=0-0", expect_type: "json"}
+- {id: havbruksfondet, section: "15", priority: A, name: "Havbruksfondet payouts",
+   url: "https://www.fiskeridir.no/akvakultur/havbruksfondet"}
+
+# --- 16. Business, innovation, research, markets -----------------------------------------
+- {id: brreg-enhetsregisteret, section: "16", priority: A, name: "Brønnøysund Enhetsregisteret",
+   url: "https://data.brreg.no/enhetsregisteret/api/enheter/923609016", expect: "EQUINOR ASA"}
+- {id: brreg-regnskapsregisteret, section: "16", priority: A, name: "Brreg Regnskapsregisteret API",
+   url: "https://data.brreg.no/regnskapsregisteret/regnskap/923609016", expect: "regnskapsperiode"}
+- {id: brreg-frivillighetsregisteret, section: "16", priority: B, name: "Brreg Frivillighetsregisteret API",
+   url: "https://data.brreg.no/frivillighetsregisteret/api/frivillige-organisasjoner?size=1", expect: '"_embedded"'}
+- {id: brreg-beneficial-owners, section: "16", priority: "-", name: "Brreg beneficial-owner register / person-level aksjonærregister",
+   skip: "Never use: person-level ownership (SOURCES.md A3)"}
+- {id: innovasjon-norge, section: "16", priority: A, name: "Innovasjon Norge Tildelinger.csv",
+   url: "https://indatapublic.blob.core.windows.net/tildelingsrapport/Tildelinger.csv", encoding: "cp1252", expect: ";", pii: true}
+- {id: forskningsradet, section: "16", priority: A, name: "Forskningsrådet open data (GitHub)",
+   url: "https://raw.githubusercontent.com/Forskningsradet/open-data/main/datasets/soknader2/dataset.csv", expect: ",", pii: true}
+- {id: nva, section: "16", priority: B, name: "NVA (Nasjonalt vitenarkiv)",
+   url: "https://api.nva.unit.no/search/resources?query=skatt&results=1", expect: '"hits"', pii: true}
+- {id: patentstyret, section: "16", priority: B, name: "Patentstyret Open Data API",
+   url: "https://developer.patentstyret.no/", needs_key: PATENTSTYRET_KEY,
+   note: "Developer portal only. The API host is given after signing up"}
+- {id: epo-ops, section: "16", priority: C, name: "EPO OPS",
+   url: "https://ops.epo.org/3.2/rest-services/published-data/publication/epodoc/EP1000000/biblio", needs_key: EPO_KEY}
+- {id: cordis, section: "16", priority: B, name: "CORDIS (Horizon projects)",
+   url: "https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip", expect: "PK"}
+- {id: odegaard-ose, section: "16", priority: B, name: "Ødegaard OSE asset-pricing data",
+   url: "https://ba-odegaard.no/financial_data/ose_asset_pricing_data/index.html", expect: "asset pricing"}
+- {id: oslo-bors, section: "16", priority: C, name: "Oslo Børs / Euronext raw prices",
+   skip: "Not requested: licensed data that can't be republished. Use Norges Bank HMS and Ødegaard"}
+- {id: proff, section: "16", priority: "-", name: "Proff.no",
+   skip: "Don't use: proprietary repackaging of Brreg, and scraping is not allowed"}
+- {id: gem, section: "16", priority: C, name: "Global Entrepreneurship Monitor",
+   url: "https://www.gemconsortium.org/data"}
+
+# --- 17. Money flows abroad --------------------------------------------------------------
+- {id: eea-grants, section: "17", priority: A, name: "EEA and Norway Grants open data",
+   url: "https://data.eeagrants.org/api/overview.json", expect_type: "json"}
+- {id: norad-iati, section: "17", priority: A, name: "Norad aid via IATI (d-portal)",
+   url: "https://d-portal.org/q.json?from=act&reporting_ref=NO-BRC-971277882&limit=1", expect: '"rows"'}
+- {id: sipri, section: "17", priority: C, name: "SIPRI Arms Transfers and Milex",
+   url: "https://armstrade.sipri.org"}
+
+# --- 18. Society and everyday life -------------------------------------------------------
+- {id: vinmonopolet, section: "18", priority: B, name: "Vinmonopolet API",
+   url: "https://apis.vinmonopolet.no/products/v0/details-normal?maxResults=1", needs_key: VINMONOPOLET_KEY}
+- {id: nobel-prize, section: "18", priority: C, name: "Nobel Prize API",
+   url: "https://api.nobelprize.org/2.1/laureates?limit=1", expect: '"laureates"'}
+- {id: kongehuset, section: "18", priority: C, name: "Kongehuset official programme",
+   url: "https://www.kongehuset.no/"}
+
+# --- 19a. OECD (structure calls are unthrottled; data calls are limited to 60 per hour) --
+- {id: oecd-revenue-statistics, section: "19a", priority: A, name: "OECD Revenue Statistics (comparative), data call",
+   url: "https://sdmx.oecd.org/public/rest/data/OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,/NOR.TAX_REV.S13._T._T.PT_B1GQ.A?startPeriod=2023&format=csv", expect: "NOR"}
+- {id: oecd-revenue-norway, section: "19a", priority: A, name: "OECD Revenue Statistics, Norway country table",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.CTP.TPS/DSD_REV_OECD@DF_REVNOR/latest", expect: "DF_REVNOR"}
+- {id: oecd-sscpt, section: "19a", priority: B, name: "OECD DF_SSCPTOECD / DF_FSSBOECD",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.CTP.TPS", expect: "DF_SSCPTOECD", max_bytes: 3000000}
+- {id: oecd-taxing-wages, section: "19a", priority: A, name: "OECD Taxing Wages",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.CTP.TPS/DSD_TAX_WAGES_COMP@DF_TW_COMP/latest", expect: "DF_TW_COMP"}
+- {id: oecd-taxben, section: "19a", priority: A, name: "OECD TaxBEN suite (METR)",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.JAI/DSD_TAXBEN_METR@DF_METR/latest", expect: "DF_METR"}
+- {id: oecd-taxben-calculator, section: "19a", priority: C, name: "OECD TaxBEN web calculator",
+   url: "https://www.oecd.org/social/benefits-and-wages/"}
+- {id: oecd-socx, section: "19a", priority: A, name: "OECD SOCX",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.SPD", expect: "DSD_SOCX_AGG", max_bytes: 3000000}
+- {id: oecd-lmp, section: "19a", priority: B, name: "OECD labour-market programmes (LMP)",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.JAI/DSD_LMP@DF_LMP/latest", expect: "DF_LMP"}
+- {id: oecd-idd, section: "19a", priority: A, name: "OECD Income Distribution Database, data call",
+   url: "https://sdmx.oecd.org/public/rest/data/OECD.WISE.INE,DSD_WISE_IDD@DF_IDD,1.0/NOR.A.INC_DISP_GINI......?startPeriod=2020&format=csv", expect: "INC_DISP_GINI"}
+- {id: oecd-wdd, section: "19a", priority: A, name: "OECD Wealth Distribution Database",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.WISE.INE/DSD_WEALTH@DF_WEALTH/latest", expect: "DF_WEALTH"}
+- {id: oecd-economic-outlook, section: "19a", priority: A, name: "OECD Economic Outlook, data call",
+   url: "https://sdmx.oecd.org/public/rest/data/OECD.ECO.MAD,DSD_EO@DF_EO,/NOR.UNR.A?startPeriod=2024&format=csv", expect: "UNR"}
+- {id: oecd-pmr, section: "19a", priority: A, name: "OECD Product Market Regulation",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ECO.GCRD/DSD_PMR@DF_PMR/latest", expect: "DF_PMR"}
+- {id: oecd-hows-life, section: "19a", priority: B, name: "OECD How's Life",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.WISE.WDP/DSD_HSL@DF_HSL_CWB/latest", expect: "DF_HSL_CWB"}
+- {id: oecd-gov-at-a-glance, section: "19a", priority: B, name: "OECD Government at a Glance 2025",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.GOV.GIP/DSD_GOV@DF_GOV_2025/latest", expect: "DF_GOV_2025"}
+- {id: oecd-sng-wofi, section: "19a", priority: B, name: "OECD subnational government (SNG-WOFI)",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.CFE.RDG/DSD_SNG_WOFI@DF_FINANCE/latest", expect: "DF_FINANCE"}
+- {id: oecd-epl-tud, section: "19a", priority: B, name: "OECD employment protection / union density",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.JAI/DSD_EPL@DF_EPL/latest", expect: "DF_EPL"}
+- {id: oecd-pensions, section: "19a", priority: B, name: "OECD Pensions at a Glance",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ELS.SPD/DSD_PAG@DF_PRR/latest", expect: "DF_PRR"}
+- {id: oecd-eps, section: "19a", priority: B, name: "OECD Environmental Policy Stringency / carbon rates",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.ECO.MAD/DSD_EPS@DF_EPS/latest", expect: "DF_EPS"}
+- {id: oecd-tiva, section: "19a", priority: B, name: "OECD TiVA 2025",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.STI.PIE/DSD_TIVA_MAINSH@DF_MAINSH/latest", expect: "DF_MAINSH"}
+- {id: oecd-stri-fdi, section: "19a", priority: C, name: "OECD STRI / FDI restrictiveness",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.TAD.TPD", expect: "DSD_STRI", max_bytes: 3000000}
+- {id: oecd-rd, section: "19a", priority: B, name: "OECD R&D tax incentives, GBARD, MSTI, patents",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.STI.STP/DSD_RDTAX@DF_RDTAX/latest", expect: "DF_RDTAX"}
+- {id: oecd-tie-norway, section: "19a", priority: C, name: "OECD Timely Indicators of Entrepreneurship (Norway)",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_TIE@DF_TIE_NOR/latest", expect: "DF_TIE_NOR"}
+- {id: oecd-productivity, section: "19a", priority: B, name: "OECD Productivity DB / analytical house prices",
+   url: "https://sdmx.oecd.org/public/rest/dataflow/OECD.SDD.TPS/DSD_PDB@DF_PDB_LV/latest", expect: "DF_PDB_LV"}
+- {id: oecd-pisa-health-education, section: "19a", priority: B, name: "OECD PISA, health, Education at a Glance",
+   url: "https://www.oecd.org/pisa/"}
+- {id: oecd-economic-survey-norway, section: "19a", priority: B, name: "OECD Economic Survey of Norway",
+   url: "https://www.oecd.org/norway"}
+
+# --- 19b. IMF (SDMX 3.0 is slow, so only WEO gets a data call) ---------------------------
+- {id: imf-datamapper, section: "19b", priority: B, name: "IMF DataMapper",
+   url: "https://www.imf.org/external/datamapper/api/v1/GGXCNL_NGDP/NOR?periods=2024", expect: "GGXCNL_NGDP"}
+- {id: imf-weo, section: "19b", priority: A, name: "IMF WEO (SDMX 3.0), data call",
+   url: "https://api.imf.org/external/sdmx/3.0/data/dataflow/IMF.RES/WEO/+/NOR.NGDP_RPCH.A", expect: "NGDP_RPCH", timeout: 90}
+- {id: imf-fiscal-monitor, section: "19b", priority: A, name: "IMF Fiscal Monitor",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.FAD/FM/+", expect: "FM", timeout: 60}
+- {id: imf-psbs, section: "19b", priority: A, name: "IMF Public Sector Balance Sheet",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.FAD/PSBS/+", expect: "PSBS", timeout: 60}
+- {id: imf-gfs, section: "19b", priority: A, name: "IMF Government Finance Statistics (GFS_BS)",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.STA/GFS_BS/+", expect: "GFS_BS", timeout: 60}
+- {id: imf-hpd, section: "19b", priority: B, name: "IMF Historical Public Debt",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.FAD/HPD/+", expect: "HPD", timeout: 60}
+- {id: imf-world, section: "19b", priority: B, name: "IMF WoRLD (revenue)",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.FAD/WORLD/+", expect: "WORLD", timeout: 60}
+- {id: imf-fsi, section: "19b", priority: B, name: "IMF Financial Soundness Indicators",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.STA/FSIC/+", expect: "FSIC", timeout: 60}
+- {id: imf-pip-dip, section: "19b", priority: B, name: "IMF portfolio and direct investment positions",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.STA/PIP/+", expect: "PIP", timeout: 60}
+- {id: imf-ffs, section: "19b", priority: B, name: "IMF fossil subsidies, carbon prices, environmental taxes",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.STA/FFS/+", expect: "FFS", timeout: 60}
+- {id: imf-isora, section: "19b", priority: C, name: "IMF ISORA, FD, SRD, ICSD",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.FAD/ICSD/+", expect: "ICSD", timeout: 60}
+- {id: imf-trade, section: "19b", priority: C, name: "IMF trade (IMTS, ITS, ED)",
+   url: "https://api.imf.org/external/sdmx/3.0/structure/dataflow/IMF.STA/IMTS/+", expect: "IMTS", timeout: 60}
+- {id: imf-article-iv, section: "19b", priority: A, name: "IMF Article IV, Norway",
+   url: "https://www.imf.org/en/Countries/NOR"}
+
+# --- 19c. Eurostat, World Bank, BIS, ECB and other agencies ------------------------------
+- {id: eurostat, section: "19c", priority: A, name: "Eurostat (gov_10a_main)",
+   url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?geo=NO&unit=PC_GDP&sector=S13&na_item=TE&time=2024&format=JSON", expect: '"value"'}
+- {id: eurostat-cofog-l2, section: "19c", priority: A, name: "Eurostat COFOG level 2",
+   url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_exp?geo=NO&cofog99=GF1001&na_item=TE&sector=S13&unit=PC_GDP&time=2023&format=JSON", expect: '"value"'}
+- {id: eurostat-eu-silc, section: "19c", priority: A, name: "Eurostat EU-SILC (ilc_di12)",
+   url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/ilc_di12?geo=NO&time=2023&format=JSON", expect: '"value"'}
+- {id: eurostat-esspros, section: "19c", priority: A, name: "Eurostat ESSPROS (spr_exp_func)",
+   url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/spr_exp_func?geo=NO&time=2022&format=JSON", expect: '"value"',
+   note: "spr_exp_sum, which SOURCES.md also names, gives 404"}
+- {id: eurostat-labour-cost, section: "19c", priority: B, name: "Eurostat SES / labour cost index",
+   url: "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/lc_lci_r2_a?geo=NO&time=2024&format=JSON", expect: '"value"'}
+- {id: eurostat-comext, section: "19c", priority: B, name: "Eurostat Comext",
+   url: "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data/DS-045409?reporter=DE&partner=NO&product=27&flow=1&indicators=VALUE_IN_EUROS&freq=A&time=2024", expect: '"value"'}
+- {id: world-bank-wdi, section: "19c", priority: A, name: "World Bank WDI",
+   url: "https://api.worldbank.org/v2/country/NOR/indicator/GC.TAX.TOTL.GD.ZS?format=json&per_page=1", expect: '"indicator"'}
+- {id: bis, section: "19c", priority: A, name: "BIS statistics (WS_DSR)",
+   url: "https://stats.bis.org/api/v2/data/dataflow/BIS/WS_DSR/1.0/Q.NO.H?format=csv&lastNObservations=1", expect: "TIME_PERIOD"}
+- {id: ecb, section: "19c", priority: B, name: "ECB Data Portal (EUR/NOK)",
+   url: "https://data-api.ecb.europa.eu/service/data/EXR/M.NOK.EUR.SP00.A?format=csvdata&lastNObservations=1", expect: "NOK"}
+- {id: fred, section: "19c", priority: C, name: "FRED / ALFRED",
+   url: "https://api.stlouisfed.org/fred/series/observations?series_id=GDP&file_type=json", needs_key: FRED_KEY}
+- {id: ilostat, section: "19c", priority: B, name: "ILOSTAT",
+   url: "https://rplumber.ilo.org/data/indicator/?id=UNE_DEAP_SEX_AGE_RT_A&ref_area=NOR&timefrom=2023&format=.csv", expect: "NOR"}
+- {id: who-gho, section: "19c", priority: B, name: "WHO GHO",
+   url: "https://ghoapi.azureedge.net/api/WHOSIS_000001?$filter=SpatialDim%20eq%20%27NOR%27&$top=1", expect: '"value"'}
+- {id: un-sdg, section: "19c", priority: B, name: "UN SDG API",
+   url: "https://unstats.un.org/sdgapi/v1/sdg/Goal/List?includechildren=false", expect: '"code"'}
+- {id: un-comtrade, section: "19c", priority: B, name: "UN Comtrade (preview)",
+   url: "https://comtradeapi.un.org/public/v1/preview/C/A/HS?reporterCode=579&period=2024&partnerCode=0&flowCode=X&cmdCode=AG2", expect: '"data"'}
+- {id: cepii-baci, section: "19c", priority: B, name: "CEPII BACI",
+   url: "https://www.cepii.fr/CEPII/en/bdd_modele/bdd_modele_item.asp?id=37"}
+- {id: atlas-economic-complexity, section: "19c", priority: B, name: "Atlas of Economic Complexity (GraphQL)",
+   url: "https://atlas.hks.harvard.edu/api/graphql", method: POST,
+   body: {query: "{ countryYear(countryId: 578, yearMin: 2022, yearMax: 2023) { year eci } }"}, expect: '"eci"'}
+- {id: nordic-statistics, section: "19c", priority: C, name: "Nordic Statistics (Nordstat)",
+   url: "https://pxweb.nordicstatistics.org"}
+
+# --- 19d. Long-run history and inequality ------------------------------------------------
+- {id: owid, section: "19d", priority: A, name: "Our World in Data (grapher metadata)",
+   url: "https://ourworldindata.org/grapher/gdp-per-capita-maddison-project-database.metadata.json?v=1&csvType=full&useColumnShortNames=true", expect: '"columns"'}
+- {id: maddison, section: "19d", priority: A, name: "Maddison Project 2023 (via OWID)",
+   url: "https://ourworldindata.org/grapher/gdp-per-capita-maddison-project-database.csv?v=1&csvType=filtered&useColumnShortNames=true&country=~NOR", expect: "Norway"}
+- {id: penn-world-table, section: "19d", priority: A, name: "Penn World Table 11.0 (DataverseNL)",
+   url: "https://dataverse.nl/api/datasets/:persistentId/?persistentId=doi:10.34894/FABVLR", expect: '"status":"OK"'}
+- {id: jst-macrohistory, section: "19d", priority: B, name: "Jordà-Schularick-Taylor Macrohistory (R6)",
+   url: "https://www.macrohistory.net/app/download/9834512469/JSTdatasetR6.xlsx", expect: "stata_dta",
+   note: "Despite the .xlsx name, this address serves a Stata .dta file"}
+- {id: wid-world, section: "19d", priority: A, name: "WID.world bulk download",
+   url: "https://wid.world/bulk_download/wid_all_data.zip", expect: "PK"}
+- {id: lis, section: "19d", priority: B, name: "LIS key figures workbook",
+   url: "https://www.lisdatacenter.org/wp-content/uploads/files/access-key-workbook.xlsx", expect: "PK"}
+- {id: euromod, section: "19d", priority: "-", name: "EUROMOD",
+   skip: "Skip: does not cover Norway"}
+
+# --- 20. Political science, governance indices, global rankings --------------------------
+- {id: marpor, section: "20", priority: A, name: "Comparative Manifesto Project (MARPOR)",
+   url: "https://manifesto-project.wzb.eu/api/v1/list_core_versions", expect: '"datasets"',
+   note: "The data endpoints need a free key (MANIFESTO_API_KEY)"}
+- {id: parlgov, section: "20", priority: B, name: "ParlGov",
+   url: "https://www.parlgov.org/data/parlgov-development_csv-utf-8/view_cabinet.csv", expect: "cabinet_name"}
+- {id: cpds, section: "20", priority: B, name: "Comparative Political Data Set",
+   url: "https://www.cpds-data.org"}
+- {id: qog, section: "20", priority: B, name: "Quality of Government",
+   url: "https://www.gu.se/en/quality-government/qog-data"}
+- {id: v-dem, section: "20", priority: B, name: "V-Dem",
+   url: "https://v-dem.net/data/"}
+- {id: comparative-pledges, section: "20", priority: C, name: "Comparative Pledges Project",
+   skip: "No public endpoint: academic datasets on request"}
+- {id: idea-ipu, section: "20", priority: C, name: "IDEA / IPU Parline",
+   url: "https://data.ipu.org/"}
+- {id: unga-votes, section: "20", priority: B, name: "UN General Assembly votes (Harvard Dataverse)",
+   url: "https://dataverse.harvard.edu/api/datasets/:persistentId/?persistentId=doi:10.7910/DVN/LEJUQZ", expect: '"status":"OK"'}
+- {id: world-bank-wgi, section: "20", priority: A, name: "World Bank WGI",
+   url: "https://api.worldbank.org/v2/country/NOR/indicator/GOV_WGI_GE.EST?format=json&source=3&per_page=1", expect: '"value"'}
+- {id: ti-cpi, section: "20", priority: A, name: "Transparency International CPI",
+   url: "https://images.transparencycdn.org/images/CPI2025_Results.xlsx", expect: "PK"}
+- {id: rsf-press-freedom, section: "20", priority: B, name: "RSF World Press Freedom Index",
+   url: "https://rsf.org/sites/default/files/import_classement/2026.csv", expect: ";"}
+- {id: undp-hdi, section: "20", priority: B, name: "UNDP HDI",
+   url: "https://hdr.undp.org/sites/default/files/2025_HDR/HDR25_Composite_indices_complete_time_series.csv", expect: "iso3"}
+- {id: freedom-house, section: "20", priority: C, name: "Freedom House",
+   url: "https://freedomhouse.org/report/freedom-world"}
+- {id: world-happiness-report, section: "20", priority: B, name: "World Happiness Report",
+   url: "https://data.worldhappiness.report/table"}
+- {id: gallup-world-poll, section: "20", priority: "-", name: "Gallup World Poll",
+   skip: "Don't use: paid microdata"}
+- {id: wellcome-global-monitor, section: "20", priority: C, name: "Wellcome Global Monitor",
+   url: "https://wellcome.org/reports/wellcome-global-monitor-covid-19/2020"}
+- {id: ubs-wealth-report, section: "20", priority: C, name: "UBS Global Wealth Report",
+   url: "https://www.ubs.com/global/en/wealthmanagement/insights/global-wealth-report.html"}
+- {id: world-bank-b-ready, section: "20", priority: C, name: "World Bank B-READY",
+   url: "https://www.worldbank.org/en/businessready"}

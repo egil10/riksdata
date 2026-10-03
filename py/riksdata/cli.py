@@ -18,10 +18,10 @@ import duckdb
 import polars as pl
 import typer
 
-from riksdata import storage, validate
+from riksdata import sourcecheck, storage, validate
 from riksdata.adapters import build_adapter
 from riksdata.adapters.base import Adapter, check_batch
-from riksdata.http import HttpClient
+from riksdata.http import HttpClient, Sample, Sampler
 from riksdata.registry import (
     DEFAULT_REGISTRY_DIR,
     DatasetSpec,
@@ -305,3 +305,56 @@ def sql_command(
         raise typer.Exit(1) from exc
     finally:
         connection.close()
+
+
+@app.command("check-sources")
+def check_sources_command(
+    only: Annotated[
+        list[str] | None, typer.Option(help="Check only this id. Can be repeated.")
+    ] = None,
+    section: Annotated[
+        str | None, typer.Option(help="Check only this SOURCES.md section, for example 19a.")
+    ] = None,
+    status: Annotated[
+        str | None, typer.Option(help="Re-check only entries whose last result had this status.")
+    ] = None,
+) -> None:
+    """Send one small request to each source in registry/source_checks.yaml."""
+    try:
+        checks = sourcecheck.load_checks()
+    except RegistryError as exc:
+        typer.echo(f"Registry error: {exc}", err=True)
+        raise typer.Exit(2) from exc
+    previous = storage.read_source_checks(LAKE)
+    last_status = {item["id"]: item["status"] for item in (previous or {}).get("results", [])}
+    selected = [
+        check
+        for check in checks
+        if (not only or check.id in only)
+        and (section is None or check.section == section)
+        and (status is None or last_status.get(check.id) == status)
+    ]
+    if not selected:
+        typer.echo("No checks match.", err=True)
+        raise typer.Exit(1)
+
+    def keep_sample(check: sourcecheck.SourceCheck, sample: Sample) -> None:
+        storage.write_source_sample(LAKE, check.id, sample.content, sample.content_type)
+
+    def on_result(result: sourcecheck.CheckResult) -> None:
+        logger.info("%-11s %-34s %s", result.status, result.id, result.detail)
+
+    sampler = Sampler()
+    try:
+        results = sourcecheck.run_checks(
+            selected, sampler, keep_sample=keep_sample, on_result=on_result
+        )
+    finally:
+        sampler.close()
+    report = sourcecheck.build_report(checks, results, previous)
+    path = storage.write_source_checks(LAKE, report)
+
+    rows = [[name, count] for name, count in report["counts"].items()]
+    rows.append(["total", len(report["results"])])
+    typer.echo(_table(["status", "sources"], rows))
+    typer.echo(f"\nChecked {len(results)} now. Report written to {path}")

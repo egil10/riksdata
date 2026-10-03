@@ -217,7 +217,10 @@ def connect(lake: Path) -> duckdb.DuckDBPyConnection:
 
 
 def load_state(lake: Path) -> dict[str, dict[str, Any]]:
-    """Per-dataset `source_updated` and `last_success`, keyed by `<source>/<dataset>`."""
+    """Per-dataset `source_updated`, `spec` (registry fingerprint) and `last_success`.
+
+    Keyed by `<source>/<dataset>`.
+    """
     return _read_json(lake / "state.json") or {}
 
 

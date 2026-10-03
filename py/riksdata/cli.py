@@ -5,6 +5,7 @@ Run it from the repository root: it reads `registry/` and writes `lake/`.
 
 from __future__ import annotations
 
+import hashlib
 import logging
 import time
 from collections.abc import Mapping, Sequence
@@ -91,12 +92,16 @@ def update_dataset(
             raise ValueError(f"no adapter for source {ds.source_id!r}")
         remote = adapter.remote_updated(ds)
         marker = remote.isoformat() if remote else None
+        # Skip only if neither the publisher's data nor our registry entry has changed.
+        spec = hashlib.sha256(ds.model_dump_json().encode()).hexdigest()[:16]
+        previous = state.get(ds.key, {})
         existing = storage.batch_counts(lake, ds)
         if (
             not force
             and existing is not None
             and marker is not None
-            and marker == state.get(ds.key, {}).get("source_updated")
+            and marker == previous.get("source_updated")
+            and spec == previous.get("spec")
         ):
             return UpdateResult(ds.key, "unchanged", *existing, time.perf_counter() - started)
         raw = adapter.fetch(ds)
@@ -106,6 +111,7 @@ def update_dataset(
         storage.write_batch(lake, ds, batch)
         state[ds.key] = {
             "source_updated": marker,
+            "spec": spec,
             "last_success": datetime.now(UTC).isoformat(timespec="seconds"),
         }
         storage.save_state(lake, state)

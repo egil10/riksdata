@@ -130,6 +130,21 @@ def test_update_refetches_when_the_publisher_reports_a_change(
     assert set(statuses(unknown).values()) == {"updated"}
 
 
+def test_update_refetches_when_the_registry_entry_changes(registry: Registry, lake: Path) -> None:
+    adapter = FakeAdapter()
+    cli.run_update(registry, {"demo": adapter}, lake)
+    first, second = registry.datasets
+    edited = Registry(
+        sources=registry.sources,
+        datasets=[first.model_copy(update={"entities": ["NOR", "SWE"]}), second],
+    )
+
+    results = cli.run_update(edited, {"demo": adapter}, lake)
+
+    # Same data at the publisher, but the selection changed, so it must not be skipped.
+    assert statuses(results) == {"demo/first": "updated", "demo/second": "unchanged"}
+
+
 def test_update_filters_by_source_dataset_and_slug(registry: Registry, lake: Path) -> None:
     adapter = FakeAdapter()
 

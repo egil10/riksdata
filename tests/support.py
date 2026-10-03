@@ -10,7 +10,7 @@ import polars as pl
 
 from riksdata.adapters.base import OBSERVATIONS_SCHEMA, SERIES_SCHEMA, Batch
 from riksdata.periods import parse_period
-from riksdata.registry import RateLimit, Source
+from riksdata.registry import DatasetSpec, RateLimit, Source
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 FIXTURES = Path(__file__).resolve().parent / "fixtures"
@@ -36,6 +36,22 @@ def make_source(**overrides: Any) -> Source:
         "terms_checked": date(2026, 10, 3),
     }
     return Source(**{**fields, **overrides})
+
+
+def make_dataset(**overrides: Any) -> DatasetSpec:
+    """A valid registry dataset, `demo/ds` unless overridden."""
+    fields: dict[str, Any] = {
+        "source_id": "demo",
+        "dataset": "ds",
+        "slug": "ds",
+        "title_no": "Demodatasett",
+        "title_en": "Demo dataset",
+        "topic": "demo",
+        "frequency": "A",
+        "schedule": "daily",
+        "publish": True,
+    }
+    return DatasetSpec(**{**fields, **overrides})
 
 
 class FakeClock:

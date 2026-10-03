@@ -80,12 +80,12 @@ riksdata/
 - **Explicit registry.** A dataset exists in Riksdata only if it's in `registry/datasets/*.yaml`. Docs and the site catalogue are generated from the registry. Source catalogues (e.g. all ~3,750 SSB tables) are pulled separately for discovery.
 
 ## 4. Data model
-All tables live as Parquet under `lake/parquet/<table>/` and are exposed as DuckDB views of the same name.
+All tables live as Parquet under `lake/parquet/<table>/` and are exposed as DuckDB views of the same name. `series` and `observations` are one file per dataset (`source=<id>/<dataset>.parquet`). Single-file tables sit directly in `lake/parquet/` (`sources.parquet`, later `entities.parquet`).
 
-**sources**: `source_id` (pk, e.g. `ssb`), `name`, `publisher`, `homepage`, `api_base`, `licence` (SPDX-ish: `CC-BY-4.0`, `NLOD-2.0`), `licence_url`, `attribution`, `rate_limit_calls`, `rate_limit_seconds`, `tier` (1 primary NO, 2 international harmonised, 3 aggregator, 4 encyclopaedic).
+**sources**: `source_id` (pk, e.g. `ssb`), `name`, `publisher`, `homepage`, `api_base`, `licence` (SPDX-ish: `CC-BY-4.0`, `NLOD-2.0`), `licence_url`, `attribution`, `rate_limit_calls`, `rate_limit_seconds`, `tier` (1 primary NO, 2 international harmonised, 3 aggregator, 4 encyclopaedic), `access`, `redistribution`, `terms_checked`, `timeout_seconds`.
 
 **series**: one row per distinct time series.
-`series_id` (pk, stable slug `{source}.{dataset}.{key}`, e.g. `ssb.14710.kpi_total`, `owid.life-expectancy`, `oecd.rsoecd.total_tax_pct_gdp`), `source_id`, `dataset_id`, `dims` (JSON of the non-time dimension codes that define the series), `title_no`, `title_en`, `unit`, `unit_mult` (power of 10), `frequency` (`A|Q|M|W|D`), `concept` (e.g. `tax_revenue`), `coverage` (e.g. `general_government` vs `central_government`), `topic`, `tag` (see §2), `estimate_by` (null unless tag = ESTIMATE: `publisher|riksdata`), `publish` (bool; false for sources whose terms forbid republication), `source_url`, `citation`, `licence`, `first_period`, `last_period`, `source_updated` (timestamp from the publisher), `retrieved_at`.
+`series_id` (pk, stable slug `{source}.{dataset}.{key}`, e.g. `ssb.14710.kpiindmnd`, `owid.life-expectancy`, `oecd.rsoecd.total_tax_pct_gdp`; for SSB the key is the `series_key` codes in lower case joined by `_`), `source_id`, `dataset_id`, `dims` (JSON of the non-time dimension codes that define the series), `title_no`, `title_en`, `unit`, `unit_mult` (power of 10), `frequency` (`A|Q|M|W|D`), `concept` (e.g. `tax_revenue`), `coverage` (e.g. `general_government` vs `central_government`), `topic`, `tag` (see §2), `estimate_by` (null unless tag = ESTIMATE: `publisher|riksdata`), `publish` (bool; false for sources whose terms forbid republication), `source_url`, `citation`, `licence`, `first_period`, `last_period`, `source_updated` (timestamp from the publisher), `retrieved_at`.
 
 **observations**: `series_id`, `entity_id`, `period` (canonical string: `2026`, `2026-Q2`, `2026-08`, `2026-W14`, `2026-08-31`), `period_start` (DATE), `value` (DOUBLE), `status` (publisher flag, nullable), `vintage` (DATE of retrieval). Unique on `(series_id, entity_id, period, vintage)`. View `observations_latest` keeps the newest vintage.
 
@@ -127,10 +127,10 @@ ssb:
   title_en: Consumer price index (2025=100)
   topic: prices
   frequency: M
-  select:                      # passed as valueCodes[...]; always explicit
-    ContentsCode: ["*"]
-    Tid: ["*"]
-  series_key: [ContentsCode]   # non-time dims that define distinct series
+  select:                      # passed as valueCodes[...]; every dimension must be listed
+    ContentsCode: [KpiIndMnd]  # explicit codes from the table's /metadata; quote digits ("0")
+    Tid: ["*"]                 # "*" only for time, so new periods arrive on their own
+  series_key: [ContentsCode]   # every non-time dim, in table order: keeps series ids stable
   entity: NOR
   schedule: daily              # daily | weekly | monthly
   superseded_by: null          # set when the publisher closes the table
@@ -149,19 +149,19 @@ ssb:
 ```python
 class Adapter(Protocol):
     source_id: str
-    def catalog(self) -> pl.DataFrame | None: ...                  # optional full catalogue for discovery
+    def catalog(self, *, include_discontinued: bool = False) -> pl.DataFrame | None: ...  # optional full catalogue
     def remote_updated(self, ds: DatasetSpec) -> datetime | None: ... # cheap staleness probe
-    def fetch(self, ds: DatasetSpec) -> RawArtifact: ...            # url, fetched_at, content_type, bytes
+    def fetch(self, ds: DatasetSpec) -> RawArtifact: ...            # url, fetched_at, content_type, content, meta
     def normalize(self, raw: RawArtifact, ds: DatasetSpec) -> Batch: ...  # Batch(series, observations) polars DataFrames
 ```
-Rules: adapters do no I/O except through `http.py`. They never write files themselves (`storage.py` does). `normalize` is a pure function of `(raw, ds)` and is unit-tested against fixtures.
+Rules: adapters do no I/O except through `http.py`. They never write files themselves (`storage.py` does). `normalize` is a pure function of `(raw, ds)` and is unit-tested against fixtures. `RawArtifact.content` is the main response as bytes. `RawArtifact.meta` carries any second document `normalize` needs (SSB's English metadata, OWID's chart and indicator metadata) and is archived beside the raw file as `<dataset>.meta.json`.
 
 ## 7. Source notes (verified live 2026-10-03)
 | Source | Base | Auth | Limit | Licence | Notes |
 |---|---|---|---|---|---|
-| SSB PxWeb v2 | `https://data.ssb.no/api/pxwebapi/v2` | none | 40 calls/60s per IP; 800k cells/request | CC BY 4.0 | `/tables?lang=en&pageSize=10000` gets the whole catalogue (3,753 active, 7,795 incl. discontinued). `/tables/{id}/metadata`, `/tables/{id}/data?valueCodes[Dim]=…&outputFormat=json-stat2`. Always pass explicit valueCodes. Old `api/v0/dataset` is **410 Gone**. CPI rebased to 2025=100 (tables 14700–14711) and table 03013 closed. |
+| SSB PxWeb v2 | `https://data.ssb.no/api/pxwebapi/v2` | none | 40 calls/60s per IP; 800k cells/request | CC BY 4.0 | `/tables?lang=en&pageSize=10000` gets the whole catalogue (3,753 active, 7,795 incl. discontinued). `/tables/{id}/metadata`, `/tables/{id}/data?valueCodes[Dim]=…&outputFormat=json-stat2`. Always pass explicit valueCodes. Old `api/v0/dataset` is **410 Gone**. CPI rebased to 2025=100 (tables 14700–14711) and table 03013 closed. A closed table has `discontinued: true` in `/tables/{id}`. Details: `docs/v2/sources/ssb.md`. |
 | Stortinget | `https://data.stortinget.no/eksport/` | none | 100 calls/min (429 after) | NLOD 2.0, credit Stortinget | `?format=json`. .NET dates `/Date(ms+0200)/`, integer enums, `antall_for=-1` when not recorded. Per-MP results only when `personlig_votering: true`. Current session 2026-2027. Big endpoints are slow (`skriftligesporsmal` >2.8 MB / >30 s), so use a 120 s timeout. Referat (debate transcripts) are available as XML via `publikasjon?publikasjonid=`. |
-| OWID | `https://ourworldindata.org/grapher/{slug}.csv?v=1&csvType=full&useColumnShortNames=true` + `{slug}.metadata.json?v=1&…` | none | be polite | CC BY 4.0 for OWID work; third-party data keeps original licence | Store `citationShort` per series. |
+| OWID | `https://ourworldindata.org/grapher/{slug}.csv?v=1&csvType=full&useColumnShortNames=true` + `{slug}.metadata.json?v=1&…` | none | be polite | CC BY 4.0 for OWID work; third-party data keeps original licence | Store `citationShort` per series, and the upstream licences from `https://api.ourworldindata.org/v1/indicators/{id}.metadata.json`. CSV headers are lower case; projection columns end in `__projected`. Details: `docs/v2/sources/owid.md`. |
 | World Bank | `https://api.worldbank.org/v2/country/{iso3;iso3}/indicator/{code}?format=json&per_page=20000` | none | none documented | CC BY 4.0 | Response is `[meta, rows]`. Tax indicators are **central government** only. |
 | OECD | `https://sdmx.oecd.org/public/rest/data/{agency},{dsd}@{df},{ver}/{key}?startPeriod=…&format=csv` | none | **60 data calls/hour**, structure calls unthrottled, no VPN | CC BY 4.0 | Key needs one slot per dimension: wrong count → 403, wrong codes → 404 `NoResultsFound`. Verified: `OECD.CTP.TPS,DSD_REV_COMP_OECD@DF_RSOECD,/NOR+SWE+DNK+FIN+OECD_REP.TAX_REV.S13._T._T.PT_B1GQ.A` → NOR 2024 = 40.19. |
 | Norges Bank | `https://data.norges-bank.no/api/data/` | none | — | NLOD | SDMX-JSON. |
@@ -204,4 +204,14 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   5. Phase 1d reordered: DFØ, valgresultat.no and the Lovdata index come first. Norges Bank and data.norge.no follow.
   6. The v2 site launches at `/beta/` before the cut-over. Stortinget (M4) comes before the tax engine (M5), per VISION §7.
   7. Future tables (`documents`, `pages`, `proposals`, `budget_lines`, `events`, `entity_links`) are named now so Phase 1 code doesn't collide with them.
+- **2026-10-03 (Phase 1a as built, PR `v2/01-scaffold`):**
+  1. The rate limiter is a **sliding window**, not a token bucket. A bucket of the same size lets through twice the limit right after an idle spell, which would break SSB's 40 calls per 60 s.
+  2. SSB series ids come from codes (`ssb.14710.kpiindmnd`). The registry pins explicit codes for every non-time dimension and uses `"*"` only for `Tid`. `series_key` lists every non-time dimension so ids stay stable when a selection is widened.
+  3. `RawArtifact` has `content` (bytes) and `meta`. `meta` is archived as a sidecar so `normalize` can be re-run from `lake/raw/`.
+  4. OWID series carry the **upstream licences** OWID records per indicator, not a blanket `CC-BY-4.0`. OWID projection columns are separate series tagged `ESTIMATE`, `estimate_by = publisher`.
+  5. `registry/sources.yaml` holds only sources with an adapter (per SOURCES.md): `ssb` and `owid` so far. Each later adapter PR adds its own source.
+  6. `unit` is stored as published, including multipliers ("mill. kr"), with `unit_mult = 0`. Normalising units is future work.
+  7. `update` skips a dataset only when both the publisher's timestamp and a fingerprint of its registry entry are unchanged. `schedule` is validated but not acted on until Phase 1c.
+  8. The SSB catalogue is fetched in Norwegian and English so `catalog --search` matches both.
+  9. Each `update` rewrites a dataset's Parquet with the latest fetch. Older vintages live only in `lake/raw/` until a rebuild-from-raw command exists.
 

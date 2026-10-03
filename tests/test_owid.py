@@ -296,6 +296,11 @@ def test_registry_entries_are_complete() -> None:
         "child-mortality",
         "gdp-per-capita-worldbank",
         "daily-per-capita-caloric-supply",
+        "gdp-per-capita-maddison-project-database",
+        "share-of-electricity-production-from-renewable-sources",
+        "total-tax-revenues-gdp",
+        "annual-working-hours-per-worker",
+        "oil-production-by-country",
     ]
     for ds in datasets:
         assert ds.entities == ["NOR", "SWE", "DNK", "FIN", "ISL", "DEU", "GBR", "USA", "OWID_WRL"]
@@ -306,6 +311,7 @@ def test_registry_entries_are_complete() -> None:
         "military-spending-as-a-share-of-gdp-sipri",
         "child-mortality",
         "daily-per-capita-caloric-supply",
+        "oil-production-by-country",
     }
 
 

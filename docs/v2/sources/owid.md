@@ -61,6 +61,12 @@ None of the ten is flagged `nonRedistributable` by OWID. Four are set to `publis
 | `homicide-rate-unodc` | UNODC's terms (© United Nations) haven't been read yet |
 | `child-mortality` | UNICEF's terms haven't been read yet |
 
+A fifth, `oil-production-by-country`, was added later and is also unpublished: one of its origins is CC BY-SA 3.0, and CLAUDE.md §4 holds back share-alike sources too.
+
+Three charts named in `SOURCES.md` were not added: `government-spending-share-gdp` does not exist (404), `electric-car-sales-share` has no licence recorded by OWID, and `human-development-index` has no unit, which `validate` requires.
+
+`life-expectancy`, `share-of-electricity-production-from-renewable-sources` and `annual-working-hours-per-worker` have a copyright notice among their origins but OWID marks them "with major processing", so they fall under the same reasoning as below.
+
 `life-expectancy` stays published although one historical origin lists "JSTOR terms": OWID marks the series "with major processing by Our World in Data", which its FAQ puts under OWID's own CC BY licence. To publish one of the four, read the provider's terms and remove `publish: false` from `registry/datasets/owid.yaml`.
 
 ## Quirks and gotchas
@@ -86,6 +92,11 @@ None of the ten is flagged `nonRedistributable` by OWID. Four are set to `publis
 | `child-mortality` | Barnedødelighet (under fem år) | deaths per 100 live births | 1751–2024 | 1 |
 | `gdp-per-capita-worldbank` | BNP per innbygger (kjøpekraftsjustert) | international-$ in 2021 prices | 1990–2025 | 1 |
 | `daily-per-capita-caloric-supply` | Daglig kaloritilførsel per person | kilocalories per day | 1274–2023 | 1 |
+| `gdp-per-capita-maddison-project-database` | BNP per innbygger, lange linjer (Maddison) | international-$ in 2011 prices | 1–2022 | 1 |
+| `share-of-electricity-production-from-renewable-sources` | Fornybarandel i kraftproduksjonen | % | 1900–2025 | 1 |
+| `total-tax-revenues-gdp` | Skatteinntekter som andel av BNP | % of GDP | 1980–2023 | 1 |
+| `annual-working-hours-per-worker` | Årlig arbeidstid per sysselsatt | hours per worker | 1870–2023 | 1 |
+| `oil-production-by-country` | Oljeproduksjon | terawatt-hours | 1900–2025 | 1 |
 
 Entities for every chart: NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA and the world.
 

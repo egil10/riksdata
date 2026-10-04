@@ -1,21 +1,22 @@
 # Source checks
 
-`riksdata check-sources` sends one small request to every source in `SOURCES.md` and records what came back. It answers one question: can this source be reached from the machine the command runs on? It does not ingest anything.
+`riksdata check-sources` sends one small request to every source in `SOURCES.md` and records what came back. It answers one question: can this source be reached from the machine the command runs on? It does not ingest anything. What the answers add up to is in the [source inventory](source-inventory.md).
 
 ```bash
-uv run riksdata check-sources                    # all 309 rows, about four minutes
+uv run riksdata check-sources                    # all 316 rows, about five minutes
 uv run riksdata check-sources --section 19a      # one SOURCES.md section
 uv run riksdata check-sources --only hudoc       # one source (repeatable)
 uv run riksdata check-sources --status failed    # re-check what failed last time
 ```
 
-The list of requests is `registry/source_checks.yaml`, one entry per catalogue row. The report is written to `lake/source_checks/latest.json` (and a dated copy). A partial run updates the entries it touched and keeps the rest.
+The list of requests is `registry/source_checks.yaml`, one entry per catalogue row. The report is written to `lake/source_checks/latest.json` (and a dated copy). A partial run updates the entries it touched and keeps the rest. The command prints two tables: sources per status, and sources per access class and status.
 
 ## How a check behaves
 
 - **One attempt, no retries.** A host that refuses us is asked once.
-- **Paced per host:** at most one request every two seconds to the same host. OECD gets three data calls (its limit is 60 per hour); the other OECD checks use the structure endpoint, which isn't limited.
-- **At most 64 KB is read**, then the connection is closed. A check never downloads a large file.
+- **Paced per host:** at most one request every two seconds to the same host. **A host that answers 429 gets no more requests in that run.**
+- **The OECD API gets 24 requests in a full run**, three of them for data. Its limit covers every request, structure calls too, so don't repeat a full run more than about twice an hour.
+- **At most 64 KB is read**, then the connection is closed. A check never downloads a large file. A few entries raise the limit to read a whole web page. The size and the `Last-Modified` date the server states for the whole response are recorded (`total_bytes`, `last_modified`), except for compressed transfers.
 - **Our own User-Agent** (`riksdata/<version> (+https://riksdata.org)`). No keys are sent.
 - **Person-level sources keep no sample.** Entries with `pii: true` (farm subsidies, vessel owners, candidate lists, court cases and so on) are checked in memory and nothing of the response is stored. For every other source, the sampled start of the response is kept under `lake/source_checks/samples/`, which is gitignored.
 - **Never-use rows are not requested at all.** Skattelister, Finn, Proff, pollofpolls and the other rows that `SOURCES.md` A3 rules out are listed with `skip` and a reason.
@@ -32,17 +33,33 @@ The list of requests is `registry/source_checks.yaml`, one entry per catalogue r
 | `failed` | An answer, but not the expected one: 404, 5xx or wrong content |
 | `skipped` | Deliberately not requested |
 
+## Access classes
+
+Each entry says how the source hands out its data. The class is set by hand from what the source returned.
+
+| Access | Meaning |
+|---|---|
+| `api` | A queryable API: REST, SDMX, PxWeb, GraphQL, ArcGIS and so on |
+| `file` | A file at a stable address: CSV, Excel, ZIP and so on |
+| `page` | Numbers on web pages: files whose addresses change, or HTML tables |
+| `docs` | Text documents (PDF or HTML): reports, rulings, programmes |
+| `manual` | Only through an interactive tool, a login or an order form |
+| `unknown` | The source answers, but no data route was found |
+| `none` | No source of its own: derived metrics and never-use rows |
+
 ## Results from Egil's Mac, 2026-10-03
 
 | Status | Sources |
 |---|---|
-| ok | 159 |
-| reachable | 94 |
+| ok | 199 |
+| reachable | 63 |
 | needs_key | 14 |
-| blocked | 12 |
+| blocked | 10 |
 | unreachable | 2 |
 | failed | 0 |
 | skipped | 28 |
+
+These are from the second run that day, over 316 entries. The first run, over the 309 catalogue rows, gave 159 ok and 94 reachable. Since then 40 checks were pointed at the data behind the page they used to request, and seven candidates were added. The ECB timed out and GDELT answered 429 in the full run; both answered when asked again a few minutes later.
 
 ### What works from the Mac that was blocked from the server
 
@@ -62,7 +79,7 @@ The list of requests is `registry/source_checks.yaml`, one entry per catalogue r
 | Arbeidstilsynet registers | 403 | Also blocked from the server |
 | OpenTender | 403 | Also blocked from the server (Cloudflare) |
 | ISSP (GESIS) | 403 | Landing page |
-| OECD Trust Survey, TaxBEN calculator, PISA, Economic Survey of Norway | 403 | All four are pages on www.oecd.org. The OECD data API works |
+| OECD TaxBEN calculator, Economic Survey of Norway | 403 | Both are pages on www.oecd.org. The OECD data API works, and the Trust Survey and health rows are now checked through it |
 | IMF Article IV page | 403 | A page on www.imf.org. The IMF data API works |
 | Vannmiljø | 403 | |
 | Kongehuset | 429 | Bot check, as from the server |
@@ -83,17 +100,19 @@ NBIM voting records, PolitPro, Doffin, Helsedirektoratet NKI, NVE HydAPI, ENTSO-
 - **Støtteregisteret** pages start at 1. `page=0` gives 500.
 - **www.helseatlas.no** has a certificate for another host name. `helseatlas.no` works.
 - **energimerking.no** doesn't resolve. The service is at `enova.no/energimerking`.
-- **DBH**: the query API answers, but each table needs its own variable and filter names. The check points at the API client page until a real query is worked out.
-- **Fastlegestatistikk** and **Samordna opptak søkertall**: the old addresses give 404. The checks point at the parent pages.
+- **DBH**: the API is at `https://dbh-data.dataporten-api.no/Tabeller/`. `/All` lists the tables, and a query needs `groupBy` and at least one filter.
+- **Fastlegestatistikk** and **Samordna opptak søkertall**: the old addresses give 404. GP statistics are Power BI reports now, and DBH table 379 has the applicant numbers.
 - **DFØ Innbyggerundersøkelsen** has a 2026 edition at `dfo.no/undersokelser/innbyggerundersokelsen-2026`.
+
+The second round of testing found more. They are listed in the [source inventory](source-inventory.md).
 
 ## Adding or changing a check
 
 Add an entry to `registry/source_checks.yaml`:
 
 ```yaml
-- {id: my-source, section: "11", priority: B, name: "My source",
+- {id: my-source, section: "11", priority: B, access: api, name: "My source",
    url: "https://example.org/api/items?limit=1", expect: '"items"'}
 ```
 
-Give `expect` (text in the body) or `expect_type` (text in the Content-Type header) whenever the endpoint returns data, so that the check can say `ok` rather than only `reachable`. Set `pii: true` if the response contains private persons. The other fields are described at the top of the file.
+Give `expect` (text in the body) or `expect_type` (text in the Content-Type header) whenever the endpoint returns data, so that the check can say `ok` rather than only `reachable`. `access` is required. Set `pii: true` if the response contains private persons. The other fields are described at the top of the file.

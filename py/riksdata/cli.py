@@ -357,6 +357,17 @@ def check_sources_command(
     rows = [[name, count] for name, count in report["counts"].items()]
     rows.append(["total", len(report["results"])])
     typer.echo(_table(["status", "sources"], rows))
+    statuses = [name for name, count in report["counts"].items() if count]
+    typer.echo(
+        "\n"
+        + _table(
+            ["access", "sources", *statuses],
+            [
+                [access, sum(counts.values()), *(counts[status] for status in statuses)]
+                for access, counts in report["access"].items()
+            ],
+        )
+    )
     typer.echo(f"\nChecked {len(results)} now. Report written to {path}")
 
 

@@ -46,11 +46,11 @@ The catalogue is for discovery only. A table becomes part of Riksdata when it is
 ## Check which sources can be reached
 
 ```bash
-uv run riksdata check-sources                 # one small request to each of the 309 rows in SOURCES.md
+uv run riksdata check-sources                 # one small request to each of the 316 rows in SOURCES.md
 uv run riksdata check-sources --status failed # re-check what failed last time
 ```
 
-This doesn't ingest anything. It records whether each source answers, needs a key or is blocked. See [Source checks](source-checks.md) for the statuses and the latest results.
+This doesn't ingest anything. It records whether each source answers, needs a key or is blocked. See [Source checks](source-checks.md) for the statuses and the latest results. The [source inventory](source-inventory.md) sums up what data each source could give us and how we would fetch it.
 
 ## Publish the beta page
 

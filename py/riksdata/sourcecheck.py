@@ -10,6 +10,17 @@ it reads at most the first bytes of one response and records what came back. Sta
     unreachable  no answer: timeout, DNS, connection or TLS error
     failed       an answer, but not the expected one (404, 5xx, wrong content)
     skipped      deliberately not requested (see the entry's `skip` reason)
+
+Each entry also says how the source hands out its data (`access`), which decides what kind
+of adapter it would need:
+
+    api      a queryable API (REST, SDMX, PxWeb, GraphQL, ArcGIS and so on)
+    file     a file at a stable address (CSV, Excel, ZIP and so on)
+    page     numbers on web pages: files whose addresses change, or HTML tables
+    docs     text documents (PDF or HTML): reports, rulings, programmes
+    manual   only through an interactive tool, a login or an order form
+    unknown  no data route found yet
+    none     no source of its own: derived metrics and never-use rows
 """
 
 from __future__ import annotations
@@ -40,6 +51,8 @@ STATUSES: tuple[Status, ...] = (
     "failed",
     "skipped",
 )
+Access = Literal["api", "file", "page", "docs", "manual", "unknown", "none"]
+ACCESS: tuple[Access, ...] = ("api", "file", "page", "docs", "manual", "unknown", "none")
 
 
 class SourceCheck(BaseModel):
@@ -51,6 +64,7 @@ class SourceCheck(BaseModel):
     section: StrictStr  # SOURCES.md section, e.g. "19a"
     name: str
     priority: Literal["A", "B", "C", "-"]
+    access: Access  # how the source hands out its data
     url: str | None = None
     method: Literal["GET", "POST"] = "GET"
     headers: dict[str, str] = Field(default_factory=dict)
@@ -82,9 +96,11 @@ class CheckResult:
     detail: str
     http_status: int | None = None
     content_type: str | None = None
-    bytes: int = 0
+    bytes: int = 0  # how much of the response was read
     seconds: float | None = None
     checked_at: str | None = None
+    total_bytes: int | None = None  # size of the whole response, when the server states it
+    last_modified: str | None = None
 
 
 def load_checks(path: Path = DEFAULT_CHECKS_FILE) -> list[SourceCheck]:
@@ -160,7 +176,10 @@ def run_checks(
     on_result: Callable[[CheckResult], None] | None = None,
     now: Callable[[], datetime] = lambda: datetime.now(UTC),
 ) -> list[CheckResult]:
-    """Run every check once. `keep_sample` is never called for checks marked `pii`."""
+    """Run every check once. `keep_sample` is never called for checks marked `pii`.
+
+    A host that answers 429 (too many requests) gets no further requests in the run.
+    """
     results: list[CheckResult] = []
 
     def record(check: SourceCheck, status: Status, detail: str, **fields: Any) -> None:
@@ -182,8 +201,13 @@ def run_checks(
         if check.skip is not None:
             record(check, "skipped", check.skip)
 
+    limited: set[str] = set()  # hosts that answered 429: not asked again in this run
     for check in _interleave(check for check in checks if check.url is not None):
         assert check.url is not None
+        host = httpx.URL(check.url).host
+        if host in limited:
+            record(check, "blocked", f"not requested: {host} answered 429 earlier in this run")
+            continue
         try:
             sample = sampler.fetch(
                 check.url,
@@ -196,6 +220,8 @@ def run_checks(
         except httpx.HTTPError as exc:
             record(check, "unreachable", f"{type(exc).__name__}: {exc}"[:200])
             continue
+        if sample.status_code == 429:
+            limited.add(host)
         status, detail = evaluate(check, sample)
         record(
             check,
@@ -205,6 +231,8 @@ def run_checks(
             content_type=sample.content_type or None,
             bytes=len(sample.content),
             seconds=round(sample.seconds, 2),
+            total_bytes=sample.total_bytes,
+            last_modified=sample.last_modified,
         )
         if keep_sample and not check.pii and 200 <= sample.status_code < 300:
             keep_sample(check, sample)
@@ -220,16 +248,23 @@ def build_report(
 ) -> dict[str, Any]:
     """Merge new results into the previous report, so a partial re-run refines it.
 
-    The report follows the order of `checks` and drops ids that are no longer listed.
+    The report follows the order of `checks` and drops ids that are no longer listed. Each
+    result carries the entry's `access` class as the check list has it now.
     """
     merged: dict[str, dict[str, Any]] = {
         item["id"]: item for item in (previous or {}).get("results", [])
     }
     merged.update({result.id: asdict(result) for result in results})
-    ordered = [merged[check.id] for check in checks if check.id in merged]
+    ordered = [
+        {**merged[check.id], "access": check.access} for check in checks if check.id in merged
+    ]
     counts = Counter(item["status"] for item in ordered)
+    by_access = Counter((item["access"], item["status"]) for item in ordered)
     return {
         "generated_at": datetime.now(UTC).isoformat(timespec="seconds"),
         "counts": {status: counts.get(status, 0) for status in STATUSES},
+        "access": {
+            access: {status: by_access[access, status] for status in STATUSES} for access in ACCESS
+        },
         "results": ordered,
     }

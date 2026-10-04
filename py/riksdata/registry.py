@@ -50,7 +50,6 @@ class Source(BaseModel):
     # PLAN.md §5 (v3). Declared now so later adapters don't need a registry migration.
     runner: Literal["box", "actions", "mac"] = "box"  # where the fetch can run
     secret_env: str | None = None  # name of the env var holding the key, never the key
-    user_agent: Literal["default", "browser"] = "default"
     encoding: str = "utf-8"  # file defaults for CSV-style sources
     delimiter: str = ","
     decimal: str = "."
@@ -75,6 +74,9 @@ class DatasetSpec(BaseModel):
     schedule: Schedule
     superseded_by: StrictStr | None = None
     publish: bool
+    # Shown beside the licence on the site. Required to publish data whose upstream licence
+    # is not an open one (`validate` checks): it records that Egil has decided the terms allow it.
+    terms_note: str | None = None
     pii: Literal["none", "aggregate", "hash_ids"] = "none"  # person-level data: PLAN.md §6
     chunk_by: dict[str, int] | None = None  # for tables above a publisher's request limit
     select: dict[str, list[StrictStr]] = Field(default_factory=dict)

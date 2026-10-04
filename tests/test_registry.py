@@ -40,10 +40,10 @@ def test_dataset_defaults(tmp_path: Path) -> None:
     assert ds.slug == "life-expectancy"
     assert ds.key == "demo/life-expectancy"
     assert ds.publish is True
-    assert (ds.pii, ds.chunk_by) == ("none", None)
+    assert (ds.pii, ds.chunk_by, ds.terms_note) == ("none", None, None)
     source = registry.sources["demo"]
     assert source.timeout_seconds == 60
-    assert (source.runner, source.secret_env, source.user_agent) == ("box", None, "default")
+    assert (source.runner, source.secret_env) == ("box", None)
     assert (source.encoding, source.delimiter, source.decimal) == ("utf-8", ",", ".")
 
 
@@ -58,6 +58,26 @@ def test_plan_v3_fields_are_validated(tmp_path: Path) -> None:
         RegistryError, match="pii: Input should be 'none', 'aggregate' or 'hash_ids'"
     ):
         load_registry(write_registry(tmp_path / "bad", {"demo": DATASET + "  pii: maybe\n"}))
+
+
+def test_terms_note_is_loaded(tmp_path: Path) -> None:
+    noted = DATASET + "  terms_note: Brukt ikke-kommersielt med kildehenvisning.\n"
+
+    (ds,) = load_registry(write_registry(tmp_path, {"demo": noted})).datasets
+
+    assert ds.terms_note == "Brukt ikke-kommersielt med kildehenvisning."
+
+
+def test_a_source_cannot_ask_for_another_user_agent(tmp_path: Path) -> None:
+    # We only ever send our own User-Agent, so there is no setting for it.
+    root = write_registry(tmp_path, {"demo": DATASET})
+    sources = root / "sources.yaml"
+    sources.write_text(
+        sources.read_text(encoding="utf-8") + "  user_agent: browser\n", encoding="utf-8"
+    )
+
+    with pytest.raises(RegistryError, match="user_agent: Extra inputs are not permitted"):
+        load_registry(root)
 
 
 def test_restricted_source_defaults_to_unpublished(tmp_path: Path) -> None:

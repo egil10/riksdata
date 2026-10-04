@@ -18,7 +18,7 @@
 | `GET https://api.ourworldindata.org/v1/indicators/{id}.metadata.json` | One per numeric column: upstream origins with their licences, and `nonRedistributable`. The URL is `fullMetadata` in the chart metadata |
 | `GET /grapher/{slug}.csv?v=1&csvType=full&useColumnShortNames=true` | The data for every entity and year |
 
-One `update` costs three calls per chart (four for a chart with two numeric columns). The ten starter charts take 31 calls, so a full run takes about a minute with our cap.
+One `update` costs three calls per chart (four for a chart with two numeric columns). The 15 charts take 47 calls, so a full run takes about a minute and a half with our cap.
 
 ## How a chart becomes series
 
@@ -29,7 +29,7 @@ One `update` costs three calls per chart (four for a chart with two numeric colu
 - **Blank cells are dropped.** In the wide CSV a blank only means "no value in this column for this row".
 - **Titles.** `title_no` is the registry title and `title_en` is OWID's `titleShort`. A chart with several numeric columns uses OWID's `titleLong` to tell them apart, in both titles.
 - **`unit`** is OWID's `unit`, in English. `unit_mult` is 0.
-- **`licence`** is the list of upstream licence names OWID records for the indicator, in order and without repeats, joined by "; ". If OWID records none, `licence` is empty and `riksdata validate` fails rather than us guessing one.
+- **`licence`** is the list of upstream licence names OWID records for the indicator, in order and without repeats, joined by "; ". A name that holds several licences is split on ";", and a stray "# comment" after a name is cut. If OWID records none, `licence` is empty and `riksdata validate` fails rather than us guessing one.
 - **`publish`** is the registry value, forced to false if OWID flags the indicator as `nonRedistributable`.
 - **`source_updated`** is the column's `lastUpdated` date. `update` skips a chart whose date hasn't changed.
 
@@ -37,46 +37,47 @@ One `update` costs three calls per chart (four for a chart with two numeric colu
 
 OWID's FAQ says: data produced by OWID, including data marked "with major processing by Our World in Data", falls under its CC BY licence. Other data is "subject to the license terms of those providers", and readers should check those before republishing.
 
-So a blanket `CC-BY-4.0` would be wrong for several charts. This is what OWID recorded on 2026-10-03:
+So a blanket `CC-BY-4.0` would be wrong for several charts. Each series carries the upstream licences OWID records. This is what they were on 2026-10-03:
 
-| Chart | Upstream licences recorded by OWID | OWID processing |
+| Chart | Upstream licences recorded by OWID | Terms note |
 |---|---|---|
-| `life-expectancy` | CC BY 4.0; CC BY 3.0 IGO; CC0 1.0 Universal; JSTOR terms | major |
-| `co-emissions-per-capita` | CC BY 4.0 | major |
-| `share-of-individuals-using-the-internet` | CC BY 4.0 | major |
-| `daily-per-capita-caloric-supply` | CC BY-NC-SA 3.0 IGO (FAO); © of five publishers for the historical estimates; Public Domain | major |
-| `gdp-per-capita-worldbank` | CC BY 4.0 | minor |
-| `homicide-rate-unodc` | © United Nations; CC BY 3.0 IGO; CC BY 4.0 | minor |
-| `military-spending-as-a-share-of-gdp-sipri` | SIPRI Terms and Conditions | minor |
-| `children-per-woman-un` | CC BY 3.0 IGO | not stated |
-| `median-age` (both series) | CC BY 3.0 IGO | not stated |
-| `child-mortality` | Copyright © UNICEF; CC BY 4.0 | not stated |
+| `co-emissions-per-capita` | CC BY 4.0 | |
+| `gdp-per-capita-worldbank` | CC BY 4.0 | |
+| `gdp-per-capita-maddison-project-database` | CC BY 4.0 | |
+| `share-of-individuals-using-the-internet` | CC BY 4.0 | |
+| `total-tax-revenues-gdp` | CC BY 4.0 | |
+| `children-per-woman-un` | CC BY 3.0 IGO | |
+| `median-age` (both series) | CC BY 3.0 IGO | |
+| `life-expectancy` | CC BY 4.0; CC BY 3.0 IGO; CC0 1.0 Universal; JSTOR terms | yes |
+| `annual-working-hours-per-worker` | CC BY 4.0; © 2005 Huberman and Minns | yes |
+| `share-of-electricity-production-from-renewable-sources` | CC BY 4.0; © Energy Institute 2026; Open Government Licence v3.0 | yes |
+| `child-mortality` | Copyright © UNICEF; CC BY 4.0 | yes |
+| `homicide-rate-unodc` | © United Nations; CC BY 3.0 IGO; CC BY 4.0 | yes |
+| `military-spending-as-a-share-of-gdp-sipri` | SIPRI Terms and Conditions | yes |
+| `oil-production-by-country` | © Energy Institute 2026; CC BY-SA 3.0; Public domain | yes |
+| `daily-per-capita-caloric-supply` | CC BY-NC-SA 3.0 IGO (FAO); © notices on seven publications from five publishers, for the historical estimates; Public Domain | yes |
 
-None of the ten is flagged `nonRedistributable` by OWID. Four are set to `publish: false` in the registry, so they stay in the lake but never reach a site export:
+None of the 15 is flagged `nonRedistributable` by OWID, and all 15 are published.
 
-| Chart | Why it isn't published |
-|---|---|
-| `daily-per-capita-caloric-supply` | FAO's licence is non-commercial and share-alike. CLAUDE.md §4 keeps such sources unpublished unless Egil decides otherwise |
-| `military-spending-as-a-share-of-gdp-sipri` | SIPRI's terms haven't been read yet |
-| `homicide-rate-unodc` | UNODC's terms (© United Nations) haven't been read yet |
-| `child-mortality` | UNICEF's terms haven't been read yet |
+**The rule.** `riksdata validate` has a list of open licences: CC BY 4.0, CC BY 3.0 IGO, CC0 1.0, Public Domain, NLOD 2.0 and Open Government Licence v3.0. A published series whose licence has any other part fails the `licence_terms` check unless its dataset has a `terms_note` in the registry. The note is a Norwegian sentence that the site shows under the licence and that follows the series into the CSV download. It records that Egil has decided the terms allow publication.
 
-A fifth, `oil-production-by-country`, was added later and is also unpublished: one of its origins is CC BY-SA 3.0, and CLAUDE.md §4 holds back share-alike sources too.
+On 2026-10-03 Egil decided to publish the five charts that had been held back (SIPRI, UNODC, UNICEF, FAO calorie supply, Energy Institute oil) for non-commercial use with attribution. Their notes say so, and the three charts that were already published with a part outside that list among their origins got a note too. Two consequences:
+
+- riksdata.org has to stay non-commercial, with no ads and no paid tier, while these series are shown.
+- The share-alike parts (FAO, and one origin of the oil series) mean that anyone who passes those series on must do it under the same licence.
+
+A new chart with a licence part outside the list starts as `publish: false` until Egil has decided.
 
 Three charts named in `SOURCES.md` were not added: `government-spending-share-gdp` does not exist (404), `electric-car-sales-share` has no licence recorded by OWID, and `human-development-index` has no unit, which `validate` requires.
-
-`life-expectancy`, `share-of-electricity-production-from-renewable-sources` and `annual-working-hours-per-worker` have a copyright notice among their origins but OWID marks them "with major processing", so they fall under the same reasoning as below.
-
-`life-expectancy` stays published although one historical origin lists "JSTOR terms": OWID marks the series "with major processing by Our World in Data", which its FAQ puts under OWID's own CC BY licence. To publish one of the four, read the provider's terms and remove `publish: false` from `registry/datasets/owid.yaml`.
 
 ## Quirks and gotchas
 
 - **CSV headers are lower case** (`entity,code,year`) when `useColumnShortNames=true`. OWID's documentation shows them capitalised. The adapter lower-cases the first three.
 - **Always use `csvType=full`.** With `csvType=filtered`, a chart whose default view is the map returns every country for a single year, with values carried forward from earlier years and an extra `<name>__original_year` column. The full CSV has only real observation years.
-- **Licence names are stored as OWID writes them**, including one glitch: `child-mortality` has an origin whose licence name is "CC BY 4.0# License (same as origin.license, for backwards compatibility)".
+- **Licence names have glitches.** `child-mortality` has an origin whose licence name is "CC BY 4.0# License (same as origin.license, for backwards compatibility)". The adapter cuts each name at the first `#`.
 - **Long history.** `daily-per-capita-caloric-supply` starts in 1274 for the United Kingdom, and `life-expectancy` in 1543.
 - **Not every entity is in every chart.** `military-spending-as-a-share-of-gdp-sipri` has no `WORLD` row.
-- **Lag.** Several charts end in 2023, so `validate` warns that they look stale. That is how often the upstream source is updated, not a fault in the pipeline.
+- **Lag.** Several charts end in 2022 or 2023. `validate` warns about an annual series when its last year ended more than 1,100 days ago. That is how often the upstream source is updated, not a fault in the pipeline.
 
 ## Datasets
 

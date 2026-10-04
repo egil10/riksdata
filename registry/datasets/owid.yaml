@@ -4,15 +4,17 @@
 # filtered to the same comparison set: the Nordics, Germany, the UK, the US and the world.
 # Titles, units, citations and licences come from OWID's metadata. Defaults: publish: true.
 #
-# `publish: false` keeps a chart in the lake but out of site exports. It is set where OWID
-# records upstream terms that are non-commercial (CLAUDE.md §4) or that nobody has read yet.
-# Egil decides when to flip them; the terms are listed in docs/v2/sources/owid.md.
+# `terms_note` is shown beside the licence on the site. A chart needs one when OWID records an
+# upstream licence that is not an open one; `validate` fails a published series without it.
+# Egil decided on 2026-10-03 to publish these for non-commercial use with attribution. A new
+# chart with such a licence starts as `publish: false` until Egil has decided.
 
 - dataset: life-expectancy
   title_no: Forventet levealder ved fødsel
   topic: health
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  terms_note: "Bearbeidet av Our World in Data fra flere kilder. Én historisk kilde (Riley, via JSTOR) har egne vilkår. Brukt med kildehenvisning."
 
 - dataset: co-emissions-per-capita
   title_no: CO₂-utslipp per innbygger
@@ -31,14 +33,14 @@
   topic: crime
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
-  publish: false   # upstream: © United Nations (UNODC terms not read yet)
+  terms_note: "Data fra UNODC (© United Nations) via Our World in Data. Brukt ikke-kommersielt med kildehenvisning."
 
 - dataset: military-spending-as-a-share-of-gdp-sipri
   title_no: Militærutgifter som andel av BNP
   topic: defence
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
-  publish: false   # upstream: SIPRI Terms and Conditions (not read yet)
+  terms_note: "Data fra SIPRI Military Expenditure Database via Our World in Data. Brukt ikke-kommersielt med kildehenvisning etter SIPRIs vilkår."
 
 - dataset: median-age
   title_no: Medianalder
@@ -57,7 +59,7 @@
   topic: health
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
-  publish: false   # upstream: Copyright © UNICEF (terms not read yet)
+  terms_note: "Data fra UN IGME/UNICEF (© UNICEF) via Our World in Data. Brukt ikke-kommersielt med kildehenvisning."
 
 - dataset: gdp-per-capita-worldbank
   title_no: BNP per innbygger (kjøpekraftsjustert)
@@ -70,7 +72,7 @@
   topic: food
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
-  publish: false   # upstream: FAO CC BY-NC-SA 3.0 IGO (non-commercial)
+  terms_note: "Data fra FAO (CC BY-NC-SA 3.0 IGO) og historiske kilder via Our World in Data. Ikke-kommersiell bruk; serien deles videre på samme vilkår."
 
 # --- Added 2026-10-03 for the beta page ---
 
@@ -85,6 +87,7 @@
   topic: energy
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  terms_note: "Bearbeidet av Our World in Data fra Ember, Energy Institute (© Energy Institute) m.fl. Brukt med kildehenvisning."
 
 - dataset: total-tax-revenues-gdp
   title_no: Skatteinntekter som andel av BNP
@@ -97,10 +100,11 @@
   topic: labour
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  terms_note: "Bearbeidet av Our World in Data fra Penn World Table og Huberman og Minns (© 2005). Brukt med kildehenvisning."
 
 - dataset: oil-production-by-country
   title_no: Oljeproduksjon
   topic: energy
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
-  publish: false   # upstream: CC BY-SA 3.0 among the origins (share-alike, CLAUDE.md §4)
+  terms_note: "Data fra Energy Institute – Statistical Review of World Energy (© Energy Institute) m.fl. via Our World in Data. Ikke-kommersiell bruk med kildehenvisning; deler under CC BY-SA 3.0 deles videre på samme vilkår."

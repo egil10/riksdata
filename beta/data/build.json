@@ -1,1 +1,1 @@
-{"generated_at":"2026-10-03T12:47:33+00:00","series":110,"observations":21909,"unpublished_series":5,"sources":["owid","ssb"],"validation":"warn","source_checks":{"ok":159,"reachable":94,"needs_key":14,"blocked":12,"unreachable":2,"failed":0,"skipped":28}}
+{"generated_at":"2026-10-03T14:57:42+00:00","series":113,"observations":25684,"unpublished_series":0,"sources":["owid","ssb"],"validation":"warn","source_checks":{"ok":201,"reachable":63,"needs_key":14,"blocked":7,"unreachable":2,"failed":0,"skipped":31}}

@@ -17,15 +17,29 @@ from riksdata.adapters.base import (
     TAGS,
     schema_problems,
 )
-from riksdata.periods import parse_period
+from riksdata.periods import period_end
+from riksdata.registry import Registry
 
 Status = Literal["pass", "warn", "fail"]
 
 MAX_EXAMPLES = 10
 MAX_ROW_DROP = 0.20
-# Days allowed between the start of a series' latest period and today, by frequency.
+# Days allowed between the end of a series' latest period and today, by frequency.
 # Warnings only for now; per-source limits come with the scheduled workflow (Phase 1c).
 MAX_AGE_DAYS = {"D": 14, "W": 35, "M": 100, "Q": 280, "A": 1100}
+# Licences that let us republish with attribution. Compared in lower case with "-" as " ",
+# so "CC-BY-4.0" and "CC BY 4.0" are the same. Anything else needs a recorded decision.
+OPEN_LICENCES = frozenset(
+    {
+        "cc by 4.0",
+        "cc by 3.0 igo",
+        "cc0 1.0",
+        "cc0 1.0 universal",
+        "public domain",
+        "nlod 2.0",
+        "open government licence v3.0",
+    }
+)
 
 _REQUIRED_TEXT = ("unit", "licence", "source_url", "tag")
 _OBSERVATION_KEY = ["series_id", "entity_id", "period", "vintage"]
@@ -120,7 +134,7 @@ def _check_freshness(series: pl.DataFrame, today: date) -> Check:
         limit = MAX_AGE_DAYS.get(row["frequency"])
         if limit is None or row["last_period"] is None:
             continue
-        age = (today - parse_period(row["last_period"]).period_start).days
+        age = (today - period_end(row["last_period"])).days
         if age > limit:
             problems.append(
                 f"{row['series_id']}: latest period {row['last_period']} is {age} days old "
@@ -132,6 +146,59 @@ def _check_freshness(series: pl.DataFrame, today: date) -> Check:
         ok="every series has a recent latest period for its frequency",
         bad="series look stale",
         severity="warn",
+    )
+
+
+def _check_suspicious_zeros(observations: pl.DataFrame) -> Check:
+    """A 0 between other values is often a missing figure that the publisher wrote as 0."""
+    key = ["series_id", "entity_id"]
+    nonzero = pl.col("value") != 0
+    zeros = (
+        observations.filter(pl.col("value").is_not_null())
+        .sort(*key, "period_start")
+        .with_columns(
+            before=nonzero.cum_sum().over(key), after=nonzero.cum_sum(reverse=True).over(key)
+        )
+        .filter((pl.col("value") == 0) & (pl.col("before") > 0) & (pl.col("after") > 0))
+        .group_by(key, maintain_order=True)
+        .agg("period")
+    )
+    problems = []
+    for row in zeros.iter_rows(named=True):
+        periods = row["period"]
+        more = f" and {len(periods) - 5} more" if len(periods) > 5 else ""
+        problems.append(
+            f"{row['series_id']} {row['entity_id']}: 0 in {', '.join(periods[:5])}{more}"
+        )
+    return _result(
+        "suspicious_zeros",
+        problems,
+        ok="no series has a 0 between other values",
+        bad="series have a 0 between other values",
+        severity="warn",
+    )
+
+
+def _check_licence_terms(series: pl.DataFrame, registry: Registry | None) -> Check:
+    """A published series needs open licences throughout, or a `terms_note` on its dataset."""
+    datasets = registry.datasets if registry else []
+    noted = {(ds.source_id, ds.dataset) for ds in datasets if ds.terms_note}
+    problems: list[str] = []
+    for row in series.filter(pl.col("publish")).sort("series_id").iter_rows(named=True):
+        parts = [part.strip() for part in (row["licence"] or "").split(";")]
+        not_open = [
+            part
+            for part in parts
+            if part and " ".join(part.replace("-", " ").lower().split()) not in OPEN_LICENCES
+        ]
+        if not_open and (row["source_id"], row["dataset_id"]) not in noted:
+            problems.append(f"{row['series_id']}: not open: {', '.join(not_open)}")
+    return _result(
+        "licence_terms",
+        problems,
+        ok="every published series has open licences or a terms_note in the registry",
+        bad="published series with a licence that is not open and no terms_note",
+        severity="fail",
     )
 
 
@@ -182,10 +249,13 @@ def _source_counts(datasets: dict[str, dict[str, int]]) -> dict[str, dict[str, i
     return sources
 
 
-def run(lake: Path, now: datetime | None = None) -> dict[str, Any]:
+def run(
+    lake: Path, registry: Registry | None = None, now: datetime | None = None
+) -> dict[str, Any]:
     """Run every check, write `run_report.json` and return the report.
 
-    The report's `status` is `fail` if any check failed, else `warn` or `pass`.
+    The registry tells the licence check which datasets have a `terms_note`. The report's
+    `status` is `fail` if any check failed, else `warn` or `pass`.
     """
     now = now or datetime.now(UTC)
     previous = storage.read_run_report(lake)
@@ -199,6 +269,8 @@ def run(lake: Path, now: datetime | None = None) -> dict[str, Any]:
             _check_unique_observations(observations),
             _check_required_fields(series),
             _check_no_empty_series(series, observations),
+            _check_licence_terms(series, registry),
+            _check_suspicious_zeros(observations),
             _check_freshness(series, now.date()),
             _check_row_drop(datasets, previous),
         ]

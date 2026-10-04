@@ -31,8 +31,13 @@ def make_check(**fields: Any) -> SourceCheck:
     return SourceCheck(**{**base, **fields})
 
 
-def sample(status: int = 200, body: bytes = b"", content_type: str = "application/json") -> Sample:
-    return Sample(status, content_type, body, False, "https://example.org/api", 0.1)
+def sample(
+    status: int = 200,
+    body: bytes = b"",
+    content_type: str = "application/json",
+    url: str = "https://example.org/api",
+) -> Sample:
+    return Sample(status, content_type, body, False, url, 0.1)
 
 
 # --- Sampler -------------------------------------------------------------------------------
@@ -148,6 +153,20 @@ def test_sampler_sends_user_agent_headers_and_json_body() -> None:
         ({}, sample(403), "blocked", "HTTP 403"),
         ({}, sample(429), "blocked", "HTTP 429"),
         ({}, sample(404), "failed", "HTTP 404"),
+        # A soft 404: the host answers 200, but only after sending us to its not-found page.
+        (
+            {"expect_type": "html"},
+            sample(200, b"<html>", "text/html", "https://example.org/web/page-404"),
+            "failed",
+            "redirected to a not-found page",
+        ),
+        # No redirect, so a 404 in the address we asked for means nothing.
+        (
+            {"url": "https://example.org/tables/14404"},
+            sample(200, b"{}", url="https://example.org/tables/14404"),
+            "reachable",
+            "content not verified",
+        ),
         ({}, sample(500), "failed", "HTTP 500"),
         (
             {"expect": "Navn", "encoding": "utf-16"},
@@ -310,12 +329,13 @@ def test_repo_check_list_covers_every_catalogue_row() -> None:
     checks = load_checks(REPO_ROOT / "registry" / "source_checks.yaml")
 
     candidates = [check for check in checks if check.section == "23"]
-    assert len(checks) - len(candidates) == 309  # the catalogue rows in SOURCES.md sections 1-20
+    assert len(checks) - len(candidates) == 311  # the catalogue rows in SOURCES.md sections 1-20
     assert len(candidates) == 7  # the rows of section 23, found by the source inventory
     assert all(check.url.startswith("https://") for check in checks if check.url)
     never_use = [check for check in checks if check.priority == "-"]
     assert never_use and all(check.skip and check.access == "none" for check in never_use)
-    assert all(check.access in ("none", "manual") for check in checks if check.skip)
+    # A row that isn't requested has no source of its own, is used by hand, or is a publication.
+    assert all(check.access in ("none", "manual", "docs") for check in checks if check.skip)
     # Sources with person-level data are flagged, so no sample of them is ever kept.
     flagged = {check.id for check in checks if check.pii}
     assert {

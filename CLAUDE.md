@@ -29,7 +29,8 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 - Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff. **Ask before adding any other dependency.**
 - Type hints everywhere. Pydantic for anything loaded from YAML or external JSON configs.
 - Ruff for lint and format (line length 100).
-- Network I/O only through `riksdata.http` (rate limiting, retries, User-Agent `riksdata/<version> (+https://riksdata.org)`). File I/O only through `riksdata.storage`.
+- Network I/O only through `riksdata.http` (rate limiting, retries, User-Agent `riksdata/<version> (+https://riksdata.org; <contact email>)`). File I/O only through `riksdata.storage`.
+- Never send a browser-like or spoofed User-Agent. If a host refuses `riksdata/…`, use its official API or bulk download, or ask the publisher, and record the source as `blocked` meanwhile.
 - Adapter `normalize()` must be a pure function of `(raw, dataset_spec)`.
 - Log with the stdlib `logging` module, not print (the CLI may print summaries).
 
@@ -44,10 +45,12 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 - **Never commit data blobs.** `lake/` is gitignored. Don't commit any file over **1 MB**, and never commit raw API responses outside trimmed test fixtures. (v1's existing `data/` is grandfathered. Don't add to it.)
 - Raw responses are archived by `storage.py` to `lake/raw/<source>/<YYYY-MM-DD>/…` and never overwritten within a day.
 - Every series must have `unit`, `licence`, `source_url`, `retrieved_at` and a tag (`DATA|LAW|ESTIMATE|PROPOSAL`; our own calculations are `ESTIMATE` with `estimate_by = riksdata`). `validate` fails otherwise.
-- Respect publisher limits (see `registry/sources.yaml`): SSB 40/min, Stortinget 100/min, OECD **60 data calls/hour**. Never hammer an API in a loop without the limiter. Cache immutable things (e.g. Stortinget vote results by `votering_id`).
+- Respect publisher limits (see `registry/sources.yaml`): SSB 40/min, Stortinget 100/min, OECD **60 calls/hour, structure calls included**. Never hammer an API in a loop without the limiter. Cache immutable things (e.g. Stortinget vote results by `votering_id`).
 - Respect `redistribution`/`publish` in the registry: restricted sources never reach `site/` exports. Never scrape a site whose terms forbid it (e.g. lovdata.no web, pollofpolls.no without permission, skattelister). Use the sanctioned API or skip it.
 - **Privacy and terms (binding; full list in SOURCES.md Appendix A3):** person-level registers (`pii` ≠ none) are hashed or aggregated inside `normalize` and never reach `clean/` as raw IDs or names. Never use skattelister, person-level aksjonærregister or beneficial-owner data. Never scrape Finn, Proff, lovdata.no or pollofpolls. NC/SA-licensed sources (ESS, JST, Atlas ECI, MARPOR, WHO GHO, OpenTender) stay `publish: false` unless Egil decides otherwise. Keys come from env/GitHub secrets (`secret_env`), never from files in the repo.
 - Don't invent data. If a value or code can't be verified from the source, leave it out and note it.
+- Registry models are strict (`extra="forbid"`): a new registry field goes into the pydantic model, with a default and a test, in the PR that first uses it.
+- Publisher quirks (e.g. SSB publishing `0` for missing years) are handled in the registry (leave the codes out of `select`) and documented in `docs/v2/sources/<source>.md`, not hard-coded in adapters.
 - Credit sources per their licence (SSB: "Kilde: Statistisk sentralbyrå"; Stortinget: NLOD, credit Stortinget; OWID: per-series citation).
 
 ## 5. Registry & docs (required with every adapter PR)

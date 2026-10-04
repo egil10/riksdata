@@ -214,6 +214,22 @@ def test_cli_update_validate_and_sql(workdir: FakeAdapter) -> None:
     assert "demo.second.b" in sql.output
 
 
+def test_cli_update_warns_while_the_contact_address_is_the_placeholder(
+    workdir: FakeAdapter, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    runner = CliRunner()
+
+    monkeypatch.delenv("RIKSDATA_CONTACT_EMAIL", raising=False)
+    placeholder = runner.invoke(cli.app, ["update"])
+    monkeypatch.setenv("RIKSDATA_CONTACT_EMAIL", "egil@example.org")
+    real = runner.invoke(cli.app, ["update", "--force"])
+
+    assert "RIKSDATA_CONTACT_EMAIL is not set" in placeholder.output
+    assert "kontakt@riksdata.org" in placeholder.output
+    assert real.exit_code == 0, real.output
+    assert "RIKSDATA_CONTACT_EMAIL" not in real.output
+
+
 def test_cli_update_exits_non_zero_when_a_dataset_fails(workdir: FakeAdapter) -> None:
     workdir.broken = {"second"}
 

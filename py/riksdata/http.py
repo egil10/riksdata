@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import time
 from collections import deque
 from collections.abc import Callable, Mapping
@@ -15,7 +16,20 @@ from riksdata.registry import Source
 
 logger = logging.getLogger(__name__)
 
-USER_AGENT = f"riksdata/{__version__} (+https://riksdata.org)"
+CONTACT_PLACEHOLDER = "kontakt@riksdata.org"  # placeholder: Egil sets the real address
+
+
+def contact_email(env: Mapping[str, str] = os.environ) -> str:
+    """The address in our User-Agent: `RIKSDATA_CONTACT_EMAIL`, or the placeholder."""
+    return env.get("RIKSDATA_CONTACT_EMAIL", "").strip() or CONTACT_PLACEHOLDER
+
+
+def user_agent(env: Mapping[str, str] = os.environ) -> str:
+    """Who we are and how to reach us. We never send a browser's User-Agent (CLAUDE.md §2)."""
+    return f"riksdata/{__version__} (+https://riksdata.org; {contact_email(env)})"
+
+
+USER_AGENT = user_agent()
 MAX_RETRIES = 5
 BACKOFF_SECONDS = 1.0  # doubles on every retry: 1, 2, 4, 8, 16
 MAX_DELAY_SECONDS = 120.0

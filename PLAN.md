@@ -121,7 +121,6 @@ ssb:
   timeout_seconds: 60         # Stortinget needs 120 (written questions take >30 s)
   runner: box                 # box | actions | mac — where the fetch can run (SOURCES.md A1: regjeringen.no, EEA-Lex, NVDB … are blocked from datacentre IPs)
   secret_env: null            # e.g. ENTSOE_TOKEN; read from env/GitHub secrets, never committed. Missing key ⇒ skip with a warning
-  user_agent: default         # default | browser (NAV files need a browser-like UA)
   encoding: utf-8             # file defaults; override per dataset. Seen: cp1252 (DFØ, Innovasjon Norge), latin-1 (NAV), utf-16 (NBIM)
   delimiter: ","              # ";" is common for Norwegian CSVs
   decimal: "."                # "," for DFØ, NAV, RSF
@@ -142,6 +141,7 @@ ssb:
   schedule: daily              # daily | weekly | monthly
   superseded_by: null          # set when the publisher closes the table
   publish: true                # false ⇒ kept in the lake for analysis, never exported to the site (default false for NC/SA-licensed sources until Egil decides; SOURCES.md A3)
+  terms_note: null             # a Norwegian sentence shown beside the licence. Required to publish a series whose upstream licence is not an open one (`validate`: licence_terms)
   pii: none                    # none | aggregate | hash_ids — person-level registers (Fiskeridir owners, farm subsidies, eInnsyn names) are hashed or aggregated at ingest
   chunk_by: null               # e.g. {Tid: 1, Region: 25} for tables above the 800k-cell limit (SSB 12367 = 66.5M cells)
 ```
@@ -178,7 +178,7 @@ Rules: adapters do no I/O except through `http.py`. They never write files thems
 | Valgdirektoratet | `https://valgresultat.no/api/{year}/{st\|ko\|fy\|sa}/{district}/{kommune}/{krets}` | none | cache 15 s | (verify, likely NLOD) | HAL+JSON. Elections 2009→. Navigate via `_links.related`. |
 | Lovdata | `https://api.lovdata.no/v1/publicData/list` → `/get/<file>` | none | — | NLOD 2.0 | Bulk tarballs (laws, regulations, Lovtidend 2001→). Never scrape lovdata.no. |
 | IMF SDMX 3.0 | `https://api.imf.org/external/sdmx/3.0/data/dataflow/{agency}/{flow}/+/{key}` | none | slow (~40 s per country × flow) | IMF terms (verify) | **The main IMF adapter** (DataMapper is a fallback). 223 flows incl. dated vintages (`WEO_2025_OCT_VINTAGE`). Positional keys (`NOR.NGDP_RPCH.A`). URL-encode filter brackets (`c%5BCOUNTRY%5D=NOR`). Page PSBS by indicator. |
-| NAV | `https://g.nav.no/api/v1/grunnbeløp`; files `https://www.nav.no/_/attachment/download/<uuid>:<hash>/<file>.csv` | none | — | CC BY 4.0 | `data.nav.no` is dead (404). File hashes change monthly, so scrape links from the statistics page. `;`, Latin-1, decimal comma, browser-like UA. |
+| NAV | `https://g.nav.no/api/v1/grunnbeløp`; files `https://www.nav.no/_/attachment/download/<uuid>:<hash>/<file>.csv` | none | — | CC BY 4.0 | `data.nav.no` is dead (404). File hashes change monthly, so read the links from the statistics page. `;`, Latin-1, decimal comma. Our own User-Agent gets both the pages and the files (checked 2026-10-03). |
 
 ## 8. Phases
 
@@ -245,3 +245,8 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   2. `SOURCES.md` gets section 23: seven candidate sources found during the testing. The check list has 316 entries.
   3. The OECD rate limit covers structure requests as well as data requests (§7). The OECD adapter has to budget every call.
   4. regjeringen.no is read through its sitemap and direct page and file addresses. Its `robots.txt` disallows `/api/` and filtered lists, so the search API behind its list pages is not used. The same goes for Udir's Statistikkportalen, whose `robots.txt` disallows everything.
+- **2026-10-03 (review fixes, PR `v2/01e-review-fixes`):**
+  1. Egil publishes the five held-back OWID charts (SIPRI, UNODC, UNICEF, FAO calorie supply, Energy Institute oil) for non-commercial use with attribution. Every published series with a non-open upstream licence part carries a `terms_note` that the site shows; `validate` fails without it (`licence_terms`). New non-open data still starts as `publish: false`.
+  2. The User-Agent is always `riksdata/<version> (+https://riksdata.org; <contact email>)`, with the address from `RIKSDATA_CONTACT_EMAIL`. No browser-like User-Agent, ever; the `user_agent` registry field is removed. Refused hosts get their official API or bulk route instead (HUDOC → ECHR statistics files, ParlGov → Harvard Dataverse, www.oecd.org pages → OECD SDMX dataflows).
+  3. Freshness is measured from the end of the last period. A `0` between non-zero values is flagged (`suspicious_zeros`). SSB 05803 no longer selects marriages and divorces (published as 0 for missing years).
+  4. Some hosts refuse our HTTP client whatever it says about itself: www.echr.coe.int answers 403 to httpx and 200 to curl with the same User-Agent. Such rows stay `blocked`; changing the client to get past a bot check is a decision for Egil.

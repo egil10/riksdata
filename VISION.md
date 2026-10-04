@@ -193,7 +193,7 @@ Every page lists the sources it needs (section numbers refer to `SOURCES.md`). *
 | Stortinget | Latter i salen | Chamber tone over time | Referat XML ✅ | S/M | Chartbook fun |
 | Stortinget | EØS uten stemme | Share of EU acts incorporated without a Storting vote | EEA-Lex ❌ (Mac), ESA scoreboard 🌐 | M | |
 | **Norge vs. verden** | **Norge på verdensrankingene** (QW6) | Where is Norway #1, and where is it slipping? | WGI ✅, TI CPI ✅, RSF ✅, UNDP HDI ✅, OECD PMR ✅ (§19–20) | M | Extension of F5. Show SE/methodology per index |
-| Verden | **Norge for retten** | Where does the state get it wrong, and is it improving? | HUDOC ✅, ESA/EFTA Court 🌐, Sivilombudet 🌐, Trygderetten 🌐, Riksrevisjonen grades 🌐, Regjeringsadvokaten 🌐 | L | Riksrevisjonen grades need LLM classification + review |
+| Verden | **Norge for retten** | Where does the state get it wrong, and is it improving? | ECHR statistics files (PDF; HUDOC's web endpoint is not used), ESA/EFTA Court 🌐, Sivilombudet 🌐, Trygderetten 🌐, Riksrevisjonen grades 🌐, Regjeringsadvokaten 🌐 | L | Riksrevisjonen grades need LLM classification + review |
 | Verden | EØS-midlene og bistanden | What Norway pays for abroad, per country and sector | EEA Grants API ✅, Norad IATI ✅ | M | |
 | Verden | Tillit i Norden | Is Norway's trust drop unusual? | OECD Trust 🌐, DFØ Innbyggerundersøkelsen ❓, ESS (NC) 🌐 | M | |
 | Verden | Norge i FN | Who Norway votes with at the UN | UNGA votes ✅ | M | |
@@ -557,7 +557,7 @@ Prompts 01–03 already exist (Phase 1). Each later prompt should follow the sam
 - **prompt-41**: Government activity: eInnsyn `/statistics`, Støtteregisteret POST adapter (verify the endpoint first; the old paths are dead), Innovasjon Norge (cp1252), Forskningsrådet, TED (+ Doffin with key) → "Statens postkasse", "Hvem får støtte?".
 - **prompt-42**: Text and attention: ParlaMint-NO/5.0 TEI ingest + extension past 2022 from referat XML, DHLAB n-grams, Wikimedia pageviews → attention dashboard; later "Ord vs. stemmer".
 - **prompt-43**: Local democracy: Sikt Kommunedatabasen API + valg.no list/candidate XLSX + Partiregisteret → "Lokaldemokratiet" (aggregate candidates, name only the elected).
-- **prompt-44**: Accountability pack: HUDOC JSON, Riksrevisjonen grade classifier (LLM suggestion + human review), Sivilombudet, Trygderetten tables → "Norge for retten".
+- **prompt-44**: Accountability pack: ECHR statistics files, Riksrevisjonen grade classifier (LLM suggestion + human review), Sivilombudet, Trygderetten tables → "Norge for retten".
 - **prompt-45**: Petroleum and fund: Sodir FactPages CSV + FactMaps ArcGIS, NBIM holdings (UTF-16), NBIM voting (key), Etikkrådet WP JSON → "Oljefondet og deg".
 - **prompt-46**: Coast: Kystdatahuset (MARU, port calls, cruise) + BarentsWatch lice (key) → "Kysten i tall".
 - **prompt-47**: Rolling-feed archiver Action (Politiloggen, Avinor XML, AIS/Entur live): daily compressed snapshots to a private bucket or release asset, retention policy, aggregates-only publishing.

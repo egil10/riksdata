@@ -42,6 +42,8 @@
   topic: population
   frequency: A
   select:
+    # InngEkteskap (marriages) and Skilsmisse (divorces) are left out: SSB publishes them
+    # as 0, with no status flag, for 2021-2023 and 2025. See docs/v2/sources/ssb.md.
     ContentsCode:
       - Personer
       - Levendefodte
@@ -49,8 +51,6 @@
       - Dodfodte
       - Dode
       - Dode2
-      - InngEkteskap
-      - Skilsmisse
       - Innflyttinger
       - Utflyttinger
       - Levendef3

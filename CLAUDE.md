@@ -4,7 +4,8 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 
 ## 0. Project context (read every session)
 - Riksdata 2.0 is being built **alongside** the frozen v1 site. v1 files (`index.html`, `src/`, `data/`, `sw.js`, `assets/`, `docs/*.md` at the top level of docs/) are live on GitHub Pages at riksdata.org. **Don't modify, move or delete v1 files** unless the task explicitly says it's the Phase 2 cut-over.
-- v2 code lives in: `py/riksdata/` (Python package), `registry/`, `tests/`, `docs/v2/`, `site/` (Phase 2) and `.github/workflows/`.
+- v2 code lives in: `py/riksdata/` (Python package), `registry/`, `tests/`, `docs/v2/`, `beta/` (the stopgap page at riksdata.org/beta/ and its exported data), `site/` (Phase 2) and `.github/workflows/`.
+- Session prompts and reviews from the planning chat arrive in `.handoff/` at the repo root. It is git-ignored: read it at the start of a session, and never commit it.
 - The owner (Egil) is strong in Python/ML and works on a Mac with uv and Python 3.12. Prefer clear, typed, boring Python over clever code.
 
 ## 1. Workflow
@@ -15,6 +16,7 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 5. **Before opening a PR, run all of these and paste the results in the PR description:**
    ```bash
    uv run ruff check . && uv run ruff format --check .
+   uv run mypy
    uv run pytest -q
    uv run riksdata update --source <sources touched>   # live run
    uv run riksdata validate
@@ -26,8 +28,8 @@ Instructions for Claude Code working in this repo. **Read `PLAN.md` first** (arc
 
 ## 2. Python conventions
 - **uv only**: `uv add <pkg>`, `uv add --dev <pkg>`, `uv run …`. Never `pip install`. Commit `uv.lock`. Python 3.12.
-- Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff. **Ask before adding any other dependency.**
-- Type hints everywhere. Pydantic for anything loaded from YAML or external JSON configs.
+- Core deps: httpx, polars, pyarrow, duckdb, pydantic, pyyaml, typer. Dev: pytest, ruff, mypy, types-PyYAML. **Add another dependency when a task needs it** (Egil, 2026-10-03: no need to ask first): with `uv add`, in the PR that first uses it, and named with its reason in the PR description. Don't add one that nothing uses yet.
+- Type hints everywhere; `uv run mypy` checks `py/riksdata` in strict mode. Pydantic for anything loaded from YAML or external JSON configs.
 - Ruff for lint and format (line length 100).
 - Network I/O only through `riksdata.http` (rate limiting, retries, User-Agent `riksdata/<version> (+https://riksdata.org; <contact email>)`). File I/O only through `riksdata.storage`.
 - Never send a browser-like or spoofed User-Agent. If a host refuses `riksdata/…`, use its official API or bulk download, or ask the publisher, and record the source as `blocked` meanwhile.

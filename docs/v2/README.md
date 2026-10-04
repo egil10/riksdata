@@ -49,11 +49,11 @@ The catalogue is for discovery only. A table becomes part of Riksdata when it is
 ## Check which sources can be reached
 
 ```bash
-uv run riksdata check-sources                 # one small request to each of the 316 rows in SOURCES.md
+uv run riksdata check-sources                 # one small request to each of the 318 rows in SOURCES.md
 uv run riksdata check-sources --status failed # re-check what failed last time
 ```
 
-This doesn't ingest anything. It records whether each source answers, needs a key or is blocked. See [Source checks](source-checks.md) for the statuses and the latest results. The [source inventory](source-inventory.md) sums up what data each source could give us and how we would fetch it.
+This doesn't ingest anything. It records whether each source answers, needs a key or is blocked. [Source checks](source-checks.md) explains the command, and the [source inventory](source-inventory.md) has the results: what data each source could give us and how we would fetch it.
 
 ## Publish the beta page
 
@@ -84,6 +84,7 @@ uv run riksdata export            # writes beta/data/ from the published series 
 uv run pytest -q                                          # offline, uses tests/fixtures/
 uv run pytest -m live                                     # also calls SSB and OWID
 uv run ruff check . && uv run ruff format --check .
+uv run mypy                                               # strict type check of py/riksdata
 ```
 
 ## Sources
@@ -94,3 +95,9 @@ One page per adapter, with endpoints, limits, licence, quirks and the dataset li
 - [Our World in Data](sources/owid.md)
 
 To add a dataset, add an entry to `registry/datasets/<source>.yaml` (format in `PLAN.md` §5) and run `update` for it.
+
+## The other pages here
+
+- [Source checks](source-checks.md): the `check-sources` command, its statuses and access classes.
+- [Source inventory](source-inventory.md): what the 318 catalogued sources can give us, as tested on 2026-10-03.
+- [The beta page](beta.md): how `beta/` is built and what it shows.

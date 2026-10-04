@@ -3,6 +3,8 @@ name = "riksdata"
 version = "0.1.0"
 description = "Riksdata 2.0: a source-linked, version-controlled quantitative model of Norway"
 requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
 dependencies = [
     "duckdb>=1.5.6",
     "httpx>=0.28.1",
@@ -32,7 +34,18 @@ src = ["py", "tests"]
 extend-exclude = ["*.md"]
 
 [tool.ruff.lint]
-select = ["E", "F", "I", "UP", "B"]
+select = [
+    "E", "F", "I", "UP", "B", "N",        # errors, imports, modern syntax, likely bugs, naming
+    "SIM", "C4", "PIE", "RET", "PERF",    # simpler code
+    "PTH", "DTZ", "T20",                  # pathlib, timezone-aware datetimes, no print
+    "PT", "PLC", "PLE", "PLW", "RUF",     # pytest style, pylint conventions/errors/warnings, ruff
+]
+# En dashes are ordinary punctuation in our titles and citations.
+allowed-confusables = ["–"]
+
+[tool.mypy]
+files = ["py/riksdata"]
+strict = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -41,6 +54,8 @@ markers = ["live: hits real publisher APIs (run with `uv run pytest -m live`)"]
 
 [dependency-groups]
 dev = [
+    "mypy>=2.4.0",
     "pytest>=9.1.1",
     "ruff>=0.16.10",
+    "types-pyyaml>=6.0.12.20260906",
 ]

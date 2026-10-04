@@ -14,7 +14,7 @@ import json
 import re
 from datetime import UTC, date, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 import polars as pl
 
@@ -58,12 +58,12 @@ _SECTION_HEADING = re.compile(r"^#{2,3} (\d+[a-d]?)\. (.+)$")
 
 def _decimals(values: pl.Series) -> int:
     """How many decimals to show for a series: what the data has, at most 2, fewer if large."""
-    size = values.abs().max()
+    size = cast("float | None", values.abs().max())
     if size is None or size >= 1000:
         return 0
     most = 1 if size >= 100 else 2
     for digits in range(most):
-        if (values - values.round(digits)).abs().max() < 1e-9:
+        if cast("float", (values - values.round(digits)).abs().max()) < 1e-9:
             return digits
     return most
 
@@ -172,10 +172,10 @@ def export_site(
         for entity_id, group in rows.group_by("entity_id", maintain_order=True):
             # Keep gaps inside a series, but not the empty stretch before its first value
             # or after its last one.
-            has_value = group["value"].is_not_null()
-            first, last = has_value.arg_max(), group.height - 1 - has_value.reverse().arg_max()
-            if not has_value.any():
+            valued_rows = group["value"].is_not_null().arg_true()
+            if valued_rows.is_empty():
                 continue
+            first, last = valued_rows[0], valued_rows[-1]
             kept = group.slice(first, last - first + 1)
             entities[str(entity_id[0])] = {
                 "period": kept["period"].to_list(),

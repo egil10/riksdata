@@ -73,7 +73,7 @@ class RateLimiter:
 
 
 def _retry_delay(attempt: int, retry_after: str | None) -> float:
-    delay = BACKOFF_SECONDS * 2**attempt
+    delay = BACKOFF_SECONDS * 2.0**attempt
     if retry_after and retry_after.isdigit():
         delay = max(delay, float(retry_after))
     return min(delay, MAX_DELAY_SECONDS)

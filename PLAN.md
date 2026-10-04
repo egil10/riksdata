@@ -1,7 +1,7 @@
 # Riksdata 2.0 — PLAN
 
 > Living document. Update it in the same PR whenever an architectural decision changes.
-> Last revised: 2026-10-03 (v2: aligned with VISION.md, see the changelog at the bottom).
+> Last revised: 2026-10-03 (see the changelog at the bottom).
 > Companion docs: `VISION.md` (12-month product vision and roadmap), `SOURCES.md` (source catalogue).
 
 ## 1. Vision
@@ -43,6 +43,7 @@ registry/*.yaml ──► adapters (Python) ──► lake/raw/<source>/<date>/�
                         riksdata validate ──► lake/run_report.json
                                                  │
                         riksdata export ──► site/public/data/*.json (+ parquet for Datalab)
+                                                 │      (today: beta/data/*.json, for the stopgap page)
                                                  │
                                    site/ (Astro + Observable Plot) ──► GitHub Pages (riksdata.org)
 ```
@@ -50,26 +51,30 @@ registry/*.yaml ──► adapters (Python) ──► lake/raw/<source>/<date>/�
 ### Repository layout
 ```
 riksdata/
-├── PLAN.md, CLAUDE.md, README.md
+├── README.md, PLAN.md, VISION.md, SOURCES.md, CLAUDE.md
 ├── pyproject.toml, uv.lock          # Python 3.12, managed with uv
 ├── py/riksdata/                     # Python package (module-root = "py"; v1 owns src/)
-│   ├── cli.py                       # typer app: update | validate | catalog | sql | export | check-sources
+│   ├── cli.py                       # typer app: update | validate | catalog | sql | check-sources | export
 │   ├── registry.py                  # pydantic models + loader for registry/*.yaml
-│   ├── http.py                      # httpx client, per-source rate limiter, retries, User-Agent
-│   ├── storage.py                   # parquet writer, duckdb view builder, raw archive
+│   ├── http.py                      # httpx client, per-source rate limiter, retries, User-Agent; Sampler for bounded checks
+│   ├── storage.py                   # all file I/O: raw archive, parquet, duckdb views, reports, exports
 │   ├── validate.py                  # data-quality checks
-│   ├── periods.py                   # period parsing: 2026, 2026M08, 2026K2/Q2, 2026U14 → canonical + period_start
-│   └── adapters/{base,ssb,owid,worldbank,oecd,stortinget,norgesbank,dfo}.py
+│   ├── periods.py                   # period parsing: 2026, 2026M08, 2026K2/Q2, 2026U14 → canonical period, start and end
+│   ├── sourcecheck.py               # `check-sources`: one small request per SOURCES.md row
+│   ├── export.py                    # the published series as JSON for the site
+│   └── adapters/{base,ssb,owid}.py  # next: worldbank, oecd, stortinget, then norgesbank, dfo …
 ├── registry/
-│   ├── sources.yaml                 # one entry per source
+│   ├── sources.yaml                 # one entry per source with an adapter
 │   ├── datasets/<source>.yaml       # what to fetch from each source
-│   └── source_checks.yaml           # one small request per SOURCES.md row, for `check-sources`
+│   └── source_checks.yaml           # one small request per SOURCES.md row, with its access class
 ├── tests/  (+ tests/fixtures/<source>/… small recorded responses)
-├── docs/v2/sources/<source>.md      # one page per adapter
-├── lake/                            # GITIGNORED: raw/, parquet/, riksdata.duckdb, run_report.json
-├── site/                            # v2 front end (Phase 2)
-├── .github/workflows/               # ci.yml, update.yml, (deploy.yml in Phase 2)
-└── index.html, src/, data/, sw.js … # v1, frozen. Do not modify. Moves to legacy/ at Phase 2 cut-over.
+├── docs/v2/                         # quickstart, one page per adapter (sources/), source checks and inventory, the beta page
+├── beta/                            # stopgap page at riksdata.org/beta/ and its exported data, until Phase 2
+├── lake/                            # GITIGNORED: raw/, parquet/, riksdata.duckdb, run_report.json, source_checks/
+├── .handoff/                        # GITIGNORED: session prompts and reviews from the planning chat
+├── site/                            # v2 front end (Phase 2, not started)
+├── .github/workflows/               # ci.yml, update.yml (Phase 1c, not started), deploy.yml in Phase 2
+└── index.html, src/, data/, assets/, sw.js, docs/*.md … # v1, frozen. Do not modify. Moves to legacy/ at Phase 2 cut-over.
 ```
 
 ### Key decisions (and why)
@@ -184,7 +189,7 @@ Rules: adapters do no I/O except through `http.py`. They never write files thems
 
 ### Phase 1: data pipeline (`riksdata update`)
 Done when `uv run riksdata update && uv run riksdata validate` builds a validated lake from **SSB, OWID, Stortinget, World Bank and OECD**, CI runs tests on every PR, and a scheduled workflow refreshes nightly and publishes snapshots.
-- **1a** Scaffold, registry, http client, storage, CLI, **SSB** (catalogue + 7 tables) and **OWID** (~10 charts). (Claude Code session 1)
+- **1a** Scaffold, registry, http client, storage, CLI, **SSB** (catalogue + 7 tables) and **OWID** (~10 charts). (Claude Code session 1) **Done**, and since extended: 13 SSB tables and 15 OWID charts (113 series), `check-sources` over the 318 catalogued sources with the source inventory, `export` and the stopgap page at `/beta/`.
 - **1b** **Stortinget** (sessions, cases, votes, per-MP results; incremental) + **World Bank** + **OECD**. (session 2)
 - **1c** GitHub Actions: `ci.yml` + `update.yml` (cron, artefacts, weekly release snapshot, run report, freshness file). (session 3)
 - **1d** (reordered by VISION): **DFØ statsregnskap + bevilgningshistorikk** (needed for the "Hvor går 1000 kroner" flagship), **valgresultat.no** (elections), the **Lovdata public-data list** (index only), Norges Bank, and the data.norge.no catalogue. Next, the quick-win adapters (VISION §1.7, prompt-32): NAV files + G API, Norges Bank HMS xlsx, NVE kraftverk, Mattilsynet, ranking files. The registry fields `runner`, `secret_env`, `pii`, `encoding`/`delimiter`/`decimal` and `chunk_by` should exist from 1a (cheap to add now, painful later), even if unused at first.
@@ -250,3 +255,8 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   2. The User-Agent is always `riksdata/<version> (+https://riksdata.org; <contact email>)`, with the address from `RIKSDATA_CONTACT_EMAIL`. No browser-like User-Agent, ever; the `user_agent` registry field is removed. Refused hosts get their official API or bulk route instead (HUDOC → ECHR statistics files, ParlGov → Harvard Dataverse, www.oecd.org pages → OECD SDMX dataflows).
   3. Freshness is measured from the end of the last period. A `0` between non-zero values is flagged (`suspicious_zeros`). SSB 05803 no longer selects marriages and divorces (published as 0 for missing years).
   4. Some hosts refuse our HTTP client whatever it says about itself: www.echr.coe.int answers 403 to httpx and 200 to curl with the same User-Agent. Such rows stay `blocked`; changing the client to get past a bot check is a decision for Egil.
+- **2026-10-03 (sweep, PR `v2/01f-sweep`):**
+  1. No change to the data model or the architecture. The lint rules are wider (ruff: naming, simpler code, pathlib, timezone-aware datetimes, no `print`, pytest style, pylint's checks) and the package passes mypy in strict mode. Mypy is a dev dependency and one of the checks before a PR (Egil's go-ahead, 2026-10-03).
+  2. `SOURCES.md` carries the corrections from the Mac tests in its rows, and every row that was blocked from the server also gives the Mac's result. `docs/v2/source-checks.md` now only describes the command; all results are in `docs/v2/source-inventory.md`.
+  3. `README.md` describes both the live v1 site and Riksdata 2.0. `.gitignore` drops v1's catch-all patterns. No v1 file is touched.
+  4. New dependencies no longer need asking first (Egil, 2026-10-03). A package is added with `uv add` in the PR that first uses it and named in the PR description (CLAUDE.md §2). `fastexcel` was tested against one real xlsx, ods and xls file and reads all three through polars; it comes with the first adapter that reads a workbook.

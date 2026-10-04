@@ -1,6 +1,7 @@
-"""The `riksdata` command line interface: update | validate | catalog | sql.
+"""The `riksdata` command line interface.
 
-Run it from the repository root: it reads `registry/` and writes `lake/`.
+Commands: update | validate | catalog | sql | check-sources | export. Run it from the
+repository root: it reads `registry/` and writes `lake/`.
 """
 
 from __future__ import annotations

@@ -341,6 +341,12 @@ def test_registry_entries_are_complete() -> None:
         "annual-working-hours-per-worker",
         "oil-production-by-country",
     }
+    # Charts where a 0 between other values is a real figure, so `validate` leaves them alone.
+    assert {ds.dataset for ds in datasets if ds.real_zeros} == {
+        "co-emissions-per-capita",
+        "homicide-rate-unodc",
+        "oil-production-by-country",
+    }
 
 
 @pytest.mark.live

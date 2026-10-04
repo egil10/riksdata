@@ -178,6 +178,22 @@ def test_a_zero_between_values_is_flagged(tmp_path: Path) -> None:
     assert report["status"] == "warn"
 
 
+def test_a_dataset_with_real_zeros_is_not_flagged(tmp_path: Path) -> None:
+    years = ("2021", "2022", "2023")
+    oil = make_dataset(dataset="oil", slug="oil", real_zeros=True)  # no production in 2022
+    marriages = make_dataset(dataset="marriages", slug="marriages")  # 0 for a missing figure
+    registry = Registry(sources={"demo": make_source()}, datasets=[oil, marriages])
+    for ds in (oil, marriages):
+        batch = make_batch(f"demo.{ds.dataset}.a", periods=years)
+        storage.write_batch(tmp_path, ds, with_values(batch, [5.0, 0, 7.0]))
+
+    report = validate.run(tmp_path, registry, now=NOW)
+
+    result = check(report, "suspicious_zeros")
+    assert result["status"] == "warn"
+    assert result["examples"] == ["demo.marriages.a NOR: 0 in 2022"]
+
+
 # The licence strings in the lake on 2026-10-03, and the parts of each that are not open.
 LICENCES = [
     ("CC-BY-4.0", None),

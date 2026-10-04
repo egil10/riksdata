@@ -1,7 +1,7 @@
 # Riksdata 2.0 — PLAN
 
 > Living document. Update it in the same PR whenever an architectural decision changes.
-> Last revised: 2026-10-03 (see the changelog at the bottom).
+> Last revised: 2026-10-04 (see the changelog at the bottom).
 > Companion docs: `VISION.md` (12-month product vision and roadmap), `SOURCES.md` (source catalogue).
 
 ## 1. Vision
@@ -147,6 +147,7 @@ ssb:
   superseded_by: null          # set when the publisher closes the table
   publish: true                # false ⇒ kept in the lake for analysis, never exported to the site (default false for NC/SA-licensed sources until Egil decides; SOURCES.md A3)
   terms_note: null             # a Norwegian sentence shown beside the licence. Required to publish a series whose upstream licence is not an open one (`validate`: licence_terms)
+  real_zeros: false            # true when a 0 in the dataset is a real figure, so `validate` skips it in suspicious_zeros. Give the reason in a comment
   pii: none                    # none | aggregate | hash_ids — person-level registers (Fiskeridir owners, farm subsidies, eInnsyn names) are hashed or aggregated at ingest
   chunk_by: null               # e.g. {Tid: 1, Region: 25} for tables above the 800k-cell limit (SSB 12367 = 66.5M cells)
 ```
@@ -260,3 +261,6 @@ See `CLAUDE.md`. In short: branch per task, small PRs, pytest, uv, no data blobs
   2. `SOURCES.md` carries the corrections from the Mac tests in its rows, and every row that was blocked from the server also gives the Mac's result. `docs/v2/source-checks.md` now only describes the command; all results are in `docs/v2/source-inventory.md`.
   3. `README.md` describes both the live v1 site and Riksdata 2.0. `.gitignore` drops v1's catch-all patterns. No v1 file is touched.
   4. New dependencies no longer need asking first (Egil, 2026-10-03). A package is added with `uv add` in the PR that first uses it and named in the PR description (CLAUDE.md §2). `fastexcel` was tested against one real xlsx, ods and xls file and reads all three through polars; it comes with the first adapter that reads a workbook.
+- **2026-10-04 (follow-ups, PR `v2/01g-followups`):**
+  1. New dataset field `real_zeros` (default false). `validate` leaves a dataset that sets it out of the `suspicious_zeros` check. Four datasets do, each with its reason in the registry: three OWID charts and SSB 07391.
+  2. A correction to item 4 of the review-fixes entry above. www.echr.coe.int is behind Cloudflare, and the server gets its files with our client and our User-Agent (2026-10-04). Only the Mac's address is refused, so the ECHR rows run from a datacentre runner and the HTTP client stays as it is.

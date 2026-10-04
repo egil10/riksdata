@@ -76,6 +76,7 @@ Three charts named in `SOURCES.md` were not added: `government-spending-share-gd
 - **Always use `csvType=full`.** With `csvType=filtered`, a chart whose default view is the map returns every country for a single year, with values carried forward from earlier years and an extra `<name>__original_year` column. The full CSV has only real observation years.
 - **Licence names have glitches.** `child-mortality` has an origin whose licence name is "CC BY 4.0# License (same as origin.license, for backwards compatibility)". The adapter cuts each name at the first `#`.
 - **Long history.** `daily-per-capita-caloric-supply` starts in 1274 for the United Kingdom, and `life-expectancy` in 1543.
+- **Real zeros.** Three charts have a 0 between other values that is a real figure: `co-emissions-per-capita` (Norway 1832–1834), `homicide-rate-unodc` (Iceland 1998, 2006 and 2008) and `oil-production-by-country` (Sweden, which produced oil in only 22 of the years 1950–1986). They set `real_zeros: true` in the registry, so `validate` doesn't warn about them.
 - **Not every entity is in every chart.** `military-spending-as-a-share-of-gdp-sipri` has no `WORLD` row.
 - **Lag.** Several charts end in 2022 or 2023. `validate` warns about an annual series when its last year ended more than 1,100 days ago. That is how often the upstream source is updated, not a fault in the pipeline.
 

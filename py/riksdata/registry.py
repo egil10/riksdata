@@ -77,6 +77,8 @@ class DatasetSpec(BaseModel):
     # Shown beside the licence on the site. Required to publish data whose upstream licence
     # is not an open one (`validate` checks): it records that Egil has decided the terms allow it.
     terms_note: str | None = None
+    # The dataset's zeros are real figures, so `validate` does not flag them (suspicious_zeros).
+    real_zeros: bool = False
     pii: Literal["none", "aggregate", "hash_ids"] = "none"  # person-level data: PLAN.md §6
     chunk_by: dict[str, int] | None = None  # for tables above a publisher's request limit
     select: dict[str, list[StrictStr]] = Field(default_factory=dict)

@@ -93,6 +93,7 @@
   series_key: [Ordning, Art, ContentsCode]
   entity: NOR
   schedule: daily
+  real_zeros: true              # the two petroleum taxes (C, D) are 0 in January 2017 and 2026
 
 - dataset: "12439"
   slug: sykefravaer

@@ -54,7 +54,7 @@ Each entry says how the source hands out its data, which decides what kind of ad
 
 We never send a browser-like User-Agent (Egil, 2026-10-03). A host that refuses ours gets its official API or bulk route instead, or we ask the publisher. Until then the row stays `blocked`.
 
-Some hosts refuse the HTTP client rather than the name it gives: www.echr.coe.int answers 403 to our client (httpx) and 200 to curl with the same User-Agent. Changing the client to get past such a check is a decision for Egil, not something a check does on its own.
+A refusal can depend on where the request comes from. www.echr.coe.int is behind Cloudflare: our client gets its files from the server, and gets a challenge page (403) from Egil's Mac. Such a row is `ok` on one machine and `blocked` on the other. The HTTP client is not changed to get past a check like that.
 
 ## Adding or changing a check
 

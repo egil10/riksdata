@@ -41,6 +41,7 @@ def test_dataset_defaults(tmp_path: Path) -> None:
     assert ds.key == "demo/life-expectancy"
     assert ds.publish is True
     assert (ds.pii, ds.chunk_by, ds.terms_note) == ("none", None, None)
+    assert ds.real_zeros is False
     source = registry.sources["demo"]
     assert source.timeout_seconds == 60
     assert (source.runner, source.secret_env) == ("box", None)
@@ -66,6 +67,14 @@ def test_terms_note_is_loaded(tmp_path: Path) -> None:
     (ds,) = load_registry(write_registry(tmp_path, {"demo": noted})).datasets
 
     assert ds.terms_note == "Brukt ikke-kommersielt med kildehenvisning."
+
+
+def test_real_zeros_is_loaded(tmp_path: Path) -> None:
+    marked = DATASET + "  real_zeros: true\n"
+
+    (ds,) = load_registry(write_registry(tmp_path, {"demo": marked})).datasets
+
+    assert ds.real_zeros is True
 
 
 def test_a_source_cannot_ask_for_another_user_agent(tmp_path: Path) -> None:

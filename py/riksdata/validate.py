@@ -149,12 +149,24 @@ def _check_freshness(series: pl.DataFrame, today: date) -> Check:
     )
 
 
-def _check_suspicious_zeros(observations: pl.DataFrame) -> Check:
-    """A 0 between other values is often a missing figure that the publisher wrote as 0."""
+def _check_suspicious_zeros(
+    series: pl.DataFrame, observations: pl.DataFrame, registry: Registry | None
+) -> Check:
+    """A 0 between other values is often a missing figure that the publisher wrote as 0.
+
+    A dataset whose zeros are real figures says so in the registry (`real_zeros`) and is skipped.
+    """
+    datasets = registry.datasets if registry else []
+    real = {(ds.source_id, ds.dataset) for ds in datasets if ds.real_zeros}
+    skipped = [
+        row["series_id"]
+        for row in series.iter_rows(named=True)
+        if (row["source_id"], row["dataset_id"]) in real
+    ]
     key = ["series_id", "entity_id"]
     nonzero = pl.col("value") != 0
     zeros = (
-        observations.filter(pl.col("value").is_not_null())
+        observations.filter(pl.col("value").is_not_null() & ~pl.col("series_id").is_in(skipped))
         .sort(*key, "period_start")
         .with_columns(
             before=nonzero.cum_sum().over(key), after=nonzero.cum_sum(reverse=True).over(key)
@@ -254,8 +266,8 @@ def run(
 ) -> dict[str, Any]:
     """Run every check, write `run_report.json` and return the report.
 
-    The registry tells the licence check which datasets have a `terms_note`. The report's
-    `status` is `fail` if any check failed, else `warn` or `pass`.
+    The registry tells the checks which datasets have a `terms_note` or `real_zeros`. The
+    report's `status` is `fail` if any check failed, else `warn` or `pass`.
     """
     now = now or datetime.now(UTC)
     previous = storage.read_run_report(lake)
@@ -270,7 +282,7 @@ def run(
             _check_required_fields(series),
             _check_no_empty_series(series, observations),
             _check_licence_terms(series, registry),
-            _check_suspicious_zeros(observations),
+            _check_suspicious_zeros(series, observations, registry),
             _check_freshness(series, now.date()),
             _check_row_drop(datasets, previous),
         ]

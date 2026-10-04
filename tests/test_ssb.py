@@ -403,6 +403,8 @@ def test_registry_entries_are_complete() -> None:
     # SSB publishes marriages and divorces as 0 for missing years, so 05803 leaves them out.
     population = next(ds for ds in datasets if ds.dataset == "05803")
     assert not {"InngEkteskap", "Skilsmisse"} & set(population.select["ContentsCode"])
+    # 07391 is accumulated through the year, and its petroleum taxes are 0 in some Januaries.
+    assert [ds.dataset for ds in datasets if ds.real_zeros] == ["07391"]
     for ds in datasets:
         assert ds.entity == "NOR", ds.key
         assert ds.frequency in ("A", "Q", "M"), ds.key

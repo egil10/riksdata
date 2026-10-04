@@ -21,6 +21,7 @@
   topic: climate
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  real_zeros: true   # Norway is 0 in 1832-1834, between years of very small emissions
 
 - dataset: children-per-woman-un
   title_no: Samlet fruktbarhetstall (barn per kvinne)
@@ -33,6 +34,7 @@
   topic: crime
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  real_zeros: true   # Iceland had no homicides in 1998, 2006 and 2008
   terms_note: "Data fra UNODC (© United Nations) via Our World in Data. Brukt ikke-kommersielt med kildehenvisning."
 
 - dataset: military-spending-as-a-share-of-gdp-sipri
@@ -107,4 +109,5 @@
   topic: energy
   entities: [NOR, SWE, DNK, FIN, ISL, DEU, GBR, USA, OWID_WRL]
   schedule: weekly
+  real_zeros: true   # Sweden produced oil in only 22 of the years 1950-1986, and none since
   terms_note: "Data fra Energy Institute – Statistical Review of World Energy (© Energy Institute) m.fl. via Our World in Data. Ikke-kommersiell bruk med kildehenvisning; deler under CC BY-SA 3.0 deles videre på samme vilkår."

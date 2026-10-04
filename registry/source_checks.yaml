@@ -242,9 +242,10 @@
    skip: "No official HUDOC data API; the web UI's query endpoint is not used (Egil 2026-10-03). See the echr-* rows"}
 - {id: echr-country-profile-norway, section: "5", priority: A, access: docs, name: "ECHR country profile: Norway (PDF)",
    url: "https://www.echr.coe.int/documents/d/echr/CP_Norway_ENG", expect_type: "application/pdf", pii: true,
-   note: "A wrong ECHR address answers 200 with an HTML not-found page, so the content type matters"}
+   note: "A wrong ECHR address answers 200 with an HTML not-found page, so the content type matters. ok from the server (a datacentre address) with our client and User-Agent on 2026-10-04. From Egil's Mac the same request gets Cloudflare's challenge page (403): the refusal follows the address, not the client"}
 - {id: echr-violations-by-state, section: "5", priority: A, access: docs, name: "ECHR violations by article and by state, 2024 (PDF)",
-   url: "https://www.echr.coe.int/documents/d/echr/stats-violation-2024-eng", expect_type: "application/pdf"}
+   url: "https://www.echr.coe.int/documents/d/echr/stats-violation-2024-eng", expect_type: "application/pdf",
+   note: "ok from the server (a datacentre address) with our client and User-Agent on 2026-10-04. From Egil's Mac the same request gets Cloudflare's challenge page (403): the refusal follows the address, not the client"}
 - {id: esa-efta-court, section: "5", priority: B, access: docs, name: "ESA and EFTA Court",
    url: "https://www.eftasurv.int"}
 - {id: eea-lex, section: "5", priority: A, access: page, name: "EEA-Lex (EFTA)",

@@ -87,7 +87,7 @@ About 20 rows deliver Excel or ODS workbooks (NAV, regjeringen.no, Partifinansie
 | Why not yet | Rows |
 |---|---|
 | Need a free key (3) | NBIM voting records, Helsedirektoratet NKI, ENTSO-E. MARPOR also needs a key for its data; only its version list is open |
-| Refuse our HTTP client (2) | The two ECHR statistics files (PDF) that replaced HUDOC. They answer 403 to our client and 200 to curl with the same User-Agent |
+| Refused from the Mac (2) | The two ECHR statistics files (PDF) that replaced HUDOC. The server gets them with our client; from the Mac the same request gets 403 |
 | Files behind a page (8) | regjeringen.no budget figures, Grønt hefte, NAV statistics, valg.no candidate lists, Partifinansiering, EU ETS, Havbruksfondet: all confirmed down to the files. EEA-Lex: HTML pages only |
 | Documents (6) | Statens eierrapport, SIFO referansebudsjett, party programmes, government platforms, Riksrevisjonen, and IMF Article IV (a link-out, not requested) |
 | By hand only (4) | Finansdepartementet's budget answers, hospital waiting times, GP statistics, Udir Statistikkportalen |
@@ -120,7 +120,7 @@ About 20 rows deliver Excel or ODS workbooks (NAV, regjeringen.no, Partifinansie
 ### Accountability and courts
 
 - Mostly documents. Sivilombudet's site has a WordPress API. Mattilsynet's inspection file (17 MB) was last changed on the day of the check.
-- HUDOC is no longer requested: it has no official data API, and the address the first check used was its web UI's internal endpoint. The two ECHR statistics files that replaced it answer 403 to our HTTP client and 200 to curl with the same User-Agent, so the refusal is about the client software.
+- HUDOC is no longer requested: it has no official data API, and the address the first check used was its web UI's internal endpoint. The two ECHR statistics files that replaced it are behind Cloudflare, which decides by where a request comes from. From the server, a datacentre address, our client gets both files with our own User-Agent (checked 2026-10-04). From the Mac the same request gets Cloudflare's challenge page (403), while curl gets the files. So this is not a fault in our HTTP client, which stays as it is: the ECHR files are fetched from a datacentre runner.
 
 ### Health
 
@@ -170,7 +170,7 @@ Blocked or unreachable from the Mac:
 
 | Source | Result | Note |
 |---|---|---|
-| ECHR country profile and violations table | 403 | www.echr.coe.int answers 403 to our HTTP client (httpx) and 200 to curl with the same User-Agent |
+| ECHR country profile and violations table | 403 | Only from the Mac: Cloudflare's challenge page. The server gets both files with the same client and User-Agent (2026-10-04) |
 | Arbeidstilsynet registers | 403 | Also blocked from the server |
 | OpenTender | 403 | Also blocked from the server (Cloudflare) |
 | ISSP (GESIS) | 403 | Landing page |
@@ -227,7 +227,7 @@ One IMF trial (Fiscal Monitor with a country filter) returned the list of indica
 
 1. **Keys.** 16 sources need a free key: the 14 listed above, plus MARPOR and Patentstyret for their data. ENTSO-E, Helsedirektoratet and NBIM voting are priority A.
 2. **An Excel reader.** About 20 rows deliver xlsx, xls or ODS. Polars reads all three with the `fastexcel` package. It was tested on one real file of each kind: the Gul bok 2026 workbook (xlsx; the `Data` sheet has 1,600 rows and 16 columns, one amount per row), a Grønt hefte table (ods; 393 rows, with a units row and a numbering row under the header that have to be skipped) and Partifinansiering's 2006 accounts (xls; 3,172 rows, with title rows above the header). The package will be added with the first adapter that reads a workbook. JST Macrohistory's address serves only a Stata file, which would need another package; CHES and Penn World Table also come as CSV or Excel. The 27 document rows will later need a PDF text extractor.
-3. **Hosts that refuse our HTTP client.** We never send a browser-like User-Agent (decided 2026-10-03), and HUDOC, ParlGov and the OECD pages now go through official routes. What is left: www.echr.coe.int serves curl but not our client (httpx) under the same User-Agent, and Arbeidstilsynet, OpenTender and Vannmiljø answer 403. Whether the pipeline may use another HTTP client for such hosts is your call; otherwise we ask the publishers.
+3. **Hosts that refuse our HTTP client.** We never send a browser-like User-Agent (decided 2026-10-03), and HUDOC, ParlGov and the OECD pages now go through official routes. What is left: Arbeidstilsynet, OpenTender and Vannmiljø answer 403. Whether the pipeline may use another HTTP client for such hosts is your call; otherwise we ask the publishers. www.echr.coe.int is no longer on this list: it refuses the Mac's address and serves the server, so its rows run from a datacentre runner and the HTTP client stays as it is (Egil, 2026-10-04).
 4. **Two requests worth sending**: to Finansdepartementet for the budget answers as a list or file, and to Udir for an export from Statistikkportalen.
 5. **Section 23** of `SOURCES.md` has the seven candidates. Whether they belong in the catalogue is a call for the catalogue's owner.
 
